@@ -1,8 +1,6 @@
 package melanesim.protocol;
 
-import java.awt.*;
 import java.util.Calendar;
-import java.util.Iterator;
 import java.util.Random;
 import java.util.TimeZone;
 
@@ -17,17 +15,14 @@ import data.converters.C_ConvertGeographicCoordinates;
 import presentation.display.C_Background;
 import repast.simphony.context.Context;
 import repast.simphony.engine.environment.RunState;
-import thing.A_VisibleAgent;
 import thing.C_Plankton;
-import thing.I_SituatedThing;
+import thing.C_StreamCurrent;
 import thing.dna.C_GenomeAnimalia;
-import thing.ground.A_SupportedContainer;
 import thing.ground.C_LandPlot;
 import thing.ground.C_MarineCell;
 import thing.ground.C_SoilCell;
 import thing.ground.I_Container;
 import thing.ground.landscape.C_LandscapeMarine;
-import melanesim.util.CaptureEcranPeriodique;
 
 /**
  * Plankton particles moved by surface currents
@@ -88,15 +83,17 @@ public class C_Protocol_PNMC_particules extends A_Protocol implements I_Constant
 		java.awt.Dimension dim = this.landscape.getDimension_Ucell();
 		int grid_width = (int) dim.getWidth();
 		int grid_height = (int) dim.getHeight();
-		I_Container cell;
+		C_MarineCell cell;
 		for (int i = 0; i < grid_width; i++) {
 			if (countWidth == PLANKTON_CELLS_SPACING) {
 				countHeight = 0;
 				for (int j = 0; j < grid_height; j++) {
 					if (countHeight == PLANKTON_CELLS_SPACING) {
-						cell = this.landscape.getGrid()[i][j];
+						cell = (C_MarineCell) this.landscape.getGrid()[i][j];
 						if (cell.getAffinity() < TERRESTRIAL_MIN_AFFINITY) {
 							this.contextualizeNewThingInContainer(createPlankton(), cell);
+							cell.setMyCurrent(new C_StreamCurrent(cell.getAffinity(), i, j));
+							contextualizeNewThingInSpace(cell.getMyCurrent(), i, j);
 							particleCount++;
 						}
 						countHeight = 0;
@@ -154,7 +151,8 @@ public class C_Protocol_PNMC_particules extends A_Protocol implements I_Constant
 	 * Version Authors JEL2011, AR2011, rev. LeFur 2011,2012,2014,2024
 	 */
 	public void manageTimeLandmarks() {
-		// // slightly randomly move the mouse to avoid screen sleep mode (for recordinng printscreen)
+		// // slightly randomly move the mouse to avoid screen sleep mode (for
+		// recording printscreen)
 		// try {
 		// Robot robot = new Robot();
 		// // Get the current mouse coordinates
@@ -194,6 +192,7 @@ public class C_Protocol_PNMC_particules extends A_Protocol implements I_Constant
 	@Override
 	public void manageOneEvent(C_Event event) {
 		Coordinate coordinateCell_Ucs = null;
+		C_MarineCell cell = null;
 		if (event.whereX_Ucell == null) {// then: 1) suppose that y is also null, 2) double are values in decimal
 											// degrees
 			coordinateCell_Ucs = this.geographicCoordinateConverter.convertCoordinate_Ucs(event.whereX_Udouble,
@@ -230,13 +229,12 @@ public class C_Protocol_PNMC_particules extends A_Protocol implements I_Constant
 			for (int i = 0; i < imax; i++) {
 				for (int j = 0; j < jmax; j++) {
 					double value = matriceLue[i][j];
-					((C_MarineCell) this.landscape.getGrid()[i][j]).setSpeedNorthward_UmeterPerSecond(value);
+					cell = ((C_MarineCell) this.landscape.getGrid()[i][j]);
+					cell.setSpeedNorthward_UmeterPerSecond(value);
+					if (cell.getMyCurrent() != null)
+						cell.getMyCurrent().setHasToSwitchFace(true);
 				}
 			}
-			for (int i = 0; i < imax; i++)
-				for (int j = 0; j < jmax; j++)
-					for (I_SituatedThing oneThing : (this.landscape.getGrid()[i][j]).getOccupantList())
-						((A_VisibleAgent) oneThing).setHasToSwitchFace(true);
 			break;
 		}
 		super.manageOneEvent(event);

@@ -28,6 +28,7 @@ import thing.C_Rodent;
 import thing.C_RodentGerbil;
 import thing.C_RodentHouseMouse;
 import thing.C_RodentMastoErySimple;
+import thing.C_StreamCurrent;
 import thing.C_TaxiManDodel;
 import thing.C_Vegetation;
 import thing.I_SituatedThing;
@@ -41,6 +42,7 @@ import thing.dna.species.rodents.C_GenomeMastomys;
 import thing.ground.A_SupportedContainer;
 import thing.ground.C_BurrowSystem;
 import thing.ground.C_MarineCell;
+//import thing.ground.C_MarineCell;
 import thing.ground.C_Market;
 import thing.ground.C_Nest;
 import thing.ground.C_SoilCellSavanna;
@@ -70,7 +72,7 @@ public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC_p
 		return img;
 	}
 
-	/** Renvoie le nom de l'image � utiliser pour l'agent en param�tre */
+	/** Renvoie le nom de l'image à utiliser pour l'agent en paramètre */
 	public String getNameOfImage(I_SituatedThing agent) {
 		if (C_Parameters.PROTOCOL.equals(PNMC_PK))
 			return getNameOfImagePNMC(agent);
@@ -103,40 +105,38 @@ public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC_p
 	}
 
 	public String getNameOfImagePNMC(I_SituatedThing agent) {
-		C_MarineCell cell;
-		double speedNorth, speedEast;
 		if (agent instanceof A_SupportedContainer && ((A_SupportedContainer) agent).isa_Tag()) {
 			((A_SupportedContainer) agent).setHasToSwitchFace(true);
 			return TAGGED;
-		} else if (agent instanceof C_Plankton) {
-			cell = (C_MarineCell) agent.getCurrentSoilCell();
-			speedNorth = cell.getSpeedNorthward_UmeterPerSecond();
-			speedEast = cell.getSpeedEastward_UmeterPerSecond();
-			if (speedNorth > 0)
-				if (speedEast > 0)
+		} else if (agent instanceof C_StreamCurrent) {
+			C_MarineCell cell = ((C_StreamCurrent) agent).getMyCell();
+			double speedNorth = cell.getSpeedNorthward_UmeterPerSecond();
+			double speedEast = cell.getSpeedEastward_UmeterPerSecond();
+			if (speedNorth > 0.1)
+				if (speedEast > 0.1)
 					return NORTH_EAST_ICON;
-				else if (speedEast < 0)
+				else if (speedEast < -0.1)
 					return NORTH_WEST_ICON;
-				else
+				else // speedEast == 0
 					return NORTH_ICON;
-			else if (speedNorth < 0)
-				if (speedEast > 0)
+			else if (speedNorth < -0.1)
+				if (speedEast > 0.1)
 					return SOUTH_EAST_ICON;
-				else if (speedEast < 0)
+				else if (speedEast < -0.1)
 					return SOUTH_WEST_ICON;
-				else
+				else // speedEast == 0
 					return SOUTH_ICON;
-			else { // speedNorth == 0.
-				if (speedEast > 0)
-					return EAST_ICON;
-				else if (speedEast < 0)
-					return WEST_ICON;
-				else
-					return PLANKTON_ICON;
-
-			}
-		}
-		return null;
+			// speedNorth == 0.
+			else if (speedEast > 0.1)
+				return EAST_ICON;
+			else if (speedEast < -0.1)
+				return WEST_ICON;
+			else
+				return null;// vitesse = nulle
+		} else if (agent instanceof C_Plankton)
+			return PLANKTON_ICON;
+		else
+			return TAGGED;// problem
 	}
 
 	public String getNameOfImageBandia(I_SituatedThing agent) {

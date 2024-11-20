@@ -1,6 +1,10 @@
 <model name="SIMmasto0">
 	<classpath>
+<!-- MELANESIM -->
+		<agents path="../bin, ../bin-groovy" filter="thing.C_StreamCurrent" />
 		<agents path="../bin, ../bin-groovy" filter="thing.C_Plankton" />
+		
+<!-- RODENTS -->
 		<agents path="../bin, ../bin-groovy" filter="thing.ground.C_SoilCellSavanna" />
 		<agents path="../bin, ../bin-groovy" filter="thing.ground.C_SoilCell" />
 		<agents path="../bin, ../bin-groovy" filter="thing.ground.C_SoilCellWall" />

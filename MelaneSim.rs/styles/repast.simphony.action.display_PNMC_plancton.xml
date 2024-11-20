@@ -12,6 +12,10 @@
 			<string>presentation.display.C_StyleAgent</string>
 		</entry>
 		<entry>
+			<string>thing.C_StreamCurrent</string>
+			<string>presentation.display.C_StyleAgent</string>
+		</entry>
+		<entry>
 			<string>thing.ground.C_LandPlot</string>
 			<string>repast.simphony.visualization.editedStyle.EditedStyle2D
 			</string>
@@ -28,6 +32,10 @@
 		</entry>
 		<entry>
 			<string>thing.C_Plankton</string>
+			<null />
+		</entry>
+		<entry>
+			<string>thing.C_StreamCurrent</string>
 			<null />
 		</entry>
 	</editedStyles>
@@ -54,6 +62,10 @@
 		</entry>
 		<entry>
 			<string>thing.C_Plankton</string>
+			<int>3</int>
+		</entry>
+		<entry>
+			<string>thing.C_StreamCurrent</string>
 			<int>2</int>
 		</entry>
 		<entry>

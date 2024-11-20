@@ -57,6 +57,6 @@
 <Scenario>
 	<repast.simphony.dataLoader.engine.ClassNameDataLoaderAction context="SIMmasto0" file="repast.simphony.dataLoader.engine.ClassNameDataLoaderAction_0.xml" />
 	<repast.simphony.action.display context="SIMmasto0" file="styles\repast.simphony.action.display_PNMC_plancton.xml" />
-	<repast.simphony.userpanel.ui.DefaultUserPanelDescriptorAction context="SIMmasto0" file="repast.simphony.userpanel.ui.DefaultUserPanelDescriptorAction_0.xml" />
+	<repast.simphony.userpanel.ui.DefaultUserPanelDescriptorAction context="SIMmasto0" file="repast.simphony.userpanel.ui.DefaultUserPanelDescriptorAction_2.xml" />
 	<model.initializer class="presentation.display.C_CustomPanelSet" />
 </Scenario>

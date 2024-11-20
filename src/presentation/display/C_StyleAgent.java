@@ -21,18 +21,15 @@ import thing.A_NDS;
 import thing.A_Organism;
 import thing.A_VisibleAgent;
 import thing.C_Plankton;
+import thing.C_StreamCurrent;
 import thing.A_HumanUrban;
 import thing.C_Vegetation;
 import thing.I_SituatedThing;
 import thing.ground.C_MarineCell;
 
-/**
- * Style des agents "animaux". D�finit une ic�ne ou une ellipse pour chaque
- * agent au lancement de la simulation en fonction de son sexe et la fait varier
- * suivant son �ge.
- * 
- * @author A Realini 2011
- */
+/** Style des agents "animaux". Définit une icône ou une ellipse pour chaque agent au lancement de la simulation en fonction de
+ * son sexe et la fait varier suivant son âge.
+ * @author A Realini 2011 */
 public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStringRodents, I_ConstantPNMC_particules,
 		I_ConstantNumeric, I_ConstantImagesNames {
 	private float imageScale = IMAGE_SCALE; // Taille d'une image initiale .15
@@ -43,37 +40,23 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 	private C_IconSelector selectImg;
 	private ShapeFactory2D factory;
 
-	/**
-	 * Initialise un gestionnaire d'images et enregistre les images qui seront
-	 * utilis�es au cours de la simulation dans le factory
-	 */
+	/** Initialise un gestionnaire d'images et enregistre les images qui seront utilis�es au cours de la simulation dans le
+	 * factory */
 	public void init(ShapeFactory2D factory) {
 		this.factory = factory;
 		selectImg = new C_IconSelector();
-		if (C_Parameters.PROTOCOL.equals(PNMC_PK))
-			initPNMC();
-		else if (C_Parameters.PROTOCOL.equals(CHIZE))
-			initChize();
-		else if (C_Parameters.PROTOCOL.equals(ENCLOSURE))
-			initEnclosMbour();
-		else if (C_Parameters.PROTOCOL.equals(DODEL))
-			initDodel();
-		else if (C_Parameters.PROTOCOL.equals(CAGES))
-			initEnclosMbour();
-		else if (C_Parameters.PROTOCOL.equals(HYBRID_UNIFORM))
-			initEnclosMbour();
-		else if (C_Parameters.PROTOCOL.contains(CENTENAL))
-			initCentenal();
-		else if (C_Parameters.PROTOCOL.equals(DECENAL))
-			initDecenal();
-		else if (C_Parameters.PROTOCOL.equals(MUS_TRANSPORT))
-			initMusTransport();
-		else if (C_Parameters.PROTOCOL.equals(GERBIL))
-			initGerbil();
-		else if (C_Parameters.PROTOCOL.equals(BANDIA))
-			initBandia();
-		else if (C_Parameters.PROTOCOL.equals(DODEL2))
-			initDodel2();
+		if (C_Parameters.PROTOCOL.equals(PNMC_PK)) initPNMC();
+		else if (C_Parameters.PROTOCOL.equals(CHIZE)) initChize();
+		else if (C_Parameters.PROTOCOL.equals(ENCLOSURE)) initEnclosMbour();
+		else if (C_Parameters.PROTOCOL.equals(DODEL)) initDodel();
+		else if (C_Parameters.PROTOCOL.equals(CAGES)) initEnclosMbour();
+		else if (C_Parameters.PROTOCOL.equals(HYBRID_UNIFORM)) initEnclosMbour();
+		else if (C_Parameters.PROTOCOL.contains(CENTENAL)) initCentenal();
+		else if (C_Parameters.PROTOCOL.equals(DECENAL)) initDecenal();
+		else if (C_Parameters.PROTOCOL.equals(MUS_TRANSPORT)) initMusTransport();
+		else if (C_Parameters.PROTOCOL.equals(GERBIL)) initGerbil();
+		else if (C_Parameters.PROTOCOL.equals(BANDIA)) initBandia();
+		else if (C_Parameters.PROTOCOL.equals(DODEL2)) initDodel2();
 		C_ContextCreator.protocol.setStyleAgent(this);
 	}
 
@@ -152,25 +135,25 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 		// Change image scale depending on the map resolution JLF 03.2018
 		float scaleForIcon = .2f;
 		switch (((String) RunEnvironment.getInstance().getParameters().getValue("RASTER_FILE")).toLowerCase()) {
-		case "zoom4":
-		case "zoom3":
-			scaleForIcon = .25f;
-			break;
-		case "me":
-			scaleForIcon = 16.f;
-			break;
-		case "pe":
-			scaleForIcon = 6.f;
-			this.ELLIPSE_SCALE = 8.f;
-			break;
-		case "zoom1":// lac de Guiers
-			this.ELLIPSE_SCALE = 15.f;
-			scaleForIcon = 1.5f;
-			break;
-		case "zoom2":
-			this.ELLIPSE_SCALE = 8.f;
-			scaleForIcon = 3.f;
-			break;
+			case "zoom4" :
+			case "zoom3" :
+				scaleForIcon = .25f;
+				break;
+			case "me" :
+				scaleForIcon = 16.f;
+				break;
+			case "pe" :
+				scaleForIcon = 6.f;
+				this.ELLIPSE_SCALE = 8.f;
+				break;
+			case "zoom1" :// lac de Guiers
+				this.ELLIPSE_SCALE = 15.f;
+				scaleForIcon = 1.5f;
+				break;
+			case "zoom2" :
+				this.ELLIPSE_SCALE = 8.f;
+				scaleForIcon = 3.f;
+				break;
 		}
 		this.imageScale = scaleForIcon;
 		factory.registerImage(GERBIL_MALE, selectImg.loadImage(GERBIL_MALE));
@@ -261,29 +244,28 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 		factory.registerImage(EMPTY_TRAP, selectImg.loadImage(EMPTY_TRAP));
 	}
 
-	/**
-	 * Attribue une nouvelle "image" � un agent ou la modifie si besoin est, sinon
-	 * renvoie le spatial en param�tre sans le modifier.
-	 * 
-	 * @param agent   : l'agent � qui appartient l'ic�ne
-	 * @param spatial : repr�sentation de l'agent (image ou forme g�om�trique)
-	 */
+	/** Attribue une nouvelle "image" � un agent ou la modifie si besoin est, sinon renvoie le spatial en param�tre sans le
+	 * modifier.
+	 * @param agent : l'agent � qui appartient l'ic�ne
+	 * @param spatial : repr�sentation de l'agent (image ou forme g�om�trique) */
 	@Override
 	public VSpatial getVSpatial(I_SituatedThing agent, VSpatial spatial) {
 		if (agent instanceof C_Background) {
 			if (((C_Background) agent).hasToSwitchFace || spatial == null)
 				spatial = factory.getNamedSpatial(selectImg.getNameOfImage(agent));
-		} else if (((A_VisibleAgent) agent).hasToSwitchFace || spatial == null) {
-			if (C_Parameters.IMAGE)
-				spatial = factory.getNamedSpatial(selectImg.getNameOfImage(agent));
+		}
+
+		else if (((A_VisibleAgent) agent).hasToSwitchFace || spatial == null) {
+			if (C_Parameters.IMAGE) spatial = factory.getNamedSpatial(selectImg.getNameOfImage(agent));
 			else {
 				if (agent instanceof C_Vegetation) {
 					spatial = factory.createCircle(CIRCLE_RADIUS * 0.5f, 3);// triangle shape
 				} // mature=circle, immature=square
-				else if (agent instanceof A_Amniote && !((A_Amniote) agent).isSexualMature())
-					spatial = factory.createRectangle((int) CIRCLE_RADIUS, (int) CIRCLE_RADIUS);
 				else
-					spatial = factory.createCircle(CIRCLE_RADIUS, CIRCLE_SLICES);
+					if (agent instanceof A_Amniote && !((A_Amniote) agent).isSexualMature())
+						spatial = factory.createRectangle((int) CIRCLE_RADIUS, (int) CIRCLE_RADIUS);
+				else
+						spatial = factory.createCircle(CIRCLE_RADIUS, CIRCLE_SLICES);
 
 				if (agent instanceof A_Animal && ((A_Animal) agent).isHasToLeaveFullContainer()) {
 					if (agent instanceof A_Amniote && !((A_Amniote) agent).isSexualMature())
@@ -294,8 +276,7 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 				if (agent instanceof A_Animal && ((A_Animal) agent).hasEnteredDomain) {
 					spatial = factory.createCircle(CIRCLE_RADIUS * 2.f, 4);// diamond shape
 					// TODO number in source 2018.05 JLF for displaying entering rodents
-					if (Math.random() > .98)
-						((A_Animal) agent).hasEnteredDomain = false;
+					if (Math.random() > .98) ((A_Animal) agent).hasEnteredDomain = false;
 				}
 			}
 			((A_VisibleAgent) agent).hasToSwitchFace = false;
@@ -305,52 +286,50 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 
 	@Override
 	public Color getColor(I_SituatedThing agent) {
-		if (C_Parameters.IMAGE)
-			return Color.white; // the color is not important
-		else
-			return C_IconSelector.getColor(agent);
+		if (C_Parameters.IMAGE) return Color.white; // the color is not important
+		else return C_IconSelector.getColor(agent);
 	}
 
 	@Override
 	/** getscale modified only for vegetation, rev. M.Sall 03.2016 */
 	public float getScale(I_SituatedThing object) {
-		if (object instanceof C_Vegetation) {
-			// TODO number in source OK JLF 2021.03 compute mean
-			double energy = I_ConstantGerbil.INITIAL_VEGET_ENERGY + ((C_Vegetation) object).getEnergy_Ukcal() / 2;
-			if (C_Parameters.IMAGE) // TODO number in source 2016.03 MS, 2021.02 JLF
-				return (float) (energy * .005);
-			else
-				return (float) (energy * .1);
-		}
 		if (C_Parameters.IMAGE) {
+			if (object instanceof C_StreamCurrent) return (float) (this.imageScale * 15.);
+
 			if (object instanceof C_Plankton) {
 				C_MarineCell cell = (C_MarineCell) object.getCurrentSoilCell();
 				// TODO number in source JLF 2024.07 taille cellule plancton
-			//	float size = this.imageScale + (float) (cell.getOccupantList().size() * .001);
-				float size = (float) (this.imageScale * 10.);
+				float size = this.imageScale + (float) (cell.getOccupantList().size() * .001);
+				// float size = (float) (this.imageScale * 10.);
 				return size;
 			}
 			if (object instanceof A_Organism) {
-				if (((A_Organism) object).isa_Tag())
-					return this.imageScale * 5;
+				if (((A_Organism) object).isa_Tag()) return this.imageScale * 5;
 			}
 			if (object instanceof A_HumanUrban) {
-				if (((A_HumanUrban) object).isa_Tag())
-					return this.imageScale * 5;
-				if (!((A_Animal) object).getDesire().equals(REST))
-					return this.imageScale * 2;// TODO number in source JLF 2021.07
-												// taille humains
-				else
-					return this.imageScale / 2;
-			} else
-				return this.imageScale;
+				if (((A_HumanUrban) object).isa_Tag()) return this.imageScale * 5;
+				if (!((A_Animal) object).getDesire().equals(REST)) return this.imageScale * 2;// TODO number in source JLF 2021.07
+				// taille humains
+				else return this.imageScale / 2;
+			}
+			else return this.imageScale;
 		}
-		// Show (badly) the relative importance of agents sensing
-		// else if (object instanceof A_Animal) return (float) (this.ELLIPSE_SCALE *
-		// ((A_Animal) object).getSensing_UmeterByTick()
-		// / 10.);
-		else
-			return this.ELLIPSE_SCALE;
+		else {
+			if (object instanceof C_StreamCurrent) return (float) 0.;
+			if (object instanceof C_Vegetation) {
+				// TODO number in source OK JLF 2021.03 compute mean
+				double energy = I_ConstantGerbil.INITIAL_VEGET_ENERGY + ((C_Vegetation) object).getEnergy_Ukcal() / 2;
+				if (C_Parameters.IMAGE) // TODO number in source 2016.03 MS, 2021.02 JLF
+					return (float) (energy * .005);
+				else
+					return (float) (energy * .1);
+			}
+			// // Show (badly) the relative importance of agents sensing
+			// else if (object instanceof A_Animal) return (float) (this.ELLIPSE_SCALE *
+			// ((A_Animal) object).getSensing_UmeterByTick()
+			// / 10.);
+			else return this.ELLIPSE_SCALE;
+		}
 	}
 
 	// OVERRIDEN & UNUSED METHODS //
@@ -370,12 +349,10 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 		if (C_Parameters.VERBOSE) {
 			if (object instanceof A_Animal)
 				return ((A_NDS) object).retrieveId() + "/" + ((A_Animal) object).getCell1Target();
-			if (object instanceof A_NDS)
-				return ((A_NDS) object).retrieveId();
-			else
-				return null;
-		} else
-			return " ";// Does not work if return null JLF 09.2017
+			if (object instanceof A_NDS) return ((A_NDS) object).retrieveId();
+			else return null;
+		}
+		else return " ";// Does not work if return null JLF 09.2017
 	}
 
 	public Font getLabelFont(I_SituatedThing object) {
@@ -401,9 +378,7 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 	public Color getLabelColor(I_SituatedThing object) {
 		// TODO number(/data) in source JLF 2019.02 : desires list
 		String desires = "/FORAGE/FEED/REST/REPRODUCTION/SUCKLE/HIDE/NONE/WANDER/";
-		if ((object instanceof A_Animal) && desires.contains(((A_Animal) object).getCell1Target()))
-			return Color.RED;
-		else
-			return Color.BLUE;
+		if ((object instanceof A_Animal) && desires.contains(((A_Animal) object).getCell1Target())) return Color.RED;
+		else return Color.BLUE;
 	}
 }
