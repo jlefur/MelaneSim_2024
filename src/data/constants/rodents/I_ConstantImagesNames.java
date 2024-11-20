@@ -9,6 +9,15 @@ public interface I_ConstantImagesNames {
 
 	// PNMC
 	public static final String PLANKTON_ICON = "../PLANKTON";
+	// PNMC - surface current direction	
+	public static final String NORTH_ICON = "../arrows/NORTH";
+	public static final String NORTH_EAST_ICON = "../arrows/NORTH_EAST";
+	public static final String EAST_ICON = "../arrows/EAST";
+	public static final String SOUTH_EAST_ICON = "../arrows/SOUTH_EAST";
+	public static final String SOUTH_ICON = "../arrows/SOUTH";
+	public static final String SOUTH_WEST_ICON = "../arrows/SOUTH_WEST";
+	public static final String WEST_ICON = "../arrows/WEST";
+	public static final String NORTH_WEST_ICON = "../arrows/NORTH_WEST";
 	// DODEL
 	public static final String MOUSE_FEMALE_CHILD = "MOUSE_FEMALE_CHILD";
 	public static final String MOUSE_FEMALE_ADULT = "MOUSE_FEMALE_ADULT";
