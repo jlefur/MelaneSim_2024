@@ -154,11 +154,10 @@ public class C_Protocol_PNMC_particules extends A_Protocol implements I_Constant
 	 * Version Authors JEL2011, AR2011, rev. LeFur 2011,2012,2014,2024
 	 */
 	public void manageTimeLandmarks() {
-		// // D�place la souris l�g�rement de fa�on al�atoire (pour �viter la mise en
-		// veille de l'�cran)
+		// // slightly randomly move the mouse to avoid screen sleep mode (for recordinng printscreen)
 		// try {
 		// Robot robot = new Robot();
-		// // Obtient les coordonn�es actuelles de la souris
+		// // Get the current mouse coordinates
 		// Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
 		// int x = mouseLocation.x;
 		// int y = mouseLocation.y;
