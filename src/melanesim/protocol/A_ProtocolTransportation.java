@@ -480,10 +480,10 @@ public abstract class A_ProtocolTransportation extends A_Protocol implements I_C
 			for (C_LandPlot oneNewLandPlot : newLandPlots) {
 				newLandPlotCells = oneNewLandPlot.getCells();
 				C_LandPlot updatedLandPlot = null; //
-				// On regarde les old landPlots é qui il correspond
+				// On regarde les old landPlots ï¿½ qui il correspond
 				for (C_LandPlot oneOldLandPlot : currentLandPlotsOfAType) {
 					for (C_SoilCell soilCell_1 : oneOldLandPlot.getCells()) {
-						// S'il correspond é celui ci (méme groundType et un SC en commun)
+						// S'il correspond ï¿½ celui ci (mï¿½me groundType et un SC en commun)
 						if (oneNewLandPlot.getPlotType().equals(oneOldLandPlot.getPlotType()) && newLandPlotCells
 								.contains(soilCell_1)) {
 							if (updatedLandPlot == null) {
@@ -547,7 +547,7 @@ public abstract class A_ProtocolTransportation extends A_Protocol implements I_C
 	public int removeCarrierPop(int nCarriers, C_SoilCellGraphed eventCell, String VehicleType,
 			Set<C_City> citiesToTrade) {
 		if (nCarriers < 0) nCarriers = -nCarriers;
-		// Pour détruire des carriers avec une liste de villes spécifiées
+		// Pour dï¿½truire des carriers avec une liste de villes spï¿½cifiï¿½es
 		if (citiesToTrade != null) {
 			int n = citiesToTrade.size();
 			for (C_HumanCarrier oneCarrier : inspectorTransportation.getCarrierList()) {
@@ -561,7 +561,7 @@ public abstract class A_ProtocolTransportation extends A_Protocol implements I_C
 				}
 			}
 		}
-		// Pour détruire des carriers sur un landPlot (de type route, rail, river ...)
+		// Pour dï¿½truire des carriers sur un landPlot (de type route, rail, river ...)
 		else {// remove carriers on the same landplot, select the landplot corresponding to the vehicleType (which is unique)
 			C_Region lp = (C_Region) eventCell.getLandPlot(VEHICLE_SPECS.get(VehicleType)[GRAPH_TYPE_COL]);
 			TreeSet<C_HumanCarrier> carrierList = lp.getCarriers();

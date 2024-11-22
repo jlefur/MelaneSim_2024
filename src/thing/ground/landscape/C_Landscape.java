@@ -62,7 +62,7 @@ public class C_Landscape implements I_ConstantString {
 	//
 	// CONSTRUCTOR
 	//
-/** Constructor of grid ground : creates a gridValueLayer with values (affinity); an equivalent matrix with field agents, a
+	/** Constructor of grid ground : creates a gridValueLayer with values (affinity); an equivalent matrix with field agents, a
 	 * continuous space where agents have real coordinates. Retrieves also for that the user parameters provided within the GUI */
 	public C_Landscape(Context<Object> context, String url, String gridValueName, String continuousSpaceName) {
 		int[][] matriceLue = readRasterFile(url);
@@ -92,7 +92,7 @@ public class C_Landscape implements I_ConstantString {
 		// Fill both (!) gridValueLayer and C_SoilCell matrices with the value read in the raster
 		this.createGround(matriceLue);
 	}
-	protected int[][] readRasterFile(String url){
+	protected int[][] readRasterFile(String url) {
 		// READ RASTER FILE
 		int[][] matriceLue;
 		if (RASTER_MODE.compareTo("ascii") == 0) {
@@ -204,9 +204,7 @@ public class C_Landscape implements I_ConstantString {
 				moveDistance_Umeter.y / C_Parameters.UCS_WIDTH_Umeter); // m/m.cs^-1=cs
 		// Check the validity of the displacement, if necessary, this function will modify the given value
 		Coordinate distanceDeplacement_Ucs = this.checkGoalPosition(thingLocation_Ucs, moveDistance_Ucs, thing);
-		if (C_Parameters.EXCLOS && thing.hasLeftDomain && thing instanceof A_Animal) {
-			this.bordure((A_Animal) thing);
-		}
+		if (C_Parameters.EXCLOS && thing.hasLeftDomain && thing instanceof A_Organism) this.bordure((A_Organism) thing);
 		else {
 			moveDistance_Umeter.x = moveDistance_Ucs.x * C_Parameters.UCS_WIDTH_Umeter;
 			moveDistance_Umeter.y = moveDistance_Ucs.y * C_Parameters.UCS_WIDTH_Umeter; // cs*m.cs^-1 = m
@@ -214,13 +212,10 @@ public class C_Landscape implements I_ConstantString {
 			this.continuousSpace.moveByDisplacement(thing, distanceDeplacement_Ucs.x, distanceDeplacement_Ucs.y);
 			if (thing instanceof A_Animal && !((A_Animal) thing).isTrappedOnBoard()) this.checkAndMoveToNewCell(thing);
 			else if (thing instanceof A_Organism) this.checkAndMoveToNewCell(thing);
+			thing.hasLeftDomain = false;
 		}
 	}
-	/** Compute the half cell of diagonal */
-	public static double halfCellDiagonal() {
-		return Math.sqrt((C_Parameters.CELL_WIDTH_Umeter / 2) * (C_Parameters.CELL_WIDTH_Umeter / 2)
-				+ (C_Parameters.CELL_WIDTH_Umeter / 2) * (C_Parameters.CELL_WIDTH_Umeter / 2));
-	}
+
 	/** 2. Move thing IN THE GRID if previousCell and newCell are not same coordinates (line & column)<br>
 	 * @version J.Le Fur 01.2018 */
 	public void checkAndMoveToNewCell(A_VisibleAgent thing) {
@@ -228,14 +223,6 @@ public class C_Landscape implements I_ConstantString {
 		I_Container previousCell = thing.getCurrentSoilCell();
 		I_Container newCell = grid[(int) getThingCoord_Ucell(thing).x][(int) getThingCoord_Ucell(thing).y];
 		if (previousCell != newCell) this.moveToContainer(thing, newCell);
-	}
-	/** Verify if point is in grid<br>
-	 * author MS 2019.08<br>
-	 * TODO JLF&MS 2019.08 verify redundancy with @see checkGoalPosition */
-	public boolean isPointInGrid(Coordinate onePoint) {
-		if (onePoint == null) return false;
-		return (onePoint.x >= 0.) && (this.getDimension_Ucell().width > onePoint.x) && (this
-				.getDimension_Ucell().height > onePoint.y) && (onePoint.y >= 0.);
 	}
 	/** Check next position and backward if leaving the continuous space.
 	 * @param currentPosition_Ucs
@@ -250,32 +237,33 @@ public class C_Landscape implements I_ConstantString {
 		dep_Ucs.y = moveDistance_Ucs.y;
 		// we test the four cases where the agent is going out and if needed, we put them at one unit of Continuous space of the
 		// boundaries and we reverse their displacements
-		if (goalPoint_Ucs.getX() < 0 && moveDistance_Ucs.x < 0) {
+		if (goalPoint_Ucs.getX() < 0) {
 			moveDistance_Ucs.x = -moveDistance_Ucs.x;
 			dep_Ucs.x = -currentPosition_Ucs.getX() + 1;
 			agent.hasLeftDomain = true;
 		}
-		else if (goalPoint_Ucs.getX() >= continuousSpace.getDimensions().getWidth() && moveDistance_Ucs.x > 0) {
+		else if (goalPoint_Ucs.getX() >= continuousSpace.getDimensions().getWidth()) {
 			moveDistance_Ucs.x = -moveDistance_Ucs.x;
 			dep_Ucs.x = (continuousSpace.getDimensions().getWidth() - 1) - currentPosition_Ucs.getX();
 			agent.hasLeftDomain = true;
 		}
-		else if (goalPoint_Ucs.getY() < 0 && moveDistance_Ucs.y < 0) {
+		else if (goalPoint_Ucs.getY() < 0) {
 			moveDistance_Ucs.y = -moveDistance_Ucs.y;
 			dep_Ucs.y = -currentPosition_Ucs.getY() + 1;
 			agent.hasLeftDomain = true;
 		}
-		else if (goalPoint_Ucs.getY() > continuousSpace.getDimensions().getHeight() && moveDistance_Ucs.y > 0) {
+		else if (goalPoint_Ucs.getY() > continuousSpace.getDimensions().getHeight()) {
 			moveDistance_Ucs.y = -moveDistance_Ucs.y;
 			dep_Ucs.y = (continuousSpace.getDimensions().getHeight() - 1) - currentPosition_Ucs.getY();
 			agent.hasLeftDomain = true;
 		}
 		return dep_Ucs;
 	}
+
 	/** Results in the exit of an agent and the entry of a new one in a random point at the edges of the simulation space. author
 	 * Longueville 2011, rev. JLF 11.2015
 	 * @param animalLeavingLandscape will be removed and a new one of the same class will enter */
-	private void bordure(A_Animal animalLeavingLandscape) {// TODO JLF 2015.11 change name (agentLeaving)
+	private void bordure(A_VisibleAgent animalLeavingLandscape) {// TODO JLF 2015.11 change name (agentLeaving)
 		// Identify on which side the new animal will appear
 		if (animalLeavingLandscape.isDead()) return;// Could leave landscape in the middle of a step.
 		double[] newLocation = new double[2];
@@ -314,58 +302,62 @@ public class C_Landscape implements I_ConstantString {
 				A_Protocol.event("C_Landscape.bordure", "Nonsense", isError);
 				break;
 		}
-
+		replaceOutcomer(animalLeavingLandscape, newLocation, x, y);
+	}
+	/** Procedure split from  bordure(), JLF 2024 */
+	private void replaceOutcomer(A_VisibleAgent animalLeavingLandscape, double[] newLocation, int x, int y) {
 		// The outcomer dies, a new incomer enters
 		Context<I_SituatedThing> context = ContextUtils.getContext(animalLeavingLandscape);// Keep context to introduce incomer
 		animalLeavingLandscape.setDead(true);// Kill the leaving agent
 
 		// Create new animal of the same class //
-		A_Animal incomer = null;
+		A_Organism incomer = null;
 		Class<? extends A_VisibleAgent> animalClass = animalLeavingLandscape.getClass();
-		Class<? extends I_DiploidGenome> genomeClass = animalLeavingLandscape.getGenome().getClass();
-		try {
-			Constructor<?> constructor = animalClass.getDeclaredConstructor(I_DiploidGenome.class);
-			constructor.setAccessible(true);
-			incomer = (A_Animal) constructor.newInstance(genomeClass.newInstance());
-			// Production code should handle these exceptions more gracefully
-		} catch (InstantiationException x1) {
-			x1.printStackTrace();
-		} catch (IllegalAccessException x1) {
-			x1.printStackTrace();
-		} catch (InvocationTargetException x1) {
-			x1.printStackTrace();
-		} catch (NoSuchMethodException x1) {
-			x1.printStackTrace();
+		if (animalLeavingLandscape instanceof A_Organism) {
+			Class<? extends I_DiploidGenome> genomeClass = ((A_Organism) animalLeavingLandscape).getGenome().getClass();
+			try {
+				Constructor<?> constructor = animalClass.getDeclaredConstructor(I_DiploidGenome.class);
+				constructor.setAccessible(true);
+				incomer = (A_Organism) constructor.newInstance(genomeClass.newInstance());
+				// Production code should handle these exceptions more gracefully
+			} catch (InstantiationException x1) {
+				x1.printStackTrace();
+			} catch (IllegalAccessException x1) {
+				x1.printStackTrace();
+			} catch (InvocationTargetException x1) {
+				x1.printStackTrace();
+			} catch (NoSuchMethodException x1) {
+				x1.printStackTrace();
+			}
 		}
-
 		// Initialize incomer
 		incomer.hasLeftDomain = false;
 		incomer.hasEnteredDomain = false;
-		incomer.setHasToLeaveFullContainer(true);
 		incomer.hasToSwitchFace = true;
 		incomer.setAge_Uday(animalLeavingLandscape.getAge_Uday());
 		context.add(incomer);
-		updateInspectors(incomer);
+		if (incomer instanceof A_Animal) ((A_Animal) incomer).setHasToLeaveFullContainer(true);
+		if (incomer instanceof A_Animal) updateInspectors((A_Animal) incomer);
 		continuousSpace.moveTo(incomer, newLocation);
 		grid[x][y].agentIncoming(incomer);
 		incomer.bornCoord_Umeter = getThingCoord_Umeter(incomer);
 
 		// Aim toward landscape center
 		incomer.hasEnteredDomain = true;
-		incomer.setTarget(grid[(int) (continuousSpace.getDimensions().getWidth() / 2)][(int) (continuousSpace
-				.getDimensions().getHeight() / 2)]);
-		incomer.computeNextMoveToTarget();
-		incomer.actionDisperse();
-		incomer.discardTarget();
-
+		if (incomer instanceof A_Animal) {
+			((A_Animal) incomer).setTarget(grid[(int) (continuousSpace.getDimensions().getWidth()
+					/ 2)][(int) (continuousSpace.getDimensions().getHeight() / 2)]);
+			((A_Animal) incomer).computeNextMoveToTarget();
+			((A_Animal) incomer).actionDisperse();
+			((A_Animal) incomer).discardTarget();
+		}
 		if (C_Parameters.VERBOSE)
 			A_Protocol.event("C_Landscape:bordure", "BORDURE event: " + animalLeavingLandscape + " leaves landscape at "
 					+ animalLeavingLandscape.getCurrentSoilCell().retrieveLineNo() + "," + animalLeavingLandscape
 							.getCurrentSoilCell().retrieveColNo() + " / " + incomer + " enters at " + x + "," + y,
 					isNotError);
 	}
-	
-	
+
 	protected void updateInspectors(A_Animal incomer) {}
 
 	/** Scan all SoilCells and allocate them to a given landPlot, create a new one each time it changes. <br />
@@ -449,6 +441,19 @@ public class C_Landscape implements I_ConstantString {
 			}
 		}
 		C_Parameters.BLACK_MAP = false;
+	}
+	/** Compute the half cell of diagonal */
+	public static double halfCellDiagonal() {
+		return Math.sqrt((C_Parameters.CELL_WIDTH_Umeter / 2) * (C_Parameters.CELL_WIDTH_Umeter / 2)
+				+ (C_Parameters.CELL_WIDTH_Umeter / 2) * (C_Parameters.CELL_WIDTH_Umeter / 2));
+	}
+	/** Verify if point is in grid<br>
+	 * author MS 2019.08<br>
+	 * TODO JLF&MS 2019.08 verify redundancy with @see checkGoalPosition */
+	public boolean isPointInGrid(Coordinate onePoint) {
+		if (onePoint == null) return false;
+		return (onePoint.x >= 0.) && (this.getDimension_Ucell().width > onePoint.x) && (this
+				.getDimension_Ucell().height > onePoint.y) && (onePoint.y >= 0.);
 	}
 	//
 	// GETTERS
