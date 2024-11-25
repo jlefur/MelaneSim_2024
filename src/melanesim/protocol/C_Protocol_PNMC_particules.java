@@ -21,19 +21,16 @@ import thing.dna.C_GenomeAnimalia;
 import thing.ground.C_LandPlot;
 import thing.ground.C_MarineCell;
 import thing.ground.C_SoilCell;
-import thing.ground.I_Container;
 import thing.ground.landscape.C_LandscapeMarine;
 
 /** Plankton particles moved by surface currents
  * @author J.Le Fur 06.2024 */
-
 public class C_Protocol_PNMC_particules extends A_Protocol implements I_ConstantPNMC_particules {
 	//
 	// FIELDS
 	//
 	private C_ConvertGeographicCoordinates geographicCoordinateConverter = null;
 	Random random = new Random();
-
 	//
 	// CONSTRUCTOR
 	//
@@ -58,14 +55,12 @@ public class C_Protocol_PNMC_particules extends A_Protocol implements I_Constant
 		}
 		facilityMap = new C_Background(-2.35, 206., 134.);
 	}
-
 	//
 	// SPECIFIC METHODS
 	//
 	public C_Plankton createPlankton() {
 		return new C_Plankton(new C_GenomeAnimalia());
 	}
-
 	/** Add plankton particle in the center of each cell of the grid at a specified interval - JLF 07.2024 */
 	protected void initPopulations() {
 		int particleCount = 0;
@@ -98,7 +93,6 @@ public class C_Protocol_PNMC_particules extends A_Protocol implements I_Constant
 		System.out.println("C_Protocol_PNMC_particules.init: Population of " + particleCount
 				+ " plankton agent(s) created and positioned at the center of each grid cell");
 	}
-
 	//
 	// OVERRIDEN METHODS
 	//
@@ -129,12 +123,10 @@ public class C_Protocol_PNMC_particules extends A_Protocol implements I_Constant
 			}
 		}
 	}
-
 	@Override
 	public void initCalendar() {
 		protocolCalendar.set(2020, Calendar.DECEMBER, 31);
 	}
-
 	@Override
 	/** Save screen each day<br>
 	 * Version Authors JEL2011, AR2011, rev. LeFur 2011,2012,2014,2024 */
@@ -174,7 +166,6 @@ public class C_Protocol_PNMC_particules extends A_Protocol implements I_Constant
 		if (displayMapBefore != C_Parameters.DISPLAY_MAP) switchDisplayMap();
 		// if (C_Parameters.VERBOSE) C_sound.sound("tip.wav");
 	}
-
 	@Override
 	public void manageOneEvent(C_Event event) {
 		Coordinate coordinateCell_Ucs = null;
@@ -223,7 +214,6 @@ public class C_Protocol_PNMC_particules extends A_Protocol implements I_Constant
 		}
 		super.manageOneEvent(event);
 	}
-
 	@Override
 	/** Color the map in black to see the overall distribution of burrows<br>
 	 * Author J.Le Fur 10.2014 TODO JLF 2014.10 should be in presentation package ? */
@@ -234,7 +224,6 @@ public class C_Protocol_PNMC_particules extends A_Protocol implements I_Constant
 					this.landscape.getValueLayer().set(BLACK_MAP_COLOR, i, j);
 			}
 	}
-
 	@Override
 	public void readUserParameters() {
 		/** Check black map and exclos (metapopulation) */

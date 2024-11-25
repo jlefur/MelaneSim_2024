@@ -1,15 +1,14 @@
 /* This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt  */
 package thing;
-
 import thing.ground.A_SupportedContainer;
 import thing.ground.C_MarineCell;
 
-/** Structure associated with marine cells for current speed to be displayed
+/** Structure associated with marine cells for current speed to be displayed on GUI
  * @author JLF 2024
  * @see C_MarineCell */
 public class C_StreamCurrent extends A_SupportedContainer {
-	private C_MarineCell myCell;//
-
+	private C_MarineCell myCell;
+	//
 	// CONSTRUCTOR
 	//
 	/** Constructor sets the affinity to 10 */

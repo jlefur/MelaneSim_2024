@@ -263,7 +263,7 @@ public class C_Landscape implements I_ConstantString {
 	/** Results in the exit of an agent and the entry of a new one in a random point at the edges of the simulation space. author
 	 * Longueville 2011, rev. JLF 11.2015
 	 * @param animalLeavingLandscape will be removed and a new one of the same class will enter */
-	private void bordure(A_VisibleAgent animalLeavingLandscape) {// TODO JLF 2015.11 change name (agentLeaving)
+	protected void bordure(A_VisibleAgent animalLeavingLandscape) {// TODO JLF 2015.11 change name (agentLeaving)
 		// Identify on which side the new animal will appear
 		if (animalLeavingLandscape.isDead()) return;// Could leave landscape in the middle of a step.
 		double[] newLocation = new double[2];

@@ -12,7 +12,7 @@ import thing.dna.species.plants.C_GenomePoacea;
 import thing.ground.C_SoilCellSavanna;
 import thing.ground.I_Container;
 
-/** Data inspector: retrieves informations e.g. la liste des végétations.
+/** Data inspector: retrieves informations e.g. la liste des vï¿½gï¿½tations.
  * @author M SALL 02.2016 */
 public class C_InspectorVegetation extends A_Inspector implements I_ConstantGerbil {
 	//

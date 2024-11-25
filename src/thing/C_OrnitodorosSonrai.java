@@ -23,7 +23,7 @@ public class C_OrnitodorosSonrai extends A_Animal implements I_ConstantDodel2, I
     //
     private double curMealDuration_Umn; // hanging duration for the meal
     private double hibernationDuration_Uday; // starvation duration in a burrow
-    // private boolean canSpawn;// TODO MS de JLF 2020.04 utiliser la procédure (override de Amniote) TODO MS 2020.04 Ornithodoros
+    // private boolean canSpawn;// TODO MS de JLF 2020.04 utiliser la procï¿½dure (override de Amniote) TODO MS 2020.04 Ornithodoros
     // is not an Amniote
     private boolean hasEaten; // Allow to know if agent has eaten
     protected double curMatingLatency_Uday;

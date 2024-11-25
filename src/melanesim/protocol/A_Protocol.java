@@ -1,4 +1,4 @@
-/* This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt */
+/* This source code is licensed under a BSD licence as detailed in file license */
 package melanesim.protocol;
 import java.awt.Dimension;
 import java.util.Calendar;
@@ -34,6 +34,7 @@ import repast.simphony.essentials.RepastEssentials;
 import repast.simphony.util.collections.IndexedIterable;
 import thing.A_Animal;
 import thing.A_NDS;
+import thing.A_Organism;
 import thing.A_VisibleAgent;
 import thing.C_Rodent;
 import thing.I_SituatedThing;
@@ -223,7 +224,7 @@ public abstract class A_Protocol implements I_Protocol, I_ConstantString, I_Cons
 			if (thing instanceof A_VisibleAgent)
 				((A_VisibleAgent) thing).bornCoord_Umeter = this.landscape.getThingCoord_Umeter(thing);
 			if (thing instanceof C_Rodent) C_InspectorPopulation.addRodentToList((C_Rodent) thing);
-			if (thing instanceof A_Animal) ((A_Animal) thing).setMyHome(container);
+			if (thing instanceof A_Organism) ((A_Organism) thing).setMyHome(container);
 		}
 		else
 			A_Protocol.event("A_Protocol.contextualizeNewAgentInCell", ((A_NDS) thing).retrieveMyName() + "/"

@@ -36,7 +36,7 @@ public abstract class A_Animal extends A_Organism implements I_ConstantNumeric {
 	protected boolean hasToLeaveFullContainer = false;// used to avoid return to containers left for fullness
 	protected I_Container lastContainerLeft; // Used to compute dispersal
 	protected boolean male; // shortcut to avoid fetching each time into gonosomes and so on (see constructor)
-	protected I_Container myHome;// JLF 03.2021
+
 	//
 	// CONSTRUCTOR
 	//
@@ -489,12 +489,7 @@ public abstract class A_Animal extends A_Organism implements I_ConstantNumeric {
 		this.target = target;
 		if (this.target instanceof A_VisibleAgent) ((A_VisibleAgent) this.target).animalsTargetingMe.add(this);
 	}
-	public void setMyHome(I_Container myHome) {
-		this.myHome = myHome;
-	}
-	public String getMyHome() {
-		return this.myHome.toString();
-	}
+
 	/** Test if agent arrives to destination within one tick. If yes next move = (0,0)
 	 * @param speed agent or agent's vehicle speed
 	 * @author LeFur 08.2012, 08.2017 */

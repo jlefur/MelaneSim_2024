@@ -102,5 +102,5 @@ public class C_Vegetation0 extends A_Organism implements I_ConstantGerbil {
 		return "To come";
 	}
 	@Override
-	public int getCell2Perception() {return 0;}
+	public int gretCell2Perception() {return 0;}
 }
