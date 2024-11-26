@@ -122,9 +122,4 @@ public class C_Vegetation extends A_Organism implements I_ConstantGerbil {
 	public String getAlleles() {
 		return "To come";
 	}
-	@Override
-	public int gretCell2Perception() {
-		return 0;
-	}
-
 }

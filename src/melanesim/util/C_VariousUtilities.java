@@ -113,13 +113,13 @@ public class C_VariousUtilities implements I_ConstantStringRodents {
 		// cr�e 4 g�nes avec des valeurs (g�ne <=> all�le) al�atoires aux loci 1 � 4.
 		for (int i = 1; i <= 4; i++) {
 			double mapLoc = i * 2.5;
-			C_Gene dblGene = new C_Gene(new Double(new Random().nextDouble()), mapLoc, new C_GeneMutatorDouble(),
-					one_chromosome.getMyId(), new C_GeneConstraint(-10, 10));
+			C_Gene dblGene = new C_Gene(new Random().nextDouble(), mapLoc, new C_GeneMutatorDouble(), one_chromosome
+					.getMyId(), new C_GeneConstraint(-10, 10));
 			one_chromosome.setGeneAtLocus(i, dblGene);
 		}
 		System.out.println("chromosome:         " + one_chromosome);
 		testMapLocs(one_chromosome);
-		one_chromosome.mutate(new Double(0.5));
+		one_chromosome.mutate(0.5);
 		System.out.println("mutated chromosome: " + one_chromosome);
 		testMapLocs(one_chromosome);
 		for (int i = 0; i < 4; i++) {
@@ -132,10 +132,10 @@ public class C_VariousUtilities implements I_ConstantStringRodents {
 		testMapLocs(one_chromosome);
 		System.out.println("getAlleles(): " + one_chromosome.getAlleles());
 		// Replicate w/o mutation
-		C_Chromosome gCopy = (C_Chromosome) one_chromosome.replicate(new Double(0));
+		C_Chromosome gCopy = (C_Chromosome) one_chromosome.replicate(0.);
 		System.out.println("original: " + one_chromosome);
 		System.out.println("copy:     " + gCopy);
-		gCopy.mutate(new Double(1));
+		gCopy.mutate(1.);
 		System.out.println("original: " + one_chromosome);
 		System.out.println("mut copy: " + gCopy);
 		testMapLocs(gCopy);
@@ -153,25 +153,25 @@ public class C_VariousUtilities implements I_ConstantStringRodents {
 		System.out.println("parent1: " + one_chromosome);
 		System.out.println("parent2: " + gCopy);
 		System.out.println("crossover(): " + one_chromosome.crossover(gCopy));
-		C_Chromosome mate = (C_Chromosome) one_chromosome.mate(new Double(0.75), gCopy);
+		C_Chromosome mate = (C_Chromosome) one_chromosome.mate(0.75, gCopy);
 		System.out.println("mate(): " + mate);
 		testMapLocs(mate);
 		int numGenes = 20;
 		double mapLen = numGenes * 2.5;
 		List<Integer> intAlleles = new ArrayList<Integer>(10);
 		for (int i = 0; i < 10; i++)
-			intAlleles.add(new Integer(i));
+			intAlleles.add(i);
 		C_GeneMutatorSet setGeneMut = new C_GeneMutatorSet(intAlleles);
 		C_Chromosome genome3 = new C_Chromosome(mapLen, numGenes, mapXover);
 		double mapLoc = 0;
 		for (int i = 1; i <= numGenes; i++) {
 			mapLoc += randGen.nextDouble() * 2.5;
-			C_Gene dblGene = new C_Gene(new Integer((int) randGen.nextDouble() * 10), mapLoc, setGeneMut, one_chromosome
+			C_Gene dblGene = new C_Gene((int) randGen.nextDouble() * 10, mapLoc, setGeneMut, one_chromosome
 					.getMyId());
 			genome3.setGeneAtLocus(i, dblGene);
 		}
-		C_Chromosome genome3copy = (C_Chromosome) genome3.replicate(new Double(0));
-		genome3copy.mutate(new Double(1));
+		C_Chromosome genome3copy = (C_Chromosome) genome3.replicate(0.);
+		genome3copy.mutate(1.);
 		System.out.println("genome3:         " + genome3);
 		System.out.println("genome3copy:     " + genome3copy);
 		testMapLocs(genome3);
@@ -207,7 +207,7 @@ public class C_VariousUtilities implements I_ConstantStringRodents {
 		testMapLocs(child);
 
 		System.out.println("\nMutating child (100%), parents shouldn't change:");
-		child.mutate(new Double(1));
+		child.mutate(1.);
 		System.out.println("parent1:   " + parent1);
 		System.out.println("parent2:   " + parent2);
 		System.out.println("offspring: " + child);

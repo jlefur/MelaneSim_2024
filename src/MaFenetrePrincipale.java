@@ -5,47 +5,50 @@ import java.awt.event.ActionListener;
 
 public class MaFenetrePrincipale extends JFrame {
     
-    public MaFenetrePrincipale() {
-        setTitle("Fenêtre Principale");
+
+	private static final long serialVersionUID = 1L;
+
+	public MaFenetrePrincipale() {
+        setTitle("Fenï¿½tre Principale");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        // Créer un bouton
-        JButton bouton = new JButton("Ouvrir une nouvelle fenêtre");
+        // Crï¿½er un bouton
+        JButton bouton = new JButton("Ouvrir une nouvelle fenï¿½tre");
         
-        // Ajouter un écouteur d'événements au bouton
+        // Ajouter un ï¿½couteur d'ï¿½vï¿½nements au bouton
         bouton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Appeler une méthode pour ouvrir une nouvelle fenêtre
+                // Appeler une mï¿½thode pour ouvrir une nouvelle fenï¿½tre
                 ouvrirNouvelleFenetre();
             }
         });
         
-        // Ajouter le bouton à la fenêtre principale
+        // Ajouter le bouton ï¿½ la fenï¿½tre principale
         getContentPane().add(bouton, BorderLayout.CENTER);
         
-        // Ajuster la taille de la fenêtre
+        // Ajuster la taille de la fenï¿½tre
         pack();
         
-        // Centrer la fenêtre sur l'écran
+        // Centrer la fenï¿½tre sur l'ï¿½cran
         setLocationRelativeTo(null);
     }
     
     private void ouvrirNouvelleFenetre() {
-        // Créer une nouvelle fenêtre
-        JFrame nouvelleFenetre = new JFrame("Nouvelle Fenêtre");
+        // Crï¿½er une nouvelle fenï¿½tre
+        JFrame nouvelleFenetre = new JFrame("Nouvelle Fenï¿½tre");
         
-        // Ajouter un libellé à la nouvelle fenêtre
-        JLabel label = new JLabel("Bienvenue dans la nouvelle fenêtre!");
+        // Ajouter un libellï¿½ ï¿½ la nouvelle fenï¿½tre
+        JLabel label = new JLabel("Bienvenue dans la nouvelle fenï¿½tre!");
         nouvelleFenetre.getContentPane().add(label);
         
-        // Ajuster la taille de la nouvelle fenêtre
+        // Ajuster la taille de la nouvelle fenï¿½tre
         nouvelleFenetre.setSize(300, 200);
         
-        // Centrer la nouvelle fenêtre par rapport à la fenêtre principale
+        // Centrer la nouvelle fenï¿½tre par rapport ï¿½ la fenï¿½tre principale
         nouvelleFenetre.setLocationRelativeTo(this);
         
-        // Rendre la nouvelle fenêtre visible
+        // Rendre la nouvelle fenï¿½tre visible
         nouvelleFenetre.setVisible(true);
     }
     
@@ -53,7 +56,7 @@ public class MaFenetrePrincipale extends JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                // Créer et afficher la fenêtre principale
+                // Crï¿½er et afficher la fenï¿½tre principale
                 new MaFenetrePrincipale().setVisible(true);
             }
         });

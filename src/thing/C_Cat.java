@@ -4,9 +4,7 @@ import java.util.TreeSet;
 
 import org.locationtech.jts.geom.Coordinate;
 
-import data.C_Parameters;
 import data.constants.rodents.I_ConstantDodel2;
-import melanesim.C_ContextCreator;
 import melanesim.protocol.A_Protocol;
 import melanesim.util.C_VariousUtilities;
 import thing.dna.I_DiploidGenome;
@@ -74,7 +72,7 @@ public class C_Cat extends A_Amniote implements I_ConstantDodel2 {
 	}
 	@Override
 	protected boolean actionInteract(A_Animal prey) {
-		double x = C_ContextCreator.randomGeneratorForInitialisation.nextDouble() / PREDATION_SUCCESS;
+//		double x = C_ContextCreator.randomGeneratorForInitialisation.nextDouble() / PREDATION_SUCCESS;
 		prey.checkDeath(1.);// TODO number in source NOTOK JLF 2023 04 cat always kill mouse
 		// if prey catched (checkDeath) prey enters the cat's belly (dead is used only to benefit from checkDeath).
 		if (prey.dead) {

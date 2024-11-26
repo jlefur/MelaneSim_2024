@@ -1,8 +1,7 @@
 package thing;
-import thing.dna.I_DiploidGenome;
-import thing.ground.I_Container;
 import data.constants.rodents.I_ConstantStringRodents;
 import data.constants.rodents.I_ConstantTransportation;
+import thing.dna.I_DiploidGenome;
 
 /** A human owns a room.
  * @author Sall 02-10-2018,rev. J.Le Fur 06.2022 */

@@ -6,16 +6,15 @@ import melanesim.C_ContextCreator;
 import thing.dna.C_Chromosome;
 import thing.dna.C_Gene;
 
-/** Simple mutator for genes whose values come from a set (actually, a List since random indices into the set must be computed). When
- * this set is provided to the mutator, any call to mutate will produce a value from the set, randomly selected.
- * @author kyle wagner, elyk@acm.org
- * Version 1.0, Sun Jan 28 17:41:21 2001, J.LeFur 09/2011 */
+/** Simple mutator for genes whose values come from a set (actually, a List since random indices into the set must be computed).
+ * When this set is provided to the mutator, any call to mutate will produce a value from the set, randomly selected.
+ * @author kyle wagner, elyk@acm.org Version 1.0, Sun Jan 28 17:41:21 2001, J.LeFur 09/2011 */
 
 public class C_GeneMutatorSet implements I_GeneMutator {
 	// FIELDS
-	private List alleleList;
+	private List<?> alleleList;
 	// METHODS
-	public C_GeneMutatorSet(List alleleList) {
+	public C_GeneMutatorSet(List<?> alleleList) {
 		this.alleleList = alleleList;
 	}
 
@@ -56,7 +55,7 @@ public class C_GeneMutatorSet implements I_GeneMutator {
 		alleles.add("C");
 		C_GeneMutatorSet setMut = new C_GeneMutatorSet(alleles);
 		String val = "A";
-		Double mutRate = new Double(0.5);
+		Double mutRate = 0.5;
 
 		System.out.println("val = " + val);
 		System.out.println("Mutating at this rate: " + mutRate);
@@ -65,8 +64,8 @@ public class C_GeneMutatorSet implements I_GeneMutator {
 		}
 
 		List<Integer> bits = new ArrayList<Integer>(2);
-		bits.add(new Integer(0));
-		bits.add(new Integer(1));
+		bits.add(0);
+		bits.add(1);
 		C_GeneMutatorSet bitMut = new C_GeneMutatorSet(bits);
 
 		int numGenes = 4;
@@ -75,7 +74,7 @@ public class C_GeneMutatorSet implements I_GeneMutator {
 		for (int i = 0; i < numGenes; i++)
 
 		{
-			C_Gene bitGene = new C_Gene(new Integer(0), bitMut, bitGenomeId);
+			C_Gene bitGene = new C_Gene(0, bitMut, bitGenomeId);
 			bitGenome.setGeneAtLocus(i, bitGene);
 		}
 

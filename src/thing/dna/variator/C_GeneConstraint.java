@@ -32,8 +32,8 @@ public class C_GeneConstraint {
 	public C_GeneConstraint(double minAllele, double maxAllele) {
 		this.minAllele = minAllele;
 		this.maxAllele = maxAllele;
-		minAlleleDbl = new Double(minAllele);
-		maxAlleleDbl = new Double(maxAllele);
+		minAlleleDbl = minAllele;
+		maxAlleleDbl = maxAllele;
 		constraintType = MIN_MAX;
 	}
 	/** Check the given allele. If it's out of bounds or not in the set of allowable alleles, return a new, default allele (either a
@@ -78,7 +78,7 @@ public class C_GeneConstraint {
 	public static void main(String[] args) {
 		System.out.println("Testing GeneConstraint");
 		C_GeneConstraint gcDbl = new C_GeneConstraint(0, 5);
-		Object[] dblVals = {new Double(-1), new Double(0), new Double(0.8), new Double(5), new Double(100)};
+		Object[] dblVals = {-1, 0, 0.8, 5, 100};
 
 		Set<String> geneSet = new TreeSet<String>();
 		geneSet.add("BLUE");

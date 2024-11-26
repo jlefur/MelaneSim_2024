@@ -43,7 +43,7 @@ public class C_GeneMutatorDouble implements I_GeneMutator, I_ConstantNumeric {
 			// range is now [mutMin, mutMax].
 			double mutAmount = mutRange * (C_ContextCreator.randomGeneratorForDNA.nextDouble());
 			mutAmount = mutAmount + mutMin;
-			return new Double(mutAmount + d.doubleValue());
+			return mutAmount + d.doubleValue();
 		}
 		else return value;
 	}
@@ -57,8 +57,8 @@ public class C_GeneMutatorDouble implements I_GeneMutator, I_ConstantNumeric {
 	public static void main(String[] args) {
 		System.out.println("Testing DoubleGeneMutator");
 		C_GeneMutatorDouble dblMut = new C_GeneMutatorDouble(0.5, 0.9);
-		Double val = new Double(1.5);
-		Double mutRate = new Double(0.5);
+		Double val = 1.5;
+		Double mutRate = 0.5;
 		System.out.println("Mutating at this rate: " + mutRate);
 		for (int i = 1; i <= 10; i++) {
 			System.out.println("mutated val = " + dblMut.mutate(mutRate, val));

@@ -23,7 +23,7 @@ public class C_TraitExpressorSumMapLoc implements I_MapLocTraitExpressor {
 	 * @param traitMapLocs the map locations of the loci in the genome which code for this trait
 	 * @return a Double representing the value of the trait */
 	public Object evalTrait(I_MappedDna mappedDNA, ArrayList<Double> traitMapLocs) {
-		double sum = 0;
+		double sum = 0.;
 		Iterator<Double> mapLocIter = traitMapLocs.iterator();
 		while (mapLocIter.hasNext()) {
 			Number mapLoc = (Number) mapLocIter.next();
@@ -45,7 +45,7 @@ public class C_TraitExpressorSumMapLoc implements I_MapLocTraitExpressor {
 			// System.out.println(mapLoc + " " + alleleVal);
 			sum += alleleVal;
 		}
-		return new Double(sum);
+		return sum;
 	}
 
 	@Override
@@ -69,11 +69,11 @@ public class C_TraitExpressorSumMapLoc implements I_MapLocTraitExpressor {
 
 		for (int i = 0; i < numLoci; i++) {
 			double mapLoc = mapLocs.get(i);
-			C_Gene dblGene = new C_Gene(new Double(C_ContextCreator.randomGeneratorForDNA.nextDouble()), mapLoc, gMut, 0, gConstr);
+			C_Gene dblGene = new C_Gene(C_ContextCreator.randomGeneratorForDNA.nextDouble(), mapLoc, gMut, 0, gConstr);
 
 			hapGenome.setGeneAtLocus(i, dblGene);
-			dipGenome.setGenePairAtLocus(i, new C_Gene(new Double(C_ContextCreator.randomGeneratorForDNA.nextDouble() * 2), mapLoc, gMut, 0),
-					new C_Gene(new Double(C_ContextCreator.randomGeneratorForDNA.nextDouble() * 2), mapLoc, gMut, 0));
+			dipGenome.setGenePairAtLocus(i, new C_Gene(C_ContextCreator.randomGeneratorForDNA.nextDouble() * 2, mapLoc, gMut, 0),
+					new C_Gene(C_ContextCreator.randomGeneratorForDNA.nextDouble() * 2, mapLoc, gMut, 0));
 		}
 		Double value = (Double) sumExpr.evalTrait(hapGenome, mapLocs);
 		System.out.println("hapGenome: " + hapGenome);

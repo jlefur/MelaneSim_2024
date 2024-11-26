@@ -87,7 +87,7 @@ public class C_GeneMutatorNormal implements I_GeneMutator {
 			// and
 			// standDev.
 			double mutAmount = C_ContextCreator.randomGaussianGenerator.nextGaussian(mean, standDev);
-			return new Double(mutAmount + d.doubleValue());
+			return mutAmount + d.doubleValue();
 		} else {
 			return value;
 		}
@@ -113,8 +113,8 @@ public class C_GeneMutatorNormal implements I_GeneMutator {
 		System.out.println("Testing NormalGeneMutator");
 
 		C_GeneMutatorNormal dblMut = new C_GeneMutatorNormal(0, 2.0);
-		Double val = new Double(1.5);
-		Double mutRate = new Double(0.5);
+		Double val = 1.5;
+		Double mutRate = 0.5;
 
 		System.out.println("val = " + val);
 		System.out.println("Mutating at this rate: " + mutRate);

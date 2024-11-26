@@ -6,7 +6,6 @@ import java.util.Map;
 import melanesim.util.C_VariousUtilities;
 import repast.simphony.engine.environment.RunState;
 import repast.simphony.essentials.RepastEssentials;
-import thing.A_Organism;
 import thing.ground.A_SupportedContainer;
 
 /** Retrieves mean energy for each species in the context J.Le Fur 02.2018 */

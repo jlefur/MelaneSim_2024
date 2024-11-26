@@ -18,7 +18,6 @@ import thing.ground.C_SoilCell;
 import thing.ground.C_SoilCellUrban;
 import thing.ground.I_Container;
 import thing.ground.landscape.C_Landscape;
-import thing.ground.landscape.C_LandscapeRodent;
 
 /** Rodent agents that are used to live within cities buildings and can interact with different agents like humans, cats,
  * bacterias and ticks <br>
@@ -143,9 +142,11 @@ public class C_RodentDomestic2 extends C_RodentCommensal implements I_ConstantDo
 			}
 			if (selectedShelters.isEmpty()) {
 				if (interestLandPlot) {
-					C_BurrowSystem oneBurrow = new C_BurrowSystem(this.getCurrentSoilCell().getAffinity(), this
-							.getCurrentSoilCell().getCoordinate_Ucs().X, this.getCurrentSoilCell()
-									.getCoordinate_Ucs().Y);
+					this
+							.getCurrentSoilCell().getCoordinate_Ucs();
+					this.getCurrentSoilCell()
+							.getCoordinate_Ucs();
+					C_BurrowSystem oneBurrow = new C_BurrowSystem(this.getCurrentSoilCell().getAffinity(), Coordinate.X, Coordinate.Y);
 					C_ContextCreator.protocol.contextualizeNewThingInContainer(oneBurrow, this.getCurrentSoilCell());
 					selectedShelters.add(oneBurrow);
 				}
@@ -281,8 +282,10 @@ public class C_RodentDomestic2 extends C_RodentCommensal implements I_ConstantDo
 	// TODO MS de JLF 2022.01 redondant avec digBurrow de fossorial ?
 	public void createNewHome() {
 		if (!this.inDangerousArea()) {
-			C_BurrowSystem oneBurrow = new C_BurrowSystem(this.getCurrentSoilCell().getAffinity(), this
-					.getCoordinate_Umeter().X, this.getCoordinate_Umeter().Y);
+			this
+					.getCoordinate_Umeter();
+			this.getCoordinate_Umeter();
+			C_BurrowSystem oneBurrow = new C_BurrowSystem(this.getCurrentSoilCell().getAffinity(), Coordinate.X, Coordinate.Y);
 			C_ContextCreator.protocol.contextualizeNewThingInContainer(oneBurrow, this.getCurrentSoilCell());
 			this.setMyHome(oneBurrow);
 			this.setHasToCreateHome(false);
@@ -319,7 +322,7 @@ public class C_RodentDomestic2 extends C_RodentCommensal implements I_ConstantDo
 	@Override
 	protected boolean isArrived(double speed) {
 		if (this.isSightObstacle(this.target))
-			return super.isArrived(speed + A_VisibleAgent.myLandscape.halfCellDiagonal()
+			return super.isArrived(speed + C_Landscape.halfCellDiagonal()
 					+ MIN_VALUE_OF_REBOUNDZONE_Umeter);
 		else
 			return super.isArrived(speed);

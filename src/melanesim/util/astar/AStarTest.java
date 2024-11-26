@@ -12,7 +12,7 @@ public class AStarTest {
 		C_SoilCellUrban finalCellNode = new C_SoilCellUrban(0, 2, 5);
 		AStar aStar = new AStar();
 		// define obstacles
-		int[][] blocksArray = new int[][]{{1, 3}, {2, 3}, {3, 3}};
+//		int[][] blocksArray = new int[][]{{1, 3}, {2, 3}, {3, 3}};
 		List<C_SoilCellNode> path = aStar.findPath(initialCellNode,finalCellNode);
 		for (C_SoilCellNode node : path) {
 			System.out.println(node);

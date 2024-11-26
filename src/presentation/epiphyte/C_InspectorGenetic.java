@@ -213,21 +213,19 @@ public class C_InspectorGenetic extends A_Inspector implements I_ConstantNumeric
 	// OUTPUT FILES MANAGEMENT //
 
 	/** Initialize the header of the genetic indicators file */
-	private void initTabGenesFile() {
-	    this.genesFile.write("Tick;");
-		loopOnGenesForGenesFileHeader("locus", ';');
-		loopOnGenesForGenesFileHeader("LocusFrequency", ';');
-		loopOnGenesForGenesFileHeader("expectedHetero", ';');
-		this.genesFile.writeln("ObservedHetero;ExpectedHetero;FIS;MeanAllelicRichness");
-	}
+	/*
+	 * private void initTabGenesFile() { this.genesFile.write("Tick;"); loopOnGenesForGenesFileHeader("locus", ';');
+	 * loopOnGenesForGenesFileHeader("LocusFrequency", ';'); loopOnGenesForGenesFileHeader("expectedHetero", ';');
+	 * this.genesFile.writeln("ObservedHetero;ExpectedHetero;FIS;MeanAllelicRichness"); }
+	 */
 
 	/** Write the title with an index at the end as many times as there are requested genes to output
 	 * @param title : column title to rewrite NUMBER_GENES times
 	 * @param separator : separator between two strings of the headers */
-	private void loopOnGenesForGenesFileHeader(String title, char separator) {
-		for (int i = 0; i < NB_MICROSAT_GENES; i++)
-		    this.genesFile.write(title + i + separator);
-	}
+	/*
+	 * private void loopOnGenesForGenesFileHeader(String title, char separator) { for (int i = 0; i < NB_MICROSAT_GENES; i++)
+	 * this.genesFile.write(title + i + separator); }
+	 */
 
 	/** Initialize the header for genePop output file */
 	private void initTabGenePopFile() {
@@ -258,17 +256,14 @@ public class C_InspectorGenetic extends A_Inspector implements I_ConstantNumeric
 		}
 	}
 	/** Output data in genetic indicators file */
-	private void recordGenesInFile() {
-	    this.genesFile.write(RepastEssentials.GetTickCount() + CSV_FIELD_SEPARATOR);
-		for (int i = 0; i < NB_MICROSAT_GENES; i++)
-		    this.genesFile.write(this.richnessByLocus[i] + CSV_FIELD_SEPARATOR);
-		for (int i = 0; i < NB_MICROSAT_GENES; i++)
-		    this.genesFile.write(this.allelicFrequencies[i] + CSV_FIELD_SEPARATOR);
-		for (int i = 0; i < NB_MICROSAT_GENES; i++)
-		    this.genesFile.write(this.expectedHeterozygosityByLocus[i] + CSV_FIELD_SEPARATOR);
-		this.genesFile.writeln(this.observedHeterozygosityHO + CSV_FIELD_SEPARATOR + this.expectedHeterozygosityHE + CSV_FIELD_SEPARATOR + getFixationIndex()
-				+ CSV_FIELD_SEPARATOR + this.meanAllelicRichness);
-	}
+	/*
+	 * private void recordGenesInFile() { this.genesFile.write(RepastEssentials.GetTickCount() + CSV_FIELD_SEPARATOR); for (int i
+	 * = 0; i < NB_MICROSAT_GENES; i++) this.genesFile.write(this.richnessByLocus[i] + CSV_FIELD_SEPARATOR); for (int i = 0; i <
+	 * NB_MICROSAT_GENES; i++) this.genesFile.write(this.allelicFrequencies[i] + CSV_FIELD_SEPARATOR); for (int i = 0; i <
+	 * NB_MICROSAT_GENES; i++) this.genesFile.write(this.expectedHeterozygosityByLocus[i] + CSV_FIELD_SEPARATOR);
+	 * this.genesFile.writeln(this.observedHeterozygosityHO + CSV_FIELD_SEPARATOR + this.expectedHeterozygosityHE +
+	 * CSV_FIELD_SEPARATOR + getFixationIndex() + CSV_FIELD_SEPARATOR + this.meanAllelicRichness); }
+	 */
 
 	/** close private files */
 	public void closeSimulation() {

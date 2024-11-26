@@ -50,7 +50,7 @@ public class C_TraitExpressorAvgMapLoc implements I_MapLocTraitExpressor {
 			sum += alleleVal;
 			numAlleles++;
 		}
-		return new Double(sum / numAlleles);
+		return sum / numAlleles;
 	}
 
 	@Override
@@ -73,11 +73,11 @@ public class C_TraitExpressorAvgMapLoc implements I_MapLocTraitExpressor {
 			mapLocs.add((C_ContextCreator.randomGeneratorForDNA.nextDouble() * 100));
 		for (int i = 0; i < numLoci; i++) {
 			Double mapLoc = mapLocs.get(i);
-			C_Gene dblGene = new C_Gene(new Double(C_ContextCreator.randomGeneratorForDNA.nextDouble()), mapLoc, gMut, 0, gConstr);
+			C_Gene dblGene = new C_Gene(C_ContextCreator.randomGeneratorForDNA.nextDouble(), mapLoc, gMut, 0, gConstr);
 
 			hapXsome.setGeneAtLocus(i, dblGene);
-			xsomePair.setGenePairAtLocus(i, new C_Gene(new Double(C_ContextCreator.randomGeneratorForDNA.nextDouble() * 2), mapLoc, gMut, 0),
-					new C_Gene(new Double(C_ContextCreator.randomGeneratorForDNA.nextDouble() * 2), mapLoc, gMut, 0));
+			xsomePair.setGenePairAtLocus(i, new C_Gene(C_ContextCreator.randomGeneratorForDNA.nextDouble() * 2, mapLoc, gMut, 0),
+					new C_Gene(C_ContextCreator.randomGeneratorForDNA.nextDouble() * 2, mapLoc, gMut, 0));
 		}
 		Double value = (Double) avgExpr.evalTrait(hapXsome, mapLocs);
 		System.out.println("hapGenome: " + hapXsome);

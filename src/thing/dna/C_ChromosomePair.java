@@ -10,7 +10,6 @@ import thing.dna.variator.C_GeneMutatorDouble;
 import thing.dna.variator.C_RecombinatorMapGenome;
 import thing.dna.variator.I_GeneMutator;
 import thing.dna.variator.I_Recombinator;
-import melanesim.C_ContextCreator;
 
 /** A Chromosome pair is just two chromosomes of a diploid genome.
  * <P>
@@ -209,32 +208,29 @@ public class C_ChromosomePair implements I_MappedDna, I_ConstantNumeric {
 	 * xsomeStrands[PARENT_2].addGene(rightGene); } public void addGenePair(C_GenePair genePair) {
 	 * xsomeStrands[PARENT_1].addGene(genePair.getGene(PARENT_1)); xsomeStrands[PARENT_2].addGene(genePair.getGene(PARENT_2)); }
 	 */
+	
 	/** Add a single gene pair to the chromosome pair, making each gene pair homozygous for the allele provided */
-	private void addMappedGene(int locus, Object allele, double mappedGeneMapLoc) {
-		setGenePairAtLocus(locus, new C_Gene(allele, mappedGeneMapLoc, mappedGeneMutator, this.xsomeStrands[PARENT_1].myId,
-				mappedGeneConstraint), new C_Gene(allele, mappedGeneMapLoc, mappedGeneMutator, this.xsomeStrands[PARENT_2].myId,
-				mappedGeneConstraint));
-	}
+	/*
+	 * private void addMappedGene(int locus, Object allele, double mappedGeneMapLoc) { setGenePairAtLocus(locus, new
+	 * C_Gene(allele, mappedGeneMapLoc, mappedGeneMutator, this.xsomeStrands[PARENT_1].myId, mappedGeneConstraint), new
+	 * C_Gene(allele, mappedGeneMapLoc, mappedGeneMutator, this.xsomeStrands[PARENT_2].myId, mappedGeneConstraint)); }
+	 */
+	
+	
 	/** Add a single gene pair to the chromosome pair, alleles having values from a normal distribution as specified by the given
 	 * mean and stdDev. */
-	private void addRandomNormalDistributionGene(int locus, double alleleMean, double alleleStdDev, double mapLoc) {
-		// Add genes in pairs ("left" and "right" alleles)
-		double alleleL;
-		double alleleR;
-		{
-			// Generate values for genes using a normal (gaussian) distribution of mean, alleleMean, and standard deviation,
-			// alleleStandDev. Convert any tiny values into the mini allele value, after taking the absolute value of the random #
-			alleleL = Math.abs(C_ContextCreator.randomGaussianGenerator.nextGaussian(alleleMean, alleleStdDev));
-			alleleL = Math.max(DEFAULT_ALLELE_MIN, alleleL);
-			alleleR = Math.abs(C_ContextCreator.randomGaussianGenerator.nextGaussian(alleleMean, alleleStdDev));
-			alleleR = Math.max(DEFAULT_ALLELE_MIN, alleleR);
-
-			// Add gene pairs to genome. Constrain future mutations to the specified min/max values.
-			setGenePairAtLocus(locus, new C_Gene(new Double(alleleL), mapLoc, DEFAULT_GENE_MUTATOR,
-					this.xsomeStrands[PARENT_1].myId, DEFAULT_GENE_CONSTRAINT), new C_Gene(new Double(alleleR), mapLoc,
-					DEFAULT_GENE_MUTATOR, this.xsomeStrands[PARENT_2].myId, DEFAULT_GENE_CONSTRAINT));
-		}
-	}
+	/*
+	 * private void addRandomNormalDistributionGene(int locus, double alleleMean, double alleleStdDev, double mapLoc) { // Add
+	 * genes in pairs ("left" and "right" alleles) double alleleL; double alleleR; { // Generate values for genes using a normal
+	 * (gaussian) distribution of mean, alleleMean, and standard deviation, // alleleStandDev. Convert any tiny values into the
+	 * mini allele value, after taking the absolute value of the random # alleleL =
+	 * Math.abs(C_ContextCreator.randomGaussianGenerator.nextGaussian(alleleMean, alleleStdDev)); alleleL =
+	 * Math.max(DEFAULT_ALLELE_MIN, alleleL); alleleR = Math.abs(C_ContextCreator.randomGaussianGenerator.nextGaussian(alleleMean,
+	 * alleleStdDev)); alleleR = Math.max(DEFAULT_ALLELE_MIN, alleleR); // Add gene pairs to genome. Constrain future mutations to
+	 * the specified min/max values. setGenePairAtLocus(locus, new C_Gene(alleleL, mapLoc, DEFAULT_GENE_MUTATOR,
+	 * this.xsomeStrands[PARENT_1].myId, DEFAULT_GENE_CONSTRAINT), new C_Gene(alleleR, mapLoc, DEFAULT_GENE_MUTATOR,
+	 * this.xsomeStrands[PARENT_2].myId, DEFAULT_GENE_CONSTRAINT)); } }
+	 */
 	/** Add a gene pair at a particular locus on this chromosome pair. If a gene pair is already on this locus it will be replace by
 	 * the new one. */
 	public void setGenePairAtLocus(int locus, C_Gene leftGene, C_Gene rightGene) {
@@ -336,9 +332,9 @@ public class C_ChromosomePair implements I_MappedDna, I_ConstantNumeric {
 		I_GeneMutator gMut = new C_GeneMutatorDouble();
 		for (int i = 0; i < numGenes; i++) {
 			double mapLoc = i * 4.3;
-			// xsome1.setGenePairAtLocus(i, new C_Gene(new Double(new Random().nextDouble() * 2), mapLoc, gMut,
+			// xsome1.setGenePairAtLocus(i, new C_Gene(new Random().nextDouble() * 2, mapLoc, gMut,
 			bivalent_1.setGenePairAtLocus(i, new C_Gene("stringAllele", mapLoc, gMut, bivalent_1.xsomeStrands[PARENT_1].myId),
-					new C_Gene(new Double(new Random().nextDouble() * 2), mapLoc, gMut, bivalent_1.xsomeStrands[PARENT_2].myId));
+					new C_Gene(new Random().nextDouble() * 2, mapLoc, gMut, bivalent_1.xsomeStrands[PARENT_2].myId));
 		}
 		System.out.println("bivalent_1: " + bivalent_1);
 		testMapLocs(bivalent_1);
@@ -359,18 +355,18 @@ public class C_ChromosomePair implements I_MappedDna, I_ConstantNumeric {
 		C_Gene g1, g2;
 		for (int i = 0; i < numGenes; i++) {
 			double mapLoc = i * 4.3;
-			g1 = new C_Gene(new Double(i), mapLoc, gMut, bivalent_2.xsomeStrands[PARENT_1].myId);
-			g2 = new C_Gene(new Double(i * 2 + 1), mapLoc, gMut, bivalent_2.xsomeStrands[PARENT_2].myId);
+			g1 = new C_Gene(i*1., mapLoc, gMut, bivalent_2.xsomeStrands[PARENT_1].myId);
+			g2 = new C_Gene(i * 2. + 1., mapLoc, gMut, bivalent_2.xsomeStrands[PARENT_2].myId);
 			bivalent_2.setGenePairAtLocus(i, new C_GenePair(g1, g2));
 		}
 		System.out.println("bivalent_2 original: " + bivalent_2);
 		testMapLocs(bivalent_2);
 
-		C_ChromosomePair genome2Copy = (C_ChromosomePair) bivalent_2.replicate(new Double(0));
+		C_ChromosomePair genome2Copy = (C_ChromosomePair) bivalent_2.replicate(0.);
 		System.out.println("xsome2's copy:   " + genome2Copy);
 		testMapLocs(genome2Copy);
 		System.out.println("2's numGenes(): " + bivalent_2.numGenes());
-		bivalent_2.mutate(new Double(0.75));
+		bivalent_2.mutate(0.75);
 		System.out.println("xsome2 mutated: " + bivalent_2);
 		testMapLocs(bivalent_2);
 		System.out.println("genome2's copy:  " + genome2Copy);
@@ -382,7 +378,7 @@ public class C_ChromosomePair implements I_MappedDna, I_ConstantNumeric {
 		System.out.println("parent1: " + bivalent_1);
 		System.out.println("parent2: " + bivalent_2);
 		System.out.println("crossover(): " + bivalent_1.crossover(bivalent_2));
-		System.out.println("mate(): " + bivalent_1.mate(new Double(0.75), bivalent_2));
+		System.out.println("mate(): " + bivalent_1.mate(0.75, bivalent_2));
 
 		// Test copySegment()
 		I_MappedDna copiedSegment1 = (I_MappedDna) bivalent_2.copySegment(0, 1);

@@ -126,7 +126,7 @@ public class C_Gene implements Comparable<C_Gene> {
 	public static void main(String[] args) {
 		System.out.println("Testing Gene");
 		double geneLoc = 1.28;
-		C_Gene dblGene = new C_Gene(new Double(3), geneLoc, new C_GeneMutatorDouble(-0.5, 0.5), 0, new C_GeneConstraint(2.5, 3.5));
+		C_Gene dblGene = new C_Gene(3., geneLoc, new C_GeneMutatorDouble(-0.5, 0.5), 0, new C_GeneConstraint(2.5, 3.5));
 		testGene(dblGene);
 
 		System.out.println("\nOrig gene:   " + dblGene);
@@ -194,7 +194,7 @@ public class C_Gene implements Comparable<C_Gene> {
 		System.out.println("  gene.getAllele(): " + gene.getAllele());
 		System.out.println("  gene.getMapLoc(): " + gene.getMapLoc());
 		for (int i = 0; i < 5; i++) {
-			gene.mutate(new Double(0.5));
+			gene.mutate(0.5);
 			System.out.println("  mutated gene: " + gene);
 		}
 	}

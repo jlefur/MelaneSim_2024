@@ -212,8 +212,8 @@ public class AStar0 {
         return diagonalCost;
     }
 
-    private void setDiagonalCost(int diagonalCost) {
-        this.diagonalCost = diagonalCost;
-    }
+//    private void setDiagonalCost(int diagonalCost) {
+//        this.diagonalCost = diagonalCost;
+//    }
 }
 

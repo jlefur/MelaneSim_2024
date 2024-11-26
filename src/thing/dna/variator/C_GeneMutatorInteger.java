@@ -72,7 +72,7 @@ public class C_GeneMutatorInteger implements I_GeneMutator {
 			// range is now [mutMin, mutMax].
 			int mutAmount = (int) (mutRange * (C_ContextCreator.randomGeneratorForDNA.nextDouble()));
 			mutAmount = mutAmount + mutMin;
-			return new Integer(mutAmount + d.intValue());
+			return mutAmount + d.intValue();
 		}
 		else {
 			return alleleValue;
@@ -94,8 +94,8 @@ public class C_GeneMutatorInteger implements I_GeneMutator {
 		System.out.println("Testing IntegerGeneMutator");
 
 		C_GeneMutatorInteger intMut = new C_GeneMutatorInteger(10,10);
-		Integer val = new Integer(2);
-		Double mutRate = new Double(0.5);
+		Integer val = 2;
+		Double mutRate = 0.5;
 
 		System.out.println("Allele value = " + val);
 		System.out.println("Mutating at this rate: " + mutRate);

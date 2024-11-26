@@ -4,7 +4,6 @@ package melanesim.protocol.rodents;
 import java.awt.Dimension;
 import java.io.BufferedReader;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -142,15 +141,6 @@ public class C_ProtocolDodel2 extends A_ProtocolFossorial implements I_ConstantD
 	//
 	// OVERRIDEN METHODS
 	//
-	@Override
-	public void step_Utick() {
-		int previousDayOfMonth = protocolCalendar.get(Calendar.DAY_OF_MONTH);// @@ when paths are figured on the display JLF
-																				// 05.2022
-
-		super.step_Utick();// has to be after the other inspectors step since it records indicators in file
-//		if (protocolCalendar.get(Calendar.DAY_OF_MONTH) != previousDayOfMonth)
-//			A_VisibleAgent.myLandscape.resetCellsColor();
-	}
 	/** Color the map in black to see the overall distribution of burrows<br>
 	 * Author J.Le Fur 10.2014, rev.03.2018 TODO JLF 2014.10 should be in presentation package ? */
 	@Override
@@ -453,8 +443,10 @@ public class C_ProtocolDodel2 extends A_ProtocolFossorial implements I_ConstantD
 	/** Create new food
 	 * @author M.Sall 09.2020 */
 	public C_Food createFood(C_SoilCell oneSoilCell) {
-		return new C_Food(oneSoilCell.getAffinity(), oneSoilCell.getCoordinate_Ucs().X, oneSoilCell
-				.getCoordinate_Ucs().Y);
+		oneSoilCell.getCoordinate_Ucs();
+		oneSoilCell
+				.getCoordinate_Ucs();
+		return new C_Food(oneSoilCell.getAffinity(), Coordinate.X, Coordinate.Y);
 	}
 	/** Create new human walker */
 	public C_Cat createCat() {

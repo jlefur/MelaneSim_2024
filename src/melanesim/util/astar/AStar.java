@@ -16,7 +16,7 @@ public class AStar {
 	private I_Container[][] searchArea;
 	private PriorityQueue<C_SoilCellNode> openList;
 	private Set<C_SoilCellNode> closedSet;
-	private C_SoilCellNode initialCellNode;
+//	private C_SoilCellNode initialCellNode;
 	private C_SoilCellNode finalCellNode;
 
 	public AStar() {
@@ -26,7 +26,7 @@ public class AStar {
 	}
 
 	public ArrayList<C_SoilCellNode> findPath(C_SoilCellNode initialCellNode, C_SoilCellNode finalCellNode) {
-		this.initialCellNode = initialCellNode;
+//		this.initialCellNode = initialCellNode;
 		this.finalCellNode = finalCellNode;
 		this.openList = new PriorityQueue<C_SoilCellNode>(new Comparator<C_SoilCellNode>() {
 			@Override
@@ -153,7 +153,7 @@ public class AStar {
 		this.openList = openList;
 	}
 
-	private void setDiagonalCost(int diagonalCost) {
-		this.diagonalCost = diagonalCost;
-	}
+//	private void setDiagonalCost(int diagonalCost) {
+//		this.diagonalCost = diagonalCost;
+//	}
 }

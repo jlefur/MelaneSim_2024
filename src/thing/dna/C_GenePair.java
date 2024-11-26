@@ -71,8 +71,8 @@ public class C_GenePair {
 	public static void main(String[] args) {
 		System.out.println("Testing GenePair");
 
-		C_Gene g1 = new C_Gene(new Double(.81), 2.5, new C_GeneMutatorDouble(),LEFT);
-		C_Gene g2 = new C_Gene(new Double(.73), 2.5, new C_GeneMutatorDouble(),RIGHT);
+		C_Gene g1 = new C_Gene(.81, 2.5, new C_GeneMutatorDouble(),LEFT);
+		C_Gene g2 = new C_Gene(.73, 2.5, new C_GeneMutatorDouble(),RIGHT);
 		C_GenePair gp = new C_GenePair(g1, g2);
 		System.out.println("gp: " + gp);
 		System.out.println("gp.getMapLoc(): " + gp.getMapLoc());

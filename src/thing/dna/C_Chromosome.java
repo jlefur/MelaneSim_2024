@@ -41,7 +41,7 @@ public class C_Chromosome implements I_MappedDna, Comparable<C_Chromosome> {
 		genes = new ArrayList<C_Gene>(numGenes);
 		for (int i = 0; i < numGenes; i++)
 			// Fill with dummy values (all 0s)
-			genes.add(new C_Gene(new Integer(0), new C_GeneMutatorDouble(), this.myId));
+			genes.add(new C_Gene(0, new C_GeneMutatorDouble(), this.myId));
 	}
 	/** Make a chromosome of a specific size (it's more efficient if this size is known since an ArrayList is holding the Genes).
 	 * @param mapLength the length of this chromosome in map units
@@ -56,7 +56,7 @@ public class C_Chromosome implements I_MappedDna, Comparable<C_Chromosome> {
 		genes = new ArrayList<C_Gene>(numGenes);
 		// Fill with dummy values (all 0s)
 		for (int i = 0; i < numGenes; i++)
-			genes.add(new C_Gene(new Integer(0), new C_GeneMutatorDouble(), this.myId));
+			genes.add(new C_Gene(0, new C_GeneMutatorDouble(), this.myId));
 	}
 	//
 	// METHODS
@@ -147,7 +147,7 @@ public class C_Chromosome implements I_MappedDna, Comparable<C_Chromosome> {
 	public void randomize() {
 		// Mutation rate is 1 for this operation - we want all genes to
 		// be changed.
-		Double mutRate = new Double(1.0);
+		Double mutRate = 1.0;
 		Iterator<C_Gene> genesIter = genes.iterator();
 		C_Gene gene;
 		while (genesIter.hasNext()) {

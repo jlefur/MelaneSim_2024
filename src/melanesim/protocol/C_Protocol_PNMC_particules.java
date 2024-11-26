@@ -143,16 +143,16 @@ public class C_Protocol_PNMC_particules extends A_Protocol implements I_Constant
 		// } catch (AWTException e) {e.printStackTrace();}
 
 		// save screen each new day
-		Integer currentYear = A_Protocol.protocolCalendar.get(Calendar.YEAR);
-		Integer currentDay = A_Protocol.protocolCalendar.get(Calendar.DAY_OF_YEAR);
-		Integer currentHour = A_Protocol.protocolCalendar.get(Calendar.HOUR_OF_DAY);
-		String currentDate = currentYear + "." + String.format("%03d", currentDay) + "_" + String.format("%03d",
-				currentHour);
+		/*
+		 * Integer currentYear = A_Protocol.protocolCalendar.get(Calendar.YEAR); Integer currentDay =
+		 * A_Protocol.protocolCalendar.get(Calendar.DAY_OF_YEAR); Integer currentHour =
+		 * A_Protocol.protocolCalendar.get(Calendar.HOUR_OF_DAY); String currentDate = currentYear + "." + String.format("%03d",
+		 * currentDay) + "_" + String.format("%03d",currentHour);
+		 */
 		A_Protocol.protocolCalendar.incrementDate();
 		// reset plankton energy JLF 07.2024
 		// if (protocolCalendar.get(Calendar.DAY_OF_YEAR) != currentDay) {
 		Object[] contextContent = RunState.getInstance().getMasterContext().toArray();
-		String speciesName = "";
 		for (int i = 0; i < contextContent.length; i++) {
 			Object item = contextContent[i];
 			if (item instanceof C_Plankton) ((C_Plankton) item).energy_Ukcal = 0.;
