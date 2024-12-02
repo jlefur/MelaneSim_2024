@@ -5,12 +5,15 @@ import java.awt.Color;
 
 import org.jfree.chart.plot.XYPlot;
 
+import melanesim.protocol.A_Protocol;
+import melanesim.protocol.rodents.A_ProtocolRodent;
 import presentation.epiphyte.C_InspectorBorreliaCrocidurae;
 import presentation.epiphyte.C_InspectorCMR;
 import presentation.epiphyte.C_InspectorFossorialRodents;
 import presentation.epiphyte.C_InspectorGenetic;
 import presentation.epiphyte.C_InspectorHybrid;
 import presentation.epiphyte.C_InspectorOrnithodorosSonrai;
+import presentation.epiphyte.C_InspectorPopulationRodent;
 import presentation.epiphyte.C_InspectorTransportation;
 import presentation.epiphyte.C_InspectorVegetation;
 import repast.simphony.engine.environment.GUIRegistryType;
@@ -20,9 +23,11 @@ import repast.simphony.essentials.RepastEssentials;
 /** Initialise la simulation avec des onglets "programmables"
  * @author A. Realini, rev. J. Le Fur 02.2013, O2.2017, 02.2021 */
 public class C_CustomPanelSet_Rodent extends C_CustomPanelSet {
-
+	// the following are meant to avoid multiple calls to ContextCreator (see execute()) // JLF 02.2013
+	//protected C_InspectorPopulationRodent inspector;
 	private C_CustomPanelFactory curveFIS, curveRates, curveVegetation, curveOrnithodoros, curvedesease;
 	// the following are meant to avoid multiple calls to ContextCreator (see execute()) // JLF 02.2013
+	private static C_InspectorPopulationRodent inspector = null;
 	private static C_InspectorHybrid hybridInspector = null;
 	private static C_InspectorTransportation transportationInspector = null;
 	private static C_InspectorGenetic geneticInspector = null;
@@ -117,15 +122,20 @@ public class C_CustomPanelSet_Rodent extends C_CustomPanelSet {
 		}
 	}
 
+	@Override
 	public String toString() {
 		return "SimMastoInitializer";
 	}
 
+	@Override
 	/** Use it for no graphs in the GUI */
 	public void execute0() {}
 
+	@Override
 	/** Update each series with the corresponding data */
 	public void execute() {
+		inspectorEnergy = A_Protocol.inspectorEnergy;
+		inspector = A_ProtocolRodent.inspector;
 		super.execute();
 
 		// BURROWS
@@ -133,6 +143,22 @@ public class C_CustomPanelSet_Rodent extends C_CustomPanelSet {
 		 * if (burrowInspector != null) curvePopSize.getChart().setData("WanderingRodents", RepastEssentials.GetTickCount(),
 		 * burrowInspector .getWanderingRodents_Upercent() * C_InspectorPopulation.rodentList.size());
 		 */
+		// POPULATION DISPLAY
+		curvePopSize.getChart().setData("PopMales", RepastEssentials.GetTickCount(), C_InspectorPopulationRodent
+				.getNbMales());
+		curvePopSize.getChart().setData("PopFemales", RepastEssentials.GetTickCount(), C_InspectorPopulationRodent
+				.getNbFemales());
+
+		// DISPERSAL DISPLAY
+		curveDispersal.getChart().setData("MaxFemaleDispersal", RepastEssentials.GetTickCount(), inspector
+				.getMaxFemaleDispersal());
+		curveDispersal.getChart().setData("MaxMaleDispersal", RepastEssentials.GetTickCount(), inspector
+				.getMaxMaleDispersal());
+		curveDispersal.getChart().setData("MeanMaleDispersal", RepastEssentials.GetTickCount(), inspector
+				.getMeanMaleDispersal());
+		curveDispersal.getChart().setData("MeanFemaleDispersal", RepastEssentials.GetTickCount(), inspector
+				.getMeanFemaleDispersal());
+
 		// TRANSPORTATION
 		if (transportationInspector != null)
 			curvePopSize.getChart().setData("LoadedRodents(x10)", RepastEssentials.GetTickCount(),

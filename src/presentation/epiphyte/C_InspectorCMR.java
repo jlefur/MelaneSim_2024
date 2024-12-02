@@ -47,7 +47,7 @@ public class C_InspectorCMR extends A_Inspector implements data.constants.rodent
 
 	/** stores the current state of indicators - JLF 10.2013 */
 	public void storeCMRIndicators(String date) {
-	    this.dataSaverCMR.writeln(RepastEssentials.GetTickCount() + CSV_FIELD_SEPARATOR + date + CSV_FIELD_SEPARATOR + C_InspectorPopulation.rodentList
+	    this.dataSaverCMR.writeln(RepastEssentials.GetTickCount() + CSV_FIELD_SEPARATOR + date + CSV_FIELD_SEPARATOR + C_InspectorPopulationRodent.rodentList
 				.size() + CSV_FIELD_SEPARATOR + getTrapAreaPopulation_Urodent() + CSV_FIELD_SEPARATOR + taggedRodentList.size() + CSV_FIELD_SEPARATOR
 				+ getCurrentDRS() + CSV_FIELD_SEPARATOR + getCurrentDMR() + CSV_FIELD_SEPARATOR + getCurrentMNA());
 	}

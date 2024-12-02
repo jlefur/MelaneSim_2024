@@ -15,7 +15,7 @@ public class C_InspectorEnergy extends A_Inspector {
 	// size is necessary to compute means
 	protected Map<String, Integer> sizeBySpecies = new HashMap<String, Integer>();
 	/** Writer of an outer csv file */
-//	private C_FileWriter dataSaverEnergyGeneral;
+	// private C_FileWriter dataSaverEnergyGeneral;
 
 	public C_InspectorEnergy() {
 		super();
@@ -53,8 +53,8 @@ public class C_InspectorEnergy extends A_Inspector {
 				speciesName = C_VariousUtilities.getShortClassName(item.getClass()).substring(2);
 				// If key exist, add values
 				if (this.EnergyBySpecies.get(speciesName) != null) {
-					this.EnergyBySpecies.put(speciesName, this.EnergyBySpecies.get(speciesName) + //
-							((A_SupportedContainer) item).getEnergy_Ukcal());
+					this.EnergyBySpecies.put(speciesName, this.EnergyBySpecies.get(speciesName)
+							+ ((A_SupportedContainer) item).getEnergy_Ukcal());
 					this.sizeBySpecies.put(speciesName, this.sizeBySpecies.get(speciesName) + 1);
 				}
 				// If not, create an entry and set values

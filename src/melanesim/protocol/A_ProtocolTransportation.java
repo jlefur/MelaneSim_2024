@@ -26,11 +26,12 @@ import thing.ground.landscape.C_LandscapeNetwork;
 import data.C_Event;
 import data.C_Parameters;
 import data.constants.rodents.I_ConstantTransportation;
+import melanesim.protocol.rodents.A_ProtocolRodent;
 import melanesim.util.C_Graph;
 
 /** Initialize the simulation and manage the inputs coming from the events file.csv
  * @author J.Le Fur, P.A.Mboup 07/2012, rev. PAM 08.2013, JLF 09.2014,10.2015 */
-public abstract class A_ProtocolTransportation extends A_Protocol implements I_ConstantTransportation {
+public abstract class A_ProtocolTransportation extends A_ProtocolRodent implements I_ConstantTransportation {
 	//
 	// FIELD
 	//

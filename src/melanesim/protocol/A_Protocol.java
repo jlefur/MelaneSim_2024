@@ -130,7 +130,8 @@ public abstract class A_Protocol implements I_Protocol, I_ConstantString, I_Cons
 		}
 
 		// MANAGE EPIPHYTE SYSTEM
-		for (A_Inspector oneInspector : inspectorList) oneInspector.step_Utick();
+		for (A_Inspector oneInspector : inspectorList)
+			oneInspector.step_Utick();
 		this.recordIndicatorsInFile(); // Manage indicators file
 
 		if (C_Parameters.TERMINATE || isSimulationEnd()) haltSimulation(); // and close files
@@ -223,13 +224,18 @@ public abstract class A_Protocol implements I_Protocol, I_ConstantString, I_Cons
 			container.agentIncoming(thing);
 			if (thing instanceof A_VisibleAgent)
 				((A_VisibleAgent) thing).bornCoord_Umeter = this.landscape.getThingCoord_Umeter(thing);
-			if (thing instanceof C_Rodent) C_InspectorPopulation.addRodentToList((C_Rodent) thing);
 			if (thing instanceof A_Organism) ((A_Organism) thing).setMyHome(container);
+			updateInspectors(thing);
 		}
 		else
 			A_Protocol.event("A_Protocol.contextualizeNewAgentInCell", ((A_NDS) thing).retrieveMyName() + "/"
 					+ ((A_NDS) thing).retrieveId() + " already exist in context", isError);
 	}
+	/** has to be overridden in daughter classes / JLF 2024 */
+	protected void updateInspectors(I_SituatedThing thing) {}
+	/** has to be overridden in daughter classes / JLF 2024 */
+	protected void updateInspectors(int value) {}
+
 	/** @see contextualizeOldThingInCell with x and y as coordinates instead of cell reference<br>
 	 *      M. Sall 11.2018 */
 	public void contextualizeOldThingInSpace(I_SituatedThing thing, double x, double y) {
@@ -256,14 +262,15 @@ public abstract class A_Protocol implements I_Protocol, I_ConstantString, I_Cons
 				}
 			}
 		}
-		A_Protocol.inspector.setNbDeath_Urodent(nbDeadRodents);
+		updateInspectors(nbDeadRodents);
 		return nbDeath;
 	}
 	/** Destroy a thing, remove it from context and remove its references to other object (lastContainerLeft, inspectors) so as to
 	 * be garbage collected<br>
 	 * Version Jean-Emmanuel Longueville 2011-01, rev. JLF 2014, 12.2015, 04.2016 */
 	public boolean wipeOffObject(I_SituatedThing deadThing) {
-		for (I_Inspector inspector : this.inspectorList) inspector.discardDeadThing(deadThing);
+		for (I_Inspector inspector : this.inspectorList)
+			inspector.discardDeadThing(deadThing);
 		deadThing.discardThis();
 		// TODO JLF 2015.06 in multiple context should be: Context<Object> context = ContextUtils.getContext(agent);
 		boolean test = this.context.remove(deadThing);
@@ -275,10 +282,8 @@ public abstract class A_Protocol implements I_Protocol, I_ConstantString, I_Cons
 	 * rev. jlf 09.2017 */
 	public void readUserParameters() {
 		try {
-			C_Parameters.INIT_POP_SIZE = ((Integer) C_Parameters.parameters.getValue("INIT_POP_SIZE"))
-					.intValue();
-		}
-		catch (Exception e) {
+			C_Parameters.INIT_POP_SIZE = ((Integer) C_Parameters.parameters.getValue("INIT_POP_SIZE")).intValue();
+		} catch (Exception e) {
 			C_Parameters.INIT_POP_SIZE = 0;
 		}
 		/** If true, display the affinity map, else display the value layer */
@@ -301,7 +306,8 @@ public abstract class A_Protocol implements I_Protocol, I_ConstantString, I_Cons
 		C_Parameters.IMAGE = ((Boolean) C_Parameters.parameters.getValue("IMAGE")).booleanValue();
 		if ((this.styleAgent != null) && (oldValueImage != C_Parameters.IMAGE)) {
 			IndexedIterable<Object> it = this.context.getObjects(A_VisibleAgent.class);
-			for (int i = 0; i < it.size(); i++) ((A_VisibleAgent) it.get(i)).setHasToSwitchFace(true);
+			for (int i = 0; i < it.size(); i++)
+				((A_VisibleAgent) it.get(i)).setHasToSwitchFace(true);
 			this.styleAgent.init(this.styleAgent.getFactory());
 		}
 		// Manage new tick definition
@@ -321,8 +327,8 @@ public abstract class A_Protocol implements I_Protocol, I_ConstantString, I_Cons
 			A_Protocol.event("A_Protocol.readUserParameters", "New tick definition: "
 					+ C_Parameters.TICK_LENGTH_Ucalendar + " " + C_Parameters.TICK_UNIT_Ucalendar, isNotError);
 			// Use a treeSet to ensure that NDS are always triggered in the same order TODO JLF 2017.09 pas compris ???
-			for (Object contextObject : this.context) if (contextObject instanceof A_Animal)
-				((A_Animal) contextObject).initParameters();
+			for (Object contextObject : this.context)
+				if (contextObject instanceof A_Animal) ((A_Animal) contextObject).initParameters();
 		}
 	}
 	protected void initFixedParameters() {
@@ -380,35 +386,12 @@ public abstract class A_Protocol implements I_Protocol, I_ConstantString, I_Cons
 	public C_Rodent createRodent() {
 		return new C_Rodent(new C_GenomeAmniota());
 	}
-	/** Check rodent list sizes */
-	public void checkRodentLists() {
-		TreeSet<C_Rodent> rodentList = C_InspectorPopulation.rodentList;
-		int withinContext_Urodent = 0, withinSoilMatrix_Urodent = 0, trapped_Urodent = 0;
-		Object[] contextContent = RunState.getInstance().getMasterContext().toArray();
-		int contextSize = contextContent.length;
-		for (int i = 0; i < contextSize; i++) {
-			if (contextContent[i] instanceof C_Rodent) {
-				withinContext_Urodent++;
-				if (((C_Rodent) contextContent[i]).isTrappedOnBoard()) trapped_Urodent++;
-			}
-		}
-		for (int i = 0; i < this.landscape.dimension_Ucell.getWidth(); i++) {
-			for (int j = 0; j < this.landscape.dimension_Ucell.getHeight(); j++) {
-				if (!this.landscape.getGrid()[i][j].getFullRodentList().isEmpty())
-					withinSoilMatrix_Urodent += this.landscape.getGrid()[i][j].getFullRodentList().size();
-			}
-		}
-		withinSoilMatrix_Urodent += trapped_Urodent;
-		if ((withinContext_Urodent != rodentList.size()) || (withinSoilMatrix_Urodent != rodentList.size())) {
-			A_Protocol.event("A_Protocol.checkRodentLists", "List sizes differ: rodentList/context/soilMatrix(trapped)"
-					+ rodentList.size() + "/" + withinContext_Urodent + "/" + withinSoilMatrix_Urodent + " ("
-					+ trapped_Urodent + ")", isError);
-		}
-	}
+
 	/** record the current state of every inspectors'indicators in one unique .csv indicatorsFile,<br>
 	 * count & display the simulation duration. JLF, 2014, 05.2016 */
 	protected void haltSimulation() {
-		for (A_Inspector inspector : inspectorList) inspector.closeSimulation();
+		for (A_Inspector inspector : inspectorList)
+			inspector.closeSimulation();
 		double simLength = System.currentTimeMillis() - C_ContextCreator.simulationStartTime_Ums;
 		A_Protocol.event("A_Protocol.haltSimulation", "Simulation length: " + ((int) simLength / 1000) + "sec. (~"
 				+ ((int) simLength / 60000) + "mn, ~" + ((int) simLength / 3600000) + "h.) / Tick "
@@ -452,8 +435,8 @@ public abstract class A_Protocol implements I_Protocol, I_ConstantString, I_Cons
 				+ C_ContextCreator.AGENT_NUMBER + "/" + RepastEssentials.GetTickCount());
 		System.out.println("=================================");
 		System.out.println("A_Protocol, START OF full context content : ");
-		for (int i = 0; i < list.length; i++) System.out.println("�l�ment: " + C_VariousUtilities.getShortClassName(
-				list[i].getClass()) + ": " + list[i]);
+		for (int i = 0; i < list.length; i++)
+			System.out.println("�l�ment: " + C_VariousUtilities.getShortClassName(list[i].getClass()) + ": " + list[i]);
 		System.out.println("A_Protocol, END OF full context content.");
 		System.out.println("=================================");
 	}

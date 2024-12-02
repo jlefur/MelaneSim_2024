@@ -4,7 +4,7 @@ package thing.ground.landscape;
 import data.constants.I_ConstantString;
 import melanesim.protocol.A_Protocol;
 import presentation.epiphyte.C_InspectorOrnithodorosSonrai;
-import presentation.epiphyte.C_InspectorPopulation;
+import presentation.epiphyte.C_InspectorPopulationRodent;
 import repast.simphony.context.Context;
 import repast.simphony.space.continuous.NdPoint;
 import repast.simphony.util.ContextUtils;
@@ -41,7 +41,7 @@ public class C_LandscapeRodent extends C_Landscape implements I_ConstantString {
 		Context<Object> context = ContextUtils.getContext(parent);
 		context.add(child);
 		// TODO JLF 2015.10 epiphyte in business, move to protocol ?
-		if (child instanceof C_Rodent) C_InspectorPopulation.addRodentToBirthList((C_Rodent) child);
+		if (child instanceof C_Rodent) C_InspectorPopulationRodent.addRodentToBirthList((C_Rodent) child);
 		// TODO MS 2020.04 Add birth tick in the corresponding inspector list!
 		// TODO MS de JLF 2022.01 reference to OrnitodorosSonrai misplaced + epiphyte in business, move to protocol ?
 		else
@@ -53,7 +53,7 @@ public class C_LandscapeRodent extends C_Landscape implements I_ConstantString {
 	@Override
 	protected void updateInspectors(A_Animal incomer) { // JLF 2016.05 cannot add rodent to birthList since it has age of sexual
 														// maturity (see above) ?
-		if (incomer instanceof C_Rodent) C_InspectorPopulation.addRodentToList((C_Rodent) incomer);
+		if (incomer instanceof C_Rodent) C_InspectorPopulationRodent.addRodentToList((C_Rodent) incomer);
 	}
 	/** Initialize both (!) gridValueLayer and container(ex: C_SoilCell) matrices
 	 * @param matriceLue the values read in the raster, bitmap<br>

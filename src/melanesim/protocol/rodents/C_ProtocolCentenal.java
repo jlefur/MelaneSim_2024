@@ -12,6 +12,7 @@ import melanesim.protocol.A_ProtocolTransportation;
 import presentation.display.C_Background;
 import presentation.display.C_CustomPanelSet_Rodent;
 import presentation.display.C_UserPanel;
+import presentation.display.C_UserPanelRodent;
 import presentation.epiphyte.C_InspectorGenetic;
 import repast.simphony.context.Context;
 import thing.C_Rodent;
@@ -31,7 +32,7 @@ public class C_ProtocolCentenal extends A_ProtocolTransportation implements I_Co
 		geneticInspector = new C_InspectorGenetic();
 		inspectorList.add(geneticInspector);
 		C_CustomPanelSet_Rodent.addGeneticInspector(geneticInspector);
-		C_UserPanel.addGeneticInspector(geneticInspector);
+		C_UserPanelRodent.addGeneticInspector(geneticInspector);
 		facilityMap = new C_Background(-.255, 45, 32);
 		// Create and build the dataFromChrono from the csv file except the bioclimate part used to build the initial raster
 		chronogram = new C_Chronogram(EVENT_CHRONO_NAME);

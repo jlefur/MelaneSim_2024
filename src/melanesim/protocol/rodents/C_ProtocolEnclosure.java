@@ -2,8 +2,10 @@ package melanesim.protocol.rodents;
 
 import java.util.Calendar;
 
+import data.C_Parameters;
+import data.constants.I_ConstantNumeric;
 import presentation.display.C_CustomPanelSet_Rodent;
-import presentation.display.C_UserPanel;
+import presentation.display.C_UserPanelRodent;
 import presentation.epiphyte.C_InspectorFossorialRodents;
 import presentation.epiphyte.C_InspectorGenetic;
 import presentation.epiphyte.C_InspectorHybrid;
@@ -12,13 +14,10 @@ import thing.C_Rodent;
 import thing.dna.C_GenomeEucaryote;
 import thing.dna.species.rodents.C_GenomeMastoErythroleucus;
 import thing.dna.species.rodents.C_GenomeMastoNatalensis;
-import data.C_Parameters;
-import data.constants.I_ConstantNumeric;
-import melanesim.protocol.A_Protocol;
 
 /** author J.Le Fur, A.Comte 03/2012 / rev. J.Le Fur feb.2013 */
 
-public class C_ProtocolEnclosure extends A_Protocol implements I_ConstantNumeric {
+public class C_ProtocolEnclosure extends A_ProtocolRodent implements I_ConstantNumeric {
 	protected C_InspectorGenetic geneticInspector;
 	protected C_InspectorFossorialRodents burrowInspector;
 	protected C_InspectorHybrid hybridInspector;
@@ -34,7 +33,7 @@ public class C_ProtocolEnclosure extends A_Protocol implements I_ConstantNumeric
 		C_GenomeEucaryote.init(hybridInspector);
 		C_CustomPanelSet_Rodent.addHybridInspector(hybridInspector);
 		C_CustomPanelSet_Rodent.addGeneticInspector(geneticInspector);
-		C_UserPanel.addBurrowInspector(burrowInspector);
+		C_UserPanelRodent.addBurrowInspector(burrowInspector);
 	}
 
 	@Override

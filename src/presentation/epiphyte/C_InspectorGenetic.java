@@ -20,7 +20,7 @@ import melanesim.protocol.A_Protocol;
 /** Retrieves information on genes and alleles of the whole population. <br>
  * The rodents' list (listRodents) is obtained from the population inspector and updated when needed. This implementation to avoid permanent calls to
  * C_InspectorPopulation.listRodents static field
- * @see C_InspectorPopulation#rodentList
+ * @see C_InspectorPopulationRodent#rodentList
  * @author A Realini 05.2011 rev. J. Le Fur 03.2013 */
 public class C_InspectorGenetic extends A_Inspector implements I_ConstantNumeric {
 	//
@@ -60,7 +60,7 @@ public class C_InspectorGenetic extends A_Inspector implements I_ConstantNumeric
 	 * @param locus : locus number for which allelic richness is requested */
 	private ArrayList<Object> initDifferingAllelesList(int locus) {
 		ArrayList<Object> listDifferingAllelesByLocus = new ArrayList<Object>();
-		C_XsomePairMicrosat microsat = ((C_GenomeEucaryote) C_InspectorPopulation.rodentList.first().getGenome()).getMicrosatXsome();
+		C_XsomePairMicrosat microsat = ((C_GenomeEucaryote) C_InspectorPopulationRodent.rodentList.first().getGenome()).getMicrosatXsome();
 		C_GenePair genesPair = (C_GenePair) microsat.getLocusAllele(locus);
 		listDifferingAllelesByLocus.add(genesPair.getGene(C_ChromosomePair.PARENT_1).getAllele());
 		if (isHeterozygous(genesPair)) listDifferingAllelesByLocus.add(genesPair.getGene(C_ChromosomePair.PARENT_2).getAllele());
@@ -72,7 +72,7 @@ public class C_InspectorGenetic extends A_Inspector implements I_ConstantNumeric
 	private void computeAllelicRichnessEveryLocus() {
 		for (int locus = 0; locus < NB_MICROSAT_GENES; locus++) {
 			ArrayList<Object> listDifferingAllelesByLocus = initDifferingAllelesList(locus);
-			Iterator<C_Rodent> rodents = C_InspectorPopulation.rodentList.iterator();
+			Iterator<C_Rodent> rodents = C_InspectorPopulationRodent.rodentList.iterator();
 			while (rodents.hasNext()) {
 				C_XsomePairMicrosat microsat = ((C_GenomeEucaryote) rodents.next().getGenome()).getMicrosatXsome();
 				C_GenePair genePair = (C_GenePair) microsat.getLocusAllele(locus);
@@ -100,7 +100,7 @@ public class C_InspectorGenetic extends A_Inspector implements I_ConstantNumeric
 	 * Formula: nb occurences of one allele at locus i / (2 * nb indiv.) */
 	private void computeAllelicRichnessOneLocus(int locus) {
 		ArrayList<Double> freq = new ArrayList<Double>();
-		if (!C_InspectorPopulation.rodentList.isEmpty()) {
+		if (!C_InspectorPopulationRodent.rodentList.isEmpty()) {
 			ArrayList<Object> listeAlleles = getAllAllelesOneLocus(locus);
 			while (!listeAlleles.isEmpty()) {
 				Object allele = listeAlleles.get(0);// retrieve the first allele of the list to compare with the others
@@ -113,7 +113,7 @@ public class C_InspectorGenetic extends A_Inspector implements I_ConstantNumeric
 					cpt++;
 					index = listeAlleles.indexOf(allele);
 				}
-				freq.add(convertNumber((double) cpt / (2 * C_InspectorPopulation.rodentList.size()), 5));
+				freq.add(convertNumber((double) cpt / (2 * C_InspectorPopulationRodent.rodentList.size()), 5));
 			}
 		}
 		this.allelicFrequencies[locus] = freq;
@@ -123,7 +123,7 @@ public class C_InspectorGenetic extends A_Inspector implements I_ConstantNumeric
 	private ArrayList<Object> getAllAllelesOneLocus(int locus) {
 		ArrayList<Object> liste = new ArrayList<Object>();
 		// add the chromosomes left and right to the list and not the pair per se (for easier computation)
-		Iterator<C_Rodent> rodents = C_InspectorPopulation.rodentList.iterator();
+		Iterator<C_Rodent> rodents = C_InspectorPopulationRodent.rodentList.iterator();
 		while (rodents.hasNext()) {
 			C_Rodent rodent = rodents.next();
 			C_XsomePairMicrosat microsat = ((C_GenomeEucaryote) rodent.getGenome()).getMicrosatXsome();
@@ -140,13 +140,13 @@ public class C_InspectorGenetic extends A_Inspector implements I_ConstantNumeric
 		double sum = 0;
 		for (int locus = 0; locus < NB_MICROSAT_GENES; locus++) {
 			int cpt = 0;
-			Iterator<C_Rodent> rodents = C_InspectorPopulation.rodentList.iterator();
+			Iterator<C_Rodent> rodents = C_InspectorPopulationRodent.rodentList.iterator();
 			while (rodents.hasNext()) {
 				C_Rodent rodent = rodents.next();
 				C_XsomePairMicrosat microsat = ((C_GenomeEucaryote) rodent.getGenome()).getMicrosatXsome();
 				if (isHeterozygous((C_GenePair) microsat.getLocusAllele(locus))) cpt++;
 			}
-			sum += (double) cpt / (double) C_InspectorPopulation.rodentList.size();
+			sum += (double) cpt / (double) C_InspectorPopulationRodent.rodentList.size();
 		}
 		// divide the sum by the number of loci //
 		this.observedHeterozygosityHO = convertNumber((sum / NB_MICROSAT_GENES), 5);
@@ -178,7 +178,7 @@ public class C_InspectorGenetic extends A_Inspector implements I_ConstantNumeric
 	public double getFixationIndex() {
 		double fisValue = 1 - (this.observedHeterozygosityHO / this.expectedHeterozygosityHE);
 		// patch: at the end of simulation, FIS drops to -1 which ruins the graph.
-		if ((convertNumber(fisValue, 5) == -1.) || (C_InspectorPopulation.rodentList.size() < FIS_COMPUTATION_THRESHOLD_Urodent)) return 0.;
+		if ((convertNumber(fisValue, 5) == -1.) || (C_InspectorPopulationRodent.rodentList.size() < FIS_COMPUTATION_THRESHOLD_Urodent)) return 0.;
 		else return convertNumber(fisValue, 5);
 	}
 
@@ -192,7 +192,7 @@ public class C_InspectorGenetic extends A_Inspector implements I_ConstantNumeric
 	@Override
 	public void indicatorsCompute() {
 		super.indicatorsCompute();
-		if (C_InspectorPopulation.rodentList.size() > 1) {// TODO number in source min rodents to compute indicators
+		if (C_InspectorPopulationRodent.rodentList.size() > 1) {// TODO number in source min rodents to compute indicators
 			computeAllelicRichnessEveryLocus();
 			computeHeterozygosityExpectedGlobal();
 			computeHeterozygosityObservedHO();
@@ -238,7 +238,7 @@ public class C_InspectorGenetic extends A_Inspector implements I_ConstantNumeric
 	private void recordGenePopInFile() {
 		C_GenePair[] paire = new C_GenePair[NB_MICROSAT_GENES];
 		this.genePopFile.writeln("Pop " + RepastEssentials.GetTickCount());
-		Iterator<C_Rodent> rodents = C_InspectorPopulation.rodentList.iterator();
+		Iterator<C_Rodent> rodents = C_InspectorPopulationRodent.rodentList.iterator();
 		while (rodents.hasNext()) {
 			C_Rodent microtus = rodents.next();
 			try {

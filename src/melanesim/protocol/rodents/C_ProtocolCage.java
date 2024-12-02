@@ -11,13 +11,12 @@ import data.C_Parameters;
 import data.constants.I_ConstantNumeric;
 import data.constants.rodents.I_ConstantCage;
 import melanesim.C_ContextCreator;
-import melanesim.protocol.A_Protocol;
 import presentation.display.C_Background;
 import presentation.display.C_CustomPanelSet_Rodent;
-import presentation.display.C_UserPanel;
+import presentation.display.C_UserPanelRodent;
 import presentation.epiphyte.C_InspectorGenetic;
 import presentation.epiphyte.C_InspectorHybrid;
-import presentation.epiphyte.C_InspectorPopulation;
+import presentation.epiphyte.C_InspectorPopulationRodent;
 import repast.simphony.context.Context;
 import thing.A_Amniote;
 import thing.C_Rodent;
@@ -33,7 +32,7 @@ import thing.ground.C_SoilCell;
 /** first line: nat x nat and ery x ery second line: nat x ery and ery x nat third line : hybrid x hybrid fourth line : hybrid x
  * nat(male) and hybrid x ery(male)
  * @author J.Le Fur, A.Comte 03/2012, rev. JLF 09.2017 */
-public class C_ProtocolCage extends A_Protocol implements I_ConstantNumeric, I_ConstantCage {
+public class C_ProtocolCage extends A_ProtocolRodent implements I_ConstantNumeric, I_ConstantCage {
 	//
 	// FIELDS
 	//
@@ -56,8 +55,8 @@ public class C_ProtocolCage extends A_Protocol implements I_ConstantNumeric, I_C
 		A_Amniote.init(hybridInspector);// declares the inspector that stores the lethal alleles causes JLF 02.2013
 		C_CustomPanelSet_Rodent.addGeneticInspector(geneticInspector);
 		C_CustomPanelSet_Rodent.addHybridInspector(hybridInspector);
-		C_UserPanel.addGeneticInspector(geneticInspector);
-		C_UserPanel.addHybridInspector(hybridInspector);
+		C_UserPanelRodent.addGeneticInspector(geneticInspector);
+		C_UserPanelRodent.addHybridInspector(hybridInspector);
 		this.facilityMap = new C_Background(-.04, 31, 25);
 	}
 	//
@@ -177,7 +176,7 @@ public class C_ProtocolCage extends A_Protocol implements I_ConstantNumeric, I_C
 	public void step_Utick() {
 		// Select hybrids
 		TreeSet<C_RodentCaged> hybridList = new TreeSet<C_RodentCaged>();
-		for (C_Rodent rodent : C_InspectorPopulation.rodentList)
+		for (C_Rodent rodent : C_InspectorPopulationRodent.rodentList)
 			if (rodent.getGenome().getClass() == C_GenomeMastomys.class) hybridList.add((C_RodentCaged) rodent);
 		//
 		// LOOP

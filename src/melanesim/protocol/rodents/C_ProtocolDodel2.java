@@ -24,12 +24,12 @@ import melanesim.util.C_PathWandererAstar;
 import presentation.display.C_Background;
 import presentation.display.C_CustomPanelSet;
 import presentation.display.C_CustomPanelSet_Rodent;
-import presentation.display.C_UserPanel;
+import presentation.display.C_UserPanelRodent;
 import presentation.epiphyte.C_InspectorBorreliaCrocidurae;
 import presentation.epiphyte.C_InspectorEnergy;
 import presentation.epiphyte.C_InspectorGenetic;
 import presentation.epiphyte.C_InspectorOrnithodorosSonrai;
-import presentation.epiphyte.C_InspectorPopulation;
+import presentation.epiphyte.C_InspectorPopulationRodent;
 import repast.simphony.context.Context;
 import thing.A_HumanUrban;
 import thing.A_VisibleAgent;
@@ -111,7 +111,7 @@ public class C_ProtocolDodel2 extends A_ProtocolFossorial implements I_ConstantD
 		C_CustomPanelSet_Rodent.addOrnithodorosInspector(this.ornithodorosInspector);
 		C_CustomPanelSet_Rodent.addGeneticInspector(this.geneticInspector);
 		C_CustomPanelSet.addEnergyInspector(this.energyInspector);
-		C_UserPanel.addGeneticInspector(this.geneticInspector);
+		C_UserPanelRodent.addGeneticInspector(this.geneticInspector);
 		// Position concessions at the barycentre of cells
 		int i = 0, line, col;
 		for (C_LandPlot lp : this.landscape.getAffinityLandPlots()) {
@@ -243,7 +243,7 @@ public class C_ProtocolDodel2 extends A_ProtocolFossorial implements I_ConstantD
 	}
 	@Override
 	public boolean isSimulationEnd() {
-		if (C_InspectorPopulation.getNbFemales() == 0 && !this.chronogram.isEndOfChrono) return false;// Avoid end of simulation
+		if (C_InspectorPopulationRodent.getNbFemales() == 0 && !this.chronogram.isEndOfChrono) return false;// Avoid end of simulation
 																										// when the number of
 																										// female is null but the
 																										// chronogram is not!

@@ -9,7 +9,7 @@ import data.C_Parameters;
 import melanesim.protocol.A_Protocol;
 import presentation.display.C_Background;
 import presentation.display.C_CustomPanelSet_Rodent;
-import presentation.display.C_UserPanel;
+import presentation.display.C_UserPanelRodent;
 import presentation.epiphyte.C_InspectorCMR;
 import presentation.epiphyte.C_InspectorGenetic;
 import repast.simphony.context.Context;
@@ -44,7 +44,7 @@ public class C_ProtocolBandia extends A_ProtocolFossorial implements data.consta
 		this.inspectorList.add(C_InspectorCMR);
 		C_CustomPanelSet_Rodent.addCMRInspector(C_InspectorCMR);
 		C_CustomPanelSet_Rodent.addGeneticInspector(geneticInspector);
-		C_UserPanel.addGeneticInspector(geneticInspector);
+		C_UserPanelRodent.addGeneticInspector(geneticInspector);
 	}
 	//
 	// METHODS
@@ -134,7 +134,7 @@ public class C_ProtocolBandia extends A_ProtocolFossorial implements data.consta
 	protected void checkTrap(C_Trap oneTrap) {
 		for (I_SituatedThing thing : oneTrap.getFullOccupantList()) {
 			if (!(thing instanceof C_Egg)) {// TODO MS to JLF 01.2020 Correction de bug : tu as une erreur sur la conversion des
-											// egg en C_RodentCmr lors de la vérification des checkTrap. un egg ne peut être
+											// egg en C_RodentCmr lors de la vï¿½rification des checkTrap. un egg ne peut ï¿½tre
 											// caster en C_RodentCmr
 				C_RodentCmr rodent = (C_RodentCmr) thing;
 				tag(rodent);

@@ -52,7 +52,7 @@ public class C_InspectorHybrid extends A_Inspector {
 
 	@Override
 	public void step_Utick() {
-		TreeSet<C_Rodent> rodentList = C_InspectorPopulation.rodentList;
+		TreeSet<C_Rodent> rodentList = C_InspectorPopulationRodent.rodentList;
 		super.step_Utick();// compute in cascade and store indicators values
 		if (rodentList.isEmpty()) // // close private files
 		{
@@ -85,7 +85,7 @@ public class C_InspectorHybrid extends A_Inspector {
 	}
 	@Override
 	public void indicatorsCompute() {
-		TreeSet<C_Rodent> listRodents = C_InspectorPopulation.rodentList;
+		TreeSet<C_Rodent> listRodents = C_InspectorPopulationRodent.rodentList;
 		this.nbEry = 0;
 		this.nbNat = 0;
 		this.nbLazarus = 0;
@@ -109,7 +109,7 @@ public class C_InspectorHybrid extends A_Inspector {
 
 	/** Writes data in the hybrids indicators csv output file */
 	private void writeDataToFileGeneral() {
-	    this.dataSaverHybridsGeneral.writeln(RepastEssentials.GetTickCount() + CSV_FIELD_SEPARATOR + C_InspectorPopulation.rodentList.size()
+	    this.dataSaverHybridsGeneral.writeln(RepastEssentials.GetTickCount() + CSV_FIELD_SEPARATOR + C_InspectorPopulationRodent.rodentList.size()
 				+ CSV_FIELD_SEPARATOR + this.nbEry + CSV_FIELD_SEPARATOR + this.nbNat + CSV_FIELD_SEPARATOR + this.nbLazarus + CSV_FIELD_SEPARATOR + this.nbHybrids
 				+ CSV_FIELD_SEPARATOR + this.hybridsRate + CSV_FIELD_SEPARATOR + this.pbUnbalancedGene + CSV_FIELD_SEPARATOR + this.pbSynteny + CSV_FIELD_SEPARATOR
 				+ this.pbGeneNotFound + CSV_FIELD_SEPARATOR + this.pbEpistasie + CSV_FIELD_SEPARATOR + this.pbMatching + CSV_FIELD_SEPARATOR + this.pbHaldane);
@@ -117,7 +117,7 @@ public class C_InspectorHybrid extends A_Inspector {
 	/** Writes data in the DiploidNumber csv output file */
 	private void writeDataToFileDiploidNumber() {
 		int nb8 = 0, nb9 = 0, nb10 = 0, nb11 = 0, nb12 = 0, nb13 = 0, nb14 = 0;
-		for (C_Rodent rodent : C_InspectorPopulation.rodentList) {
+		for (C_Rodent rodent : C_InspectorPopulationRodent.rodentList) {
 			switch (rodent.getGenome().getDiploidNumber()) {
 				case 8 :
 					nb8++;
