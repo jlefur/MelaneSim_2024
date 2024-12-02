@@ -10,7 +10,6 @@ import org.jfree.chart.plot.XYPlot;
 
 import melanesim.protocol.A_Protocol;
 import presentation.epiphyte.C_InspectorEnergy;
-import presentation.epiphyte.C_InspectorPopulation;
 import repast.simphony.context.Context;
 import repast.simphony.engine.controller.NullAbstractControllerAction;
 import repast.simphony.engine.environment.GUIRegistryType;
@@ -30,21 +29,19 @@ public class C_CustomPanelSet implements IAction, ModelInitializer {
 	protected Map<String, Double> energyMap = null;// used for energy graph
 	public static ArrayList<String> energyCurves = new ArrayList<String>();// used for energy graph (must be static to be invoked
 																			// and cleared in
-	protected IAction action = this; // Récupère l'implémentation de IDisplay
+	protected IAction action = this; // RÃ©cupÃ¨re l'implÃ©mentation de IDisplay
 	protected C_CustomPanelFactory curveEnergy, curvePopSize, curveDispersal;
-	// the following are meant to avoid multiple calls to ContextCreator (see execute()) // JLF 02.2013
-	protected C_InspectorPopulation inspector;
 	protected static C_InspectorEnergy inspectorEnergy = null;
 	/** This is ran after the model has been loaded. This is only ran once, but the settings set through the
 	 * {@link repast.simphony.scenario.Scenario} will apply to every run of the simulation.
 	 * @param scen the {@link repast.simphony.scenario.Scenario} object that hold settings for the run */
 	public void initialize(Scenario scen, RunEnvironmentBuilder builder) {
 		scen.addMasterControllerAction(new NullAbstractControllerAction<Object>() {
-			/** Ajoute des onglets à la simulation et les initialise */
+			/** Ajoute des onglets ï¿½ la simulation et les initialise */
 			public void runInitialize(RunState runState, Context<?> context, Parameters runParams) {
 				/*
-				 * Initialisation des onglets: On crée un nouveau display puis on l'ajoute au registre des GUI de RunState. On
-				 * recommence ces deux étapes autant de fois que l'on souhaite ajouter d'onglets.
+				 * Initialisation des onglets: On crÃ©e un nouveau display puis on l'ajoute au registre des GUI de RunState. On
+				 * recommence ces deux Ã©tapes autant de fois que l'on souhaite ajouter d'onglets.
 				 */
 				XYPlot plot;
 
@@ -99,19 +96,19 @@ public class C_CustomPanelSet implements IAction, ModelInitializer {
 
 				initWorldSpecificPlots(runState);
 
-				/** Ajoute SimMastoInitializer au registre des plannings pour que la fonction execute() soit appelée à
-				 * l'intervalle demandé. La dernière variable ne peut pas être this à cause de la double implémentation. C'est
-				 * pourquoi on utilise une variable action initialisée avec this<br>
+				/** Ajoute SimMastoInitializer au registre des plannings pour que la fonction execute() soit appelï¿½e ï¿½
+				 * l'intervalle demandï¿½. La derniï¿½re variable ne peut pas ï¿½tre this ï¿½ cause de la double implï¿½mentation. C'est
+				 * pourquoi on utilise une variable action initialisï¿½e avec this<br>
 				 * The action with greater value is activated first */
 				runState.getScheduleRegistry().getModelSchedule().schedule(ScheduleParameters.createRepeating(0, 1, 1),
 						action);
 			}
 
-			/** Ferme les flux de la console du user panel (exécuté lorsque l'on réinitialise une simulation sans couper
-			 * l'exécution du programme) */
+			/** Ferme les flux de la console du user panel (exï¿½cutï¿½ lorsque l'on rï¿½initialise une simulation sans couper
+			 * l'exï¿½cution du programme) */
 			public void runCleanup(RunState runState, Context<?> context) {
 				C_CustomPanelSet.energyCurves.clear();
-				// La console n'existe pas en batch car C_TableauDeBord n'est pas initialisé
+				// La console n'existe pas en batch car C_TableauDeBord n'est pas initialisï¿½
 				if (C_UserPanel.consoleOut != null) {
 					System.out.println("SimMastoInitializer.runCleanup : closing flow to dismiss display");
 					try {
@@ -137,25 +134,7 @@ public class C_CustomPanelSet implements IAction, ModelInitializer {
 
 	/** Update each series with the corresponding data */
 	public void execute() {
-		inspector = A_Protocol.inspector;
 		inspectorEnergy = A_Protocol.inspectorEnergy;
-
-		// POPULATION DISPLAY
-		curvePopSize.getChart().setData("PopMales", RepastEssentials.GetTickCount(), C_InspectorPopulation
-				.getNbMales());
-		curvePopSize.getChart().setData("PopFemales", RepastEssentials.GetTickCount(), C_InspectorPopulation
-				.getNbFemales());
-
-		// DISPERSAL DISPLAY
-		curveDispersal.getChart().setData("MaxFemaleDispersal", RepastEssentials.GetTickCount(), inspector
-				.getMaxFemaleDispersal());
-		curveDispersal.getChart().setData("MaxMaleDispersal", RepastEssentials.GetTickCount(), inspector
-				.getMaxMaleDispersal());
-		curveDispersal.getChart().setData("MeanMaleDispersal", RepastEssentials.GetTickCount(), inspector
-				.getMeanMaleDispersal());
-		curveDispersal.getChart().setData("MeanFemaleDispersal", RepastEssentials.GetTickCount(), inspector
-				.getMeanFemaleDispersal());
-
 		// ENERGY jlf 02.2021
 		if (C_CustomPanelSet.inspectorEnergy != null) {
 			this.energyMap = C_CustomPanelSet.inspectorEnergy.getEnergyBySpecies();

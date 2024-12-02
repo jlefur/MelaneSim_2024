@@ -208,7 +208,7 @@ public class C_InspectorTransportation extends A_Inspector implements I_Constant
 	/** Count pregnant female tranported by vehicles; author JLF 06.2016 */
 	public int getPregnantLoad() {
 		int pregnantLoad = 0;
-		for (C_Rodent one_rodent : C_InspectorPopulation.rodentList)
+		for (C_Rodent one_rodent : C_InspectorPopulationRodent.rodentList)
 			if (one_rodent.isPregnant() && one_rodent.isTrappedOnBoard()) pregnantLoad++;
 		return pregnantLoad;
 	}

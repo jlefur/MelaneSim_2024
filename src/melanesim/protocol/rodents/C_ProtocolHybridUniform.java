@@ -8,11 +8,11 @@ import melanesim.C_ContextCreator;
 import melanesim.protocol.A_Protocol;
 import presentation.display.C_Background;
 import presentation.display.C_CustomPanelSet_Rodent;
-import presentation.display.C_UserPanel;
+import presentation.display.C_UserPanelRodent;
 import presentation.epiphyte.C_InspectorFossorialRodents;
 import presentation.epiphyte.C_InspectorGenetic;
 import presentation.epiphyte.C_InspectorHybrid;
-import presentation.epiphyte.C_InspectorPopulation;
+import presentation.epiphyte.C_InspectorPopulationRodent;
 import repast.simphony.context.Context;
 import thing.C_RodentFossorial;
 import thing.dna.C_GenomeEucaryote;
@@ -25,7 +25,7 @@ import thing.ground.C_BurrowSystem;
  * between C_Rodent, C_RodentFossorial, C_RodentFossorialColonial... then recompile the java class<br>
  * @version J.Le Fur, A.Comte 03.2012 / J.Le Fur 07.2012, 02.2013, 07-09.2017 */
 
-public class C_ProtocolHybridUniform extends A_Protocol {
+public class C_ProtocolHybridUniform extends A_ProtocolRodent {
 	//
 	// FIELDS
 	//
@@ -47,9 +47,9 @@ public class C_ProtocolHybridUniform extends A_Protocol {
 		C_GenomeEucaryote.init(hybridInspector);
 		C_CustomPanelSet_Rodent.addHybridInspector(hybridInspector);
 		C_CustomPanelSet_Rodent.addGeneticInspector(geneticInspector);
-		C_UserPanel.addGeneticInspector(geneticInspector);
+		C_UserPanelRodent.addGeneticInspector(geneticInspector);
 		C_CustomPanelSet_Rodent.addBurrowInspector(burrowInspector);
-		C_UserPanel.addBurrowInspector(burrowInspector);
+		C_UserPanelRodent.addBurrowInspector(burrowInspector);
 		this.facilityMap = new C_Background(-.13, 25, 31);
 	}
 	//
@@ -101,7 +101,7 @@ public class C_ProtocolHybridUniform extends A_Protocol {
 	/** Close simulation if population is < 2 or if a precondition is verified. <br>
 	 * This method may be redefined by daughter protocols */
 	public boolean isSimulationEnd() {
-		if (C_InspectorPopulation.getNbFemales() == 0) {
+		if (C_InspectorPopulationRodent.getNbFemales() == 0) {
 			if (C_Parameters.VERBOSE) java.awt.Toolkit.getDefaultToolkit().beep();
 			A_Protocol.event("C_ProtocolHybridUniform.isSimulationEnd", "Population is extinct (no female); halting simulation", isNotError);
 			return true;

@@ -23,7 +23,7 @@ import melanesim.protocol.A_Protocol;
 
 /** author J.Le Fur & M.Diakhate 07.2014, rev. JLF 10.2014, 03.2018 */
 
-public class C_ProtocolDodel extends A_Protocol implements I_ConstantStringRodents {
+public class C_ProtocolDodel extends A_ProtocolRodent implements I_ConstantStringRodents {
 	//
 	// FIELDS
 	//

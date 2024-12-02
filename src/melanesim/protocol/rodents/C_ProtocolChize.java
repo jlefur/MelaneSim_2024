@@ -4,11 +4,15 @@ import java.util.Calendar;
 
 import org.locationtech.jts.geom.Coordinate;
 
+import data.C_Parameters;
+import data.rodents.C_CropRotationChize;
+import melanesim.protocol.A_Protocol;
 import presentation.display.C_Background;
 import presentation.display.C_CustomPanelSet_Rodent;
-import presentation.display.C_UserPanel;
+import presentation.display.C_UserPanelRodent;
 import presentation.epiphyte.C_InspectorEnergy;
 import presentation.epiphyte.C_InspectorGenetic;
+import presentation.epiphyte.C_InspectorPopulationRodent;
 import repast.simphony.context.Context;
 import repast.simphony.essentials.RepastEssentials;
 import thing.C_RodentFossorial;
@@ -16,9 +20,6 @@ import thing.dna.species.rodents.C_GenomeMicrotusArvalis;
 import thing.ground.C_LandPlot;
 import thing.ground.C_SoilCell;
 import thing.ground.landscape.C_LandscapeRodent;
-import data.C_Parameters;
-import data.rodents.C_CropRotationChize;
-import melanesim.protocol.A_Protocol;
 
 /** Common voles' colonies within a dynamic agricultural landscape
  * @author J.Le Fur, A.Comte 03.2012 / J.Le Fur 07.2012, 07.2014 */
@@ -40,7 +41,7 @@ public class C_ProtocolChize extends A_ProtocolFossorial {
 		geneticInspector = new C_InspectorGenetic();
 		inspectorList.add(geneticInspector);
 		C_CustomPanelSet_Rodent.addGeneticInspector(geneticInspector);
-		C_UserPanel.addGeneticInspector(geneticInspector);
+		C_UserPanelRodent.addGeneticInspector(geneticInspector);
 		
 		
 		cropRotation = new C_CropRotationChize((C_LandscapeRodent) this.landscape);
@@ -87,13 +88,13 @@ public class C_ProtocolChize extends A_ProtocolFossorial {
 	@Override
 	/** Manages agricultural changes Authors JEL2011, AR, rev. Le Fur 2011, 2012, 04.2014, 08,09.2014 */
 	public void manageTimeLandmarks() {
-		if (RepastEssentials.GetTickCount() == 1.) inspector.recordSpatialDistributionInFile(this.landscape.getGrid());
+		if (RepastEssentials.GetTickCount() == 1.) ((C_InspectorPopulationRodent) inspector).recordSpatialDistributionInFile(this.landscape.getGrid());
 		int currentYear = protocolCalendar.get(Calendar.YEAR);
 		int currentMonth = protocolCalendar.get(Calendar.MONTH);
 		super.manageTimeLandmarks();
 		if (currentYear != protocolCalendar.get(Calendar.YEAR)) {
 			A_Protocol.event("C_ProtocolChize.manageTimeLandmarks", "Crop Transition", isNotError);
-			inspector.recordSpatialDistributionInFile(this.landscape.getGrid());
+			((C_InspectorPopulationRodent) inspector).recordSpatialDistributionInFile(this.landscape.getGrid());
 			cropRotation.cropTransition(protocolCalendar.get(Calendar.MONTH));
 		}
 		if (currentMonth != protocolCalendar.get(Calendar.MONTH)) {

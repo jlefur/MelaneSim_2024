@@ -29,7 +29,7 @@ public class C_InspectorFossorialRodents extends A_Inspector {
 
 	/** computes nb of wandering rodents, nb of burrows */
 	public void indicatorsCompute() {
-		TreeSet<C_Rodent> listRodents = C_InspectorPopulation.rodentList;
+		TreeSet<C_Rodent> listRodents = C_InspectorPopulationRodent.rodentList;
 		Iterator<C_Rodent> rodents = listRodents.iterator();
 		this.nbWanderingRodents = 0.; // double to allow the wanderingRodents_Upercent computation - LeFur 2011;
 		while (rodents.hasNext())

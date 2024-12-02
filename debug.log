@@ -1000,3 +1000,102 @@ Caused by: java.lang.NullPointerException: Cannot invoke "java.util.TreeSet.add(
 	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
 	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
 	... 7 more
+FATAL [Thread-4] 2024-11-29T15:28:37,257 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (0.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.lang.NullPointerException: Cannot invoke "presentation.epiphyte.C_InspectorPopulationRodent.setNbDeath_Urodent(int)" because "melanesim.protocol.rodents.A_ProtocolRodent.inspector" is null
+	at melanesim.protocol.rodents.A_ProtocolRodent.updateInspectors(A_ProtocolRodent.java:54) ~[?:?]
+	at melanesim.protocol.A_Protocol.removeDeadThings(A_Protocol.java:265) ~[?:?]
+	at melanesim.protocol.A_Protocol.step_Utick(A_Protocol.java:125) ~[?:?]
+	at melanesim.protocol.rodents.C_ProtocolChize.step_Utick(C_ProtocolChize.java:85) ~[?:?]
+	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+FATAL [Thread-4] 2024-11-29T15:34:47,713 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (0.0)
+java.lang.NullPointerException: Cannot invoke "presentation.epiphyte.C_InspectorPopulationRodent.getMaxFemaleDispersal()" because "this.inspector" is null
+	at presentation.display.C_CustomPanelSet_Rodent.execute(C_CustomPanelSet_Rodent.java:146) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+FATAL [Thread-4] 2024-11-29T15:35:57,496 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (0.0)
+java.lang.NullPointerException: Cannot invoke "presentation.epiphyte.C_InspectorPopulationRodent.getMaxFemaleDispersal()" because "this.inspector" is null
+	at presentation.display.C_CustomPanelSet_Rodent.execute(C_CustomPanelSet_Rodent.java:146) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+FATAL [Thread-4] 2024-11-29T16:17:27,696 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (0.0)
+java.lang.NullPointerException: Cannot invoke "presentation.epiphyte.C_InspectorPopulationRodent.getMaxFemaleDispersal()" because "this.inspector" is null
+	at presentation.display.C_CustomPanelSet_Rodent.execute(C_CustomPanelSet_Rodent.java:146) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+FATAL [Thread-2] 2024-11-29T17:35:14,490 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (0.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at presentation.display.C_UserPanel$$FastClassByCGLIB$$eb9967dd.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.lang.NullPointerException: Cannot invoke "javax.swing.JLabel.setText(String)" because "this.dateLab" is null
+	at presentation.display.C_UserPanelMarine.step(C_UserPanelMarine.java:84) ~[?:?]
+	at presentation.display.C_UserPanel$$FastClassByCGLIB$$eb9967dd.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+FATAL [Thread-2] 2024-11-29T18:40:16,700 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (0.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at presentation.display.C_UserPanel$$FastClassByCGLIB$$eb9967dd.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.lang.NullPointerException: Cannot invoke "javax.swing.JLabel.setText(String)" because "this.dateLab" is null
+	at presentation.display.C_UserPanelMarine.step(C_UserPanelMarine.java:84) ~[?:?]
+	at presentation.display.C_UserPanel$$FastClassByCGLIB$$eb9967dd.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more

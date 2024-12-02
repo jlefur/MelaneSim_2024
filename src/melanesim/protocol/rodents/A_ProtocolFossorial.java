@@ -8,9 +8,9 @@ import data.C_Parameters;
 import melanesim.C_ContextCreator;
 import melanesim.protocol.A_Protocol;
 import presentation.display.C_CustomPanelSet_Rodent;
-import presentation.display.C_UserPanel;
+import presentation.display.C_UserPanelRodent;
 import presentation.epiphyte.C_InspectorFossorialRodents;
-import presentation.epiphyte.C_InspectorPopulation;
+import presentation.epiphyte.C_InspectorPopulationRodent;
 import repast.simphony.context.Context;
 import thing.A_VisibleAgent;
 import thing.C_Rodent;
@@ -23,7 +23,7 @@ import thing.ground.landscape.C_LandscapeRodent;
 
 /** author J.Le Fur, A.Comte 03.2012 / J.Le Fur 07.2012, 07.2013, 02.2014, 04.2020 */
 
-public abstract class A_ProtocolFossorial extends A_Protocol {
+public abstract class A_ProtocolFossorial extends A_ProtocolRodent {
 	//
 	// FIELD
 	//
@@ -37,7 +37,7 @@ public abstract class A_ProtocolFossorial extends A_Protocol {
 		burrowInspector = new C_InspectorFossorialRodents();
 		inspectorList.add(burrowInspector);
 		C_CustomPanelSet_Rodent.addBurrowInspector(burrowInspector);
-		C_UserPanel.addBurrowInspector(burrowInspector);
+		C_UserPanelRodent.addBurrowInspector(burrowInspector);
 	}
 	//
 	// METHODS
@@ -164,11 +164,11 @@ public abstract class A_ProtocolFossorial extends A_Protocol {
 	/** Close simulation if population is < 2 or if a precondition is verified. <br>
 	 * This method may be redefined by daughter protocols */
 	public boolean isSimulationEnd() {
-		if (C_Parameters.MAX_POP != 0 && C_InspectorPopulation.rodentList.size() > C_Parameters.MAX_POP) {
+		if (C_Parameters.MAX_POP != 0 && C_InspectorPopulationRodent.rodentList.size() > C_Parameters.MAX_POP) {
 			A_Protocol.event("A_ProtocolFossorial.isSimulationEnd", "MaxPop reached; halting simulation", isNotError);
 			return true;
 		}
-		else if (C_InspectorPopulation.getNbFemales() == 0) {
+		else if (C_InspectorPopulationRodent.getNbFemales() == 0) {
 			if (C_Parameters.VERBOSE) java.awt.Toolkit.getDefaultToolkit().beep();
 			A_Protocol.event("A_ProtocolFossorial.isSimulationEnd", "Population is extinct (no female); halting simulation", isNotError);
 			return true;
