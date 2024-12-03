@@ -7,6 +7,7 @@ import data.C_Parameters;
 import melanesim.protocol.A_Protocol;
 import melanesim.util.C_VariousUtilities;
 import thing.A_Animal;
+import thing.A_NDS;
 import thing.A_VisibleAgent;
 import thing.C_Rodent;
 import thing.I_SituatedThing;
@@ -28,6 +29,7 @@ public abstract class A_Container extends A_VisibleAgent implements I_Container 
 	 * capacity (the less affinity, the less K) */
 	protected int affinity = 0;
 	protected int rodentLoad = 0;
+	protected int agentLoad = 0;
 
 	//
 	// METHODS
@@ -76,7 +78,7 @@ public abstract class A_Container extends A_VisibleAgent implements I_Container 
 		}
 		if (entryOK) {
 			thing.setCurrentSoilCell(this);
-			if (thing instanceof C_Rodent) this.rodentLoad++;
+			if (thing instanceof A_NDS) this.agentLoad++;
 		}
 		else A_Protocol.event("A_Container.agentIncoming", "Cannot set " + this + " container to " + thing, isError);
 		return entryOK;
@@ -88,7 +90,7 @@ public abstract class A_Container extends A_VisibleAgent implements I_Container 
 		boolean exitOK = this.occupantList.remove(thing);
 		if (exitOK) {
 			thing.setCurrentSoilCell(null);
-			if (thing instanceof C_Rodent) this.rodentLoad--;
+			if (thing instanceof A_NDS) this.agentLoad--;
 		}
 		else {
 			A_Protocol.event("A_Container.agentLeaving", "Could not find " + thing + " in occupantList of " + this,

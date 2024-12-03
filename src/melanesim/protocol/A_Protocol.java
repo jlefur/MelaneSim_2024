@@ -1,6 +1,5 @@
 /* This source code is licensed under a BSD licence as detailed in file license */
 package melanesim.protocol;
-import java.awt.Dimension;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List; // TODO PAM de JLF 2017.02 pourquoi pas un treeset ?
@@ -36,7 +35,7 @@ import thing.A_Animal;
 import thing.A_NDS;
 import thing.A_Organism;
 import thing.A_VisibleAgent;
-import thing.C_Rodent;
+//import thing.C_Rodent;
 import thing.I_SituatedThing;
 import thing.dna.C_GenomeAmniota;
 import thing.ground.I_Container;
@@ -252,17 +251,14 @@ public abstract class A_Protocol implements I_Protocol, I_ConstantString, I_Cons
 	 * @revision Author J.Le Fur 2012, rev. 02.2013, 12.2015, 04.2016 */
 	protected int removeDeadThings() {
 		Object[] things = this.context.toArray();// needed to avoid concurrent modification exception
-		int nbDeath = 0, nbDeadRodents = 0;
+		int nbDeath = 0;
 		for (Object oneThing : things) {
-			if ((oneThing instanceof A_NDS)) {
-				if (((A_NDS) oneThing).isDead()) {
-					if (oneThing instanceof C_Rodent) nbDeadRodents++;
-					if (wipeOffObject((I_SituatedThing) oneThing)) nbDeath++; // i.e., if remove succeeded
-					else A_Protocol.event("A_Protocol.removeDeadThings", "Cannot remove dead " + oneThing, isError);
-				}
+			if ((oneThing instanceof A_NDS) && ((A_NDS) oneThing).isDead()) {
+				if (wipeOffObject((I_SituatedThing) oneThing)) nbDeath++; // i.e., if remove succeeded
+				else A_Protocol.event("A_Protocol.removeDeadThings", "Cannot remove dead " + oneThing, isError);
 			}
 		}
-		updateInspectors(nbDeadRodents);
+		updateInspectors(nbDeath);
 		return nbDeath;
 	}
 	/** Destroy a thing, remove it from context and remove its references to other object (lastContainerLeft, inspectors) so as to
@@ -339,29 +335,6 @@ public abstract class A_Protocol implements I_Protocol, I_ConstantString, I_Cons
 		C_Parameters.REPRO_START_Umonth = 0;
 		C_Parameters.REPRO_END_Umonth = 11;
 	}
-	/** Fills the context with simple _wandering_ C_Rodent agents (as opposed to C_RodentFossorial's that dig burrows) <br>
-	 * The sex ratio is randomly generated , rev. JLF 07.2014 currently unused */
-	public void randomlyAddRodents(int nbAgent) {
-		Dimension dim = this.landscape.getDimension_Ucell();
-		int grid_width = (int) dim.getWidth();
-		int grid_height = (int) dim.getHeight();
-		for (int i = 0; i < nbAgent; i++) {
-			// BELOW, THREE POSSIBLE PATTERNS OF INITIAL DISTRIBUTION :
-			// 1) Random number to produce a sensitivity analysis
-			// int randx = (int)(Math.random()*grid_width);
-			// int randy = (int)(Math.random()*grid_height);
-			// 2) Reproducible random distribution
-			double randx = C_ContextCreator.randomGeneratorForInitialisation.nextDouble() * grid_width;
-			double randy = C_ContextCreator.randomGeneratorForInitialisation.nextDouble() * grid_height;
-			// 3) Put all rodents at the middle at init:
-			// int randx = (int) (grid_width / 2);
-			// int randy = (int) (grid_height / 2);
-			C_Rodent agent = createRodent();
-			agent.setRandomAge();
-			contextualizeNewThingInSpace(agent, randx, randy);
-			agent.setNewRandomMove();
-		}
-	}
 	/** Recursively record the current state of every inspectors'indicators in one unique .csv indicatorsFile */
 	public void recordIndicatorsInFile() {
 		String indicatorValues = "";
@@ -382,9 +355,6 @@ public abstract class A_Protocol implements I_Protocol, I_ConstantString, I_Cons
 		indicatorHeader += "NumRun";
 		System.out.println("A_Protocol.recordHeadersInFile(): " + indicatorHeader);
 		indicatorsFile.writeln(indicatorHeader);
-	}
-	public C_Rodent createRodent() {
-		return new C_Rodent(new C_GenomeAmniota());
 	}
 
 	/** record the current state of every inspectors'indicators in one unique .csv indicatorsFile,<br>

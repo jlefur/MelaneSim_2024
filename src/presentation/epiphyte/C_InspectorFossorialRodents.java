@@ -13,7 +13,7 @@ import thing.ground.C_BurrowSystem;
 
 /** Data inspector: retrieves information on burrow systems and manages lists.
  * @author A Realini 05.2011 / J.Le Fur 09.2011, 07.2012, 01/2013 */
-public class C_InspectorFossorialRodents extends A_Inspector {
+public class C_InspectorFossorialRodents extends C_InspectorPopulationRodent {
 
 	protected double nbWanderingRodents, wanderingRodents_Upercent;
 	protected TreeSet<C_BurrowSystem> burrowList;
@@ -27,7 +27,8 @@ public class C_InspectorFossorialRodents extends A_Inspector {
 		this.indicatorsHeader = "tick;NbBurrows;wanderers(%)";
 	}
 
-	/** computes nb of wandering rodents, nb of burrows */
+@Override
+/** computes nb of wandering rodents, nb of burrows */
 	public void indicatorsCompute() {
 		TreeSet<C_Rodent> listRodents = C_InspectorPopulationRodent.rodentList;
 		Iterator<C_Rodent> rodents = listRodents.iterator();

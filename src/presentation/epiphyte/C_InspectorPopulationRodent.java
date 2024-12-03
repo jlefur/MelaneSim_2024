@@ -39,12 +39,13 @@ public class C_InspectorPopulationRodent extends C_InspectorPopulation {
 		rodentList.clear();
 		rodentBirthList.clear();
 		this.indicatorsHeader = this.indicatorsHeader
-				+ ";PopSize;SexRatio;meanFemaleDispersal;meanMaleDispersal;maxFemaleDispersal;maxMaleDispersal;dispersedRodents;nbBirth;nbDeath";
+				+ ";RodentPopSize;SexRatio;meanFemaleDispersal;meanMaleDispersal;maxFemaleDispersal;maxMaleDispersal;dispersedRodents;nbBirth;nbDeath";
 		SpatialDistributionFile = new C_FileWriter("SpatialDistribution.csv", true);
 	}
 	//
-	// METHODS
+	// OVERRIDEN METHODS
 	//
+	@Override
 	public void indicatorsCompute() {
 		super.indicatorsCompute();
 		// Population size equal living, newborns and 'dead during this tick' rodents
@@ -93,7 +94,7 @@ public class C_InspectorPopulationRodent extends C_InspectorPopulation {
 				}
 				else
 					System.err.println(
-							"C_InspectorPopulation.computeRodentIndicators(): neither male or female; hybrid = "
+							"C_InspectorPopulationRodent.computeRodentIndicators(): neither male or female; hybrid = "
 									+ rodent.getGenome().isHybrid());
 
 			}
@@ -118,6 +119,13 @@ public class C_InspectorPopulationRodent extends C_InspectorPopulation {
 				+ nbDeath;
 		return indicatorsValues;
 	}
+	/** close private files */
+	public void closeSimulation() {
+		this.SpatialDistributionFile.closeFile();
+	}
+	//
+	// METHOD
+	//
 	/** Output data in genePop file */
 	public void recordSpatialDistributionInFile(I_Container[][] grid) {// Simultech 2018
 		SpatialDistributionFile.writeln("step;Tick;HourDate;objects");
@@ -139,7 +147,7 @@ public class C_InspectorPopulationRodent extends C_InspectorPopulation {
 		SpatialDistributionFile.writeln("");
 
 		/*
-		 * Iterator<C_Rodent> rodents = C_InspectorPopulation.rodentList.iterator(); while (rodents.hasNext()) { C_Rodent microtus
+		 * Iterator<C_Rodent> rodents = C_InspectorPopulationRodent.rodentList.iterator(); while (rodents.hasNext()) { C_Rodent microtus
 		 * = rodents.next(); try { Coordinate point = microtus.getCoords_Umeter(); SpatialDistributionFile.write(point.x +
 		 * CSV_FIELD_SEPARATOR + point.y); SpatialDistributionFile.writeln(CSV_FIELD_SEPARATOR + microtus.retrieveName() +
 		 * CSV_FIELD_SEPARATOR + microtus.getAge_Uday() + CSV_FIELD_SEPARATOR + microtus.getDesire() + CSV_FIELD_SEPARATOR +
@@ -148,28 +156,24 @@ public class C_InspectorPopulationRodent extends C_InspectorPopulation {
 		 */
 
 		SpatialDistributionFile.writeln("");
-		A_Protocol.event("C_InspectorPopulation.recordSpatialDistributionInFile()", "distribution recorded in File",
+		A_Protocol.event("C_InspectorPopulationRodent.recordSpatialDistributionInFile()", "distribution recorded in File",
 				isNotError);
-	}
-	/** close private files */
-	public void closeSimulation() {
-		this.SpatialDistributionFile.closeFile();
 	}
 	//
 	// SETTERS & GETTERS
 	//
 	public static void addRodentToList(C_Rodent rodent) {
 		if (!rodentList.add(rodent))
-			A_Protocol.event("C_InspectorPopulation.addRodentToList", "Could not add " + rodent, isError);
+			A_Protocol.event("C_InspectorPopulationRodent.addRodentToList", "Could not add " + rodent, isError);
 	}
 	public static void addRodentToBirthList(C_Rodent rodent) {
 		if (!rodentBirthList.add(rodent))
-			A_Protocol.event("C_InspectorPopulation.addRodentToBirthList", "Could not add " + rodent, isError);
+			A_Protocol.event("C_InspectorPopulationRodent.addRodentToBirthList", "Could not add " + rodent, isError);
 	}
 	@Override
 	public void discardDeadThing(I_SituatedThing thing) {
 		if ((thing instanceof C_Rodent) && !rodentList.remove(thing))
-			A_Protocol.event("C_InspectorPopulation.discardDeadThing", "Could not remove " + thing, isError);
+			A_Protocol.event("C_InspectorPopulationRodent.discardDeadThing", "Could not remove " + thing, isError);
 	}
 	public void setNbDeath_Urodent(int nbDeath) {
 		this.nbDeath = nbDeath;

@@ -9,7 +9,7 @@ import thing.ground.A_SupportedContainer;
  * @author A Realini 05.2011 / J.Le Fur 2011-2013, 2024 */
 public class C_InspectorPopulation extends A_Inspector {
 	//
-	// FIELD
+	// FIELDS
 	//
 	protected C_FileWriter SpatialDistributionFile;
 	public static int agentPopulation = 0;
@@ -19,7 +19,7 @@ public class C_InspectorPopulation extends A_Inspector {
 	public C_InspectorPopulation() {
 		super();
 		this.indicatorsHeader = this.indicatorsHeader
-				+ ";PopSize;SexRatio;meanFemaleDispersal;meanMaleDispersal;maxFemaleDispersal;maxMaleDispersal;dispersedRodents;nbBirth;nbDeath";
+				+ ";PopSize;EnergySum";
 		SpatialDistributionFile = new C_FileWriter("SpatialDistribution.csv", true);
 	}
 	//
@@ -28,14 +28,11 @@ public class C_InspectorPopulation extends A_Inspector {
 	/** compute the number of agent within the context */
 	@Override
 	public void indicatorsCompute() {
-		this.agentPopulation = 0;
+		C_InspectorPopulation.agentPopulation = 0;
 		Object[] contextContent = RunState.getInstance().getMasterContext().toArray();
 		for (int i = 0; i < contextContent.length; i++) {
 			Object item = contextContent[i];
-			if (item instanceof A_SupportedContainer) this.agentPopulation++;
+			if (item instanceof A_SupportedContainer) C_InspectorPopulation.agentPopulation++;
 		}
 	}
-	//
-	// SETTERS & GETTERS
-	//
 }
