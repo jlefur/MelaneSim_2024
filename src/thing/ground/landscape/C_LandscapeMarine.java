@@ -6,6 +6,7 @@ import org.locationtech.jts.geom.Coordinate;
 import data.C_ReadRasterOcean;
 import data.constants.I_ConstantPNMC_particules;
 import melanesim.protocol.A_Protocol;
+import presentation.epiphyte.C_InspectorPopulationMarine;
 import repast.simphony.context.Context;
 import thing.A_Organism;
 import thing.A_VisibleAgent;
@@ -59,5 +60,11 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC_par
 				this.grid[i][j] = new C_MarineCell(matriceLue[i][j], i, j);
 			}
 		}
+	}
+	@Override
+	/** Inform inspector then super, JLF 2024 */
+	protected void replaceOutcomer(A_VisibleAgent animalLeavingLandscape, double[] newLocation, int x, int y) {
+		C_InspectorPopulationMarine.planktonExport++;
+		super.replaceOutcomer(animalLeavingLandscape, newLocation, x, y);
 	}
 }

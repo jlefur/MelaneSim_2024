@@ -11,7 +11,6 @@ import repast.simphony.engine.environment.RunState;
 import thing.C_Rodent;
 import thing.I_SituatedThing;
 import thing.dna.C_GenomeAmniota;
-import thing.ground.I_Container;
 
 /** author J.Le Fur, A.Comte 03.2012 / J.Le Fur 07.2012, 07.2013, 02.2014, 04.2020 */
 
@@ -42,12 +41,6 @@ public abstract class A_ProtocolRodent extends A_Protocol {
 		}
 		updateInspectors(nbDeadRodents);
 		return super.removeDeadThings();
-	}
-	@Override
-	/** Declare a new object in the context and positions it within the raster ground */
-	public void contextualizeNewThingInContainer(I_SituatedThing thing, I_Container container) {
-		super.contextualizeNewThingInContainer(thing, container);
-		if (thing instanceof C_Rodent) C_InspectorPopulationRodent.addRodentToList((C_Rodent) thing);
 	}
 	@Override
 	protected void updateInspectors(I_SituatedThing thing) {

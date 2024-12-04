@@ -1,13 +1,9 @@
 package presentation.display;
 
-import java.awt.Font;
-import java.awt.image.BufferedImage;
-
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import bsh.util.JConsole;
 import data.C_Parameters;
 import melanesim.protocol.rodents.A_ProtocolRodent;
 import presentation.epiphyte.C_InspectorFossorialRodents;
@@ -43,10 +39,6 @@ public class C_UserPanelRodent extends C_UserPanel {
 	public static final String METER_NIPPED_EGG_TITLE = "Nipped eggs (X1000)";
 	public static final String METER_HYBRIDS_TITLE = "hybrids (x100)";
 	public static final String METER_LAZARUS_TITLE = "introgressed (x100)";
-	//
-	private BufferedImage img = null, chronoImage = null;
-	public static JConsole consoleOut = null;
-	public static JConsole consoleErr = null;
 
 	// meters Population
 	private C_Meter meterPopSize;
@@ -76,11 +68,6 @@ public class C_UserPanelRodent extends C_UserPanel {
 	//
 	// METHODS
 	//
-	/** M�thode utilis�e par le UserPanelCreator pour afficher le tableau de bord dans le userPanel */
-	public JPanel createPanel() {
-		return this;
-	}
-
 	public static void addBurrowInspector(C_InspectorFossorialRodents inspector) {
 		burrowInspector = inspector;
 	}
@@ -93,15 +80,15 @@ public class C_UserPanelRodent extends C_UserPanel {
 	public static void addHybridInspector(C_InspectorHybrid inspector) {
 		hybridInspector = inspector;
 	}
+	@Override
 	/** Initialise les composants du tableau de bord */
 	protected void initTop() {
 		super.initTop();
-		//this.metersPopulation = initBoxLayout("Population (every rodents)");
-		//if (this.hasToShowDayMoments()) this.createDayMomentsJanel();
+		// this.metersPopulation = initBoxLayout("Population (every rodents)");
+		// if (this.hasToShowDayMoments()) this.createDayMomentsJanel();
 		if (C_UserPanelRodent.hybridInspector == null)
 			this.metersDispersal = initBoxLayout("Dispersal (every rodents)");
 		if (C_UserPanelRodent.hybridInspector != null) this.metersHybrid = initBoxLayout("Hybridization (Mastomys)");
-
 		// General layout for the panel
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		this.setAutoscrolls(false);
@@ -109,7 +96,7 @@ public class C_UserPanelRodent extends C_UserPanel {
 		// C. BOXES METERS //
 		// 1.BOX POPULATION
 		this.meterPopSize = new C_Meter(METER_POPSIZE_TITLE, true, 100);
-		if (!this.hasToShowDayMoments())  {
+		if (!this.hasToShowDayMoments()) {
 			this.meterSexRatio = new C_Meter(METER_SEXRATIO_TITLE, false, 0, 2);
 			this.metersPopulation.add(this.meterSexRatio.getPan());
 		}

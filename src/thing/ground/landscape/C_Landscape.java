@@ -305,7 +305,7 @@ public class C_Landscape implements I_ConstantString {
 		replaceOutcomer(animalLeavingLandscape, newLocation, x, y);
 	}
 	/** Procedure split from  bordure(), JLF 2024 */
-	private void replaceOutcomer(A_VisibleAgent animalLeavingLandscape, double[] newLocation, int x, int y) {
+	protected void replaceOutcomer(A_VisibleAgent animalLeavingLandscape, double[] newLocation, int x, int y) {
 		// The outcomer dies, a new incomer enters
 		Context<I_SituatedThing> context = ContextUtils.getContext(animalLeavingLandscape);// Keep context to introduce incomer
 		animalLeavingLandscape.setDead(true);// Kill the leaving agent

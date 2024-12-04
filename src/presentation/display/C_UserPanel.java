@@ -45,7 +45,7 @@ public class C_UserPanel extends JPanel implements UserPanelCreator, I_ConstantS
 	protected JPanel daytimeJpanel = null;
 	protected JLabel dayMomentsJlabel = null;
 
-	public static final String METER_POPSIZE_TITLE = "Context Size (X100)";
+	public static String METER_POPSIZE_TITLE = "Context Size (X1E3)";
 	//
 	protected Font font = new Font("Courier", Font.BOLD, 18);
 	protected BufferedImage img = null, chronoImage = null;
@@ -109,7 +109,7 @@ public class C_UserPanel extends JPanel implements UserPanelCreator, I_ConstantS
 		// C. BOXES METERS //
 		
 		// 1.BOX POPULATION
-		this.meterPopSize = new C_Meter(METER_POPSIZE_TITLE, true, 300);
+		this.meterPopSize = new C_Meter(METER_POPSIZE_TITLE, true, 1000);
 		if (this.hasToShowDayMoments()) this.metersPopulation.add(this.daytimeJpanel);
 		else {}
 		this.metersPopulation.add(this.meterPopSize.getPan());
@@ -134,7 +134,7 @@ public class C_UserPanel extends JPanel implements UserPanelCreator, I_ConstantS
 		console.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		console.setVisible(true);
 		console.setFont(new Font("serif", Font.PLAIN, 9));
-		//console.setPreferredSize(new Dimension(1000, 100));
+		console.setPreferredSize(new Dimension(1000, 100));
 		return console;
 	}
 	/** Met à jour les données des compteurs */
@@ -218,6 +218,7 @@ public class C_UserPanel extends JPanel implements UserPanelCreator, I_ConstantS
 			case DODEL2 :
 			case DODEL :
 			case GERBIL :
+			case PNMC_PK :
 				return true;
 			default :
 				return false;
@@ -226,6 +227,6 @@ public class C_UserPanel extends JPanel implements UserPanelCreator, I_ConstantS
 
 	@Override
 	public String toString() {
-		return "SimMasto panel";
+		return "User panel";
 	}
 }
