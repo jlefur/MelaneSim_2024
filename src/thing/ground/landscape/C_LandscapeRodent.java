@@ -9,6 +9,7 @@ import repast.simphony.context.Context;
 import repast.simphony.space.continuous.NdPoint;
 import repast.simphony.util.ContextUtils;
 import thing.A_Animal;
+import thing.A_Organism;
 import thing.C_OrnitodorosSonrai;
 import thing.C_Rodent;
 import thing.ground.C_SoilCell;
@@ -25,7 +26,6 @@ import thing.ground.C_SoilCell;
 public class C_LandscapeRodent extends C_Landscape implements I_ConstantString {
 	public C_LandscapeRodent(Context<Object> context, String url, String gridValueName, String continuousSpaceName) {
 		super(context, url, gridValueName, continuousSpaceName);
-		// TODO Auto-generated constructor stub
 	}
 	/** Addition of new agent in simulation. The agent is not sexed in this method. And get the position of it's "parents".
 	 * @param parent the parents agent
@@ -51,7 +51,7 @@ public class C_LandscapeRodent extends C_Landscape implements I_ConstantString {
 		child.bornCoord_Umeter = getThingCoord_Umeter(child);
 	}
 	@Override
-	protected void updateInspectors(A_Animal incomer) { // JLF 2016.05 cannot add rodent to birthList since it has age of sexual
+	protected void updateInspectors(A_Organism incomer) { // JLF 2016.05 cannot add rodent to birthList since it has age of sexual
 														// maturity (see above) ?
 		if (incomer instanceof C_Rodent) C_InspectorPopulationRodent.addRodentToList((C_Rodent) incomer);
 	}

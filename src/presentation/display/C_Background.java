@@ -97,12 +97,10 @@ public class C_Background implements I_SituatedThing {
     }
 	@Override
 	public boolean canInteractWith(I_SituatedThing oneOccupant) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	@Override
 	public C_LandPlot getMyLandPlot() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

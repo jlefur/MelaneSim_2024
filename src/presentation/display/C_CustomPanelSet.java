@@ -1,7 +1,6 @@
 package presentation.display;
 
 import java.awt.BasicStroke;
-import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
@@ -60,39 +59,13 @@ public class C_CustomPanelSet implements IAction, ModelInitializer {
 
 				// POPULATION SIZES
 				curvePopSize = new C_CustomPanelFactory("Populations sizes", C_Chart.LINE, "Ticks", "Population size");
-				runState.getGUIRegistry().addDisplay("Rodent Pop. sizes", GUIRegistryType.OTHER, curvePopSize);
-				curvePopSize.getChart().addXYSerie("PopMales");
-				curvePopSize.getChart().addXYSerie("PopFemales");
-				curvePopSize.getChart().addXYSerie("WanderingRodents");
-				curvePopSize.getChart().addXYSerie("LoadedRodents(x10)");
-				plot = curvePopSize.getChart().getChartPanel().getChart().getXYPlot();
-				plot.getRenderer().setSeriesPaint(0, Color.BLUE);
-				plot.getRenderer().setSeriesPaint(1, Color.RED);
-				plot.getRenderer().setSeriesPaint(2, Color.GREEN);
-				plot.getRenderer().setSeriesPaint(3, Color.BLACK);
-				plot.getRenderer().setSeriesPaint(4, Color.MAGENTA);
-				plot.getRenderer().setSeriesPaint(5, Color.CYAN);
-				plot.getRenderer().setSeriesPaint(6, Color.ORANGE);
-				plot.getRenderer().setSeriesPaint(7, Color.GREEN);
-				plot.getRenderer().setSeriesPaint(8, Color.darkGray);
-				plot.getRenderer().setSeriesPaint(9, Color.LIGHT_GRAY);
+				runState.getGUIRegistry().addDisplay("Populations sizes", GUIRegistryType.OTHER, curvePopSize);
 
 				// DISPERSAL
-				curveDispersal = new C_CustomPanelFactory("dispersals (home range size)", C_Chart.LINE, "Ticks",
+				curveDispersal = new C_CustomPanelFactory("Dispersals", C_Chart.LINE, "Ticks",
 						"Dispersal (m)");
-				runState.getGUIRegistry().addDisplay("dispersals (home range size)", GUIRegistryType.OTHER,
+				runState.getGUIRegistry().addDisplay("Dispersals", GUIRegistryType.OTHER,
 						curveDispersal);
-				curveDispersal.getChart().addXYSerie("MaxFemaleDispersal");
-				curveDispersal.getChart().addXYSerie("MaxMaleDispersal");
-				curveDispersal.getChart().addXYSerie("MeanFemaleDispersal");
-				curveDispersal.getChart().addXYSerie("MeanMaleDispersal");
-				plot = curveDispersal.getChart().getChartPanel().getChart().getXYPlot();
-				plot.getRenderer().setSeriesPaint(0, Color.PINK);
-				plot.getRenderer().setSeriesPaint(1, Color.CYAN);
-				plot.getRenderer().setSeriesPaint(2, Color.MAGENTA);
-				plot.getRenderer().setSeriesPaint(3, Color.BLUE);
-				plot.getRenderer().setSeriesPaint(4, Color.DARK_GRAY);
-				plot.getRenderer().setSeriesPaint(5, Color.GREEN);
 
 				initWorldSpecificPlots(runState);
 

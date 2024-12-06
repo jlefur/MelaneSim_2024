@@ -3,6 +3,10 @@ package melanesim.protocol.rodents;
 
 import java.util.Calendar;
 
+import data.C_Parameters;
+import data.constants.rodents.I_ConstantStringRodents;
+import data.rodents.C_CircadianAffinitiesMus;
+import melanesim.C_ContextCreator;
 import presentation.display.C_Background;
 import presentation.display.C_CustomPanelSet_Rodent;
 import presentation.epiphyte.C_InspectorGenetic;
@@ -15,11 +19,6 @@ import thing.dna.species.rodents.C_GenomeMusMusculus;
 import thing.ground.C_SoilCell;
 import thing.ground.I_Container;
 import thing.ground.landscape.C_LandscapeRodent;
-import data.C_Parameters;
-import data.constants.rodents.I_ConstantStringRodents;
-import data.rodents.C_CircadianAffinitiesMus;
-import melanesim.C_ContextCreator;
-import melanesim.protocol.A_Protocol;
 
 /** author J.Le Fur & M.Diakhate 07.2014, rev. JLF 10.2014, 03.2018 */
 

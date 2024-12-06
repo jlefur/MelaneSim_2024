@@ -27,9 +27,9 @@ public class C_UserPanelMarine extends C_UserPanel implements I_ConstantPNMC_par
 	protected void initTop() {
 		super.initTop();
 		// C. BOXES METERS - 1.BOX POPULATION
-		this.meterPlankton = new C_Meter("Plancton (X1000)", true, 1000);
+		this.meterPlankton = new C_Meter("Plancton (X1E3)", true, 1000);
 		this.metersPopulation.add(this.meterPlankton.getPan());
-		this.meterExport = new C_Meter("Pk export (X500)", true, 500);
+		this.meterExport = new C_Meter("Pk export (X1E3)", true, 1000);
 		this.metersPopulation.add(this.meterExport.getPan());
 	}
 	@Override
@@ -51,5 +51,4 @@ public class C_UserPanelMarine extends C_UserPanel implements I_ConstantPNMC_par
 	public String toString() {
 		return "MelaneSim user panel";
 	}
-	public static void addMarineInspector(C_InspectorPopulationMarine inspector) {}
 }

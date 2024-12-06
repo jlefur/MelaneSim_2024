@@ -35,9 +35,7 @@ import thing.A_Animal;
 import thing.A_NDS;
 import thing.A_Organism;
 import thing.A_VisibleAgent;
-//import thing.C_Rodent;
 import thing.I_SituatedThing;
-import thing.dna.C_GenomeAmniota;
 import thing.ground.I_Container;
 import thing.ground.landscape.C_Landscape;
 /** Master class for the various melanesim.protocol of the SimMasto platform

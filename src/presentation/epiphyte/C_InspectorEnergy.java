@@ -19,7 +19,7 @@ public class C_InspectorEnergy extends A_Inspector {
 
 	public C_InspectorEnergy() {
 		super();
-		indicatorsHeader = "Tick;En. gerbils;En. owls;En. shrubs; En. grass; En. crop; En. trees; En. burrows;";
+		indicatorsHeader = "Tick;";
 		/*
 		 * dataSaverEnergyGeneral = new C_FileWriter("EnergyIndicators.csv", true); dataSaverEnergyGeneral.writeln(
 		 * "Tick;TaillePop;NbEry;NbNat;NbLaz;NbHyb;HybridsRate;pbUnbalancedGene;pbSynteny;pbGeneNotFound;pbEspistasie;pbMatching;pbHaldane"

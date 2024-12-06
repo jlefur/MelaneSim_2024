@@ -46,17 +46,13 @@ public class C_UserPanel extends JPanel implements UserPanelCreator, I_ConstantS
 	protected JLabel dayMomentsJlabel = null;
 
 	public static String METER_POPSIZE_TITLE = "Context Size (X1E3)";
-	//
 	protected Font font = new Font("Courier", Font.BOLD, 18);
 	protected BufferedImage img = null, chronoImage = null;
 	protected JLabel dateLab;
 	public static JConsole consoleOut = null;
 	public static JConsole consoleErr = null;
 
-	// meters Population
 	protected C_Meter meterPopSize;
-	// meters General
-	// protected C_Meter meterObjects;
 	String currentImageName = "";
 
 	//

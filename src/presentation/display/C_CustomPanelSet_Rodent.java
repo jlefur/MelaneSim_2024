@@ -24,7 +24,7 @@ import repast.simphony.essentials.RepastEssentials;
  * @author A. Realini, rev. J. Le Fur 02.2013, O2.2017, 02.2021 */
 public class C_CustomPanelSet_Rodent extends C_CustomPanelSet {
 	// the following are meant to avoid multiple calls to ContextCreator (see execute()) // JLF 02.2013
-	//protected C_InspectorPopulationRodent inspector;
+	// protected C_InspectorPopulationRodent inspector;
 	private C_CustomPanelFactory curveFIS, curveRates, curveVegetation, curveOrnithodoros, curvedesease;
 	// the following are meant to avoid multiple calls to ContextCreator (see execute()) // JLF 02.2013
 	private static C_InspectorPopulationRodent inspector = null;
@@ -37,6 +37,35 @@ public class C_CustomPanelSet_Rodent extends C_CustomPanelSet {
 
 	protected void initWorldSpecificPlots(RunState runState) {
 		XYPlot plot;
+		// POPULATIONS SIZES
+		curvePopSize.getChart().addXYSerie("PopMales");
+		curvePopSize.getChart().addXYSerie("PopFemales");
+		curvePopSize.getChart().addXYSerie("WanderingRodents");
+		curvePopSize.getChart().addXYSerie("LoadedRodents(x10)");
+		plot = curvePopSize.getChart().getChartPanel().getChart().getXYPlot();
+		plot.getRenderer().setSeriesPaint(0, Color.BLUE);
+		plot.getRenderer().setSeriesPaint(1, Color.RED);
+		plot.getRenderer().setSeriesPaint(2, Color.GREEN);
+		plot.getRenderer().setSeriesPaint(3, Color.BLACK);
+		plot.getRenderer().setSeriesPaint(4, Color.MAGENTA);
+		plot.getRenderer().setSeriesPaint(5, Color.CYAN);
+		plot.getRenderer().setSeriesPaint(6, Color.ORANGE);
+		plot.getRenderer().setSeriesPaint(7, Color.GREEN);
+		plot.getRenderer().setSeriesPaint(8, Color.darkGray);
+		plot.getRenderer().setSeriesPaint(9, Color.LIGHT_GRAY);
+
+		// DISPERSAL
+		curveDispersal.getChart().addXYSerie("MaxFemaleDispersal");
+		curveDispersal.getChart().addXYSerie("MaxMaleDispersal");
+		curveDispersal.getChart().addXYSerie("MeanFemaleDispersal");
+		curveDispersal.getChart().addXYSerie("MeanMaleDispersal");
+		plot = curveDispersal.getChart().getChartPanel().getChart().getXYPlot();
+		plot.getRenderer().setSeriesPaint(0, Color.PINK);
+		plot.getRenderer().setSeriesPaint(1, Color.CYAN);
+		plot.getRenderer().setSeriesPaint(2, Color.MAGENTA);
+		plot.getRenderer().setSeriesPaint(3, Color.BLUE);
+		plot.getRenderer().setSeriesPaint(4, Color.DARK_GRAY);
+		plot.getRenderer().setSeriesPaint(5, Color.GREEN);
 		if (C_InspectorCMR != null) {
 			curvePopSize.getChart().addXYSerie("MNA");
 			curvePopSize.getChart().addXYSerie("TrapSystem");

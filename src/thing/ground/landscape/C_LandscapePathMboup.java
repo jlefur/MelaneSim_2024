@@ -12,14 +12,10 @@ import thing.ground.C_SoilCell;
 import thing.ground.C_SoilCellGraphed;
 
 public class C_LandscapePathMboup extends C_LandscapeNetwork implements I_ConstantDodel2 {
-
-
-
 	public C_LandscapePathMboup(Context<Object> context, String url, String gridValueName, String continuousSpaceName) {
 		super(context, url, gridValueName, continuousSpaceName);
-		// TODO Auto-generated constructor stub
 	}
-	/** Constuction ou mise à jour du graphe aGraphe Identification des noeuds de ce graphe et comptage de son nombre de noeuds
+	/** Constuction ou mise ï¿½ jour du graphe aGraphe Identification des noeuds de ce graphe et comptage de son nombre de noeuds
 	 * @author PAM 2012, rev JLF 01.2022 */
 	@Override
 	protected ArrayList<C_SoilCellGraphed> identifyNodeList(C_Graph aGraph, C_LandPlot aLandPlot, String newGraphType) {
@@ -60,8 +56,8 @@ public class C_LandscapePathMboup extends C_LandscapeNetwork implements I_Consta
 					if (0 <= line && line < nbTotalLine && 0 <= column && column < nbTotalColumn) {
 						tmp1 = (C_SoilCellGraphed) this.grid[line][column];
 						if (tmp1 != tmp0 && nodeListTmp.contains(tmp1)) {
-							// last condition est nécessaire pour le cas GNT (un sc peut
-							// être du même graphType mais n'appartenant pas à ce graphe)
+							// last condition est nï¿½cessaire pour le cas GNT (un sc peut
+							// ï¿½tre du mï¿½me graphType mais n'appartenant pas ï¿½ ce graphe)
 							edgesMatrix.get(n1).add(tmp1.getNumberInGraph(aGraph));
 						}
 					}

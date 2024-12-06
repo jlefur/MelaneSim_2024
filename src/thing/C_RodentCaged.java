@@ -107,7 +107,7 @@ public class C_RodentCaged extends C_Rodent implements I_ConstantCage {
 	@Override
 	protected void actionSpawn() {
 		super.actionSpawn();
-		TreeSet<A_Animal> children = (TreeSet<A_Animal>) this.animalsTargetingMe.clone();
+		TreeSet<A_Animal> children = new TreeSet<>(this.animalsTargetingMe);
 		for (A_Animal child : children)
 			if (child.target == this) {
 				child.setTarget(null);

@@ -119,7 +119,6 @@ public class C_LandPlot extends A_Container implements I_ConstantStringRodents {
 	@Override
 	/** author JLF 01.2022 */
 	public C_LandPlot getMyLandPlot() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

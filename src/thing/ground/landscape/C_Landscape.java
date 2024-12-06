@@ -304,7 +304,7 @@ public class C_Landscape implements I_ConstantString {
 		}
 		replaceOutcomer(animalLeavingLandscape, newLocation, x, y);
 	}
-	/** Procedure split from  bordure(), JLF 2024 */
+	/** Procedure split from bordure(), JLF 2024 */
 	protected void replaceOutcomer(A_VisibleAgent animalLeavingLandscape, double[] newLocation, int x, int y) {
 		// The outcomer dies, a new incomer enters
 		Context<I_SituatedThing> context = ContextUtils.getContext(animalLeavingLandscape);// Keep context to introduce incomer
@@ -318,28 +318,27 @@ public class C_Landscape implements I_ConstantString {
 			try {
 				Constructor<?> constructor = animalClass.getDeclaredConstructor(I_DiploidGenome.class);
 				constructor.setAccessible(true);
-				incomer = (A_Organism) constructor.newInstance(genomeClass.newInstance());
-				// Production code should handle these exceptions more gracefully
-			} catch (InstantiationException x1) {
-				x1.printStackTrace();
-			} catch (IllegalAccessException x1) {
-				x1.printStackTrace();
-			} catch (InvocationTargetException x1) {
-				x1.printStackTrace();
-			} catch (NoSuchMethodException x1) {
-				x1.printStackTrace();
+				// Create an instance of genomeClass
+				Object genomeInstance = genomeClass.getDeclaredConstructor().newInstance();
+				// Create an instance of the class represented by the constructor
+				incomer = (A_Organism) constructor.newInstance(genomeInstance);
+			} catch (InstantiationException | IllegalAccessException | InvocationTargetException
+					| NoSuchMethodException e) {
+				e.printStackTrace();
 			}
 		}
 		// Initialize incomer
 		incomer.hasLeftDomain = false;
-		incomer.hasEnteredDomain = false;
+		incomer.hasEnteredDomain = true;
 		incomer.hasToSwitchFace = true;
-		incomer.setAge_Uday(animalLeavingLandscape.getAge_Uday());
+//		incomer.setAge_Uday(animalLeavingLandscape.getAge_Uday());
+		incomer.setAge_Uday(0.);
 		context.add(incomer);
 		if (incomer instanceof A_Animal) ((A_Animal) incomer).setHasToLeaveFullContainer(true);
-		if (incomer instanceof A_Animal) updateInspectors((A_Animal) incomer);
+		if (incomer instanceof A_Organism) updateInspectors((A_Organism) incomer);
 		continuousSpace.moveTo(incomer, newLocation);
 		grid[x][y].agentIncoming(incomer);
+		incomer.setMyHome(grid[x][y]);
 		incomer.bornCoord_Umeter = getThingCoord_Umeter(incomer);
 
 		// Aim toward landscape center
@@ -358,7 +357,7 @@ public class C_Landscape implements I_ConstantString {
 					isNotError);
 	}
 
-	protected void updateInspectors(A_Animal incomer) {}
+	protected void updateInspectors(A_Organism incomer) {}
 
 	/** Scan all SoilCells and allocate them to a given landPlot, create a new one each time it changes. <br />
 	 * This method doesn't update old landPlots but it builds new ones. And old ones remain in the context. <br />

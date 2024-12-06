@@ -1,10 +1,13 @@
 package thing;
-import repast.simphony.essentials.RepastEssentials;
 import thing.dna.I_DiploidGenome;
 import thing.ground.C_MarineCell;
 /** A simple structure containing a diploid genome, owns all properties of A_Organism
  * @author J.LeFur 2024 */
 public class C_Plankton extends A_Organism {
+	//
+	// FIELD
+	//
+	private double maxDispersalDistance_Umeter = 0.0;
 	//
 	// CONSTRUCTOR
 	//
@@ -15,13 +18,9 @@ public class C_Plankton extends A_Organism {
 	//
 	// OVERRIDEN METHOD
 	//
-	@Override
-	/** If washed on shore, set dead and recirculated on domain's bordure - JLF 2024 */
 	public void step_Utick() {
-		if (RepastEssentials.GetTickCount() > 10 && this.getSpeedEast() == 0.0 && this.getSpeedNorth() == 0.0) {
-			this.setDead(true);
-			this.hasLeftDomain = true;
-		}
+		computeMaxDispersalDistance_Umeter();
+		super.step_Utick();
 	}
 	//
 	// GETTERS
@@ -34,5 +33,16 @@ public class C_Plankton extends A_Organism {
 	public double getSpeedNorth() {
 		return ((C_MarineCell) this.getCurrentSoilCell()).getSpeedNorthward_UmeterPerSecond();
 	}
-
+	/** Maximum distance (straight line) from its birth location */
+	public void computeMaxDispersalDistance_Umeter() {
+		double currentDispersalDistance_Umeter = this.getDistance_Umeter(this.bornCoord_Umeter);
+		if (currentDispersalDistance_Umeter > this.maxDispersalDistance_Umeter)
+			this.maxDispersalDistance_Umeter = currentDispersalDistance_Umeter;
+	}
+	//
+	// GETTER
+	//
+	public double getMaxDispersalDistance_Umeter() {
+		return maxDispersalDistance_Umeter;
+	}
 }

@@ -11,7 +11,6 @@ import melanesim.protocol.A_Protocol;
 import melanesim.protocol.A_ProtocolTransportation;
 import presentation.display.C_Background;
 import presentation.display.C_CustomPanelSet_Rodent;
-import presentation.display.C_UserPanel;
 import presentation.display.C_UserPanelRodent;
 import presentation.epiphyte.C_InspectorGenetic;
 import repast.simphony.context.Context;
