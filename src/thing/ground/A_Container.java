@@ -79,6 +79,7 @@ public abstract class A_Container extends A_VisibleAgent implements I_Container 
 		if (entryOK) {
 			thing.setCurrentSoilCell(this);
 			if (thing instanceof A_NDS) this.agentLoad++;
+			if (thing instanceof C_Rodent) this.rodentLoad++;
 		}
 		else A_Protocol.event("A_Container.agentIncoming", "Cannot set " + this + " container to " + thing, isError);
 		return entryOK;
@@ -91,6 +92,7 @@ public abstract class A_Container extends A_VisibleAgent implements I_Container 
 		if (exitOK) {
 			thing.setCurrentSoilCell(null);
 			if (thing instanceof A_NDS) this.agentLoad--;
+			if (thing instanceof C_Rodent) this.rodentLoad--;
 		}
 		else {
 			A_Protocol.event("A_Container.agentLeaving", "Could not find " + thing + " in occupantList of " + this,

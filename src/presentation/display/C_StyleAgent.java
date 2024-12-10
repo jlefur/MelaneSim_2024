@@ -293,6 +293,14 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 	@Override
 	/** getscale modified only for vegetation, rev. M.Sall 03.2016 */
 	public float getScale(I_SituatedThing object) {
+		if (object instanceof C_Vegetation) {
+			// TODO number in source OK JLF 2021.03 compute mean
+			double energy = I_ConstantGerbil.INITIAL_VEGET_ENERGY + ((C_Vegetation) object).getEnergy_Ukcal() / 2;
+			if (C_Parameters.IMAGE) // TODO number in source 2016.03 MS, 2021.02 JLF
+				return (float) (energy * .005);
+			else
+				return (float) (energy * .1);
+		}
 		if (C_Parameters.IMAGE) {
 			if (object instanceof C_StreamCurrent) return (float) (this.imageScale * 15.);
 
@@ -316,20 +324,12 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 		}
 		else {
 			if (object instanceof C_StreamCurrent) return (float) 0.;
-			if (object instanceof C_Vegetation) {
-				// TODO number in source OK JLF 2021.03 compute mean
-				double energy = I_ConstantGerbil.INITIAL_VEGET_ENERGY + ((C_Vegetation) object).getEnergy_Ukcal() / 2;
-				if (C_Parameters.IMAGE) // TODO number in source 2016.03 MS, 2021.02 JLF
-					return (float) (energy * .005);
-				else
-					return (float) (energy * .1);
-			}
 			// // Show (badly) the relative importance of agents sensing
 			// else if (object instanceof A_Animal) return (float) (this.ELLIPSE_SCALE *
 			// ((A_Animal) object).getSensing_UmeterByTick()
 			// / 10.);
-			else return this.ELLIPSE_SCALE;
 		}
+		return this.ELLIPSE_SCALE;
 	}
 
 	// OVERRIDEN & UNUSED METHODS //

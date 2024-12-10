@@ -487,3 +487,294 @@ Caused by: java.lang.NullPointerException: Cannot invoke "Object.toString()" bec
 	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
 	at com.jgoodies.binding.beans.PropertyAccessor.getValue(PropertyAccessor.java:160) ~[?:?]
 	... 11 more
+FATAL [Thread-4] 2024-12-10T15:38:27,661 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (491.0)
+java.lang.NullPointerException: Cannot invoke "saf.v3d.scene.VSpatial.getParent()" because "child" is null
+	at saf.v3d.scene.VComposite.addChild(VComposite.java:46) ~[?:?]
+	at repast.simphony.visualizationOGL2D.SpatialWrapper.setChild(SpatialWrapper.java:80) ~[?:?]
+	at repast.simphony.visualizationOGL2D.SpatialWrapper.<init>(SpatialWrapper.java:34) ~[?:?]
+	at repast.simphony.visualizationOGL2D.StyledDisplayLayerOGL2D.createSpatial(StyledDisplayLayerOGL2D.java:146) ~[?:?]
+	at repast.simphony.visualizationOGL2D.StyledDisplayLayerOGL2D.processAdded(StyledDisplayLayerOGL2D.java:228) ~[?:?]
+	at repast.simphony.visualizationOGL2D.StyledDisplayLayerOGL2D.update(StyledDisplayLayerOGL2D.java:250) ~[?:?]
+	at repast.simphony.visualizationOGL2D.DisplayOGL2D.update(DisplayOGL2D.java:403) ~[?:?]
+	at repast.simphony.visualization.engine.DisplayComponentControllerAction$DisplayUpdater.execute(DisplayComponentControllerAction.java:48) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:238) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+FATAL [Thread-4] 2024-12-10T15:40:13,754 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (13.0)
+java.lang.NullPointerException: Cannot invoke "saf.v3d.scene.VSpatial.getParent()" because "child" is null
+	at saf.v3d.scene.VComposite.addChild(VComposite.java:46) ~[?:?]
+	at repast.simphony.visualizationOGL2D.SpatialWrapper.setChild(SpatialWrapper.java:80) ~[?:?]
+	at repast.simphony.visualizationOGL2D.SpatialWrapper.<init>(SpatialWrapper.java:34) ~[?:?]
+	at repast.simphony.visualizationOGL2D.StyledDisplayLayerOGL2D.createSpatial(StyledDisplayLayerOGL2D.java:146) ~[?:?]
+	at repast.simphony.visualizationOGL2D.StyledDisplayLayerOGL2D.processAdded(StyledDisplayLayerOGL2D.java:228) ~[?:?]
+	at repast.simphony.visualizationOGL2D.StyledDisplayLayerOGL2D.update(StyledDisplayLayerOGL2D.java:250) ~[?:?]
+	at repast.simphony.visualizationOGL2D.DisplayOGL2D.update(DisplayOGL2D.java:403) ~[?:?]
+	at repast.simphony.visualization.engine.DisplayComponentControllerAction$DisplayUpdater.execute(DisplayComponentControllerAction.java:48) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:238) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+FATAL [Thread-4] 2024-12-10T15:42:18,866 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (5637.0)
+java.lang.NullPointerException: Cannot invoke "saf.v3d.scene.VSpatial.getParent()" because "child" is null
+	at saf.v3d.scene.VComposite.addChild(VComposite.java:46) ~[?:?]
+	at repast.simphony.visualizationOGL2D.SpatialWrapper.setChild(SpatialWrapper.java:80) ~[?:?]
+	at repast.simphony.visualizationOGL2D.SpatialWrapper.<init>(SpatialWrapper.java:34) ~[?:?]
+	at repast.simphony.visualizationOGL2D.StyledDisplayLayerOGL2D.createSpatial(StyledDisplayLayerOGL2D.java:146) ~[?:?]
+	at repast.simphony.visualizationOGL2D.StyledDisplayLayerOGL2D.processAdded(StyledDisplayLayerOGL2D.java:228) ~[?:?]
+	at repast.simphony.visualizationOGL2D.StyledDisplayLayerOGL2D.update(StyledDisplayLayerOGL2D.java:250) ~[?:?]
+	at repast.simphony.visualizationOGL2D.DisplayOGL2D.update(DisplayOGL2D.java:403) ~[?:?]
+	at repast.simphony.visualization.engine.DisplayComponentControllerAction$DisplayUpdater.execute(DisplayComponentControllerAction.java:48) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:238) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+FATAL [Thread-4] 2024-12-10T15:43:56,980 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (2756.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.util.ConcurrentModificationException
+	at java.util.TreeMap$PrivateEntryIterator.nextEntry(TreeMap.java:1486) ~[?:?]
+	at java.util.TreeMap$KeyIterator.next(TreeMap.java:1540) ~[?:?]
+	at thing.rodents.C_RodentCommensal.actionTryBoardingContainer(C_RodentCommensal.java:77) ~[?:?]
+	at thing.rodents.C_RodentBlackRat.actionTryBoardingContainer(C_RodentBlackRat.java:28) ~[?:?]
+	at thing.rodents.C_RodentCommensal.processTarget(C_RodentCommensal.java:59) ~[?:?]
+	at thing.A_Animal.step_Utick(A_Animal.java:84) ~[?:?]
+	at thing.A_Amniote.step_Utick(A_Amniote.java:92) ~[?:?]
+	at melanesim.protocol.A_Protocol.step_Utick(A_Protocol.java:121) ~[?:?]
+	at melanesim.protocol.A_ProtocolTransportation.step_Utick(A_ProtocolTransportation.java:68) ~[?:?]
+	at melanesim.protocol.rodents.C_ProtocolCentenal.step_Utick(C_ProtocolCentenal.java:45) ~[?:?]
+	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+FATAL [Thread-4] 2024-12-10T15:47:20,797 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (2394.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.util.ConcurrentModificationException
+	at java.util.TreeMap$PrivateEntryIterator.nextEntry(TreeMap.java:1486) ~[?:?]
+	at java.util.TreeMap$KeyIterator.next(TreeMap.java:1540) ~[?:?]
+	at thing.rodents.C_RodentCommensal.actionTryBoardingContainer(C_RodentCommensal.java:77) ~[?:?]
+	at thing.rodents.C_RodentBlackRat.actionTryBoardingContainer(C_RodentBlackRat.java:28) ~[?:?]
+	at thing.rodents.C_RodentCommensal.processTarget(C_RodentCommensal.java:59) ~[?:?]
+	at thing.A_Animal.step_Utick(A_Animal.java:84) ~[?:?]
+	at thing.A_Amniote.step_Utick(A_Amniote.java:92) ~[?:?]
+	at melanesim.protocol.A_Protocol.step_Utick(A_Protocol.java:121) ~[?:?]
+	at melanesim.protocol.A_ProtocolTransportation.step_Utick(A_ProtocolTransportation.java:68) ~[?:?]
+	at melanesim.protocol.rodents.C_ProtocolCentenal.step_Utick(C_ProtocolCentenal.java:45) ~[?:?]
+	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+FATAL [Thread-7] 2024-12-10T15:47:51,313 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (3646.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.util.ConcurrentModificationException
+	at java.util.TreeMap$PrivateEntryIterator.nextEntry(TreeMap.java:1486) ~[?:?]
+	at java.util.TreeMap$KeyIterator.next(TreeMap.java:1540) ~[?:?]
+	at thing.rodents.C_RodentCommensal.actionTryBoardingContainer(C_RodentCommensal.java:77) ~[?:?]
+	at thing.rodents.C_RodentBlackRat.actionTryBoardingContainer(C_RodentBlackRat.java:28) ~[?:?]
+	at thing.rodents.C_RodentCommensal.processTarget(C_RodentCommensal.java:59) ~[?:?]
+	at thing.A_Animal.step_Utick(A_Animal.java:84) ~[?:?]
+	at thing.A_Amniote.step_Utick(A_Amniote.java:92) ~[?:?]
+	at melanesim.protocol.A_Protocol.step_Utick(A_Protocol.java:121) ~[?:?]
+	at melanesim.protocol.A_ProtocolTransportation.step_Utick(A_ProtocolTransportation.java:68) ~[?:?]
+	at melanesim.protocol.rodents.C_ProtocolCentenal.step_Utick(C_ProtocolCentenal.java:45) ~[?:?]
+	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+FATAL [Thread-10] 2024-12-10T15:53:20,107 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (16906.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.util.ConcurrentModificationException
+	at java.util.TreeMap$PrivateEntryIterator.nextEntry(TreeMap.java:1486) ~[?:?]
+	at java.util.TreeMap$KeyIterator.next(TreeMap.java:1540) ~[?:?]
+	at thing.rodents.C_RodentCommensal.actionTryBoardingContainer(C_RodentCommensal.java:77) ~[?:?]
+	at thing.rodents.C_RodentBlackRat.actionTryBoardingContainer(C_RodentBlackRat.java:28) ~[?:?]
+	at thing.rodents.C_RodentCommensal.processTarget(C_RodentCommensal.java:59) ~[?:?]
+	at thing.A_Animal.step_Utick(A_Animal.java:84) ~[?:?]
+	at thing.A_Amniote.step_Utick(A_Amniote.java:92) ~[?:?]
+	at melanesim.protocol.A_Protocol.step_Utick(A_Protocol.java:121) ~[?:?]
+	at melanesim.protocol.A_ProtocolTransportation.step_Utick(A_ProtocolTransportation.java:68) ~[?:?]
+	at melanesim.protocol.rodents.C_ProtocolCentenal.step_Utick(C_ProtocolCentenal.java:45) ~[?:?]
+	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+FATAL [Thread-4] 2024-12-10T15:55:29,276 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (2569.0)
+com.jgoodies.binding.beans.PropertyAccessException: Failed to read an adapted Java Bean property.
+cause=java.lang.NullPointerException: Cannot invoke "Object.toString()" because "this.myHome" is null
+bean=null
+bean type=thing.rodents.C_HumanCarrier
+property name=myHome
+property type=java.lang.String
+property reader=public java.lang.String thing.A_Organism.getMyHome()
+	at com.jgoodies.binding.beans.PropertyAccessException.createReadAccessException(PropertyAccessException.java:92) ~[?:?]
+	at com.jgoodies.binding.beans.PropertyAccessor.getValue(PropertyAccessor.java:162) ~[?:?]
+	at com.jgoodies.binding.beans.BeanAdapter.getValue0(BeanAdapter.java:1149) ~[?:?]
+	at com.jgoodies.binding.beans.BeanAdapter.access$500(BeanAdapter.java:288) ~[?:?]
+	at com.jgoodies.binding.beans.BeanAdapter$SimplePropertyAdapter.fireChange(BeanAdapter.java:1434) ~[?:?]
+	at repast.simphony.ui.probe.ProbeModel$ProbeBeanAdapter$SimplePropertyAdapter.fireChange(ProbeModel.java:64) ~[?:?]
+	at repast.simphony.ui.probe.ProbeModel$ProbeBeanAdapter.fireChange(ProbeModel.java:52) ~[?:?]
+	at repast.simphony.ui.probe.ProbeModel.update(ProbeModel.java:108) ~[?:?]
+	at repast.simphony.ui.probe.Probe.update(Probe.java:76) ~[?:?]
+	at repast.simphony.ui.probe.ProbeManager.update(ProbeManager.java:76) ~[?:?]
+	at repast.simphony.ui.RSApplication.tickCountUpdated(RSApplication.java:622) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:60) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+Caused by: java.lang.NullPointerException: Cannot invoke "Object.toString()" because "this.myHome" is null
+	at thing.A_Organism.getMyHome(A_Organism.java:41) ~[?:?]
+	at jdk.internal.reflect.GeneratedMethodAccessor69.invoke(Unknown Source) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at com.jgoodies.binding.beans.PropertyAccessor.getValue(PropertyAccessor.java:160) ~[?:?]
+	... 11 more
+FATAL [Thread-4] 2024-12-10T16:37:54,605 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (160.0)
+com.jgoodies.binding.beans.PropertyAccessException: Failed to read an adapted Java Bean property.
+cause=java.lang.NullPointerException: Cannot invoke "Object.toString()" because "this.myHome" is null
+bean=null
+bean type=thing.rodents.C_HumanWalker
+property name=myHome
+property type=java.lang.String
+property reader=public java.lang.String thing.A_Organism.getMyHome()
+	at com.jgoodies.binding.beans.PropertyAccessException.createReadAccessException(PropertyAccessException.java:92) ~[?:?]
+	at com.jgoodies.binding.beans.PropertyAccessor.getValue(PropertyAccessor.java:162) ~[?:?]
+	at com.jgoodies.binding.beans.BeanAdapter.getValue0(BeanAdapter.java:1149) ~[?:?]
+	at com.jgoodies.binding.beans.BeanAdapter.access$500(BeanAdapter.java:288) ~[?:?]
+	at com.jgoodies.binding.beans.BeanAdapter$SimplePropertyAdapter.fireChange(BeanAdapter.java:1434) ~[?:?]
+	at repast.simphony.ui.probe.ProbeModel$ProbeBeanAdapter$SimplePropertyAdapter.fireChange(ProbeModel.java:64) ~[?:?]
+	at repast.simphony.ui.probe.ProbeModel$ProbeBeanAdapter.fireChange(ProbeModel.java:52) ~[?:?]
+	at repast.simphony.ui.probe.ProbeModel.update(ProbeModel.java:108) ~[?:?]
+	at repast.simphony.ui.probe.Probe.update(Probe.java:76) ~[?:?]
+	at repast.simphony.ui.probe.ProbeManager.update(ProbeManager.java:76) ~[?:?]
+	at repast.simphony.ui.RSApplication.tickCountUpdated(RSApplication.java:622) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:60) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+Caused by: java.lang.NullPointerException: Cannot invoke "Object.toString()" because "this.myHome" is null
+	at thing.A_Organism.getMyHome(A_Organism.java:41) ~[?:?]
+	at jdk.internal.reflect.GeneratedMethodAccessor50.invoke(Unknown Source) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at com.jgoodies.binding.beans.PropertyAccessor.getValue(PropertyAccessor.java:160) ~[?:?]
+	... 11 more
+FATAL [Thread-4] 2024-12-10T16:44:16,176 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (663.0)
+com.jgoodies.binding.beans.PropertyAccessException: Failed to read an adapted Java Bean property.
+cause=java.lang.NullPointerException: Cannot invoke "Object.toString()" because "this.myHome" is null
+bean=null
+bean type=thing.rodents.C_RodentGerbil
+property name=myHome
+property type=java.lang.String
+property reader=public java.lang.String thing.A_Organism.getMyHome()
+	at com.jgoodies.binding.beans.PropertyAccessException.createReadAccessException(PropertyAccessException.java:92) ~[?:?]
+	at com.jgoodies.binding.beans.PropertyAccessor.getValue(PropertyAccessor.java:162) ~[?:?]
+	at com.jgoodies.binding.beans.BeanAdapter.getValue0(BeanAdapter.java:1149) ~[?:?]
+	at com.jgoodies.binding.beans.BeanAdapter.access$500(BeanAdapter.java:288) ~[?:?]
+	at com.jgoodies.binding.beans.BeanAdapter$SimplePropertyAdapter.fireChange(BeanAdapter.java:1434) ~[?:?]
+	at repast.simphony.ui.probe.ProbeModel$ProbeBeanAdapter$SimplePropertyAdapter.fireChange(ProbeModel.java:64) ~[?:?]
+	at repast.simphony.ui.probe.ProbeModel$ProbeBeanAdapter.fireChange(ProbeModel.java:52) ~[?:?]
+	at repast.simphony.ui.probe.ProbeModel.update(ProbeModel.java:108) ~[?:?]
+	at repast.simphony.ui.probe.Probe.update(Probe.java:76) ~[?:?]
+	at repast.simphony.ui.probe.ProbeManager.update(ProbeManager.java:76) ~[?:?]
+	at repast.simphony.ui.RSApplication.tickCountUpdated(RSApplication.java:622) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:60) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+Caused by: java.lang.NullPointerException: Cannot invoke "Object.toString()" because "this.myHome" is null
+	at thing.A_Organism.getMyHome(A_Organism.java:41) ~[?:?]
+	at jdk.internal.reflect.GeneratedMethodAccessor43.invoke(Unknown Source) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at com.jgoodies.binding.beans.PropertyAccessor.getValue(PropertyAccessor.java:160) ~[?:?]
+	... 11 more
+FATAL [Thread-4] 2024-12-10T17:01:54,418 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (430.0)
+com.jgoodies.binding.beans.PropertyAccessException: Failed to read an adapted Java Bean property.
+cause=java.lang.NullPointerException: Cannot invoke "thing.ground.C_MarineCell.getSpeedEastward_UmeterPerSecond()" because the return value of "thing.C_Plankton.getCurrentSoilCell()" is null
+bean=null
+bean type=thing.C_Plankton
+property name=speedEast
+property type=double
+property reader=public double thing.C_Plankton.getSpeedEast()
+	at com.jgoodies.binding.beans.PropertyAccessException.createReadAccessException(PropertyAccessException.java:92) ~[?:?]
+	at com.jgoodies.binding.beans.PropertyAccessor.getValue(PropertyAccessor.java:162) ~[?:?]
+	at com.jgoodies.binding.beans.BeanAdapter.getValue0(BeanAdapter.java:1149) ~[?:?]
+	at com.jgoodies.binding.beans.BeanAdapter.access$500(BeanAdapter.java:288) ~[?:?]
+	at com.jgoodies.binding.beans.BeanAdapter$SimplePropertyAdapter.fireChange(BeanAdapter.java:1434) ~[?:?]
+	at repast.simphony.ui.probe.ProbeModel$ProbeBeanAdapter$SimplePropertyAdapter.fireChange(ProbeModel.java:64) ~[?:?]
+	at repast.simphony.ui.probe.ProbeModel$ProbeBeanAdapter.fireChange(ProbeModel.java:52) ~[?:?]
+	at repast.simphony.ui.probe.ProbeModel.update(ProbeModel.java:108) ~[?:?]
+	at repast.simphony.ui.probe.Probe.update(Probe.java:76) ~[?:?]
+	at repast.simphony.ui.probe.ProbeManager.update(ProbeManager.java:76) ~[?:?]
+	at repast.simphony.ui.RSApplication.tickCountUpdated(RSApplication.java:622) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:60) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+Caused by: java.lang.NullPointerException: Cannot invoke "thing.ground.C_MarineCell.getSpeedEastward_UmeterPerSecond()" because the return value of "thing.C_Plankton.getCurrentSoilCell()" is null
+	at thing.C_Plankton.getSpeedEast(C_Plankton.java:30) ~[?:?]
+	at jdk.internal.reflect.GeneratedMethodAccessor40.invoke(Unknown Source) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at com.jgoodies.binding.beans.PropertyAccessor.getValue(PropertyAccessor.java:160) ~[?:?]
+	... 11 more

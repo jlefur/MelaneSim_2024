@@ -1,0 +1,60 @@
+Liste des commentaires des commits (toutes branches)
+====================================================
+Branche: origin/clean_packages
+----------------------------------------
+067ebd6 2024-12-10 jlefur - refactoring vers thing/rodents + clean inspectors
+5e28fed 2024-12-06 jlefur - mise à jour ok de userPanel et customPanelSet
+a92aca6 2024-12-04 jlefur - mise à jour de userPanelMarine et inspectorPopulationMarine
+9a9e020 2024-12-03 jlefur - avant suppression de rodentLoad (dans containers)
+ece3253 2024-12-02 jlefur - modification en cours de split GUI panels
+efca810 2024-11-26 jlefur - Réduction des warnings
+46d603a 2024-11-25 jlefur - Plankton probed OK + recirculated when washed on shore
+b7ca253 2024-11-22 jlefur - Mise en place de Exclos (metapopulation)
+64b389b 2024-11-20 jlefur - Merge branch 'main' of https://github.com/jlefur/MelaneSim_2024
+3f77b84 2024-11-20 jlefur - Visualisation des courants de surface
+169bb25 2024-11-20 Jean LE FUR - Update README.md
+896a4bd 2024-11-20 jlefur - MAJ gitIgnore avec bin
+7d7597d 2024-11-20 jlefur - Merge branch 'main' of https://github.com/jlefur/MelaneSim_2024
+937cdda 2024-11-20 jlefur - icone plancton affiche direction du courant
+40941ad 2024-11-20 Jean LE FUR - ajout de data_output dans gitIgnore
+2a8952e 2024-10-07 Jean LE FUR - suppression de mapDodel.pptx
+63890cb 2024-10-07 Jean LE FUR - Update README.md
+
+Branche: origin/main
+----------------------------------------
+5e28fed 2024-12-06 jlefur - mise à jour ok de userPanel et customPanelSet
+a92aca6 2024-12-04 jlefur - mise à jour de userPanelMarine et inspectorPopulationMarine
+9a9e020 2024-12-03 jlefur - avant suppression de rodentLoad (dans containers)
+ece3253 2024-12-02 jlefur - modification en cours de split GUI panels
+efca810 2024-11-26 jlefur - Réduction des warnings
+46d603a 2024-11-25 jlefur - Plankton probed OK + recirculated when washed on shore
+b7ca253 2024-11-22 jlefur - Mise en place de Exclos (metapopulation)
+64b389b 2024-11-20 jlefur - Merge branch 'main' of https://github.com/jlefur/MelaneSim_2024
+3f77b84 2024-11-20 jlefur - Visualisation des courants de surface
+169bb25 2024-11-20 Jean LE FUR - Update README.md
+896a4bd 2024-11-20 jlefur - MAJ gitIgnore avec bin
+7d7597d 2024-11-20 jlefur - Merge branch 'main' of https://github.com/jlefur/MelaneSim_2024
+937cdda 2024-11-20 jlefur - icone plancton affiche direction du courant
+40941ad 2024-11-20 Jean LE FUR - ajout de data_output dans gitIgnore
+2a8952e 2024-10-07 Jean LE FUR - suppression de mapDodel.pptx
+63890cb 2024-10-07 Jean LE FUR - Update README.md
+
+Branche: origin/split-userpanel-et-custompanel-rodent-et-marine
+----------------------------------------
+5e28fed 2024-12-06 jlefur - mise à jour ok de userPanel et customPanelSet
+a92aca6 2024-12-04 jlefur - mise à jour de userPanelMarine et inspectorPopulationMarine
+9a9e020 2024-12-03 jlefur - avant suppression de rodentLoad (dans containers)
+ece3253 2024-12-02 jlefur - modification en cours de split GUI panels
+efca810 2024-11-26 jlefur - Réduction des warnings
+46d603a 2024-11-25 jlefur - Plankton probed OK + recirculated when washed on shore
+b7ca253 2024-11-22 jlefur - Mise en place de Exclos (metapopulation)
+64b389b 2024-11-20 jlefur - Merge branch 'main' of https://github.com/jlefur/MelaneSim_2024
+3f77b84 2024-11-20 jlefur - Visualisation des courants de surface
+169bb25 2024-11-20 Jean LE FUR - Update README.md
+896a4bd 2024-11-20 jlefur - MAJ gitIgnore avec bin
+7d7597d 2024-11-20 jlefur - Merge branch 'main' of https://github.com/jlefur/MelaneSim_2024
+937cdda 2024-11-20 jlefur - icone plancton affiche direction du courant
+40941ad 2024-11-20 Jean LE FUR - ajout de data_output dans gitIgnore
+2a8952e 2024-10-07 Jean LE FUR - suppression de mapDodel.pptx
+63890cb 2024-10-07 Jean LE FUR - Update README.md
+
