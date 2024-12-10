@@ -2,7 +2,7 @@ package presentation.epiphyte;
 
 import java.util.TreeSet;
 
-import thing.C_BorreliaCrocidurae;
+import thing.rodents.C_BorreliaCrocidurae;
 
 /** Data inspector: retrieves informations about ticks.
  * @author M SALL 04.2020 */

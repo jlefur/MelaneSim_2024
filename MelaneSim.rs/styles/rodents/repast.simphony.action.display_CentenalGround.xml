@@ -11,7 +11,7 @@
       <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
     </entry>
     <entry>
-      <string>thing.C_HumanCarrier</string>
+      <string>thing.rodents.C_HumanCarrier</string>
       <string>presentation.display.C_StyleAgent</string>
     </entry>
   </styles>
@@ -25,7 +25,7 @@
       <string>rodents/thing.ground.C_City.style_CentenalGround.xml</string>
     </entry>
     <entry>
-      <string>thing.C_HumanCarrier</string>
+      <string>thing.rodents.C_HumanCarrier</string>
       <null/>
     </entry>
   </editedStyles>
@@ -55,7 +55,7 @@
       <int>1</int>
     </entry>
     <entry>
-      <string>thing.C_HumanCarrier</string>
+      <string>thing.rodents.C_HumanCarrier</string>
       <int>2</int>
     </entry>
   </layerOrder>

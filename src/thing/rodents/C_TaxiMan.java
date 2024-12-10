@@ -1,6 +1,9 @@
-package thing;
+package thing.rodents;
 
 import java.util.TreeSet;
+
+import thing.A_VisibleAgent;
+import thing.I_SituatedThing;
 import thing.dna.I_DiploidGenome;
 import thing.ground.C_City;
 import thing.ground.C_Market;

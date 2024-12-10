@@ -1,4 +1,4 @@
-package thing;
+package thing.rodents;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,11 +6,13 @@ import java.util.Map;
 
 import melanesim.C_ContextCreator;
 import melanesim.protocol.rodents.C_ProtocolBandia;
+import thing.A_Amniote;
+import thing.A_Animal;
 import thing.dna.I_DiploidGenome;
 import thing.ground.C_Trap;
 import thing.ground.I_Container;
 
-/** Implements a rodent able to compute the CMR indicator on its own. Uses a catchHistory table with date, session n° and x,y
+/** Implements a rodent able to compute the CMR indicator on its own. Uses a catchHistory table with date, session nï¿½ and x,y
  * coordinates of the catches
  * @author Malick Diakhate 2013, rev. Le Fur 10.2013 */
 public class C_RodentCmr extends C_RodentFossorial {

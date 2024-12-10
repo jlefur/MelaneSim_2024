@@ -36,7 +36,7 @@ public class C_CustomPanelSet implements IAction, ModelInitializer {
 	 * @param scen the {@link repast.simphony.scenario.Scenario} object that hold settings for the run */
 	public void initialize(Scenario scen, RunEnvironmentBuilder builder) {
 		scen.addMasterControllerAction(new NullAbstractControllerAction<Object>() {
-			/** Ajoute des onglets � la simulation et les initialise */
+			/** Ajoute des onglets à la simulation et les initialise */
 			public void runInitialize(RunState runState, Context<?> context, Parameters runParams) {
 				/*
 				 * Initialisation des onglets: On crée un nouveau display puis on l'ajoute au registre des GUI de RunState. On
@@ -62,15 +62,13 @@ public class C_CustomPanelSet implements IAction, ModelInitializer {
 				runState.getGUIRegistry().addDisplay("Populations sizes", GUIRegistryType.OTHER, curvePopSize);
 
 				// DISPERSAL
-				curveDispersal = new C_CustomPanelFactory("Dispersals", C_Chart.LINE, "Ticks",
-						"Dispersal (m)");
-				runState.getGUIRegistry().addDisplay("Dispersals", GUIRegistryType.OTHER,
-						curveDispersal);
+				curveDispersal = new C_CustomPanelFactory("Dispersals", C_Chart.LINE, "Ticks", "Dispersal (m)");
+				runState.getGUIRegistry().addDisplay("Dispersals", GUIRegistryType.OTHER, curveDispersal);
 
 				initWorldSpecificPlots(runState);
 
 				/** Ajoute SimMastoInitializer au registre des plannings pour que la fonction execute() soit appel�e �
-				 * l'intervalle demand�. La derni�re variable ne peut pas �tre this � cause de la double impl�mentation. C'est
+				 * l'intervalle demandé. La dernière variable ne peut pas être this à cause de la double implmentation. C'est
 				 * pourquoi on utilise une variable action initialis�e avec this<br>
 				 * The action with greater value is activated first */
 				runState.getScheduleRegistry().getModelSchedule().schedule(ScheduleParameters.createRepeating(0, 1, 1),

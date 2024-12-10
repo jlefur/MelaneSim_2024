@@ -24,7 +24,6 @@ import presentation.display.C_CustomPanelSet;
 import presentation.display.C_StyleAgent;
 import presentation.epiphyte.A_Inspector;
 import presentation.epiphyte.C_InspectorEnergy;
-import presentation.epiphyte.C_InspectorPopulation;
 import presentation.epiphyte.I_Inspector;
 import repast.simphony.context.Context;
 import repast.simphony.engine.environment.RunState;
@@ -44,7 +43,7 @@ public abstract class A_Protocol implements I_Protocol, I_ConstantString, I_Cons
 	//
 	// FIELDS
 	//
-	public static C_InspectorPopulation inspector = null;
+	public static A_Inspector inspector = null;
 	public static C_InspectorEnergy inspectorEnergy = null;
 	// TODO JLF 2014.08, 2015.03 Multiscale contexts: several protocols with their own calendar should run concurrently.
 	// The field should thus not be static
@@ -67,11 +66,8 @@ public abstract class A_Protocol implements I_Protocol, I_ConstantString, I_Cons
 		initCalendar();// sets the date for the beginning of the simulation
 		System.out.println("A_Protocol.constructor(): simulation starts on " + protocolCalendar.stringHourDate());
 		// INSPECTORS
-		A_Protocol.inspector = new C_InspectorPopulation();
-		A_Protocol.inspectorEnergy = new C_InspectorEnergy();
+		// NB: Protocol inspectors are instantiated in daughter protocols - JLF 2024
 		this.inspectorList = new TreeSet<A_Inspector>();
-		this.inspectorList.add(inspector);
-		this.inspectorList.add(inspectorEnergy);
 		this.initFixedParameters();
 
 		this.readUserParameters();
@@ -84,7 +80,6 @@ public abstract class A_Protocol implements I_Protocol, I_ConstantString, I_Cons
 		this.landscape.identifyAffinityLandPlots(ctxt);
 		A_VisibleAgent.init(this.landscape);
 		A_Protocol.event("A_Protocol()", " Initialized visible AGENT class with their landscape ", isNotError);
-		C_CustomPanelSet.addEnergyInspector(inspectorEnergy);
 	}
 	//
 	// METHODS

@@ -12,11 +12,11 @@
 			<string>presentation.display.C_StyleAgent</string>
 		</entry>
 		<entry>
-			<string>thing.C_Rodent</string>
+			<string>thing.rodents.C_Rodent</string>
 			<string>presentation.display.C_StyleAgent</string>
 		</entry>
 		<entry>
-			<string>thing.C_TaxiManDodel</string>
+			<string>thing.rodents.C_TaxiManDodel</string>
 			<string>presentation.display.C_StyleAgent</string>
 		</entry>
 	</styles>
@@ -48,11 +48,11 @@
 			<int>0</int>
 		</entry>
 		<entry>
-			<string>thing.C_Rodent</string>
+			<string>thing.rodents.C_Rodent</string>
 			<int>1</int>
 		</entry>
 		<entry>
-			<string>thing.C_TaxiManDodel</string>
+			<string>thing.rodents.C_TaxiManDodel</string>
 			<int>2</int>
 		</entry>
 		<entry>

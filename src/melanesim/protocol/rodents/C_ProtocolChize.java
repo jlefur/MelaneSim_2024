@@ -15,11 +15,11 @@ import presentation.epiphyte.C_InspectorGenetic;
 import presentation.epiphyte.C_InspectorPopulationRodent;
 import repast.simphony.context.Context;
 import repast.simphony.essentials.RepastEssentials;
-import thing.C_RodentFossorial;
 import thing.dna.species.rodents.C_GenomeMicrotusArvalis;
 import thing.ground.C_LandPlot;
 import thing.ground.C_SoilCell;
 import thing.ground.landscape.C_LandscapeRodent;
+import thing.rodents.C_RodentFossorial;
 
 /** Common voles' colonies within a dynamic agricultural landscape
  * @author J.Le Fur, A.Comte 03.2012 / J.Le Fur 07.2012, 07.2014 */

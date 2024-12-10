@@ -19,8 +19,6 @@ import presentation.epiphyte.C_InspectorHybrid;
 import presentation.epiphyte.C_InspectorPopulationRodent;
 import repast.simphony.context.Context;
 import thing.A_Amniote;
-import thing.C_Rodent;
-import thing.C_RodentCaged;
 import thing.I_SituatedThing;
 import thing.dna.C_GenomeEucaryote;
 import thing.dna.species.rodents.C_GenomeMastoErythroleucus;
@@ -28,6 +26,8 @@ import thing.dna.species.rodents.C_GenomeMastoNatalensis;
 import thing.dna.species.rodents.C_GenomeMastomys;
 import thing.ground.C_LandPlot;
 import thing.ground.C_SoilCell;
+import thing.rodents.C_Rodent;
+import thing.rodents.C_RodentCaged;
 
 /** first line: nat x nat and ery x ery second line: nat x ery and ery x nat third line : hybrid x hybrid fourth line : hybrid x
  * nat(male) and hybrid x ery(male)

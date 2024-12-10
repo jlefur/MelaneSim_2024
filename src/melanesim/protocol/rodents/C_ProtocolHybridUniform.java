@@ -14,11 +14,11 @@ import presentation.epiphyte.C_InspectorGenetic;
 import presentation.epiphyte.C_InspectorHybrid;
 import presentation.epiphyte.C_InspectorPopulationRodent;
 import repast.simphony.context.Context;
-import thing.C_RodentFossorial;
 import thing.dna.C_GenomeEucaryote;
 import thing.dna.species.rodents.C_GenomeMastoErythroleucus;
 import thing.dna.species.rodents.C_GenomeMastoNatalensis;
 import thing.ground.C_BurrowSystem;
+import thing.rodents.C_RodentFossorial;
 
 /** This is a test protocol for observing the various types of behaviours, including hybridization between species on a simple patchy environment<br>
  * Can be run using different levels of the rodent's hierarchy (instantiable classes): for that purpose, switch the import and the lines concerned

@@ -1,9 +1,10 @@
-package thing;
+package thing.rodents;
 
 import org.locationtech.jts.geom.Coordinate;
 
 import melanesim.C_ContextCreator;
 import melanesim.protocol.A_Protocol;
+import thing.A_VisibleAgent;
 import thing.dna.I_DiploidGenome;
 import thing.ground.I_Container;
 

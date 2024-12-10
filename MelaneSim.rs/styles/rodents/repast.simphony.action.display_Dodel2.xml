@@ -11,23 +11,23 @@
 			<string>presentation.display.C_StyleAgent</string>
 		</entry>
 		<entry>
-			<string>thing.C_Food</string>
+			<string>thing.rodents.C_Food</string>
 			<string>presentation.display.C_StyleAgent</string>
 		</entry>
 		<entry>
-			<string>thing.C_Cat</string>
+			<string>thing.rodents.C_Cat</string>
 			<string>presentation.display.C_StyleAgent</string>
 		</entry>
 		<entry>
-			<string>thing.C_OrnitodorosSonrai</string>
+			<string>thing.rodents.C_OrnitodorosSonrai</string>
 			<string>presentation.display.C_StyleAgent</string>
 		</entry>
 		<entry>
-			<string>thing.C_RodentDomestic2</string>
+			<string>thing.rodents.C_RodentDomestic2</string>
 			<string>presentation.display.C_StyleAgent</string>
 		</entry>
 		<entry>
-			<string>thing.A_Human</string>
+			<string>thing.rodents.A_Human</string>
 			<string>presentation.display.C_StyleAgent</string>
 		</entry>
 		<entry>
@@ -46,7 +46,7 @@
 			<string>rodents\presentation.display.C_Background.style_Dodel2.xml</string>
 		</entry>
 		<entry>
-			<string>thing.C_Rodent</string>
+			<string>thing.rodents.C_Rodent</string>
 			<null />
 		</entry>
 		<entry>
@@ -92,23 +92,23 @@
 			<int>3</int>
 		</entry>
 		<entry>
-			<string>thing.C_Food</string>
+			<string>thing.rodents.C_Food</string>
 			<int>4</int>
 		</entry>
 		<entry>
-			<string>thing.A_Human</string>
+			<string>thing.rodents.A_Human</string>
 			<int>5</int>
 		</entry>
 		<entry>
-			<string>thing.C_RodentDomestic2</string>
+			<string>thing.rodents.C_RodentDomestic2</string>
 			<int>6</int>
 		</entry>
 		<entry>
-			<string>thing.C_Cat</string>
+			<string>thing.rodents.C_Cat</string>
 			<int>7</int>
 		</entry>
 		<entry>
-			<string>thing.C_OrnitodorosSonrai</string>
+			<string>thing.rodents.C_OrnitodorosSonrai</string>
 			<int>8</int>
 		</entry>
 	</layerOrder>

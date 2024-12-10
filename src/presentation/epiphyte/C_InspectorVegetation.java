@@ -5,12 +5,12 @@ import java.util.TreeSet;
 import data.constants.rodents.I_ConstantGerbil;
 import melanesim.protocol.A_Protocol;
 import repast.simphony.essentials.RepastEssentials;
-import thing.C_Vegetation;
 import thing.dna.species.plants.C_GenomeBalanites;
 import thing.dna.species.plants.C_GenomeFabacea;
 import thing.dna.species.plants.C_GenomePoacea;
 import thing.ground.C_SoilCellSavanna;
 import thing.ground.I_Container;
+import thing.rodents.C_Vegetation;
 
 /** Data inspector: retrieves informations e.g. la liste des v�g�tations.
  * @author M SALL 02.2016 */

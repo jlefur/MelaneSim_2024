@@ -10,14 +10,14 @@ import presentation.dataOutput.C_FileWriter;
 import data.C_Parameters;
 import melanesim.protocol.A_Protocol;
 import repast.simphony.essentials.RepastEssentials;
-import thing.C_Rodent;
-import thing.C_RodentDomestic2;
 import thing.I_SituatedThing;
 import thing.ground.I_Container;
+import thing.rodents.C_Rodent;
+import thing.rodents.C_RodentDomestic2;
 
 /** Data inspector: retrieves informations e.g. population sizes and manages lists.
  * @author A Realini 05.2011 / J.Le Fur 09.2011, 07.2012, 01.2013 */
-public class C_InspectorPopulationRodent extends C_InspectorPopulation {
+public class C_InspectorPopulationRodent extends A_Inspector {
 	//
 	// FIELDS
 	//

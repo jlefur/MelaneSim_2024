@@ -12,9 +12,9 @@ import presentation.display.C_Background;
 import presentation.display.C_CustomPanelSet_Rodent;
 import presentation.epiphyte.C_InspectorGenetic;
 import repast.simphony.context.Context;
-import thing.C_Rodent;
-import thing.C_RodentBlackRat;
 import thing.dna.species.rodents.C_GenomeRattusRattus;
+import thing.rodents.C_Rodent;
+import thing.rodents.C_RodentBlackRat;
 /** Protocol used in the south-east Senegal case study (grant ANR Chancira) Initialize the simulation and manage inputs coming from the csvevents file
  * @author J.Le Fur, 10.2014, rev. 11.2015 */
 public class C_ProtocolDecenal extends A_ProtocolTransportation implements I_ConstantDecenal {

@@ -1,4 +1,4 @@
-package thing;
+package thing.rodents;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -9,6 +9,9 @@ import data.constants.rodents.I_ConstantStringRodents;
 import data.constants.rodents.I_ConstantTransportation;
 import melanesim.C_ContextCreator;
 import melanesim.util.C_PathWanderer;
+import thing.A_Animal;
+import thing.A_VisibleAgent;
+import thing.I_SituatedThing;
 import thing.dna.I_DiploidGenome;
 import thing.ground.C_City;
 import thing.ground.C_SoilCell;
@@ -90,9 +93,9 @@ public class C_HumanCarrier extends A_Human implements I_ConstantStringRodents, 
 			// 3) just before leaving
 			else if (this.vehicle.isParked()) {
 				// clear animals targeting this's vehicle before leaving / jlf 10.2017
-				for (A_Animal oneAnimal : this.vehicle.animalsTargetingMe)
+				for (A_Animal oneAnimal : this.vehicle.getAnimalsTargetingMe())
 					oneAnimal.discardTarget();
-				this.vehicle.animalsTargetingMe.clear();
+				this.vehicle.getAnimalsTargetingMe().clear();
 				// TODO JLF de MS 2019.07 error caused by HumanCarrier HC-truck_55780 when its current soil cell is
 				// road_46903(129,93)!!!
 				startTraveling();
@@ -123,7 +126,7 @@ public class C_HumanCarrier extends A_Human implements I_ConstantStringRodents, 
 	protected void setNextNode() {
 		this.targetPoint_Umeter = this.pathWanderer.computeNextNodeAndGetTargetPoint_Umeter(this.targetPoint_Umeter);
 		if (this.vehicle.isAccountForTrackCondition()) {
-			C_SoilCell currentCell = (C_SoilCell) this.vehicle.currentSoilCell;
+			C_SoilCell currentCell = (C_SoilCell) this.vehicle.getCurrentSoilCell();
 			if (currentCell.isOfGroundType(TRACK_EVENT))
 				this.pathWanderer.track_slow_factor = TRACK_SLOW_FACTOR.get(TRACK_EVENT);
 			else

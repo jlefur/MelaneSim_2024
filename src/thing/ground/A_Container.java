@@ -9,8 +9,8 @@ import melanesim.util.C_VariousUtilities;
 import thing.A_Animal;
 import thing.A_NDS;
 import thing.A_VisibleAgent;
-import thing.C_Rodent;
 import thing.I_SituatedThing;
+import thing.rodents.C_Rodent;
 
 /** Any container able to contain I_situated thing. Provide the mean to manage any I_container thing; that is containers of
  * containers. Basic fields and commands only.

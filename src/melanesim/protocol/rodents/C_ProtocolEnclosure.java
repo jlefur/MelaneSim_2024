@@ -10,10 +10,10 @@ import presentation.epiphyte.C_InspectorFossorialRodents;
 import presentation.epiphyte.C_InspectorGenetic;
 import presentation.epiphyte.C_InspectorHybrid;
 import repast.simphony.context.Context;
-import thing.C_Rodent;
 import thing.dna.C_GenomeEucaryote;
 import thing.dna.species.rodents.C_GenomeMastoErythroleucus;
 import thing.dna.species.rodents.C_GenomeMastoNatalensis;
+import thing.rodents.C_Rodent;
 
 /** author J.Le Fur, A.Comte 03/2012 / rev. J.Le Fur feb.2013 */
 

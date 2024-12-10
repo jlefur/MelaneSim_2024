@@ -1,8 +1,8 @@
 /* This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt */
 package thing.ground;
 
-import thing.C_HumanCarrier;
-import thing.C_Rodent;
+import thing.rodents.C_HumanCarrier;
+import thing.rodents.C_Rodent;
 import data.C_Parameters;
 import data.constants.rodents.I_ConstantTransportation;
 import data.converters.C_ConvertTimeAndSpace;
@@ -50,7 +50,7 @@ public class C_Vehicle extends A_SupportedContainer implements I_ConstantTranspo
 	}
 	/** Move physically rodents but do not make change currentSoilCell (vehicle is a mobile SoilCell) */
 	public void carryRodentsToMyLocation_Ucs() {
-		for (thing.C_Rodent one_rodent : this.getFullRodentList())
+		for (thing.rodents.C_Rodent one_rodent : this.getFullRodentList())
 			myLandscape.moveToLocation(one_rodent, myLandscape.getThingCoord_Ucs(this));
 	}
 	public void unloadRodents() {

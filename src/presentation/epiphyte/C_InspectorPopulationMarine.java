@@ -9,7 +9,7 @@ import thing.C_Plankton;
 
 /** Data inspector: retrieves informations e.g. population sizes and manages lists.
  * @author JLF 2024 */
-public class C_InspectorPopulationMarine extends C_InspectorPopulation {
+public class C_InspectorPopulationMarine extends A_Inspector {
 	//
 	// FIELDS
 	//

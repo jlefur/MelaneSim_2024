@@ -1,8 +1,12 @@
 /* This source code is licensed under a BSD license as detailed in file SIMmasto_0.license.txt */
-package thing;
+package thing.rodents;
 
 import java.util.TreeSet;
 
+import thing.A_Animal;
+import thing.A_Organism;
+import thing.A_VisibleAgent;
+import thing.I_SituatedThing;
 import thing.dna.I_DiploidGenome;
 import thing.dna.species.plants.C_GenomeBalanites;
 import thing.dna.species.plants.C_GenomeFabacea;

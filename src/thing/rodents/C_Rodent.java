@@ -1,8 +1,11 @@
 /* This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt */
-package thing;
+package thing.rodents;
 
 import java.util.TreeSet;
 
+import thing.A_Amniote;
+import thing.A_Animal;
+import thing.I_SituatedThing;
 import thing.dna.C_GenomeAnimalia;
 import thing.dna.C_GenomeEucaryote;
 import thing.dna.I_DiploidGenome;
@@ -38,7 +41,7 @@ public class C_Rodent extends A_Amniote {
 	 * it is always the male which interact (mateWithMale) with the female
 	 * @see A_Amniote#mateWithMale COMMENT THE recognized(rodent) CONDITION TO STOP THE PRE-ZYGOTIC AND SCARCITY BARRIERS */
 	protected boolean actionInteract(C_Rodent rodent) {
-		if (this.readyToMate && rodent.readyToMate && A_Protocol.isBreedingSeason() && recognized(rodent)) {
+		if (this.isReadyToMate() && rodent.isReadyToMate() && A_Protocol.isBreedingSeason() && recognized(rodent)) {
 			if (this.testMale() && rodent.testFemale()) return rodent.actionMateWithMale(this);
 			else if (rodent.testMale() && this.testFemale()) return this.actionMateWithMale(rodent);
 			else return false;

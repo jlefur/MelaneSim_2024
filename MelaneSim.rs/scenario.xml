@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!-- fileName : scenario.xml -->
-<!-- protocolName : PNMC_plancton -->
+<!-- protocolName : CHIZE -->
 <Scenario>
 	<repast.simphony.dataLoader.engine.ClassNameDataLoaderAction context="SIMmasto0" file="repast.simphony.dataLoader.engine.ClassNameDataLoaderAction_0.xml" />
-	<repast.simphony.action.display context="SIMmasto0" file="styles\repast.simphony.action.display_PNMC_plancton.xml" />
-	<repast.simphony.userpanel.ui.DefaultUserPanelDescriptorAction context="SIMmasto0" file="repast.simphony.userpanel.ui.DefaultUserPanelDescriptorAction_marine.xml" />
-	<model.initializer class="presentation.display.C_CustomPanelSetMarine" />
+	
+	<repast.simphony.action.display context="SIMmasto0" file="styles\rodents\repast.simphony.action.display_Chize1.xml" />
+	
+	<repast.simphony.userpanel.ui.DefaultUserPanelDescriptorAction context="SIMmasto0" file="repast.simphony.userpanel.ui.DefaultUserPanelDescriptorAction_0.xml" />
+	
+	<model.initializer class="presentation.display.C_CustomPanelSet_Rodent" />
 </Scenario>

@@ -164,7 +164,7 @@ public class C_CustomPanelSet_Rodent extends C_CustomPanelSet {
 	/** Update each series with the corresponding data */
 	public void execute() {
 		inspectorEnergy = A_Protocol.inspectorEnergy;
-		inspector = A_ProtocolRodent.inspector;
+		inspector = (C_InspectorPopulationRodent) A_Protocol.inspector;
 		super.execute();
 
 		// BURROWS

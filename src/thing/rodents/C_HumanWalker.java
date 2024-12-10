@@ -1,10 +1,13 @@
-package thing;
+package thing.rodents;
 
 import org.locationtech.jts.geom.Coordinate;
 
 import data.C_Parameters;
 import melanesim.protocol.A_Protocol;
 import melanesim.util.C_PathWandererAstar;
+import thing.A_Animal;
+import thing.A_VisibleAgent;
+import thing.I_SituatedThing;
 import thing.dna.I_DiploidGenome;
 import thing.ground.C_LandPlot;
 import thing.ground.C_SoilCellUrban;

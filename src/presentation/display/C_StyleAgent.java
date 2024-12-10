@@ -22,10 +22,10 @@ import thing.A_Organism;
 import thing.A_VisibleAgent;
 import thing.C_Plankton;
 import thing.C_StreamCurrent;
-import thing.A_HumanUrban;
-import thing.C_Vegetation;
 import thing.I_SituatedThing;
 import thing.ground.C_MarineCell;
+import thing.rodents.A_HumanUrban;
+import thing.rodents.C_Vegetation;
 
 /** Style des agents "animaux". Définit une icône ou une ellipse pour chaque agent au lancement de la simulation en fonction de
  * son sexe et la fait varier suivant son âge.

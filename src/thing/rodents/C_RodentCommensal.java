@@ -1,7 +1,9 @@
-package thing;
+package thing.rodents;
 
 import data.constants.rodents.I_ConstantTransportation;
 import melanesim.C_ContextCreator;
+import thing.A_Amniote;
+import thing.A_Animal;
 import thing.dna.I_DiploidGenome;
 import thing.ground.C_Vehicle;
 
@@ -37,7 +39,7 @@ public class C_RodentCommensal extends C_RodentFossorial implements I_ConstantTr
 	 *      Here, no breeding season test: commensal rodent do not have a reproduction season, they mate all year long */
 	@Override
 	protected boolean actionInteract(C_Rodent rodent) {
-		if (this.genome.getClass().equals(rodent.genome.getClass()) && (this.readyToMate && rodent.readyToMate && recognized(rodent))) {
+		if (this.genome.getClass().equals(rodent.getGenome().getClass()) && (this.isReadyToMate() && rodent.isReadyToMate() && recognized(rodent))) {
 			if (this.testFemale() && rodent.testMale()) {
 				this.actionMateWithMale(rodent);
 				return true;
@@ -73,7 +75,7 @@ public class C_RodentCommensal extends C_RodentFossorial implements I_ConstantTr
 				C_ContextCreator.protocol.contextualizeOldThingInCell(this, vehicle);
 				this.discardTarget();
 				for (A_Animal oneAnimal : this.animalsTargetingMe)
-					oneAnimal.target = null;// cannot use discardTarget due to concurrent modification exception / jlf 12.2017
+					oneAnimal.setTarget(null);// cannot use discardTarget due to concurrent modification exception / jlf 12.2017
 				this.animalsTargetingMe.clear();
 				this.energy_Ukcal--;
 				this.everTransported = true;

@@ -1,4 +1,4 @@
-package thing;
+package thing.rodents;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -11,6 +11,8 @@ import data.constants.rodents.I_ConstantDodel2;
 import data.converters.C_ConvertTimeAndSpace;
 import melanesim.C_ContextCreator;
 import melanesim.protocol.A_Protocol;
+import thing.A_VisibleAgent;
+import thing.I_SituatedThing;
 import thing.dna.I_DiploidGenome;
 import thing.ground.C_SoilCell;
 import thing.ground.C_SoilCellUrban;

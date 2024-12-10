@@ -1,6 +1,8 @@
-package thing;
+package thing.rodents;
 import data.constants.rodents.I_ConstantStringRodents;
 import data.constants.rodents.I_ConstantTransportation;
+import thing.A_Amniote;
+import thing.A_Animal;
 import thing.dna.I_DiploidGenome;
 
 /** A human owns a room.

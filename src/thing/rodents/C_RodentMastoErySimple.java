@@ -1,5 +1,7 @@
-package thing;
+package thing.rodents;
 
+import thing.A_Amniote;
+import thing.A_Animal;
 import thing.dna.I_DiploidGenome;
 import thing.ground.C_Vehicle;
 

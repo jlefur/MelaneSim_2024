@@ -1,9 +1,12 @@
-package thing;
+package thing.rodents;
 
 import java.util.Calendar;
 import java.util.TreeSet;
 
 import melanesim.protocol.A_Protocol;
+import thing.A_Amniote;
+import thing.A_Animal;
+import thing.I_SituatedThing;
 import thing.dna.I_DiploidGenome;
 import thing.ground.C_Vehicle;
 

@@ -11,14 +11,14 @@ import presentation.display.C_Background;
 import presentation.display.C_CustomPanelSet_Rodent;
 import presentation.epiphyte.C_InspectorGenetic;
 import repast.simphony.context.Context;
-import thing.C_Rodent;
-import thing.C_RodentCircadian;
-import thing.C_TaxiManDodel;
 import thing.dna.C_GenomeAmniota;
 import thing.dna.species.rodents.C_GenomeMusMusculus;
 import thing.ground.C_SoilCell;
 import thing.ground.I_Container;
 import thing.ground.landscape.C_LandscapeRodent;
+import thing.rodents.C_Rodent;
+import thing.rodents.C_RodentCircadian;
+import thing.rodents.C_TaxiManDodel;
 
 /** author J.Le Fur & M.Diakhate 07.2014, rev. JLF 10.2014, 03.2018 */
 

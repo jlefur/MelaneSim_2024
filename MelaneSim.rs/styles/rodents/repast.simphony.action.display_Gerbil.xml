@@ -19,15 +19,15 @@
 			<string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
 		</entry>
 		<entry>
-			<string>thing.C_Rodent</string>
+			<string>thing.rodents.C_Rodent</string>
 			<string>presentation.display.C_StyleAgent</string>
 		</entry>
 		<entry>
-			<string>thing.C_BarnOwl</string>
+			<string>thing.rodents.C_BarnOwl</string>
 			<string>presentation.display.C_StyleAgent</string>
 		</entry>
 		<entry>
-			<string>thing.C_Vegetation</string>
+			<string>thing.rodents.C_Vegetation</string>
 			<string>presentation.display.C_StyleAgent</string>
 		</entry>
 		<entry>
@@ -79,15 +79,15 @@
 			<int>1</int>
 		</entry>
 		<entry>
-			<string>thing.C_Vegetation</string>
+			<string>thing.rodents.C_Vegetation</string>
 			<int>3</int>
 		</entry>
 		<entry>
-			<string>thing.C_Rodent</string>
+			<string>thing.rodents.C_Rodent</string>
 			<int>5</int>
 		</entry>
 		<entry>
-			<string>thing.C_BarnOwl</string>
+			<string>thing.rodents.C_BarnOwl</string>
 			<int>4</int>
 		</entry>
 		<entry>

@@ -4,16 +4,16 @@ import java.util.Calendar;
 
 import presentation.display.C_Background;
 import repast.simphony.context.Context;
-import thing.C_Rodent;
-import thing.C_RodentBlackRat;
-import thing.C_RodentHouseMouse;
-import thing.C_RodentMastoErySimple;
 import thing.dna.C_GenomeAmniota;
 import thing.dna.species.rodents.C_GenomeMastoErythroleucus;
 import thing.dna.species.rodents.C_GenomeMusMusculus;
 import thing.dna.species.rodents.C_GenomeRattusRattus;
 import thing.ground.C_City;
 import thing.ground.C_SoilCell;
+import thing.rodents.C_Rodent;
+import thing.rodents.C_RodentBlackRat;
+import thing.rodents.C_RodentHouseMouse;
+import thing.rodents.C_RodentMastoErySimple;
 
 import org.locationtech.jts.geom.Coordinate;
 

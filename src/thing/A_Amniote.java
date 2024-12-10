@@ -8,6 +8,7 @@ import thing.dna.C_GenomeAmniota;
 import thing.dna.C_GenomeEucaryote;
 import thing.dna.I_DiploidGenome;
 import thing.ground.I_Container;
+import thing.rodents.C_Rodent;
 import data.C_Parameters;
 import data.converters.C_ConvertTimeAndSpace;
 import melanesim.C_ContextCreator;
@@ -83,7 +84,7 @@ public abstract class A_Amniote extends A_Animal implements I_ReproducingThing {
 				}
 				// else check REPRODUCTION desire
 				else if (this.getDesire().equals(FEED) || this.getDesire() == "") {
-					if (this.readyToMate && A_Protocol.isBreedingSeason()) this.setDesire(REPRODUCE);
+					if (this.isReadyToMate() && A_Protocol.isBreedingSeason()) this.setDesire(REPRODUCE);
 					// End of reproduction season
 				}
 				if (!A_Protocol.isBreedingSeason() && this.getDesire().equals(REPRODUCE)) this.setDesire("");
@@ -163,7 +164,7 @@ public abstract class A_Amniote extends A_Animal implements I_ReproducingThing {
 			if (oneThingPerceived instanceof A_Amniote) {
 				A_Amniote other = (A_Amniote) oneThingPerceived;
 				if (other.getGenome().getClass() == this.genome.getClass())
-					if (!this.sameSex(other) && other.readyToMate) candidateTargets.add(other);
+					if (!this.sameSex(other) && other.isReadyToMate()) candidateTargets.add(other);
 			}
 		}
 		return candidateTargets;
@@ -315,5 +316,8 @@ public abstract class A_Amniote extends A_Animal implements I_ReproducingThing {
 	 * @author JLF 02.2013 */
 	public static void init(C_InspectorHybrid inspector) {
 		hybridInspector = inspector;
+	}
+	public boolean isReadyToMate() {
+		return readyToMate;
 	}
 }

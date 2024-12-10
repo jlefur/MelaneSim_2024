@@ -3,8 +3,9 @@
 package thing.ground;
 
 import java.util.TreeSet;
-import thing.C_Rodent;
+
 import thing.I_SituatedThing;
+import thing.rodents.C_Rodent;
 
 public interface I_Container extends I_SituatedThing {
 

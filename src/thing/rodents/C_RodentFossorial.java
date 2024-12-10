@@ -1,10 +1,14 @@
 /* This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt */
-package thing;
+package thing.rodents;
 
 import java.util.TreeSet;
 
 import melanesim.C_ContextCreator;
 import melanesim.protocol.A_Protocol;
+import thing.A_Amniote;
+import thing.A_Animal;
+import thing.A_VisibleAgent;
+import thing.I_SituatedThing;
 import thing.dna.I_DiploidGenome;
 import thing.ground.C_BurrowSystem;
 

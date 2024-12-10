@@ -1,4 +1,4 @@
-package thing;
+package thing.rodents;
 
 import java.util.TreeSet;
 
@@ -8,6 +8,10 @@ import data.converters.C_ConvertTimeAndSpace;
 import melanesim.C_ContextCreator;
 import melanesim.protocol.A_Protocol;
 import melanesim.util.C_VariousUtilities;
+import thing.A_Animal;
+import thing.C_Egg;
+import thing.I_ReproducingThing;
+import thing.I_SituatedThing;
 import thing.dna.C_GenomeEucaryote;
 import thing.dna.I_DiploidGenome;
 import thing.dna.species.C_GenomeAcaria;
@@ -247,7 +251,7 @@ public class C_OrnitodorosSonrai extends A_Animal implements I_ConstantDodel2, I
     /** Spawn two egg; one female egg and one male egg before blood meal */
     public void actionSpawn() {
         for (C_Egg egg : this.eggList) {
-            A_Animal child = this.giveBirth(egg.genome);
+            A_Animal child = this.giveBirth(egg.getGenome());
             myLandscape.addChildAgent(this, child);
             child.setDesire(NONE);// used to bypass activity steps
             child.setMyName(child.retrieveMyName());

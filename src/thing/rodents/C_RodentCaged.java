@@ -1,9 +1,12 @@
 /* This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt */
-package thing;
+package thing.rodents;
 
 import java.util.TreeSet;
 
 import data.constants.rodents.I_ConstantCage;
+import thing.A_Amniote;
+import thing.A_Animal;
+import thing.I_SituatedThing;
 import thing.dna.I_DiploidGenome;
 import thing.dna.species.rodents.C_GenomeMastoErythroleucus;
 import thing.dna.species.rodents.C_GenomeMastoNatalensis;
@@ -109,7 +112,7 @@ public class C_RodentCaged extends C_Rodent implements I_ConstantCage {
 		super.actionSpawn();
 		TreeSet<A_Animal> children = new TreeSet<>(this.animalsTargetingMe);
 		for (A_Animal child : children)
-			if (child.target == this) {
+			if (child.getTarget() == this) {
 				child.setTarget(null);
 				child.setDesire(FEED);
 			}

@@ -1,4 +1,4 @@
-package thing;
+package thing.rodents;
 
 import java.util.TreeSet;
 
@@ -7,6 +7,9 @@ import org.locationtech.jts.geom.Coordinate;
 import data.constants.rodents.I_ConstantDodel2;
 import melanesim.protocol.A_Protocol;
 import melanesim.util.C_VariousUtilities;
+import thing.A_Amniote;
+import thing.A_Animal;
+import thing.I_SituatedThing;
 import thing.dna.I_DiploidGenome;
 import thing.ground.C_SoilCellUrban;
 
@@ -67,7 +70,7 @@ public class C_Cat extends A_Amniote implements I_ConstantDodel2 {
 	protected TreeSet<I_SituatedThing> choosePartner(TreeSet<I_SituatedThing> perceivedThings) {
 		TreeSet<I_SituatedThing> perceivedPartner = new TreeSet<I_SituatedThing>();
 		for (I_SituatedThing oneThing : perceivedThings)
-			if (oneThing instanceof C_Cat && ((C_Cat) oneThing).readyToMate) perceivedPartner.add(oneThing);
+			if (oneThing instanceof C_Cat && ((C_Cat) oneThing).isReadyToMate()) perceivedPartner.add(oneThing);
 		return perceivedPartner;
 	}
 	@Override
@@ -75,7 +78,7 @@ public class C_Cat extends A_Amniote implements I_ConstantDodel2 {
 //		double x = C_ContextCreator.randomGeneratorForInitialisation.nextDouble() / PREDATION_SUCCESS;
 		prey.checkDeath(1.);// TODO number in source NOTOK JLF 2023 04 cat always kill mouse
 		// if prey catched (checkDeath) prey enters the cat's belly (dead is used only to benefit from checkDeath).
-		if (prey.dead) {
+		if (prey.isDead()) {
 			//if (C_Parameters.VERBOSE) 
 				A_Protocol.event("C_CAT.actionInteract", "PREDATION event: " + this + " catches " + prey, isNotError);
 			return this.actionEat();

@@ -14,11 +14,11 @@ import presentation.epiphyte.C_InspectorCMR;
 import presentation.epiphyte.C_InspectorGenetic;
 import repast.simphony.context.Context;
 import thing.C_Egg;
-import thing.C_RodentCmr;
 import thing.I_SituatedThing;
 import thing.dna.species.rodents.C_GenomeMastoErythroleucus;
 import thing.ground.C_Trap;
 import thing.ground.I_Container;
+import thing.rodents.C_RodentCmr;
 
 /** initialize the simulation and manages the inputs coming from the csv events file
  * @author Diakhate & Le Fur july 2013, 08.2014 */

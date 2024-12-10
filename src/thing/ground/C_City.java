@@ -2,9 +2,9 @@ package thing.ground;
 import java.util.TreeSet;
 
 import data.constants.rodents.I_ConstantTransportation;
-import thing.C_HumanCarrier;
 import thing.I_SituatedThing;
 import thing.ground.landscape.C_LandscapeRodent;
+import thing.rodents.C_HumanCarrier;
 import melanesim.protocol.A_Protocol;
 
 /** a city owns a population size, it also take part of several graphs?

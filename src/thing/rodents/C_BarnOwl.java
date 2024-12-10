@@ -1,4 +1,4 @@
-package thing;
+package thing.rodents;
 
 import java.util.TreeSet;
 
@@ -9,6 +9,10 @@ import data.constants.rodents.I_ConstantGerbil;
 import melanesim.C_ContextCreator;
 import melanesim.protocol.A_Protocol;
 import repast.simphony.engine.environment.RunState;
+import thing.A_Amniote;
+import thing.A_Animal;
+import thing.A_VisibleAgent;
+import thing.I_SituatedThing;
 import thing.dna.I_DiploidGenome;
 import thing.dna.species.plants.C_GenomeAcacia;
 import thing.ground.C_BurrowSystem;
@@ -134,7 +138,7 @@ public class C_BarnOwl extends A_Amniote implements I_ConstantGerbil {
 		double x = C_ContextCreator.randomGeneratorForInitialisation.nextDouble() / PREDATION_SUCCESS;
 		prey.checkDeath(x);
 		// if prey catched (checkDeath) prey enters the owl's belly (dead is used only to benefit from checkDeath).
-		if (prey.dead) {
+		if (prey.isDead()) {
 			prey.setDead(false);
 			prey.setDesire(NONE);
 			prey.setTrappedOnBoard(true);

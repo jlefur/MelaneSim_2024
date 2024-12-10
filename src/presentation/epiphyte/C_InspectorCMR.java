@@ -6,10 +6,10 @@ import java.util.TreeSet;
 import melanesim.protocol.A_Protocol;
 import presentation.dataOutput.C_FileWriter;
 import repast.simphony.essentials.RepastEssentials;
-import thing.C_RodentCmr;
 import thing.I_SituatedThing;
 import thing.ground.C_Trap;
 import thing.ground.I_Container;
+import thing.rodents.C_RodentCmr;
 
 /** manage traps and tagged rodents list, computes the global indicators from the retrieved individual values indicator
  * definitions

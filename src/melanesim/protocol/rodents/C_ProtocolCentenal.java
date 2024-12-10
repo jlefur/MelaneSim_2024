@@ -14,11 +14,11 @@ import presentation.display.C_CustomPanelSet_Rodent;
 import presentation.display.C_UserPanelRodent;
 import presentation.epiphyte.C_InspectorGenetic;
 import repast.simphony.context.Context;
-import thing.C_Rodent;
-import thing.C_RodentBlackRat;
 import thing.dna.species.rodents.C_GenomeRattusRattus;
 import thing.ground.C_City;
 import thing.ground.C_SoilCellGraphed;
+import thing.rodents.C_Rodent;
+import thing.rodents.C_RodentBlackRat;
 /** Initialize the simulation and manages the inputs coming from the csv events file / author J.Le Fur, Mboup 07/2012, rev. P.A.Mboup, 08.2013, JLF
  * 08.2014, 04.2015 */
 public class C_ProtocolCentenal extends A_ProtocolTransportation implements I_ConstantCentenal {

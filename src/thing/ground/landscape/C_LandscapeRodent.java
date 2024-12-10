@@ -10,9 +10,9 @@ import repast.simphony.space.continuous.NdPoint;
 import repast.simphony.util.ContextUtils;
 import thing.A_Animal;
 import thing.A_Organism;
-import thing.C_OrnitodorosSonrai;
-import thing.C_Rodent;
 import thing.ground.C_SoilCell;
+import thing.rodents.C_OrnitodorosSonrai;
+import thing.rodents.C_Rodent;
 
 /** The global container of a given protocol.<br>
  * 1/ Owns a grid/matrix with values ('affinity'), landplots of cells with the same affinity values.<br>

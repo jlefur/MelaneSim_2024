@@ -4,7 +4,7 @@ import java.util.TreeSet;
 
 import data.constants.rodents.I_ConstantDodel2;
 import repast.simphony.essentials.RepastEssentials;
-import thing.C_OrnitodorosSonrai;
+import thing.rodents.C_OrnitodorosSonrai;
 
 /** Data inspector: retrieves informations about ticks.
  * @author M SALL 10.2019 */

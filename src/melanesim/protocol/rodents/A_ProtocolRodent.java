@@ -5,12 +5,14 @@ import java.util.TreeSet;
 
 import melanesim.C_ContextCreator;
 import melanesim.protocol.A_Protocol;
+import presentation.display.C_CustomPanelSet;
+import presentation.epiphyte.C_InspectorEnergy;
 import presentation.epiphyte.C_InspectorPopulationRodent;
 import repast.simphony.context.Context;
 import repast.simphony.engine.environment.RunState;
-import thing.C_Rodent;
 import thing.I_SituatedThing;
 import thing.dna.C_GenomeAmniota;
+import thing.rodents.C_Rodent;
 
 /** author J.Le Fur, A.Comte 03.2012 / J.Le Fur 07.2012, 07.2013, 02.2014, 04.2020 */
 
@@ -18,7 +20,7 @@ public abstract class A_ProtocolRodent extends A_Protocol {
 	//
 	// FIELD
 	//
-	public static C_InspectorPopulationRodent inspector = null;
+//	public static C_InspectorPopulationRodent inspector = null;
 	//
 	// CONSTRUCTOR
 	//
@@ -26,8 +28,11 @@ public abstract class A_ProtocolRodent extends A_Protocol {
 	 * J.Le Fur 02.2013 */
 	public A_ProtocolRodent(Context<Object> ctxt) {
 		super(ctxt);// Init parameters, raster ground and higher level inspectors & displays
-		A_ProtocolRodent.inspector = new C_InspectorPopulationRodent();
+		A_Protocol.inspector = new C_InspectorPopulationRodent();
 		this.inspectorList.add(inspector);
+		A_Protocol.inspectorEnergy = new C_InspectorEnergy();
+		this.inspectorList.add(inspectorEnergy);
+		C_CustomPanelSet.addEnergyInspector(inspectorEnergy);
 	}
 	//
 	// OVERRIDEN METHODS
@@ -48,7 +53,7 @@ public abstract class A_ProtocolRodent extends A_Protocol {
 	}
 	@Override
 	protected void updateInspectors(int nbDeadRodents) {
-		A_ProtocolRodent.inspector.setNbDeath_Urodent(nbDeadRodents);
+		((C_InspectorPopulationRodent) inspector).setNbDeath_Urodent(nbDeadRodents);
 	}
 	//
 	// METHODS

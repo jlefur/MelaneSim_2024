@@ -13,13 +13,13 @@ import presentation.epiphyte.C_InspectorFossorialRodents;
 import presentation.epiphyte.C_InspectorPopulationRodent;
 import repast.simphony.context.Context;
 import thing.A_VisibleAgent;
-import thing.C_Rodent;
-import thing.C_RodentFossorial;
 import thing.I_SituatedThing;
 import thing.dna.C_GenomeAmniota;
 import thing.ground.C_BurrowSystem;
 import thing.ground.I_Container;
 import thing.ground.landscape.C_LandscapeRodent;
+import thing.rodents.C_Rodent;
+import thing.rodents.C_RodentFossorial;
 
 /** author J.Le Fur, A.Comte 03.2012 / J.Le Fur 07.2012, 07.2013, 02.2014, 04.2020 */
 

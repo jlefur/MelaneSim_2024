@@ -1,9 +1,12 @@
-package thing;
+package thing.rodents;
 
 import java.util.Calendar;
 import java.util.TreeSet;
 
 import data.constants.rodents.I_ConstantDodel;
+import thing.A_Amniote;
+import thing.A_Animal;
+import thing.I_SituatedThing;
 import thing.dna.I_DiploidGenome;
 import melanesim.protocol.A_Protocol;
 

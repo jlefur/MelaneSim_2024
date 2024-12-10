@@ -5,12 +5,12 @@ import java.util.TreeSet;
 
 import presentation.dataOutput.C_FileWriter;
 import repast.simphony.essentials.RepastEssentials;
-import thing.C_Rodent;
-import thing.C_RodentCaged;
 import thing.I_SituatedThing;
 import thing.dna.species.rodents.C_GenomeMastoErythroleucus;
 import thing.dna.species.rodents.C_GenomeMastoNatalensis;
 import thing.dna.species.rodents.C_GenomeMastomys;
+import thing.rodents.C_Rodent;
+import thing.rodents.C_RodentCaged;
 import data.C_Parameters;
 import melanesim.C_ContextCreator;
 import melanesim.protocol.rodents.C_ProtocolCage;

@@ -22,7 +22,6 @@ import melanesim.C_ContextCreator;
 import melanesim.protocol.A_Protocol;
 import melanesim.util.C_PathWandererAstar;
 import presentation.display.C_Background;
-import presentation.display.C_CustomPanelSet;
 import presentation.display.C_CustomPanelSet_Rodent;
 import presentation.display.C_UserPanelRodent;
 import presentation.epiphyte.C_InspectorBorreliaCrocidurae;
@@ -31,15 +30,7 @@ import presentation.epiphyte.C_InspectorGenetic;
 import presentation.epiphyte.C_InspectorOrnithodorosSonrai;
 import presentation.epiphyte.C_InspectorPopulationRodent;
 import repast.simphony.context.Context;
-import thing.A_HumanUrban;
 import thing.A_VisibleAgent;
-import thing.C_BorreliaCrocidurae;
-import thing.C_Cat;
-import thing.C_Food;
-import thing.C_HumanWalker;
-import thing.C_OrnitodorosSonrai;
-import thing.C_RodentDomestic2;
-import thing.C_TaxiManDodel;
 import thing.I_SituatedThing;
 import thing.dna.C_GenomeAmniota;
 import thing.dna.species.C_GenomeAcaria;
@@ -54,6 +45,14 @@ import thing.ground.C_SoilCellNode;
 import thing.ground.C_SoilCellUrban;
 import thing.ground.I_Container;
 import thing.ground.landscape.C_LandscapeUrban;
+import thing.rodents.A_HumanUrban;
+import thing.rodents.C_BorreliaCrocidurae;
+import thing.rodents.C_Cat;
+import thing.rodents.C_Food;
+import thing.rodents.C_HumanWalker;
+import thing.rodents.C_OrnitodorosSonrai;
+import thing.rodents.C_RodentDomestic2;
+import thing.rodents.C_TaxiManDodel;
 
 /** author J.Le Fur & M. Sall 03.2018 */
 public class C_ProtocolDodel2 extends A_ProtocolFossorial implements I_ConstantDodel2 {
@@ -110,7 +109,6 @@ public class C_ProtocolDodel2 extends A_ProtocolFossorial implements I_ConstantD
 		C_CustomPanelSet_Rodent.addBorreliaInspector(this.borreliaInspector);
 		C_CustomPanelSet_Rodent.addOrnithodorosInspector(this.ornithodorosInspector);
 		C_CustomPanelSet_Rodent.addGeneticInspector(this.geneticInspector);
-		C_CustomPanelSet.addEnergyInspector(this.energyInspector);
 		C_UserPanelRodent.addGeneticInspector(this.geneticInspector);
 		// Position concessions at the barycentre of cells
 		int i = 0, line, col;

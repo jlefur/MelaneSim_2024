@@ -7,9 +7,9 @@ import melanesim.protocol.A_Protocol;
 import repast.simphony.engine.environment.RunState;
 import repast.simphony.essentials.RepastEssentials;
 import thing.A_NDS;
-import thing.C_Rodent;
 import thing.I_SituatedThing;
 import thing.ground.C_BurrowSystem;
+import thing.rodents.C_Rodent;
 
 /** Data inspector: retrieves information on burrow systems and manages lists.
  * @author A Realini 05.2011 / J.Le Fur 09.2011, 07.2012, 01/2013 */

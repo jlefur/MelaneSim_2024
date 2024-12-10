@@ -14,9 +14,9 @@
 		<agents path="../bin, ../bin-groovy" filter="thing.ground.C_City" />
 		<agents path="../bin, ../bin-groovy" filter="thing.ground.C_Market" />
 		<agents path="../bin, ../bin-groovy" filter="thing.ground.C_LandPlot" />
-		<agents path="../bin, ../bin-groovy" filter="thing.C_Rodent" />
-		<agents path="../bin, ../bin-groovy" filter="thing.C_OrnitodorosSonrai" />
-		<agents path="../bin, ../bin-groovy" filter="thing.C_HumanCarrier" />
+		<agents path="../bin, ../bin-groovy" filter="thing.rodents.C_Rodent" />
+		<agents path="../bin, ../bin-groovy" filter="thing.rodents.C_OrnitodorosSonrai" />
+		<agents path="../bin, ../bin-groovy" filter="thing.rodents.C_HumanCarrier" />
 		<agents path="../bin, ../bin-groovy" filter="melanesim.protocol.A_Protocol" />
 <!-- 		<agents path="../bin, ../bin-groovy" filter="melanesim.protocol.C_ProtocolCage" /> -->
 		<agents path="../bin, ../bin-groovy" filter="presentation.epiphyte.C_Inspector" />

@@ -1,4 +1,4 @@
-package thing;
+package thing.rodents;
 
 import java.util.TreeSet;
 
@@ -6,6 +6,10 @@ import data.C_Parameters;
 import data.constants.rodents.I_ConstantGerbil;
 import data.converters.C_ConvertTimeAndSpace;
 import melanesim.protocol.A_Protocol;
+import thing.A_Amniote;
+import thing.A_Animal;
+import thing.A_VisibleAgent;
+import thing.I_SituatedThing;
 import thing.dna.I_DiploidGenome;
 import thing.dna.species.plants.C_GenomeBalanites;
 import thing.dna.species.plants.C_GenomeFabacea;
@@ -104,7 +108,7 @@ public class C_RodentGerbil extends C_RodentFossorial implements I_ConstantGerbi
 			}
 			else if (onePerceivedThing instanceof C_Vegetation) {
 				C_Vegetation oneVegetation = (C_Vegetation) onePerceivedThing;
-				if ((oneVegetation.genome instanceof C_GenomeBalanites) && this.canInteractWith(oneVegetation)) shelters.add(onePerceivedThing);
+				if ((oneVegetation.getGenome() instanceof C_GenomeBalanites) && this.canInteractWith(oneVegetation)) shelters.add(onePerceivedThing);
 			}
 		}
 		if (shelters.size() != 0) return shelters;
@@ -147,7 +151,7 @@ public class C_RodentGerbil extends C_RodentFossorial implements I_ConstantGerbi
 				return true;
 			}
 			// case of SHRUB
-			else if (this.target instanceof C_Vegetation && ((C_Vegetation) this.target).genome instanceof C_GenomeBalanites)
+			else if (this.target instanceof C_Vegetation && ((C_Vegetation) this.target).getGenome() instanceof C_GenomeBalanites)
 				this.actionEnterContainer((I_Container) this.target);// schrubs (vegetation) are I_Containers - jlf 07.2018
 			// Case rodent does not get target
 			else {

@@ -5,8 +5,8 @@ import java.util.TreeSet;
 
 import melanesim.protocol.A_Protocol;
 import melanesim.util.C_Graph;
-import thing.C_HumanCarrier;
 import thing.I_SituatedThing;
+import thing.rodents.C_HumanCarrier;
 
 import java.util.HashMap;
 

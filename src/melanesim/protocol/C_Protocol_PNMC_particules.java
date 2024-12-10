@@ -13,6 +13,8 @@ import data.C_ReadRasterDouble;
 import data.constants.I_ConstantPNMC_particules;
 import data.converters.C_ConvertGeographicCoordinates;
 import presentation.display.C_Background;
+import presentation.display.C_CustomPanelSet;
+import presentation.epiphyte.C_InspectorEnergy;
 import presentation.epiphyte.C_InspectorPopulationMarine;
 import repast.simphony.context.Context;
 import repast.simphony.engine.environment.RunState;
@@ -56,10 +58,11 @@ public class C_Protocol_PNMC_particules extends A_Protocol implements I_Constant
 			lp.bornCoord_Umeter = this.landscape.getThingCoord_Umeter(lp.getCurrentSoilCell());
 		}
 		// INSPECTOR
-		marineInspector = new C_InspectorPopulationMarine();
-		inspectorList.add(marineInspector);
-		
 		A_Protocol.inspector = new C_InspectorPopulationMarine();
+		inspectorList.add(inspector);
+		A_Protocol.inspectorEnergy = new C_InspectorEnergy();
+		this.inspectorList.add(inspectorEnergy);
+		C_CustomPanelSet.addEnergyInspector(inspectorEnergy);
 		facilityMap = new C_Background(-2.35, 206., 134.);
 	}
 	//

@@ -20,6 +20,7 @@ import thing.ground.A_Container;
 import thing.ground.A_SupportedContainer;
 import thing.ground.I_Container;
 import thing.ground.landscape.C_Landscape;
+import thing.rodents.C_BorreliaCrocidurae;
 
 /** This class accounts for animals as moving agents.
  * @author Q.Baduel, J-E Longueville, J. Le Fur 2011-02, 2013.01, 04.2015, 09.2020 */

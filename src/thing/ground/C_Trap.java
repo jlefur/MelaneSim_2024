@@ -3,8 +3,8 @@ package thing.ground;
 
 import melanesim.C_ContextCreator;
 import melanesim.protocol.A_Protocol;
-import thing.C_RodentCmr;
 import thing.I_SituatedThing;
+import thing.rodents.C_RodentCmr;
 
 /** A trap may be opened, closed, full; it can catch rodent
  * @author J.Le Fur and M.Diakhate, july 2013, rev. 27.09.13 */
@@ -22,7 +22,7 @@ public class C_Trap extends C_BurrowSystem implements data.constants.rodents.I_C
 	//
 	// METHODS
 	//
-	/** Add rodent in trap's occupantList if : 1° Trap is open, 2° Rodent is not already trapped (check), 3° Trap is not full of rodents, 4°
+	/** Add rodent in trap's occupantList if : 1ï¿½ Trap is open, 2ï¿½ Rodent is not already trapped (check), 3ï¿½ Trap is not full of rodents, 4ï¿½
 	 * TRAP_LOADING_PROBA >= randomProbability */
 	public void trapRodent(C_RodentCmr rodentBandia) {
 		// control

@@ -27,9 +27,6 @@ import repast.simphony.engine.environment.RunEnvironment;
 import repast.simphony.engine.environment.RunState;
 import repast.simphony.util.collections.IndexedIterable;
 import thing.A_NDS;
-import thing.C_BarnOwl;
-import thing.C_RodentGerbil;
-import thing.C_Vegetation;
 import thing.I_SituatedThing;
 import thing.dna.species.C_GenomeTytoAlba;
 import thing.dna.species.plants.C_GenomeAcacia;
@@ -39,6 +36,9 @@ import thing.dna.species.plants.C_GenomePoacea;
 import thing.dna.species.rodents.C_GenomeGerbillusNigeriae;
 import thing.ground.C_Nest;
 import thing.ground.C_SoilCellSavanna;
+import thing.rodents.C_BarnOwl;
+import thing.rodents.C_RodentGerbil;
+import thing.rodents.C_Vegetation;
 
 /** Initialize the simulation and manage inputs coming from the csv events file
  * @author J.Le Fur, 10.2014, rev. M.Sall 12.2015, JLF 02.2021 */

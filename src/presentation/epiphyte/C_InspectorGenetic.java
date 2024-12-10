@@ -6,11 +6,11 @@ import java.util.Iterator;
 
 import presentation.dataOutput.C_FileWriter;
 import repast.simphony.essentials.RepastEssentials;
-import thing.C_Rodent;
 import thing.dna.C_ChromosomePair;
 import thing.dna.C_GenePair;
 import thing.dna.C_GenomeEucaryote;
 import thing.dna.C_XsomePairMicrosat;
+import thing.rodents.C_Rodent;
 
 import org.locationtech.jts.geom.Coordinate;
 
