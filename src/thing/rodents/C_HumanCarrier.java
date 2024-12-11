@@ -251,10 +251,7 @@ public class C_HumanCarrier extends A_Human implements I_ConstantStringRodents, 
 	//
 	// SETTERS & GETTERS
 	//
-	/** needed for @see manageReadEventTypes.manageReadEventTypes */
-	public I_Container retrieveMyHome() {
-		return this.myHome;
-	}
+
 	public void setCityList(TreeSet<C_City> newCityList) {
 		this.cityList = newCityList;
 	}

@@ -105,7 +105,7 @@ public abstract class A_Container extends A_VisibleAgent implements I_Container 
 	//
 	/** Recursively set the value passed to self and contained containers affinity / Author Le Fur 03.2015 */
 	public void setAffinity(int a) {
-		affinity = a;// TODO JLF 2015.08 probably not generic and functional; has to be checked everywhere for cleaning
+		this.affinity = a;// TODO JLF 2015.08 probably not generic and functional; has to be checked everywhere for cleaning
 		for (I_Container oneContainer : this.getContainerList()) {
 			oneContainer.setAffinity(a);
 			// 2016.12 JLF affinity to show full cells on GUI
@@ -125,7 +125,8 @@ public abstract class A_Container extends A_VisibleAgent implements I_Container 
 		return false;
 	}
 	public boolean isFull() {
-		return this.getCarryingCapacity_Urodent() < this.getLoad_Urodent();
+		if (this.dead) return true;
+		else return this.getCarryingCapacity_Urodent() < this.getLoad_Urodent();
 	}
 	/** @return the i or x coord in the grid (ex-SoilCell) matrix */
 	public int retrieveLineNo() {
@@ -153,25 +154,27 @@ public abstract class A_Container extends A_VisibleAgent implements I_Container 
 		else {
 			containers = this.getContainerList();
 			agents.addAll(this.occupantList);
-//			System.out.println("A_Container.getFullOccupantList()"+this);
+			// System.out.println("A_Container.getFullOccupantList()"+this);
 			for (I_Container mineContainer : containers) {
-//				System.out.println("A_Container.getFullOccupantList()"+" -> "+ mineContainer);
+				// System.out.println("A_Container.getFullOccupantList()"+" -> "+ mineContainer);
 				// A priori, no infinite loops in case of mutual referencing
-				agents.addAll(mineContainer.getFullOccupantList());}
+				agents.addAll(mineContainer.getFullOccupantList());
+			}
 			return agents;
 		}
 	}
 	/** @return containerList: the list of I_containers in this container; do not recurse */
 	public TreeSet<I_Container> getContainerList() {
 		TreeSet<I_Container> containerList = new TreeSet<I_Container>();
-		for (I_SituatedThing thing : this.occupantList) if (thing instanceof I_Container)
-			containerList.add((I_Container) thing);
+		for (I_SituatedThing thing : this.occupantList)
+			if (thing instanceof I_Container) containerList.add((I_Container) thing);
 		return containerList;
 	}
 	/** @return rodent_list: the list of rodents in this container; do not recurse */
 	public TreeSet<C_Rodent> getRodentList() {
 		TreeSet<C_Rodent> rodents = new TreeSet<C_Rodent>();
-		for (I_SituatedThing thing : this.occupantList) if (thing instanceof C_Rodent) rodents.add((C_Rodent) thing);
+		for (I_SituatedThing thing : this.occupantList)
+			if (thing instanceof C_Rodent) rodents.add((C_Rodent) thing);
 		return rodents;
 	}
 	/** Recursively return a treeset of all rodents including those in the contained containers/ Author Le Fur 03.2012, rev.
@@ -179,9 +182,10 @@ public abstract class A_Container extends A_VisibleAgent implements I_Container 
 	 * @return rodents: a treeset of rodents in the container */
 	public TreeSet<C_Rodent> getFullRodentList() {
 		TreeSet<C_Rodent> rodents = new TreeSet<C_Rodent>();
-		for (I_SituatedThing agent : getFullOccupantList()) if (agent instanceof C_Rodent) {
-			rodents.add((C_Rodent) agent);
-		}
+		for (I_SituatedThing agent : getFullOccupantList())
+			if (agent instanceof C_Rodent) {
+				rodents.add((C_Rodent) agent);
+			}
 		return rodents;
 	}
 	/** Author Le Fur 03.2015

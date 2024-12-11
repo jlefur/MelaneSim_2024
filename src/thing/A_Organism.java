@@ -38,7 +38,11 @@ public abstract class A_Organism extends A_SupportedContainer {
 		this.myHome = myHome;
 	}
 	public String getMyHome() {
-		return this.myHome.toString();
+		if (this.myHome != null) return this.myHome.toString();
+		else return "no Home";
+	}
+	public I_Container retrieveMyHome() {
+		return this.myHome;
 	}
 	public I_DiploidGenome getGenome() {
 		return this.genome;

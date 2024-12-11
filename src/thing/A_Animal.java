@@ -48,7 +48,7 @@ public abstract class A_Animal extends A_Organism implements I_ConstantNumeric {
 		String sex = "+F:";
 		if (testMale()) sex = "-M:";
 		this.setMyName(sex + this.retrieveMyName());
-		this.myHome=this.currentSoilCell;
+		this.myHome = this.currentSoilCell;
 	}
 	//
 	// OVERRIDEN METHOD
@@ -62,7 +62,8 @@ public abstract class A_Animal extends A_Organism implements I_ConstantNumeric {
 			//
 			// TWO REFLEX ACTIVITIES
 			this.checkDanger();
-			this.setHasToLeaveFullContainer(this.currentSoilCell.isFull());
+			if (this.currentSoilCell != null) this.setHasToLeaveFullContainer(this.currentSoilCell.isFull());
+			else this.setHasToLeaveFullContainer(true); // if container is dead has to disperse JLF 2024
 			if (this.hasToLeaveFullContainer) this.actionDisperse();
 			else {
 				//
@@ -463,7 +464,8 @@ public abstract class A_Animal extends A_Organism implements I_ConstantNumeric {
 	public void setTrappedOnBoard(boolean status) {
 		this.trappedOnBoard = status;
 		this.hasToSwitchFace = true;
-		if (status) this.speed_UmeterByTick = this.speed_UmeterByTick / 10.;// TODO number in source 2017.05 JLF & MS decrease speed when trapped on board
+		if (status) this.speed_UmeterByTick = this.speed_UmeterByTick / 10.;// TODO number in source 2017.05 JLF & MS decrease
+																			// speed when trapped on board
 		else
 			this.speed_UmeterByTick = ((C_GenomeAnimalia) this.genome).getSpeed_UmeterByDay()
 					/ C_ConvertTimeAndSpace.oneDay_Utick;

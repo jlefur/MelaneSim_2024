@@ -2,8 +2,6 @@ package thing.rodents;
 
 import java.util.TreeSet;
 
-import org.locationtech.jts.geom.Coordinate;
-
 import data.constants.rodents.I_ConstantDodel2;
 import melanesim.protocol.A_Protocol;
 import melanesim.util.C_VariousUtilities;
@@ -14,10 +12,6 @@ import thing.dna.I_DiploidGenome;
 import thing.ground.C_SoilCellUrban;
 
 public class C_Cat extends A_Amniote implements I_ConstantDodel2 {
-	//
-	// FIELD
-	//
-	public Coordinate myHome = new Coordinate();
 	//
 	// CONSTRUCTOR
 	//

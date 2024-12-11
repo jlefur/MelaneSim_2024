@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!-- fileName : parameters.xml -->
-<!-- protocolName : PNMC-plancton -->
+<!-- protocolName : CHIZE -->
 <parameters>
 
 	<!-- COMMON INTER-PROTOCOLS -->
@@ -12,7 +12,7 @@
 		type="java.lang.Integer" defaultValue="3" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
 	<parameter name="CELL_WIDTH_Ucm" displayName="0c/ nb centimeters in one pixel (default=exact scale)"
-		type="java.lang.Integer" defaultValue="480743" isReadOnly="false"
+		type="java.lang.Integer" defaultValue="748" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
 
 	<!-- Switches -->
@@ -23,7 +23,7 @@
 		type="boolean" defaultValue="false" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$BooleanConverter" />
 	<parameter name="DISPLAY_MAP" displayName="0f/ Display CAPTION above ground (tip: unzoom)"
-		type="boolean" defaultValue="false" isReadOnly="false"
+		type="boolean" defaultValue="true" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$BooleanConverter" />
 	<parameter name="IMAGE" displayName="0g/ ICONS (display objects using icons)"
 		type="boolean" defaultValue="false" isReadOnly="false"
@@ -31,14 +31,31 @@
 		
 	<!-- PROTOCOL DEPENDENT -->
 	<parameter name="PROTOCOL" displayName="1a/ _________ PROTOCOL SPECIFIC _________"
-		type="java.lang.String" defaultValue="ocean.PNMC_plancton" isReadOnly="true"
+		type="java.lang.String" defaultValue="rodents.CHIZE" isReadOnly="true"
 		converter="repast.simphony.parameter.StringConverterFactory$StringStringConverter" />
+	<parameter name="PERSISTANCE_BURROW" displayName="1b/ Burrows persist"
+		type="boolean" defaultValue="false" isReadOnly="false"
+		converter="repast.simphony.parameter.StringConverterFactory$BooleanConverter" />
 	<parameter name="EXCLOS" displayName="1c/ Metapopulation(exclos)"
 		type="boolean" defaultValue="false" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$BooleanConverter" />
+	<parameter name="INIT_POP_SIZE" displayName="1d/ Initialization: Population size (indiv.)"
+		type="java.lang.Integer" defaultValue="111" isReadOnly="false"
+		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
+	<parameter name="NUMBER_OF_BURROW_SYSTEM" displayName="1e/ Initialization: Nb burrow systems"
+		type="java.lang.Integer" defaultValue="4" isReadOnly="false"
+		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
+
+	<!-- reproduction (months using january=00.) -->
+	<parameter name="REPRO_START_Umonth" displayName="1f/ Reprod. season start (month, Jan=0)"
+		type="java.lang.Integer" defaultValue="03" isReadOnly="false"
+		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
+	<parameter name="REPRO_END_Umonth" displayName="1g/ Reprod. season end(month, Jan=0)"
+		type="java.lang.Integer" defaultValue="09" isReadOnly="false"
+		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
 
 	<parameter name="RASTER_FILE" displayName="1h/grid filename"
-		type="java.lang.String" defaultValue="20231128-TOPEX-ZEE2_GRILLEV2.1.txt" isReadOnly="false"
+		type="java.lang.String" defaultValue="ChizeCrops.1c.txt" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$StringStringConverter" />
 
 	<!-- SIMULATION SETTING -->

@@ -27,11 +27,13 @@ public class C_Plankton extends A_Organism {
 	//
 	/** for probe display purpose */
 	public double getSpeedEast() {
-		return ((C_MarineCell) this.getCurrentSoilCell()).getSpeedEastward_UmeterPerSecond();
+		if (this.isDead()) return 0.0;
+		else return ((C_MarineCell) this.getCurrentSoilCell()).getSpeedEastward_UmeterPerSecond();
 	}
 	/** for probe display purpose */
 	public double getSpeedNorth() {
-		return ((C_MarineCell) this.getCurrentSoilCell()).getSpeedNorthward_UmeterPerSecond();
+		if (this.isDead()) return 0.0;
+		else return ((C_MarineCell) this.getCurrentSoilCell()).getSpeedNorthward_UmeterPerSecond();
 	}
 	/** Maximum distance (straight line) from its birth location */
 	public void computeMaxDispersalDistance_Umeter() {

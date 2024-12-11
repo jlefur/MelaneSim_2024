@@ -778,3 +778,168 @@ Caused by: java.lang.NullPointerException: Cannot invoke "thing.ground.C_MarineC
 	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
 	at com.jgoodies.binding.beans.PropertyAccessor.getValue(PropertyAccessor.java:160) ~[?:?]
 	... 11 more
+FATAL [Thread-4] 2024-12-11T11:34:55,388 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (83.0)
+com.jgoodies.binding.beans.PropertyAccessException: Failed to read an adapted Java Bean property.
+cause=java.lang.NullPointerException: Cannot invoke "thing.ground.C_MarineCell.getSpeedEastward_UmeterPerSecond()" because the return value of "thing.C_Plankton.getCurrentSoilCell()" is null
+bean=null
+bean type=thing.C_Plankton
+property name=speedEast
+property type=double
+property reader=public double thing.C_Plankton.getSpeedEast()
+	at com.jgoodies.binding.beans.PropertyAccessException.createReadAccessException(PropertyAccessException.java:92) ~[?:?]
+	at com.jgoodies.binding.beans.PropertyAccessor.getValue(PropertyAccessor.java:162) ~[?:?]
+	at com.jgoodies.binding.beans.BeanAdapter.getValue0(BeanAdapter.java:1149) ~[?:?]
+	at com.jgoodies.binding.beans.BeanAdapter.access$500(BeanAdapter.java:288) ~[?:?]
+	at com.jgoodies.binding.beans.BeanAdapter$SimplePropertyAdapter.fireChange(BeanAdapter.java:1434) ~[?:?]
+	at repast.simphony.ui.probe.ProbeModel$ProbeBeanAdapter$SimplePropertyAdapter.fireChange(ProbeModel.java:64) ~[?:?]
+	at repast.simphony.ui.probe.ProbeModel$ProbeBeanAdapter.fireChange(ProbeModel.java:52) ~[?:?]
+	at repast.simphony.ui.probe.ProbeModel.update(ProbeModel.java:108) ~[?:?]
+	at repast.simphony.ui.probe.Probe.update(Probe.java:76) ~[?:?]
+	at repast.simphony.ui.probe.ProbeManager.update(ProbeManager.java:76) ~[?:?]
+	at repast.simphony.ui.RSApplication.tickCountUpdated(RSApplication.java:622) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:60) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+Caused by: java.lang.NullPointerException: Cannot invoke "thing.ground.C_MarineCell.getSpeedEastward_UmeterPerSecond()" because the return value of "thing.C_Plankton.getCurrentSoilCell()" is null
+	at thing.C_Plankton.getSpeedEast(C_Plankton.java:30) ~[?:?]
+	at jdk.internal.reflect.GeneratedMethodAccessor36.invoke(Unknown Source) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at com.jgoodies.binding.beans.PropertyAccessor.getValue(PropertyAccessor.java:160) ~[?:?]
+	... 11 more
+FATAL [Thread-4] 2024-12-11T11:52:49,935 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (2330.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.lang.NullPointerException: Cannot invoke "thing.ground.I_Container.isFull()" because "this.currentSoilCell" is null
+	at thing.A_Animal.step_Utick(A_Animal.java:65) ~[?:?]
+	at thing.A_Amniote.step_Utick(A_Amniote.java:92) ~[?:?]
+	at melanesim.protocol.A_Protocol.step_Utick(A_Protocol.java:121) ~[?:?]
+	at melanesim.protocol.rodents.C_ProtocolChize.step_Utick(C_ProtocolChize.java:85) ~[?:?]
+	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+FATAL [Thread-4] 2024-12-11T11:55:33,632 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (0.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.lang.NullPointerException: Cannot invoke "thing.ground.I_Container.isFull()" because "this.currentSoilCell" is null
+	at thing.A_Animal.step_Utick(A_Animal.java:65) ~[?:?]
+	at thing.A_Amniote.step_Utick(A_Amniote.java:92) ~[?:?]
+	at melanesim.protocol.A_Protocol.step_Utick(A_Protocol.java:121) ~[?:?]
+	at melanesim.protocol.rodents.C_ProtocolChize.step_Utick(C_ProtocolChize.java:85) ~[?:?]
+	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+FATAL [Thread-12] 2024-12-11T11:56:09,917 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (1145.0)
+com.jgoodies.binding.beans.PropertyAccessException: Failed to read an adapted Java Bean property.
+cause=java.lang.NullPointerException: Cannot invoke "thing.ground.C_SoilCell.getMyLandPlot()" because "this.currentSoilCell" is null
+bean=null
+bean type=thing.ground.C_BurrowSystem
+property name=carryingCapacity_Urodent
+property type=int
+property reader=public int thing.ground.C_SoilCell.getCarryingCapacity_Urodent()
+	at com.jgoodies.binding.beans.PropertyAccessException.createReadAccessException(PropertyAccessException.java:92) ~[?:?]
+	at com.jgoodies.binding.beans.PropertyAccessor.getValue(PropertyAccessor.java:162) ~[?:?]
+	at com.jgoodies.binding.beans.BeanAdapter.getValue0(BeanAdapter.java:1149) ~[?:?]
+	at com.jgoodies.binding.beans.BeanAdapter.access$500(BeanAdapter.java:288) ~[?:?]
+	at com.jgoodies.binding.beans.BeanAdapter$SimplePropertyAdapter.fireChange(BeanAdapter.java:1434) ~[?:?]
+	at repast.simphony.ui.probe.ProbeModel$ProbeBeanAdapter$SimplePropertyAdapter.fireChange(ProbeModel.java:64) ~[?:?]
+	at repast.simphony.ui.probe.ProbeModel$ProbeBeanAdapter.fireChange(ProbeModel.java:52) ~[?:?]
+	at repast.simphony.ui.probe.ProbeModel.update(ProbeModel.java:108) ~[?:?]
+	at repast.simphony.ui.probe.Probe.update(Probe.java:76) ~[?:?]
+	at repast.simphony.ui.probe.ProbeManager.update(ProbeManager.java:76) ~[?:?]
+	at repast.simphony.ui.RSApplication.tickCountUpdated(RSApplication.java:622) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:60) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+Caused by: java.lang.NullPointerException: Cannot invoke "thing.ground.C_SoilCell.getMyLandPlot()" because "this.currentSoilCell" is null
+	at thing.ground.A_SupportedContainer.getMyLandPlot(A_SupportedContainer.java:50) ~[?:?]
+	at thing.ground.C_SoilCell.getCarryingCapacity_Urodent(C_SoilCell.java:43) ~[?:?]
+	at jdk.internal.reflect.GeneratedMethodAccessor39.invoke(Unknown Source) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at com.jgoodies.binding.beans.PropertyAccessor.getValue(PropertyAccessor.java:160) ~[?:?]
+	... 11 more
+FATAL [Thread-18] 2024-12-11T11:56:50,615 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (2208.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.lang.NullPointerException: Cannot invoke "thing.ground.I_Container.isFull()" because "this.currentSoilCell" is null
+	at thing.A_Animal.step_Utick(A_Animal.java:65) ~[?:?]
+	at thing.A_Amniote.step_Utick(A_Amniote.java:92) ~[?:?]
+	at melanesim.protocol.A_Protocol.step_Utick(A_Protocol.java:121) ~[?:?]
+	at melanesim.protocol.rodents.C_ProtocolChize.step_Utick(C_ProtocolChize.java:85) ~[?:?]
+	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+FATAL [Thread-6] 2024-12-11T12:01:13,184 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (1297.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.lang.NullPointerException: Cannot invoke "thing.ground.I_Container.agentLeaving(thing.I_SituatedThing)" because the return value of "thing.I_SituatedThing.getCurrentSoilCell()" is null
+	at thing.ground.landscape.C_Landscape.moveToContainer(C_Landscape.java:190) ~[?:?]
+	at thing.ground.landscape.C_Landscape.checkAndMoveToNewCell(C_Landscape.java:225) ~[?:?]
+	at thing.ground.landscape.C_Landscape.translate(C_Landscape.java:213) ~[?:?]
+	at thing.A_Animal.actionMove(A_Animal.java:337) ~[?:?]
+	at thing.A_Animal.actionDisperse(A_Animal.java:264) ~[?:?]
+	at thing.rodents.C_RodentFossorial.actionDisperse(C_RodentFossorial.java:66) ~[?:?]
+	at thing.A_Animal.step_Utick(A_Animal.java:67) ~[?:?]
+	at thing.A_Amniote.step_Utick(A_Amniote.java:92) ~[?:?]
+	at melanesim.protocol.A_Protocol.step_Utick(A_Protocol.java:121) ~[?:?]
+	at melanesim.protocol.rodents.C_ProtocolChize.step_Utick(C_ProtocolChize.java:85) ~[?:?]
+	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
