@@ -248,17 +248,27 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 	 * @param spatial : représentation de l'agent (image ou forme géométrique) */
 	@Override
 	public VSpatial getVSpatial(I_SituatedThing agent, VSpatial spatial) {
+
+		// 1. BACKGROUND specific case
 		if (agent instanceof C_Background) {
 			if (((C_Background) agent).hasToSwitchFace || spatial == null)
 				spatial = factory.getNamedSpatial(selectImg.getNameOfImage(agent));
 		}
+
+		// 2. change spatial only is requested
 		else if (((A_VisibleAgent) agent).hasToSwitchFace || spatial == null) {
+
+			// 3. TAGGED agent specific case
 			if (agent instanceof A_SupportedContainer && ((A_SupportedContainer) agent).isa_Tag()) {
 				spatial = factory.getNamedSpatial(selectImg.getNameOfImage(agent));
 			}
+
+			// 4. fetch the icon if IMAGE is on
 			else if (C_Parameters.IMAGE) {
 				spatial = factory.getNamedSpatial(selectImg.getNameOfImage(agent));
 			}
+
+			// 5. Various case when IMAGE is off (design the shape)
 			else {
 				if (agent instanceof C_Vegetation) {
 					spatial = factory.createCircle(CIRCLE_RADIUS * 0.5f, 3);// triangle shape
@@ -295,7 +305,7 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 	@Override
 	/** TODO number in source for image scales MS 2016, JLF 2021, 2024 */
 	public float getScale(I_SituatedThing object) {
-		
+
 		// 1.- EITHER icons OR ellipses are displayed
 		float sscale = this.imageScale;
 		if (object instanceof C_Vegetation) {
@@ -332,7 +342,7 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 		else sscale = this.ellipseScale;
 
 		// 4.- double scale if agent is TAGGED
-		//if (object instanceof A_SupportedContainer && ((A_SupportedContainer) object).isa_Tag()) sscale = sscale * 2;
+		// if (object instanceof A_SupportedContainer && ((A_SupportedContainer) object).isa_Tag()) sscale = sscale * 2;
 		return sscale;
 	}
 

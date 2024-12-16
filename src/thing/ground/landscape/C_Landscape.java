@@ -35,8 +35,10 @@ import thing.A_Organism;
 import thing.A_VisibleAgent;
 import thing.I_SituatedThing;
 import thing.dna.I_DiploidGenome;
+import thing.ground.A_SupportedContainer;
 import thing.ground.C_LandPlot;
 import thing.ground.C_SoilCell;
+import thing.ground.C_SoilCellUrban;
 import thing.ground.I_Container;
 
 /** The global container of a given protocol.<br>
@@ -92,6 +94,9 @@ public class C_Landscape implements I_ConstantString {
 		// Fill both (!) gridValueLayer and C_SoilCell matrices with the value read in the raster
 		this.createGround(matriceLue);
 	}
+	//
+	// METHODS
+	//
 	protected int[][] readRasterFile(String url) {
 		// READ RASTER FILE
 		int[][] matriceLue;
@@ -106,9 +111,6 @@ public class C_Landscape implements I_ConstantString {
 		}
 		return matriceLue;
 	}
-	//
-	// METHODS
-	//
 	/** Initialize both (!) gridValueLayer and container(ex: C_SoilCell) matrices
 	 * @param matriceLue the values read in the raster, bitmap<br>
 	 *            rev. JLF 11.2015 */
@@ -331,8 +333,9 @@ public class C_Landscape implements I_ConstantString {
 		incomer.hasLeftDomain = false;
 		incomer.hasEnteredDomain = true;
 		incomer.hasToSwitchFace = true;
-//		incomer.setAge_Uday(animalLeavingLandscape.getAge_Uday());
+		// incomer.setAge_Uday(animalLeavingLandscape.getAge_Uday());
 		incomer.setAge_Uday(0.);
+		if (((A_SupportedContainer) animalLeavingLandscape).isa_Tag()) incomer.seta_Tag(true);
 		context.add(incomer);
 		if (incomer instanceof A_Animal) ((A_Animal) incomer).setHasToLeaveFullContainer(true);
 		if (incomer instanceof A_Organism) updateInspectors((A_Organism) incomer);
@@ -446,6 +449,24 @@ public class C_Landscape implements I_ConstantString {
 		return Math.sqrt((C_Parameters.CELL_WIDTH_Umeter / 2) * (C_Parameters.CELL_WIDTH_Umeter / 2)
 				+ (C_Parameters.CELL_WIDTH_Umeter / 2) * (C_Parameters.CELL_WIDTH_Umeter / 2));
 	}
+	/** Get the neighbours of a given cell / JLF 2024 from PAM 2013 */
+	public TreeSet<I_Container> getCellNeighbours(I_Container cell) {
+		TreeSet<I_Container> neighbours = new TreeSet<I_Container>();
+		int x0 = cell.retrieveLineNo();
+		int y0 = cell.retrieveColNo();
+		for (int x = x0 - 1; x <= x0 + 1; x++) {
+			for (int y = y0 - 1; y <= y0 + 1; y++) {
+				if (!(x == x0 && y == y0) && (0 <= x && x < dimension_Ucell.getWidth() && 0 <= y && y < dimension_Ucell
+						.getHeight())) {
+					neighbours.add(grid[x][y]);
+				}
+			}
+		}
+		return neighbours;
+	}
+	//
+	// GETTERS
+	//
 	/** Verify if point is in grid<br>
 	 * author MS 2019.08<br>
 	 * TODO JLF&MS 2019.08 verify redundancy with @see checkGoalPosition */
@@ -454,9 +475,6 @@ public class C_Landscape implements I_ConstantString {
 		return (onePoint.x >= 0.) && (this.getDimension_Ucell().width > onePoint.x) && (this
 				.getDimension_Ucell().height > onePoint.y) && (onePoint.y >= 0.);
 	}
-	//
-	// GETTERS
-	//
 	/** Getter of the color colorMap.
 	 * @return map */
 	public static Map<Integer, Color> getColormap() {

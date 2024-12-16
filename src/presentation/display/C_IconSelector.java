@@ -12,6 +12,8 @@ import data.constants.I_ConstantPNMC_particules;
 import data.constants.rodents.I_ConstantImagesNames;
 import data.constants.rodents.I_ConstantStringRodents;
 import melanesim.protocol.A_Protocol;
+import melanesim.protocol.C_Protocol_PNMC_particules;
+import repast.simphony.engine.environment.RunState;
 import thing.A_Amniote;
 import thing.A_Animal;
 import thing.A_NDS;
@@ -275,7 +277,7 @@ public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC_p
 	 * d'ellipses et non d'images)
 	 * @return la nouvelle couleur de l'agent */
 	public static Color getColor(I_SituatedThing agent) {
-		if (C_Parameters.PROTOCOL.equals(PNMC_PK)) return Color.green;
+		if (C_Parameters.PROTOCOL.equals(PNMC_PK)) return getColorPNMC_PK(agent);
 		else if (C_Parameters.PROTOCOL.equals(CHIZE)) return getColorChize(agent);
 		else if (C_Parameters.PROTOCOL.equals(GERBIL)) return getColorGerbil(agent);
 		else if (C_Parameters.PROTOCOL.equals(ENCLOSURE)) return getColorMbour(agent);
@@ -288,6 +290,11 @@ public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC_p
 		else if (C_Parameters.PROTOCOL.equals(BANDIA)) return getColorBandia(agent);
 		else if (C_Parameters.PROTOCOL.equals(DODEL2)) return getColorDodel2(agent);
 		else return getColorChize(agent);
+	}
+
+	/**agent is plankton JLF 2024*/public static Color getColorPNMC_PK(I_SituatedThing agent) {
+		if (C_Protocol_PNMC_particules.DISPLAY_FACILITY_MAP) return new Color(172, 117, 213);// violet
+		else return new Color(22, 186, 49);
 	}
 
 	public static Color getColorGerbil(I_SituatedThing agent) {

@@ -12,20 +12,21 @@ import data.constants.I_ConstantNumeric;
 import data.constants.I_ConstantPNMC_particules;
 import data.constants.rodents.I_ConstantStringRodents;
 
-public class C_Style2dAffinityType implements ValueLayerStyleOGL, I_ConstantNumeric, I_ConstantStringRodents, I_ConstantPNMC_particules {
+public class C_Style2dAffinityType implements ValueLayerStyleOGL, I_ConstantNumeric, I_ConstantStringRodents,
+		I_ConstantPNMC_particules {
 	protected ValueLayer layer;// the layer to represent
-	//http://vminfotron-dev.mpl.ird.fr:8080/masto2_2/model/memos/memo16_ImplantationRaster.htm
+	// http://vminfotron-dev.mpl.ird.fr:8080/masto2_2/model/memos/memo16_ImplantationRaster.htm
 	Map<Integer, Color> colorMap;// the colormap is used to associate a color at each value of the layer
 	public C_Style2dAffinityType() {
 		// we try to get back the colormodel which should be read in the same time as the raster
-	    this.colorMap = new HashMap<Integer, Color>();
-	    this.colorMap = C_Landscape.getColormap();
+		this.colorMap = new HashMap<Integer, Color>();
+		this.colorMap = C_Landscape.getColormap();
 		// if there is no colormap we create one
 		if (this.colorMap == null) {
 			System.out.print("C_Style2dAffinityType(): colormap not found; creating colormap");
 			this.colorMap = new HashMap<Integer, Color>();
 			if (C_Parameters.PROTOCOL.equals(PNMC_PK)) {
-			    this.colorMap = colorMapChizeGrid(this.colorMap);
+				this.colorMap = colorMapPNMC(this.colorMap);
 				System.out.print(" PNMC particules");
 			}
 			else if (C_Parameters.PROTOCOL.equals(CHIZE)) {
@@ -33,35 +34,35 @@ public class C_Style2dAffinityType implements ValueLayerStyleOGL, I_ConstantNume
 				System.out.print(" Chize");
 			}
 			else if (C_Parameters.PROTOCOL.contains(CENTENAL)) {
-			    this.colorMap = colorMapCentenalGrid(this.colorMap);
+				this.colorMap = colorMapCentenalGrid(this.colorMap);
 				System.out.print(" Centenal");
 			}
 			else if (C_Parameters.PROTOCOL.equals(DECENAL)) {
-			    this.colorMap = colorMapDecenalGrid(this.colorMap);
+				this.colorMap = colorMapDecenalGrid(this.colorMap);
 				System.out.print(" Decenal");
 			}
 			else if (C_Parameters.PROTOCOL.equals(MUS_TRANSPORT)) {
-			    this.colorMap = colorMapDecenalGrid(this.colorMap);
+				this.colorMap = colorMapDecenalGrid(this.colorMap);
 				System.out.print(" Chize");
 			}
 			else if (C_Parameters.PROTOCOL.equals(DODEL)) {
-			    this.colorMap = colorMapAfricanVillage(this.colorMap);
+				this.colorMap = colorMapAfricanVillage(this.colorMap);
 				System.out.print(" African village");
 			}
 			else if (C_Parameters.PROTOCOL.equals(DODEL2)) {
-			    this.colorMap = colorMapDodel2(this.colorMap);
+				this.colorMap = colorMapDodel2(this.colorMap);
 				System.out.print(" Dodel 2");
 			}
 			else if (C_Parameters.PROTOCOL.equals(BANDIA)) {
-			    this.colorMap = colorMapBandia(this.colorMap);
+				this.colorMap = colorMapBandia(this.colorMap);
 				System.out.print(" Bandia");
 			}
 			else if (C_Parameters.PROTOCOL.equals(GERBIL)) {
-			    this.colorMap = colorMapGerbilLandcover(this.colorMap);
+				this.colorMap = colorMapGerbilLandcover(this.colorMap);
 				System.out.print(" Gerbil landcover");
 			}
 			else {
-			    this.colorMap = colorMapChizeGrid(this.colorMap);
+				this.colorMap = colorMapChizeGrid(this.colorMap);
 				System.out.print(" Chize");
 			}
 			System.out.println(": " + this.colorMap.size() + " colors identified");
@@ -81,10 +82,25 @@ public class C_Style2dAffinityType implements ValueLayerStyleOGL, I_ConstantNume
 	public float getCellSize() {
 		return cellSize.get(0);
 	}
+	public Map<Integer, Color> colorMapPNMC(Map<Integer, Color> colorMap) {
+		colorMap = new HashMap<Integer, Color>();
+		colorMap.put(0, new Color(0, 52, 121));// abysse fond
+		colorMap.put(1, new Color(87, 128, 174));// abysse bord
+		colorMap.put(2, new Color(100, 163, 240));
+		colorMap.put(3, new Color(125, 186, 243));
+		colorMap.put(4, new Color(150, 199, 240));//
+		colorMap.put(5, new Color(196, 224, 236));//
+		colorMap.put(6, new Color(239, 200, 121));
+		colorMap.put(7, new Color(241, 229, 213));// lagon
+		colorMap.put(8, new Color(58, 124, 76));// terre
+		colorMap.put(9, new Color(255, 255, 255));// unused
+		colorMap.put(BLACK_MAP_COLOR, new Color(0, 0, 0));
+		return colorMap;
+	}
 	public Map<Integer, Color> colorMapDodel2(Map<Integer, Color> colorMap) {
 		colorMap = new HashMap<Integer, Color>();
 		// R G B red green blue
-		colorMap.put(0, new Color(128, 128, 128)); //  Road
+		colorMap.put(0, new Color(128, 128, 128)); // ï¿½Road
 		colorMap.put(1, new Color(193, 138, 108)); // Track
 		colorMap.put(2, new Color(243, 240, 233)); // Street
 		colorMap.put(3, new Color(0, 0, 0)); // wall
@@ -95,34 +111,34 @@ public class C_Style2dAffinityType implements ValueLayerStyleOGL, I_ConstantNume
 		colorMap.put(8, new Color(232, 151, 40)); // workShop
 		colorMap.put(9, new Color(253, 168, 193)); // RoomFood
 		colorMap.put(10, new Color(25, 140, 40)); // Food store :255, 40, 40
-		colorMap.put(11, new Color(255, 255, 0)); // HouseDoor : 
-        colorMap.put(12, new Color(255, 0, 255)); // RoomDoor 
-        colorMap.put(13, new Color(141, 182, 20)); // Enclosure
-        colorMap.put(14, new Color(255, 0, 0)); // Thialaga
-        colorMap.put(15, new Color(255, 0, 0)); // Diomandou
-        colorMap.put(16, new Color(255, 0, 0)); // Diery Diouga
-        colorMap.put(17, new Color(255, 0, 0)); // Kogga Walo
-        colorMap.put(18, new Color(0, 91, 255)); // School
-        colorMap.put(19, new Color(255, 0, 0)); // Dodel interior
-        colorMap.put(20, new Color(255, 0, 0)); // Medina Dodel
-        colorMap.put(21, new Color(91, 255, 91)); // FIELD
-        colorMap.put(22, new Color(124, 116, 231)); // MOSQUE
-        colorMap.put(23, new Color(13, 255, 114)); // BAKERY
+		colorMap.put(11, new Color(255, 255, 0)); // HouseDoor :
+		colorMap.put(12, new Color(255, 0, 255)); // RoomDoor
+		colorMap.put(13, new Color(141, 182, 20)); // Enclosure
+		colorMap.put(14, new Color(255, 0, 0)); // Thialaga
+		colorMap.put(15, new Color(255, 0, 0)); // Diomandou
+		colorMap.put(16, new Color(255, 0, 0)); // Diery Diouga
+		colorMap.put(17, new Color(255, 0, 0)); // Kogga Walo
+		colorMap.put(18, new Color(0, 91, 255)); // School
+		colorMap.put(19, new Color(255, 0, 0)); // Dodel interior
+		colorMap.put(20, new Color(255, 0, 0)); // Medina Dodel
+		colorMap.put(21, new Color(91, 255, 91)); // FIELD
+		colorMap.put(22, new Color(124, 116, 231)); // MOSQUE
+		colorMap.put(23, new Color(13, 255, 114)); // BAKERY
 		return colorMap;
 	}
 	public Map<Integer, Color> colorMapCentenalGrid(Map<Integer, Color> colorMap) {
 		colorMap = new HashMap<Integer, Color>();
 		// R G B red green blue
-		colorMap.put(-1, new Color(29, 29, 165)); //  Border, Ocean, and Abroad
-		colorMap.put(0, new Color(29, 29, 165)); //  Border, Ocean, and Abroad
+		colorMap.put(-1, new Color(29, 29, 165)); // ï¿½Border, Ocean, and Abroad
+		colorMap.put(0, new Color(29, 29, 165)); // ï¿½Border, Ocean, and Abroad
 		colorMap.put(1, new Color(155, 155, 155)); // ROAD (black)
 		colorMap.put(2, new Color(255, 204, 153)); // Ferlo
-		colorMap.put(3, new Color(255, 255, 50)); // Grande côte and delta
+		colorMap.put(3, new Color(255, 255, 50)); // Grande cï¿½te and delta
 		colorMap.put(4, new Color(255, 245, 24)); // Soudanien
 		colorMap.put(5, new Color(242, 226, 9)); // Sine
-		colorMap.put(6, new Color(237, 180, 23)); // Terres neuves and zone cotonnière
+		colorMap.put(6, new Color(237, 180, 23)); // Terres neuves and zone cotonniï¿½re
 		colorMap.put(7, new Color(255, 0, 0)); // CITY (red)
-		colorMap.put(9, new Color(197, 216, 21)); // Haute Casamance and Sénégal Oriental
+		colorMap.put(9, new Color(197, 216, 21)); // Haute Casamance and Sï¿½nï¿½gal Oriental
 		colorMap.put(10, new Color(245, 245, 150)); // Niayes
 		colorMap.put(11, new Color(242, 255, 99)); // Saloum
 		colorMap.put(12, new Color(17, 178, 151)); // Basse-Casamance

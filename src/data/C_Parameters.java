@@ -19,7 +19,7 @@ public class C_Parameters implements I_ConstantStringRodents, I_ConstantPNMC_par
 	public static boolean BLACK_MAP = false;
 
 	// SPACE //
-	/** EXCLOS: if yes, rodents leave the domain when they reach bordure (& are replaced with a new one), if no, rebound and stay
+	/** EXCLOS: if yes, agents leave the domain when they reach bordure (+ replaced with a new one), if no, rebound and stay
 	 * within the domain<br>
 	 * @see thing.ground.landscape.C_Landscape#bordure(A_Animal) */
 	public static boolean EXCLOS;

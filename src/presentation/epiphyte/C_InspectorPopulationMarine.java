@@ -32,6 +32,7 @@ public class C_InspectorPopulationMarine extends A_Inspector {
 	/** compute the number of agent within the context */
 	@Override
 	public void indicatorsCompute() {
+		super.indicatorsCompute();
 		C_InspectorPopulationMarine.planktonList = new TreeSet<C_Plankton>();
 		meanDispersal = 0.;
 		maxDispersal = 0.;

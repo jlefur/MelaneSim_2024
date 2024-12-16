@@ -35,6 +35,7 @@ public class C_Protocol_PNMC_particules extends A_Protocol implements I_Constant
 	private C_ConvertGeographicCoordinates geographicCoordinateConverter = null;
 	protected C_InspectorPopulationMarine marineInspector;
 	Random random = new Random();
+	public static boolean DISPLAY_FACILITY_MAP = false;// used to change plankton color if facility map is on
 	//
 	// CONSTRUCTOR
 	//
@@ -114,8 +115,7 @@ public class C_Protocol_PNMC_particules extends A_Protocol implements I_Constant
 				I_ConstantPNMC_particules.rasterLongitudeWest_LatitudeSouth_Udegree.get(1)));
 		this.initPopulations();
 		super.initProtocol();
-		if (C_Parameters.DISPLAY_MAP)
-			if (this.facilityMap != null) this.facilityMap.contextualize(this.context, this.landscape);
+		if (C_Parameters.DISPLAY_MAP && this.facilityMap != null) DISPLAY_FACILITY_MAP = true;
 	}
 
 	@Override
@@ -250,5 +250,17 @@ public class C_Protocol_PNMC_particules extends A_Protocol implements I_Constant
 			A_Protocol.event("C_Protocol_PNMC_particules.readUserParameters", "meta-population set to "
 					+ C_Parameters.EXCLOS, isNotError);
 	}
-
+	@Override
+	/** Display the map if on, remove it if off. Only one map object. The switch can only go from on to off and vice versa Version
+	 * author J.Le Fur, 09.2014 */
+	protected void switchDisplayMap() {
+		if (this.context.contains(this.facilityMap)) {
+			this.context.remove(this.facilityMap);
+			DISPLAY_FACILITY_MAP = false;
+		} // Wipe off map
+		else {// contextualizeNewThingInSpace(facilityMap, facilityMap.whereX, facilityMap.whereY);
+			this.facilityMap.contextualize(this.context, this.landscape);
+			DISPLAY_FACILITY_MAP = true;
+		}
+	}
 }

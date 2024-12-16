@@ -20,7 +20,6 @@ import melanesim.util.C_VariousUtilities;
 import melanesim.util.C_sound;
 import presentation.dataOutput.C_FileWriter;
 import presentation.display.C_Background;
-import presentation.display.C_CustomPanelSet;
 import presentation.display.C_StyleAgent;
 import presentation.epiphyte.A_Inspector;
 import presentation.epiphyte.C_InspectorEnergy;

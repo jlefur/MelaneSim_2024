@@ -1,6 +1,8 @@
 /* This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt */
 package thing.ground.landscape;
 
+import java.util.Iterator;
+
 import org.locationtech.jts.geom.Coordinate;
 
 import data.C_ReadRasterOcean;
@@ -11,6 +13,7 @@ import repast.simphony.context.Context;
 import thing.A_Organism;
 import thing.A_VisibleAgent;
 import thing.ground.C_MarineCell;
+import thing.ground.I_Container;
 
 /** The global container of MelaneSim's protocols<br>
  * Owns a continuous space and a grid/matrix with values ('affinity'), landplots of marine cells with the same affinity values.
@@ -35,7 +38,15 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC_par
 	public void translate(A_VisibleAgent thing, Coordinate moveDistance_Umeter) {
 		C_MarineCell cell = (C_MarineCell) thing.getCurrentSoilCell();
 		if (cell.getSpeedEastward_UmeterPerSecond() == 0.0 && cell.getSpeedNorthward_UmeterPerSecond() == 0.0) {
-			this.bordure((A_Organism) thing);
+			if (((C_MarineCell) thing.getCurrentSoilCell()).isTerrestrial()) bordure((A_Organism) thing);
+			else {
+				boolean washedOnShore = false;
+				for (I_Container oneNeighbour : this.getCellNeighbours(cell))
+					if (((C_MarineCell) oneNeighbour).isTerrestrial()) {
+						washedOnShore = true;
+					}
+				if (washedOnShore) bordure((A_Organism) thing);
+			}
 		}
 		else super.translate(thing, moveDistance_Umeter);
 	}

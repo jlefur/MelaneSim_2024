@@ -61,7 +61,7 @@ public class C_UserPanel extends JPanel implements UserPanelCreator, I_ConstantS
 	//
 	public C_UserPanel() {
 		this.setAlignmentX(Component.LEFT_ALIGNMENT);
-		RunState.getInstance().getMasterContext().add(this); // TODO TMP
+		RunState.getInstance().getMasterContext().add(this); // needed to step panel
 		init();
 	}
 	//

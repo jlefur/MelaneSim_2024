@@ -75,8 +75,8 @@ public class C_CustomPanelSet implements IAction, ModelInitializer {
 						action);
 			}
 
-			/** Ferme les flux de la console du user panel (ex�cut� lorsque l'on r�initialise une simulation sans couper
-			 * l'ex�cution du programme) */
+			/** Ferme les flux de la console du user panel (exécuté lorsqu'on réinitialise une simulation sans couper
+			 * l'exécution du programme) */
 			public void runCleanup(RunState runState, Context<?> context) {
 				C_CustomPanelSet.energyCurves.clear();
 				// La console n'existe pas en batch car C_TableauDeBord n'est pas initialis�
