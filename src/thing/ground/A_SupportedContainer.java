@@ -3,6 +3,7 @@ package thing.ground;
 
 import org.locationtech.jts.geom.Coordinate;
 
+import melanesim.C_ContextCreator;
 import thing.A_Animal;
 import thing.A_VisibleAgent;
 import thing.I_SituatedThing;
@@ -11,7 +12,7 @@ import thing.I_SituatedThing;
  * @author J.Le Fur, 03.2015, rev. 09.2015 */
 public abstract class A_SupportedContainer extends C_SoilCell {
 	//
-	// FIELD 
+	// FIELD
 	//
 	protected boolean a_tag = false;
 	//
@@ -48,6 +49,13 @@ public abstract class A_SupportedContainer extends C_SoilCell {
 	@Override
 	public C_LandPlot getMyLandPlot() {
 		return ((C_SoilCell) this.currentSoilCell).getMyLandPlot();
+	}
+	@Override
+	/** set Dead if random number is lower than death probability passed in arg <br>
+	 * same as A_NDS since C_Soilcell do not check death
+	 * @see A_NDS#checkDeath */
+	public void checkDeath(double deathProbability) {
+		if (C_ContextCreator.randomGeneratorForDeathProb.nextDouble() <= deathProbability) this.dead = true;
 	}
 	//
 	// GETTER AND SETTER

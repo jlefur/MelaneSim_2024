@@ -1,8 +1,6 @@
 /* This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt */
 package thing.ground.landscape;
 
-import java.util.Iterator;
-
 import org.locationtech.jts.geom.Coordinate;
 
 import data.C_ReadRasterOcean;
@@ -29,12 +27,11 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC_par
 	public C_LandscapeMarine(Context<Object> context, String url, String gridValueName, String continuousSpaceName) {
 		super(context, url, gridValueName, continuousSpaceName);
 	}
-
 	//
 	// OVERRIDEN METHODS
 	//
 	@Override
-	/** remove plankton washed along the shores */
+	/** Remove plankton washed along the shores JLF 2024 */
 	public void translate(A_VisibleAgent thing, Coordinate moveDistance_Umeter) {
 		C_MarineCell cell = (C_MarineCell) thing.getCurrentSoilCell();
 		if (cell.getSpeedEastward_UmeterPerSecond() == 0.0 && cell.getSpeedNorthward_UmeterPerSecond() == 0.0) {
@@ -50,6 +47,7 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC_par
 		}
 		else super.translate(thing, moveDistance_Umeter);
 	}
+
 	@Override
 	/** Read raster in true surfer format LeFur 07.2024 */
 	protected int[][] readRasterFile(String url) {

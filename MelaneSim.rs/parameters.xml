@@ -9,7 +9,7 @@
 		type="java.lang.String" defaultValue="H" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$StringStringConverter" />
 	<parameter name="TICK_LENGTH_Ucalendar" displayName="0b/ Tick length"
-		type="java.lang.Integer" defaultValue="3" isReadOnly="false"
+		type="java.lang.Integer" defaultValue="12" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
 	<parameter name="CELL_WIDTH_Ucm" displayName="0c/ nb centimeters in one pixel (default=exact scale)"
 		type="java.lang.Integer" defaultValue="480743" isReadOnly="false"
@@ -34,7 +34,7 @@
 		type="java.lang.String" defaultValue="ocean.PNMC_plancton" isReadOnly="true"
 		converter="repast.simphony.parameter.StringConverterFactory$StringStringConverter" />
 	<parameter name="EXCLOS" displayName="1c/ Metapopulation(exclos)"
-		type="boolean" defaultValue="false" isReadOnly="false"
+		type="boolean" defaultValue="true" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$BooleanConverter" />
 
 	<parameter name="RASTER_FILE" displayName="1h/grid filename"

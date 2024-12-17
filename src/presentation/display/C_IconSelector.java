@@ -293,7 +293,7 @@ public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC_p
 	}
 
 	/**agent is plankton JLF 2024*/public static Color getColorPNMC_PK(I_SituatedThing agent) {
-		if (C_Protocol_PNMC_particules.DISPLAY_FACILITY_MAP) return new Color(172, 117, 213);// violet
+		if (C_Protocol_PNMC_particules.DISPLAY_FACILITY_MAP) return Color.green; //new Color(172, 117, 213);// violet
 		else return new Color(22, 186, 49);
 	}
 

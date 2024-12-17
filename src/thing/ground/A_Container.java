@@ -71,6 +71,10 @@ public abstract class A_Container extends A_VisibleAgent implements I_Container 
 		thing.assertColNo(this.colNo);
 		thing.assertLineNo(this.lineNo);
 		boolean entryOK = false;
+		if (this.occupantList == null) {
+			A_Protocol.event("AgentIncoming: ", this + " is null to be occupied by " + thing, true);
+			return false;
+		}
 		if (this.occupantList.add(thing)) entryOK = true;
 		else {
 			A_Protocol.event("A_Container.agentIncoming", "Cannot add " + thing + " to " + this, isError);

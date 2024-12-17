@@ -35,6 +35,11 @@ public class C_SoilCell extends A_Container implements I_ConstantStringRodents {
 		this.affinityLandPlot = null;
 		super.discardThis();
 	}
+	/** Do not check death */
+	@Override
+	public void checkDeath(double deathProbability) {
+		this.dead = false;
+	}
 	//
 	// METHODS
 	//
