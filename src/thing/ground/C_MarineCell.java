@@ -47,8 +47,8 @@ public class C_MarineCell extends C_SoilCell implements I_ConstantPNMC_particule
 						this.speedEastward_UmeterPerSecond, "m", "s");
 				speedNorthward_UmeterPerTick = C_ConvertTimeAndSpace.convertSpeed_UspaceByTick(
 						this.speedNorthward_UmeterPerSecond, "m", "s");
-				A_VisibleAgent.myLandscape.translate((A_VisibleAgent) agent, new Coordinate(speedEastward_UmeterPerTick,
-						speedNorthward_UmeterPerTick));
+				A_VisibleAgent.myLandscape.translate((A_VisibleAgent) agent, new Coordinate(speedEastward_UmeterPerTick*PARTICLE_RESISTANCE_FACTOR,
+						speedNorthward_UmeterPerTick*PARTICLE_RESISTANCE_FACTOR));
 				// TODO number in source 2024 JLF (energy = speed/1E3)
 				energy = Math.sqrt(speedEastward_UmeterPerTick * speedEastward_UmeterPerTick
 						+ speedNorthward_UmeterPerTick * speedNorthward_UmeterPerTick) / 1E3;

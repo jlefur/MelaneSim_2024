@@ -316,7 +316,10 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 
 		// 2.- ICONS are displayed
 		if (C_Parameters.IMAGE) {
-			if (object instanceof C_StreamCurrent) sscale = sscale * 8;
+			if (object instanceof C_StreamCurrent) {
+				sscale = (float) (((C_StreamCurrent) object).getSpeedEast() * ((C_StreamCurrent) object).getSpeedEast()
+						* sscale * STREAM_DISPLAY_SIZE*1.5);// TODO number in source 2025.03 jlf taille des vecteurs courants affichés
+			}
 			// plankton image reflects the number of plankton agent within their cell
 			if (object instanceof C_Plankton) {
 				if (((A_SupportedContainer) object).isa_Tag()) sscale = sscale * 17;

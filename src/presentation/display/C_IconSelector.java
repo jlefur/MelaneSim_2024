@@ -292,9 +292,10 @@ public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC_p
 		else return getColorChize(agent);
 	}
 
-	/**agent is plankton JLF 2024*/public static Color getColorPNMC_PK(I_SituatedThing agent) {
-		if (C_Protocol_PNMC_particules.DISPLAY_FACILITY_MAP) return Color.green; //new Color(172, 117, 213);// violet
-		else return new Color(22, 186, 49);
+	/** agent is plankton JLF 2024 */
+	public static Color getColorPNMC_PK(I_SituatedThing agent) {
+		if (C_Protocol_PNMC_particules.DISPLAY_FACILITY_MAP) return Color.green; // new Color(172, 117, 213);// violet
+		else return Color.green;
 	}
 
 	public static Color getColorGerbil(I_SituatedThing agent) {
