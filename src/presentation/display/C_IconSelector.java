@@ -29,8 +29,8 @@ import thing.dna.species.rodents.C_GenomeMastoNatalensis;
 import thing.dna.species.rodents.C_GenomeMastomys;
 import thing.ground.A_SupportedContainer;
 import thing.ground.C_BurrowSystem;
-import thing.ground.C_MarineCell;
-//import thing.ground.C_MarineCell;
+import thing.ground.C_SoilCellMarine;
+//import thing.ground.C_SoilCellMarine;
 import thing.ground.C_Market;
 import thing.ground.C_Nest;
 import thing.ground.C_SoilCellSavanna;
@@ -90,7 +90,7 @@ public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC_p
 
 	public String getNameOfImagePNMC(I_SituatedThing agent) {
 		if (agent instanceof C_StreamCurrent) {
-			C_MarineCell cell = ((C_StreamCurrent) agent).getMyCell();
+			C_SoilCellMarine cell = ((C_StreamCurrent) agent).getMyCell();
 			double speedNorth = cell.getSpeedNorthward_UmeterPerSecond();
 			double speedEast = cell.getSpeedEastward_UmeterPerSecond();
 			if (speedNorth > 0.1) if (speedEast > 0.1) return NORTH_EAST_ICON;

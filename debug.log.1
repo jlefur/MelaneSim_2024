@@ -37,7 +37,7 @@ org.jfree.data.UnknownKeyException: Key not found: MaxDispersal
 FATAL [Thread-4] 2024-12-06T12:47:30,974 GUIScheduleRunner - RunTimeException when running the schedule
 Current tick (3282.0)
 com.jgoodies.binding.beans.PropertyAccessException: Failed to read an adapted Java Bean property.
-cause=java.lang.NullPointerException: Cannot invoke "thing.ground.C_MarineCell.getSpeedEastward_UmeterPerSecond()" because the return value of "thing.C_Plankton.getCurrentSoilCell()" is null
+cause=java.lang.NullPointerException: Cannot invoke "thing.ground.C_SoilCellMarine.getSpeedEastward_UmeterPerSecond()" because the return value of "thing.C_Plankton.getCurrentSoilCell()" is null
 bean=null
 bean type=thing.C_Plankton
 property name=speedEast
@@ -56,7 +56,7 @@ property reader=public double thing.C_Plankton.getSpeedEast()
 	at repast.simphony.ui.RSApplication.tickCountUpdated(RSApplication.java:622) ~[?:?]
 	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:60) ~[?:?]
 	at java.lang.Thread.run(Thread.java:840) ~[?:?]
-Caused by: java.lang.NullPointerException: Cannot invoke "thing.ground.C_MarineCell.getSpeedEastward_UmeterPerSecond()" because the return value of "thing.C_Plankton.getCurrentSoilCell()" is null
+Caused by: java.lang.NullPointerException: Cannot invoke "thing.ground.C_SoilCellMarine.getSpeedEastward_UmeterPerSecond()" because the return value of "thing.C_Plankton.getCurrentSoilCell()" is null
 	at thing.C_Plankton.getSpeedEast(C_Plankton.java:30) ~[?:?]
 	at jdk.internal.reflect.GeneratedMethodAccessor36.invoke(Unknown Source) ~[?:?]
 	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
@@ -109,7 +109,7 @@ Caused by: java.lang.NullPointerException: Cannot invoke "java.util.TreeSet.add(
 	at thing.ground.landscape.C_Landscape.checkAndMoveToNewCell(C_Landscape.java:225) ~[?:?]
 	at thing.ground.landscape.C_Landscape.translate(C_Landscape.java:214) ~[?:?]
 	at thing.ground.landscape.C_LandscapeMarine.translate(C_LandscapeMarine.java:40) ~[?:?]
-	at thing.ground.C_MarineCell.step_Utick(C_MarineCell.java:50) ~[?:?]
+	at thing.ground.C_SoilCellMarine.step_Utick(C_MarineCell.java:50) ~[?:?]
 	at melanesim.protocol.A_Protocol.step_Utick(A_Protocol.java:126) ~[?:?]
 	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
 	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
@@ -752,7 +752,7 @@ Caused by: java.lang.NullPointerException: Cannot invoke "Object.toString()" bec
 FATAL [Thread-4] 2024-12-10T17:01:54,418 GUIScheduleRunner - RunTimeException when running the schedule
 Current tick (430.0)
 com.jgoodies.binding.beans.PropertyAccessException: Failed to read an adapted Java Bean property.
-cause=java.lang.NullPointerException: Cannot invoke "thing.ground.C_MarineCell.getSpeedEastward_UmeterPerSecond()" because the return value of "thing.C_Plankton.getCurrentSoilCell()" is null
+cause=java.lang.NullPointerException: Cannot invoke "thing.ground.C_SoilCellMarine.getSpeedEastward_UmeterPerSecond()" because the return value of "thing.C_Plankton.getCurrentSoilCell()" is null
 bean=null
 bean type=thing.C_Plankton
 property name=speedEast
@@ -771,7 +771,7 @@ property reader=public double thing.C_Plankton.getSpeedEast()
 	at repast.simphony.ui.RSApplication.tickCountUpdated(RSApplication.java:622) ~[?:?]
 	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:60) ~[?:?]
 	at java.lang.Thread.run(Thread.java:840) ~[?:?]
-Caused by: java.lang.NullPointerException: Cannot invoke "thing.ground.C_MarineCell.getSpeedEastward_UmeterPerSecond()" because the return value of "thing.C_Plankton.getCurrentSoilCell()" is null
+Caused by: java.lang.NullPointerException: Cannot invoke "thing.ground.C_SoilCellMarine.getSpeedEastward_UmeterPerSecond()" because the return value of "thing.C_Plankton.getCurrentSoilCell()" is null
 	at thing.C_Plankton.getSpeedEast(C_Plankton.java:30) ~[?:?]
 	at jdk.internal.reflect.GeneratedMethodAccessor40.invoke(Unknown Source) ~[?:?]
 	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
@@ -781,7 +781,7 @@ Caused by: java.lang.NullPointerException: Cannot invoke "thing.ground.C_MarineC
 FATAL [Thread-4] 2024-12-11T11:34:55,388 GUIScheduleRunner - RunTimeException when running the schedule
 Current tick (83.0)
 com.jgoodies.binding.beans.PropertyAccessException: Failed to read an adapted Java Bean property.
-cause=java.lang.NullPointerException: Cannot invoke "thing.ground.C_MarineCell.getSpeedEastward_UmeterPerSecond()" because the return value of "thing.C_Plankton.getCurrentSoilCell()" is null
+cause=java.lang.NullPointerException: Cannot invoke "thing.ground.C_SoilCellMarine.getSpeedEastward_UmeterPerSecond()" because the return value of "thing.C_Plankton.getCurrentSoilCell()" is null
 bean=null
 bean type=thing.C_Plankton
 property name=speedEast
@@ -800,7 +800,7 @@ property reader=public double thing.C_Plankton.getSpeedEast()
 	at repast.simphony.ui.RSApplication.tickCountUpdated(RSApplication.java:622) ~[?:?]
 	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:60) ~[?:?]
 	at java.lang.Thread.run(Thread.java:840) ~[?:?]
-Caused by: java.lang.NullPointerException: Cannot invoke "thing.ground.C_MarineCell.getSpeedEastward_UmeterPerSecond()" because the return value of "thing.C_Plankton.getCurrentSoilCell()" is null
+Caused by: java.lang.NullPointerException: Cannot invoke "thing.ground.C_SoilCellMarine.getSpeedEastward_UmeterPerSecond()" because the return value of "thing.C_Plankton.getCurrentSoilCell()" is null
 	at thing.C_Plankton.getSpeedEast(C_Plankton.java:30) ~[?:?]
 	at jdk.internal.reflect.GeneratedMethodAccessor36.invoke(Unknown Source) ~[?:?]
 	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
@@ -965,7 +965,7 @@ Caused by: java.lang.NullPointerException: Cannot invoke "java.util.TreeSet.add(
 	at thing.ground.landscape.C_Landscape.checkAndMoveToNewCell(C_Landscape.java:225) ~[?:?]
 	at thing.ground.landscape.C_Landscape.translate(C_Landscape.java:214) ~[?:?]
 	at thing.ground.landscape.C_LandscapeMarine.translate(C_LandscapeMarine.java:40) ~[?:?]
-	at thing.ground.C_MarineCell.step_Utick(C_MarineCell.java:50) ~[?:?]
+	at thing.ground.C_SoilCellMarine.step_Utick(C_MarineCell.java:50) ~[?:?]
 	at melanesim.protocol.A_Protocol.step_Utick(A_Protocol.java:121) ~[?:?]
 	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
 	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
@@ -1049,7 +1049,7 @@ Caused by: java.lang.NullPointerException: Cannot invoke "java.util.TreeSet.add(
 	at thing.ground.landscape.C_Landscape.checkAndMoveToNewCell(C_Landscape.java:226) ~[?:?]
 	at thing.ground.landscape.C_Landscape.translate(C_Landscape.java:215) ~[?:?]
 	at thing.ground.landscape.C_LandscapeMarine.translate(C_LandscapeMarine.java:40) ~[?:?]
-	at thing.ground.C_MarineCell.step_Utick(C_MarineCell.java:50) ~[?:?]
+	at thing.ground.C_SoilCellMarine.step_Utick(C_MarineCell.java:50) ~[?:?]
 	at melanesim.protocol.A_Protocol.step_Utick(A_Protocol.java:121) ~[?:?]
 	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
 	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
@@ -1077,7 +1077,7 @@ Caused by: java.lang.NullPointerException: Cannot invoke "java.util.TreeSet.add(
 	at thing.ground.landscape.C_Landscape.checkAndMoveToNewCell(C_Landscape.java:226) ~[?:?]
 	at thing.ground.landscape.C_Landscape.translate(C_Landscape.java:215) ~[?:?]
 	at thing.ground.landscape.C_LandscapeMarine.translate(C_LandscapeMarine.java:40) ~[?:?]
-	at thing.ground.C_MarineCell.step_Utick(C_MarineCell.java:50) ~[?:?]
+	at thing.ground.C_SoilCellMarine.step_Utick(C_MarineCell.java:50) ~[?:?]
 	at melanesim.protocol.A_Protocol.step_Utick(A_Protocol.java:120) ~[?:?]
 	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
 	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
@@ -1105,7 +1105,7 @@ Caused by: java.lang.NullPointerException: Cannot invoke "java.util.TreeSet.add(
 	at thing.ground.landscape.C_Landscape.checkAndMoveToNewCell(C_Landscape.java:227) ~[?:?]
 	at thing.ground.landscape.C_Landscape.translate(C_Landscape.java:216) ~[?:?]
 	at thing.ground.landscape.C_LandscapeMarine.translate(C_LandscapeMarine.java:51) ~[?:?]
-	at thing.ground.C_MarineCell.step_Utick(C_MarineCell.java:50) ~[?:?]
+	at thing.ground.C_SoilCellMarine.step_Utick(C_MarineCell.java:50) ~[?:?]
 	at melanesim.protocol.A_Protocol.step_Utick(A_Protocol.java:120) ~[?:?]
 	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
 	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
@@ -1133,7 +1133,7 @@ Caused by: java.lang.NullPointerException: Cannot invoke "java.util.TreeSet.add(
 	at thing.ground.landscape.C_Landscape.checkAndMoveToNewCell(C_Landscape.java:227) ~[?:?]
 	at thing.ground.landscape.C_Landscape.translate(C_Landscape.java:216) ~[?:?]
 	at thing.ground.landscape.C_LandscapeMarine.translate(C_LandscapeMarine.java:48) ~[?:?]
-	at thing.ground.C_MarineCell.step_Utick(C_MarineCell.java:50) ~[?:?]
+	at thing.ground.C_SoilCellMarine.step_Utick(C_MarineCell.java:50) ~[?:?]
 	at melanesim.protocol.A_Protocol.step_Utick(A_Protocol.java:120) ~[?:?]
 	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
 	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
@@ -1141,7 +1141,7 @@ Caused by: java.lang.NullPointerException: Cannot invoke "java.util.TreeSet.add(
 	... 7 more
 FATAL [Thread-4] 2024-12-17T12:25:23,671 GUIScheduleRunner - RunTimeException when running the schedule
 Current tick (1041.0)
-java.lang.NullPointerException: Cannot invoke "thing.ground.C_MarineCell.getOccupantList()" because "cell" is null
+java.lang.NullPointerException: Cannot invoke "thing.ground.C_SoilCellMarine.getOccupantList()" because "cell" is null
 	at presentation.display.C_StyleAgent.getScale(C_StyleAgent.java:325) ~[?:?]
 	at presentation.display.C_StyleAgent.getScale(C_StyleAgent.java:1) ~[?:?]
 	at repast.simphony.visualizationOGL2D.StyledDisplayLayerOGL2D.applyStyle(StyledDisplayLayerOGL2D.java:61) ~[?:?]
@@ -1158,7 +1158,7 @@ java.lang.NullPointerException: Cannot invoke "thing.ground.C_MarineCell.getOccu
 	at java.lang.Thread.run(Thread.java:840) ~[?:?]
 FATAL [Thread-4] 2024-12-17T13:09:11,416 GUIScheduleRunner - RunTimeException when running the schedule
 Current tick (1047.0)
-java.lang.NullPointerException: Cannot invoke "thing.ground.C_MarineCell.getOccupantList()" because "cell" is null
+java.lang.NullPointerException: Cannot invoke "thing.ground.C_SoilCellMarine.getOccupantList()" because "cell" is null
 	at presentation.display.C_StyleAgent.getScale(C_StyleAgent.java:325) ~[?:?]
 	at presentation.display.C_StyleAgent.getScale(C_StyleAgent.java:1) ~[?:?]
 	at repast.simphony.visualizationOGL2D.StyledDisplayLayerOGL2D.applyStyle(StyledDisplayLayerOGL2D.java:61) ~[?:?]

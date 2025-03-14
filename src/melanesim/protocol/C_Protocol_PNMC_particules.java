@@ -22,7 +22,7 @@ import thing.C_Plankton;
 import thing.C_StreamCurrent;
 import thing.dna.C_GenomeAnimalia;
 import thing.ground.C_LandPlot;
-import thing.ground.C_MarineCell;
+import thing.ground.C_SoilCellMarine;
 import thing.ground.C_SoilCell;
 import thing.ground.landscape.C_LandscapeMarine;
 
@@ -80,13 +80,13 @@ public class C_Protocol_PNMC_particules extends A_Protocol implements I_Constant
 		java.awt.Dimension dim = this.landscape.getDimension_Ucell();
 		int grid_width = (int) dim.getWidth();
 		int grid_height = (int) dim.getHeight();
-		C_MarineCell cell;
+		C_SoilCellMarine cell;
 		for (int i = 0; i < grid_width; i++) {
 			if (countWidth == PLANKTON_CELLS_SPACING) {
 				countHeight = 0;
 				for (int j = 0; j < grid_height; j++) {
 					if (countHeight == PLANKTON_CELLS_SPACING) {
-						cell = (C_MarineCell) this.landscape.getGrid()[i][j];
+						cell = (C_SoilCellMarine) this.landscape.getGrid()[i][j];
 						if (cell.getAffinity() < TERRESTRIAL_MIN_AFFINITY) {
 							this.contextualizeNewThingInContainer(createPlankton(), cell);
 							cell.setMyCurrent(new C_StreamCurrent(cell.getAffinity(), i, j));
@@ -119,14 +119,14 @@ public class C_Protocol_PNMC_particules extends A_Protocol implements I_Constant
 	}
 
 	@Override
-	/** set grid content to C_MarineCell, JLF 2024 */
+	/** set grid content to C_SoilCellMarine, JLF 2024 */
 	protected void initLandscape(Context<Object> context) {
 		this.setLandscape(new C_LandscapeMarine(context, C_Parameters.RASTER_URL, VALUE_LAYER_NAME,
 				CONTINUOUS_SPACE_NAME));
 		// Comment the following lines to undisplay soil cells, JLF 10.2015, 11.2015
 		for (int i = 0; i < this.landscape.dimension_Ucell.width; i++) {
 			for (int j = 0; j < this.landscape.dimension_Ucell.height; j++) {
-				C_MarineCell cell = new C_MarineCell(this.landscape.getGrid()[i][j].getAffinity(), i, j);
+				C_SoilCellMarine cell = new C_SoilCellMarine(this.landscape.getGrid()[i][j].getAffinity(), i, j);
 				context.add(cell);
 				this.landscape.setGridCell(i, j, cell);
 				this.landscape.moveToLocation(cell, cell.getCoordinate_Ucs());
@@ -179,7 +179,7 @@ public class C_Protocol_PNMC_particules extends A_Protocol implements I_Constant
 	@Override
 	public void manageOneEvent(C_Event event) {
 		Coordinate coordinateCell_Ucs = null;
-		C_MarineCell cell = null;
+		C_SoilCellMarine cell = null;
 		if (event.whereX_Ucell == null) {// then: 1) suppose that y is also null, 2) double are values in decimal
 											// degrees
 			coordinateCell_Ucs = this.geographicCoordinateConverter.convertCoordinate_Ucs(event.whereX_Udouble,
@@ -208,14 +208,14 @@ public class C_Protocol_PNMC_particules extends A_Protocol implements I_Constant
 				for (int i = 0; i < imax; i++) {
 					for (int j = 0; j < jmax; j++) {
 						double value = matriceLue[i][j];
-						((C_MarineCell) this.landscape.getGrid()[i][j]).setSpeedEastward_UmeterPerSecond(value);
+						((C_SoilCellMarine) this.landscape.getGrid()[i][j]).setSpeedEastward_UmeterPerSecond(value);
 					}
 				}
 				matriceLue = C_ReadRasterDouble.doubleRasterLoader(url + "_North.grd");
 				for (int i = 0; i < imax; i++) {
 					for (int j = 0; j < jmax; j++) {
 						double value = matriceLue[i][j];
-						cell = ((C_MarineCell) this.landscape.getGrid()[i][j]);
+						cell = ((C_SoilCellMarine) this.landscape.getGrid()[i][j]);
 						cell.setSpeedNorthward_UmeterPerSecond(value);
 						if (cell.getMyCurrent() != null) cell.getMyCurrent().setHasToSwitchFace(true);
 					}

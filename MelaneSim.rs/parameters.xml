@@ -1,44 +1,47 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!-- fileName : parameters.xml -->
-<!-- protocolName : PNMC-plancton -->
+<!-- protocolName : CENTENAL -->
 <parameters>
 
 	<!-- COMMON INTER-PROTOCOLS -->
 	<!-- Time scale -->
 	<parameter name="TICK_UNIT_Ucalendar" displayName="0a/ Tick unit (ms,s,m,h,d,mon,y)"
-		type="java.lang.String" defaultValue="H" isReadOnly="false"
+		type="java.lang.String" defaultValue="D" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$StringStringConverter" />
 	<parameter name="TICK_LENGTH_Ucalendar" displayName="0b/ Tick length"
-		type="java.lang.Integer" defaultValue="12" isReadOnly="false"
+		type="java.lang.Integer" defaultValue="1" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
 	<parameter name="CELL_WIDTH_Ucm" displayName="0c/ nb centimeters in one pixel (default=exact scale)"
-		type="java.lang.Integer" defaultValue="480743" isReadOnly="false"
+		type="java.lang.Integer" defaultValue="750000" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
 
 	<!-- Switches -->
-	<parameter name="BLACK_MAP" displayName="0d/ BLACK map" type="boolean"
-		defaultValue="false" isReadOnly="false"
-		converter="repast.simphony.parameter.StringConverterFactory$BooleanConverter" />
-	<parameter name="VERBOSE" displayName="0e/ Display more EVENTS on map and console"
+	<parameter name="VERBOSE" displayName="0e/ Display more events on map and console"
 		type="boolean" defaultValue="false" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$BooleanConverter" />
-	<parameter name="DISPLAY_MAP" displayName="0f/ Display CAPTION above ground (tip: unzoom)"
-		type="boolean" defaultValue="false" isReadOnly="false"
+	<parameter name="DISPLAY_MAP" displayName="0f/ Display map above ground"
+		type="boolean" defaultValue="true" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$BooleanConverter" />
 	<parameter name="IMAGE" displayName="0g/ ICONS (display objects using icons)"
-		type="boolean" defaultValue="false" isReadOnly="false"
+		type="boolean" defaultValue="true" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$BooleanConverter" />
 		
 	<!-- PROTOCOL DEPENDENT -->
 	<parameter name="PROTOCOL" displayName="1a/ _________ PROTOCOL SPECIFIC _________"
-		type="java.lang.String" defaultValue="ocean.PNMC_plancton" isReadOnly="true"
+		type="java.lang.String" defaultValue="rodents.CENTENAL" isReadOnly="true"
 		converter="repast.simphony.parameter.StringConverterFactory$StringStringConverter" />
-	<parameter name="EXCLOS" displayName="1c/ Metapopulation(exclos)"
-		type="boolean" defaultValue="false" isReadOnly="false"
-		converter="repast.simphony.parameter.StringConverterFactory$BooleanConverter" />
+	<parameter name="VEHICLE_LOADING_PROBA_DIVIDER" displayName="1b/ p(rodentClimb) (1=data,100=data/100,...)"
+		type="java.lang.Integer" defaultValue="1000" isReadOnly="false"
+		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
+	<parameter name="RODENT_SUPER_AGENT_SIZE" type="java.lang.Integer"
+		defaultValue="1" isReadOnly="false" displayName="1c/ Rodents super-agent size"
+		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
+	<parameter name="HUMAN_SUPER_AGENT_SIZE" type="java.lang.Integer"
+		defaultValue="10" isReadOnly="false" displayName="1d/ carriers super-agent size"
+		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
 
 	<parameter name="RASTER_FILE" displayName="1h/grid filename"
-		type="java.lang.String" defaultValue="20231128-TOPEX-ZEE2_GRILLEV2.1.txt" isReadOnly="false"
+		type="java.lang.String" defaultValue="20161022-centenalRaster.txt" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$StringStringConverter" />
 
 	<!-- SIMULATION SETTING -->
@@ -51,3 +54,4 @@
 		default value = "__NULL__" => graine aleatoire -->
 
 </parameters>
+

@@ -23,7 +23,7 @@ import thing.C_Plankton;
 import thing.C_StreamCurrent;
 import thing.I_SituatedThing;
 import thing.ground.A_SupportedContainer;
-import thing.ground.C_MarineCell;
+import thing.ground.C_SoilCellMarine;
 import thing.rodents.A_HumanUrban;
 import thing.rodents.C_Vegetation;
 
@@ -318,13 +318,13 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 		if (C_Parameters.IMAGE) {
 			if (object instanceof C_StreamCurrent) {
 				sscale = (float) (((C_StreamCurrent) object).getSpeedEast() * ((C_StreamCurrent) object).getSpeedEast()
-						* sscale * STREAM_DISPLAY_SIZE*1.5);// TODO number in source 2025.03 jlf taille des vecteurs courants affichés
+						* sscale * STREAM_DISPLAY_SIZE*1.5);
 			}
 			// plankton image reflects the number of plankton agent within their cell
 			if (object instanceof C_Plankton) {
 				if (((A_SupportedContainer) object).isa_Tag()) sscale = sscale * 17;
 				else {
-					C_MarineCell cell = (C_MarineCell) object.getCurrentSoilCell();
+					C_SoilCellMarine cell = (C_SoilCellMarine) object.getCurrentSoilCell();
 					sscale = sscale + (float) (cell.getOccupantList().size() * .001);
 					// float size = (float) (this.imageScale * 10.);
 				}

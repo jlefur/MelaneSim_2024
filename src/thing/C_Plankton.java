@@ -1,6 +1,6 @@
 package thing;
 import thing.dna.I_DiploidGenome;
-import thing.ground.C_MarineCell;
+import thing.ground.C_SoilCellMarine;
 /** A simple structure containing a diploid genome, owns all properties of A_Organism
  * @author J.LeFur 2024 */
 public class C_Plankton extends A_Organism {
@@ -28,12 +28,12 @@ public class C_Plankton extends A_Organism {
 	/** for probe display purpose */
 	public double getSpeedEast() {
 		if (this.isDead()) return 0.0;
-		else return ((C_MarineCell) this.getCurrentSoilCell()).getSpeedEastward_UmeterPerSecond();
+		else return ((C_SoilCellMarine) this.getCurrentSoilCell()).getSpeedEastward_UmeterPerSecond();
 	}
 	/** for probe display purpose */
 	public double getSpeedNorth() {
 		if (this.isDead()) return 0.0;
-		else return ((C_MarineCell) this.getCurrentSoilCell()).getSpeedNorthward_UmeterPerSecond();
+		else return ((C_SoilCellMarine) this.getCurrentSoilCell()).getSpeedNorthward_UmeterPerSecond();
 	}
 	/** Maximum distance (straight line) from its birth location */
 	public void computeMaxDispersalDistance_Umeter() {

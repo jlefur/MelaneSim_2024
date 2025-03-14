@@ -13,7 +13,7 @@ import thing.I_SituatedThing;
 
 /** Ocean unit used in MelaneSim
  * @author JLF 2024 */
-public class C_MarineCell extends C_SoilCell implements I_ConstantPNMC_particules {
+public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC_particules {
 	//
 	// FIELDS
 	//
@@ -22,7 +22,7 @@ public class C_MarineCell extends C_SoilCell implements I_ConstantPNMC_particule
 	//
 	// CONSTRUCTOR
 	//
-	public C_MarineCell(int aff, int lineNo, int colNo) {
+	public C_SoilCellMarine(int aff, int lineNo, int colNo) {
 		super(aff, lineNo, colNo);
 		// TODO number in source OK 2024 JLF speed has to be != from 0 before current read from file in order to avoid plankton
 		// bordure

@@ -10,7 +10,7 @@ import presentation.epiphyte.C_InspectorPopulationMarine;
 import repast.simphony.context.Context;
 import thing.A_Organism;
 import thing.A_VisibleAgent;
-import thing.ground.C_MarineCell;
+import thing.ground.C_SoilCellMarine;
 import thing.ground.I_Container;
 
 /** The global container of MelaneSim's protocols<br>
@@ -33,13 +33,13 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC_par
 	@Override
 	/** Remove plankton washed along the shores JLF 2024 */
 	public void translate(A_VisibleAgent thing, Coordinate moveDistance_Umeter) {
-		C_MarineCell cell = (C_MarineCell) thing.getCurrentSoilCell();
+		C_SoilCellMarine cell = (C_SoilCellMarine) thing.getCurrentSoilCell();
 		if (cell.getSpeedEastward_UmeterPerSecond() == 0.0 && cell.getSpeedNorthward_UmeterPerSecond() == 0.0) {
-			if (((C_MarineCell) thing.getCurrentSoilCell()).isTerrestrial()) bordure((A_Organism) thing);
+			if (((C_SoilCellMarine) thing.getCurrentSoilCell()).isTerrestrial()) bordure((A_Organism) thing);
 			else {
 				boolean washedOnShore = false;
 				for (I_Container oneNeighbour : this.getCellNeighbours(cell))
-					if (((C_MarineCell) oneNeighbour).isTerrestrial()) {
+					if (((C_SoilCellMarine) oneNeighbour).isTerrestrial()) {
 						washedOnShore = true;
 					}
 				if (washedOnShore) bordure((A_Organism) thing);
@@ -66,7 +66,7 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC_par
 		for (int i = this.dimension_Ucell.width - 1; i >= 0; i--) {
 			for (int j = this.dimension_Ucell.height - 1; j >= 0; j--) {
 				this.gridValueLayer.set(matriceLue[i][j], i, j);
-				this.grid[i][j] = new C_MarineCell(matriceLue[i][j], i, j);
+				this.grid[i][j] = new C_SoilCellMarine(matriceLue[i][j], i, j);
 			}
 		}
 	}

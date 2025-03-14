@@ -1,13 +1,13 @@
 /* This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt  */
 package thing;
 import thing.ground.A_SupportedContainer;
-import thing.ground.C_MarineCell;
+import thing.ground.C_SoilCellMarine;
 
 /** Structure associated with marine cells for current speed to be displayed on GUI
  * @author JLF 2024
- * @see C_MarineCell */
+ * @see C_SoilCellMarine */
 public class C_StreamCurrent extends A_SupportedContainer {
-	private C_MarineCell myCell;
+	private C_SoilCellMarine myCell;
 	//
 	// CONSTRUCTOR
 	//
@@ -19,10 +19,10 @@ public class C_StreamCurrent extends A_SupportedContainer {
 	//
 	// SETTER and GETTER
 	//
-	public C_MarineCell getMyCell() {
+	public C_SoilCellMarine getMyCell() {
 		return myCell;
 	}
-	public void setMyCell(C_MarineCell myCell) {
+	public void setMyCell(C_SoilCellMarine myCell) {
 		this.myCell = myCell;
 	}
 	public double getSpeedEast() {
