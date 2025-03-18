@@ -9,9 +9,11 @@ import repast.simphony.visualizationOGL2D.ValueLayerStyleOGL;
 import thing.ground.landscape.C_Landscape;
 import data.C_Parameters;
 import data.constants.I_ConstantNumeric;
+import data.constants.I_ConstantPNMC_particules;
 import data.constants.rodents.I_ConstantStringRodents;
 import data.constants.rodents.I_ConstantTransportation;
-public class C_Style2dGroundType implements ValueLayerStyleOGL, I_ConstantNumeric, I_ConstantStringRodents, I_ConstantTransportation {
+public class C_Style2dGroundType implements ValueLayerStyleOGL, I_ConstantNumeric, I_ConstantStringRodents,
+		I_ConstantTransportation, I_ConstantPNMC_particules {
 	//
 	// FIELDS
 	//
@@ -22,31 +24,36 @@ public class C_Style2dGroundType implements ValueLayerStyleOGL, I_ConstantNumeri
 	//
 	public C_Style2dGroundType() {// TODO JLF 2014.11 rename into protocolColorMapFactory
 		// we try to get back the colormodel which should be read in the same time as the raster
-	    this.colorMap = new HashMap<Integer, Color>();
-	    this.colorMap = C_Landscape.getColormap();
+		this.colorMap = new HashMap<Integer, Color>();
+		this.colorMap = C_Landscape.getColormap();
 		// if there is no colormap, create one
 		if (this.colorMap == null) {
 			System.out.print("C_Style2dGroundType(): creating ");
 			this.colorMap = new HashMap<Integer, Color>();
 			switch (C_Parameters.PROTOCOL) {
+				case PNMC_PK :
+					this.colorMap = colorMapPNMC_energyGrid(this.colorMap);
+					System.out.println("PNMC energy colormap: " + this.colorMap.size() + " colors identified");
+					break;
+
 				case CENTENAL :
 				case DECENAL :
 				case VILLAGE :
-				    this.colorMap = colorMapCentenalGrid(this.colorMap);
+					this.colorMap = colorMapCentenalGrid(this.colorMap);
 					System.out.println("centenal colormap: " + this.colorMap.size() + " colors identified");
 					break;
 				case MUS_TRANSPORT :
-				    this.colorMap = colorMapMusTransportGrid(this.colorMap);
+					this.colorMap = colorMapMusTransportGrid(this.colorMap);
 					System.out.println("mus transportation colormap: " + this.colorMap.size() + " colors identified");
 					break;
 				default :
 					break;
 			}
 
-			/** Elaborating a random colored map colorMap = colorMapPattern55(colorMap); // we associate at each index between 0 and
-			 * 255 a random color // ( we can equally decide to build our own colormap with specific // value. for (int i = 0; i <
-			 * 256; i++) { colorMap.put(i, new Color( (int) (C_ContextCreator.randomGeneratorForDisplay.nextDouble() * 255), (int)
-			 * (C_ContextCreator.randomGeneratorForDisplay.nextDouble() * 255), (int)
+			/** Elaborating a random colored map colorMap = colorMapPattern55(colorMap); // we associate at each index between 0
+			 * and 255 a random color // ( we can equally decide to build our own colormap with specific // value. for (int i = 0;
+			 * i < 256; i++) { colorMap.put(i, new Color( (int) (C_ContextCreator.randomGeneratorForDisplay.nextDouble() * 255),
+			 * (int) (C_ContextCreator.randomGeneratorForDisplay.nextDouble() * 255), (int)
 			 * (C_ContextCreator.randomGeneratorForDisplay.nextDouble() * 255))); } */
 		}
 	}
@@ -57,19 +64,30 @@ public class C_Style2dGroundType implements ValueLayerStyleOGL, I_ConstantNumeri
 	public void init(ValueLayer layer) {
 		this.layer = layer;
 	}
+	public Map<Integer, Color> colorMapPNMC_energyGrid(Map<Integer, Color> colorMap) {
+		colorMap = new HashMap<Integer, Color>();
+		colorMap.put(0, Color.GREEN);
+		colorMap.put(1, Color.ORANGE);
+		colorMap.put(2, new Color(200, 0, 0));// dark red
+		colorMap.put(3, Color.BLACK);
+		colorMap.put(4, Color.WHITE);// land
+		return colorMap;
+	}
 	public Map<Integer, Color> colorMapCentenalGrid(Map<Integer, Color> colorMap) {
 		colorMap = new HashMap<Integer, Color>();
 		// R G B red green blue
 		colorMap.put(GROUND_TYPE_CODES.get(CITY_EVENT), new Color(192, 172, 62)); // CITY (red)
 		colorMap.put(GROUND_TYPE_CODES.get(TOWN_EVENT), new Color(172, 152, 42)); // CITY (red)
-		colorMap.put(GROUND_TYPE_CODES.get(RAIL_EVENT), new Color(200, 200, 200)); // RAIL (noir un peu moins foncé)
+		colorMap.put(GROUND_TYPE_CODES.get(RAIL_EVENT), new Color(200, 200, 200)); // RAIL (noir un peu moins foncï¿½)
 		colorMap.put(GROUND_TYPE_CODES.get(RIVER_EVENT), new Color(103, 200, 255)); // RIVER
-		colorMap.put(GROUND_TYPE_CODES.get(ROAD_EVENT), new Color(255, 0, 0)); // ROAD (gris foncé)
-		colorMap.put(GROUND_TYPE_CODES.get(GOOD_TRACK_EVENT), new Color(0,200,0)); // good track (marron foncé)
+		colorMap.put(GROUND_TYPE_CODES.get(ROAD_EVENT), new Color(255, 0, 0)); // ROAD (gris foncÃ©)
+		colorMap.put(GROUND_TYPE_CODES.get(GOOD_TRACK_EVENT), new Color(0, 200, 0)); // good track (marron foncÃ©)
 		colorMap.put(GROUND_TYPE_CODES.get(TRACK_EVENT), new Color(160, 114, 19)); // TRACK piste (marron jaune)
-		colorMap.put(GROUND_TYPE_CODES.get(GNT_WEAK_EVENT), new Color(0, 99, 0)); // GROUND_NUT_TRADE_WEAK (GNT-WEAK) vert olive //171, 171, 57
-		colorMap.put(GROUND_TYPE_CODES.get(GNT_MEDIUM_EVENT), new Color(153, 255, 0)); // GROUND_NUT_TRADE_MEDIUM (GNT-MEDIUM) plus petit
-																					// (vers 1950) 206, 206, 48
+		colorMap.put(GROUND_TYPE_CODES.get(GNT_WEAK_EVENT), new Color(0, 99, 0)); // GROUND_NUT_TRADE_WEAK (GNT-WEAK) vert olive
+																					// //171, 171, 57
+		colorMap.put(GROUND_TYPE_CODES.get(GNT_MEDIUM_EVENT), new Color(153, 255, 0)); // GROUND_NUT_TRADE_MEDIUM (GNT-MEDIUM)
+																						// plus petit
+																						// (vers 1950) 206, 206, 48
 		colorMap.put(GROUND_TYPE_CODES.get(GNT_HEAVY_EVENT), new Color(236, 236, 19)); // GROUND_NUT_TRADE_HEAVY (GNT-HEAVY) jaune
 		colorMap.put(GROUND_TYPE_CODES.get(SENEGAL_EVENT), new Color(195, 143, 43)); // Senegal
 		colorMap.put(GROUND_TYPE_CODES.get(BORDER_EVENT), new Color(135, 143, 237)); // Border, Ocean and Abroad
@@ -79,12 +97,13 @@ public class C_Style2dGroundType implements ValueLayerStyleOGL, I_ConstantNumeri
 		colorMap = new HashMap<Integer, Color>();
 		// R G B red green blue
 		colorMap.put(GROUND_TYPE_CODES.get(CITY_EVENT), new Color(255, 0, 153)); // CITY (red) (192, 172, 62)
-		colorMap.put(GROUND_TYPE_CODES.get(RAIL_EVENT), new Color(200, 200, 200)); // RAIL (noir un peu moins foncé)
+		colorMap.put(GROUND_TYPE_CODES.get(RAIL_EVENT), new Color(200, 200, 200)); // RAIL (noir un peu moins foncï¿½)
 		colorMap.put(GROUND_TYPE_CODES.get(RIVER_EVENT), new Color(103, 201, 255)); // RIVER
-		colorMap.put(GROUND_TYPE_CODES.get(TOWN_EVENT), new Color(214,163,60)); // TOWN (marron clair (ou un peu plus foncé: 237, 180, 66)
-		colorMap.put(GROUND_TYPE_CODES.get(ROAD_EVENT), new Color(76, 76, 76)); // ROAD (gris foncé)
+		colorMap.put(GROUND_TYPE_CODES.get(TOWN_EVENT), new Color(214, 163, 60)); // TOWN (marron clair (ou un peu plus foncï¿½:
+																					// 237, 180, 66)
+		colorMap.put(GROUND_TYPE_CODES.get(ROAD_EVENT), new Color(76, 76, 76)); // ROAD (gris foncï¿½)
 		colorMap.put(GROUND_TYPE_CODES.get(TRACK_EVENT), new Color(160, 114, 19)); // TRACK piste (marron jaune)
-		colorMap.put(GROUND_TYPE_CODES.get(GOOD_TRACK_EVENT), new Color(0,200,0)); // good track (marron foncé)
+		colorMap.put(GROUND_TYPE_CODES.get(GOOD_TRACK_EVENT), new Color(0, 200, 0)); // good track (marron foncï¿½)
 		colorMap.put(GROUND_TYPE_CODES.get(SENEGAL_EVENT), new Color(190, 144, 49)); // Senegal
 		colorMap.put(GROUND_TYPE_CODES.get(BORDER_EVENT), new Color(137, 137, 233)); // Border, Ocean and Abroad
 		return colorMap;

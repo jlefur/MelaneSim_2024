@@ -11,7 +11,7 @@ import org.locationtech.jts.geom.Coordinate;
  * @see A_NDS
  * @see A_VisibleAgent */
 
-public interface I_SituatedThing {
+public interface I_SituatedThing extends I_LivingThing {
 
 	public Coordinate getCoordinate_Umeter();
 	public Coordinate getCoordinate_Ucs();

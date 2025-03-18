@@ -228,11 +228,13 @@ public class C_Protocol_PNMC_particules extends A_Protocol implements I_Constant
 	/** Color the map in black to see the overall distribution of burrows<br>
 	 * Author J.Le Fur 10.2014 TODO JLF 2014.10 should be in presentation package ? */
 	protected void blackMap() {
-		for (int i = 0; i < this.landscape.getDimension_Ucell().getWidth(); i++)
-			for (int j = 0; j < this.landscape.getDimension_Ucell().getHeight(); j++) {
-				if (this.landscape.getValueLayer().get(i, j) < TERRESTRIAL_MIN_AFFINITY) // marine area
-					this.landscape.getValueLayer().set(BLACK_MAP_COLOR, i, j);
-			}
+		if (this.landscape != null) {
+			for (int i = 0; i < this.landscape.getDimension_Ucell().getWidth(); i++)
+				for (int j = 0; j < this.landscape.getDimension_Ucell().getHeight(); j++) {
+					if (this.landscape.getValueLayer().get(i, j) < TERRESTRIAL_MIN_AFFINITY) // marine area
+						this.landscape.getValueLayer().set(BLACK_MAP_COLOR, i, j);
+				}
+		}
 	}
 	@Override
 	public void readUserParameters() {

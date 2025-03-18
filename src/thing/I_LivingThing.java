@@ -20,4 +20,7 @@ public interface I_LivingThing {
 
 	/** linked to its environment<br>
 	 * public void interact() ? */
+
+	/** Get energy (pseudo-energy) JLF 2025 */
+	public double getEnergy_Ukcal();
 }

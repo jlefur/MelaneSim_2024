@@ -34,7 +34,7 @@
 		type="java.lang.String" defaultValue="ocean.PNMC_plancton" isReadOnly="true"
 		converter="repast.simphony.parameter.StringConverterFactory$StringStringConverter" />
 	<parameter name="EXCLOS" displayName="1c/ Metapopulation(exclos)"
-		type="boolean" defaultValue="false" isReadOnly="false"
+		type="boolean" defaultValue="true" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$BooleanConverter" />
 
 	<parameter name="RASTER_FILE" displayName="1h/grid filename"
@@ -57,6 +57,7 @@
 <Scenario>
 	<repast.simphony.dataLoader.engine.ClassNameDataLoaderAction context="SIMmasto0" file="repast.simphony.dataLoader.engine.ClassNameDataLoaderAction_0.xml" />
 	<repast.simphony.action.display context="SIMmasto0" file="styles\repast.simphony.action.display_PNMC_plancton.xml" />
+	<repast.simphony.action.display context="SIMmasto0" file="styles\repast.simphony.action.display_PNMC_energy.xml" />
 	<repast.simphony.userpanel.ui.DefaultUserPanelDescriptorAction context="SIMmasto0" file="repast.simphony.userpanel.ui.DefaultUserPanelDescriptorAction_marine.xml" />
 	<model.initializer class="presentation.display.C_CustomPanelSetMarine" />
 </Scenario>

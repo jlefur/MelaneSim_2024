@@ -19,6 +19,8 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC_parti
 	//
 	private double speedEastward_UmeterPerSecond, speedNorthward_UmeterPerSecond;
 	private C_StreamCurrent myCurrent;
+	/** Sum of energies (situated things) passed through this cell since last resetColors */
+	private double integralEnergy_Ukcal = 0.;
 	//
 	// CONSTRUCTOR
 	//
@@ -33,7 +35,9 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC_parti
 	// OVERRIDEN METHOD
 	//
 	@Override
-	/** Move planktonic occupants with the surface current speed - JLF 07.2024 */
+	/** Move planktonic occupants with the surface current speed - JLF 07.2024<br>
+	 * set the energy value for plankton<br>
+	 * Compute the marineCell's step energy and the integral energy -JLF 03.2025 */
 	public void step_Utick() {
 		super.step_Utick();
 		double speedEastward_UmeterPerTick, speedNorthward_UmeterPerTick, energy;
@@ -42,19 +46,21 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC_parti
 		TreeSet<I_SituatedThing> occupants = new TreeSet<>(this.getOccupantList());
 		// Object[] occupants = this.getOccupantList().toArray();// To avoid concurrent exception
 		for (I_SituatedThing agent : occupants) {
+			this.energy_Ukcal += agent.getEnergy_Ukcal();
+			this.integralEnergy_Ukcal += agent.getEnergy_Ukcal();
 			if (agent instanceof C_Plankton) {
 				speedEastward_UmeterPerTick = C_ConvertTimeAndSpace.convertSpeed_UspaceByTick(
 						this.speedEastward_UmeterPerSecond, "m", "s");
 				speedNorthward_UmeterPerTick = C_ConvertTimeAndSpace.convertSpeed_UspaceByTick(
 						this.speedNorthward_UmeterPerSecond, "m", "s");
-				A_VisibleAgent.myLandscape.translate((A_VisibleAgent) agent, new Coordinate(speedEastward_UmeterPerTick*PARTICLE_RESISTANCE_FACTOR,
-						speedNorthward_UmeterPerTick*PARTICLE_RESISTANCE_FACTOR));
+				A_VisibleAgent.myLandscape.translate((A_VisibleAgent) agent, new Coordinate(speedEastward_UmeterPerTick
+						* PARTICLE_RESISTANCE_FACTOR, speedNorthward_UmeterPerTick * PARTICLE_RESISTANCE_FACTOR));
 				// TODO number in source 2024 JLF (energy = speed/1E3)
 				energy = Math.sqrt(speedEastward_UmeterPerTick * speedEastward_UmeterPerTick
 						+ speedNorthward_UmeterPerTick * speedNorthward_UmeterPerTick) / 1E3;
-				((C_Plankton) agent).energy_Ukcal += energy;
+				((C_Plankton) agent).energy_Ukcal = 1.;
+				// ((C_Plankton) agent).energy_Ukcal +=energy;
 			}
-			// }
 		}
 	}
 	//
@@ -65,6 +71,16 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC_parti
 	}
 	public void setSpeedNorthward_UmeterPerSecond(double currentSpeedNorthward_UmeterPerSecond) {
 		this.speedNorthward_UmeterPerSecond = currentSpeedNorthward_UmeterPerSecond;
+	}
+	public void setMyCurrent(C_StreamCurrent myCurrent) {
+		this.myCurrent = myCurrent;
+		myCurrent.setMyCell(this);
+	}
+	public void setIntegralEnergy_Ukcal(double d) {
+		this.integralEnergy_Ukcal = d;
+	}
+	public double getIntegralEnergy_Ukcal() {
+		return integralEnergy_Ukcal;
 	}
 	public double getSpeedEastward_UmeterPerSecond() {
 		return speedEastward_UmeterPerSecond;
@@ -77,9 +93,5 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC_parti
 	}
 	public C_StreamCurrent getMyCurrent() {
 		return myCurrent;
-	}
-	public void setMyCurrent(C_StreamCurrent myCurrent) {
-		this.myCurrent = myCurrent;
-		myCurrent.setMyCell(this);
 	}
 }

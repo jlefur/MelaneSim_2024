@@ -38,7 +38,6 @@ import thing.dna.I_DiploidGenome;
 import thing.ground.A_SupportedContainer;
 import thing.ground.C_LandPlot;
 import thing.ground.C_SoilCell;
-import thing.ground.C_SoilCellUrban;
 import thing.ground.I_Container;
 
 /** The global container of a given protocol.<br>

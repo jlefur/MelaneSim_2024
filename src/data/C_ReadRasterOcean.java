@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 import thing.ground.landscape.C_Landscape;
 
-/** read  an ASCII raster (compatible surfer) from MelaneSim and return a grid in SimMasto format
+/** read an ASCII raster (compatible surfer) from MelaneSim and return a grid in SimMasto format
  * @see C_Landscape
  * @author Quentin Baduel, 2008, rev. JLF 2015, 2024 */
 public class C_ReadRasterOcean {
@@ -21,15 +21,15 @@ public class C_ReadRasterOcean {
 	 * @param url
 	 * @return matrix of affinities (or whatever) */
 	public static int[][] txtRasterLoader(String url) {
-		// on charge le fichier d'après l'url donnée en paramètre
+		// on charge le fichier d'aprï¿½s l'url donnï¿½e en paramï¿½tre
 		File fichier_raster = new File(url);
 		String chaine = null;
 		StringTokenizer st;
 		int[][] matrice = null;
 		try {
-			// on crée un flux de lecture du fichier
+			// on crÃ©e un flux de lecture du fichier
 			DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(fichier_raster)));
-			// on crée un lecteur de flux
+			// on crÃ©e un lecteur de flux
 			InputStreamReader isr = new InputStreamReader(in);
 			BufferedReader lecteur = new BufferedReader(isr);
 			lecteur.readLine();// DSAA
@@ -44,11 +44,11 @@ public class C_ReadRasterOcean {
 			lecteur.readLine();
 			int i = 0;
 			int j = 0;
-			// tant qu'il y a des lignes à lire :
+			// tant qu'il y a des lignes Ã  lire :
 			while ((chaine = lecteur.readLine()) != null) {
-				// on récupère une ligne ...
+				// on rÃ©cupÃ¨re une ligne ...
 				st = new StringTokenizer(chaine);
-				// ... tant qu'elle a des éléments
+				// ... tant qu'elle a des Ã©lÃ©ments
 				while (st.hasMoreElements()) {
 					// on lit l'entier correspondant et on l'enregistre dans la matrice.
 					matrice[j][i] = Integer.parseInt((st.nextToken())); // OCEAN

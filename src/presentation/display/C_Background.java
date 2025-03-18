@@ -10,7 +10,7 @@ import repast.simphony.context.Context;
 
 /** Provides a display-able object (background facility map) to the GUI<br>
  * The bitmap is declared in presentation.display.C_Background.style_0.xml or equivalent
- * @author J.Le Fur, 08.2014, rev. 04.2018 */
+ * @author J.Le Fur, 08.2014, rev. 04.2018, 03.2025 */
 public class C_Background implements I_SituatedThing {
     //
     // FIELDS
@@ -29,15 +29,6 @@ public class C_Background implements I_SituatedThing {
         this.scale = scale;
     }
     //
-    // OVERRIDEN METHODS
-    //
-    @Override
-    /** Useless, for compatibility with I_SituatedThing */
-    public void actionInfect(I_SituatedThing thing) {}
-
-    @Override
-    public void discardThis() {}
-    //
     // METHODS
     //
     public void contextualize(Context<Object> context, C_Landscape landscape) {
@@ -47,8 +38,20 @@ public class C_Background implements I_SituatedThing {
         }
     }
     //
-    // SETTERS and GETTERS
+    // GETTER
     //
+    public double getScale() {// needed by GUI
+    	return this.scale;
+    }
+    //
+    // OVERRIDEN METHODS (Useless, for compatibility with I_SituatedThing and I_LivingThing
+    //
+    @Override
+    /** Useless, for compatibility with I_SituatedThing */
+    public void actionInfect(I_SituatedThing thing) {}
+    
+    @Override
+    public void discardThis() {}
     @Override
     /** Needed & unused to conform to @see I_SituatedThing / JLF 02.2020 */
     public void assertColNo(int colNo) {}
@@ -58,9 +61,6 @@ public class C_Background implements I_SituatedThing {
     @Override
     public void setCurrentSoilCell(I_Container cell) {}
 
-    public double getScale() {// needed by GUI
-        return this.scale;
-    }
     @Override
     public int retrieveColNo() {
         return (int) this.whereY;
@@ -100,7 +100,38 @@ public class C_Background implements I_SituatedThing {
 		return false;
 	}
 	@Override
+	/** Used for compatibility with I_SituatedThing @rev JLF 10.2019 */
 	public C_LandPlot getMyLandPlot() {
 		return null;
+	}
+	@Override
+    /** Used for compatibility with I_LivingThing @rev JLF 03.2025 */
+	public String retrieveMyName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	/** Used for compatibility with I_LivingThing @rev JLF 03.2025 */
+	public double getBirthDate_Utick() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	/** Used for compatibility with I_LivingThing @rev JLF 03.2025 */
+	public double getAge_Uday() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	/** Used for compatibility with I_LivingThing @rev JLF 03.2025 */
+	public void actionGrowOlder_Utick() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	/** Used for compatibility with I_LivingThing @rev JLF 03.2025 */
+	public double getEnergy_Ukcal() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

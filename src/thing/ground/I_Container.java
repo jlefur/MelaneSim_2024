@@ -19,6 +19,7 @@ public interface I_Container extends I_SituatedThing {
 
 	public void setAffinity(int a);
 	public int getAffinity();
+	public double getEnergy_Ukcal();
 
 	public int getCarryingCapacity_Urodent();
 	public TreeSet<C_Rodent> getRodentList();
