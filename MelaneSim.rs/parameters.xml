@@ -34,7 +34,7 @@
 		type="java.lang.String" defaultValue="ocean.PNMC_plancton" isReadOnly="true"
 		converter="repast.simphony.parameter.StringConverterFactory$StringStringConverter" />
 	<parameter name="EXCLOS" displayName="1c/ Metapopulation(exclos)"
-		type="boolean" defaultValue="false" isReadOnly="false"
+		type="boolean" defaultValue="TRUE" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$BooleanConverter" />
 
 	<parameter name="RASTER_FILE" displayName="1h/grid filename"

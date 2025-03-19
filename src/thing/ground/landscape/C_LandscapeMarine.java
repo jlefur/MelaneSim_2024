@@ -1,6 +1,7 @@
 /* This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt */
 package thing.ground.landscape;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import data.C_Parameters;
 import data.C_ReadRasterOcean;
 import data.constants.I_ConstantPNMC_particules;
 import melanesim.protocol.A_Protocol;
+import melanesim.util.CaptureEcranPeriodique;
 import presentation.epiphyte.C_InspectorPopulationMarine;
 import repast.simphony.context.Context;
 import repast.simphony.valueLayer.GridValueLayer;
@@ -18,13 +20,18 @@ import thing.A_VisibleAgent;
 import thing.ground.C_SoilCellMarine;
 import thing.ground.I_Container;
 
-/** The global container of MelaneSim's protocols<br>
- * Owns a continuous space and a grid/matrix with values ('affinity'), landplots of marine cells with the same affinity values.
- * Values are read from an ascii file. Affinity values are stored in a gridValueLayer (as well as in the cell container
- * attributes) <br>
+/**
+ * The global container of MelaneSim's protocols<br>
+ * Owns a continuous space and a grid/matrix with values ('affinity'), landplots
+ * of marine cells with the same affinity values. Values are read from an ascii
+ * file. Affinity values are stored in a gridValueLayer (as well as in the cell
+ * container attributes) <br>
+ * 
  * @see A_Protocol
- * @author Baduel 2009.04, Le Fur 2009.12, Longueville 2011.02, Le Fur 2011,2012,2015,2024<br>
- *         formerly C_Raster */
+ * @author Baduel 2009.04, Le Fur 2009.12, Longueville 2011.02, Le Fur
+ *         2011,2012,2015,2024<br>
+ *         formerly C_Raster
+ */
 public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC_particules {
 	//
 	// FIELDS
@@ -40,6 +47,7 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC_par
 		super(context, url, gridValueName, continuousSpaceName);
 		context.addValueLayer(this.energyValueLayer);
 	}
+
 	//
 	// OVERRIDEN METHODS
 	//
@@ -48,17 +56,19 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC_par
 	public void translate(A_VisibleAgent thing, Coordinate moveDistance_Umeter) {
 		C_SoilCellMarine cell = (C_SoilCellMarine) thing.getCurrentSoilCell();
 		if (cell.getSpeedEastward_UmeterPerSecond() == 0.0 && cell.getSpeedNorthward_UmeterPerSecond() == 0.0) {
-			if (((C_SoilCellMarine) thing.getCurrentSoilCell()).isTerrestrial()) bordure((A_Organism) thing);
+			if (((C_SoilCellMarine) thing.getCurrentSoilCell()).isTerrestrial())
+				bordure((A_Organism) thing);
 			else {
 				boolean washedOnShore = false;
 				for (I_Container oneNeighbour : this.getCellNeighbours(cell))
 					if (((C_SoilCellMarine) oneNeighbour).isTerrestrial()) {
 						washedOnShore = true;
 					}
-				if (washedOnShore) bordure((A_Organism) thing);
+				if (washedOnShore)
+					bordure((A_Organism) thing);
 			}
-		}
-		else super.translate(thing, moveDistance_Umeter);
+		} else
+			super.translate(thing, moveDistance_Umeter);
 	}
 
 	@Override
@@ -72,9 +82,12 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC_par
 	}
 
 	@Override
-	/** Initialize both (!) gridValueLayer and container(ex: C_SoilCell) matrices
+	/**
+	 * Initialize both (!) gridValueLayer and container(ex: C_SoilCell) matrices
+	 * 
 	 * @param matriceLue the values read in the raster, bitmap<br>
-	 *            rev. JLF 2015, 2024, 2025 */
+	 *                   rev. JLF 2015, 2024, 2025
+	 */
 	public void createGround(int[][] matriceLue) {
 		this.energyValueLayer = new GridValueLayer(energyGridvalues, true,
 				new repast.simphony.space.grid.WrapAroundBorders(), dimension_Ucell.width, dimension_Ucell.height);
@@ -87,44 +100,66 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC_par
 			}
 		}
 	}
+
 	@Override
 	/** Inform inspector then super, JLF 2024 */
 	protected void replaceOutcomer(A_VisibleAgent animalLeavingLandscape, double[] newLocation, int x, int y) {
 		C_InspectorPopulationMarine.planktonExport++;
 		super.replaceOutcomer(animalLeavingLandscape, newLocation, x, y);
 	}
+
 	@Override
 	public void resetCellsColor() {
 		this.assertCellsEnergy();
+		// uncomment lines below to save screen
+		// save screen each new day
+		Integer currentYear = A_Protocol.protocolCalendar.get(Calendar.YEAR);
+		Integer currentMonth = A_Protocol.protocolCalendar.get(Calendar.MONTH);
+		String currentDate = "Energy-" + currentYear + "." + String.format("%02d", currentMonth + 1);
+		CaptureEcranPeriodique.captureEcranPlankton(currentDate);
+		// end of uncomment
 		C_Parameters.BLACK_MAP = false;
 	}
-	/** recompute marine cells energy<br>
-	 * JLF 03.2025 */
+
+	/**
+	 * recompute marine cells energy<br>
+	 * JLF 03.2025
+	 */
 	protected void assertCellsEnergy() {
 		double cellEnergy_Ukcal;
 		this.rankEnergy();
 		for (int i = 0; i < this.dimension_Ucell.getWidth(); i++) {
 			for (int j = 0; j < this.dimension_Ucell.getHeight(); j++) {
 				this.energyValueLayer.set(ENERGY_RESET, i, j);// reset cell color
-				if (((C_SoilCellMarine) grid[i][j]).isTerrestrial()) this.energyValueLayer.set(ENERGY_LAND, i, j);
+				if (((C_SoilCellMarine) grid[i][j]).isTerrestrial())
+					this.energyValueLayer.set(ENERGY_LAND, i, j);
 				cellEnergy_Ukcal = ((C_SoilCellMarine) grid[i][j]).getIntegralEnergy_Ukcal();
-				if (cellEnergy_Ukcal >= energyRanks[ENERGY_GREEN]) this.energyValueLayer.set(ENERGY_GREEN, i, j);
-				else if (cellEnergy_Ukcal >= energyRanks[ENERGY_ORANGE]) this.energyValueLayer.set(ENERGY_ORANGE, i, j);
-				else if (cellEnergy_Ukcal >= energyRanks[ENERGY_RED]) this.energyValueLayer.set(ENERGY_RED, i, j);
+				if (cellEnergy_Ukcal >= energyRanks[ENERGY_GREEN])
+					this.energyValueLayer.set(ENERGY_GREEN, i, j);
+				else if (cellEnergy_Ukcal >= energyRanks[ENERGY_ORANGE])
+					this.energyValueLayer.set(ENERGY_ORANGE, i, j);
+				else if (cellEnergy_Ukcal >= energyRanks[ENERGY_RED])
+					this.energyValueLayer.set(ENERGY_RED, i, j);
 				((C_SoilCellMarine) grid[i][j]).setIntegralEnergy_Ukcal(0.);
 			}
 		}
 	}
-	/** fill energyRanks map with the current thresholds<br>
-	 * The cells energies distribution is heavily asymmetrical (generalized Pareto distribution or truncated Zipf distribution),
-	 * hence the ranks are asymmetrical (empirically assigned) JLF 03.2025 */
+
+	/**
+	 * fill energyRanks map with the current thresholds<br>
+	 * The cells energies distribution is heavily asymmetrical (generalized Pareto
+	 * distribution or truncated Zipf distribution), hence the ranks are
+	 * asymmetrical (empirically assigned) JLF 03.2025
+	 */
 	protected void rankEnergy() {
 		double minEnergy = 1e8, maxEnergy = 0., delta = 0., cellEnergy_Ukcal;
 		for (int i = 0; i < this.dimension_Ucell.getWidth(); i++) {
 			for (int j = 0; j < this.dimension_Ucell.getHeight(); j++) {
 				cellEnergy_Ukcal = ((C_SoilCellMarine) grid[i][j]).getIntegralEnergy_Ukcal();
-				if (cellEnergy_Ukcal > maxEnergy) maxEnergy = cellEnergy_Ukcal;
-				if (cellEnergy_Ukcal < minEnergy) minEnergy = cellEnergy_Ukcal;
+				if (cellEnergy_Ukcal > maxEnergy)
+					maxEnergy = cellEnergy_Ukcal;
+				if (cellEnergy_Ukcal < minEnergy)
+					minEnergy = cellEnergy_Ukcal;
 			}
 		}
 
