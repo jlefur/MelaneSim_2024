@@ -66,11 +66,11 @@ public class C_Style2dGroundType implements ValueLayerStyleOGL, I_ConstantNumeri
 	}
 	public Map<Integer, Color> colorMapPNMC_energyGrid(Map<Integer, Color> colorMap) {
 		colorMap = new HashMap<Integer, Color>();
-		colorMap.put(0, Color.GREEN);
-		colorMap.put(1, Color.ORANGE);
-		colorMap.put(2, new Color(200, 0, 0));// dark red
-		colorMap.put(3, Color.BLACK);
-		colorMap.put(4, Color.WHITE);// land
+		colorMap.put(ENERGY_GREEN, Color.GREEN);
+		colorMap.put(ENERGY_ORANGE, Color.ORANGE);
+		colorMap.put(ENERGY_RED, new Color(200, 0, 0));// dark red
+		colorMap.put(ENERGY_RESET, Color.BLACK);
+		colorMap.put(ENERGY_LAND, Color.WHITE);
 		return colorMap;
 	}
 	public Map<Integer, Color> colorMapCentenalGrid(Map<Integer, Color> colorMap) {

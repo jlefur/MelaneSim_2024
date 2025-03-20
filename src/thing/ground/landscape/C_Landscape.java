@@ -216,6 +216,48 @@ public class C_Landscape implements I_ConstantString {
 			thing.hasLeftDomain = false;
 		}
 	}
+	/** Move the agent in continuous space. Was formerly moveByDisplacement, JLF 11.2015, ChatGPT 03.2025
+	 * @param thing A_Animal
+	 * @param moveDistance_Umeter Coordinate in meters (SI units) */
+	public void translate_ChatGPT_unused(A_VisibleAgent thing, Coordinate moveDistance_Umeter) {
+		// Retrieve coordinates in continuous space
+		NdPoint thingLocation_Ucs = this.continuousSpace.getLocation(thing);
+
+		// Convert move distance from meters to continuous space units
+		double moveDistanceX_Ucs = moveDistance_Umeter.x / C_Parameters.UCS_WIDTH_Umeter;
+		double moveDistanceY_Ucs = moveDistance_Umeter.y / C_Parameters.UCS_WIDTH_Umeter;
+		Coordinate moveDistance_Ucs = new Coordinate(moveDistanceX_Ucs, moveDistanceY_Ucs);
+
+		// Validate the displacement; this function may modify moveDistance_Ucs
+		Coordinate distanceDeplacement_Ucs = this.checkGoalPosition(thingLocation_Ucs, moveDistance_Ucs, thing);
+
+		// Handle boundary conditions
+		if (C_Parameters.EXCLOS && thing.hasLeftDomain && thing instanceof A_Organism) {
+			this.bordure((A_Organism) thing);
+			return;
+		}
+
+		// Convert back to meters
+		double correctedMoveX = moveDistance_Ucs.x * C_Parameters.UCS_WIDTH_Umeter;
+		double correctedMoveY = moveDistance_Ucs.y * C_Parameters.UCS_WIDTH_Umeter;
+		moveDistance_Umeter.x = correctedMoveX;
+		moveDistance_Umeter.y = correctedMoveY;
+
+		// Move the agent
+		this.continuousSpace.moveByDisplacement(thing, distanceDeplacement_Ucs.x, distanceDeplacement_Ucs.y);
+
+		// Check and move to a new cell if needed
+		if (thing instanceof A_Animal) {
+			A_Animal animal = (A_Animal) thing;
+			if (!animal.isTrappedOnBoard()) this.checkAndMoveToNewCell(animal);
+		}
+		else if (thing instanceof A_Organism) {
+			this.checkAndMoveToNewCell(thing);
+		}
+
+		// Reset domain flag
+		thing.hasLeftDomain = false;
+	}
 
 	/** 2. Move thing IN THE GRID if previousCell and newCell are not same coordinates (line & column)<br>
 	 * @version J.Le Fur 01.2018 */

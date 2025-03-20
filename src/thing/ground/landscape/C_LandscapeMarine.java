@@ -2,8 +2,8 @@
 package thing.ground.landscape;
 
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.locationtech.jts.geom.Coordinate;
 
@@ -20,25 +20,20 @@ import thing.A_VisibleAgent;
 import thing.ground.C_SoilCellMarine;
 import thing.ground.I_Container;
 
-/**
- * The global container of MelaneSim's protocols<br>
- * Owns a continuous space and a grid/matrix with values ('affinity'), landplots
- * of marine cells with the same affinity values. Values are read from an ascii
- * file. Affinity values are stored in a gridValueLayer (as well as in the cell
- * container attributes) <br>
- * 
+/** The global container of MelaneSim's protocols<br>
+ * Owns a continuous space and a grid/matrix with values ('affinity'), landplots of marine cells with the same affinity values.
+ * Values are read from an ascii file. Affinity values are stored in a gridValueLayer (as well as in the cell container
+ * attributes) <br>
  * @see A_Protocol
- * @author Baduel 2009.04, Le Fur 2009.12, Longueville 2011.02, Le Fur
- *         2011,2012,2015,2024<br>
- *         formerly C_Raster
- */
+ * @author Baduel 2009.04, Le Fur 2009.12, Longueville 2011.02, Le Fur 2011,2012,2015,2024<br>
+ *         formerly C_Raster */
 public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC_particules {
 	//
 	// FIELDS
 	//
 	protected GridValueLayer energyValueLayer;
 	// energy values are 0-green, 1-orange, 2-red or 3-black forN/A ( viz. land)
-	protected Double[] energyRanks = new Double[4];
+	protected Double[] energyRanks = new Double[3];
 
 	//
 	// CONSTRUCTOR
@@ -56,19 +51,17 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC_par
 	public void translate(A_VisibleAgent thing, Coordinate moveDistance_Umeter) {
 		C_SoilCellMarine cell = (C_SoilCellMarine) thing.getCurrentSoilCell();
 		if (cell.getSpeedEastward_UmeterPerSecond() == 0.0 && cell.getSpeedNorthward_UmeterPerSecond() == 0.0) {
-			if (((C_SoilCellMarine) thing.getCurrentSoilCell()).isTerrestrial())
-				bordure((A_Organism) thing);
+			if (((C_SoilCellMarine) thing.getCurrentSoilCell()).isTerrestrial()) bordure((A_Organism) thing);
 			else {
 				boolean washedOnShore = false;
 				for (I_Container oneNeighbour : this.getCellNeighbours(cell))
 					if (((C_SoilCellMarine) oneNeighbour).isTerrestrial()) {
 						washedOnShore = true;
 					}
-				if (washedOnShore)
-					bordure((A_Organism) thing);
+				if (washedOnShore) bordure((A_Organism) thing);
 			}
-		} else
-			super.translate(thing, moveDistance_Umeter);
+		}
+		else super.translate(thing, moveDistance_Umeter);
 	}
 
 	@Override
@@ -82,12 +75,9 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC_par
 	}
 
 	@Override
-	/**
-	 * Initialize both (!) gridValueLayer and container(ex: C_SoilCell) matrices
-	 * 
+	/** Initialize both (!) gridValueLayer and container(ex: C_SoilCell) matrices
 	 * @param matriceLue the values read in the raster, bitmap<br>
-	 *                   rev. JLF 2015, 2024, 2025
-	 */
+	 *            rev. JLF 2015, 2024, 2025 */
 	public void createGround(int[][] matriceLue) {
 		this.energyValueLayer = new GridValueLayer(energyGridvalues, true,
 				new repast.simphony.space.grid.WrapAroundBorders(), dimension_Ucell.width, dimension_Ucell.height);
@@ -121,53 +111,101 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC_par
 		C_Parameters.BLACK_MAP = false;
 	}
 
-	/**
-	 * recompute marine cells energy<br>
-	 * JLF 03.2025
-	 */
+	/** recompute marine cells energy<br>
+	 * JLF 03.2025 */
 	protected void assertCellsEnergy() {
 		double cellEnergy_Ukcal;
 		this.rankEnergy();
 		for (int i = 0; i < this.dimension_Ucell.getWidth(); i++) {
 			for (int j = 0; j < this.dimension_Ucell.getHeight(); j++) {
 				this.energyValueLayer.set(ENERGY_RESET, i, j);// reset cell color
-				if (((C_SoilCellMarine) grid[i][j]).isTerrestrial())
-					this.energyValueLayer.set(ENERGY_LAND, i, j);
+				if (((C_SoilCellMarine) grid[i][j]).isTerrestrial()) this.energyValueLayer.set(ENERGY_LAND, i, j);
 				cellEnergy_Ukcal = ((C_SoilCellMarine) grid[i][j]).getIntegralEnergy_Ukcal();
-				if (cellEnergy_Ukcal >= energyRanks[ENERGY_GREEN])
-					this.energyValueLayer.set(ENERGY_GREEN, i, j);
-				else if (cellEnergy_Ukcal >= energyRanks[ENERGY_ORANGE])
-					this.energyValueLayer.set(ENERGY_ORANGE, i, j);
-				else if (cellEnergy_Ukcal >= energyRanks[ENERGY_RED])
-					this.energyValueLayer.set(ENERGY_RED, i, j);
+				if (cellEnergy_Ukcal >= energyRanks[ENERGY_GREEN]) this.energyValueLayer.set(ENERGY_GREEN, i, j);
+				else if (cellEnergy_Ukcal >= energyRanks[ENERGY_ORANGE]) this.energyValueLayer.set(ENERGY_ORANGE, i, j);
+				else if (cellEnergy_Ukcal >= energyRanks[ENERGY_RED]) this.energyValueLayer.set(ENERGY_RED, i, j);
 				((C_SoilCellMarine) grid[i][j]).setIntegralEnergy_Ukcal(0.);
 			}
 		}
 	}
 
-	/**
-	 * fill energyRanks map with the current thresholds<br>
-	 * The cells energies distribution is heavily asymmetrical (generalized Pareto
-	 * distribution or truncated Zipf distribution), hence the ranks are
-	 * asymmetrical (empirically assigned) JLF 03.2025
-	 */
-	protected void rankEnergy() {
-		double minEnergy = 1e8, maxEnergy = 0., delta = 0., cellEnergy_Ukcal;
+	protected void rankEnergy0() {
+		// Put each energy rank in keys of a sorted map and fill values with the corresponding energy sum
+		double cellEnergy_Ukcal, overallEnergy_Ukcal = 0.;
+		TreeMap<Double, Double> EnergyByRank = new TreeMap<>();
 		for (int i = 0; i < this.dimension_Ucell.getWidth(); i++) {
 			for (int j = 0; j < this.dimension_Ucell.getHeight(); j++) {
 				cellEnergy_Ukcal = ((C_SoilCellMarine) grid[i][j]).getIntegralEnergy_Ukcal();
-				if (cellEnergy_Ukcal > maxEnergy)
-					maxEnergy = cellEnergy_Ukcal;
-				if (cellEnergy_Ukcal < minEnergy)
-					minEnergy = cellEnergy_Ukcal;
+
+				if (EnergyByRank.get(cellEnergy_Ukcal) != null) {
+					EnergyByRank.put(cellEnergy_Ukcal, EnergyByRank.get(cellEnergy_Ukcal) + cellEnergy_Ukcal);
+				}
+				// If not, create an entry and set values
+				else EnergyByRank.put(cellEnergy_Ukcal, cellEnergy_Ukcal);
+
+				overallEnergy_Ukcal += cellEnergy_Ukcal;
+			}
+		}
+		// Temporary stores the threshold to proceed to the coming loop
+		energyRanks[ENERGY_GREEN] = overallEnergy_Ukcal * GREEN_AREA_Upercent;
+		energyRanks[ENERGY_ORANGE] = overallEnergy_Ukcal * ORANGE_AREA_Upercent;
+		energyRanks[ENERGY_RED] = overallEnergy_Ukcal * RED_AREA_Upercent;
+		double targetSum = 0., currentSum = 0.;
+		for (int i = 0; i < 3; i++) {// for each threshold
+			targetSum = energyRanks[i];
+
+			currentSum = 0.0;
+			for (Map.Entry<Double, Double> entry : EnergyByRank.descendingMap().entrySet()) {
+				if (currentSum >= targetSum) {
+					energyRanks[i] = entry.getKey();
+					break;
+				}
+				currentSum += entry.getValue();
+			}
+		}
+	}
+	/** fill energyRanks map with the current thresholds<br>
+	 * The cells energies distribution is heavily asymmetrical (generalized Pareto distribution or truncated Zipf distribution),
+	 * hence the ranks are asymmetrical<br>
+	 * @author JLF 03.2025 */
+	protected void rankEnergy() {
+		// Put each energy rank in keys of a sorted map and fill values with the corresponding energy sum
+		double overallEnergy_Ukcal = 0.0;
+		TreeMap<Double, Double> EnergyByRank = new TreeMap<>();
+		for (int i = 0; i < this.dimension_Ucell.getWidth(); i++) {
+			for (int j = 0; j < this.dimension_Ucell.getHeight(); j++) {
+				final double cellEnergy_Ukcal = ((C_SoilCellMarine) grid[i][j]).getIntegralEnergy_Ukcal(); // Finalisé
+
+				if (EnergyByRank.get(cellEnergy_Ukcal) != null) {
+					EnergyByRank.put(cellEnergy_Ukcal, EnergyByRank.get(cellEnergy_Ukcal) + cellEnergy_Ukcal);
+				}
+				// If not, create an entry and set values
+				else EnergyByRank.put(cellEnergy_Ukcal, cellEnergy_Ukcal);
+
+				// NB: chatGPT suggère de remplacer les 5 lignes ci-dessous par:
+				// EnergyByRank.compute(cellEnergy_Ukcal, (k, v) -> (v == null) ? cellEnergy_Ukcal : v + cellEnergy_Ukcal);
+				
+				overallEnergy_Ukcal += cellEnergy_Ukcal;
 			}
 		}
 
-		delta = (maxEnergy - minEnergy) / 100.;
-		energyRanks[0] = minEnergy + (delta * 3.);// green lower limit
-		energyRanks[1] = minEnergy + (delta * 1.);// orange lower limit
-		energyRanks[2] = minEnergy + (delta * .1);// red lower limit
-		A_Protocol.event("C_LandscapeMarine.rankEnergy()", minEnergy + " -> " + maxEnergy + " (" + delta + ") = ["
-				+ energyRanks[0] + "][" + energyRanks[1] + "][" + energyRanks[2] + "]", isError);
+		// Définition des seuils d'énergie (Temporary stores the threshold to proceed to the coming loop)
+		energyRanks[ENERGY_GREEN] = overallEnergy_Ukcal * GREEN_AREA_Upercent;
+		energyRanks[ENERGY_ORANGE] = overallEnergy_Ukcal * ORANGE_AREA_Upercent;
+		energyRanks[ENERGY_RED] = overallEnergy_Ukcal * RED_AREA_Upercent;
+
+		// Classement des valeurs pour atteindre les seuils
+		for (int i = 0; i < 3; i++) {
+			double targetSum = energyRanks[i];
+			// additionner les valeurs en partant de la clé la plus grande
+			double currentSum = 0.0;
+			for (Map.Entry<Double, Double> entry : EnergyByRank.descendingMap().entrySet()) {
+				if (currentSum >= targetSum) {
+					energyRanks[i] = entry.getKey();// the threshold key
+					break;// Arrêter si la somme cible est atteinte
+				}
+				currentSum += entry.getValue();
+			}
+		}
 	}
 }
