@@ -46,6 +46,6 @@ public interface I_ConstantPNMC_particules extends I_ConstantString {
 	public static final int ENERGY_LAND = 4;//
 
 	public static final double GREEN_AREA_Upercent = .25;// green lower limit
-	public static final double ORANGE_AREA_Upercent = .50;// orange lower limit
-	public static final double RED_AREA_Upercent = .65;// red lower limit
+	public static final double ORANGE_AREA_Upercent = .40;// orange lower limit
+	public static final double RED_AREA_Upercent = .60;// red lower limit
 }

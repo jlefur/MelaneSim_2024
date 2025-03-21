@@ -104,14 +104,14 @@ public class C_UserPanel extends JPanel implements UserPanelCreator, I_ConstantS
 		this.dateBox.add(this.dateLab);
 
 		// C. BOXES METERS //
-		
+
 		// 1.BOX POPULATION
 		this.meterPopSize = new C_Meter(METER_POPSIZE_TITLE, true, 1000);
 		if (this.hasToShowDayMoments()) this.metersPopulation.add(this.daytimeJpanel);
 		else {}
 		this.metersPopulation.add(this.meterPopSize.getPan());
 	}
-		protected void initBottom() {
+	protected void initBottom() {
 		this.consoleOutBox = initBoxLayout("Console output");
 		this.consoleErrBox = initBoxLayout("Console Error");
 		// D. BOX CONSOLE OUT//

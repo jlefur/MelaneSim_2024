@@ -1,9 +1,8 @@
 package presentation.display;
-
 import javax.swing.JLabel;
-
 import data.constants.I_ConstantPNMC_particules;
 import presentation.epiphyte.C_InspectorPopulationMarine;
+import thing.ground.landscape.C_LandscapeMarine;
 
 /** Plankton
  * @author JLF 2024 */
@@ -12,7 +11,7 @@ public class C_UserPanelMarine extends C_UserPanel implements I_ConstantPNMC_par
 	// FIELDS
 	//
 	protected static final long serialVersionUID = 1L;
-	private C_Meter meterPlankton, meterExport;
+	private C_Meter meterPlankton, meterEnergy;
 	//
 	// CONSTRUCTOR
 	//
@@ -29,15 +28,15 @@ public class C_UserPanelMarine extends C_UserPanel implements I_ConstantPNMC_par
 		// C. BOXES METERS - 1.BOX POPULATION
 		this.meterPlankton = new C_Meter("Plancton (X1E3)", true, 1000);
 		this.metersPopulation.add(this.meterPlankton.getPan());
-		this.meterExport = new C_Meter("Pk export (X1E3)", true, 1000);
-		this.metersPopulation.add(this.meterExport.getPan());
+		this.meterEnergy = new C_Meter("Energy (X1E3)", true, 1000);
+		this.metersPopulation.add(this.meterEnergy.getPan());
 	}
 	@Override
 	/** Met à jour les données des compteurs */
 	protected void update_Meters() {
 		super.update_Meters();
 		this.meterPlankton.setData(C_InspectorPopulationMarine.planktonList.size());
-		this.meterExport.setData(C_InspectorPopulationMarine.planktonExport);
+		this.meterEnergy.setData(C_LandscapeMarine.overallEnergy_Ukcal);
 		//A_Protocol.event("C_UserPanelMarine.update_Meters()",C_InspectorPopulationMarine.planktonList.size()+" /// "+C_InspectorPopulationMarine.planktonExport,false);
 		C_InspectorPopulationMarine.planktonExport = 0;
 	}
