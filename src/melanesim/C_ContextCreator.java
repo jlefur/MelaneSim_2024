@@ -3,11 +3,11 @@ package melanesim;
 import cern.jet.random.engine.RandomEngine;
 import data.C_Parameters;
 import data.constants.I_ConstantNumeric;
-import data.constants.I_ConstantPNMC_particules;
+import data.constants.I_ConstantPNMC;
 import data.constants.rodents.I_ConstantStringRodents;
 import data.converters.C_ConvertTimeAndSpace;
 import melanesim.protocol.A_Protocol;
-import melanesim.protocol.C_Protocol_PNMC_particules;
+import melanesim.protocol.C_Protocol_PNMC_drifters;
 import melanesim.protocol.rodents.C_ProtocolBandia;
 import melanesim.protocol.rodents.C_ProtocolCage;
 import melanesim.protocol.rodents.C_ProtocolCentenal;
@@ -25,7 +25,7 @@ import repast.simphony.dataLoader.ContextBuilder;
 import repast.simphony.random.RandomHelper;
 
 /** @author Baduel Quentin - 2009 multiple rev. Le Fur 2009-2012, 02.2013, 11.2015 */
-public class C_ContextCreator implements ContextBuilder<Object>, I_ConstantNumeric, I_ConstantStringRodents, I_ConstantPNMC_particules {
+public class C_ContextCreator implements ContextBuilder<Object>, I_ConstantNumeric, I_ConstantStringRodents, I_ConstantPNMC {
 	//
 	// FIELDS
 	//
@@ -115,7 +115,7 @@ public class C_ContextCreator implements ContextBuilder<Object>, I_ConstantNumer
 	}
 	/** Initialization of the protocol declared in sim_constants author: J.LeFur 07.2012 */
 	private void selectProtocol(Context<Object> context) {
-		if (C_Parameters.PROTOCOL.equals(PNMC_PK)) protocol = new C_Protocol_PNMC_particules(context);
+		if (C_Parameters.PROTOCOL.equals(PNMC_DRIFTERS)) protocol = new C_Protocol_PNMC_drifters(context);
 		else if (C_Parameters.PROTOCOL.contains(CHIZE)) protocol = new C_ProtocolChize(context);
 		else if (C_Parameters.PROTOCOL.equals(HYBRID_UNIFORM)) protocol = new C_ProtocolHybridUniform(context);
 		else if (C_Parameters.PROTOCOL.equals(CAGES)) protocol = new C_ProtocolCage(context);

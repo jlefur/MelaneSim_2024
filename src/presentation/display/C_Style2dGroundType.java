@@ -9,11 +9,11 @@ import repast.simphony.visualizationOGL2D.ValueLayerStyleOGL;
 import thing.ground.landscape.C_Landscape;
 import data.C_Parameters;
 import data.constants.I_ConstantNumeric;
-import data.constants.I_ConstantPNMC_particules;
+import data.constants.I_ConstantPNMC;
 import data.constants.rodents.I_ConstantStringRodents;
 import data.constants.rodents.I_ConstantTransportation;
 public class C_Style2dGroundType implements ValueLayerStyleOGL, I_ConstantNumeric, I_ConstantStringRodents,
-		I_ConstantTransportation, I_ConstantPNMC_particules {
+		I_ConstantTransportation, I_ConstantPNMC {
 	//
 	// FIELDS
 	//
@@ -31,7 +31,7 @@ public class C_Style2dGroundType implements ValueLayerStyleOGL, I_ConstantNumeri
 			System.out.print("C_Style2dGroundType(): creating ");
 			this.colorMap = new HashMap<Integer, Color>();
 			switch (C_Parameters.PROTOCOL) {
-				case PNMC_PK :
+				case PNMC_DRIFTERS :
 					this.colorMap = colorMapPNMC_energyGrid(this.colorMap);
 					System.out.println("PNMC energy colormap: " + this.colorMap.size() + " colors identified");
 					break;

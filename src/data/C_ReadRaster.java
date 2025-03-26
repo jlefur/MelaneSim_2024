@@ -18,7 +18,7 @@ import java.util.StringTokenizer;
 
 import javax.imageio.ImageIO;
 
-//import data.constants.I_ConstantPNMC_particules;
+//import data.constants.I_ConstantPNMC;
 import thing.ground.landscape.C_Landscape;
 
 /** Two utilities to read either an ASCII or bitmap raster and return a grid in SimMasto format (the image must be in grey levels
@@ -32,15 +32,15 @@ public class C_ReadRaster {
 	 * @param url
 	 * @return matrix of affinities (or whatever) */
 	public static int[][] txtRasterLoader(String url) {
-		// on charge le fichier d'après l'url donnée en paramètre
+		// on charge le fichier d'aprï¿½s l'url donnï¿½e en paramï¿½tre
 		File fichier_raster = new File(url);
 		String chaine = null;
 		StringTokenizer st;
 		int[][] matrice = null;
 		try {
-			// on crée un flux de lecture du fichier
+			// on crï¿½e un flux de lecture du fichier
 			DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(fichier_raster)));
-			// on crée un lecteur de flux
+			// on crï¿½e un lecteur de flux
 			InputStreamReader isr = new InputStreamReader(in);
 			BufferedReader lecteur = new BufferedReader(isr);
 			lecteur.readLine();// DSAA
@@ -54,11 +54,11 @@ public class C_ReadRaster {
 			lecteur.readLine();
 			int i = 0;
 			int j = 0;
-			// tant qu'il y a des lignes à lire :
+			// tant qu'il y a des lignes ï¿½ lire :
 			while ((chaine = lecteur.readLine()) != null) {
-				// on récupère une ligne ...
+				// on rï¿½cupï¿½re une ligne ...
 				st = new StringTokenizer(chaine);
-				// ... tant qu'elle a des éléments
+				// ... tant qu'elle a des ï¿½lï¿½ments
 				while (st.hasMoreElements()) {
 					// on lit l'entier correspondant et on l'enregistre dans la matrice.
 					// matrice[j][i] = Integer.parseInt((st.nextToken())); // OCEAN
@@ -97,18 +97,18 @@ public class C_ReadRaster {
 					colorMap = new HashMap<Integer, Color>();
 					// we will use 256 grey level
 					for (int i = 0; i < 256; i++) {
-						System.out.println(i + "ème gris Type 10: " + colorMap.get(i));
+						System.out.println(i + "ï¿½me gris Type 10: " + colorMap.get(i));
 						colorMap.put(i, new Color(i, i, i));
 					}
 					break;
-				case 12 : // TYPE_BYTE_BINARY -> quand l'image est transformée en
+				case 12 : // TYPE_BYTE_BINARY -> quand l'image est transformï¿½e en
 							// moins de 256 couleurs
 					IndexColorModel c12 = (IndexColorModel) img.getColorModel();
 					colorMap = new HashMap<Integer, Color>();
 					// we make a copy of the color model in the color map
 					for (int i = 0; i < c12.getMapSize(); i++) {
 						colorMap.put(i, new Color(c12.getRGB(i)));
-						System.out.println(i + "ème couleur Type 12: " + colorMap.get(i));
+						System.out.println(i + "ï¿½me couleur Type 12: " + colorMap.get(i));
 					}
 					break;
 				case 13 : // TYPE_BYTE_INDEXED
@@ -117,7 +117,7 @@ public class C_ReadRaster {
 					// we make a copy of the color model in the color map
 					for (int i = 0; i < c.getMapSize(); i++) {
 						colorMap.put(i, new Color(c.getRGB(i)));
-						System.out.println(i + "ème couleur Type 13: " + colorMap.get(i));
+						System.out.println(i + "ï¿½me couleur Type 13: " + colorMap.get(i));
 					}
 					break;
 				default :

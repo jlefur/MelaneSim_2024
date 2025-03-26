@@ -17,7 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import data.C_ReadWriteFile;
-import data.constants.I_ConstantPNMC_particules;
+import data.constants.I_ConstantPNMC;
 import presentation.dataOutput.C_FileWriter;
 
 /** Display buttons to select one of SimMasto protocols, then split xml file to set the protocol<br>
@@ -25,7 +25,7 @@ import presentation.dataOutput.C_FileWriter;
  * <br>
  * 1.-PNMC_plancton: particles moved by surface currents<br>
  */
-public class C_ChooseProtocol_MelaneSim extends JFrame implements ActionListener, I_ConstantPNMC_particules {
+public class C_ChooseProtocol_MelaneSim extends JFrame implements ActionListener, I_ConstantPNMC {
 	private static final long serialVersionUID = 1L;
 	private JPanel panel = new JPanel();
 	private BufferedImage buttonIcon = null;
@@ -36,7 +36,7 @@ public class C_ChooseProtocol_MelaneSim extends JFrame implements ActionListener
 	}
 	public C_ChooseProtocol_MelaneSim() {
 		super("- Choose one simulation protocol (MelaneSim project - IRD/Entropie)");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // impératif cette ligne
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // impï¿½ratif cette ligne
 		this.setLocation(560, 10);
 		this.setContentPane(panel);
 		this.panel.setLayout(new BoxLayout(this.panel, BoxLayout.PAGE_AXIS));
@@ -84,16 +84,16 @@ public class C_ChooseProtocol_MelaneSim extends JFrame implements ActionListener
 			readLine = buffer.readLine();
 			while (readLine != null) {
 				if (readLine.contains("<?xml") && !readLine.trim().startsWith("<!--")) {
-					String fistReadLine = readLine; // on sauvegarde la première ligne
-					readLine = buffer.readLine(); // on passe à la deuxième pr récupèrer le nom
-					// Récupération du nom. example: parameters.xml ou scenario.xml d'une ligne comme
+					String fistReadLine = readLine; // on sauvegarde la premiï¿½re ligne
+					readLine = buffer.readLine(); // on passe ï¿½ la deuxiï¿½me pr rï¿½cupï¿½rer le nom
+					// Rï¿½cupï¿½ration du nom. example: parameters.xml ou scenario.xml d'une ligne comme
 					// <!--fileName:parameters.xml-->
 					// ou
 					// <!--fileName:scenario.xml-->
 					String xmlConfigFileName = readLine.replace(" ", "").split(":")[1].split(".xml")[0] + ".xml";
-					// Création du fichier .xml en construction
+					// Crï¿½ation du fichier .xml en construction
 					writingXmlFile = new C_FileWriter(REPAST_PATH + xmlConfigFileName, false);
-					// Ecriture de la première ligne (<?xml version="1.0" encoding="UTF-8" ?>)
+					// Ecriture de la premiï¿½re ligne (<?xml version="1.0" encoding="UTF-8" ?>)
 					writingXmlFile.writeln(fistReadLine);
 				} // Ecriture du reste du fichier
 				writingXmlFile.writeln(readLine);

@@ -1,8 +1,10 @@
 package presentation.display;
 
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -17,7 +19,7 @@ import javax.swing.ScrollPaneConstants;
 
 import bsh.util.JConsole;
 import data.C_Parameters;
-import data.constants.I_ConstantPNMC_particules;
+import data.constants.I_ConstantPNMC;
 import data.constants.rodents.I_ConstantImagesNames;
 import data.constants.rodents.I_ConstantStringRodents;
 import melanesim.C_ContextCreator;
@@ -30,7 +32,7 @@ import repast.simphony.userpanel.ui.UserPanelCreator;
 
 /** Tableau de bord de la simulation. Contient la date de la simulation (à chaque tick), des moteurs et un retour de la console.
  * @author A Realini 2011, rev. Le Fur 2013, 2018, 2024 */
-public class C_UserPanel extends JPanel implements UserPanelCreator, I_ConstantStringRodents, I_ConstantPNMC_particules,
+public class C_UserPanel extends JPanel implements UserPanelCreator, I_ConstantStringRodents, I_ConstantPNMC,
 		I_ConstantImagesNames {
 	//
 	// FIELDS
@@ -111,7 +113,7 @@ public class C_UserPanel extends JPanel implements UserPanelCreator, I_ConstantS
 		else {}
 		this.metersPopulation.add(this.meterPopSize.getPan());
 	}
-	protected void initBottom() {
+	protected void initBottom0() {
 		this.consoleOutBox = initBoxLayout("Console output");
 		this.consoleErrBox = initBoxLayout("Console Error");
 		// D. BOX CONSOLE OUT//
@@ -122,6 +124,35 @@ public class C_UserPanel extends JPanel implements UserPanelCreator, I_ConstantS
 		C_UserPanel.consoleErr = createConsole();
 		System.setErr(C_UserPanel.consoleErr.getErr()); // redirect error output to GUI console
 		this.consoleErrBox.add(C_UserPanel.consoleErr);
+	}
+	/** @author chatGPT 03.2025 */
+	protected void initBottom() {
+		// Les consoles sont mises dans un panel vertical à 2 cases égales
+		JPanel consoleWrapper = new JPanel();
+		consoleWrapper.setLayout(new GridLayout(2, 1)); // Deux cases verticales : 50% / 50%
+		consoleWrapper.setAlignmentX(Component.LEFT_ALIGNMENT);
+		// D. BOX CONSOLE OUT//
+		C_UserPanel.consoleOut = createConsole();
+		System.setOut(consoleOut.getOut());
+		// E. BOX CONSOLE ERR//
+		C_UserPanel.consoleErr = createConsole();
+		System.setErr(consoleErr.getErr());
+		// Envelopper chaque console dans un JPanel avec un titre
+		consoleOutBox = wrapConsoleWithTitle("Console Output", consoleOut);
+		consoleErrBox = wrapConsoleWithTitle("Console Error", consoleErr);
+		// Ajouter dans le wrapper
+		consoleWrapper.add(consoleOutBox);
+		consoleWrapper.add(consoleErrBox);
+		// Ajouter le wrapper à ce panneau (C_UserPanel)
+		this.add(consoleWrapper); // à la fin : occupe tout l’espace restant
+	}
+	/** @author chatGPT 03.2025 */
+	private JPanel wrapConsoleWithTitle(String title, JConsole console) {
+		JPanel panel = new JPanel();
+		panel.setLayout(new BorderLayout());
+		panel.setBorder(BorderFactory.createTitledBorder(title));
+		panel.add(console, BorderLayout.CENTER);
+		return panel;
 	}
 
 	protected JConsole createConsole() {
@@ -215,7 +246,7 @@ public class C_UserPanel extends JPanel implements UserPanelCreator, I_ConstantS
 			case DODEL2 :
 			case DODEL :
 			case GERBIL :
-			case PNMC_PK :
+			case PNMC_DRIFTERS :
 				return true;
 			default :
 				return false;

@@ -8,11 +8,11 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import data.C_Parameters;
-import data.constants.I_ConstantPNMC_particules;
+import data.constants.I_ConstantPNMC;
 import data.constants.rodents.I_ConstantImagesNames;
 import data.constants.rodents.I_ConstantStringRodents;
 import melanesim.protocol.A_Protocol;
-import melanesim.protocol.C_Protocol_PNMC_particules;
+import melanesim.protocol.C_Protocol_PNMC_drifters;
 import repast.simphony.engine.environment.RunState;
 import thing.A_Amniote;
 import thing.A_Animal;
@@ -51,7 +51,7 @@ import thing.rodents.C_Vegetation;
 
 /** Gestionnaire d'images / Icons may be either gif image files or geonetric icons
  * @author A Realini, rev. JLF 10.2015 */
-public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC_particules, I_ConstantImagesNames {
+public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC, I_ConstantImagesNames {
 
 	/** Charge une image
 	 * @param nomImage : le nom de l'image � charger */
@@ -72,7 +72,7 @@ public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC_p
 			((A_SupportedContainer) agent).setHasToSwitchFace(true);
 			return TAGGED;
 		}
-		else if (C_Parameters.PROTOCOL.equals(PNMC_PK)) return getNameOfImagePNMC(agent);
+		else if (C_Parameters.PROTOCOL.equals(PNMC_DRIFTERS)) return getNameOfImagePNMC(agent);
 		else if (C_Parameters.PROTOCOL.equals(CHIZE)) return getNameOfImageChize(agent);
 		else if (C_Parameters.PROTOCOL.equals(GERBIL)) return getNameOfImageGerbil(agent);
 		else if (C_Parameters.PROTOCOL.equals(ENCLOSURE)) return getNameOfImageEnclosMbour(agent);
@@ -277,7 +277,7 @@ public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC_p
 	 * d'ellipses et non d'images)
 	 * @return la nouvelle couleur de l'agent */
 	public static Color getColor(I_SituatedThing agent) {
-		if (C_Parameters.PROTOCOL.equals(PNMC_PK)) return getColorPNMC_PK(agent);
+		if (C_Parameters.PROTOCOL.equals(PNMC_DRIFTERS)) return getColorPNMC_DRIFTERS(agent);
 		else if (C_Parameters.PROTOCOL.equals(CHIZE)) return getColorChize(agent);
 		else if (C_Parameters.PROTOCOL.equals(GERBIL)) return getColorGerbil(agent);
 		else if (C_Parameters.PROTOCOL.equals(ENCLOSURE)) return getColorMbour(agent);
@@ -293,8 +293,8 @@ public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC_p
 	}
 
 	/** agent is plankton JLF 2024 */
-	public static Color getColorPNMC_PK(I_SituatedThing agent) {
-		if (C_Protocol_PNMC_particules.DISPLAY_FACILITY_MAP) return Color.green; // new Color(172, 117, 213);// violet
+	public static Color getColorPNMC_DRIFTERS(I_SituatedThing agent) {
+		if (C_Protocol_PNMC_drifters.DISPLAY_FACILITY_MAP) return Color.green; // new Color(172, 117, 213);// violet
 		else return Color.green;
 	}
 

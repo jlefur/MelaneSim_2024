@@ -9,11 +9,11 @@ import repast.simphony.visualizationOGL2D.ValueLayerStyleOGL;
 import thing.ground.landscape.C_Landscape;
 import data.C_Parameters;
 import data.constants.I_ConstantNumeric;
-import data.constants.I_ConstantPNMC_particules;
+import data.constants.I_ConstantPNMC;
 import data.constants.rodents.I_ConstantStringRodents;
 
 public class C_Style2dAffinityType implements ValueLayerStyleOGL, I_ConstantNumeric, I_ConstantStringRodents,
-		I_ConstantPNMC_particules {
+		I_ConstantPNMC {
 	protected ValueLayer layer;// the layer to represent
 	// http://vminfotron-dev.mpl.ird.fr:8080/masto2_2/model/memos/memo16_ImplantationRaster.htm
 	Map<Integer, Color> colorMap;// the colormap is used to associate a color at each value of the layer
@@ -25,7 +25,7 @@ public class C_Style2dAffinityType implements ValueLayerStyleOGL, I_ConstantNume
 		if (this.colorMap == null) {
 			System.out.print("C_Style2dAffinityType(): colormap not found; creating colormap");
 			this.colorMap = new HashMap<Integer, Color>();
-			if (C_Parameters.PROTOCOL.equals(PNMC_PK)) {
+			if (C_Parameters.PROTOCOL.equals(PNMC_DRIFTERS)) {
 				this.colorMap = colorMapPNMC(this.colorMap);
 				System.out.print(" PNMC particules");
 			}

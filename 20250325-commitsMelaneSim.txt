@@ -1,0 +1,227 @@
+Status code: 200
+Commit: 4b5d539874519a7b7148d31ea040580b39ab6a09
+Auteur: jlefur
+Date: 2025-03-21T06:23:28Z
+Message:
+Echec du restart de la console du GUI, retour à la situation précédente
+--------------------------------------------------
+Commit: dc9808142fe913f80c506c601312534fbe989e71
+Auteur: jlefur
+Date: 2025-03-20T07:43:56Z
+Message:
+Mise en place de l'indicateur de conservation cellsEnergy (zones vertes, oranges, rouges)
+
+ajout de deux procédures dans LandscapeMarine: assertCellsEnergy qui utilise rankEnergy. Les seuils sont définis par  dans constantPNMC_particules, on calcule les cellules qui ont le plus d'énergie (zones à protéger) aux zones vertes, etc.
+--------------------------------------------------
+Commit: 53c27ee5784ad29efe4bff3efdaaef88723c5bbe
+Auteur: Jean LE FUR
+Date: 2025-03-19T03:57:48Z
+Message:
+Correction sauvegarde Ecran depuis HP Probook
+--------------------------------------------------
+Commit: f0e40cb917f5b1481238233ef4bfca4d6ab7fd62
+Auteur: jlefur
+Date: 2025-03-18T01:46:39Z
+Message:
+Raster Energie (ajout d'un display et calcul de integralEnergy_Ukcal)
+
+- ajout d'un display (PNMC_energy) dans scenario.xml
+- C_LandscapeMarine: calcul d'un affichage vert-orange-rouge pour les zones propices à la conservation
+- prise en compte des couleurs dans C_Style2dGroundType
+- C_LandscapeMarine ajout de deux procédures pour le calcul (assertCellsEnergy et rankEnergy)
+- C_SoilCellMarine: l'énergie du plancton est à présent 1. au lieu de la vitesse du courant (conservé en REM)
+- I_SituatedThing hérite de I_LivingThing (ajustements nécessités dans C_Background)
+- I_LivingThing exige  getEnergy_Ukcal
+- correction bug affichage black map au démarrage
+--------------------------------------------------
+Commit: 2d054e9be566dbbab359d3d42b6abcd4f3c0d1af
+Auteur: jlefur
+Date: 2025-03-14T00:00:48Z
+Message:
+refactor C_MarineCell into C_SoilCellMarine
+--------------------------------------------------
+Commit: b34df09184ce2549df97596108327d0619d64f01
+Auteur: jlefur
+Date: 2025-03-13T23:46:47Z
+Message:
+Change display stream current
+--------------------------------------------------
+Commit: e872081b38c69bfdde542bdb2f6366c17f16080a
+Auteur: jlefur
+Date: 2024-12-17T02:52:01Z
+Message:
+Correction bug nullPointer + nouvelle facilitationMap
+
+- Suppression du checkDeath pour les soilCells sauf les supported containers.
+- Une map avec GoogleEarth (PNMC3) et une avec georep (PNMC4)
+--------------------------------------------------
+Commit: 6dae0e2bb4c6b45dce3a3358cbd01eec6bc24d30
+Auteur: jlefur
+Date: 2024-12-16T05:45:06Z
+Message:
+test des particules washed on shore et couleur des ellipses dans facilityMap
+
+- ajout d'un test si voisin = terre pour lancer bordure: ne marche pas entièrement
+--------------------------------------------------
+Commit: 1a494cb1f5e1cc2b36022d6cb0e95019939f1f0a
+Auteur: jlefur
+Date: 2024-12-11T05:07:56Z
+Message:
+Correction de la taille des icones Tagged
+--------------------------------------------------
+Commit: f6beefd0709808b520605c76988430d9796d4ed2
+Auteur: jlefur
+Date: 2024-12-11T01:12:15Z
+Message:
+Correction du bug MyHome quand probe agent sur GUI
+--------------------------------------------------
+Commit: 17680c98fbfe64c870f9c2c54489a7f04b463eb0
+Auteur: jlefur
+Date: 2024-12-10T06:18:20Z
+Message:
+Check ok des protocoles après refactoring thing.rodents
+
+Toujours problème de myHome (si détruit probeObject myhome = null)
+sinon :
+- Chize 1&2 OK
+- Hybrid test: cannot remove rodent from context
+- Bandia OK
+- Centenal OK + parfois (si trop rapide ou changement proba loading ?) plante à actionTryBoardingContainer
+- Decenal carte rongeurs plante, pas de transport (idem pb centenal)
+- musTransport OK
+- Dodel 1 ok
+- Dodel 2 ok + cannot remove rodent from context
+- Gerbille ok
+--------------------------------------------------
+Commit: 067ebd67b7203cbd0cf4452f644a76654f548678
+Auteur: jlefur
+Date: 2024-12-10T02:40:44Z
+Message:
+refactoring vers thing/rodents + clean inspectors
+--------------------------------------------------
+Commit: 5e28fed47947137f4170bcc3553c0d7812f87840
+Auteur: jlefur
+Date: 2024-12-06T02:53:20Z
+Message:
+mise à jour ok de userPanel et customPanelSet
+
+A faire: dataOutput
+--------------------------------------------------
+Commit: a92aca659180369817bb6b372dbae2f0b29897b8
+Auteur: jlefur
+Date: 2024-12-04T06:40:38Z
+Message:
+mise à jour de userPanelMarine et inspectorPopulationMarine
+--------------------------------------------------
+Commit: 9a9e020485e89b62b2c01fa69e16d52834a028aa
+Auteur: jlefur
+Date: 2024-12-03T02:25:16Z
+Message:
+avant suppression de rodentLoad (dans containers)
+--------------------------------------------------
+Commit: ece325338f89a27e05b6686bf47fe09e433fe9cb
+Auteur: jlefur
+Date: 2024-12-02T05:47:00Z
+Message:
+modification en cours de split GUI panels
+--------------------------------------------------
+Commit: efca810c679336ad19c697cd0e8a432c6452c12a
+Auteur: jlefur
+Date: 2024-11-26T02:47:41Z
+Message:
+Réduction des warnings
+
+- passage de 100 à 25 warnings
+- suppression des deprecated new Double() et new Integer() notamment.
+--------------------------------------------------
+Commit: 46d603abc44c55323168e867e348dfecbcb99fcb
+Auteur: jlefur
+Date: 2024-11-25T03:37:42Z
+Message:
+Plankton probed OK + recirculated when washed on shore
+
+- Plankton extends A_Organism
+- Plankton set as dead and hasLeftDomain when washed on shore
+--------------------------------------------------
+Commit: b7ca25321cd857dc24cd92943e82c83391795735
+Auteur: jlefur
+Date: 2024-11-22T04:52:03Z
+Message:
+Mise en place de Exclos (metapopulation)
+
+Suppression des traitements de bordure dans C_LandscapeMarine (anciens codes dans chrono) et utilisation du générique de C_Landscape
++ upcast A_Animal en A_Organism dans C_Landscape
+
+A FAIRE:
+remettre en circulation le plancton jeté au bord des côtes (où speed=0)
+mettre au propre bordure de C_Landscape
+--------------------------------------------------
+Commit: 64b389b7f43bfbd91f53d3edc50af02341363fba
+Auteur: jlefur
+Date: 2024-11-20T06:30:50Z
+Message:
+Merge branch 'main' of https://github.com/jlefur/MelaneSim_2024
+--------------------------------------------------
+Commit: 3f77b844558d6bf02426f2b60948ecf45255c605
+Auteur: jlefur
+Date: 2024-11-20T06:30:43Z
+Message:
+Visualisation des courants de surface
+
+- création de C_StreamCurrent associé à C_MarineCell
+- modifs multiples de C_StyleAgent, C_IconSelector et les xml de .rs associés
+- récupération formatage de code SimMasto
+--------------------------------------------------
+Commit: 169bb25bce65b0c92284a063710f8165ea8b46c2
+Auteur: Jean LE FUR
+Date: 2024-11-20T01:13:28Z
+Message:
+Update README.md
+--------------------------------------------------
+Commit: 896a4bd0f993a347296b1b862c4a99d828faa03f
+Auteur: jlefur
+Date: 2024-11-20T01:05:40Z
+Message:
+MAJ gitIgnore avec bin
+--------------------------------------------------
+Commit: 7d7597d7d4906f2f862cb9105020236fb8ebd312
+Auteur: jlefur
+Date: 2024-11-20T01:04:21Z
+Message:
+Merge branch 'main' of https://github.com/jlefur/MelaneSim_2024
+--------------------------------------------------
+Commit: 937cdda05053b63a259dbcfde04626d9400e839b
+Auteur: jlefur
+Date: 2024-11-20T01:03:09Z
+Message:
+icone plancton affiche direction du courant
+
++ essai de ignore de bin/
++problème de pull depuis HP Probook
+--------------------------------------------------
+Commit: 40941ad562af8540ba465df3c2bd3499854df0fb
+Auteur: Jean LE FUR
+Date: 2024-11-20T00:32:49Z
+Message:
+ajout de data_output dans gitIgnore
+--------------------------------------------------
+Commit: 2a8952ec9da74e5d1da3c6b898c3d3da717073df
+Auteur: Jean LE FUR
+Date: 2024-10-07T06:48:23Z
+Message:
+suppression de mapDodel.pptx
+--------------------------------------------------
+Commit: 63890cb5942db27832212d835fb851f5a353f8bc
+Auteur: Jean LE FUR
+Date: 2024-10-07T05:28:52Z
+Message:
+Update README.md
+
+update ReadMe
+--------------------------------------------------
+Commit: 37066b2be0ebd4b0c0e033cf23f5e844e5793ae3
+Auteur: Jean LE FUR
+Date: 2024-10-07T05:17:16Z
+Message:
+Initial commit
+--------------------------------------------------

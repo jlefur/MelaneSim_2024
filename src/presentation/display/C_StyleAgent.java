@@ -5,7 +5,7 @@ import java.awt.Font;
 
 import data.C_Parameters;
 import data.constants.I_ConstantNumeric;
-import data.constants.I_ConstantPNMC_particules;
+import data.constants.I_ConstantPNMC;
 import data.constants.rodents.I_ConstantGerbil;
 import data.constants.rodents.I_ConstantImagesNames;
 import data.constants.rodents.I_ConstantStringRodents;
@@ -30,7 +30,7 @@ import thing.rodents.C_Vegetation;
 /** Style des agents "animaux". Définit une icône ou une ellipse pour chaque agent au lancement de la simulation en fonction de
  * son sexe et la fait varier suivant son âge.
  * @author A Realini 2011 */
-public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStringRodents, I_ConstantPNMC_particules,
+public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStringRodents, I_ConstantPNMC,
 		I_ConstantNumeric, I_ConstantImagesNames {
 	private float imageScale = IMAGE_SCALE;
 	private float ellipseScale = ELLIPSE_SCALE;
@@ -45,7 +45,7 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 		this.factory = factory;
 		selectImg = new C_IconSelector();
 		factory.registerImage(TAGGED, selectImg.loadImage(TAGGED));
-		if (C_Parameters.PROTOCOL.equals(PNMC_PK)) initPNMC();
+		if (C_Parameters.PROTOCOL.equals(PNMC_DRIFTERS)) initPNMC();
 		else if (C_Parameters.PROTOCOL.equals(CHIZE)) initChize();
 		else if (C_Parameters.PROTOCOL.equals(ENCLOSURE)) initEnclosMbour();
 		else if (C_Parameters.PROTOCOL.equals(DODEL)) initDodel();

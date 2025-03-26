@@ -4,7 +4,7 @@ import java.util.TreeSet;
 
 import org.locationtech.jts.geom.Coordinate;
 
-import data.constants.I_ConstantPNMC_particules;
+import data.constants.I_ConstantPNMC;
 import data.converters.C_ConvertTimeAndSpace;
 import thing.A_VisibleAgent;
 import thing.C_Plankton;
@@ -13,7 +13,7 @@ import thing.I_SituatedThing;
 
 /** Ocean unit used in MelaneSim
  * @author JLF 2024 */
-public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC_particules {
+public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	//
 	// FIELDS
 	//

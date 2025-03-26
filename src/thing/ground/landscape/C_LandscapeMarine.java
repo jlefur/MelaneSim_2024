@@ -9,7 +9,7 @@ import org.locationtech.jts.geom.Coordinate;
 
 import data.C_Parameters;
 import data.C_ReadRasterOcean;
-import data.constants.I_ConstantPNMC_particules;
+import data.constants.I_ConstantPNMC;
 import melanesim.protocol.A_Protocol;
 import melanesim.util.CaptureEcranPeriodique;
 import presentation.epiphyte.C_InspectorPopulationMarine;
@@ -27,7 +27,7 @@ import thing.ground.I_Container;
  * @see A_Protocol
  * @author Baduel 2009.04, Le Fur 2009.12, Longueville 2011.02, Le Fur 2011,2012,2015,2024<br>
  *         formerly C_Raster */
-public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC_particules {
+public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC {
 	//
 	// FIELDS
 	//
@@ -35,6 +35,7 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC_par
 	// energy values are 0-green, 1-orange, 2-red or 3-black forN/A ( viz. land)
 	protected Double[] energyRanks = new Double[3];
 	public static double overallEnergy_Ukcal = 0.0;
+	public static double overallEnergyMean_Ukcal = 0.0;
 
 	//
 	// CONSTRUCTOR
@@ -105,10 +106,10 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC_par
 		this.assertCellsEnergy();
 		// uncomment lines below to save screen
 		/** save screen each new day */
-//		 Integer currentYear = A_Protocol.protocolCalendar.get(Calendar.YEAR);
-//		 Integer currentMonth = A_Protocol.protocolCalendar.get(Calendar.MONTH);
-//		 String currentDate = "Energy-" + currentYear + "." + String.format("%02d", currentMonth + 1);
-//		 CaptureEcranPeriodique.captureEcranPlankton(currentDate);
+		// Integer currentYear = A_Protocol.protocolCalendar.get(Calendar.YEAR);
+		// Integer currentMonth = A_Protocol.protocolCalendar.get(Calendar.MONTH);
+		// String currentDate = "Energy-" + currentYear + "." + String.format("%02d", currentMonth + 1);
+		// CaptureEcranPeriodique.captureEcranPlankton(currentDate);
 		// end of uncomment
 		C_Parameters.BLACK_MAP = false;
 	}
@@ -116,7 +117,6 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC_par
 	/** recompute marine cells energy<br>
 	 * JLF 03.2025 */
 	protected void assertCellsEnergy() {
-		C_LandscapeMarine.overallEnergy_Ukcal = 0.0;
 		double cellEnergy_Ukcal;
 		this.rankEnergy();
 		for (int i = 0; i < this.dimension_Ucell.getWidth(); i++) {
@@ -132,44 +132,12 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC_par
 		}
 	}
 
-	protected void rankEnergy0() {
-		// Put each energy rank in keys of a sorted map and fill values with the corresponding energy sum
-		double cellEnergy_Ukcal, overallEnergy_Ukcal = 0.;
-		TreeMap<Double, Double> EnergyByRank = new TreeMap<>();
-		for (int i = 0; i < this.dimension_Ucell.getWidth(); i++) {
-			for (int j = 0; j < this.dimension_Ucell.getHeight(); j++) {
-				cellEnergy_Ukcal = ((C_SoilCellMarine) grid[i][j]).getIntegralEnergy_Ukcal();
-				if (EnergyByRank.get(cellEnergy_Ukcal) != null) {
-					EnergyByRank.put(cellEnergy_Ukcal, EnergyByRank.get(cellEnergy_Ukcal) + cellEnergy_Ukcal);
-				}
-				// If not, create an entry and set values
-				else EnergyByRank.put(cellEnergy_Ukcal, cellEnergy_Ukcal);
-				overallEnergy_Ukcal += cellEnergy_Ukcal;
-			}
-		}
-		// Temporary stores the threshold to proceed to the coming loop
-		energyRanks[ENERGY_GREEN] = overallEnergy_Ukcal * GREEN_AREA_Upercent;
-		energyRanks[ENERGY_ORANGE] = overallEnergy_Ukcal * ORANGE_AREA_Upercent;
-		energyRanks[ENERGY_RED] = overallEnergy_Ukcal * RED_AREA_Upercent;
-		double targetSum = 0., currentSum = 0.;
-		for (int i = 0; i < 3; i++) {// for each threshold
-			targetSum = energyRanks[i];
-
-			currentSum = 0.0;
-			for (Map.Entry<Double, Double> entry : EnergyByRank.descendingMap().entrySet()) {
-				if (currentSum >= targetSum) {
-					energyRanks[i] = entry.getKey();
-					break;
-				}
-				currentSum += entry.getValue();
-			}
-		}
-	}
 	/** fill energyRanks map with the current thresholds<br>
 	 * The cells energies distribution is heavily asymmetrical (generalized Pareto distribution or truncated Zipf distribution),
 	 * hence the ranks are asymmetrical<br>
 	 * @author JLF 03.2025 */
 	protected void rankEnergy() {
+		C_LandscapeMarine.overallEnergy_Ukcal = 0.0;
 		// Put each energy rank in keys of a sorted map and fill values with the corresponding energy sum
 		TreeMap<Double, Double> EnergyByRank = new TreeMap<>();
 		for (int i = 0; i < this.dimension_Ucell.getWidth(); i++) {
@@ -202,6 +170,41 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC_par
 				if (currentSum >= targetSum) {
 					energyRanks[i] = entry.getKey();// the threshold key
 					break;// Arrêter si la somme cible est atteinte
+				}
+				currentSum += entry.getValue();
+			}
+		}
+		C_LandscapeMarine.overallEnergyMean_Ukcal = C_LandscapeMarine.overallEnergy_Ukcal / (this.dimension_Ucell.getWidth()*this.dimension_Ucell.getHeight());
+	}
+
+	protected void rankEnergy0() {
+		// Put each energy rank in keys of a sorted map and fill values with the corresponding energy sum
+		double cellEnergy_Ukcal, overallEnergy_Ukcal = 0.;
+		TreeMap<Double, Double> EnergyByRank = new TreeMap<>();
+		for (int i = 0; i < this.dimension_Ucell.getWidth(); i++) {
+			for (int j = 0; j < this.dimension_Ucell.getHeight(); j++) {
+				cellEnergy_Ukcal = ((C_SoilCellMarine) grid[i][j]).getIntegralEnergy_Ukcal();
+				if (EnergyByRank.get(cellEnergy_Ukcal) != null) {
+					EnergyByRank.put(cellEnergy_Ukcal, EnergyByRank.get(cellEnergy_Ukcal) + cellEnergy_Ukcal);
+				}
+				// If not, create an entry and set values
+				else EnergyByRank.put(cellEnergy_Ukcal, cellEnergy_Ukcal);
+				overallEnergy_Ukcal += cellEnergy_Ukcal;
+			}
+		}
+		// Temporary stores the threshold to proceed to the coming loop
+		energyRanks[ENERGY_GREEN] = overallEnergy_Ukcal * GREEN_AREA_Upercent;
+		energyRanks[ENERGY_ORANGE] = overallEnergy_Ukcal * ORANGE_AREA_Upercent;
+		energyRanks[ENERGY_RED] = overallEnergy_Ukcal * RED_AREA_Upercent;
+		double targetSum = 0., currentSum = 0.;
+		for (int i = 0; i < 3; i++) {// for each threshold
+			targetSum = energyRanks[i];
+
+			currentSum = 0.0;
+			for (Map.Entry<Double, Double> entry : EnergyByRank.descendingMap().entrySet()) {
+				if (currentSum >= targetSum) {
+					energyRanks[i] = entry.getKey();
+					break;
 				}
 				currentSum += entry.getValue();
 			}

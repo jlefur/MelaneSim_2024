@@ -6,8 +6,8 @@ import java.util.Map;
 import melanesim.util.C_VariousUtilities;
 import repast.simphony.engine.environment.RunState;
 import repast.simphony.essentials.RepastEssentials;
-import thing.C_StreamCurrent;
 import thing.ground.A_SupportedContainer;
+import thing.ground.landscape.C_LandscapeMarine;
 
 /** Retrieves mean energy for each species in the context J.Le Fur 02.2018 */
 public class C_InspectorEnergy extends A_Inspector {

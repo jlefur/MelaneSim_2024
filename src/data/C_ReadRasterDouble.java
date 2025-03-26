@@ -10,13 +10,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-import data.constants.I_ConstantPNMC_particules;
+import data.constants.I_ConstantPNMC;
 import melanesim.protocol.A_Protocol;
 
 /** Extension of C_ReadRaster to read surfer compatible matrix of double values (e.g., ocean environment)
  * @see C_ReadRaster
  * @author JLF 2024 */
-public class C_ReadRasterDouble implements I_ConstantPNMC_particules {
+public class C_ReadRasterDouble implements I_ConstantPNMC {
 
 	/** Download grid in ASCII text format : 1st line "DSAA" / 2nd line number of columns number of rows / 3rd line min and max x
 	 * / 4th line min and max y / 5th line: min and max of values / remaining: line 0: column 0 to j-1 (delimiter blank space) to
@@ -29,9 +29,9 @@ public class C_ReadRasterDouble implements I_ConstantPNMC_particules {
 		StringTokenizer st;
 		double[][] matrice = null;
 		try {
-			// on crée un flux de lecture du fichier
+			// on crï¿½e un flux de lecture du fichier
 			DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(fichier_raster)));
-			// on crée un lecteur de flux
+			// on crï¿½e un lecteur de flux
 			InputStreamReader isr = new InputStreamReader(in);
 			BufferedReader lecteur = new BufferedReader(isr);
 			lecteur.readLine();// DSAA
@@ -45,11 +45,11 @@ public class C_ReadRasterDouble implements I_ConstantPNMC_particules {
 			lecteur.readLine();
 			int i = 0;
 			int j = 0;
-			// tant qu'il y a des lignes à lire :
+			// tant qu'il y a des lignes ï¿½ lire :
 			while ((chaine = lecteur.readLine()) != null) {
-				// on récupère une ligne ...
+				// on rï¿½cupï¿½re une ligne ...
 				st = new StringTokenizer(chaine);
-				// ... tant qu'elle a des éléments
+				// ... tant qu'elle a des ï¿½lï¿½ments
 				while (st.hasMoreElements()) {
 					// on lit l'entier correspondant et on l'enregistre dans la matrice.
 					matrice[j][i] = Double.parseDouble(st.nextToken()); // OCEAN

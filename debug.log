@@ -100,10 +100,10 @@ java.lang.RuntimeException: Error, the master context was not initialized proper
 	at java.awt.EventDispatchThread.run(EventDispatchThread.java:90) ~[?:?]
 ERROR [AWT-EventQueue-0] 2025-03-12T11:02:12,742 RSApplication - Error while initializing simulation
 java.lang.NullPointerException: Cannot invoke "thing.ground.landscape.C_Landscape.getDimension_Ucell()" because "this.landscape" is null
-	at melanesim.protocol.C_Protocol_PNMC_particules.blackMap(C_Protocol_PNMC_particules.java:231) ~[?:?]
-	at melanesim.protocol.C_Protocol_PNMC_particules.readUserParameters(C_Protocol_PNMC_particules.java:244) ~[?:?]
+	at melanesim.protocol.C_Protocol_PNMC_drifters.blackMap(C_Protocol_PNMC_particules.java:231) ~[?:?]
+	at melanesim.protocol.C_Protocol_PNMC_drifters.readUserParameters(C_Protocol_PNMC_particules.java:244) ~[?:?]
 	at melanesim.protocol.A_Protocol.<init>(A_Protocol.java:72) ~[?:?]
-	at melanesim.protocol.C_Protocol_PNMC_particules.<init>(C_Protocol_PNMC_particules.java:45) ~[?:?]
+	at melanesim.protocol.C_Protocol_PNMC_drifters.<init>(C_Protocol_PNMC_particules.java:45) ~[?:?]
 	at melanesim.C_ContextCreator.selectProtocol(C_ContextCreator.java:118) ~[?:?]
 	at melanesim.C_ContextCreator.build(C_ContextCreator.java:74) ~[?:?]
 	at repast.simphony.dataLoader.engine.ClassNameContextBuilder.build(ClassNameContextBuilder.java:41) ~[?:?]
@@ -156,10 +156,10 @@ java.lang.NullPointerException: Cannot invoke "thing.ground.landscape.C_Landscap
 	at java.awt.EventDispatchThread.run(EventDispatchThread.java:90) ~[?:?]
 ERROR [AWT-EventQueue-0] 2025-03-12T11:03:18,151 RSApplication - Error while initializing simulation
 java.lang.NullPointerException: Cannot invoke "thing.ground.landscape.C_Landscape.getDimension_Ucell()" because "this.landscape" is null
-	at melanesim.protocol.C_Protocol_PNMC_particules.blackMap(C_Protocol_PNMC_particules.java:231) ~[?:?]
-	at melanesim.protocol.C_Protocol_PNMC_particules.readUserParameters(C_Protocol_PNMC_particules.java:244) ~[?:?]
+	at melanesim.protocol.C_Protocol_PNMC_drifters.blackMap(C_Protocol_PNMC_particules.java:231) ~[?:?]
+	at melanesim.protocol.C_Protocol_PNMC_drifters.readUserParameters(C_Protocol_PNMC_particules.java:244) ~[?:?]
 	at melanesim.protocol.A_Protocol.<init>(A_Protocol.java:72) ~[?:?]
-	at melanesim.protocol.C_Protocol_PNMC_particules.<init>(C_Protocol_PNMC_particules.java:45) ~[?:?]
+	at melanesim.protocol.C_Protocol_PNMC_drifters.<init>(C_Protocol_PNMC_particules.java:45) ~[?:?]
 	at melanesim.C_ContextCreator.selectProtocol(C_ContextCreator.java:118) ~[?:?]
 	at melanesim.C_ContextCreator.build(C_ContextCreator.java:74) ~[?:?]
 	at repast.simphony.dataLoader.engine.ClassNameContextBuilder.build(ClassNameContextBuilder.java:41) ~[?:?]
@@ -392,10 +392,10 @@ Caused by: java.lang.NullPointerException: Cannot invoke "repast.simphony.valueL
 	... 48 more
 ERROR [AWT-EventQueue-0] 2025-03-14T17:26:01,988 RSApplication - Error while initializing simulation
 java.lang.NullPointerException: Cannot invoke "thing.ground.landscape.C_Landscape.getDimension_Ucell()" because "this.landscape" is null
-	at melanesim.protocol.C_Protocol_PNMC_particules.blackMap(C_Protocol_PNMC_particules.java:231) ~[?:?]
-	at melanesim.protocol.C_Protocol_PNMC_particules.readUserParameters(C_Protocol_PNMC_particules.java:244) ~[?:?]
+	at melanesim.protocol.C_Protocol_PNMC_drifters.blackMap(C_Protocol_PNMC_particules.java:231) ~[?:?]
+	at melanesim.protocol.C_Protocol_PNMC_drifters.readUserParameters(C_Protocol_PNMC_particules.java:244) ~[?:?]
 	at melanesim.protocol.A_Protocol.<init>(A_Protocol.java:72) ~[?:?]
-	at melanesim.protocol.C_Protocol_PNMC_particules.<init>(C_Protocol_PNMC_particules.java:45) ~[?:?]
+	at melanesim.protocol.C_Protocol_PNMC_drifters.<init>(C_Protocol_PNMC_particules.java:45) ~[?:?]
 	at melanesim.C_ContextCreator.selectProtocol(C_ContextCreator.java:118) ~[?:?]
 	at melanesim.C_ContextCreator.build(C_ContextCreator.java:74) ~[?:?]
 	at repast.simphony.dataLoader.engine.ClassNameContextBuilder.build(ClassNameContextBuilder.java:41) ~[?:?]
@@ -448,10 +448,10 @@ java.lang.NullPointerException: Cannot invoke "thing.ground.landscape.C_Landscap
 	at java.awt.EventDispatchThread.run(EventDispatchThread.java:90) ~[?:?]
 ERROR [AWT-EventQueue-0] 2025-03-14T17:29:04,684 RSApplication - Error while initializing simulation
 java.lang.NullPointerException: Cannot invoke "thing.ground.landscape.C_Landscape.getDimension_Ucell()" because "this.landscape" is null
-	at melanesim.protocol.C_Protocol_PNMC_particules.blackMap(C_Protocol_PNMC_particules.java:231) ~[?:?]
-	at melanesim.protocol.C_Protocol_PNMC_particules.readUserParameters(C_Protocol_PNMC_particules.java:244) ~[?:?]
+	at melanesim.protocol.C_Protocol_PNMC_drifters.blackMap(C_Protocol_PNMC_particules.java:231) ~[?:?]
+	at melanesim.protocol.C_Protocol_PNMC_drifters.readUserParameters(C_Protocol_PNMC_particules.java:244) ~[?:?]
 	at melanesim.protocol.A_Protocol.<init>(A_Protocol.java:72) ~[?:?]
-	at melanesim.protocol.C_Protocol_PNMC_particules.<init>(C_Protocol_PNMC_particules.java:45) ~[?:?]
+	at melanesim.protocol.C_Protocol_PNMC_drifters.<init>(C_Protocol_PNMC_particules.java:45) ~[?:?]
 	at melanesim.C_ContextCreator.selectProtocol(C_ContextCreator.java:118) ~[?:?]
 	at melanesim.C_ContextCreator.build(C_ContextCreator.java:74) ~[?:?]
 	at repast.simphony.dataLoader.engine.ClassNameContextBuilder.build(ClassNameContextBuilder.java:41) ~[?:?]
@@ -533,7 +533,7 @@ java.lang.NullPointerException: null
 ERROR [AWT-EventQueue-0] 2025-03-21T12:51:19,658 RSApplication - Error while initializing simulation
 java.lang.NullPointerException: Cannot invoke "java.io.PrintStream.println(String)" because "java.lang.System.out" is null
 	at melanesim.protocol.A_Protocol.<init>(A_Protocol.java:69) ~[?:?]
-	at melanesim.protocol.C_Protocol_PNMC_particules.<init>(C_Protocol_PNMC_particules.java:45) ~[?:?]
+	at melanesim.protocol.C_Protocol_PNMC_drifters.<init>(C_Protocol_PNMC_particules.java:45) ~[?:?]
 	at melanesim.C_ContextCreator.selectProtocol(C_ContextCreator.java:118) ~[?:?]
 	at melanesim.C_ContextCreator.build(C_ContextCreator.java:74) ~[?:?]
 	at repast.simphony.dataLoader.engine.ClassNameContextBuilder.build(ClassNameContextBuilder.java:41) ~[?:?]
