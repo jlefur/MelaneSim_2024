@@ -3,9 +3,11 @@ package thing;
 import thing.ground.A_SupportedContainer;
 import thing.ground.C_SoilCellMarine;
 
-/** Structure associated with marine cells for current speed to be displayed on GUI
+/** Structure associated with marine cells for current speed to be displayed on GUI<br>
+ * Could be included in C_SoilCellMarine, however used to lighten the GUI calculations
  * @author JLF 2024
- * @see C_SoilCellMarine */
+ * @see C_SoilCellMarine
+ * @see I_ConstantPNMC#PARTICLE_CELLS_SPACING */
 public class C_StreamCurrent extends A_SupportedContainer {
 	private C_SoilCellMarine myCell;
 	//

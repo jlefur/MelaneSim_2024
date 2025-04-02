@@ -9,7 +9,7 @@
 		type="java.lang.String" defaultValue="H" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$StringStringConverter" />
 	<parameter name="TICK_LENGTH_Ucalendar" displayName="0b/ Tick length"
-		type="java.lang.Integer" defaultValue="3" isReadOnly="false"
+		type="java.lang.Integer" defaultValue="24" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
 	<parameter name="CELL_WIDTH_Ucm" displayName="0c/ nb centimeters in one pixel (default=exact scale)"
 		type="java.lang.Integer" defaultValue="480743" isReadOnly="false"
@@ -31,7 +31,7 @@
 		
 	<!-- PROTOCOL DEPENDENT -->
 	<parameter name="PROTOCOL" displayName="1a/ _________ PROTOCOL SPECIFIC _________"
-		type="java.lang.String" defaultValue="ocean.PNMC_drifters" isReadOnly="true"
+		type="java.lang.String" defaultValue="ocean.PNMC_plankton" isReadOnly="true"
 		converter="repast.simphony.parameter.StringConverterFactory$StringStringConverter" />
 	<parameter name="EXCLOS" displayName="1c/ Metapopulation(exclos)"
 		type="boolean" defaultValue="true" isReadOnly="false"

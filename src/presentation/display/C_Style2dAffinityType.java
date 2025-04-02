@@ -25,9 +25,9 @@ public class C_Style2dAffinityType implements ValueLayerStyleOGL, I_ConstantNume
 		if (this.colorMap == null) {
 			System.out.print("C_Style2dAffinityType(): colormap not found; creating colormap");
 			this.colorMap = new HashMap<Integer, Color>();
-			if (C_Parameters.PROTOCOL.equals(PNMC_DRIFTERS)) {
+			if (C_Parameters.PROTOCOL.contains("PNMC")) {
 				this.colorMap = colorMapPNMC(this.colorMap);
-				System.out.print(" PNMC particules");
+				System.out.print(" PNMC");
 			}
 			else if (C_Parameters.PROTOCOL.equals(CHIZE)) {
 				this.colorMap = colorMapChizeGrid(this.colorMap);

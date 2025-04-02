@@ -26,13 +26,13 @@ import thing.ground.C_SoilCell;
 import thing.ground.C_SoilCellMarine;
 import thing.ground.landscape.C_LandscapeMarine;
 
-/** Plankton particles drifting by surface currents
+/** Particles drifted by surface currents
  * @author J.Le Fur 06.2024 */
 public class C_Protocol_PNMC_drifters extends A_Protocol implements I_ConstantPNMC {
 	//
 	// FIELDS
 	//
-	private C_ConvertGeographicCoordinates geographicCoordinateConverter = null;
+	protected C_ConvertGeographicCoordinates geographicCoordinateConverter = null;
 	protected C_InspectorPopulationMarine marineInspector;
 	Random random = new Random();
 	public static boolean DISPLAY_FACILITY_MAP = false;// used to change plankton color if facility map is on
@@ -44,7 +44,7 @@ public class C_Protocol_PNMC_drifters extends A_Protocol implements I_ConstantPN
 	public C_Protocol_PNMC_drifters(Context<Object> ctxt) {
 		super(ctxt);
 		// Create and build the dataFromChrono from the csv file
-		this.chronogram = new C_Chronogram(CHRONO_FILENAME);
+		this.chronogram = new C_Chronogram("/20240314_PNMC.drifters.csv");// TODO number in source 2025.04 JLF CHRONOGRAM FILE NAME
 		// Position landplots at the barycentre of cells
 		for (C_LandPlot lp : this.landscape.getAffinityLandPlots()) {
 			double xx = 0., yy = 0.;
@@ -82,10 +82,10 @@ public class C_Protocol_PNMC_drifters extends A_Protocol implements I_ConstantPN
 		int grid_height = (int) dim.getHeight();
 		C_SoilCellMarine cell;
 		for (int i = 0; i < grid_width; i++) {
-			if (countWidth == PLANKTON_CELLS_SPACING) {
+			if (countWidth == PARTICLE_CELLS_SPACING) {
 				countHeight = 0;
 				for (int j = 0; j < grid_height; j++) {
-					if (countHeight == PLANKTON_CELLS_SPACING) {
+					if (countHeight == PARTICLE_CELLS_SPACING) {
 						cell = (C_SoilCellMarine) this.landscape.getGrid()[i][j];
 						if (cell.getAffinity() < TERRESTRIAL_MIN_AFFINITY) {
 							this.contextualizeNewThingInContainer(createPlankton(), cell);
@@ -178,16 +178,7 @@ public class C_Protocol_PNMC_drifters extends A_Protocol implements I_ConstantPN
 	}
 	@Override
 	public void manageOneEvent(C_Event event) {
-		Coordinate coordinateCell_Ucs = null;
 		C_SoilCellMarine cell = null;
-		if (event.whereX_Ucell == null) {// then: 1) suppose that y is also null, 2) double are values in decimal
-											// degrees
-			coordinateCell_Ucs = this.geographicCoordinateConverter.convertCoordinate_Ucs(event.whereX_Udouble,
-					event.whereY_Udouble);
-			event.whereX_Ucell = (int) coordinateCell_Ucs.x;
-			event.whereY_Ucell = (int) coordinateCell_Ucs.y;
-		}
-		if (coordinateCell_Ucs == null) coordinateCell_Ucs = new Coordinate(event.whereX_Ucell, event.whereY_Ucell);
 		switch (event.type) {
 			case CURRENT_EVENT :// file name example: PNMC_current_2021/202101_North.grd and
 								// PNMC_current_2021/202101_East.grd

@@ -52,7 +52,7 @@ public class C_ChooseProtocol_Rodents extends JFrame implements ActionListener, 
 	}
 	public C_ChooseProtocol_Rodents() {
 		super("- Choose one simulation protocol (SimMasto project - IRD/CBGP)");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // impératif cette ligne
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // impï¿½ratif cette ligne
 		this.setLocation(560, 10);
 		this.setContentPane(panel);
 		this.panel.setLayout(new BoxLayout(this.panel, BoxLayout.PAGE_AXIS));
@@ -101,7 +101,7 @@ public class C_ChooseProtocol_Rodents extends JFrame implements ActionListener, 
 		this.pack();
 		this.setVisible(true);
 	}
-	private JButton addImageButton(String iconFilename, String protocolName) {
+	protected JButton addImageButton(String iconFilename, String protocolName) {
 		try {
 			buttonIcon = ImageIO.read(new File(iconFilename));
 		} catch (IOException e) {}
@@ -135,16 +135,16 @@ public class C_ChooseProtocol_Rodents extends JFrame implements ActionListener, 
 			readLine = buffer.readLine();
 			while (readLine != null) {
 				if (readLine.contains("<?xml") && !readLine.trim().startsWith("<!--")) {
-					String fistReadLine = readLine; // on sauvegarde la première ligne
-					readLine = buffer.readLine(); // on passe à la deuxième pr récupèrer le nom
-					// Récupération du nom. example: parameters.xml ou scenario.xml d'une ligne comme
+					String fistReadLine = readLine; // on sauvegarde la premiï¿½re ligne
+					readLine = buffer.readLine(); // on passe ï¿½ la deuxiï¿½me pr rï¿½cupï¿½rer le nom
+					// Rï¿½cupï¿½ration du nom. example: parameters.xml ou scenario.xml d'une ligne comme
 					// <!--fileName:parameters.xml-->
 					// ou
 					// <!--fileName:scenario.xml-->
 					String xmlConfigFileName = readLine.replace(" ", "").split(":")[1].split(".xml")[0] + ".xml";
-					// Création du fichier .xml en construction
+					// Crï¿½ation du fichier .xml en construction
 					writingXmlFile = new C_FileWriter(REPAST_PATH + xmlConfigFileName, false);
-					// Ecriture de la première ligne (<?xml version="1.0" encoding="UTF-8" ?>)
+					// Ecriture de la premiï¿½re ligne (<?xml version="1.0" encoding="UTF-8" ?>)
 					writingXmlFile.writeln(fistReadLine);
 				} // Ecriture du reste du fichier
 				writingXmlFile.writeln(readLine);

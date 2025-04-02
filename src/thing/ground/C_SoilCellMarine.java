@@ -21,6 +21,7 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	private C_StreamCurrent myCurrent;
 	/** Sum of energies (situated things) passed through this cell since last resetColors */
 	private double integralEnergy_Ukcal = 0.;
+	private double chlorophyll = 1.;
 	//
 	// CONSTRUCTOR
 	//
@@ -41,25 +42,22 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	public void step_Utick() {
 		super.step_Utick();
 		double speedEastward_UmeterPerTick, speedNorthward_UmeterPerTick, energy;
-		// if (this.speedEastward_UmeterPerSecond + this.speedNorthward_UmeterPerSecond == 0.) return;
-		// else {
 		TreeSet<I_SituatedThing> occupants = new TreeSet<>(this.getOccupantList());
-		// Object[] occupants = this.getOccupantList().toArray();// To avoid concurrent exception
 		for (I_SituatedThing agent : occupants) {
 			this.energy_Ukcal += agent.getEnergy_Ukcal();
 			this.integralEnergy_Ukcal += agent.getEnergy_Ukcal();
 			if (agent instanceof C_Plankton) {
 				speedEastward_UmeterPerTick = C_ConvertTimeAndSpace.convertSpeed_UspaceByTick(
-						this.speedEastward_UmeterPerSecond, "m", "s");
+						this.speedEastward_UmeterPerSecond, "m", "s") / PARTICLE_RESISTANCE_FACTOR;
 				speedNorthward_UmeterPerTick = C_ConvertTimeAndSpace.convertSpeed_UspaceByTick(
-						this.speedNorthward_UmeterPerSecond, "m", "s");
-				A_VisibleAgent.myLandscape.translate((A_VisibleAgent) agent, new Coordinate(speedEastward_UmeterPerTick
-						* PARTICLE_RESISTANCE_FACTOR, speedNorthward_UmeterPerTick * PARTICLE_RESISTANCE_FACTOR));
+						this.speedNorthward_UmeterPerSecond, "m", "s") / PARTICLE_RESISTANCE_FACTOR;
+				A_VisibleAgent.myLandscape.translate((A_VisibleAgent) agent, new Coordinate(speedEastward_UmeterPerTick,
+						speedNorthward_UmeterPerTick));
 				// TODO number in source 2024 JLF (energy = speed/1E3)
-				energy = Math.sqrt(speedEastward_UmeterPerTick * speedEastward_UmeterPerTick
-						+ speedNorthward_UmeterPerTick * speedNorthward_UmeterPerTick) / 1E3;
-				((C_Plankton) agent).energy_Ukcal = 1.;
+				// energy = Math.sqrt(speedEastward_UmeterPerTick * speedEastward_UmeterPerTick + speedNorthward_UmeterPerTick *
+				// speedNorthward_UmeterPerTick) / 1E3;
 				// ((C_Plankton) agent).energy_Ukcal +=energy;
+				((C_Plankton) agent).energy_Ukcal = 1.;
 			}
 		}
 	}
@@ -93,5 +91,11 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	}
 	public C_StreamCurrent getMyCurrent() {
 		return myCurrent;
+	}
+	public double getChlorophyll() {
+		return chlorophyll;
+	}
+	public void setChlorophyll(double chlorophyll) {
+		this.chlorophyll = chlorophyll;
 	}
 }

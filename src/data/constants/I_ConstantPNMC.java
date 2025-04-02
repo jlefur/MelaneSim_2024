@@ -10,7 +10,7 @@ public interface I_ConstantPNMC extends I_ConstantString {
 	public final String CSV_PATH = "data_csv/melanesia/";
 	public final String RASTER_PATH_MELANESIA = "data_raster/melanesia/";
 	public static final String PNMC_DRIFTERS = "ocean.PNMC_drifters"; // MELANESIM PROTOCOL NAMES - used in context creator
-	public static String CHRONO_FILENAME = "/20240314_PNMC.jlf.csv";// CHRONOGRAM FILE NAME
+	public static final String PNMC_PLANKTON = "ocean.PNMC_plankton"; // MELANESIM PROTOCOL NAMES - used in context creator
 	public final String energyGridvalues = "valueEnergyGrid";// used to display energy
 
 	public static int CELL_SIZE = 245; // DEFAULT : 15 //Junk Value
@@ -31,13 +31,15 @@ public interface I_ConstantPNMC extends I_ConstantString {
 
 	// EVENT TYPES CONSTANTS - used in chrono events
 	public static final String CURRENT_EVENT = "current";
+	public static final String CHLOROPHYLL_EVENT = "chlorophyll";
 	// Others
 	public static final int BACKGROUND_COLOR = 38;
 	public static final int TERRESTRIAL_MIN_AFFINITY = 8;
-	public static final int PLANKTON_CELLS_SPACING = 3; // interval where to post plankton cells see protocol.initpopulations
+	/** Used to lighten the GUI calculations */
+	public static final int PARTICLE_CELLS_SPACING = 3; // interval where to post plankton cells see protocol.initpopulations
 	public static final int BACKWARD_NB_CELLS = 1;// if particle reach bordure move back nb cells
 	public static final int STREAM_DISPLAY_SIZE = 300;// taille des vecteurs courants affichés
-	public static final double PARTICLE_RESISTANCE_FACTOR = 1;// freinage des particules vis à vis de la vitesse du courant)
+	public static final double PARTICLE_RESISTANCE_FACTOR = 1.;// freinage des particules vis à vis de la vitesse du courant)
 
 	public static final int ENERGY_GREEN = 0;//
 	public static final int ENERGY_ORANGE = 1;//

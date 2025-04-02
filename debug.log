@@ -584,3 +584,121 @@ java.lang.NullPointerException: Cannot invoke "java.io.PrintStream.println(Strin
 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109) ~[?:?]
 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101) ~[?:?]
 	at java.awt.EventDispatchThread.run(EventDispatchThread.java:90) ~[?:?]
+FATAL [Thread-4] 2025-04-02T10:08:12,553 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (94.0)
+java.lang.NullPointerException: Cannot invoke "java.awt.Color.getRed()" because "color" is null
+	at saf.v3d.util.Utils3D.updateColor(Utils3D.java:97) ~[?:?]
+	at repast.simphony.visualizationOGL2D.ColorMapStyleAdapter.getColor(ColorMapStyleAdapter.java:41) ~[?:?]
+	at saf.v3d.grid.GridMesh.updateColors(GridMesh.java:149) ~[?:?]
+	at saf.v3d.grid.GridMesh.update(GridMesh.java:116) ~[?:?]
+	at saf.v3d.grid.VGridShape.update(VGridShape.java:25) ~[?:?]
+	at repast.simphony.visualizationOGL2D.ValueLayerDisplayLayer.update(ValueLayerDisplayLayer.java:67) ~[?:?]
+	at repast.simphony.visualizationOGL2D.DisplayOGL2D.update(DisplayOGL2D.java:399) ~[?:?]
+	at repast.simphony.visualization.engine.DisplayComponentControllerAction$DisplayUpdater.execute(DisplayComponentControllerAction.java:48) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:238) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+FATAL [Thread-4] 2025-04-02T10:11:11,121 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (76.0)
+java.lang.NullPointerException: Cannot invoke "java.awt.Color.getRed()" because "color" is null
+	at saf.v3d.util.Utils3D.updateColor(Utils3D.java:97) ~[?:?]
+	at repast.simphony.visualizationOGL2D.ColorMapStyleAdapter.getColor(ColorMapStyleAdapter.java:41) ~[?:?]
+	at saf.v3d.grid.GridMesh.updateColors(GridMesh.java:149) ~[?:?]
+	at saf.v3d.grid.GridMesh.update(GridMesh.java:116) ~[?:?]
+	at saf.v3d.grid.VGridShape.update(VGridShape.java:25) ~[?:?]
+	at repast.simphony.visualizationOGL2D.ValueLayerDisplayLayer.update(ValueLayerDisplayLayer.java:67) ~[?:?]
+	at repast.simphony.visualizationOGL2D.DisplayOGL2D.update(DisplayOGL2D.java:399) ~[?:?]
+	at repast.simphony.visualization.engine.DisplayComponentControllerAction$DisplayUpdater.execute(DisplayComponentControllerAction.java:48) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:238) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+FATAL [Thread-4] 2025-04-02T10:15:24,062 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (282.0)
+java.lang.ClassCastException: class thing.C_StreamCurrent cannot be cast to class thing.rodents.C_Rodent (thing.C_StreamCurrent and thing.rodents.C_Rodent are in unnamed module of loader repast.simphony.plugin.ExtendablePluginClassLoader @79d3473e)
+	at presentation.display.C_IconSelector.getNameOfImageChize(C_IconSelector.java:161) ~[?:?]
+	at presentation.display.C_IconSelector.getNameOfImage(C_IconSelector.java:88) ~[?:?]
+	at presentation.display.C_StyleAgent.getVSpatial(C_StyleAgent.java:268) ~[?:?]
+	at presentation.display.C_StyleAgent.getVSpatial(C_StyleAgent.java:1) ~[?:?]
+	at repast.simphony.visualizationOGL2D.StyledDisplayLayerOGL2D.updateSpatial(StyledDisplayLayerOGL2D.java:119) ~[?:?]
+	at repast.simphony.visualizationOGL2D.StyledDisplayLayerOGL2D.updateSpatial(StyledDisplayLayerOGL2D.java:212) ~[?:?]
+	at repast.simphony.visualizationOGL2D.StyledDisplayLayerOGL2D.updateExistingSpatials(StyledDisplayLayerOGL2D.java:176) ~[?:?]
+	at repast.simphony.visualizationOGL2D.StyledDisplayLayerOGL2D.update(StyledDisplayLayerOGL2D.java:249) ~[?:?]
+	at repast.simphony.visualizationOGL2D.DisplayOGL2D.update(DisplayOGL2D.java:403) ~[?:?]
+	at repast.simphony.visualization.engine.DisplayComponentControllerAction$DisplayUpdater.execute(DisplayComponentControllerAction.java:48) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:238) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+FATAL [Thread-4] 2025-04-02T10:20:52,123 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (130.0)
+java.lang.NullPointerException: Cannot invoke "saf.v3d.scene.VSpatial.getParent()" because "child" is null
+	at saf.v3d.scene.VComposite.addChild(VComposite.java:46) ~[?:?]
+	at repast.simphony.visualizationOGL2D.SpatialWrapper.setChild(SpatialWrapper.java:80) ~[?:?]
+	at repast.simphony.visualizationOGL2D.SpatialWrapper.<init>(SpatialWrapper.java:34) ~[?:?]
+	at repast.simphony.visualizationOGL2D.StyledDisplayLayerOGL2D.createSpatial(StyledDisplayLayerOGL2D.java:146) ~[?:?]
+	at repast.simphony.visualizationOGL2D.StyledDisplayLayerOGL2D.processAdded(StyledDisplayLayerOGL2D.java:228) ~[?:?]
+	at repast.simphony.visualizationOGL2D.StyledDisplayLayerOGL2D.update(StyledDisplayLayerOGL2D.java:250) ~[?:?]
+	at repast.simphony.visualizationOGL2D.DisplayOGL2D.update(DisplayOGL2D.java:403) ~[?:?]
+	at repast.simphony.visualization.engine.DisplayComponentControllerAction$DisplayUpdater.execute(DisplayComponentControllerAction.java:48) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:238) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+FATAL [Thread-4] 2025-04-02T11:01:23,662 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (15.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.lang.NullPointerException: Cannot load from object array because "matriceLue" is null
+	at melanesim.protocol.C_Protocol_PNMC_plankton.manageOneEvent(C_Protocol_PNMC_plankton.java:48) ~[?:?]
+	at melanesim.protocol.A_Protocol.updateUniverseFromChrono(A_Protocol.java:172) ~[?:?]
+	at melanesim.protocol.A_Protocol.step_Utick(A_Protocol.java:113) ~[?:?]
+	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+FATAL [Thread-7] 2025-04-02T11:03:06,702 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (288.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.lang.NullPointerException: Cannot load from object array because "matriceLue" is null
+	at melanesim.protocol.C_Protocol_PNMC_plankton.manageOneEvent(C_Protocol_PNMC_plankton.java:48) ~[?:?]
+	at melanesim.protocol.A_Protocol.updateUniverseFromChrono(A_Protocol.java:172) ~[?:?]
+	at melanesim.protocol.A_Protocol.step_Utick(A_Protocol.java:113) ~[?:?]
+	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more

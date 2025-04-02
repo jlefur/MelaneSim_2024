@@ -45,7 +45,7 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 		this.factory = factory;
 		selectImg = new C_IconSelector();
 		factory.registerImage(TAGGED, selectImg.loadImage(TAGGED));
-		if (C_Parameters.PROTOCOL.equals(PNMC_DRIFTERS)) initPNMC();
+		if (C_Parameters.PROTOCOL.contains("PNMC")) initPNMC();
 		else if (C_Parameters.PROTOCOL.equals(CHIZE)) initChize();
 		else if (C_Parameters.PROTOCOL.equals(ENCLOSURE)) initEnclosMbour();
 		else if (C_Parameters.PROTOCOL.equals(DODEL)) initDodel();

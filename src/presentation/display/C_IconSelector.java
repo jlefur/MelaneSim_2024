@@ -72,7 +72,8 @@ public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC, 
 			((A_SupportedContainer) agent).setHasToSwitchFace(true);
 			return TAGGED;
 		}
-		else if (C_Parameters.PROTOCOL.equals(PNMC_DRIFTERS)) return getNameOfImagePNMC(agent);
+		else if (C_Parameters.PROTOCOL.contains("PNMC")) return getNameOfImagePNMC(agent);
+		
 		else if (C_Parameters.PROTOCOL.equals(CHIZE)) return getNameOfImageChize(agent);
 		else if (C_Parameters.PROTOCOL.equals(GERBIL)) return getNameOfImageGerbil(agent);
 		else if (C_Parameters.PROTOCOL.equals(ENCLOSURE)) return getNameOfImageEnclosMbour(agent);

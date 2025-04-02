@@ -32,6 +32,7 @@ public class C_Style2dGroundType implements ValueLayerStyleOGL, I_ConstantNumeri
 			this.colorMap = new HashMap<Integer, Color>();
 			switch (C_Parameters.PROTOCOL) {
 				case PNMC_DRIFTERS :
+				case PNMC_PLANKTON :
 					this.colorMap = colorMapPNMC_energyGrid(this.colorMap);
 					System.out.println("PNMC energy colormap: " + this.colorMap.size() + " colors identified");
 					break;
