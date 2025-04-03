@@ -102,23 +102,9 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC {
 		super.replaceOutcomer(animalLeavingLandscape, newLocation, x, y);
 	}
 
-	@Override
-	public void resetCellsColor() {
-		super.resetCellsColor();
-		this.assertCellsEnergy();
-		// uncomment lines below to save screen
-		/** save screen each new day */
-		// Integer currentYear = A_Protocol.protocolCalendar.get(Calendar.YEAR);
-		// Integer currentMonth = A_Protocol.protocolCalendar.get(Calendar.MONTH);
-		// String currentDate = "Energy-" + currentYear + "." + String.format("%02d", currentMonth + 1);
-		// CaptureEcranPeriodique.captureEcranPlankton(currentDate);
-		// end of uncomment
-		C_Parameters.BLACK_MAP = false;
-	}
-
 	/** recompute marine cells energy<br>
 	 * JLF 03.2025 */
-	protected void assertCellsEnergy() {
+	public void assertCellsEnergy() {
 		double cellEnergy_Ukcal;
 		this.rankEnergy();
 		for (int i = 0; i < this.dimension_Ucell.getWidth(); i++) {

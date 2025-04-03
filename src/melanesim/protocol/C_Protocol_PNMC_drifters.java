@@ -12,6 +12,7 @@ import data.C_Parameters;
 import data.C_ReadRasterDouble;
 import data.constants.I_ConstantPNMC;
 import data.converters.C_ConvertGeographicCoordinates;
+import melanesim.util.CaptureEcranPeriodique;
 import presentation.display.C_Background;
 import presentation.display.C_CustomPanelSet;
 import presentation.epiphyte.C_InspectorEnergyMarine;
@@ -44,7 +45,8 @@ public class C_Protocol_PNMC_drifters extends A_Protocol implements I_ConstantPN
 	public C_Protocol_PNMC_drifters(Context<Object> ctxt) {
 		super(ctxt);
 		// Create and build the dataFromChrono from the csv file
-		this.chronogram = new C_Chronogram("/20240314_PNMC.drifters.csv");// TODO number in source 2025.04 JLF CHRONOGRAM FILE NAME
+		this.chronogram = new C_Chronogram("/20240314_PNMC.drifters.csv");// TODO number in source 2025.04 JLF CHRONOGRAM FILE
+																			// NAME
 		// Position landplots at the barycentre of cells
 		for (C_LandPlot lp : this.landscape.getAffinityLandPlots()) {
 			double xx = 0., yy = 0.;
@@ -141,28 +143,32 @@ public class C_Protocol_PNMC_drifters extends A_Protocol implements I_ConstantPN
 	/** Save screen each day<br>
 	 * Version Authors JEL2011, AR2011, rev. LeFur 2011,2012,2014,2024 */
 	public void manageTimeLandmarks() {
-		// // slightly randomly move the mouse to avoid screen sleep mode (for
-		// recording printscreen)
-		// try {
-		// Robot robot = new Robot();
-		// // Get the current mouse coordinates
-		// Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
-		// int x = mouseLocation.x;
-		// int y = mouseLocation.y;
-		// robot.mouseMove(x + random.nextInt(3), y + random.nextInt(3));
-		// } catch (AWTException e) {e.printStackTrace();}
+		/** // Uncomment lines below to slightly randomly move the mouse to avoid screen sleep mode (for recording printscreen)
+		try {
+			Robot robot = new Robot();
+			// Get the current mouse coordinates
+			Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+			int x = mouseLocation.x;
+			int y = mouseLocation.y;
+			robot.mouseMove(x + random.nextInt(3), y + random.nextInt(3));
+		} catch (AWTException e) {
+			e.printStackTrace();
+		}
+		*/
 
+		/** // uncomment lines below to save screen
 		// save screen each new day
-		/*
-		 * Integer currentYear = A_Protocol.protocolCalendar.get(Calendar.YEAR); Integer currentDay =
-		 * A_Protocol.protocolCalendar.get(Calendar.DAY_OF_YEAR); Integer currentHour =
-		 * A_Protocol.protocolCalendar.get(Calendar.HOUR_OF_DAY); String currentDate = currentYear + "." + String.format("%03d",
-		 * currentDay) + "_" + String.format("%03d",currentHour);
-		 */
+		Integer currentYear = A_Protocol.protocolCalendar.get(Calendar.YEAR);
+		Integer currentMonth = A_Protocol.protocolCalendar.get(Calendar.MONTH);
+		Integer currentDay = A_Protocol.protocolCalendar.get(Calendar.DAY_OF_YEAR);
+		Integer currentHour = A_Protocol.protocolCalendar.get(Calendar.HOUR_OF_DAY);
+		String currentDate = "Energy-" + currentYear + "." + String.format("%02d", currentMonth + 1);
+		// or
+		String currentDate = currentYear + "." + String.format("%03d", currentDay) + "_" + String.format("%03d",currentHour);
+		CaptureEcranPeriodique.captureEcranPlankton(currentDate); */
+		// end of uncomment
 		A_Protocol.protocolCalendar.incrementDate();
 
-		// uncomment line below to save screen
-		// CaptureEcranPeriodique.captureEcranPlankton(currentDate);
 		// Check if map has to be switched Version JLF 08.2014, rev.10.2015, 05.2017
 		boolean displayMapBefore = C_Parameters.DISPLAY_MAP;
 		this.readUserParameters();
@@ -173,6 +179,9 @@ public class C_Protocol_PNMC_drifters extends A_Protocol implements I_ConstantPN
 	public void manageOneEvent(C_Event event) {
 		C_SoilCellMarine cell = null;
 		switch (event.type) {
+			case COMPUTE_ENERGY :
+				((C_LandscapeMarine) this.landscape).assertCellsEnergy();
+				break;
 			case CURRENT_EVENT :// file name example: PNMC_current_2021/202101_North.grd and
 								// PNMC_current_2021/202101_East.grd
 				String url;

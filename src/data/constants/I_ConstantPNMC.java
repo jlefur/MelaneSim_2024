@@ -32,6 +32,7 @@ public interface I_ConstantPNMC extends I_ConstantString {
 	// EVENT TYPES CONSTANTS - used in chrono events
 	public static final String CURRENT_EVENT = "current";
 	public static final String CHLOROPHYLL_EVENT = "chlorophyll";
+	public static final String COMPUTE_ENERGY = "compute_energy";
 	// Others
 	public static final int BACKGROUND_COLOR = 38;
 	public static int TERRESTRIAL_MIN_AFFINITY = 99;
