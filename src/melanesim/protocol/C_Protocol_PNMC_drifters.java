@@ -160,14 +160,7 @@ public class C_Protocol_PNMC_drifters extends A_Protocol implements I_ConstantPN
 		 * currentDay) + "_" + String.format("%03d",currentHour);
 		 */
 		A_Protocol.protocolCalendar.incrementDate();
-		// reset plankton energy JLF 07.2024
-		// if (protocolCalendar.get(Calendar.DAY_OF_YEAR) != currentDay) {
-		Object[] contextContent = RunState.getInstance().getMasterContext().toArray();
-		for (int i = 0; i < contextContent.length; i++) {
-			Object item = contextContent[i];
-			if (item instanceof C_Plankton) ((C_Plankton) item).energy_Ukcal = 0.;
-			// }
-		}
+
 		// uncomment line below to save screen
 		// CaptureEcranPeriodique.captureEcranPlankton(currentDate);
 		// Check if map has to be switched Version JLF 08.2014, rev.10.2015, 05.2017

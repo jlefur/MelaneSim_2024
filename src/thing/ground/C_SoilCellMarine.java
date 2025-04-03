@@ -35,13 +35,22 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	//
 	// OVERRIDEN METHOD
 	//
+	/** Incoming plankton gets the cell's chlorophyll value as energy value
+	 * @author JLF 04.2025 */
+	@Override
+	public boolean agentIncoming(I_SituatedThing thing) {
+		if (thing instanceof C_Plankton) ((C_Plankton) thing).energy_Ukcal = this.getChlorophyll();
+		return super.agentIncoming(thing);
+
+	}
 	@Override
 	/** Move planktonic occupants with the surface current speed - JLF 07.2024<br>
 	 * set the energy value for plankton<br>
 	 * Compute the marineCell's step energy and the integral energy -JLF 03.2025 */
 	public void step_Utick() {
+		this.energy_Ukcal = 0.;
 		super.step_Utick();
-		double speedEastward_UmeterPerTick, speedNorthward_UmeterPerTick, energy;
+		double speedEastward_UmeterPerTick, speedNorthward_UmeterPerTick;
 		TreeSet<I_SituatedThing> occupants = new TreeSet<>(this.getOccupantList());
 		for (I_SituatedThing agent : occupants) {
 			this.energy_Ukcal += agent.getEnergy_Ukcal();
@@ -53,11 +62,6 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 						this.speedNorthward_UmeterPerSecond, "m", "s") / PARTICLE_RESISTANCE_FACTOR;
 				A_VisibleAgent.myLandscape.translate((A_VisibleAgent) agent, new Coordinate(speedEastward_UmeterPerTick,
 						speedNorthward_UmeterPerTick));
-				// TODO number in source 2024 JLF (energy = speed/1E3)
-				// energy = Math.sqrt(speedEastward_UmeterPerTick * speedEastward_UmeterPerTick + speedNorthward_UmeterPerTick *
-				// speedNorthward_UmeterPerTick) / 1E3;
-				// ((C_Plankton) agent).energy_Ukcal +=energy;
-				((C_Plankton) agent).energy_Ukcal = 1.;
 			}
 		}
 	}

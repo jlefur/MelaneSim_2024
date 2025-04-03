@@ -44,7 +44,7 @@ public class C_LandscapeUrban extends C_LandscapeRodent implements I_ConstantDod
 		for (int i = 0; i < this.dimension_Ucell.width; i++) {
 			for (int j = 0; j < this.dimension_Ucell.height; j++) {
 				int affinity = matriceLue[i][j];
-				this.gridValueLayer.set(affinity, i, j);
+				this.getValueLayer().set(affinity, i, j);
 				this.grid[i][j] = new C_SoilCellUrban(affinity, i, j);
 			}
 		}
@@ -83,26 +83,26 @@ public class C_LandscapeUrban extends C_LandscapeRodent implements I_ConstantDod
 					newPlot.setAffinity(affinity0);
 					// And I detect and add to the newPlot all soilCells contiguous to this soilCell0 (sc0)
 					// So I build completely this new landPlot before stating to build one other
-					// la fileDattente CONTIENT LES SOILCELL QUI SONT DÉJÀ TRAITÉES :
-					// Et dans cette list, les sc à partir de la position k
-					// sont ceux dont les voisins ne sont pas encore taités
+					// la fileDattente CONTIENT LES SOILCELL QUI SONT Dï¿½Jï¿½ TRAITï¿½ES :
+					// Et dans cette list, les sc ï¿½ partir de la position k
+					// sont ceux dont les voisins ne sont pas encore taitï¿½s
 					fileDattente.clear();
-					fileDattente.add(soilCell_0); // Seul sc0 est traité en ce moment
+					fileDattente.add(soilCell_0); // Seul sc0 est traitï¿½ en ce moment
 					fileDattente2.clear();
 					fileDattente2.add(soilCell_0);
 					k = 0;
-					// Je reste sur le même landPlot pour le construire entièrement
+					// Je reste sur le mï¿½me landPlot pour le construire entiï¿½rement
 					while (k < fileDattente.size()) {
-						// On récupère un à un les soilCells déja traités, pour pouvoir localiser et traiter ses voisins
+						// On rï¿½cupï¿½re un ï¿½ un les soilCells dï¿½ja traitï¿½s, pour pouvoir localiser et traiter ses voisins
 						soilCell_0 = fileDattente.get(k);
 						x0 = soilCell_0.retrieveLineNo();
 						y0 = soilCell_0.retrieveColNo();
 						for (x = x0 - 1; x <= x0 + 1; x++) {
-							for (y = y0 - 1; y <= y0 + 1; y++) { // avec ces 2 boucles j'accede à tous les 8 voisins de sc0
+							for (y = y0 - 1; y <= y0 + 1; y++) { // avec ces 2 boucles j'accede ï¿½ tous les 8 voisins de sc0
 								if (!(x == x0 && y == y0) && (0 <= x && x < dimension_Ucell.getWidth() && 0 <= y
 										&& y < dimension_Ucell.getHeight())) {
 									soilCell_1 = (C_SoilCellUrban) grid[x][y]; // Pour chaque voisin scI de sc0, on teste :
-									if (soilCell_1.getAffinity() == affinity0 && // si c'est de la même affinité que sc0 et
+									if (soilCell_1.getAffinity() == affinity0 && // si c'est de la mï¿½me affinitï¿½ que sc0 et
 											!fileDattente2.contains(soilCell_1)) { // s'il n'est pas encore dans la file d'attente
 										if ((this.isRoomCell(soilCell_1) || this.isConcessionCell(soilCell_1))
 												&& (x != x0 && y != y0)) {
@@ -111,14 +111,14 @@ public class C_LandscapeUrban extends C_LandscapeRodent implements I_ConstantDod
 											if ((soilCellTest_1.getAffinity() == affinity0) || (soilCellTest_2
 													.getAffinity() == affinity0)) {
 												soilCell_1.setAffinityLandPlot(newPlot); // pour le traiter
-												fileDattente.add(soilCell_1); // et l'ajoute dans la file d'attente pour étudier à
+												fileDattente.add(soilCell_1); // et l'ajoute dans la file d'attente pour ï¿½tudier ï¿½
 																				// son tour
 												fileDattente2.add(soilCell_1);
 											}
 										}
 										else {
 											soilCell_1.setAffinityLandPlot(newPlot); // pour le traiter
-											fileDattente.add(soilCell_1); // et l'ajoute dans la file d'attente pour étudier à son
+											fileDattente.add(soilCell_1); // et l'ajoute dans la file d'attente pour ï¿½tudier ï¿½ son
 																			// tour
 											// chaqu'un de ses voisins
 											fileDattente2.add(soilCell_1);
@@ -127,7 +127,7 @@ public class C_LandscapeUrban extends C_LandscapeRodent implements I_ConstantDod
 								}
 							}
 						}
-						k++; // pour prendre l'élément suivant de la file d'attente
+						k++; // pour prendre l'ï¿½lï¿½ment suivant de la file d'attente
 					}
 				}
 				// End of building a newlandPlot. We continue to build others

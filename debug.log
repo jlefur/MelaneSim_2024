@@ -702,3 +702,32 @@ Caused by: java.lang.NullPointerException: Cannot load from object array because
 	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
 	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
 	... 7 more
+FATAL [Thread-4] 2025-04-03T14:27:13,317 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (232.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 8
+	at data.converters.C_ConvertTimeAndSpace._UcalendarTo_Utick(C_ConvertTimeAndSpace.java:81) ~[?:?]
+	at data.converters.C_ConvertTimeAndSpace.convertTimeDurationToTick(C_ConvertTimeAndSpace.java:54) ~[?:?]
+	at data.converters.C_ConvertTimeAndSpace.init(C_ConvertTimeAndSpace.java:45) ~[?:?]
+	at melanesim.protocol.A_Protocol.readUserParameters(A_Protocol.java:310) ~[?:?]
+	at melanesim.protocol.C_Protocol_PNMC_drifters.readUserParameters(C_Protocol_PNMC_drifters.java:226) ~[?:?]
+	at melanesim.protocol.C_Protocol_PNMC_drifters.manageTimeLandmarks(C_Protocol_PNMC_drifters.java:168) ~[?:?]
+	at melanesim.protocol.A_Protocol.step_Utick(A_Protocol.java:114) ~[?:?]
+	at melanesim.protocol.C_Protocol_PNMC_plankton.step_Utick(C_Protocol_PNMC_plankton.java:62) ~[?:?]
+	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more

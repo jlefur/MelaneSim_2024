@@ -1,5 +1,7 @@
 package presentation.display;
 import javax.swing.JLabel;
+
+import data.C_Parameters;
 import data.constants.I_ConstantPNMC;
 import presentation.epiphyte.C_InspectorPopulationMarine;
 import thing.ground.landscape.C_LandscapeMarine;
@@ -40,9 +42,17 @@ public class C_UserPanelMarine extends C_UserPanel implements I_ConstantPNMC {
 		C_InspectorPopulationMarine.planktonExport = 0;
 	}
 	@Override
-	/** Gestion de l'image centrale overriden selon rodent ou marine (JLF - 2011, 2018, 2024) */
-	protected JLabel createTitleBlock(String fileName) {
-		fileName = "icons/titleDrifters.gif";
+	/** Gestion de l'image centrale (JLF - 2011, 2018, 2025) */
+	protected JLabel createTitleBlock(String FileName) {
+		String fileName = "";
+		switch (C_Parameters.PROTOCOL) {
+			case PNMC_DRIFTERS :
+				fileName = "icons/titleDrifters.gif";
+				break;
+			case PNMC_PLANKTON :
+				fileName = "icons/titlePlancton.gif";
+				break;
+		}
 		return super.createTitleBlock(fileName);
 	}
 	@Override

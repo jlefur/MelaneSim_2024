@@ -72,28 +72,28 @@ public class C_LandscapeNetwork extends C_LandscapeRodent {
 		C_SoilCellGraphed tmp0 = null, tmp1 = null;
 		C_Graph aGraph;
 		TreeSet<C_SoilCell> aSCListOfaNewLandPlot;
-		String newGraphType = null; // le groundType du graph area lp : le lp où le graphe ne doit sortir
+		String newGraphType = null; // le groundType du graph area lp : le lp oï¿½ le graphe ne doit sortir
 		String newAreaLpGroundType = aLandPlotList.first().getPlotType();
-		if (graphTypeParam.length != 0) // si graphTypeParam est donné, cas des GNT ...
+		if (graphTypeParam.length != 0) // si graphTypeParam est donnï¿½, cas des GNT ...
 			newGraphType = graphTypeParam[0];
 		else
 			newGraphType = newAreaLpGroundType; // sinons le groundType est le graphType
 		// Build a graph for each landPlot of the landPlotList
 		for (C_LandPlot aLandPlot : aLandPlotList) {
 			aGraph = new C_Graph(newGraphType, newAreaLpGroundType); // instancie un nouveau
-			// Vérifier si le nouveau graphe à construire ne correspondrait pas à un ancien, qu'on doit mettre à jour
+			// Vï¿½rifier si le nouveau graphe ï¿½ construire ne correspondrait pas ï¿½ un ancien, qu'on doit mettre ï¿½ jour
 			aSCListOfaNewLandPlot = aLandPlot.getCells();
 			i = 0;
 			List<C_Graph> graphsToRemoveList = new ArrayList<C_Graph>();
 			for (C_Graph oneOldGraph : this.graphList) { // Pour chaque ancien graphe
-				// Si le groundType et le graphType correspondent à ceux de ce new landPlot, alors
+				// Si le groundType et le graphType correspondent ï¿½ ceux de ce new landPlot, alors
 				if (newAreaLpGroundType.equals(oneOldGraph.getGroundType()) && newGraphType.equals(oneOldGraph
 						.getGraphType()))
 					// on regarde si dans cet ancien graphe il y a un sc qui appartient au new landPlot
 					for (C_SoilCellGraphed sc : oneOldGraph.getNodesList()) {
 						if (aSCListOfaNewLandPlot.contains(sc)) {
-							// Si oui alors on fait pointer le new graph sur un ancien graph une première fois
-							if (i == 0) { // suffisant pour une mise à jour par prolongement ou raccourcissement (et ensuite on
+							// Si oui alors on fait pointer le new graph sur un ancien graph une premiï¿½re fois
+							if (i == 0) { // suffisant pour une mise ï¿½ jour par prolongement ou raccourcissement (et ensuite on
 											// peut
 											// break pour sortir des 2 boucles)
 								aGraph = oneOldGraph;
@@ -101,11 +101,11 @@ public class C_LandscapeNetwork extends C_LandscapeRodent {
 									A_Protocol.event("C_LandscapeNetwork.buildGraphsFromLandPlots", "Keep old "
 											+ newGraphType + " graph " + aGraph, isNotError);
 								i = 1;
-							} // et s'il y a d'autres graphes candidats, ils vont pointer sur aGraph qui pointe déjà sur un ancien
+							} // et s'il y a d'autres graphes candidats, ils vont pointer sur aGraph qui pointe dï¿½jï¿½ sur un ancien
 								// graphe, ce qui permet de relier plusieurs graphes
 
 							else {
-								graphsToRemoveList.add(oneOldGraph);// nécessaire si le mis à jour peut relier des graphes
+								graphsToRemoveList.add(oneOldGraph);// nï¿½cessaire si le mis ï¿½ jour peut relier des graphes
 								if (C_Parameters.VERBOSE)
 									A_Protocol.event("C_LandscapeNetwork.buildGraphsFromLandPlots", "Build new "
 											+ newGraphType + " graph " + aGraph, isNotError);
@@ -115,13 +115,13 @@ public class C_LandscapeNetwork extends C_LandscapeRodent {
 					}
 			}
 
-			// Détruire les graphes obsolètes
+			// Dï¿½truire les graphes obsolï¿½tes
 			for (C_Graph rGraph : graphsToRemoveList) {
 				this.graphList.remove(rGraph);
 				for (C_SoilCellGraphed sc : rGraph.getNodesList()) sc.removeNumberInGraph(rGraph);
 			}
-			// Si i == 1, alors on ne construit pas un nouveau graphe mais on met à jour un ou des anciens
-			// Et si i == 0, alors le new graphe ne correspon pas à un ancien
+			// Si i == 1, alors on ne construit pas un nouveau graphe mais on met ï¿½ jour un ou des anciens
+			// Et si i == 0, alors le new graphe ne correspon pas ï¿½ un ancien
 			if (i == 0) this.graphList.add(aGraph); // on l'ajoute donc dans la liste des graphes pour ensuite le construire
 			ArrayList<C_SoilCellGraphed> nodeListTmp = this.identifyNodeList(aGraph, aLandPlot, newGraphType);
 			int nodeNumber = nodeListTmp.size();
@@ -137,8 +137,8 @@ public class C_LandscapeNetwork extends C_LandscapeRodent {
 						if (0 <= line && line < nbTotalLine && 0 <= column && column < nbTotalColumn) {
 							tmp1 = (C_SoilCellGraphed) this.grid[line][column];
 							if (tmp1.isOfGroundType(newGraphType) && tmp1 != tmp0 && nodeListTmp.contains(tmp1)) {
-								// last condition est nécessaire pour le cas GNT (un sc peut
-								// etre du meme graphType mais n'appartenant pas à ce graphe)
+								// last condition est nï¿½cessaire pour le cas GNT (un sc peut
+								// etre du meme graphType mais n'appartenant pas ï¿½ ce graphe)
 								edgesMatrix.get(n1).add(tmp1.getNumberInGraph(aGraph));
 							}
 						}
@@ -147,7 +147,7 @@ public class C_LandscapeNetwork extends C_LandscapeRodent {
 			}
 		}
 	}
-	/** Constuction ou mise à jour du graphe aGraphe
+	/** Constuction ou mise ï¿½ jour du graphe aGraphe
 	 * Identification des noeuds de ce graphe et comptage de son nombre de noeuds 
 	 * PAM 2012, rev JLF 01.2022 (encapsulated for C_HumanWalker management)*/
 	protected ArrayList<C_SoilCellGraphed> identifyNodeList(C_Graph aGraph, C_LandPlot aLandPlot, String newGraphType) {
@@ -173,8 +173,8 @@ public class C_LandscapeNetwork extends C_LandscapeRodent {
 	 * @return a list of landPlot author: P.A. Mboup, 2014, rev. JLF 11.2014 */
 	public TreeSet<C_LandPlot> identifyTypeLandPlots(String groundType) {
 		int i = 0, j = 0, x, y, x0, y0, k;
-		// I use HashSet car HashSet.contain() est le plus rapide (je le use bcp ici), je perds l'ordre mais je trie à la fin puis
-		// je transforme en ArrayList (qui garde l'ordre d'insertion et est très optimisé)
+		// I use HashSet car HashSet.contain() est le plus rapide (je le use bcp ici), je perds l'ordre mais je trie ï¿½ la fin puis
+		// je transforme en ArrayList (qui garde l'ordre d'insertion et est trï¿½s optimisï¿½)
 		Set<C_LandPlot> newLandPlots = new HashSet<C_LandPlot>();
 		C_LandPlot newLandPlot;
 		C_SoilCellGraphed sc0, scI;
@@ -205,20 +205,20 @@ public class C_LandscapeNetwork extends C_LandscapeRodent {
 					sc0.setLandPlotByGroundType(groundType, newLandPlot); // includes newPlot.addCell(sc0)
 					// And I detect and add to the newPlot all soilCells contiguous to this soilCell0 (sc0)
 					// So I build completely this new landPlot before starting to build one other
-					// la fileDattente CONTIENT LES SOILCELLS QUI SONT DÉJÀ TRAITÉES :
-					// Et dans cette list, les sc à partir de la position k
-					// sont ceux dont les voisins ne sont pas encore taités
+					// la fileDattente CONTIENT LES SOILCELLS QUI SONT Dï¿½Jï¿½ TRAITï¿½ES :
+					// Et dans cette list, les sc ï¿½ partir de la position k
+					// sont ceux dont les voisins ne sont pas encore taitï¿½s
 					waitingQueue.clear();
-					waitingQueue.add(sc0); // Seul sc0 est traité en ce moment
+					waitingQueue.add(sc0); // Seul sc0 est traitï¿½ en ce moment
 					k = 0;
-					// Je reste sur le même landPlot pour le construire entièrement
+					// Je reste sur le mï¿½me landPlot pour le construire entiï¿½rement
 					while (k < waitingQueue.size()) {
-						// On récupère un à un les soilCells déja traité, pour pouvoir localiser et traiter ses voisins
+						// On rï¿½cupï¿½re un ï¿½ un les soilCells dï¿½ja traitï¿½, pour pouvoir localiser et traiter ses voisins
 						sc0 = waitingQueue.get(k);
 						x0 = sc0.retrieveLineNo();
 						y0 = sc0.retrieveColNo();
 						for (x = x0 - 1; x <= x0 + 1; x++) {
-							for (y = y0 - 1; y <= y0 + 1; y++) { // avec ces 2 boucles j'accede à tous les 8 voisins de sc0
+							for (y = y0 - 1; y <= y0 + 1; y++) { // avec ces 2 boucles j'accede ï¿½ tous les 8 voisins de sc0
 								if (!(x == x0 && y == y0) && (0 <= x && x < dimension_Ucell.getWidth() && 0 <= y
 										&& y < dimension_Ucell.getHeight())) {
 									scI = (C_SoilCellGraphed) grid[x][y]; // Pour chaque voisin i (scI), on teste :
@@ -226,7 +226,7 @@ public class C_LandscapeNetwork extends C_LandscapeRodent {
 											!waitingQueue.contains(scI)) { // s'il n'est pas encore dans la file d'attente ici
 																			// ajout condition groundType
 										scI.setLandPlotByGroundType(groundType, newLandPlot); // pour le traiter
-										waitingQueue.add(scI); // et l'ajoute dans la file d'attente pour étudier à son tour
+										waitingQueue.add(scI); // et l'ajoute dans la file d'attente pour ï¿½tudier ï¿½ son tour
 																// chaqu'un de ses voisins lui aussi
 									}
 								}

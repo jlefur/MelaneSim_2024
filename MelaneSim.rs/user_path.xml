@@ -3,6 +3,7 @@
 <!-- MELANESIM -->
 		<agents path="../bin, ../bin-groovy" filter="thing.C_StreamCurrent" />
 		<agents path="../bin, ../bin-groovy" filter="thing.C_Plankton" />
+		<agents path="../bin, ../bin-groovy" filter="thing.ground.C_SoilCellMarine" />
 		
 <!-- RODENTS -->
 		<agents path="../bin, ../bin-groovy" filter="thing.ground.C_SoilCellSavanna" />

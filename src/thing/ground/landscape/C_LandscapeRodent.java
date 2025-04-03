@@ -62,7 +62,7 @@ public class C_LandscapeRodent extends C_Landscape implements I_ConstantString {
 	public void createGround(int[][] matriceLue) {
 		for (int i = 0; i<=this.dimension_Ucell.width - 1; i++) {
 			for (int j = 0; j<=this.dimension_Ucell.height - 1; j++) {
-				this.gridValueLayer.set(matriceLue[i][j], i, j);
+				this.getValueLayer().set(matriceLue[i][j], i, j);
 				this.grid[i][j] = new C_SoilCell(matriceLue[i][j], i, j);
 			}
 		}

@@ -9,7 +9,7 @@ import data.C_ReadRasterDouble;
 import repast.simphony.context.Context;
 import thing.ground.C_SoilCellMarine;
 
-/** chlorophyll loaded Plankton particles drifted by surface currents
+/** Chlorophyll loaded Plankton particles drifted by surface currents
  * @author J.Le Fur 06.2024 */
 public class C_Protocol_PNMC_plankton extends C_Protocol_PNMC_drifters {
 	//
@@ -26,10 +26,11 @@ public class C_Protocol_PNMC_plankton extends C_Protocol_PNMC_drifters {
 	// OVERRIDEN METHODS
 	//
 	@Override
-	/** read chlorophyll values : for year 2021 maximum=0.40059945, minimum = 0.047118366 -> x25 */
+	/** read chlorophyll values */
 	public void manageOneEvent(C_Event event) {
 		switch (event.type) {
 			case CHLOROPHYLL_EVENT :// file name example: PNMC_chlorophyll_2021/202101.grd
+				C_SoilCellMarine marineCell = null;
 				String url = RASTER_PATH_MELANESIA + "PNMC_chlorophyll_2021/chl-2021";
 				int imax = this.landscape.getDimension_Ucell().width;
 				int jmax = this.landscape.getDimension_Ucell().height;
@@ -41,13 +42,28 @@ public class C_Protocol_PNMC_plankton extends C_Protocol_PNMC_drifters {
 				double[][] matriceLue = C_ReadRasterDouble.doubleRasterLoader(url + ".grd");
 				for (int i = 0; i < imax; i++) {
 					for (int j = 0; j < jmax; j++) {
-						double value = matriceLue[i][j];
-						// TODO number in source 2025.04 JLF for xphyl min=1 max=10
-						((C_SoilCellMarine) this.landscape.getGrid()[i][j]).setChlorophyll(value * 25);
+						double value = matriceLue[i][j] * CHLOROPHYLL_MULTIPLIER;
+						marineCell = ((C_SoilCellMarine) this.landscape.getGrid()[i][j]);
+						if (!marineCell.isTerrestrial()) {
+							marineCell.setChlorophyll(value);
+							marineCell.setAffinity((int) value);
+						}
+						// this.landscape.getGridValueLayer().set( value - 1, i, j);// for xphyl min=0 max=9
 					}
 				}
 				break;
 		}
 		super.manageOneEvent(event);
+	}
+	@Override
+	/** Update the universe according to bandiaEvents (chrono) If the current simulation date is one date of bandiaEvents then
+	 * account for the corresponding event then proceed to inspector's step */
+	public void step_Utick() {
+		super.step_Utick();
+		C_SoilCellMarine cell = (C_SoilCellMarine) this.landscape.getGrid()[127][217];
+		if (cell.getOccupantList().size() >= 1)
+			A_Protocol.event("occupants: ", cell.getOccupantList().size() + ", énergie: " + Math.round(cell
+					.getEnergy_Ukcal() * 100.0) / 100.0 + ", xphylle: " + Math.round(cell.getChlorophyll() * 100.0)
+							/ 100.0, isError);
 	}
 }

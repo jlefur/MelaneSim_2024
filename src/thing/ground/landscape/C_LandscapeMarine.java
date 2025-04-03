@@ -85,7 +85,9 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC {
 				new repast.simphony.space.grid.WrapAroundBorders(), dimension_Ucell.width, dimension_Ucell.height);
 		for (int i = this.dimension_Ucell.width - 1; i >= 0; i--) {
 			for (int j = this.dimension_Ucell.height - 1; j >= 0; j--) {
-				this.gridValueLayer.set(matriceLue[i][j], i, j);
+				// TODO number in source Terrestrial in raster bathymetry JLF 04.2025;
+				if (matriceLue[i][j] >= 8) matriceLue[i][j] = TERRESTRIAL_MIN_AFFINITY;
+				this.getValueLayer().set(matriceLue[i][j], i, j);
 				// energy values are 0-green, 1-orange, 2-red or 3-black forN/A ( viz. land)
 				this.energyValueLayer.set((int) (Math.random() * 3), i, j);
 				this.grid[i][j] = new C_SoilCellMarine(matriceLue[i][j], i, j);
@@ -174,7 +176,8 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC {
 				currentSum += entry.getValue();
 			}
 		}
-		C_LandscapeMarine.overallEnergyMean_Ukcal = C_LandscapeMarine.overallEnergy_Ukcal / (this.dimension_Ucell.getWidth()*this.dimension_Ucell.getHeight());
+		C_LandscapeMarine.overallEnergyMean_Ukcal = C_LandscapeMarine.overallEnergy_Ukcal / (this.dimension_Ucell
+				.getWidth() * this.dimension_Ucell.getHeight());
 	}
 
 	protected void rankEnergy0() {
