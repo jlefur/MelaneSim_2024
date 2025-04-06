@@ -61,9 +61,10 @@ public class C_Protocol_PNMC_plankton extends C_Protocol_PNMC_drifters {
 	public void step_Utick() {
 		super.step_Utick();
 		C_SoilCellMarine cell = (C_SoilCellMarine) this.landscape.getGrid()[127][217];
-		if (cell.getOccupantList().size() >= 1)
-			A_Protocol.event("occupants: ", cell.getOccupantList().size() + ", énergie: " + Math.round(cell
-					.getEnergy_Ukcal() * 100.0) / 100.0 + ", xphylle: " + Math.round(cell.getChlorophyll() * 100.0)
-							/ 100.0, isError);
+		/*
+		 * if (cell.getOccupantList().size() >= 1) A_Protocol.event("occupants: ", cell.getOccupantList().size() + ", énergie: " +
+		 * Math.round(cell .getEnergy_Ukcal() * 100.0) / 100.0 + ", xphylle: " + Math.round(cell.getChlorophyll() * 100.0) /
+		 * 100.0, isError);
+		 */
 	}
 }

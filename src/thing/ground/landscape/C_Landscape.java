@@ -374,6 +374,7 @@ public class C_Landscape implements I_ConstantString {
 		incomer.hasLeftDomain = false;
 		incomer.hasEnteredDomain = true;
 		incomer.hasToSwitchFace = true;
+		incomer.energy_Ukcal = animalLeavingLandscape.energy_Ukcal;// JLF 04.2025
 		// incomer.setAge_Uday(animalLeavingLandscape.getAge_Uday());
 		incomer.setAge_Uday(0.);
 		if (((A_SupportedContainer) animalLeavingLandscape).isa_Tag()) incomer.seta_Tag(true);
