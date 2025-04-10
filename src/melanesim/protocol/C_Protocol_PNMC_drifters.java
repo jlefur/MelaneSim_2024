@@ -45,8 +45,8 @@ public class C_Protocol_PNMC_drifters extends A_Protocol implements I_ConstantPN
 	public C_Protocol_PNMC_drifters(Context<Object> ctxt) {
 		super(ctxt);
 		// Create and build the dataFromChrono from the csv file
-		this.chronogram = new C_Chronogram("/20240314_PNMC.drifters.csv");// TODO number in source 2025.04 JLF CHRONOGRAM FILE
-																			// NAME
+		// TODO number in source 2025.04 JLF CHRONOGRAM FILE NAME
+		if (this.chronogram == null) chronogram = new C_Chronogram("/20240314_PNMC.drifters.csv");
 		// Position landplots at the barycentre of cells
 		for (C_LandPlot lp : this.landscape.getAffinityLandPlots()) {
 			double xx = 0., yy = 0.;
@@ -144,28 +144,16 @@ public class C_Protocol_PNMC_drifters extends A_Protocol implements I_ConstantPN
 	 * Version Authors JEL2011, AR2011, rev. LeFur 2011,2012,2014,2024 */
 	public void manageTimeLandmarks() {
 		/** // Uncomment lines below to slightly randomly move the mouse to avoid screen sleep mode (for recording printscreen)
-		try {
-			Robot robot = new Robot();
-			// Get the current mouse coordinates
-			Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
-			int x = mouseLocation.x;
-			int y = mouseLocation.y;
-			robot.mouseMove(x + random.nextInt(3), y + random.nextInt(3));
-		} catch (AWTException e) {
-			e.printStackTrace();
-		}
-		*/
+		 * try { Robot robot = new Robot(); // Get the current mouse coordinates Point mouseLocation =
+		 * MouseInfo.getPointerInfo().getLocation(); int x = mouseLocation.x; int y = mouseLocation.y; robot.mouseMove(x +
+		 * random.nextInt(3), y + random.nextInt(3)); } catch (AWTException e) { e.printStackTrace(); } */
 
-		/** // uncomment lines below to save screen
-		// save screen each new day
-		Integer currentYear = A_Protocol.protocolCalendar.get(Calendar.YEAR);
-		Integer currentMonth = A_Protocol.protocolCalendar.get(Calendar.MONTH);
-		Integer currentDay = A_Protocol.protocolCalendar.get(Calendar.DAY_OF_YEAR);
-		Integer currentHour = A_Protocol.protocolCalendar.get(Calendar.HOUR_OF_DAY);
-		String currentDate = "Energy-" + currentYear + "." + String.format("%02d", currentMonth + 1);
-		// or
-		String currentDate = currentYear + "." + String.format("%03d", currentDay) + "_" + String.format("%03d",currentHour);
-		CaptureEcranPeriodique.captureEcranPlankton(currentDate); */
+		/** // uncomment lines below to save screen // save screen each new day Integer currentYear =
+		 * A_Protocol.protocolCalendar.get(Calendar.YEAR); Integer currentMonth = A_Protocol.protocolCalendar.get(Calendar.MONTH);
+		 * Integer currentDay = A_Protocol.protocolCalendar.get(Calendar.DAY_OF_YEAR); Integer currentHour =
+		 * A_Protocol.protocolCalendar.get(Calendar.HOUR_OF_DAY); String currentDate = "Energy-" + currentYear + "." +
+		 * String.format("%02d", currentMonth + 1); // or String currentDate = currentYear + "." + String.format("%03d",
+		 * currentDay) + "_" + String.format("%03d",currentHour); CaptureEcranPeriodique.captureEcranPlankton(currentDate); */
 		// end of uncomment
 		A_Protocol.protocolCalendar.incrementDate();
 

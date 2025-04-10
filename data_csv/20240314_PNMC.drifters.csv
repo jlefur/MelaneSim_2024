@@ -1,6 +1,6 @@
 DATE EVENT;X;Y;EVENT;VALUE1;VALUE2;CELL_ID;COMMENT;date ajout;resp. ajout;;;;;;;;;;
 01/01/2021;0;0;current;;;;0;07/10/2024;JLF;;01/01/2021;0;0;compute_energy;;;;0;03/04/2025
-01/01/2021;0;0;compute_energy;;;;0;03/04/2025;JLF;;01/04/2021;0;0;compute_energy;;;;1;03/04/2025
+10/01/2021;0;0;compute_energy;;;;0;03/04/2025;JLF;;01/04/2021;0;0;compute_energy;;;;1;03/04/2025
 01/02/2021;0;0;current;;;;0;07/10/2024;JLF;;01/07/2021;0;0;compute_energy;;;;2;03/04/2025
 01/03/2021;0;0;current;;;;0;07/10/2024;JLF;;01/10/2021;0;0;compute_energy;;;;3;03/04/2025
 01/04/2021;0;0;current;;;;0;07/10/2024;JLF;;01/01/2022;0;0;compute_energy;;;;4;03/04/2025

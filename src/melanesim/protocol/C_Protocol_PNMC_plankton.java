@@ -45,7 +45,7 @@ public class C_Protocol_PNMC_plankton extends C_Protocol_PNMC_drifters {
 						double value = matriceLue[i][j] * CHLOROPHYLL_MULTIPLIER;
 						marineCell = ((C_SoilCellMarine) this.landscape.getGrid()[i][j]);
 						if (!marineCell.isTerrestrial()) {
-							marineCell.setChlorophyll(value);
+							marineCell.setChlorophyll(value * value * value);
 							marineCell.setAffinity((int) value);
 						}
 						// this.landscape.getGridValueLayer().set( value - 1, i, j);// for xphyl min=0 max=9
@@ -55,16 +55,10 @@ public class C_Protocol_PNMC_plankton extends C_Protocol_PNMC_drifters {
 		}
 		super.manageOneEvent(event);
 	}
-	@Override
-	/** Update the universe according to bandiaEvents (chrono) If the current simulation date is one date of bandiaEvents then
-	 * account for the corresponding event then proceed to inspector's step */
-	public void step_Utick() {
-		super.step_Utick();
-		C_SoilCellMarine cell = (C_SoilCellMarine) this.landscape.getGrid()[127][217];
-		/*
-		 * if (cell.getOccupantList().size() >= 1) A_Protocol.event("occupants: ", cell.getOccupantList().size() + ", énergie: " +
-		 * Math.round(cell .getEnergy_Ukcal() * 100.0) / 100.0 + ", xphylle: " + Math.round(cell.getChlorophyll() * 100.0) /
-		 * 100.0, isError);
-		 */
-	}
+	/*
+	 * @Override public void step_Utick() { super.step_Utick(); C_SoilCellMarine cell = (C_SoilCellMarine)
+	 * this.landscape.getGrid()[127][217]; if (cell.getOccupantList().size() >= 1) A_Protocol.event("occupants: ",
+	 * cell.getOccupantList().size() + ", énergie: " + Math.round(cell .getEnergy_Ukcal() * 100.0) / 100.0 + ", xphylle: " +
+	 * Math.round(cell.getChlorophyll() * 100.0) / 100.0, isError); }
+	 */
 }

@@ -21,13 +21,7 @@ public interface I_ConstantPNMC extends I_ConstantString {
 		}
 		private static final long serialVersionUID = 1L;
 	};
-	public static final ArrayList<String> currentSpeed_URL_suffix = new ArrayList<String>() {
-		{
-			add("");
-			add("");
-		}
-		private static final long serialVersionUID = 1L;
-	};
+
 
 	// EVENT TYPES CONSTANTS - used in chrono events
 	public static final String CURRENT_EVENT = "current";

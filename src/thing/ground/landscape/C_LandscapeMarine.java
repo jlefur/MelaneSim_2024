@@ -33,7 +33,7 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC {
 	//
 	protected GridValueLayer energyValueLayer;
 	// energy values are 0-green, 1-orange, 2-red or 3-black forN/A ( viz. land)
-	protected Double[] energyRanks = new Double[3];
+	protected int[] energyRanks = new int[3];
 	public static double overallEnergy_Ukcal = 0.0;
 	public static double overallEnergyMean_Ukcal = 0.0;
 
@@ -105,16 +105,21 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC {
 	/** recompute marine cells energy<br>
 	 * JLF 03.2025 */
 	public void assertCellsEnergy() {
-		double cellEnergy_Ukcal;
+		double cellIntegralEnergy_Ukcal;
 		this.rankEnergy();
 		for (int i = 0; i < this.dimension_Ucell.getWidth(); i++) {
 			for (int j = 0; j < this.dimension_Ucell.getHeight(); j++) {
 				this.energyValueLayer.set(ENERGY_RESET, i, j);// reset cell color
 				if (((C_SoilCellMarine) grid[i][j]).isTerrestrial()) this.energyValueLayer.set(ENERGY_LAND, i, j);
-				cellEnergy_Ukcal = ((C_SoilCellMarine) grid[i][j]).getIntegralEnergy_Ukcal();
-				if (cellEnergy_Ukcal >= energyRanks[ENERGY_GREEN]) this.energyValueLayer.set(ENERGY_GREEN, i, j);
-				else if (cellEnergy_Ukcal >= energyRanks[ENERGY_ORANGE]) this.energyValueLayer.set(ENERGY_ORANGE, i, j);
-				else if (cellEnergy_Ukcal >= energyRanks[ENERGY_RED]) this.energyValueLayer.set(ENERGY_RED, i, j);
+				cellIntegralEnergy_Ukcal = ((C_SoilCellMarine) grid[i][j]).getIntegralEnergy_Ukcal();
+				if (cellIntegralEnergy_Ukcal >= energyRanks[ENERGY_GREEN])
+					this.energyValueLayer.set(ENERGY_GREEN, i, j);
+				else
+					if (cellIntegralEnergy_Ukcal >= energyRanks[ENERGY_ORANGE])
+						this.energyValueLayer.set(ENERGY_ORANGE, i, j);
+					else
+						if (cellIntegralEnergy_Ukcal >= energyRanks[ENERGY_RED])
+							this.energyValueLayer.set(ENERGY_RED, i, j);
 				((C_SoilCellMarine) grid[i][j]).setIntegralEnergy_Ukcal(0.);
 			}
 		}
@@ -127,34 +132,33 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC {
 	protected void rankEnergy() {
 		C_LandscapeMarine.overallEnergy_Ukcal = 0.0;
 		// Put each energy rank in keys of a sorted map and fill values with the corresponding energy sum
-		TreeMap<Double, Double> EnergyByRank = new TreeMap<>();
+		TreeMap<Integer, Integer> energyByRank = new TreeMap<>();
 		for (int i = 0; i < this.dimension_Ucell.getWidth(); i++) {
 			for (int j = 0; j < this.dimension_Ucell.getHeight(); j++) {
-				final double cellEnergy_Ukcal = ((C_SoilCellMarine) grid[i][j]).getIntegralEnergy_Ukcal(); // Finalisé
-
-				if (EnergyByRank.get(cellEnergy_Ukcal) != null)
-					EnergyByRank.put(cellEnergy_Ukcal, EnergyByRank.get(cellEnergy_Ukcal) + cellEnergy_Ukcal);
+				Integer cellIntegralEnergy_Ukcal = (int) ((C_SoilCellMarine) grid[i][j]).getIntegralEnergy_Ukcal();
+				if (energyByRank.get(cellIntegralEnergy_Ukcal) != null)
+					energyByRank.put(cellIntegralEnergy_Ukcal, energyByRank.get(cellIntegralEnergy_Ukcal)
+							+ cellIntegralEnergy_Ukcal);
 				else// If energy key not found, create an entry and set values
-					EnergyByRank.put(cellEnergy_Ukcal, cellEnergy_Ukcal);
-
+					energyByRank.put(cellIntegralEnergy_Ukcal, cellIntegralEnergy_Ukcal);
 				// NB: chatGPT suggère de remplacer les 4 lignes ci-dessous par:
 				// EnergyByRank.compute(cellEnergy_Ukcal, (k, v) -> (v == null) ? cellEnergy_Ukcal : v + cellEnergy_Ukcal);
 
-				overallEnergy_Ukcal += cellEnergy_Ukcal;
+				overallEnergy_Ukcal += cellIntegralEnergy_Ukcal;
 			}
 		}
 
 		// Définition des seuils d'énergie (Temporary stores the threshold to proceed to the coming loop)
-		energyRanks[ENERGY_GREEN] = overallEnergy_Ukcal * GREEN_AREA_Upercent;
-		energyRanks[ENERGY_ORANGE] = overallEnergy_Ukcal * ORANGE_AREA_Upercent;
-		energyRanks[ENERGY_RED] = overallEnergy_Ukcal * RED_AREA_Upercent;
+		energyRanks[ENERGY_GREEN] = (int) (overallEnergy_Ukcal * GREEN_AREA_Upercent);
+		energyRanks[ENERGY_ORANGE] = (int) (overallEnergy_Ukcal * ORANGE_AREA_Upercent);
+		energyRanks[ENERGY_RED] = (int) (overallEnergy_Ukcal * RED_AREA_Upercent);
 
 		// Classement des valeurs pour atteindre les seuils
 		for (int i = 0; i < 3; i++) {
-			double targetSum = energyRanks[i];
+			int targetSum = energyRanks[i];
 			// additionner les valeurs en partant de la clé la plus grande
 			double currentSum = 0.0;
-			for (Map.Entry<Double, Double> entry : EnergyByRank.descendingMap().entrySet()) {
+			for (Map.Entry<Integer, Integer> entry : energyByRank.descendingMap().entrySet()) {
 				if (currentSum >= targetSum) {
 					energyRanks[i] = entry.getKey();// the threshold key
 					break;// Arrêter si la somme cible est atteinte
@@ -166,37 +170,18 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC {
 				.getWidth() * this.dimension_Ucell.getHeight());
 	}
 
-	protected void rankEnergy0() {
-		// Put each energy rank in keys of a sorted map and fill values with the corresponding energy sum
-		double cellEnergy_Ukcal, overallEnergy_Ukcal = 0.;
-		TreeMap<Double, Double> EnergyByRank = new TreeMap<>();
-		for (int i = 0; i < this.dimension_Ucell.getWidth(); i++) {
-			for (int j = 0; j < this.dimension_Ucell.getHeight(); j++) {
-				cellEnergy_Ukcal = ((C_SoilCellMarine) grid[i][j]).getIntegralEnergy_Ukcal();
-				if (EnergyByRank.get(cellEnergy_Ukcal) != null) {
-					EnergyByRank.put(cellEnergy_Ukcal, EnergyByRank.get(cellEnergy_Ukcal) + cellEnergy_Ukcal);
-				}
-				// If not, create an entry and set values
-				else EnergyByRank.put(cellEnergy_Ukcal, cellEnergy_Ukcal);
-				overallEnergy_Ukcal += cellEnergy_Ukcal;
-			}
-		}
-		// Temporary stores the threshold to proceed to the coming loop
-		energyRanks[ENERGY_GREEN] = overallEnergy_Ukcal * GREEN_AREA_Upercent;
-		energyRanks[ENERGY_ORANGE] = overallEnergy_Ukcal * ORANGE_AREA_Upercent;
-		energyRanks[ENERGY_RED] = overallEnergy_Ukcal * RED_AREA_Upercent;
-		double targetSum = 0., currentSum = 0.;
-		for (int i = 0; i < 3; i++) {// for each threshold
-			targetSum = energyRanks[i];
-
-			currentSum = 0.0;
-			for (Map.Entry<Double, Double> entry : EnergyByRank.descendingMap().entrySet()) {
-				if (currentSum >= targetSum) {
-					energyRanks[i] = entry.getKey();
-					break;
-				}
-				currentSum += entry.getValue();
-			}
-		}
-	}
+	/*
+	 * protected void rankEnergy0() { // Put each energy rank in keys of a sorted map and fill values with the corresponding
+	 * energy sum double cellEnergy_Ukcal, overallEnergy_Ukcal = 0.; TreeMap<Double, Double> EnergyByRank = new TreeMap<>(); for
+	 * (int i = 0; i < this.dimension_Ucell.getWidth(); i++) { for (int j = 0; j < this.dimension_Ucell.getHeight(); j++) {
+	 * cellEnergy_Ukcal = ((C_SoilCellMarine) grid[i][j]).getIntegralEnergy_Ukcal(); if (EnergyByRank.get(cellEnergy_Ukcal) !=
+	 * null) { EnergyByRank.put(cellEnergy_Ukcal, EnergyByRank.get(cellEnergy_Ukcal) + cellEnergy_Ukcal); } // If not, create an
+	 * entry and set values else EnergyByRank.put(cellEnergy_Ukcal, cellEnergy_Ukcal); overallEnergy_Ukcal += cellEnergy_Ukcal; }
+	 * } // Temporary stores the threshold to proceed to the coming loop energyRanks[ENERGY_GREEN] = overallEnergy_Ukcal *
+	 * GREEN_AREA_Upercent; energyRanks[ENERGY_ORANGE] = overallEnergy_Ukcal * ORANGE_AREA_Upercent; energyRanks[ENERGY_RED] =
+	 * overallEnergy_Ukcal * RED_AREA_Upercent; double targetSum = 0., currentSum = 0.; for (int i = 0; i < 3; i++) {// for each
+	 * threshold targetSum = energyRanks[i]; currentSum = 0.0; for (Map.Entry<Double, Double> entry :
+	 * EnergyByRank.descendingMap().entrySet()) { if (currentSum >= targetSum) { energyRanks[i] = entry.getKey(); break; }
+	 * currentSum += entry.getValue(); } } }
+	 */
 }

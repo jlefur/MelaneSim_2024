@@ -6,7 +6,6 @@ import org.locationtech.jts.geom.Coordinate;
 
 import data.constants.I_ConstantPNMC;
 import data.converters.C_ConvertTimeAndSpace;
-import melanesim.protocol.A_Protocol;
 import thing.A_VisibleAgent;
 import thing.C_Plankton;
 import thing.C_StreamCurrent;
@@ -40,14 +39,9 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	 * @author JLF 04.2025 */
 	@Override
 	public boolean agentIncoming(I_SituatedThing thing) {
-		if(this.lineNo==127 && this.colNo==127) {
-			A_Protocol.event("incoming1: "+thing.getEnergy_Ukcal(), " - "+this.energy_Ukcal, isError);
-		}
-		if (thing instanceof C_Plankton) ((C_Plankton) thing).energy_Ukcal = this.getChlorophyll()*20.;
+		if (thing instanceof C_Plankton)
+			((C_Plankton) thing).energy_Ukcal = this.getChlorophyll();
 		this.energy_Ukcal += thing.getEnergy_Ukcal();
-		if(this.lineNo==127 && this.colNo==127) {
-			A_Protocol.event("incoming2: "+thing.getEnergy_Ukcal(), " - "+this.energy_Ukcal, isError);
-		}
 		return super.agentIncoming(thing);
 	}
 
@@ -56,7 +50,6 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	@Override
 	public boolean agentLeaving(I_SituatedThing thing) {
 		this.energy_Ukcal -= thing.getEnergy_Ukcal();
-		if(this.lineNo==127 && this.colNo==127)A_Protocol.event("leaving: "+thing.getEnergy_Ukcal(), " - "+this.energy_Ukcal, isError);
 		return super.agentLeaving(thing);
 	}
 
@@ -65,9 +58,6 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	 * set the energy value for plankton<br>
 	 * Compute the marineCell's step energy and the integral energy -JLF 03.2025 */
 	public void step_Utick() {
-		if(this.lineNo==127 && this.colNo==127) {
-			A_Protocol.event("Step start "," - "+this.energy_Ukcal, isError);
-		}
 		super.step_Utick();
 		this.integralEnergy_Ukcal += this.energy_Ukcal;
 		double speedEastward_UmeterPerTick, speedNorthward_UmeterPerTick;
@@ -82,7 +72,6 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 						speedNorthward_UmeterPerTick));
 			}
 		}
-		if(this.lineNo==127 && this.colNo==127)A_Protocol.event("Step end ", " - "+this.energy_Ukcal, isError);
 	}
 	//
 	// SETTERS & GETTERS
