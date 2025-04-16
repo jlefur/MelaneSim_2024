@@ -56,6 +56,7 @@ public class C_Landscape implements I_ConstantString {
 	protected ContinuousSpace<I_SituatedThing> continuousSpace = null;// virtual agents' space (continuous)
 	protected I_Container[][] grid;// Matrix of the containers, usually C_SoilCell, associated to the grids and rasters
 	public Dimension dimension_Ucell;// width and height of grid
+	public static int nbCells;
 	/** used by the gui and xml files */
 	protected GridValueLayer gridValueLayer = null;// grid value layer will be used to represent the area
 	protected TreeSet<C_LandPlot> landPlots;// contiguous sets with the same 'affinity' value
@@ -80,6 +81,7 @@ public class C_Landscape implements I_ConstantString {
 		context.addValueLayer(this.gridValueLayer);
 		A_Protocol.event("C_Landscape constructor", "dimensions gridValueLayer: " + gridValueLayer.getDimensions(),
 				isNotError);
+		C_Landscape.nbCells = gridValueLayer.size();
 		// SET CONTINUOUS SPACE
 		ContinuousSpaceFactory continousfactory = ContinuousSpaceFactoryFinder.createContinuousSpaceFactory(
 				new TreeMap<String, Object>());

@@ -4,7 +4,6 @@ import javax.swing.JLabel;
 import data.C_Parameters;
 import data.constants.I_ConstantPNMC;
 import presentation.epiphyte.C_InspectorPopulationMarine;
-import thing.ground.landscape.C_LandscapeMarine;
 
 /** Plankton
  * @author JLF 2024 */
@@ -30,7 +29,7 @@ public class C_UserPanelMarine extends C_UserPanel implements I_ConstantPNMC {
 		// C. BOXES METERS - 1.BOX POPULATION
 		this.meterPlankton = new C_Meter("Plancton (X1E3)", true, 1000);
 		this.metersPopulation.add(this.meterPlankton.getPan());
-		this.meterEnergy = new C_Meter("Energy (X1E3)", true, 1000);
+		this.meterEnergy = new C_Meter("max energy (X1E3)", true, 1000);
 		this.metersPopulation.add(this.meterEnergy.getPan());
 	}
 	@Override
@@ -38,7 +37,8 @@ public class C_UserPanelMarine extends C_UserPanel implements I_ConstantPNMC {
 	protected void update_Meters() {
 		super.update_Meters();
 		this.meterPlankton.setData(C_InspectorPopulationMarine.planktonList.size());
-		this.meterEnergy.setData(C_LandscapeMarine.overallEnergy_Ukcal);
+		this.meterEnergy.setData(C_InspectorPopulationMarine.maxEnergy_Ukcal);
+//		this.meterEnergy.setData(C_LandscapeMarine.overallEnergy_Ukcal);
 		C_InspectorPopulationMarine.planktonExport = 0;
 	}
 	@Override

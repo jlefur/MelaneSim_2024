@@ -35,7 +35,7 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	//
 	// OVERRIDEN METHOD
 	//
-	/** Incoming plankton gets the cell's chlorophyll value as energy value, update cell's energy_Ukcal
+	/** Incoming plankton gets the cell's chlorophyll value as energy value, update cell's meanEnergy_Ukcal
 	 * @author JLF 04.2025 */
 	@Override
 	public boolean agentIncoming(I_SituatedThing thing) {
@@ -45,7 +45,7 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 		return super.agentIncoming(thing);
 	}
 
-	/** Incoming plankton gets the cell's chlorophyll value as energy value, update cell's energy_Ukcal
+	/** Incoming plankton gets the cell's chlorophyll value as energy value, update cell's meanEnergy_Ukcal
 	 * @author JLF 04.2025 */
 	@Override
 	public boolean agentLeaving(I_SituatedThing thing) {

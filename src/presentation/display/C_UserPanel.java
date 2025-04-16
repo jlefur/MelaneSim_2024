@@ -65,7 +65,41 @@ public class C_UserPanel extends JPanel implements UserPanelCreator, I_ConstantS
 		this.setAlignmentX(Component.LEFT_ALIGNMENT);
 		RunState.getInstance().getMasterContext().add(this); // needed to step panel
 		init();
+
+		// Gestion du redimensionnement
+		this.addComponentListener(new java.awt.event.ComponentAdapter() {
+			public void componentResized(java.awt.event.ComponentEvent evt) {
+				adjustPanelSizes();
+			}
+		});
+
+		// Forcer l'ajustement après affichage initial
+		java.awt.EventQueue.invokeLater(() -> {
+			adjustPanelSizes();
+			this.revalidate();
+			this.repaint();
+		});
 	}
+
+	private void adjustPanelSizes() {
+		int width = getWidth();
+
+		if (titleBox != null) titleBox.setMaximumSize(new Dimension(width, titleBox.getPreferredSize().height));
+		if (dateBox != null) dateBox.setMaximumSize(new Dimension(width, dateBox.getPreferredSize().height));
+		if (consoleOutBox != null)
+			consoleOutBox.setMaximumSize(new Dimension(width, consoleOutBox.getPreferredSize().height));
+		if (consoleErrBox != null)
+			consoleErrBox.setMaximumSize(new Dimension(width, consoleErrBox.getPreferredSize().height));
+
+		if (titleBox != null) titleBox.revalidate();
+		if (dateBox != null) dateBox.revalidate();
+		if (consoleOutBox != null) consoleOutBox.revalidate();
+		if (consoleErrBox != null) consoleErrBox.revalidate();
+
+		this.revalidate();
+		this.repaint();
+	}
+
 	//
 	// METHODS
 	//
@@ -87,6 +121,7 @@ public class C_UserPanel extends JPanel implements UserPanelCreator, I_ConstantS
 	}
 	protected void initTop() {
 		this.titleBox = initBoxLayout("ßytemån project / IRD");
+		this.titleBox.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER));
 		this.dateBox = initBoxLayout("Simulation Date");
 		this.metersPopulation = initBoxLayout("Population (every agents)");
 		if (this.hasToShowDayMoments()) this.createDayMomentsJanel();
@@ -95,7 +130,7 @@ public class C_UserPanel extends JPanel implements UserPanelCreator, I_ConstantS
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		this.setAutoscrolls(false);
 
-		// A. BOX TITLE //
+		// fA. BOX TITLE //
 		String fileName = "icons/titleEmpty";
 		this.titleBox.add(createTitleBlock(fileName));
 
@@ -125,27 +160,37 @@ public class C_UserPanel extends JPanel implements UserPanelCreator, I_ConstantS
 		System.setErr(C_UserPanel.consoleErr.getErr()); // redirect error output to GUI console
 		this.consoleErrBox.add(C_UserPanel.consoleErr);
 	}
-	/** @author chatGPT 03.2025 */
 	protected void initBottom() {
 		// Les consoles sont mises dans un panel vertical à 2 cases égales
 		JPanel consoleWrapper = new JPanel();
-		consoleWrapper.setLayout(new GridLayout(2, 1)); // Deux cases verticales : 50% / 50%
+		consoleWrapper.setLayout(new GridLayout(2, 1));
 		consoleWrapper.setAlignmentX(Component.LEFT_ALIGNMENT);
-		// D. BOX CONSOLE OUT//
+		consoleWrapper.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
+
+		// D. BOX CONSOLE OUT //
 		C_UserPanel.consoleOut = createConsole();
 		System.setOut(consoleOut.getOut());
-		// E. BOX CONSOLE ERR//
+
+		// E. BOX CONSOLE ERR //
 		C_UserPanel.consoleErr = createConsole();
 		System.setErr(consoleErr.getErr());
+
 		// Envelopper chaque console dans un JPanel avec un titre
 		consoleOutBox = wrapConsoleWithTitle("Console Output", consoleOut);
 		consoleErrBox = wrapConsoleWithTitle("Console Error", consoleErr);
+
+		// Adapter les panneaux de console à toute la largeur disponible
+		consoleOutBox.setMaximumSize(new Dimension(Integer.MAX_VALUE, 150));
+		consoleErrBox.setMaximumSize(new Dimension(Integer.MAX_VALUE, 150));
+
 		// Ajouter dans le wrapper
 		consoleWrapper.add(consoleOutBox);
 		consoleWrapper.add(consoleErrBox);
-		// Ajouter le wrapper à ce panneau (C_UserPanel)
-		this.add(consoleWrapper); // à la fin : occupe tout l’espace restant
+
+		// Le wrapper doit lui aussi s'étendre
+		this.add(consoleWrapper);
 	}
+
 	/** @author chatGPT 03.2025 */
 	private JPanel wrapConsoleWithTitle(String title, JConsole console) {
 		JPanel panel = new JPanel();
@@ -162,7 +207,8 @@ public class C_UserPanel extends JPanel implements UserPanelCreator, I_ConstantS
 		console.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		console.setVisible(true);
 		console.setFont(new Font("serif", Font.PLAIN, 9));
-		console.setPreferredSize(new Dimension(1000, 100));
+		// console.setPreferredSize(new Dimension(1000, 100));
+		console.setPreferredSize(new Dimension(10, 100)); // largeur minimale, sera étirée par le parent
 		return console;
 	}
 	/** Met à jour les données des compteurs */
@@ -176,11 +222,15 @@ public class C_UserPanel extends JPanel implements UserPanelCreator, I_ConstantS
 		JPanel onePanel = new JPanel();
 		onePanel.setLayout(new BoxLayout(onePanel, BoxLayout.LINE_AXIS));
 		onePanel.setAlignmentX(Component.LEFT_ALIGNMENT);
-		onePanel.setSize(350, onePanel.getHeight());
+
+		// Permet de s'étirer horizontalement dans un BoxLayout vertical
+		onePanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, onePanel.getPreferredSize().height));
+
 		if (!title.isEmpty()) onePanel.setBorder(BorderFactory.createTitledBorder(title));
 		this.add(onePanel);
 		return onePanel;
 	}
+
 	/** Gestion de l'image centrale (JLF 2011, 2018) */
 	protected JLabel createTitleBlock(String fileName) {
 		try {
