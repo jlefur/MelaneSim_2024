@@ -21,7 +21,13 @@ public interface I_ConstantPNMC extends I_ConstantString {
 		}
 		private static final long serialVersionUID = 1L;
 	};
-
+	public static final ArrayList<String> currentSpeed_URL_suffix = new ArrayList<String>() {
+		{
+			add("");
+			add("");
+		}
+		private static final long serialVersionUID = 1L;
+	};
 
 	// EVENT TYPES CONSTANTS - used in chrono events
 	public static final String CURRENT_EVENT = "current";
@@ -47,4 +53,5 @@ public interface I_ConstantPNMC extends I_ConstantString {
 	public static final double RED_AREA_Upercent = .60;// red lower limit
 
 	public static final double CHLOROPHYLL_MULTIPLIER = 25;// for year 2021 maximum=0.40059945, minimum = 0.047118366 -> x25
+	public static final int ENERGY_MULTIPLIER_PLANKTON = 20;// arbitrary (for display use currently JLF 04.2025)
 }

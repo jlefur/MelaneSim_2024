@@ -46,7 +46,8 @@ public class C_Protocol_PNMC_drifters extends A_Protocol implements I_ConstantPN
 		super(ctxt);
 		// Create and build the dataFromChrono from the csv file
 		// TODO number in source 2025.04 JLF CHRONOGRAM FILE NAME
-		if (this.chronogram == null) chronogram = new C_Chronogram("/20240314_PNMC.drifters.csv");
+//		if (this.chronogram == null) chronogram = new C_Chronogram("/20240314_PNMC.drifters.csv");
+		this.chronogram = new C_Chronogram("/20250402_PNMC.plankton.csv");
 		// Position landplots at the barycentre of cells
 		for (C_LandPlot lp : this.landscape.getAffinityLandPlots()) {
 			double xx = 0., yy = 0.;

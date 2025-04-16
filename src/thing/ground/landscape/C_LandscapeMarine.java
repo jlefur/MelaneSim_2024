@@ -10,6 +10,7 @@ import org.locationtech.jts.geom.Coordinate;
 import data.C_Parameters;
 import data.C_ReadRasterOcean;
 import data.constants.I_ConstantPNMC;
+import melanesim.C_ContextCreator;
 import melanesim.protocol.A_Protocol;
 import melanesim.util.CaptureEcranPeriodique;
 import presentation.epiphyte.C_InspectorPopulationMarine;
@@ -100,6 +101,27 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC {
 	protected void replaceOutcomer(A_VisibleAgent animalLeavingLandscape, double[] newLocation, int x, int y) {
 		C_InspectorPopulationMarine.planktonExport++;
 		super.replaceOutcomer(animalLeavingLandscape, newLocation, x, y);
+	}
+
+	@Override
+	/** Results in the exit of an agent and the entry of a new one in a random point in the grid
+	 * @author Longueville 2011, rev. JLF 11.2015, 04.2025
+	 * @param animalLeavingLandscape will be removed and a new one of the same class will enter */
+	protected void bordure(A_VisibleAgent animalLeavingLandscape) {// TODO JLF 2015.11 change name (agentLeaving)
+		// Identify on which side the new animal will appear
+		if (animalLeavingLandscape.isDead()) return;// Could leave landscape in the middle of a step.
+		double[] newLocation = new double[2];
+		int x = 0, y = 0;
+		do {
+			int randkey = (int) (C_ContextCreator.randomGeneratorForInitialisation.nextDouble() * 4);// TODO number in source
+			x = (int) (C_ContextCreator.randomGeneratorForInitialisation.nextDouble() * this.dimension_Ucell
+					.getWidth());
+			y = (int) (C_ContextCreator.randomGeneratorForInitialisation.nextDouble() * this.dimension_Ucell
+					.getHeight());
+		} while (((C_SoilCellMarine) grid[x][y]).isTerrestrial());
+		newLocation[0] = x * C_Parameters.CELL_SIZE_UcontinuousSpace; // cell / cs.cell^-1 -> cs;
+		newLocation[1] = y * C_Parameters.CELL_SIZE_UcontinuousSpace; // cell / cs.cell^-1 -> cs;
+		replaceOutcomer(animalLeavingLandscape, newLocation, x, y);
 	}
 
 	/** recompute marine cells energy<br>

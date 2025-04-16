@@ -70,8 +70,8 @@ public class C_Style2dGroundType implements ValueLayerStyleOGL, I_ConstantNumeri
 		colorMap.put(ENERGY_GREEN, Color.GREEN);
 		colorMap.put(ENERGY_ORANGE, Color.ORANGE);
 		colorMap.put(ENERGY_RED, new Color(200, 0, 0));// dark red
-		colorMap.put(ENERGY_RESET, Color.BLACK);
-		colorMap.put(ENERGY_LAND, Color.WHITE);
+		colorMap.put(ENERGY_RESET, Color.WHITE);
+		colorMap.put(ENERGY_LAND, Color.BLACK);
 		return colorMap;
 	}
 	public Map<Integer, Color> colorMapCentenalGrid(Map<Integer, Color> colorMap) {

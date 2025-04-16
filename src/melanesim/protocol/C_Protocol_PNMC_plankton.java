@@ -45,7 +45,7 @@ public class C_Protocol_PNMC_plankton extends C_Protocol_PNMC_drifters {
 						double value = matriceLue[i][j] * CHLOROPHYLL_MULTIPLIER;
 						marineCell = ((C_SoilCellMarine) this.landscape.getGrid()[i][j]);
 						if (!marineCell.isTerrestrial()) {
-							marineCell.setChlorophyll(value * value * value);
+							marineCell.setChlorophyll(Math.pow(value, 4));
 							marineCell.setAffinity((int) value);
 						}
 						// this.landscape.getGridValueLayer().set( value - 1, i, j);// for xphyl min=0 max=9
