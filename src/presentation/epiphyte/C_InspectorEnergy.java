@@ -6,6 +6,7 @@ import java.util.Map;
 import melanesim.util.C_VariousUtilities;
 import repast.simphony.engine.environment.RunState;
 import repast.simphony.essentials.RepastEssentials;
+import thing.C_StreamCurrent;
 import thing.ground.A_SupportedContainer;
 import thing.ground.landscape.C_LandscapeMarine;
 
@@ -50,7 +51,7 @@ public class C_InspectorEnergy extends A_Inspector {
 		this.sizeBySpecies.clear();
 		for (int i = 0; i < contextContent.length; i++) {
 			Object item = contextContent[i];
-			if (item instanceof A_SupportedContainer) {
+			if (item instanceof A_SupportedContainer && !(item instanceof C_StreamCurrent)) {
 				speciesName = C_VariousUtilities.getShortClassName(item.getClass()).substring(2);
 				// If key exist, add values
 				if (this.EnergyBySpecies.get(speciesName) != null) {

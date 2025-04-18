@@ -201,7 +201,7 @@ public class C_Protocol_PNMC_drifters extends A_Protocol implements I_ConstantPN
 		switch (event.type) {
 		case COMPUTE_ENERGY:
 			((C_LandscapeMarine) this.landscape).assertCellsEnergy();
-			//saveScreen();
+//			saveScreen();
 			break;
 		case CURRENT_EVENT:// file name example: PNMC_current_2021/202101_North.grd and
 							// PNMC_current_2021/202101_East.grd
