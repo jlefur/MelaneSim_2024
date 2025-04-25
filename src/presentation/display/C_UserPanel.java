@@ -121,7 +121,7 @@ public class C_UserPanel extends JPanel implements UserPanelCreator, I_ConstantS
 	}
 	protected void initTop() {
 		this.titleBox = initBoxLayout("ßytemån project / IRD");
-		this.titleBox.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER));
+		this.titleBox.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 		this.dateBox = initBoxLayout("Simulation Date");
 		this.metersPopulation = initBoxLayout("Population (every agents)");
 		if (this.hasToShowDayMoments()) this.createDayMomentsJanel();

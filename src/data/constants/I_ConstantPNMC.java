@@ -37,7 +37,7 @@ public interface I_ConstantPNMC extends I_ConstantString {
 	public static final int BACKGROUND_COLOR = 38;
 	public static int TERRESTRIAL_MIN_AFFINITY = 99;
 	/** Used to lighten the GUI calculations */
-	public static final int PARTICLE_CELLS_SPACING = 3; // interval where to post plankton cells see protocol.initpopulations
+	public static final int PARTICLE_CELLS_SPACING = 2; // interval where to post plankton cells see protocol.initpopulations
 	public static final int BACKWARD_NB_CELLS = 1;// if particle reach bordure move back nb cells
 	public static final int STREAM_DISPLAY_SIZE = 300;// taille des vecteurs courants affichés
 	public static final double PARTICLE_RESISTANCE_FACTOR = 1.;// freinage des particules vis à vis de la vitesse du courant)
@@ -48,9 +48,9 @@ public interface I_ConstantPNMC extends I_ConstantString {
 	public static final int ENERGY_RESET = 3;//
 	public static final int ENERGY_LAND = 4;//
 
-	public static final double GREEN_AREA_Upercent = .25;// green lower limit
-	public static final double ORANGE_AREA_Upercent = .40;// orange lower limit
-	public static final double RED_AREA_Upercent = .60;// red lower limit
+	public static final double GREEN_AREA_Upercent = .20;// green lower limit
+	public static final double ORANGE_AREA_Upercent = .30;// orange lower limit
+	public static final double RED_AREA_Upercent = .40;// red lower limit
 
 	public static final double CHLOROPHYLL_MULTIPLIER = 25;// for year 2021 maximum=0.40059945, minimum = 0.047118366 -> x25
 	public static final int ENERGY_MULTIPLIER_PLANKTON = 20;// arbitrary (for display use currently JLF 04.2025)
