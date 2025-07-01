@@ -33,6 +33,7 @@ public class C_Style2dGroundType implements ValueLayerStyleOGL, I_ConstantNumeri
 			switch (C_Parameters.PROTOCOL) {
 				case PNMC_DRIFTERS :
 				case PNMC_PLANKTON :
+				case PNMC_NEKTON :
 					this.colorMap = colorMapPNMC_energyGrid(this.colorMap);
 					System.out.println("PNMC energy colormap: " + this.colorMap.size() + " colors identified");
 					break;
@@ -70,8 +71,8 @@ public class C_Style2dGroundType implements ValueLayerStyleOGL, I_ConstantNumeri
 		colorMap.put(ENERGY_GREEN, Color.GREEN);
 		colorMap.put(ENERGY_ORANGE, Color.ORANGE);
 		colorMap.put(ENERGY_RED, new Color(200, 0, 0));// dark red
-		colorMap.put(ENERGY_RESET, Color.WHITE);
-		colorMap.put(ENERGY_LAND, Color.BLACK);
+		colorMap.put(ENERGY_RESET, Color.BLACK);
+		colorMap.put(ENERGY_LAND, Color.WHITE);
 		return colorMap;
 	}
 	public Map<Integer, Color> colorMapCentenalGrid(Map<Integer, Color> colorMap) {

@@ -22,6 +22,8 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	/** Sum of energies (situated things) passed through this cell since last resetColors */
 	private double integralEnergy_Ukcal = 0.;
 	private double chlorophyll = 1.;
+	/** microNekton is not moved by currents */
+	private double microNekton = 1.;
 	//
 	// CONSTRUCTOR
 	//
@@ -39,8 +41,7 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	 * @author JLF 04.2025 */
 	@Override
 	public boolean agentIncoming(I_SituatedThing thing) {
-		if (thing instanceof C_Plankton)
-			((C_Plankton) thing).energy_Ukcal = this.getChlorophyll();
+		if (thing instanceof C_Plankton) ((C_Plankton) thing).energy_Ukcal = this.getChlorophyll();
 		this.energy_Ukcal += thing.getEnergy_Ukcal();
 		return super.agentIncoming(thing);
 	}
@@ -109,5 +110,11 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	}
 	public void setChlorophyll(double chlorophyll) {
 		this.chlorophyll = chlorophyll;
+	}
+	public double getMicroNekton() {
+		return microNekton;
+	}
+	public void setMicroNekton(double microNekton) {
+		this.microNekton = microNekton;
 	}
 }

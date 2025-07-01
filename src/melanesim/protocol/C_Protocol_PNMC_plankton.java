@@ -20,7 +20,7 @@ public class C_Protocol_PNMC_plankton extends C_Protocol_PNMC_drifters {
 	public C_Protocol_PNMC_plankton(Context<Object> ctxt) {
 		super(ctxt);
 		// TODO number in source 2025.04 JLF CHRONOGRAM FILE NAME
-		this.chronogram = new C_Chronogram("/20250402_PNMC.plankton.csv");
+		//this.chronogram = new C_Chronogram("/20250402_PNMC.plankton.csv");
 	}
 	//
 	// OVERRIDEN METHODS
@@ -45,7 +45,7 @@ public class C_Protocol_PNMC_plankton extends C_Protocol_PNMC_drifters {
 						double value = matriceLue[i][j] * CHLOROPHYLL_MULTIPLIER;
 						marineCell = ((C_SoilCellMarine) this.landscape.getGrid()[i][j]);
 						if (!marineCell.isTerrestrial()) {
-							marineCell.setChlorophyll(Math.pow(value, 4));
+							marineCell.setChlorophyll(Math.pow(value, 4));//Emphasizes the highest values (NB: .1^4 -> .0001)
 							marineCell.setAffinity((int) value);
 						}
 						// this.landscape.getGridValueLayer().set( value - 1, i, j);// for xphyl min=0 max=9

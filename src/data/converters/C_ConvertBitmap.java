@@ -144,14 +144,15 @@ public class C_ConvertBitmap implements I_ConstantStringRodents, I_ConstantGerbi
 		C_ConvertBitmap converter = new C_ConvertBitmap();
 		// build matrix
 		// matriceLue = converter.readRaster("20231018-PNMC.4a.300x201_test.bmp");
-		matriceLue = converter.readRaster("20231025-Temperatures/20231124-temperatures_sansNoir.3c_40couleurs.bmp");
+		matriceLue = converter.readRaster("test2.bmp");
+//		matriceLue = converter.readRaster("20231025-Temperatures/20231124-temperatures_sansNoir.3c_40couleurs.bmp");
 		// C_ConvertBitmap.saveRasterFile(matriceLue, "20231009-PNMC.3a_30couleurs", "");
 		// C_ConvertBitmap.saveRasterFile(matriceLue, "Legendre_Sans nom-2", "");
 		/*
 		 * for (int i = 0; i < matriceLue.length; i++) { for (int j = 0; j < matriceLue[0].length; j++) { if (matriceLue[i][j] ==
 		 * 66) { if (i != 0) { matriceLue[i][j] = matriceLue[i - 1][j]; } else matriceLue[i][j] = matriceLue[i][j - 1]; } } }
 		 */
-		C_ConvertBitmap.saveRasterFile(matriceLue, "20231124-temperatures_sansNoir.3c_40couleurs", "");
+		C_ConvertBitmap.saveRasterFile(matriceLue, "test2", "");
 		System.out.println("conversion complete!!!");
 	}
 }

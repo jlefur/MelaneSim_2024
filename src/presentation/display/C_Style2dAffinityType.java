@@ -33,6 +33,10 @@ public class C_Style2dAffinityType implements ValueLayerStyleOGL, I_ConstantNume
 				this.colorMap = colorMapPNMC_plankton(this.colorMap);
 				System.out.print(PNMC_PLANKTON);
 			}
+			else if (C_Parameters.PROTOCOL.equals(PNMC_NEKTON)) {
+				this.colorMap = colorMapPNMC_plankton(this.colorMap);
+				System.out.print(PNMC_NEKTON);
+			}
 			else if (C_Parameters.PROTOCOL.equals(CHIZE)) {
 				this.colorMap = colorMapChizeGrid(this.colorMap);
 				System.out.print(" Chize");

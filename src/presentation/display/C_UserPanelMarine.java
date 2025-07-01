@@ -52,6 +52,9 @@ public class C_UserPanelMarine extends C_UserPanel implements I_ConstantPNMC {
 			case PNMC_PLANKTON :
 				fileName = "icons/titlePlancton.1.gif";
 				break;
+			case PNMC_NEKTON :
+				fileName = "icons/titleNecton.gif";
+				break;
 		}
 		return super.createTitleBlock(fileName);
 	}

@@ -31,7 +31,7 @@
 		
 	<!-- PROTOCOL DEPENDENT -->
 	<parameter name="PROTOCOL" displayName="1a/ _________ PROTOCOL SPECIFIC _________"
-		type="java.lang.String" defaultValue="ocean.PNMC_drifters" isReadOnly="true"
+		type="java.lang.String" defaultValue="ocean.PNMC_nekton" isReadOnly="true"
 		converter="repast.simphony.parameter.StringConverterFactory$StringStringConverter" />
 	<parameter name="EXCLOS" displayName="1c/ Metapopulation(exclos)"
 		type="boolean" defaultValue="true" isReadOnly="false"

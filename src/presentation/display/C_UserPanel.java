@@ -298,6 +298,7 @@ public class C_UserPanel extends JPanel implements UserPanelCreator, I_ConstantS
 			case GERBIL :
 			case PNMC_DRIFTERS :
 			case PNMC_PLANKTON :
+			case PNMC_NEKTON :
 				return true;
 			default :
 				return false;

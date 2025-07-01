@@ -325,7 +325,7 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 				if (((A_SupportedContainer) object).isa_Tag()) sscale = sscale * 17;
 				else {
 					C_SoilCellMarine cell = (C_SoilCellMarine) object.getCurrentSoilCell();
-					sscale = sscale + (float) (cell.getEnergy_Ukcal() * .0001);
+					sscale = (float) (.04 + cell.getEnergy_Ukcal() * .00008);
 					// float size = (float) (this.imageScale * 10.);
 				}
 			}
