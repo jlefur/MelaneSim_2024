@@ -87,16 +87,16 @@ public class C_Protocol_PNMC_drifters extends A_Protocol implements I_ConstantPN
 		int grid_width = (int) dim.getWidth();
 		int grid_height = (int) dim.getHeight();
 		C_SoilCellMarine cell;
-		for (int i = 1; i < grid_width+1; i++) {
+		for (int i = 1; i < grid_width + 1; i++) {
 			if (countWidth == PARTICLE_CELLS_SPACING) {
 				countHeight = 1;
-				for (int j = 1; j < grid_height+1; j++) {
+				for (int j = 1; j < grid_height + 1; j++) {
 					if (countHeight == PARTICLE_CELLS_SPACING) {
-						cell = (C_SoilCellMarine) this.landscape.getGrid()[i-1][j-1];
+						cell = (C_SoilCellMarine) this.landscape.getGrid()[i - 1][j - 1];
 						if (cell.getAffinity() < TERRESTRIAL_MIN_AFFINITY) {
 							this.contextualizeNewThingInContainer(createPlankton(), cell);
-							cell.setMyCurrent(new C_StreamCurrent(cell.getAffinity(), i-1, j-1));
-							contextualizeNewThingInSpace(cell.getMyCurrent(), i-1, j-1);
+							cell.setMyCurrent(new C_StreamCurrent(cell.getAffinity(), i - 1, j - 1));
+							contextualizeNewThingInSpace(cell.getMyCurrent(), i - 1, j - 1);
 							particleCount++;
 						}
 						countHeight = 1;
@@ -130,10 +130,10 @@ public class C_Protocol_PNMC_drifters extends A_Protocol implements I_ConstantPN
 	protected void initLandscape(Context<Object> context) {
 		this.setLandscape(new C_LandscapeMarine(context, C_Parameters.RASTER_URL, VALUE_LAYER_NAME,
 				CONTINUOUS_SPACE_NAME));
-		// Comment the following lines to undisplay soil cells, JLF 10.2015, 11.2015
 		for (int i = 0; i < this.landscape.dimension_Ucell.width; i++) {
 			for (int j = 0; j < this.landscape.dimension_Ucell.height; j++) {
 				C_SoilCellMarine cell = new C_SoilCellMarine(this.landscape.getGrid()[i][j].getAffinity(), i, j);
+				// Comment the following line to undisplay soil cells, JLF 10.2015, 11.2015
 				context.add(cell);
 				this.landscape.setGridCell(i, j, cell);
 				this.landscape.moveToLocation(cell, cell.getCoordinate_Ucs());
@@ -150,8 +150,8 @@ public class C_Protocol_PNMC_drifters extends A_Protocol implements I_ConstantPN
 	/** Save screen each day<br>
 	 * Version Authors JEL2011, AR2011, rev. LeFur 2011,2012,2014,2024 */
 	public void manageTimeLandmarks() {
-		//((C_LandscapeMarine) this.landscape).assertCellsEnergy();
-		//saveScreen();
+		// ((C_LandscapeMarine) this.landscape).assertCellsEnergy();
+		// saveScreen();
 		Integer currentMonth = A_Protocol.protocolCalendar.get(Calendar.MONTH);
 		A_Protocol.protocolCalendar.incrementDate();
 
@@ -191,7 +191,7 @@ public class C_Protocol_PNMC_drifters extends A_Protocol implements I_ConstantPN
 		switch (event.type) {
 			case COMPUTE_ENERGY :
 				((C_LandscapeMarine) this.landscape).assertCellsEnergy();
-//				saveScreen();
+				// saveScreen();
 				break;
 			case CURRENT_EVENT :// file name example: PNMC_current_2021/202101_North.grd and
 								// PNMC_current_2021/202101_East.grd

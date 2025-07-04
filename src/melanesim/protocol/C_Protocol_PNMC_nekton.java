@@ -3,11 +3,13 @@ package melanesim.protocol;
 import java.util.Calendar;
 import java.util.TimeZone;
 
-import data.C_Chronogram;
 import data.C_Event;
+import data.C_Parameters;
 import data.C_ReadRasterDouble;
 import repast.simphony.context.Context;
+import repast.simphony.valueLayer.GridValueLayer;
 import thing.ground.C_SoilCellMarine;
+import thing.ground.landscape.C_LandscapeMarineNekton;
 
 /** Chlorophyll loaded Plankton particles drifted by surface currents
  * @author J.Le Fur 06.2024 */
@@ -19,17 +21,33 @@ public class C_Protocol_PNMC_nekton extends C_Protocol_PNMC_plankton {
 	 * Author J.Le Fur 02.2013 */
 	public C_Protocol_PNMC_nekton(Context<Object> ctxt) {
 		super(ctxt);
-		// TODO number in source 2025.04 JLF CHRONOGRAM FILE NAME
-		//this.chronogram = new C_Chronogram("/20250402_PNMC.plankton.csv");
+		// int gridWidth=this.landscape.dimension_Ucell.width, gridHeight=this.landscape.dimension_Ucell.height;
+		// this.nektonValueLayer = new GridValueLayer(NEKTON_GRID, true, new repast.simphony.space.grid.WrapAroundBorders(),
+		// gridWidth, gridHeight);
 	}
 	//
 	// OVERRIDEN METHODS
 	//
 	@Override
-	/** read chlorophyll values */
+	/** Init #nektonLandscape @author JLF 2025 */
+	protected void initLandscape(Context<Object> context) {
+		this.setLandscape(new C_LandscapeMarineNekton(context, C_Parameters.RASTER_URL, VALUE_LAYER_NAME,
+				CONTINUOUS_SPACE_NAME));
+		for (int i = 0; i < this.landscape.dimension_Ucell.width; i++) {
+			for (int j = 0; j < this.landscape.dimension_Ucell.height; j++) {
+				C_SoilCellMarine cell = new C_SoilCellMarine(this.landscape.getGrid()[i][j].getAffinity(), i, j);
+				// Comment the following line to undisplay soil cells, JLF 10.2015, 11.2015
+				context.add(cell);
+				this.landscape.setGridCell(i, j, cell);
+				this.landscape.moveToLocation(cell, cell.getCoordinate_Ucs());
+			}
+		}
+	}
+	@Override
+	/** Read microNekton values */
 	public void manageOneEvent(C_Event event) {
 		switch (event.type) {
-			case NEKTON_EVENT :// file name example: PNMC_chlorophyll_2021/202101.grd
+			case NEKTON_EVENT :
 				C_SoilCellMarine marineCell = null;
 				String url = RASTER_PATH_MELANESIA + "PNMC_microNekton_2021/microNekton-2021";
 				int imax = this.landscape.getDimension_Ucell().width;
@@ -44,11 +62,16 @@ public class C_Protocol_PNMC_nekton extends C_Protocol_PNMC_plankton {
 					for (int j = 0; j < jmax; j++) {
 						double value = matriceLue[i][j];
 						marineCell = ((C_SoilCellMarine) this.landscape.getGrid()[i][j]);
-						if (!marineCell.isTerrestrial()) {
-							marineCell.setMicroNekton(value);
-							marineCell.setAffinity((int) value);
-						}
-						// this.landscape.getGridValueLayer().set( value - 1, i, j);// for xphyl min=0 max=9
+						marineCell.setMicroNekton(value);
+						if (value == 0.) value = 0;
+						else if (value > 0 && value <= 0.2) value = 1;
+						else if (value > 0.2 && value <= 0.5) value = 2;
+						else if (value > 0.5 && value <= 1) value = 3;
+						else if (value > 1 && value <= 1.5) value = 4;
+						else if (value > 1.5 && value <= 2) value = 5;
+						else if (value > 2 && value <= 3) value = 6;
+						else value = 7; // value > 3
+						((C_LandscapeMarineNekton) this.landscape).getNektonValueLayer().set(value, i, j);
 					}
 				}
 				break;

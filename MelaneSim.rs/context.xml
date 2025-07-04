@@ -1,5 +1,6 @@
 <context id="SIMmasto0">
 	<projection id="geography" type="geography" />
 	<projection id="space" type="continuous space" />
+<!-- 	<projection id="nektonGrid" type="value layer" /> -->
 	<projection id="valuegrid" type="value layer" />
 </context>

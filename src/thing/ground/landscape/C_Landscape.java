@@ -79,7 +79,7 @@ public class C_Landscape implements I_ConstantString {
 		this.gridValueLayer = new GridValueLayer(gridValueName, true,
 				new repast.simphony.space.grid.WrapAroundBorders(), dimension_Ucell.width, dimension_Ucell.height);
 		context.addValueLayer(this.gridValueLayer);
-		A_Protocol.event("C_Landscape constructor", "dimensions gridValueLayer: " + gridValueLayer.getDimensions(),
+		A_Protocol.event("C_Landscape constructor", "dimensions gridValueLayer (" + gridValueName+"): "+gridValueLayer.getDimensions(),
 				isNotError);
 		C_Landscape.nbCells = gridValueLayer.size();
 		// SET CONTINUOUS SPACE

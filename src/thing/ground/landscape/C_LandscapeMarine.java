@@ -33,6 +33,7 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC {
 	// FIELDS
 	//
 	protected GridValueLayer energyValueLayer;
+
 	// energy values are 0-green, 1-orange, 2-red or 3-black forN/A ( viz. land)
 	protected int[] energyRanks = new int[3];
 	public static double overallEnergy_Ukcal = 0.0;

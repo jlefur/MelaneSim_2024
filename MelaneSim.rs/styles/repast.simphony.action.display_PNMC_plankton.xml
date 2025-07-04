@@ -1,5 +1,5 @@
 <repast.simphony.visualization.engine.DefaultDisplayDescriptor>
-	<name>raster PNMC</name>
+	<name>PNMC</name>
 	<type>TWO_D</type>
 	<styles>
 		<entry>

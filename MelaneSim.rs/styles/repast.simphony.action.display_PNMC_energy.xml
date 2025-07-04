@@ -1,5 +1,5 @@
 <repast.simphony.visualization.engine.DefaultDisplayDescriptor>
-	<name>raster energy PNMC</name>
+	<name>energy</name>
 	<type>TWO_D</type>
 	<styles>
 		<entry>
@@ -76,24 +76,7 @@
 							</entry>
 						</map>
 					</entry>
-					<entry>
-						<string>repast.simphony.visualization.continuous.ContinuousDecorator
-						</string>
-						<map>
-							<entry>
-								<string>UNIT_SIZE</string>
-								<float>15.0</float>
-							</entry>
-							<entry>
-								<string>SHOW</string>
-								<boolean>false</boolean>
-							</entry>
-							<entry>
-								<string>COLOR</string>
-								<int>-16777216</int>
-							</entry>
-						</map>
-					</entry>
+
 				</props>
 			</repast.simphony.visualization.continuous.ContinuousProjectionDescriptor>
 		</entry>

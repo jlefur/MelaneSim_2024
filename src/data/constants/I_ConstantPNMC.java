@@ -13,6 +13,7 @@ public interface I_ConstantPNMC extends I_ConstantString {
 	public static final String PNMC_PLANKTON = "ocean.PNMC_plankton"; // MELANESIM PROTOCOL NAMES - used in context creator
 	public static final String PNMC_NEKTON = "ocean.PNMC_nekton"; // MELANESIM PROTOCOL NAMES - used in context creator
 	public final String energyGridvalues = "valueEnergyGrid";// used to display energy
+	public final String NEKTON_GRID = "nektonGrid";// used to display nekton abundance
 
 	public static int CELL_SIZE = 245; // DEFAULT : 15 //Junk Value
 	public static final ArrayList<Double> rasterLongitudeWest_LatitudeSouth_Udegree = new ArrayList<Double>() {
@@ -33,7 +34,7 @@ public interface I_ConstantPNMC extends I_ConstantString {
 	// EVENT TYPES CONSTANTS - used in chrono events
 	public static final String CURRENT_EVENT = "current";
 	public static final String CHLOROPHYLL_EVENT = "chlorophyll";
-	public static final String NEKTON_EVENT = "nekton";
+	public static final String NEKTON_EVENT = "microNekton";
 	public static final String COMPUTE_ENERGY = "compute_energy";
 	// Others
 	public static final int BACKGROUND_COLOR = 38;

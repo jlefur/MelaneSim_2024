@@ -1,18 +1,9 @@
 <repast.simphony.visualization.engine.DefaultDisplayDescriptor>
-	<name>raster PNMC</name>
+	<name>Nekton</name>
 	<type>TWO_D</type>
 	<styles>
 		<entry>
 			<string>presentation.display.C_Background</string>
-			<string>repast.simphony.visualization.editedStyle.EditedStyle2D
-			</string>
-		</entry>
-		<entry>
-			<string>thing.C_StreamCurrent</string>
-			<string>presentation.display.C_StyleAgent</string>
-		</entry>
-		<entry>
-			<string>thing.ground.C_LandPlot</string>
 			<string>repast.simphony.visualization.editedStyle.EditedStyle2D
 			</string>
 		</entry>
@@ -21,14 +12,6 @@
 		<entry>
 			<string>presentation.display.C_Background</string>
 			<string>presentation.display.C_Background.style_PNMC.01.xml</string>
-		</entry>
-		<entry>
-			<string>thing.ground.C_LandPlot</string>
-			<string>thing.ground.C_LandPlot.style_PNMC.01.xml</string>
-		</entry>
-		<entry>
-			<string>thing.C_StreamCurrent</string>
-			<null />
 		</entry>
 	</editedStyles>
 	<netStyles />
@@ -44,21 +27,13 @@
 		<hashCode>1781672460</hashCode>
 	</schedParams>
 	<layoutClassName>foo.bar.baz</layoutClassName>
-	<valueLayerStyleName>presentation.display.C_Style2dAffinityType</valueLayerStyleName>
+	<valueLayerStyleName>presentation.display.C_Style2dNekton</valueLayerStyleName>
 	<layoutProjection>space</layoutProjection>
 	<layoutInterval>0</layoutInterval>
 	<layerOrder>
 		<entry>
 			<string>presentation.display.C_Background</string>
-			<int>2</int>
-		</entry>
-		<entry>
-			<string>thing.C_StreamCurrent</string>
 			<int>0</int>
-		</entry>
-		<entry>
-			<string>thing.ground.C_LandPlot</string>
-			<int>1</int>
 		</entry>
 	</layerOrder>
 	<projections>
@@ -69,7 +44,7 @@
 		</repast.simphony.scenario.data.ProjectionData>
 	</projections>
 	<valueLayers>
-		<string>valuegrid</string>
+		<string>nektonGrid</string>
 	</valueLayers>
 	<visualizationProperties
 		class="repast.simphony.visualization.UnitSizeLayoutProperties">
@@ -97,24 +72,6 @@
 							<entry>
 								<string>COLOR</string>
 								<int>-1</int>
-							</entry>
-						</map>
-					</entry>
-					<entry>
-						<string>repast.simphony.visualization.continuous.ContinuousDecorator
-						</string>
-						<map>
-							<entry>
-								<string>UNIT_SIZE</string>
-								<float>15.0</float>
-							</entry>
-							<entry>
-								<string>SHOW</string>
-								<boolean>false</boolean>
-							</entry>
-							<entry>
-								<string>COLOR</string>
-								<int>-16777216</int>
 							</entry>
 						</map>
 					</entry>
