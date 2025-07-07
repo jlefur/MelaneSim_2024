@@ -42,7 +42,7 @@ public class C_Style2dNekton implements ValueLayerStyleOGL, I_ConstantNumeric, I
 	}
 	public Map<Integer, Color> colorMapNekton(Map<Integer, Color> colorMap) {
 		colorMap = new HashMap<Integer, Color>();
-		colorMap.put(0, new Color(58, 124, 76));// terre
+		colorMap.put(0, new Color(255, 255, 255));// terre
 		colorMap.put(1, new Color(6, 63, 91));// bleu
 		colorMap.put(2, new Color(30, 217, 35));// vert1
 		colorMap.put(3, new Color(161, 242, 7));// vert2
