@@ -55,7 +55,4 @@ public interface I_ConstantPNMC extends I_ConstantString {
 	public static final double ORANGE_AREA_Upercent = .50;// orange lower limit
 	public static final double RED_AREA_Upercent = .75;// red lower limit
 
-	public static final double CHLOROPHYLL_MULTIPLIER = 24.93765586;// for year 2021 maximum=0.40059945, minimum = 0.047118366 -> x24.93765586
-	public static final double MICRONEKTON_MULTIPLIER = 2.039093501;// for year 2021 maximum=4.90414,    minimum = 0           -> x2.039093501
-	public static final int ENERGY_MULTIPLIER_PLANKTON = 20;// arbitrary (for display use currently JLF 04.2025)
 }

@@ -18,6 +18,7 @@ public class C_UserPanelMarine extends C_UserPanel implements I_ConstantPNMC {
 	//
 	public C_UserPanelMarine() {
 		super();
+		this.add(new javax.swing.JLabel("✅ Energy panel loaded"), 0);
 	}
 	//
 	// OVERRIDEN METHODS

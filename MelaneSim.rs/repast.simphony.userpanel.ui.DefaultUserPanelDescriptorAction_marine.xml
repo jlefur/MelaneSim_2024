@@ -1,4 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <repast.simphony.userpanel.ui.DefaultUserPanelDescriptor simphonyVersion="2.11.0">
-  <name>Tableau de bord</name>
-  <userPanelCreator>presentation.display.C_UserPanelMarine</userPanelCreator>
+  <name>User Panel</name>
+  <userPanelCreator>presentation.display.C_UserPanelMasterTabsCreator</userPanelCreator>
 </repast.simphony.userpanel.ui.DefaultUserPanelDescriptor>
