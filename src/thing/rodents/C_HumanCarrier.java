@@ -17,7 +17,6 @@ import thing.ground.C_City;
 import thing.ground.C_SoilCell;
 import thing.ground.C_SoilCellGraphed;
 import thing.ground.C_Vehicle;
-import thing.ground.I_Container;
 import thing.ground.landscape.C_Landscape;
 
 /** A human carrier owns a C_Vehicle and go from one city to the other.

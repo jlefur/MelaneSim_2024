@@ -6,7 +6,6 @@ import javax.swing.JPanel;
 
 import data.C_Parameters;
 import melanesim.protocol.A_Protocol;
-import melanesim.protocol.rodents.A_ProtocolRodent;
 import presentation.epiphyte.C_InspectorFossorialRodents;
 import presentation.epiphyte.C_InspectorGenetic;
 import presentation.epiphyte.C_InspectorHybrid;

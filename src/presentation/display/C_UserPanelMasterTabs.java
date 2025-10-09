@@ -5,6 +5,7 @@ import java.awt.*;
 
 public class C_UserPanelMasterTabs extends JPanel {
 
+	private static final long serialVersionUID = 1L;
 	private final CardLayout cards = new CardLayout();
 
 	public C_UserPanelMasterTabs() {
@@ -22,7 +23,7 @@ public class C_UserPanelMasterTabs extends JPanel {
 		// Zone centrale à cartes
 		JPanel center = new JPanel(cards);
 		C_UserPanelMarine marine = new C_UserPanelMarine(); // ton panel existant
-		C_UserPanelEnergyIO energy = new C_UserPanelEnergyIO(); // ton nouveau panel
+		C_UserPanelEnergyLinearGrid energy = new C_UserPanelEnergyLinearGrid(); // ton nouveau panel
 		JTabbedPane tabs = new JTabbedPane(JTabbedPane.TOP, JTabbedPane.SCROLL_TAB_LAYOUT);
 		tabs.addTab("Tableau de bord", marine);
 		tabs.addTab("Marine Energy Control", energy);

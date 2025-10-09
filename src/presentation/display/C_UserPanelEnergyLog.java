@@ -13,7 +13,8 @@ import java.util.Properties;
 
 public class C_UserPanelEnergyLog extends JPanel {
 
-  // ---- Réglages de l’échelle log ----
+	private static final long serialVersionUID = 1L;
+// ---- Réglages de l’échelle log ----
   private static final double MIN = 0.1;   // 0.1×
   private static final double MAX = 10.0;  // 10×
   private static final int SL_MIN = 0;

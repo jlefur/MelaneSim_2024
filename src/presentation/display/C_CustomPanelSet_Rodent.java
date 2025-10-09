@@ -6,7 +6,6 @@ import java.awt.Color;
 import org.jfree.chart.plot.XYPlot;
 
 import melanesim.protocol.A_Protocol;
-import melanesim.protocol.rodents.A_ProtocolRodent;
 import presentation.epiphyte.C_InspectorBorreliaCrocidurae;
 import presentation.epiphyte.C_InspectorCMR;
 import presentation.epiphyte.C_InspectorFossorialRodents;

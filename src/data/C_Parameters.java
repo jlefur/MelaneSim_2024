@@ -66,6 +66,12 @@ public class C_Parameters implements I_ConstantStringRodents, I_ConstantPNMC {
 	public static  double CHLOROPHYLL_MULTIPLIER = 24.93765586;// for year 2021 maximum=0.40059945, minimum = 0.047118366 -> x24.93765586
 	public static  double MICRONEKTON_MULTIPLIER = 2.039093501;// for year 2021 maximum=4.90414,    minimum = 0           -> x2.039093501
 	public static  double ENERGY_MULTIPLIER_PLANKTON = 20;// arbitrary (for display use currently JLF 04.2025)
+	public static  double SPECIES4_MULTIPLIER = 20;// arbitrary (for display use currently JLF 04.2025)
+	public static  double SPECIES5_MULTIPLIER = 20;// arbitrary (for display use currently JLF 04.2025)
+	public static  double SPECIES6_MULTIPLIER = 20;// arbitrary (for display use currently JLF 04.2025)
+	public static  double SPECIES7_MULTIPLIER = 20;// arbitrary (for display use currently JLF 04.2025)
+	public static  double SPECIES8_MULTIPLIER = 20;// arbitrary (for display use currently JLF 04.2025)
+	public static  double SPECIES9_MULTIPLIER = 20;// arbitrary (for display use currently JLF 04.2025)
 
 	/** Instantiate the parameters object and retrieve the shared parameters. NB It is compulsory to make it followed with
 	 * C_ContextCreator.protocol.readUserParameters() */

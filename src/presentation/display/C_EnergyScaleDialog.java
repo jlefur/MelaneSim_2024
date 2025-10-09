@@ -1,11 +1,21 @@
 package presentation.display;
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.Frame;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+
+import javax.swing.AbstractAction;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSlider;
 
 import data.C_Parameters;
 import data.constants.I_ConstantPNMC;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.util.Objects;
 
 public class C_EnergyScaleDialog extends JDialog implements I_ConstantPNMC {
 
@@ -44,6 +54,9 @@ public class C_EnergyScaleDialog extends JDialog implements I_ConstantPNMC {
 		grid.add(whaleSlider, c);
 
 		JButton cancel = new JButton(new AbstractAction("Cancel") {
+
+			private static final long serialVersionUID = 1L;
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -51,6 +64,9 @@ public class C_EnergyScaleDialog extends JDialog implements I_ConstantPNMC {
 		});
 
 		JButton done = new JButton(new AbstractAction("Done") {
+	
+			private static final long serialVersionUID = 1L;
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				applyToGlobals();

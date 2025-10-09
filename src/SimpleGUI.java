@@ -5,11 +5,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class SimpleGUI extends JFrame {
-    private JButton redButton;
+
+	private static final long serialVersionUID = 1L;
+	private JButton redButton;
     private JButton greenButton;
 
     public SimpleGUI() {
-        // Configuration de la fenêtre
+        // Configuration de la fenï¿½tre
         setTitle("Simple GUI");
         setSize(300, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -19,24 +21,24 @@ public class SimpleGUI extends JFrame {
         redButton = new JButton("Rouge");
         greenButton = new JButton("Vert");
 
-        // Ajout des écouteurs d'événements aux boutons
+        // Ajout des ï¿½couteurs d'ï¿½vï¿½nements aux boutons
         redButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Action à effectuer lors du clic sur le bouton rouge
-                JOptionPane.showMessageDialog(SimpleGUI.this, "Bouton Rouge cliqué", "Message", JOptionPane.INFORMATION_MESSAGE);
+                // Action ï¿½ effectuer lors du clic sur le bouton rouge
+                JOptionPane.showMessageDialog(SimpleGUI.this, "Bouton Rouge cliquï¿½", "Message", JOptionPane.INFORMATION_MESSAGE);
             }
         });
 
         greenButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Action à effectuer lors du clic sur le bouton vert
-                JOptionPane.showMessageDialog(SimpleGUI.this, "Bouton Vert cliqué", "Message", JOptionPane.INFORMATION_MESSAGE);
+                // Action ï¿½ effectuer lors du clic sur le bouton vert
+                JOptionPane.showMessageDialog(SimpleGUI.this, "Bouton Vert cliquï¿½", "Message", JOptionPane.INFORMATION_MESSAGE);
             }
         });
 
-        // Configuration du layout de la fenêtre
+        // Configuration du layout de la fenï¿½tre
         setLayout(new FlowLayout());
         add(redButton);
         add(greenButton);

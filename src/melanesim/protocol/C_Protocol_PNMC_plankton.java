@@ -3,7 +3,6 @@ package melanesim.protocol;
 import java.util.Calendar;
 import java.util.TimeZone;
 
-import data.C_Chronogram;
 import data.C_Event;
 import data.C_Parameters;
 import data.C_ReadRasterDouble;
