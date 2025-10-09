@@ -18,7 +18,6 @@ import data.converters.C_ConvertGeographicCoordinates;
 import melanesim.util.CaptureEcranPeriodique;
 import presentation.display.C_Background;
 import presentation.display.C_CustomPanelSet;
-import presentation.display.C_EnergyScaleDialog;
 import presentation.epiphyte.C_InspectorEnergyMarine;
 import presentation.epiphyte.C_InspectorPopulationMarine;
 import repast.simphony.context.Context;
@@ -286,30 +285,6 @@ public class C_Protocol_PNMC_drifters extends A_Protocol implements I_ConstantPN
 		if (oldValueExclos != C_Parameters.EXCLOS)
 			A_Protocol.event("C_Protocol_PNMC_drifters.readUserParameters",
 					"meta-population set to " + C_Parameters.EXCLOS, isNotError);
-		boolean oldValueEnergyScale = C_Parameters.ENERGY_SCALE;
-		if (oldValueEnergyScale != ((Boolean) C_Parameters.parameters.getValue("ENERGY_SCALE")).booleanValue()) {
-			try {
-				SwingUtilities.invokeAndWait(() -> {
-					// Ouvre le pop-up : il modifiera directement les 3 variables statiques
-					C_EnergyScaleDialog dlg = new C_EnergyScaleDialog(null, C_Parameters.CHLOROPHYLL_MULTIPLIER,
-							C_Parameters.MICRONEKTON_MULTIPLIER, C_Parameters.ENERGY_MULTIPLIER_PLANKTON);
-					dlg.setVisible(true);
-				});
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			// Après fermeture du pop-up : remettre la case à false
-			// Après fermeture du pop-up
-			C_Parameters.ENERGY_SCALE = false; // mise à jour interne
-			repast.simphony.parameter.Parameters params = repast.simphony.engine.environment.RunEnvironment
-					.getInstance().getParameters();
-			if (params instanceof repast.simphony.parameter.DefaultParameters dp) {
-				dp.setValue("ENERGY_SCALE", Boolean.FALSE);
-			} // décoche la case dans le GUI
-
-			A_Protocol.event("EnergyScale", "Energy scale multipliers modifiés via pop-up", isNotError);
-		}
 	}
 
 	@Override

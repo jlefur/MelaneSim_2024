@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<repast.simphony.userpanel.ui.DefaultUserPanelDescriptor simphonyVersion="2.11.0">
-  <name>Marine Energy Control</name>
-  <userPanelCreator>presentation.display.C_UserPanelEnergy</userPanelCreator>
-</repast.simphony.userpanel.ui.DefaultUserPanelDescriptor>

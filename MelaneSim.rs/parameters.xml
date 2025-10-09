@@ -28,9 +28,6 @@
 	<parameter name="IMAGE" displayName="0g/ ICONS (display objects using icons)"
 		type="boolean" defaultValue="false" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$BooleanConverter" />
-	<parameter name="ENERGY_SCALE" displayName="0h/ Adjust conservation value"
-		type="boolean" defaultValue="false" isReadOnly="false"
-		converter="repast.simphony.parameter.StringConverterFactory$BooleanConverter" />
 		
 	<!-- PROTOCOL DEPENDENT -->
 	<parameter name="PROTOCOL" displayName="1a/ _________ PROTOCOL SPECIFIC _________"
