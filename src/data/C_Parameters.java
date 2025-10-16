@@ -61,17 +61,31 @@ public class C_Parameters implements I_ConstantStringRodents, I_ConstantPNMC {
 	public static int RODENT_SUPER_AGENT_SIZE;
 	public static int HUMAN_SUPER_AGENT_SIZE;
 	public static boolean DISPLAY_MAP;
-	public static boolean ENERGY_SCALE;//05.10.2025
+	public static boolean ENERGY_SCALE;// 05.10.2025
 
-	public static  double CHLOROPHYLL_MULTIPLIER = 24.93765586;// for year 2021 maximum=0.40059945, minimum = 0.047118366 -> x24.93765586
-	public static  double MICRONEKTON_MULTIPLIER = 2.039093501;// for year 2021 maximum=4.90414,    minimum = 0           -> x2.039093501
-	public static  double ENERGY_MULTIPLIER_PLANKTON = 20;// arbitrary (for display use currently JLF 04.2025)
-	public static  double SPECIES4_MULTIPLIER = 20;// arbitrary (for display use currently JLF 04.2025)
-	public static  double SPECIES5_MULTIPLIER = 20;// arbitrary (for display use currently JLF 04.2025)
-	public static  double SPECIES6_MULTIPLIER = 20;// arbitrary (for display use currently JLF 04.2025)
-	public static  double SPECIES7_MULTIPLIER = 20;// arbitrary (for display use currently JLF 04.2025)
-	public static  double SPECIES8_MULTIPLIER = 20;// arbitrary (for display use currently JLF 04.2025)
-	public static  double SPECIES9_MULTIPLIER = 20;// arbitrary (for display use currently JLF 04.2025)
+	public static double CHLOROPHYLL_MULTIPLIER = 24.93765586;// for year 2021 maximum=0.40059945, minimum = 0.047118366 ->
+																// x24.93765586
+	public static double NEKTON_MULTIPLIER = 2.039093501;// for year 2021 maximum=4.90414, minimum = 0 -> x2.039093501
+	public static double PARTICLE_MULTIPLIER = 1.;
+	public static double MOUNT_MULTIPLIER = 1.;
+	public static double TEMPERATURE_MULTIPLIER = 1.;
+	public static double TUNA_MULTIPLIER = 1.;
+	public static double WHALE_MULTIPLIER = 1.;
+	public static double SHARK_MULTIPLIER = 1.;
+	public static double BIRD_MULTIPLIER = 1.;
+	public static double TURTLE_MULTIPLIER = 1.;
+	public static double FISHER_MULTIPLIER = 1.;
+	public static double SHIP_MULTIPLIER = 1.;
+	public static double TOURISM_MULTIPLIER = 1.;
+	public static double POLICE_MULTIPLIER = 1.;
+	public static double POLLUTION_MULTIPLIER = 1.;
+		public static double ONG_MULTIPLIER = 1.;
+		public static double CORAL_MULTIPLIER = 1.;
+		public static double SMALL_PELAGIC_MULTIPLIER = 1.;
+		public static double BENTHOS_MULTIPLIER = 1.;
+		public static double GROUND_MULTIPLIER = 1.;
+		public static double MEADOW_MULTIPLIER = 1.;
+		public static double MEGAFAUNA_MULTIPLIER = 1.;
 
 	/** Instantiate the parameters object and retrieve the shared parameters. NB It is compulsory to make it followed with
 	 * C_ContextCreator.protocol.readUserParameters() */

@@ -12,6 +12,7 @@ public interface I_ConstantPNMC extends I_ConstantString {
 	public static final String PNMC_DRIFTERS = "ocean.PNMC_drifters"; // MELANESIM PROTOCOL NAMES - used in context creator
 	public static final String PNMC_PLANKTON = "ocean.PNMC_plankton"; // MELANESIM PROTOCOL NAMES - used in context creator
 	public static final String PNMC_NEKTON = "ocean.PNMC_nekton"; // MELANESIM PROTOCOL NAMES - used in context creator
+	public static final String PNMC_SHIPS = "ocean.PNMC_ships"; // MELANESIM PROTOCOL NAMES - used in context creator
 	public final String energyGridvalues = "valueEnergyGrid";// used to display energy
 	public final String NEKTON_GRID = "nektonGrid";// used to display nekton abundance
 
@@ -40,7 +41,7 @@ public interface I_ConstantPNMC extends I_ConstantString {
 	public static final int BACKGROUND_COLOR = 38;
 	public static int TERRESTRIAL_MIN_AFFINITY = 99;
 	/** Used to lighten the GUI calculations */
-	public static final int PARTICLE_CELLS_SPACING = 3; // interval where to post plankton cells see protocol.initpopulations
+	public static final int PARTICLE_CELLS_SPACING = 3; // 3 // interval where to post plankton cells see protocol.initpopulations
 	public static final int BACKWARD_NB_CELLS = 1;// if particle reach bordure move back nb cells
 	public static final int STREAM_DISPLAY_SIZE = 300;// taille des vecteurs courants affichés
 	public static final double PARTICLE_RESISTANCE_FACTOR = 1.;// freinage des particules vis à vis de la vitesse du courant)

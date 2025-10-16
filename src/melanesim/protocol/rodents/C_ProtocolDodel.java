@@ -1,3 +1,4 @@
+
 /* This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt */
 package melanesim.protocol.rodents;
 

@@ -83,8 +83,8 @@ public class C_UserPanelEnergyIO extends JPanel {
 
 		// Init : recharge depuis CSV si présent, sinon depuis C_Parameters
 		if (!loadCSV()) {
-			setAll(safe(C_Parameters.CHLOROPHYLL_MULTIPLIER), safe(C_Parameters.MICRONEKTON_MULTIPLIER),
-					safe(C_Parameters.ENERGY_MULTIPLIER_PLANKTON));
+			setAll(safe(C_Parameters.CHLOROPHYLL_MULTIPLIER), safe(C_Parameters.NEKTON_MULTIPLIER),
+					safe(C_Parameters.PARTICLE_MULTIPLIER));
 			// et on sauvegarde une première fois
 			saveCSV();
 		}
@@ -225,8 +225,8 @@ public class C_UserPanelEnergyIO extends JPanel {
 
 	private void applyToParameters() {
 		C_Parameters.CHLOROPHYLL_MULTIPLIER = ((Number) spChloro.getValue()).doubleValue();
-		C_Parameters.MICRONEKTON_MULTIPLIER = ((Number) spMicro.getValue()).doubleValue();
-		C_Parameters.ENERGY_MULTIPLIER_PLANKTON = ((Number) spWhale.getValue()).doubleValue();
+		C_Parameters.NEKTON_MULTIPLIER = ((Number) spMicro.getValue()).doubleValue();
+		C_Parameters.PARTICLE_MULTIPLIER = ((Number) spWhale.getValue()).doubleValue();
 	}
 
 	private void applyToParametersAndSave() {

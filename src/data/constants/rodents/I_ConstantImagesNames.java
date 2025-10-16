@@ -9,6 +9,7 @@ public interface I_ConstantImagesNames {
 
 	// PNMC
 	public static final String PLANKTON_ICON = "../PLANKTON";
+	public static final String SHIP_CARGO_ICON = "../SHIP_CARGO";
 	// PNMC - surface current direction	
 	public static final String NORTH_ICON = "../arrows/NORTH";
 	public static final String NORTH_EAST_ICON = "../arrows/NORTH_EAST";
@@ -18,6 +19,30 @@ public interface I_ConstantImagesNames {
 	public static final String SOUTH_WEST_ICON = "../arrows/SOUTH_WEST";
 	public static final String WEST_ICON = "../arrows/WEST";
 	public static final String NORTH_WEST_ICON = "../arrows/NORTH_WEST";
+	// PNMC - conservation weight icons
+	public static final String PARTICLE_ICON = "../sliders/particle";
+	public static final String CHLOROPHYLL_ICON = "../sliders/chlorophyll";
+	public static final String GROUND_ICON = "../sliders/ground";
+	public static final String MOUNT_ICON = "../sliders/mount";
+	public static final String NEKTON_ICON = "necton";
+	public static final String SHIP_ICON = "../sliders/ship";
+	public static final String FISHER_ICON = "../sliders/fisher";
+	public static final String WHALE_ICON = "../sliders/whale";
+	public static final String TUNA_ICON = "../sliders/tuna";
+	public static final String SMALL_PELAGIC_ICON = "../sliders/small_pelagic";
+	public static final String POLLUTION_ICON = "../sliders/sewage";
+	public static final String SHARK_ICON = "../sliders/shark";
+	public static final String TURTLE_ICON = "../sliders/turtle";
+	public static final String MEADOW_ICON = "../sliders/meadow";
+	public static final String BIRD_ICON = "../sliders/bird";
+	public static final String MEGAFAUNA_ICON = "../sliders/megafauna";
+	public static final String BENTHOS_ICON = "../sliders/benthos";
+	public static final String CORAL_ICON = "../sliders/coral";
+	public static final String ONG_ICON = "../sliders/ong";
+	public static final String POLICE_ICON = "../sliders/policeControl";
+	public static final String TOURISM_ICON = "../sliders/tourism";
+	public static final String TEMPERATURE_ICON = "../sliders/temperature";
+	
 	// DODEL
 	public static final String MOUSE_FEMALE_CHILD = "MOUSE_FEMALE_CHILD";
 	public static final String MOUSE_FEMALE_ADULT = "MOUSE_FEMALE_ADULT";

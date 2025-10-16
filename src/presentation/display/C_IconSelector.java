@@ -18,6 +18,7 @@ import thing.A_Amniote;
 import thing.A_Animal;
 import thing.A_NDS;
 import thing.C_Plankton;
+import thing.C_Ship_cargo;
 import thing.C_StreamCurrent;
 import thing.I_SituatedThing;
 import thing.dna.species.plants.C_GenomeAcacia;
@@ -108,6 +109,7 @@ public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC, 
 			else return null;// vitesse = nulle
 		}
 		else if (agent instanceof C_Plankton) return PLANKTON_ICON;
+		else if (agent instanceof C_Ship_cargo) return SHIP_CARGO_ICON;
 		else return TAGGED;// problem
 	}
 

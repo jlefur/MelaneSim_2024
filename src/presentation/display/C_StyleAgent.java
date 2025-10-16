@@ -20,6 +20,7 @@ import thing.A_Animal;
 import thing.A_NDS;
 import thing.A_VisibleAgent;
 import thing.C_Plankton;
+import thing.C_Ship_cargo;
 import thing.C_StreamCurrent;
 import thing.I_SituatedThing;
 import thing.ground.A_SupportedContainer;
@@ -64,6 +65,7 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 		this.ellipseScale = 2.f;
 		this.imageScale = .07f;
 		factory.registerImage(PLANKTON_ICON, selectImg.loadImage(PLANKTON_ICON));
+		factory.registerImage(SHIP_CARGO_ICON, selectImg.loadImage(SHIP_CARGO_ICON));
 		factory.registerImage(NORTH_ICON, selectImg.loadImage(NORTH_ICON));
 		factory.registerImage(NORTH_EAST_ICON, selectImg.loadImage(NORTH_EAST_ICON));
 		factory.registerImage(EAST_ICON, selectImg.loadImage(EAST_ICON));
@@ -318,7 +320,7 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 		if (C_Parameters.IMAGE) {
 			if (object instanceof C_StreamCurrent) {
 				sscale = (float) (((C_StreamCurrent) object).getSpeedEast() * ((C_StreamCurrent) object).getSpeedEast()
-						* sscale * STREAM_DISPLAY_SIZE*1.5);
+						* sscale * STREAM_DISPLAY_SIZE * 1.5);
 			}
 			// plankton image reflects the number of plankton agent within their cell
 			if (object instanceof C_Plankton) {
@@ -328,6 +330,11 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 					sscale = (float) (.04 + cell.getEnergy_Ukcal() * .00008);
 					// float size = (float) (this.imageScale * 10.);
 				}
+			}
+			// plankton image reflects the number of plankton agent within their cell
+			if (object instanceof C_Ship_cargo) {
+				if (((A_SupportedContainer) object).isa_Tag()) sscale = sscale * 17;
+				else sscale = sscale * 7;
 			}
 			if (object instanceof A_HumanUrban) {
 				if (((A_HumanUrban) object).isa_Tag()) sscale = sscale * 5;

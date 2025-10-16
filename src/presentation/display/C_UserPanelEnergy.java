@@ -56,8 +56,8 @@ public class C_UserPanelEnergy extends JPanel {
 		add(actions, BorderLayout.SOUTH);
 
 		// init: charge les valeurs actuelles des paramètres
-		setAll(safe(C_Parameters.CHLOROPHYLL_MULTIPLIER), safe(C_Parameters.MICRONEKTON_MULTIPLIER),
-				safe(C_Parameters.ENERGY_MULTIPLIER_PLANKTON));
+		setAll(safe(C_Parameters.CHLOROPHYLL_MULTIPLIER), safe(C_Parameters.NEKTON_MULTIPLIER),
+				safe(C_Parameters.PARTICLE_MULTIPLIER));
 
 		// Timer de debounce n’exécute qu’une fois après inactivité
 		debounce.setRepeats(false);
@@ -188,8 +188,8 @@ public class C_UserPanelEnergy extends JPanel {
 		// lourds,
 		// déclenche-les côté scheduler du modèle, pas sur l’EDT (sinon UI gelée).
 		C_Parameters.CHLOROPHYLL_MULTIPLIER = ((Number) spChloro.getValue()).doubleValue();
-		C_Parameters.MICRONEKTON_MULTIPLIER = ((Number) spMicro.getValue()).doubleValue();
-		C_Parameters.ENERGY_MULTIPLIER_PLANKTON = ((Number) spWhale.getValue()).doubleValue();
+		C_Parameters.NEKTON_MULTIPLIER = ((Number) spMicro.getValue()).doubleValue();
+		C_Parameters.PARTICLE_MULTIPLIER = ((Number) spWhale.getValue()).doubleValue();
 
 		// Log (debug)
 		// System.out.println("Applied: chl=" + C_Parameters.CHLOROPHYLL_MULTIPLIER

@@ -24,8 +24,10 @@ public class C_TaxiManDodel extends C_TaxiMan {
 			if (this.target == marketPlace) {
 				this.vehicle.unloadRodents();
 				A_Protocol.event("C_ProtocolDodel.step_Utick", "Unloaded one rodent", isNotError);
-				if (C_ContextCreator.randomGeneratorForInitialisation.nextDouble() > .5) this.setTarget(myLandscape.getGrid()[0][31]);// TODO number in source 2018.03 jlf
-				else this.setTarget(myLandscape.getGrid()[18][0]);// TODO number in source 2018.03 jlf
+				if (C_ContextCreator.randomGeneratorForInitialisation.nextDouble() > .5)
+					this.setTarget(myLandscape.getGrid()[0][31]);// TODO number in source 2018.03 jlf
+				else
+					this.setTarget(myLandscape.getGrid()[18][0]);// TODO number in source 2018.03 jlf
 			}
 			else this.setDead(true);
 		}

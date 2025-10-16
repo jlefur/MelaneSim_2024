@@ -17,67 +17,82 @@ import java.util.Map;
 import java.util.function.DoubleConsumer;
 import java.util.function.DoubleSupplier;
 import data.C_Parameters;
+import data.constants.rodents.I_ConstantImagesNames;
 
-public class C_UserPanelEnergyLinearGrid extends JPanel {
+public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantImagesNames {
 
 	private static final long serialVersionUID = 1L;
-// ---- Réglages linéaires ----
+	// ---- Réglages linéaires ----
 	private static final double MIN = 0.25, MAX = 2.00;
 	private static final File CSV_FILE = new File("energy_scales.csv");
-	private static final int ROWS = 3, COLS = 3; // <-- change ici si tu veux une autre grille
+	private static final int ROWS = 3, COLS = 5; // <-- change ici si tu veux une autre grille
 
 	private final DecimalFormat df = new DecimalFormat("0.00");
 	private final Timer debounce = new Timer(200, e -> applyToParametersAndSave());
 	private boolean live = false;
 	private boolean syncing = false;
 
+	private static ImageIcon loadIconFromFile(String imageName, int size) {
+		try {
+			// Répertoire racine de ton projet
+			String basePath = System.getProperty("user.dir") + File.separator + "icons" + File.separator + "sliders"
+					+ File.separator;
+			File file = new File(basePath + imageName + ".png");
+
+			if (!file.exists()) {
+				System.err.println("⚠️  Icône non trouvée : " + file.getAbsolutePath());
+				return null;
+			}
+
+			Image img = javax.imageio.ImageIO.read(file);
+			if (img != null && size > 0) {
+				img = img.getScaledInstance(size, size, Image.SCALE_SMOOTH);
+			}
+			return new ImageIcon(img);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 	// Un "canal" = 1 slider + 1 spinner + liaison getter/setter vers C_Parameters
 	private static class Channel {
 		final String id; // clé CSV: ex "chl"
 		final String label; // titre visible: ex "Chlorophyll"
+		final String icon;
 		final DoubleSupplier get; // lit C_Parameters
 		final DoubleConsumer set; // écrit C_Parameters
 		JSlider slider;
 		JSpinner spinner;
 		JLabel valLabel;
 
-		Channel(String id, String label, DoubleSupplier get, DoubleConsumer set) {
+		Channel(String id, String label, String icon, DoubleSupplier get, DoubleConsumer set) {
 			this.id = id;
 			this.label = label;
+			this.icon = icon;
 			this.get = get;
 			this.set = set;
 		}
 	}
 
 	// ---- Déclare ici tes 9 canaux (exemples) ----
-	private final List<Channel> channels = Arrays.asList(
-			new Channel("chl", "Chlorophyll", () -> C_Parameters.CHLOROPHYLL_MULTIPLIER,
-					v -> C_Parameters.CHLOROPHYLL_MULTIPLIER = v),
-
-			new Channel("mic", "Micronekton", () -> C_Parameters.MICRONEKTON_MULTIPLIER,
-					v -> C_Parameters.MICRONEKTON_MULTIPLIER = v),
-
-			new Channel("wh", "Whale", () -> C_Parameters.ENERGY_MULTIPLIER_PLANKTON,
-					v -> C_Parameters.ENERGY_MULTIPLIER_PLANKTON = v),
-
-			// 6 autres pour compléter la grille 3×3 (ex. placeholders)
-			new Channel("sp4", "Species 4", () -> safe(C_Parameters.SPECIES4_MULTIPLIER),
-					v -> C_Parameters.SPECIES4_MULTIPLIER = v),
-
-			new Channel("sp5", "Species 5", () -> safe(C_Parameters.SPECIES5_MULTIPLIER),
-					v -> C_Parameters.SPECIES5_MULTIPLIER = v),
-
-			new Channel("sp6", "Species 6", () -> safe(C_Parameters.SPECIES6_MULTIPLIER),
-					v -> C_Parameters.SPECIES6_MULTIPLIER = v),
-
-			new Channel("sp7", "Species 7", () -> safe(C_Parameters.SPECIES7_MULTIPLIER),
-					v -> C_Parameters.SPECIES7_MULTIPLIER = v),
-
-			new Channel("sp8", "Species 8", () -> safe(C_Parameters.SPECIES8_MULTIPLIER),
-					v -> C_Parameters.SPECIES8_MULTIPLIER = v),
-
-			new Channel("sp9", "Species 9", () -> safe(C_Parameters.SPECIES9_MULTIPLIER),
-					v -> C_Parameters.SPECIES9_MULTIPLIER = v));
+	private final List<Channel> channels = Arrays.asList(//
+			new Channel("par", "particle", PARTICLE_ICON, () -> C_Parameters.PARTICLE_MULTIPLIER,					v -> C_Parameters.PARTICLE_MULTIPLIER = v), //
+			new Channel("mou", "mount", MOUNT_ICON, () -> C_Parameters.MOUNT_MULTIPLIER,					v -> C_Parameters.MOUNT_MULTIPLIER = v), //
+			new Channel("tem", "temperature", TEMPERATURE_ICON, () -> C_Parameters.TEMPERATURE_MULTIPLIER,					v -> C_Parameters.TEMPERATURE_MULTIPLIER = v), //
+			new Channel("chl", "chlorophyll", CHLOROPHYLL_ICON, () -> C_Parameters.CHLOROPHYLL_MULTIPLIER,					v -> C_Parameters.CHLOROPHYLL_MULTIPLIER = v), //
+			new Channel("nec", "necton", NEKTON_ICON, () -> C_Parameters.NEKTON_MULTIPLIER,					v -> C_Parameters.NEKTON_MULTIPLIER = v), //
+			new Channel("tun", "tuna", TUNA_ICON, () -> C_Parameters.TUNA_MULTIPLIER,					v -> C_Parameters.TUNA_MULTIPLIER = v), //
+			new Channel("wha", "whale", WHALE_ICON, () -> C_Parameters.WHALE_MULTIPLIER,					v -> C_Parameters.WHALE_MULTIPLIER = v), //
+			new Channel("sha", "shark", SHARK_ICON, () -> C_Parameters.SHARK_MULTIPLIER,					v -> C_Parameters.SHARK_MULTIPLIER = v), //
+			new Channel("bir", "bird", BIRD_ICON, () -> C_Parameters.BIRD_MULTIPLIER,					v -> C_Parameters.BIRD_MULTIPLIER = v), //
+			new Channel("cor", "coral", TURTLE_ICON, () -> C_Parameters.TURTLE_MULTIPLIER,					v -> C_Parameters.TURTLE_MULTIPLIER = v),
+			new Channel("fis", "fisher", FISHER_ICON, () -> C_Parameters.FISHER_MULTIPLIER,					v -> C_Parameters.FISHER_MULTIPLIER = v), //
+			new Channel("shi", "ship", SHIP_ICON, () -> C_Parameters.SHIP_MULTIPLIER,					v -> C_Parameters.SHIP_MULTIPLIER = v), //
+			new Channel("tou", "tourism", TOURISM_ICON, () -> C_Parameters.TOURISM_MULTIPLIER,					v -> C_Parameters.TOURISM_MULTIPLIER = v), //
+			new Channel("pol", "policeControl", POLICE_ICON, () -> C_Parameters.POLICE_MULTIPLIER,					v -> C_Parameters.POLICE_MULTIPLIER = v), //
+			new Channel("sew", "sewage", POLLUTION_ICON, () -> C_Parameters.POLLUTION_MULTIPLIER,					v -> C_Parameters.POLLUTION_MULTIPLIER = v)); //
 
 	public C_UserPanelEnergyLinearGrid() {
 		super(new BorderLayout(8, 8));
@@ -135,33 +150,39 @@ public class C_UserPanelEnergyLinearGrid extends JPanel {
 		ch.valLabel = new JLabel("1.00×", SwingConstants.CENTER);
 		ch.valLabel.setFont(ch.valLabel.getFont().deriveFont(Font.BOLD, 12f));
 
-		JLabel lbl = new JLabel(ch.label, SwingConstants.CENTER);
-		lbl.setFont(lbl.getFont().deriveFont(Font.PLAIN, 12f));
+		// label avec icône + texte centré
+		ImageIcon imageIcon = loadIconFromFile(ch.icon, 92); // si ton nom d’image correspond à ch.id (ex. "wh", "mic", etc.)
+		JLabel lbl = new JLabel(ch.label, imageIcon, SwingConstants.CENTER);
+		lbl.setVerticalTextPosition(SwingConstants.BOTTOM); // texte sous l’image
+		lbl.setHorizontalTextPosition(SwingConstants.CENTER);
+		lbl.setFont(lbl.getFont().deriveFont(Font.BOLD, 12f));
+		// Si tu veux le texte à droite de l’icône
+		lbl.setVerticalTextPosition(SwingConstants.CENTER);
+		lbl.setHorizontalTextPosition(SwingConstants.RIGHT);
 
 		// presets
 		JPanel presets = new JPanel(new FlowLayout(FlowLayout.CENTER, 4, 0));
-		for (double v : new double[] { 0.5, 1.0, 2.0 }) {
+		for (double v : new double[]{0.5, 1.0, 2.0}) {
 			JButton b = new JButton(df.format(v) + "×");
 			b.setMargin(new Insets(2, 6, 2, 6));
 			b.addActionListener(e -> {
 				setUI(ch, v);
-				if (live)
-					debounce.restart();
+				if (live) debounce.restart();
 			});
 			presets.add(b);
 		}
 
 		// slider -> spinner (+ apply à fin de drag)
 		ch.slider.addChangeListener((ChangeEvent e) -> {
-			if (syncing)
-				return;
+			if (syncing) return;
 			syncing = true;
 			double val = ch.slider.getValue() / 100.0;
 			ch.spinner.setValue(val);
 			ch.valLabel.setText(df.format(val) + "×");
 			if (live) {
 				debounce.restart();
-			} else if (!ch.slider.getValueIsAdjusting()) {
+			}
+			else if (!ch.slider.getValueIsAdjusting()) {
 				applyToParametersAndSave();
 			}
 			syncing = false;
@@ -169,14 +190,12 @@ public class C_UserPanelEnergyLinearGrid extends JPanel {
 
 		// spinner -> slider (+ apply si Live)
 		ch.spinner.addChangeListener(e -> {
-			if (syncing)
-				return;
+			if (syncing) return;
 			syncing = true;
 			double v = ((Number) ch.spinner.getValue()).doubleValue();
 			ch.slider.setValue((int) Math.round(v * 100));
 			ch.valLabel.setText(df.format(v) + "×");
-			if (live)
-				debounce.restart();
+			if (live) debounce.restart();
 			syncing = false;
 		});
 
@@ -221,11 +240,12 @@ public class C_UserPanelEnergyLinearGrid extends JPanel {
 
 	private static java.util.Dictionary<Integer, JLabel> createLinearLabelTable(int min, int max) {
 		java.util.Hashtable<Integer, JLabel> table = new java.util.Hashtable<>();
-		double[] ticks = new double[] { 0.25, 0.50, 1.00, 1.50, 2.00 };
+		double[] ticks = new double[]{0.25, 0.50, 1.00, 1.50, 2.00};
 		for (double v : ticks) {
 			int pos = (int) Math.round(v * 100);
-			table.put(pos,
-					new JLabel((v == Math.rint(v)) ? String.valueOf((int) v) : String.format(Locale.ROOT, "%.2f", v)));
+			table.put(pos, new JLabel((v == Math.rint(v))
+					? String.valueOf((int) v)
+					: String.format(Locale.ROOT, "%.2f", v)));
 		}
 		return table;
 	}
@@ -253,8 +273,7 @@ public class C_UserPanelEnergyLinearGrid extends JPanel {
 	}
 
 	private static double safe(double v) {
-		if (Double.isNaN(v) || Double.isInfinite(v) || v < MIN || v > MAX)
-			return 1.0;
+		if (Double.isNaN(v) || Double.isInfinite(v) || v < MIN || v > MAX) return 1.0;
 		return v;
 	}
 
@@ -272,8 +291,7 @@ public class C_UserPanelEnergyLinearGrid extends JPanel {
 	}
 
 	private boolean loadCSV() {
-		if (!CSV_FILE.exists())
-			return false;
+		if (!CSV_FILE.exists()) return false;
 		Map<String, Double> map = new LinkedHashMap<>();
 		try (BufferedReader r = Files.newBufferedReader(CSV_FILE.toPath(), StandardCharsets.UTF_8)) {
 			String line;

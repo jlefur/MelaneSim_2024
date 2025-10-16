@@ -71,8 +71,8 @@ public class C_UserPanelEnergyLog extends JPanel {
 
     // init : charge paramètres actuels (ou 1.0 s’ils sont hors bornes)
     setAll(safe(C_Parameters.CHLOROPHYLL_MULTIPLIER),
-           safe(C_Parameters.MICRONEKTON_MULTIPLIER),
-           safe(C_Parameters.ENERGY_MULTIPLIER_PLANKTON));
+           safe(C_Parameters.NEKTON_MULTIPLIER),
+           safe(C_Parameters.PARTICLE_MULTIPLIER));
 
     debounce.setRepeats(false);
   }
@@ -205,8 +205,8 @@ public class C_UserPanelEnergyLog extends JPanel {
 
   private void applyToParameters() {
     C_Parameters.CHLOROPHYLL_MULTIPLIER = ((Number) spChloro.getValue()).doubleValue();
-    C_Parameters.MICRONEKTON_MULTIPLIER = ((Number) spMicro.getValue()).doubleValue();
-    C_Parameters.ENERGY_MULTIPLIER_PLANKTON       = ((Number) spWhale.getValue()).doubleValue();
+    C_Parameters.NEKTON_MULTIPLIER = ((Number) spMicro.getValue()).doubleValue();
+    C_Parameters.PARTICLE_MULTIPLIER       = ((Number) spWhale.getValue()).doubleValue();
   }
 
   private void saveToFile() {
