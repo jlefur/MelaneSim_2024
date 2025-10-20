@@ -24,7 +24,7 @@ public class C_Ship_cargo extends A_Animal {
 	//
 	@Override
 	public void step_Utick() {
-		this.energy_Ukcal = 200.;//TODO number in source 2025 energie des cargos
+		this.energy_Ukcal = 500.;//TODO number in source 2025 energie des cargos
 		if (this.target == null) this.setNewTarget();
 		else {
 			computeNextMoveToTarget();

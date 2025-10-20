@@ -8,6 +8,7 @@ import org.jfree.chart.plot.XYPlot;
 import melanesim.protocol.A_Protocol;
 import presentation.epiphyte.C_InspectorBorreliaCrocidurae;
 import presentation.epiphyte.C_InspectorCMR;
+import presentation.epiphyte.C_InspectorEnergy;
 import presentation.epiphyte.C_InspectorFossorialRodents;
 import presentation.epiphyte.C_InspectorGenetic;
 import presentation.epiphyte.C_InspectorHybrid;
@@ -26,7 +27,6 @@ public class C_CustomPanelSet_Rodent extends C_CustomPanelSet {
 	// protected C_InspectorPopulationRodent inspector;
 	private C_CustomPanelFactory curveFIS, curveRates, curveVegetation, curveOrnithodoros, curvedesease;
 	// the following are meant to avoid multiple calls to ContextCreator (see execute()) // JLF 02.2013
-	private static C_InspectorPopulationRodent inspector = null;
 	private static C_InspectorHybrid hybridInspector = null;
 	private static C_InspectorTransportation transportationInspector = null;
 	private static C_InspectorGenetic geneticInspector = null;
@@ -162,8 +162,6 @@ public class C_CustomPanelSet_Rodent extends C_CustomPanelSet {
 	@Override
 	/** Update each series with the corresponding data */
 	public void execute() {
-		inspectorEnergy = A_Protocol.inspectorEnergy;
-		inspector = (C_InspectorPopulationRodent) A_Protocol.inspector;
 		super.execute();
 
 		// BURROWS
@@ -178,13 +176,13 @@ public class C_CustomPanelSet_Rodent extends C_CustomPanelSet {
 				.getNbFemales());
 
 		// DISPERSAL DISPLAY
-		curveDispersal.getChart().setData("MaxFemaleDispersal", RepastEssentials.GetTickCount(), inspector
+		curveDispersal.getChart().setData("MaxFemaleDispersal", RepastEssentials.GetTickCount(), ((C_InspectorPopulationRodent) populationInspector)
 				.getMaxFemaleDispersal());
-		curveDispersal.getChart().setData("MaxMaleDispersal", RepastEssentials.GetTickCount(), inspector
+		curveDispersal.getChart().setData("MaxMaleDispersal", RepastEssentials.GetTickCount(), ((C_InspectorPopulationRodent) populationInspector)
 				.getMaxMaleDispersal());
-		curveDispersal.getChart().setData("MeanMaleDispersal", RepastEssentials.GetTickCount(), inspector
+		curveDispersal.getChart().setData("MeanMaleDispersal", RepastEssentials.GetTickCount(), ((C_InspectorPopulationRodent) populationInspector)
 				.getMeanMaleDispersal());
-		curveDispersal.getChart().setData("MeanFemaleDispersal", RepastEssentials.GetTickCount(), inspector
+		curveDispersal.getChart().setData("MeanFemaleDispersal", RepastEssentials.GetTickCount(), ((C_InspectorPopulationRodent) populationInspector)
 				.getMeanFemaleDispersal());
 
 		// TRANSPORTATION
@@ -211,9 +209,9 @@ public class C_CustomPanelSet_Rodent extends C_CustomPanelSet {
 			curveFIS.getChart().setData("Fixation Index", RepastEssentials.GetTickCount(), geneticInspector
 					.getFixationIndex());
 		// RATES DISPLAY
-		curveRates.getChart().setData("Birth", RepastEssentials.GetTickCount(), ((double) inspector.getBirthRatio()
+		curveRates.getChart().setData("Birth", RepastEssentials.GetTickCount(), ((double) ((C_InspectorPopulationRodent) populationInspector).getBirthRatio()
 				* 100));
-		curveRates.getChart().setData("Death", RepastEssentials.GetTickCount(), ((double) inspector.getDeathRatio()
+		curveRates.getChart().setData("Death", RepastEssentials.GetTickCount(), ((double) ((C_InspectorPopulationRodent) populationInspector).getDeathRatio()
 				* 100));
 		// if (burrowInspector != null)
 		// curveRates.getChart().setData("WanderingRodents", RepastEssentials.GetTickCount(), burrowInspector
@@ -263,9 +261,9 @@ public class C_CustomPanelSet_Rodent extends C_CustomPanelSet {
 			// curveOrnithodoros.getChart().setData("Female", RepastEssentials.GetTickCount(),
 			// ornithodorosInspector.getTickFemale());
 			// INFECTED RODENT DISPLAY
-			curvedesease.getChart().setData("Infected Rodent", RepastEssentials.GetTickCount(), inspector
+			curvedesease.getChart().setData("Infected Rodent", RepastEssentials.GetTickCount(), ((C_InspectorPopulationRodent) populationInspector)
 					.getInfectedRodents());
-			curvedesease.getChart().setData("Healthy Rodent", RepastEssentials.GetTickCount(), inspector
+			curvedesease.getChart().setData("Healthy Rodent", RepastEssentials.GetTickCount(), ((C_InspectorPopulationRodent) populationInspector)
 					.getHealthyRodent());
 		}
 	}

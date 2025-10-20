@@ -8,7 +8,9 @@ import java.util.Map;
 import org.jfree.chart.plot.XYPlot;
 
 import melanesim.protocol.A_Protocol;
+//import presentation.epiphyte.C_InspectorPopulation;
 import presentation.epiphyte.C_InspectorEnergy;
+import presentation.epiphyte.C_InspectorPopulation;
 import repast.simphony.context.Context;
 import repast.simphony.engine.controller.NullAbstractControllerAction;
 import repast.simphony.engine.environment.GUIRegistryType;
@@ -25,12 +27,14 @@ import repast.simphony.scenario.Scenario;
  * @author A. Realini, rev. J. Le Fur 02.2013, O2.2017, 02.2021 */
 public class C_CustomPanelSet implements IAction, ModelInitializer {
 
+	protected static C_InspectorEnergy energyInspector = null;
+	protected static C_InspectorPopulation populationInspector = null;
 	protected Map<String, Double> energyMap = null;// used for energy graph
-	public static ArrayList<String> energyCurves = new ArrayList<String>();// used for energy graph (must be static to be invoked
-																			// and cleared in
+	protected Map<String, Double> populationMap = null;// used for energy graph
+	public static ArrayList<String> energyCurves = new ArrayList<String>();// used for energy graph (must be static to be invoked and cleared in
+	public static ArrayList<String> populationCurves = new ArrayList<String>();// used for energy graph (must be static to be invoked and cleared in
 	protected IAction action = this; // Récupère l'implémentation de IDisplay
 	protected C_CustomPanelFactory curveEnergy, curvePopSize, curveDispersal;
-	protected static C_InspectorEnergy inspectorEnergy = null;
 	/** This is ran after the model has been loaded. This is only ran once, but the settings set through the
 	 * {@link repast.simphony.scenario.Scenario} will apply to every run of the simulation.
 	 * @param scen the {@link repast.simphony.scenario.Scenario} object that hold settings for the run */
@@ -45,8 +49,8 @@ public class C_CustomPanelSet implements IAction, ModelInitializer {
 				XYPlot plot;
 
 				// ENERGY JLF 02.2021
-				if (inspectorEnergy != null) {
-					energyMap = inspectorEnergy.getEnergyBySpecies();
+				if (A_Protocol.inspectorEnergy != null) {
+					energyMap = A_Protocol.inspectorEnergy.getEnergyBySpecies();
 					curveEnergy = new C_CustomPanelFactory("Energy (mean)", C_Chart.LINE, "Tick",
 							"mean energy (pseudo-kcal)");
 					runState.getGUIRegistry().addDisplay("Energy", GUIRegistryType.OTHER, curveEnergy);
@@ -58,6 +62,7 @@ public class C_CustomPanelSet implements IAction, ModelInitializer {
 				}
 
 				// POPULATION SIZES
+				populationMap = C_InspectorPopulation.populationBySpecies;
 				curvePopSize = new C_CustomPanelFactory("Populations sizes", C_Chart.LINE, "Ticks", "Population size");
 				runState.getGUIRegistry().addDisplay("Populations sizes", GUIRegistryType.OTHER, curvePopSize);
 
@@ -79,6 +84,7 @@ public class C_CustomPanelSet implements IAction, ModelInitializer {
 			 * l'exécution du programme) */
 			public void runCleanup(RunState runState, Context<?> context) {
 				C_CustomPanelSet.energyCurves.clear();
+				C_CustomPanelSet.populationCurves.clear();
 				// La console n'existe pas en batch car C_TableauDeBord n'est pas initialis�
 				if (C_UserPanel.consoleOut != null) {
 					System.out.println("SimMastoInitializer.runCleanup : closing flow to dismiss display");
@@ -105,10 +111,11 @@ public class C_CustomPanelSet implements IAction, ModelInitializer {
 
 	/** Update each series with the corresponding data */
 	public void execute() {
-		inspectorEnergy = A_Protocol.inspectorEnergy;
+		energyInspector = A_Protocol.inspectorEnergy;
+		populationInspector =  A_Protocol.inspectorPopulation;
 		// ENERGY jlf 02.2021
-		if (C_CustomPanelSet.inspectorEnergy != null) {
-			this.energyMap = C_CustomPanelSet.inspectorEnergy.getEnergyBySpecies();
+		if (A_Protocol.inspectorEnergy != null) {
+			this.energyMap = A_Protocol.inspectorEnergy.getEnergyBySpecies();
 			// Provide an energy curve for each type or organism
 			for (String key : this.energyMap.keySet()) {
 				// if species not yet registered, create the XYSerie
@@ -120,8 +127,20 @@ public class C_CustomPanelSet implements IAction, ModelInitializer {
 				curveEnergy.getChart().setData(key, RepastEssentials.GetTickCount(), this.energyMap.get(key));
 			}
 		}
-	}
-	public static void addEnergyInspector(C_InspectorEnergy inspector) {
-		inspectorEnergy = inspector;
+		// POPULATION jlf 2025
+		if (A_Protocol.inspectorPopulation != null) {
+			this.populationMap = C_InspectorPopulation.getPopulationBySpecies();
+			// Provide an energy curve for each type or organism
+			for (String key : this.populationMap.keySet()) {
+				if (!key.contains("SoilCell")) {
+				// if species not yet registered, create the XYSerie
+				if (!C_CustomPanelSet.populationCurves.contains(key)) {
+					this.curvePopSize.getChart().addXYSerie(key);
+					C_CustomPanelSet.populationCurves.add(key);
+				}
+				// if (!key.equals("C_GenomeGerbillusNigeriae"))
+				curvePopSize.getChart().setData(key, RepastEssentials.GetTickCount(), this.populationMap.get(key));
+			}}
+		}
 	}
 }

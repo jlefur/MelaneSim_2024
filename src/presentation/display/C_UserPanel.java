@@ -25,7 +25,7 @@ import data.constants.rodents.I_ConstantStringRodents;
 import melanesim.C_ContextCreator;
 import melanesim.protocol.A_Protocol;
 import presentation.epiphyte.A_Inspector;
-import presentation.epiphyte.A_InspectorPopulation;
+import presentation.epiphyte.C_InspectorPopulation;
 import repast.simphony.engine.environment.RunState;
 import repast.simphony.engine.schedule.ScheduledMethod;
 import repast.simphony.userpanel.ui.UserPanelCreator;
@@ -213,8 +213,8 @@ public class C_UserPanel extends JPanel implements UserPanelCreator, I_ConstantS
 	}
 	/** Met à jour les données des compteurs */
 	protected void update_Meters() {
-		C_UserPanel.populationInspector = A_Protocol.inspector;
-		int popSize = A_InspectorPopulation.agentPopulation;
+		C_UserPanel.populationInspector = A_Protocol.inspectorPopulation;
+		int popSize = C_InspectorPopulation.contextSize;
 		this.meterPopSize.setData(popSize);
 		// meterObjects.setData(RunState.getInstance().getMasterContext().size());
 	}

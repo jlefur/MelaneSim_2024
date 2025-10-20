@@ -14,6 +14,7 @@ import melanesim.util.CaptureEcranPeriodique;
 import presentation.display.C_Background;
 import presentation.display.C_CustomPanelSet;
 import presentation.epiphyte.C_InspectorEnergyMarine;
+import presentation.epiphyte.C_InspectorPopulation;
 import presentation.epiphyte.C_InspectorPopulationMarine;
 import repast.simphony.context.Context;
 import repast.simphony.engine.environment.RunState;
@@ -33,7 +34,6 @@ public class C_Protocol_PNMC_drifters extends A_Protocol implements I_ConstantPN
 	//
 
 	protected C_ConvertGeographicCoordinates geographicCoordinateConverter = null;
-	protected C_InspectorPopulationMarine marineInspector;
 	Random random = new Random();
 	public static boolean DISPLAY_FACILITY_MAP = false;// used to change plankton color if facility map is on
 	//
@@ -63,11 +63,10 @@ public class C_Protocol_PNMC_drifters extends A_Protocol implements I_ConstantPN
 			lp.bornCoord_Umeter = this.landscape.getThingCoord_Umeter(lp.getCurrentSoilCell());
 		}
 		// INSPECTOR
-		A_Protocol.inspector = new C_InspectorPopulationMarine();
-		inspectorList.add(inspector);
+		A_Protocol.inspectorPopulation = new C_InspectorPopulationMarine();
+		inspectorList.add(inspectorPopulation);
 		A_Protocol.inspectorEnergy = new C_InspectorEnergyMarine();
 		this.inspectorList.add(inspectorEnergy);
-		C_CustomPanelSet.addEnergyInspector(inspectorEnergy);
 		facilityMap = new C_Background(-2.35, 206., 134.);
 	}
 

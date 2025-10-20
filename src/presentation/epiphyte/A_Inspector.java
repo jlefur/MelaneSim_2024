@@ -17,13 +17,11 @@ public abstract class A_Inspector implements Comparable<A_Inspector>, I_Inspecto
 	protected String indicatorsHeader;
 	protected String indicatorsValues;
 	protected C_FileWriter SpatialDistributionFile;
-	public static int agentPopulation = 0;
+	public static int contextSize = 0;
 	protected Integer myId;// used to compare objects within sorts and treeSets - LeFur 02.2013
-
 	public A_Inspector() {
 		this.myId = C_ContextCreator.INSPECTOR_NUMBER;
 		C_ContextCreator.INSPECTOR_NUMBER++;
-		// indicatorsHeader = "Tick;Date;HourDate;objects";
 		this.indicatorsHeader = "Tick;Date;HourDate;objects";
 		indicatorsReset();
 		SpatialDistributionFile = new C_FileWriter("SpatialDistribution.csv", true);
@@ -36,14 +34,14 @@ public abstract class A_Inspector implements Comparable<A_Inspector>, I_Inspecto
 
 	/** Context size only, extended in daughter classes */
 	public void indicatorsCompute() {
-		A_InspectorPopulation.agentPopulation = RunState.getInstance().getMasterContext().size();
+		C_InspectorPopulation.contextSize = RunState.getInstance().getMasterContext().size();
 	}
 
 	/** store all values as a string in the corresponding field */
 	public String indicatorsStoreValues() {// Simultech 2018
 		this.indicatorsValues = String.valueOf(RepastEssentials.GetTickCount()) + CSV_FIELD_SEPARATOR
 				+ A_Protocol.protocolCalendar.stringShortDate() + CSV_FIELD_SEPARATOR + A_Protocol.protocolCalendar
-						.stringHourDate() + CSV_FIELD_SEPARATOR + RunState.getInstance().getMasterContext().size();
+						.stringHourDate() + CSV_FIELD_SEPARATOR + C_InspectorPopulation.contextSize;
 		return this.indicatorsValues;
 	}
 	/** used for comparison of inspectors within the A_Protocol inspectors field / JLF 02.2013 */

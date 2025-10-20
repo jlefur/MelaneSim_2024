@@ -61,7 +61,6 @@ public class C_ProtocolDodel2 extends A_ProtocolFossorial implements I_ConstantD
 	//
 	private C_ConvertGeographicCoordinates geographicCoordinateConverter;
 	protected C_InspectorGenetic geneticInspector;
-	protected C_InspectorEnergy energyInspector;
 	protected C_InspectorOrnithodorosSonrai ornithodorosInspector;
 	protected C_InspectorBorreliaCrocidurae borreliaInspector;
 	private Map<Integer, String> INITIAL_AFFINITIES_MUS = new HashMap<Integer, String>();
@@ -98,14 +97,12 @@ public class C_ProtocolDodel2 extends A_ProtocolFossorial implements I_ConstantD
 		this.chronogram = new C_Chronogram(I_ConstantDodel2.CHRONO_FILENAME);
 		this.facilityMap = new C_Background(-.169, 293., 299);
 		this.setInitialAffinities();
-		this.geneticInspector = new C_InspectorGenetic();
-		this.energyInspector = new C_InspectorEnergy();
 		this.ornithodorosInspector = new C_InspectorOrnithodorosSonrai();
 		this.borreliaInspector = new C_InspectorBorreliaCrocidurae();
 		this.inspectorList.add(this.borreliaInspector);
 		this.inspectorList.add(this.ornithodorosInspector);
 		this.inspectorList.add(this.geneticInspector);
-		this.inspectorList.add(this.energyInspector);
+		this.inspectorList.add(A_Protocol.inspectorEnergy);
 		C_CustomPanelSet_Rodent.addBorreliaInspector(this.borreliaInspector);
 		C_CustomPanelSet_Rodent.addOrnithodorosInspector(this.ornithodorosInspector);
 		C_CustomPanelSet_Rodent.addGeneticInspector(this.geneticInspector);

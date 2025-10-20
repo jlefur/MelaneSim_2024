@@ -1,23 +1,24 @@
 package presentation.epiphyte;
-
 import java.util.HashMap;
 import java.util.Map;
 
 import melanesim.util.C_VariousUtilities;
 import repast.simphony.engine.environment.RunState;
 import repast.simphony.essentials.RepastEssentials;
-import thing.C_StreamCurrent;
-import thing.ground.A_SupportedContainer;
+import thing.A_NDS;
 
 /** Retrieves mean energy for each species in the context J.Le Fur 02.2018 */
 public class C_InspectorEnergy extends A_Inspector {
-	// the map [speciesGenome, cumulated energy]
-	protected Map<String, Double> EnergyBySpecies = new HashMap<String, Double>();
-	// size is necessary to compute means
-	protected Map<String, Integer> sizeBySpecies = new HashMap<String, Integer>();
+	//
+	// FIELDS
+	//
+	protected Map<String, Double> EnergyBySpecies = new HashMap<String, Double>();// the map [speciesGenome, cumulated energy]
+	protected Map<String, Integer> sizeBySpecies = new HashMap<String, Integer>();// size is necessary to compute means
 	/** Writer of an outer csv file */
 	// private C_FileWriter dataSaverEnergyGeneral;
-
+	//
+	// CONSTRUCTOR
+	//
 	public C_InspectorEnergy() {
 		super();
 		indicatorsHeader = "Tick;";
@@ -50,17 +51,17 @@ public class C_InspectorEnergy extends A_Inspector {
 		this.sizeBySpecies.clear();
 		for (int i = 0; i < contextContent.length; i++) {
 			Object item = contextContent[i];
-			if (item instanceof A_SupportedContainer && !(item instanceof C_StreamCurrent)) {
+			if (item instanceof A_NDS ) {//&& !(item instanceof C_StreamCurrent)) {
 				speciesName = C_VariousUtilities.getShortClassName(item.getClass()).substring(2);
 				// If key exist, add values
 				if (this.EnergyBySpecies.get(speciesName) != null) {
 					this.EnergyBySpecies.put(speciesName, this.EnergyBySpecies.get(speciesName)
-							+ ((A_SupportedContainer) item).getEnergy_Ukcal());
+							+ ((A_NDS) item).getEnergy_Ukcal());
 					this.sizeBySpecies.put(speciesName, this.sizeBySpecies.get(speciesName) + 1);
 				}
 				// If not, create an entry and set values
 				else {
-					this.EnergyBySpecies.put(speciesName, ((A_SupportedContainer) item).getEnergy_Ukcal());
+					this.EnergyBySpecies.put(speciesName, ((A_NDS) item).getEnergy_Ukcal());
 					this.sizeBySpecies.put(speciesName, 1);
 				}
 			}

@@ -9,7 +9,7 @@
 		type="java.lang.String" defaultValue="H" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$StringStringConverter" />
 	<parameter name="TICK_LENGTH_Ucalendar" displayName="0b/ Tick length"
-		type="java.lang.Integer" defaultValue="24" isReadOnly="false"
+		type="java.lang.Integer" defaultValue="4" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
 	<parameter name="CELL_WIDTH_Ucm" displayName="0c/ nb centimeters in one pixel (default=exact scale)"
 		type="java.lang.Integer" defaultValue="480743" isReadOnly="false"
@@ -26,7 +26,7 @@
 		type="boolean" defaultValue="false" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$BooleanConverter" />
 	<parameter name="IMAGE" displayName="0g/ ICONS (display objects using icons)"
-		type="boolean" defaultValue="true" isReadOnly="false"
+		type="boolean" defaultValue="false" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$BooleanConverter" />
 		
 	<!-- PROTOCOL DEPENDENT -->

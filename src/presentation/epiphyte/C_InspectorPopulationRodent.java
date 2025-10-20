@@ -17,7 +17,7 @@ import thing.rodents.C_RodentDomestic2;
 
 /** Data inspector: retrieves informations e.g. population sizes and manages lists.
  * @author A Realini 05.2011 / J.Le Fur 09.2011, 07.2012, 01.2013 */
-public class C_InspectorPopulationRodent extends A_Inspector {
+public class C_InspectorPopulationRodent extends C_InspectorPopulation {
 	//
 	// FIELDS
 	//
