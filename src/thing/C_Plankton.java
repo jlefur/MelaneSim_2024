@@ -10,7 +10,6 @@ public class C_Plankton extends A_Organism {
 	// FIELD
 	//
 	private double maxDispersalDistance_Umeter = 0.0;
-
 	//
 	// CONSTRUCTOR
 	//
@@ -18,7 +17,6 @@ public class C_Plankton extends A_Organism {
 		super(genome);
 		this.setMyName("marine plankton" + NAMES_SEPARATOR + myId);
 	}
-
 	//
 	// OVERRIDEN METHOD
 	//
@@ -26,7 +24,6 @@ public class C_Plankton extends A_Organism {
 		computeMaxDispersalDistance_Umeter();
 		super.step_Utick();
 	}
-
 	//
 	// GETTERS
 	//

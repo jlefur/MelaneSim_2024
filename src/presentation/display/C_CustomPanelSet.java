@@ -31,8 +31,10 @@ public class C_CustomPanelSet implements IAction, ModelInitializer {
 	protected static C_InspectorPopulation populationInspector = null;
 	protected Map<String, Double> energyMap = null;// used for energy graph
 	protected Map<String, Double> populationMap = null;// used for energy graph
-	public static ArrayList<String> energyCurves = new ArrayList<String>();// used for energy graph (must be static to be invoked and cleared in
-	public static ArrayList<String> populationCurves = new ArrayList<String>();// used for energy graph (must be static to be invoked and cleared in
+	public static ArrayList<String> energyCurves = new ArrayList<String>();// used for energy graph (must be static to be invoked
+																			// and cleared in
+	public static ArrayList<String> populationCurves = new ArrayList<String>();// used for energy graph (must be static to be
+																				// invoked and cleared in
 	protected IAction action = this; // Récupère l'implémentation de IDisplay
 	protected C_CustomPanelFactory curveEnergy, curvePopSize, curveDispersal;
 	/** This is ran after the model has been loaded. This is only ran once, but the settings set through the
@@ -80,8 +82,8 @@ public class C_CustomPanelSet implements IAction, ModelInitializer {
 						action);
 			}
 
-			/** Ferme les flux de la console du user panel (exécuté lorsqu'on réinitialise une simulation sans couper
-			 * l'exécution du programme) */
+			/** Ferme les flux de la console du user panel (exécuté lorsqu'on réinitialise une simulation sans couper l'exécution
+			 * du programme) */
 			public void runCleanup(RunState runState, Context<?> context) {
 				C_CustomPanelSet.energyCurves.clear();
 				C_CustomPanelSet.populationCurves.clear();
@@ -98,7 +100,7 @@ public class C_CustomPanelSet implements IAction, ModelInitializer {
 					C_UserPanel.consoleErr.getOut().close();
 				}
 			}
-
+			@Override
 			public String toString() {
 				return "PanelSetInitializer";
 			}
@@ -112,7 +114,7 @@ public class C_CustomPanelSet implements IAction, ModelInitializer {
 	/** Update each series with the corresponding data */
 	public void execute() {
 		energyInspector = A_Protocol.inspectorEnergy;
-		populationInspector =  A_Protocol.inspectorPopulation;
+		populationInspector = A_Protocol.inspectorPopulation;
 		// ENERGY jlf 02.2021
 		if (A_Protocol.inspectorEnergy != null) {
 			this.energyMap = A_Protocol.inspectorEnergy.getEnergyBySpecies();
@@ -133,14 +135,15 @@ public class C_CustomPanelSet implements IAction, ModelInitializer {
 			// Provide an energy curve for each type or organism
 			for (String key : this.populationMap.keySet()) {
 				if (!key.contains("SoilCell")) {
-				// if species not yet registered, create the XYSerie
-				if (!C_CustomPanelSet.populationCurves.contains(key)) {
-					this.curvePopSize.getChart().addXYSerie(key);
-					C_CustomPanelSet.populationCurves.add(key);
+					// if species not yet registered, create the XYSerie
+					if (!C_CustomPanelSet.populationCurves.contains(key)) {
+						this.curvePopSize.getChart().addXYSerie(key);
+						C_CustomPanelSet.populationCurves.add(key);
+					}
+					// if (!key.equals("C_GenomeGerbillusNigeriae"))
+					curvePopSize.getChart().setData(key, RepastEssentials.GetTickCount(), this.populationMap.get(key));
 				}
-				// if (!key.equals("C_GenomeGerbillusNigeriae"))
-				curvePopSize.getChart().setData(key, RepastEssentials.GetTickCount(), this.populationMap.get(key));
-			}}
+			}
 		}
 	}
 }

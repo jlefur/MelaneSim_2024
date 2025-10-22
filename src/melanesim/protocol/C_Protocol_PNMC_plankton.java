@@ -4,7 +4,6 @@ import java.util.Calendar;
 import java.util.TimeZone;
 
 import data.C_Event;
-import data.C_Parameters;
 import data.C_ReadRasterDouble;
 import repast.simphony.context.Context;
 import thing.ground.C_SoilCellMarine;
@@ -40,11 +39,12 @@ public class C_Protocol_PNMC_plankton extends C_Protocol_PNMC_drifters {
 				double[][] matriceLue = C_ReadRasterDouble.doubleRasterLoader(url + ".grd");
 				for (int i = 0; i < imax; i++) {
 					for (int j = 0; j < jmax; j++) {
-						double value = matriceLue[i][j] * C_Parameters.CHLOROPHYLL_MULTIPLIER;
+						double value = matriceLue[i][j];
+						value = convertTo100(value, CHLORO_MIN, CHLORO_MAX);
 						marineCell = ((C_SoilCellMarine) this.landscape.getGrid()[i][j]);
 						if (!marineCell.isTerrestrial()) {
-							marineCell.setChlorophyll(Math.pow(value, 3.7));//Emphasizes the highest values (NB: .1^4 -> .0001)
-							//marineCell.setAffinity((int) value);
+							marineCell.setChlorophyll(value);
+							// marineCell.setAffinity((int) value);
 						}
 						// this.landscape.getGridValueLayer().set( value - 1, i, j);// for xphyl min=0 max=9
 					}

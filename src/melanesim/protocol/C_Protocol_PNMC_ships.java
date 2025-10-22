@@ -1,6 +1,10 @@
 package melanesim.protocol;
 
+import data.C_Parameters;
 import repast.simphony.context.Context;
+import repast.simphony.engine.environment.RunEnvironment;
+import repast.simphony.essentials.RepastEssentials;
+import repast.simphony.parameter.Parameters;
 import thing.C_Ship_cargo;
 import thing.dna.C_GenomeAnimalia;
 import thing.ground.I_Container;
@@ -23,6 +27,16 @@ public class C_Protocol_PNMC_ships extends C_Protocol_PNMC_nekton {
 	//
 	// OVERRIDEN METHOD
 	//
+	// @Override
+	// /**Affiche les icones au step 2 pour éviter le bug de démarrage @author jlf 10.2025*/
+	// public void step_Utick() {
+	// super.step_Utick();
+	// if (RepastEssentials.GetTickCount() == 2) {
+	// Parameters params = RunEnvironment.getInstance().getParameters();
+	// params.setValue("IMAGE", true);
+	// C_Parameters.IMAGE = true;
+	// }
+	// }
 	@Override
 	/** Add cargo ship at any end of the main corridor - JLF 10.2025 */
 	protected void initPopulations() {

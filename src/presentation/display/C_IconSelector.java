@@ -280,7 +280,7 @@ public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC, 
 	 * d'ellipses et non d'images)
 	 * @return la nouvelle couleur de l'agent */
 	public static Color getColor(I_SituatedThing agent) {
-		if (C_Parameters.PROTOCOL.equals(PNMC_DRIFTERS)) return getColorPNMC_DRIFTERS(agent);
+		if (C_Parameters.PROTOCOL.contains("PNMC")) return getColorPNMC_DRIFTERS(agent);
 		else if (C_Parameters.PROTOCOL.equals(CHIZE)) return getColorChize(agent);
 		else if (C_Parameters.PROTOCOL.equals(GERBIL)) return getColorGerbil(agent);
 		else if (C_Parameters.PROTOCOL.equals(ENCLOSURE)) return getColorMbour(agent);
@@ -297,8 +297,9 @@ public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC, 
 
 	/** agent is plankton JLF 2024 */
 	public static Color getColorPNMC_DRIFTERS(I_SituatedThing agent) {
-		if (C_Protocol_PNMC_drifters.DISPLAY_FACILITY_MAP) return Color.green; // new Color(172, 117, 213);// violet
-		else return Color.green;
+		if (agent instanceof C_Plankton && C_Protocol_PNMC_drifters.DISPLAY_FACILITY_MAP) return Color.green; // new Color(172, 117, 213);// violet
+		if (agent instanceof C_Ship_cargo) return Color.red;
+		return Color.green;
 	}
 
 	public static Color getColorGerbil(I_SituatedThing agent) {

@@ -18,11 +18,9 @@ public class C_CustomPanelSetMarine extends C_CustomPanelSet {
 	protected void initWorldSpecificPlots(RunState runState) {
 		XYPlot plot;
 		// POPULATIONS SIZES
-		curvePopSize.getChart().addXYSerie("Plankton population");
 		curvePopSize.getChart().addXYSerie("Plankton ExportImport");
 		plot = curvePopSize.getChart().getChartPanel().getChart().getXYPlot();
-		plot.getRenderer().setSeriesPaint(0, Color.GREEN);
-		plot.getRenderer().setSeriesPaint(1, Color.BLUE);
+		plot.getRenderer().setSeriesPaint(0, Color.DARK_GRAY);
 		curveDispersal.getChart().addXYSerie("Plankton Mean Dispersal");
 		curveDispersal.getChart().addXYSerie("Plankton Max Dispersal");
 		plot = curveDispersal.getChart().getChartPanel().getChart().getXYPlot();
@@ -37,9 +35,6 @@ public class C_CustomPanelSetMarine extends C_CustomPanelSet {
 	/** Update each series with the corresponding data */
 	public void execute() {
 		super.execute();
-		// POPULATION DISPLAY
-		curvePopSize.getChart().setData("Plankton population", RepastEssentials.GetTickCount(),
-				C_InspectorPopulationMarine.planktonList.size());
 		curvePopSize.getChart().setData("Plankton ExportImport", RepastEssentials.GetTickCount(),
 				C_InspectorPopulationMarine.planktonExport);
 		curveDispersal.getChart().setData("Plankton Mean Dispersal", RepastEssentials.GetTickCount(),

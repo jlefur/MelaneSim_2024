@@ -23,7 +23,7 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 
 	private static final long serialVersionUID = 1L;
 	// ---- Réglages linéaires ----
-	private static final double MIN = 0.25, MAX = 2.00;
+	private static final double MIN = 0.25, MAX = 10.00;
 	private static final File CSV_FILE = new File("energy_scales.csv");
 	private static final int ROWS = 3, COLS = 5; // <-- change ici si tu veux une autre grille
 
@@ -78,26 +78,40 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 
 	// ---- Déclare ici tes 9 canaux (exemples) ----
 	private final List<Channel> channels = Arrays.asList(//
-			new Channel("par", "particle", PARTICLE_ICON, () -> C_Parameters.PARTICLE_MULTIPLIER,					v -> C_Parameters.PARTICLE_MULTIPLIER = v), //
-			new Channel("mou", "mount", MOUNT_ICON, () -> C_Parameters.MOUNT_MULTIPLIER,					v -> C_Parameters.MOUNT_MULTIPLIER = v), //
-			new Channel("tem", "temperature", TEMPERATURE_ICON, () -> C_Parameters.TEMPERATURE_MULTIPLIER,					v -> C_Parameters.TEMPERATURE_MULTIPLIER = v), //
-			new Channel("chl", "chlorophyll", CHLOROPHYLL_ICON, () -> C_Parameters.CHLOROPHYLL_MULTIPLIER,					v -> C_Parameters.CHLOROPHYLL_MULTIPLIER = v), //
-			new Channel("nec", "necton", NEKTON_ICON, () -> C_Parameters.NEKTON_MULTIPLIER,					v -> C_Parameters.NEKTON_MULTIPLIER = v), //
-			new Channel("tun", "tuna", TUNA_ICON, () -> C_Parameters.TUNA_MULTIPLIER,					v -> C_Parameters.TUNA_MULTIPLIER = v), //
-			new Channel("wha", "whale", WHALE_ICON, () -> C_Parameters.WHALE_MULTIPLIER,					v -> C_Parameters.WHALE_MULTIPLIER = v), //
-			new Channel("sha", "shark", SHARK_ICON, () -> C_Parameters.SHARK_MULTIPLIER,					v -> C_Parameters.SHARK_MULTIPLIER = v), //
-			new Channel("bir", "bird", BIRD_ICON, () -> C_Parameters.BIRD_MULTIPLIER,					v -> C_Parameters.BIRD_MULTIPLIER = v), //
-			new Channel("cor", "coral", TURTLE_ICON, () -> C_Parameters.TURTLE_MULTIPLIER,					v -> C_Parameters.TURTLE_MULTIPLIER = v),
-			new Channel("fis", "fisher", FISHER_ICON, () -> C_Parameters.FISHER_MULTIPLIER,					v -> C_Parameters.FISHER_MULTIPLIER = v), //
-			new Channel("shi", "ship", SHIP_ICON, () -> C_Parameters.SHIP_MULTIPLIER,					v -> C_Parameters.SHIP_MULTIPLIER = v), //
-			new Channel("tou", "tourism", TOURISM_ICON, () -> C_Parameters.TOURISM_MULTIPLIER,					v -> C_Parameters.TOURISM_MULTIPLIER = v), //
-			new Channel("pol", "policeControl", POLICE_ICON, () -> C_Parameters.POLICE_MULTIPLIER,					v -> C_Parameters.POLICE_MULTIPLIER = v), //
-			new Channel("sew", "sewage", POLLUTION_ICON, () -> C_Parameters.POLLUTION_MULTIPLIER,					v -> C_Parameters.POLLUTION_MULTIPLIER = v)); //
+			new Channel("chl", "chlorophyll", CHLOROPHYLL_ICON, () -> C_Parameters.CHLOROPHYLL_MULTIPLIER,
+					v -> C_Parameters.CHLOROPHYLL_MULTIPLIER = v), //
+			new Channel("par", "particle", PARTICLE_ICON, () -> C_Parameters.PARTICLE_MULTIPLIER,
+					v -> C_Parameters.PARTICLE_MULTIPLIER = v), //
+			new Channel("mou", "mount", MOUNT_ICON, () -> C_Parameters.MOUNT_MULTIPLIER,
+					v -> C_Parameters.MOUNT_MULTIPLIER = v), //
+			new Channel("tem", "temperature", TEMPERATURE_ICON, () -> C_Parameters.TEMPERATURE_MULTIPLIER,
+					v -> C_Parameters.TEMPERATURE_MULTIPLIER = v), //
+			new Channel("nec", "necton", NEKTON_ICON, () -> C_Parameters.NEKTON_MULTIPLIER,
+					v -> C_Parameters.NEKTON_MULTIPLIER = v), //
+			new Channel("tun", "tuna", TUNA_ICON, () -> C_Parameters.TUNA_MULTIPLIER,
+					v -> C_Parameters.TUNA_MULTIPLIER = v), //
+			new Channel("wha", "whale", WHALE_ICON, () -> C_Parameters.WHALE_MULTIPLIER,
+					v -> C_Parameters.WHALE_MULTIPLIER = v), //
+			new Channel("sha", "shark", SHARK_ICON, () -> C_Parameters.SHARK_MULTIPLIER,
+					v -> C_Parameters.SHARK_MULTIPLIER = v), //
+			new Channel("bir", "bird", BIRD_ICON, () -> C_Parameters.BIRD_MULTIPLIER,
+					v -> C_Parameters.BIRD_MULTIPLIER = v), //
+			new Channel("cor", "coral", TURTLE_ICON, () -> C_Parameters.TURTLE_MULTIPLIER,
+					v -> C_Parameters.TURTLE_MULTIPLIER = v), new Channel("fis", "fisher", FISHER_ICON,
+							() -> C_Parameters.FISHER_MULTIPLIER, v -> C_Parameters.FISHER_MULTIPLIER = v), //
+			new Channel("shi", "ship", SHIP_ICON, () -> C_Parameters.SHIP_MULTIPLIER,
+					v -> C_Parameters.SHIP_MULTIPLIER = v), //
+			new Channel("tou", "tourism", TOURISM_ICON, () -> C_Parameters.TOURISM_MULTIPLIER,
+					v -> C_Parameters.TOURISM_MULTIPLIER = v), //
+			new Channel("pol", "policeControl", POLICE_ICON, () -> C_Parameters.POLICE_MULTIPLIER,
+					v -> C_Parameters.POLICE_MULTIPLIER = v), //
+			new Channel("sew", "sewage", POLLUTION_ICON, () -> C_Parameters.POLLUTION_MULTIPLIER,
+					v -> C_Parameters.POLLUTION_MULTIPLIER = v)); //
 
 	public C_UserPanelEnergyLinearGrid() {
 		super(new BorderLayout(8, 8));
 
-		JLabel title = new JLabel("Marine Energy Control (0.25× → 2.00×)", SwingConstants.CENTER);
+		JLabel title = new JLabel("Marine Energy Control (" + MIN + "× → " + MAX + "×)", SwingConstants.CENTER);
 		title.setFont(title.getFont().deriveFont(Font.BOLD, 16f));
 		add(title, BorderLayout.NORTH);
 
@@ -162,7 +176,7 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 
 		// presets
 		JPanel presets = new JPanel(new FlowLayout(FlowLayout.CENTER, 4, 0));
-		for (double v : new double[]{0.5, 1.0, 2.0}) {
+		for (double v : new double[]{MIN, 1.0, MAX}) {
 			JButton b = new JButton(df.format(v) + "×");
 			b.setMargin(new Insets(2, 6, 2, 6));
 			b.addActionListener(e -> {
@@ -240,7 +254,7 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 
 	private static java.util.Dictionary<Integer, JLabel> createLinearLabelTable(int min, int max) {
 		java.util.Hashtable<Integer, JLabel> table = new java.util.Hashtable<>();
-		double[] ticks = new double[]{0.25, 0.50, 1.00, 1.50, 2.00};
+		double[] ticks = new double[]{0., 1.00, 2., 3., 4., 5., 6., 7., 8., 9., 10.};
 		for (double v : ticks) {
 			int pos = (int) Math.round(v * 100);
 			table.put(pos, new JLabel((v == Math.rint(v))

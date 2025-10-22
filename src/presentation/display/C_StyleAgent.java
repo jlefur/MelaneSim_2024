@@ -33,8 +33,7 @@ import thing.rodents.C_Vegetation;
  * @author A Realini 2011 */
 public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStringRodents, I_ConstantPNMC,
 		I_ConstantNumeric, I_ConstantImagesNames {
-	private float imageScale = IMAGE_SCALE;
-	private float ellipseScale = ELLIPSE_SCALE;
+	private float imageScale, ellipseScale;
 	private final float CIRCLE_RADIUS = 5; // Rayon de l'ellipse
 	private final int CIRCLE_SLICES = 10; // Nombres d'arêtes de l'ellipse (joue sur le rendu : sera plus ou moins rond)
 	private C_IconSelector selectImg;
@@ -78,6 +77,7 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 
 	public void initChize() {
 		this.ellipseScale = .6f;
+		this.imageScale = .2f;
 		factory.registerImage(VOLE_FEMALE_CHILD, selectImg.loadImage(VOLE_FEMALE_CHILD));
 		factory.registerImage(VOLE_FEMALE_ADULT, selectImg.loadImage(VOLE_FEMALE_ADULT));
 		factory.registerImage(VOLE_MALE_CHILD, selectImg.loadImage(VOLE_MALE_CHILD));
@@ -209,7 +209,7 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 
 	public void initDecenal() {
 		this.ellipseScale = 2.6f;
-		imageScale = 0.4f;
+		this.imageScale = 0.4f;
 		factory.registerImage(VEHICLE_BOAT, selectImg.loadImage(VEHICLE_BOAT));
 		factory.registerImage(VEHICLE_TRAIN, selectImg.loadImage(VEHICLE_TRAIN));
 		factory.registerImage(VEHICLE_TRUCK, selectImg.loadImage(VEHICLE_TRUCK));
@@ -275,6 +275,7 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 				if (agent instanceof C_Vegetation) {
 					spatial = factory.createCircle(CIRCLE_RADIUS * 0.5f, 3);// triangle shape
 				} // mature=circle, immature=square
+				if (agent instanceof C_Ship_cargo) return factory.createCircle(CIRCLE_RADIUS * 2.5f, 3);
 				else
 					if (agent instanceof A_Amniote && !((A_Amniote) agent).isSexualMature())
 						spatial = factory.createRectangle((int) CIRCLE_RADIUS, (int) CIRCLE_RADIUS);
@@ -327,7 +328,7 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 				if (((A_SupportedContainer) object).isa_Tag()) sscale = sscale * 17;
 				else {
 					C_SoilCellMarine cell = (C_SoilCellMarine) object.getCurrentSoilCell();
-					sscale = (float) (.04 + cell.getEnergy_Ukcal() * .00008);
+					sscale = (float) Math.max(Math.pow(cell.getPlanktonTotalChlorophyll(), 2.5)/450000,.1);
 					// float size = (float) (this.imageScale * 10.);
 				}
 			}

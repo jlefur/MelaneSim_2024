@@ -4,6 +4,7 @@ import java.util.TreeSet;
 
 import org.locationtech.jts.geom.Coordinate;
 
+import data.C_Parameters;
 import data.constants.I_ConstantPNMC;
 import data.converters.C_ConvertTimeAndSpace;
 import thing.A_VisibleAgent;
@@ -22,6 +23,7 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	/** Sum of energies (situated things) passed through this cell since last resetColors */
 	private double integralEnergy_Ukcal = 0.;
 	private double chlorophyll = 1.;
+	private double planktonTotalChlorophyll = 0.;
 	/** microNekton is not moved by currents */
 	private double microNekton = 1.;
 	//
@@ -41,7 +43,10 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	 * @author JLF 04.2025 */
 	@Override
 	public boolean agentIncoming(I_SituatedThing thing) {
-		if (thing instanceof C_Plankton) ((C_Plankton) thing).energy_Ukcal = this.getChlorophyll();
+		if (thing instanceof C_Plankton) {
+			this.planktonTotalChlorophyll += this.getChlorophyll();
+			((C_Plankton) thing).energy_Ukcal = this.getChlorophyll() * C_Parameters.CHLOROPHYLL_MULTIPLIER;
+		}
 		this.energy_Ukcal += thing.getEnergy_Ukcal();
 		return super.agentIncoming(thing);
 	}
@@ -50,14 +55,14 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	 * @author JLF 04.2025 */
 	@Override
 	public boolean agentLeaving(I_SituatedThing thing) {
+		if (thing instanceof C_Plankton) this.planktonTotalChlorophyll -= this.getChlorophyll();
 		this.energy_Ukcal -= thing.getEnergy_Ukcal();
 		return super.agentLeaving(thing);
 	}
 
 	@Override
 	/** Move planktonic occupants with the surface current speed - JLF 07.2024<br>
-	 * set the energy value for plankton<br>
-	 * Compute the marineCell's step energy and the integral energy -JLF 03.2025 */
+	 * Compute the marineCell's integral energy -JLF 03,10 2025 */
 	public void step_Utick() {
 		super.step_Utick();
 		this.integralEnergy_Ukcal += this.energy_Ukcal;
@@ -117,4 +122,8 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	public void setMicroNekton(double microNekton) {
 		this.microNekton = microNekton;
 	}
+	public double getPlanktonTotalChlorophyll() {
+		return planktonTotalChlorophyll;
+	}
+
 }

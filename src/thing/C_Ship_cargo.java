@@ -24,7 +24,7 @@ public class C_Ship_cargo extends A_Animal {
 	//
 	@Override
 	public void step_Utick() {
-		this.energy_Ukcal = 500.;//TODO number in source 2025 energie des cargos
+		this.energy_Ukcal = 500.;// TODO number in source 2025 energie des cargos
 		if (this.target == null) this.setNewTarget();
 		else {
 			computeNextMoveToTarget();
@@ -54,7 +54,8 @@ public class C_Ship_cargo extends A_Animal {
 	 * @author lefur 2025.10 */
 	@Override
 	public void initParameters() {
-		double speed_UmeterByDay = 1852. * 24. * 10.;// speed = 10 milles/heure (10 noeuds) TODO number in source 2025 speed = 10 noeuds
+		double speed_UmeterByDay = 1852. * 24. * 10.;// speed = 10 milles/heure (10 noeuds) TODO number in source 2025 speed = 10
+														// noeuds
 		this.speed_UmeterByTick = speed_UmeterByDay / C_ConvertTimeAndSpace.oneDay_Utick;
 	}
 	//
@@ -62,6 +63,7 @@ public class C_Ship_cargo extends A_Animal {
 	//
 	// NORTH: 53,267 -> 96, 267
 	// SOUTH: 225, 0 -> 272, 0
+	// NOUMEA: 231, 94 -> 272, 0
 	public void setNewTarget() {
 		int min, max, column;
 		Random rand = new Random();
@@ -78,6 +80,10 @@ public class C_Ship_cargo extends A_Animal {
 			max = 96;// TODO number in source 2018.03 jlf
 			column = rand.nextInt(max - min + 1) + min;
 			this.setTarget(myLandscape.getGrid()[column][266]);// TODO number in source 2025.10 jlf
+		}
+		if (rand.nextDouble() < .1) {
+			this.destination = "NOUMEA";
+			this.setTarget(myLandscape.getGrid()[231][94]);
 		}
 	}
 }

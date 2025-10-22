@@ -37,15 +37,20 @@ public interface I_ConstantPNMC extends I_ConstantString {
 	public static final String CHLOROPHYLL_EVENT = "chlorophyll";
 	public static final String NEKTON_EVENT = "microNekton";
 	public static final String COMPUTE_ENERGY = "compute_energy";
-	// Others
-	public static final int BACKGROUND_COLOR = 38;
+	//
+	// OTHERS
+	//
 	public static int TERRESTRIAL_MIN_AFFINITY = 99;
-	/** Used to lighten the GUI calculations */
-	public static final int PARTICLE_CELLS_SPACING = 4; // 3 // interval where to post plankton cells see protocol.initpopulations
+	/** Used to lighten the GUI calculations: interval where to post current and plankton particles<br>
+	 * @see C_Protocol_PNMC_drifters#initPopulations() */
+	public static final int PARTICLE_CELLS_SPACING = 6; // 3 //
 	public static final int BACKWARD_NB_CELLS = 1;// if particle reach bordure move back nb cells
 	public static final int STREAM_DISPLAY_SIZE = 300;// taille des vecteurs courants affichés
 	public static final double PARTICLE_RESISTANCE_FACTOR = 1.;// freinage des particules vis à vis de la vitesse du courant)
-
+	public static final int BACKGROUND_COLOR = 38;
+	//
+	// ENERGY RANKING
+	//
 	public static final int ENERGY_GREEN = 0;//
 	public static final int ENERGY_ORANGE = 1;//
 	public static final int ENERGY_RED = 2;//
@@ -55,5 +60,12 @@ public interface I_ConstantPNMC extends I_ConstantString {
 	public static final double GREEN_AREA_Upercent = .25;// green lower limit
 	public static final double ORANGE_AREA_Upercent = .50;// orange lower limit
 	public static final double RED_AREA_Upercent = .75;// red lower limit
+	//
+	// DRIVERS NORMALIZATION
+	//
+	public static final double CHLORO_MIN = 0.047118366;// for year 2021
+	public static final double CHLORO_MAX = 0.40059945;
+	public static final double NEKTON_MIN = 2.039093501;// for year 2021
+	public static final double NEKTON_MAX = 4.90414;
 
 }
