@@ -5,7 +5,6 @@ import java.util.TreeSet;
 
 import melanesim.C_ContextCreator;
 import melanesim.protocol.A_Protocol;
-import presentation.display.C_CustomPanelSet;
 import presentation.epiphyte.C_InspectorEnergy;
 import presentation.epiphyte.C_InspectorPopulationRodent;
 import repast.simphony.context.Context;

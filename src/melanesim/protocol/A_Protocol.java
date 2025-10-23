@@ -73,9 +73,9 @@ public abstract class A_Protocol implements I_Protocol, I_ConstantString, I_Cons
 		A_Protocol.breedingSeason = false;// TODO JLF 2015.03 misplaced
 		this.indicatorsFile = new C_FileWriter("Indicateurs.csv", true);
 		// Initialization of the ground manager Author: LeFur 07.2012, rev Mboup 2013, Diakhate 2014
+		this.readUserParameters();
 		A_Protocol.event("A_Protocol()", " raster: " + C_Parameters.RASTER_URL, isNotError);
 		this.initLandscape(ctxt);
-		this.readUserParameters();
 		A_Protocol.event("A_Protocol()", " identifying land plots ...", isNotError);
 		this.landscape.identifyAffinityLandPlots(ctxt);
 		A_VisibleAgent.init(this.landscape);

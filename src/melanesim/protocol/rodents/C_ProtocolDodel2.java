@@ -25,7 +25,6 @@ import presentation.display.C_Background;
 import presentation.display.C_CustomPanelSet_Rodent;
 import presentation.display.C_UserPanelRodent;
 import presentation.epiphyte.C_InspectorBorreliaCrocidurae;
-import presentation.epiphyte.C_InspectorEnergy;
 import presentation.epiphyte.C_InspectorGenetic;
 import presentation.epiphyte.C_InspectorOrnithodorosSonrai;
 import presentation.epiphyte.C_InspectorPopulationRodent;
@@ -97,6 +96,7 @@ public class C_ProtocolDodel2 extends A_ProtocolFossorial implements I_ConstantD
 		this.chronogram = new C_Chronogram(I_ConstantDodel2.CHRONO_FILENAME);
 		this.facilityMap = new C_Background(-.169, 293., 299);
 		this.setInitialAffinities();
+		this.geneticInspector = new C_InspectorGenetic();
 		this.ornithodorosInspector = new C_InspectorOrnithodorosSonrai();
 		this.borreliaInspector = new C_InspectorBorreliaCrocidurae();
 		this.inspectorList.add(this.borreliaInspector);
@@ -171,10 +171,10 @@ public class C_ProtocolDodel2 extends A_ProtocolFossorial implements I_ConstantD
 			}
 		}
 	}
-//	@Override
-//	public void initCalendar() {
-//		protocolCalendar.set(2018, Calendar.NOVEMBER, 8, 9, 00);
-//	}
+	// @Override
+	// public void initCalendar() {
+	// protocolCalendar.set(2018, Calendar.NOVEMBER, 8, 9, 00);
+	// }
 	@Override
 	public void initProtocol() {
 
@@ -238,10 +238,8 @@ public class C_ProtocolDodel2 extends A_ProtocolFossorial implements I_ConstantD
 	}
 	@Override
 	public boolean isSimulationEnd() {
-		if (C_InspectorPopulationRodent.getNbFemales() == 0 && !this.chronogram.isEndOfChrono) return false;// Avoid end of simulation
-																										// when the number of
-																										// female is null but the
-																										// chronogram is not!
+		// Avoid end of simulation when the number of female is null but the chronogram is not!
+		if (C_InspectorPopulationRodent.getNbFemales() == 0 && !this.chronogram.isEndOfChrono) return false;
 		return super.isSimulationEnd();
 	}
 	//
@@ -439,8 +437,7 @@ public class C_ProtocolDodel2 extends A_ProtocolFossorial implements I_ConstantD
 	 * @author M.Sall 09.2020 */
 	public C_Food createFood(C_SoilCell oneSoilCell) {
 		oneSoilCell.getCoordinate_Ucs();
-		oneSoilCell
-				.getCoordinate_Ucs();
+		oneSoilCell.getCoordinate_Ucs();
 		return new C_Food(oneSoilCell.getAffinity(), Coordinate.X, Coordinate.Y);
 	}
 	/** Create new human walker */
@@ -658,7 +655,7 @@ public class C_ProtocolDodel2 extends A_ProtocolFossorial implements I_ConstantD
 	public void randomlyAddCat(int nbCat) {
 		for (int i = 0; i < nbCat; i++) {
 			C_Cat agent = createCat();
-			//agent.seta_Tag(true);
+			// agent.seta_Tag(true);
 			Coordinate oneCoordinate = null;
 			int cellAffinity = 0;
 			do {
