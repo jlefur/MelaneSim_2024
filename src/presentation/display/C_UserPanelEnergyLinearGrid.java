@@ -31,6 +31,9 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 	private final Timer debounce = new Timer(200, e -> applyToParametersAndSave());
 	private boolean live = false;
 	private boolean syncing = false;
+	// Pour imprimer le changement de valeur
+	private final java.util.Map<String, Double> lastApplied = new java.util.HashMap<>();
+	private static final double EPS = 1e-6;
 
 	private static ImageIcon loadIconFromFile(String imageName, int size) {
 		try {
@@ -78,16 +81,16 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 
 	// ---- Déclare ici tes 9 canaux (exemples) ----
 	private final List<Channel> channels = Arrays.asList(//
-			new Channel("chl", "chlorophyll", CHLOROPHYLL_ICON, () -> C_Parameters.CHLOROPHYLL_MULTIPLIER,
-					v -> C_Parameters.CHLOROPHYLL_MULTIPLIER = v), //
 			new Channel("par", "particle", PARTICLE_ICON, () -> C_Parameters.PARTICLE_MULTIPLIER,
 					v -> C_Parameters.PARTICLE_MULTIPLIER = v), //
+			new Channel("chl", "chlorophyll", CHLOROPHYLL_ICON, () -> C_Parameters.CHLOROPHYLL_MULTIPLIER,
+					v -> C_Parameters.CHLOROPHYLL_MULTIPLIER = v), //
+			new Channel("nec", "necton", NEKTON_ICON, () -> C_Parameters.NEKTON_MULTIPLIER,
+					v -> C_Parameters.NEKTON_MULTIPLIER = v), //
 			new Channel("mou", "mount", MOUNT_ICON, () -> C_Parameters.MOUNT_MULTIPLIER,
 					v -> C_Parameters.MOUNT_MULTIPLIER = v), //
 			new Channel("tem", "temperature", TEMPERATURE_ICON, () -> C_Parameters.TEMPERATURE_MULTIPLIER,
 					v -> C_Parameters.TEMPERATURE_MULTIPLIER = v), //
-			new Channel("nec", "necton", NEKTON_ICON, () -> C_Parameters.NEKTON_MULTIPLIER,
-					v -> C_Parameters.NEKTON_MULTIPLIER = v), //
 			new Channel("tun", "tuna", TUNA_ICON, () -> C_Parameters.TUNA_MULTIPLIER,
 					v -> C_Parameters.TUNA_MULTIPLIER = v), //
 			new Channel("wha", "whale", WHALE_ICON, () -> C_Parameters.WHALE_MULTIPLIER,
@@ -96,9 +99,10 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 					v -> C_Parameters.SHARK_MULTIPLIER = v), //
 			new Channel("bir", "bird", BIRD_ICON, () -> C_Parameters.BIRD_MULTIPLIER,
 					v -> C_Parameters.BIRD_MULTIPLIER = v), //
-			new Channel("cor", "coral", TURTLE_ICON, () -> C_Parameters.TURTLE_MULTIPLIER,
-					v -> C_Parameters.TURTLE_MULTIPLIER = v), new Channel("fis", "fisher", FISHER_ICON,
-							() -> C_Parameters.FISHER_MULTIPLIER, v -> C_Parameters.FISHER_MULTIPLIER = v), //
+			new Channel("tur", "turtle", TURTLE_ICON, () -> C_Parameters.TURTLE_MULTIPLIER,
+					v -> C_Parameters.TURTLE_MULTIPLIER = v), //
+			new Channel("fis", "fisher", FISHER_ICON, () -> C_Parameters.FISHER_MULTIPLIER,
+					v -> C_Parameters.FISHER_MULTIPLIER = v), //
 			new Channel("shi", "ship", SHIP_ICON, () -> C_Parameters.SHIP_MULTIPLIER,
 					v -> C_Parameters.SHIP_MULTIPLIER = v), //
 			new Channel("tou", "tourism", TOURISM_ICON, () -> C_Parameters.TOURISM_MULTIPLIER,
@@ -107,7 +111,9 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 					v -> C_Parameters.POLICE_MULTIPLIER = v), //
 			new Channel("sew", "sewage", POLLUTION_ICON, () -> C_Parameters.POLLUTION_MULTIPLIER,
 					v -> C_Parameters.POLLUTION_MULTIPLIER = v)); //
-
+	//
+	// CONSTRUCTOR
+	//
 	public C_UserPanelEnergyLinearGrid() {
 		super(new BorderLayout(8, 8));
 
@@ -154,6 +160,10 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 				setUI(ch, v);
 			}
 			saveCSV(); // crée un CSV dès le départ
+		}
+		// Capture l’état initial pour éviter un log massif au premier “apply”
+		for (Channel ch : channels) {
+			lastApplied.put(ch.id, ((Number) ch.spinner.getValue()).doubleValue());
 		}
 	}
 
@@ -292,15 +302,41 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 	}
 
 	// ---------- Application & CSV générique ----------
+	private void applyToParametersWithLogging() {
+		for (Channel ch : channels) {
+			double v = ((Number) ch.spinner.getValue()).doubleValue();
+			Double prev = lastApplied.get(ch.id);
+
+			// si changement significatif, on applique ET on logue
+			if (prev == null || Math.abs(prev - v) > EPS) {
+				ch.set.accept(v); // écrit dans C_Parameters
+				System.out.printf("[EnergyGrid] Changed: %s (%s) -> %.2fx%n", ch.label, ch.id, v);
+				lastApplied.put(ch.id, v);
+			}
+			// sinon: rien (pas de log, pas de réécriture)
+		}
+	}
+
 	private void applyToParameters() {
+		applyToParametersWithLogging();
+	}
+
+	private void applyToParameters0() {
 		for (Channel ch : channels) {
 			double v = ((Number) ch.spinner.getValue()).doubleValue();
 			ch.set.accept(v); // écrit dans C_Parameters
+			//
+			double prev = lastApplied.getOrDefault(ch.id, Double.NaN);
+			if (Double.isNaN(prev) || Math.abs(prev - v) > EPS) {
+				System.out.printf("[EnergyGrid] %s (%s) -> %.2fx%n", ch.label, ch.id, v);
+				lastApplied.put(ch.id, v);
+			}
+
 		}
 	}
 
 	private void applyToParametersAndSave() {
-		applyToParameters();
+		applyToParametersWithLogging(); // n’affiche que ce qui change
 		saveCSV();
 	}
 

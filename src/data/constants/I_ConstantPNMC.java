@@ -65,7 +65,7 @@ public interface I_ConstantPNMC extends I_ConstantString {
 	//
 	public static final double CHLORO_MIN = 0.047118366;// for year 2021
 	public static final double CHLORO_MAX = 0.40059945;
-	public static final double NEKTON_MIN = 2.039093501;// for year 2021
-	public static final double NEKTON_MAX = 4.90414;
+	public static final double NEKTON_MIN = 0.000196165;// for year 2021
+	public static final double NEKTON_MAX = 4.904100;
 
 }

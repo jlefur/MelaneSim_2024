@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.TimeZone;
 
 import data.C_Event;
+import data.C_Parameters;
 import data.C_ReadRasterDouble;
 import repast.simphony.context.Context;
 import repast.simphony.valueLayer.GridValueLayer;
@@ -50,8 +51,7 @@ public class C_Protocol_PNMC_nekton extends C_Protocol_PNMC_plankton {
 				for (int i = 0; i < imax; i++) {
 					for (int j = 0; j < jmax; j++) {
 						double value = matriceLue[i][j];
-						marineCell = ((C_SoilCellMarine) this.landscape.getGrid()[i][j]);
-						marineCell.setMicroNekton(value);
+						// classement des valeurs pour colorMap
 						if (value == 0.) value = 0;
 						else if (value > 0 && value <= 0.2) value = 1;
 						else if (value > 0.2 && value <= 0.5) value = 2;
@@ -61,6 +61,10 @@ public class C_Protocol_PNMC_nekton extends C_Protocol_PNMC_plankton {
 						else if (value > 2 && value <= 3) value = 6;
 						else value = 7; // value > 3
 						this.nektonValueLayer.set(value, i, j);
+						// Intégration de la valeur normalisée dans marine cells
+						value = convertTo100(value, NEKTON_MIN, NEKTON_MAX);
+						marineCell = ((C_SoilCellMarine) this.landscape.getGrid()[i][j]);
+						marineCell.setMicroNekton(value);
 					}
 				}
 				break;
@@ -74,8 +78,9 @@ public class C_Protocol_PNMC_nekton extends C_Protocol_PNMC_plankton {
 		C_SoilCellMarine cell = (C_SoilCellMarine) this.landscape.getGrid()[127][217];
 		if (cell.getOccupantList().size() >= 1)
 			A_Protocol.event("127-127 ", cell.getOccupantList().size() + "occupants, énergie: " + Math.round(cell
-					.getEnergy_Ukcal() * 100.0) / 100.0 + ", xphylle: " + Math.round(cell.getChlorophyll() * 100.0)
-							/ 100.0 + ", necton: " + Math.round(cell.getMicroNekton() * 100.0) / 100.0, isError);
+					.computeFullEnergy_Ukcal() * 100.0) / 100.0 + ", xphylle: " + Math.round(cell.getChlorophyll()
+							* 100.0) / 100.0 + " ("+C_Parameters.CHLOROPHYLL_MULTIPLIER+"), necton: " + Math.round(cell.getMicroNekton() * 100.0) / 100.0+" ("+C_Parameters.NEKTON_MULTIPLIER+")",
+					isError);
 	}
 
 }

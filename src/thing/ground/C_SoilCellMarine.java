@@ -22,22 +22,21 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	private C_StreamCurrent myCurrent;
 	/** Sum of energies (situated things) passed through this cell since last resetColors */
 	private double integralEnergy_Ukcal = 0.;
-	private double chlorophyll = 1.;
+	private double chlorophyll = 0.;
 	private double planktonTotalChlorophyll = 0.;
 	/** microNekton is not moved by currents */
-	private double microNekton = 1.;
+	private double microNekton = 0.;
 	//
 	// CONSTRUCTOR
 	//
 	public C_SoilCellMarine(int aff, int lineNo, int colNo) {
 		super(aff, lineNo, colNo);
-		// TODO number in source OK 2024 JLF speed has to be != from 0 before current read from file in order to avoid plankton
-		// bordure
+		// TODO number in source OK 2024 JLF speed has to be != from 0 before read from file in order to avoid plankton bordure
 		this.speedEastward_UmeterPerSecond = 1e-10;
 		this.speedNorthward_UmeterPerSecond = 1e-10;
 	}
 	//
-	// OVERRIDEN METHOD
+	// OVERRIDEN METHODS
 	//
 	/** Incoming plankton gets the cell's chlorophyll value as energy value, update cell's meanEnergy_Ukcal
 	 * @author JLF 04.2025 */
@@ -48,6 +47,9 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 			((C_Plankton) thing).energy_Ukcal = this.getChlorophyll() * C_Parameters.CHLOROPHYLL_MULTIPLIER;
 		}
 		this.energy_Ukcal += thing.getEnergy_Ukcal();
+		if (!(thing instanceof C_StreamCurrent)) {
+			this.energy_Ukcal += C_Parameters.PARTICLE_MULTIPLIER;
+		}
 		return super.agentIncoming(thing);
 	}
 
@@ -57,6 +59,9 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	public boolean agentLeaving(I_SituatedThing thing) {
 		if (thing instanceof C_Plankton) this.planktonTotalChlorophyll -= this.getChlorophyll();
 		this.energy_Ukcal -= thing.getEnergy_Ukcal();
+		if (!(thing instanceof C_StreamCurrent)) {
+			this.energy_Ukcal -= C_Parameters.PARTICLE_MULTIPLIER;
+		}
 		return super.agentLeaving(thing);
 	}
 
@@ -65,7 +70,7 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	 * Compute the marineCell's integral energy -JLF 03,10 2025 */
 	public void step_Utick() {
 		super.step_Utick();
-		this.integralEnergy_Ukcal += this.energy_Ukcal;
+		this.integralEnergy_Ukcal += this.computeFullEnergy_Ukcal();
 		double speedEastward_UmeterPerTick, speedNorthward_UmeterPerTick;
 		TreeSet<I_SituatedThing> occupants = new TreeSet<>(this.getOccupantList());
 		for (I_SituatedThing agent : occupants) {
@@ -78,6 +83,13 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 						speedNorthward_UmeterPerTick));
 			}
 		}
+	}
+	// 
+	// SPECIFIC METHOD
+	//
+	/** Include nekton 10.2025*/
+	public double computeFullEnergy_Ukcal() {
+		return this.energy_Ukcal+this.microNekton*C_Parameters.NEKTON_MULTIPLIER;
 	}
 	//
 	// SETTERS & GETTERS
