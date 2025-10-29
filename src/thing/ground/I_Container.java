@@ -23,6 +23,6 @@ public interface I_Container extends I_SituatedThing {
 	public int getCarryingCapacity_Urodent();
 	public TreeSet<C_Rodent> getRodentList();
 	public TreeSet<C_Rodent> getFullRodentList();
-	public int getLoad_Urodent();
-	public int getFullLoad_Urodent();
+	public int retrieveLoad_Urodent();
+	public int retrieveFullLoad_Urodent();
 }

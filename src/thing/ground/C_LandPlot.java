@@ -93,7 +93,7 @@ public class C_LandPlot extends A_Container implements I_ConstantStringRodents {
 	/** if rodent load of the land plot is > carrying capacity then land plot is full */
 	public boolean isFull() {
 		int nrodents = 0;
-		for (C_SoilCell oneCell : this.cells) nrodents += oneCell.getFullLoad_Urodent();
+		for (C_SoilCell oneCell : this.cells) nrodents += oneCell.retrieveFullLoad_Urodent();
 		return nrodents > getCarryingCapacity_Urodent();
 	}
 	// @Override

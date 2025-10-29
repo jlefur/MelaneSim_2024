@@ -207,12 +207,12 @@ public class C_ProtocolCage extends A_ProtocolRodent implements I_ConstantNumeri
 				}
 				if (!found) {
 					for (int col = 0; col < NB_CAGES_COLUMNS; col++) {
-						if ((cagesMatrix[lineMixMale][col].getLoad_Urodent() == 1) && (cagedRodent.testFemale())) {
+						if ((cagesMatrix[lineMixMale][col].retrieveLoad_Urodent() == 1) && (cagedRodent.testFemale())) {
 							changeCage(cagedRodent, lineMixMale, col, "F" + (i + 1));
 							found = true;
 							break;
 						}
-						else if ((cagesMatrix[lineMixFemale][col].getLoad_Urodent() == 1) && (cagedRodent.testMale())) {
+						else if ((cagesMatrix[lineMixFemale][col].retrieveLoad_Urodent() == 1) && (cagedRodent.testMale())) {
 							changeCage(cagedRodent, lineMixFemale, col, "F" + (i + 1));
 							found = true;
 							break;

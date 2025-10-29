@@ -144,7 +144,7 @@ public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC, 
 		if (agent instanceof C_HumanCarrier) {
 			String typeVehicle = ((C_HumanCarrier) agent).getVehicle().getType();
 			if (((C_HumanCarrier) agent).getVehicle().isParked()) return VEHICLE_PARKED;
-			else if (((C_HumanCarrier) agent).getVehicle().getLoad_Urodent() > 0) return VEHICLE_LOADED;
+			else if (((C_HumanCarrier) agent).getVehicle().retrieveLoad_Urodent() > 0) return VEHICLE_LOADED;
 			else if (typeVehicle.equals(BOAT_EVENT)) return VEHICLE_BOAT;
 			else if (typeVehicle.equals(TRAIN_EVENT)) return VEHICLE_TRAIN;
 			else if (typeVehicle.equals(TRUCK_EVENT)) return VEHICLE_TRUCK;
@@ -297,7 +297,7 @@ public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC, 
 
 	/** agent is plankton JLF 2024 */
 	public static Color getColorPNMC_DRIFTERS(I_SituatedThing agent) {
-		if (agent instanceof C_Plankton && C_Protocol_PNMC_drifters.DISPLAY_FACILITY_MAP) return Color.green; // new Color(172, 117, 213);// violet
+		if (agent instanceof C_Plankton && C_Protocol_PNMC_drifters.DISPLAY_FACILITY_MAP) return new Color(172, 117, 213);// violet
 		if (agent instanceof C_Ship_cargo) return Color.red;
 		return Color.green;
 	}
@@ -411,7 +411,7 @@ public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC, 
 		Color couleur = Color.white;
 		if (agent instanceof C_HumanCarrier) {
 			String typeVehicle = ((C_HumanCarrier) agent).getVehicle().getType();
-			if (((C_HumanCarrier) agent).getVehicle().getLoad_Urodent() > 0) couleur = Color.red;
+			if (((C_HumanCarrier) agent).getVehicle().retrieveLoad_Urodent() > 0) couleur = Color.red;
 			else if (typeVehicle.equals(C_IconSelector.BOAT_EVENT)) couleur = Color.yellow;
 			else if (typeVehicle.equals(C_IconSelector.TRAIN_EVENT)) couleur = Color.cyan;
 			else if (typeVehicle.equals(C_IconSelector.TRUCK_EVENT)) couleur = Color.blue;
@@ -446,7 +446,7 @@ public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC, 
 			if (rodent.isHasToLeaveFullContainer()) return Color.black;
 		}
 		else if (agent instanceof C_BurrowSystem) {
-			if (((C_BurrowSystem) agent).getLoad_Urodent() > 4) couleur = Color.black;
+			if (((C_BurrowSystem) agent).retrieveLoad_Urodent() > 4) couleur = Color.black;
 			else couleur = Color.green;
 		}
 		return couleur;

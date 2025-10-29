@@ -138,7 +138,7 @@ public class C_InspectorPopulationRodent extends C_InspectorPopulation {
 			SpatialDistributionFile.writeln("");
 			SpatialDistributionFile.write(";;;;");
 			for (int i = 0; i < grid.length; i++)
-				SpatialDistributionFile.write(+grid[i][j].getFullLoad_Urodent() + CSV_FIELD_SEPARATOR);
+				SpatialDistributionFile.write(+grid[i][j].retrieveFullLoad_Urodent() + CSV_FIELD_SEPARATOR);
 		}
 		SpatialDistributionFile.writeln("");
 		SpatialDistributionFile.write(";;;;");

@@ -74,7 +74,7 @@ public abstract class A_ProtocolTransportation extends A_ProtocolRodent implemen
 		TreeSet<C_City> cityList = this.inspectorTransportation.getCityList();
 		for (C_City oneCity : cityList) {
 			// Compute the surplus (included within trucks) and kill rats exceeding
-			int surplus = oneCity.getFullLoad_Urodent() - oneCity.getCarryingCapacity_Urodent();
+			int surplus = oneCity.retrieveFullLoad_Urodent() - oneCity.getCarryingCapacity_Urodent();
 			if (surplus > 0) {
 				TreeSet<C_Rodent> oneCityRodentList = oneCity.getFullRodentList();
 				Iterator<C_Rodent> iterator = oneCityRodentList.iterator();
@@ -85,7 +85,7 @@ public abstract class A_ProtocolTransportation extends A_ProtocolRodent implemen
 				if (C_Parameters.VERBOSE)
 					A_Protocol.event("A_ProtocolTransportation.removeRatSurplus",
 							"Transportation protocol step: removed " + surplus + " rodents (" + oneCity
-									.getFullLoad_Urodent() + "/" + oneCity.getHumanPopSize_Uindividual() + ") in "
+									.retrieveFullLoad_Urodent() + "/" + oneCity.getHumanPopSize_Uindividual() + ") in "
 									+ oneCity, false);
 			}
 		}

@@ -124,7 +124,7 @@ public class C_InspectorTransportation extends A_Inspector implements I_Constant
 			double rodentRate = 0;
 			String lineAndTick = A_Protocol.protocolCalendar.stringShortDate() + CSV_FIELD_SEPARATOR + RepastEssentials.GetTickCount();
 			for (C_City oneCity : this.cityList) {
-				if (oneCity.getHumanPopSize_Uindividual() != 0) rodentRate = (double) oneCity.getFullLoad_Urodent()
+				if (oneCity.getHumanPopSize_Uindividual() != 0) rodentRate = (double) oneCity.retrieveFullLoad_Urodent()
 						* (double) C_Parameters.RODENT_SUPER_AGENT_SIZE * 1000. / (double) oneCity.getHumanPopSize_Uindividual();
 				else rodentRate = 0.; // oneCity is uninhabited
 				lineAndTick += CSV_FIELD_SEPARATOR + rodentRate;
@@ -133,7 +133,7 @@ public class C_InspectorTransportation extends A_Inspector implements I_Constant
 
 			lineAndTick = A_Protocol.protocolCalendar.stringShortDate() + CSV_FIELD_SEPARATOR + RepastEssentials.GetTickCount();
 			for (C_City oneCity : this.cityList)
-				lineAndTick += CSV_FIELD_SEPARATOR + oneCity.getFullLoad_Urodent();
+				lineAndTick += CSV_FIELD_SEPARATOR + oneCity.retrieveFullLoad_Urodent();
 			outputBufferRodentPop.add(lineAndTick);
 
 			lineAndTick = A_Protocol.protocolCalendar.stringShortDate() + CSV_FIELD_SEPARATOR + RepastEssentials.GetTickCount();
@@ -202,7 +202,7 @@ public class C_InspectorTransportation extends A_Inspector implements I_Constant
 	public int getCarriersLoad_Urodent() {
 		int rodentLoad = 0;
 		for (C_HumanCarrier oneCarrier : carrierList)
-			rodentLoad += oneCarrier.getVehicle().getLoad_Urodent();
+			rodentLoad += oneCarrier.getVehicle().retrieveLoad_Urodent();
 		return rodentLoad;
 	}
 	/** Count pregnant female tranported by vehicles; author JLF 06.2016 */

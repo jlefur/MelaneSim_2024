@@ -130,7 +130,7 @@ public abstract class A_Container extends A_VisibleAgent implements I_Container 
 	}
 	public boolean isFull() {
 		if (this.dead) return true;
-		else return this.getCarryingCapacity_Urodent() < this.getLoad_Urodent();
+		else return this.getCarryingCapacity_Urodent() < this.retrieveLoad_Urodent();
 	}
 	/** @return the i or x coord in the grid (ex-SoilCell) matrix */
 	public int retrieveLineNo() {
@@ -195,13 +195,13 @@ public abstract class A_Container extends A_VisibleAgent implements I_Container 
 	/** Author Le Fur 03.2015
 	 * @return the number of rodents in the container and into its parts
 	 * @see getFullRodentList */
-	public int getFullLoad_Urodent() {
+	public int retrieveFullLoad_Urodent() {
 		return getFullRodentList().size();
 	}
 	/** Author Le Fur 03.2015
 	 * @return the number of rodents in the container only
 	 * @see getRodentList */
-	public int getLoad_Urodent() {
+	public int retrieveLoad_Urodent() {
 		return rodentLoad;
 	}
 	/** @return the number of agents in the container and into its parts

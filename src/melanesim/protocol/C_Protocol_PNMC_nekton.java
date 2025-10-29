@@ -62,7 +62,7 @@ public class C_Protocol_PNMC_nekton extends C_Protocol_PNMC_plankton {
 						else value = 7; // value > 3
 						this.nektonValueLayer.set(value, i, j);
 						// Intégration de la valeur normalisée dans marine cells
-						value = convertTo100(value, NEKTON_MIN, NEKTON_MAX);
+						value = convertTo100(matriceLue[i][j], NEKTON_MIN, NEKTON_MAX);
 						marineCell = ((C_SoilCellMarine) this.landscape.getGrid()[i][j]);
 						marineCell.setMicroNekton(value);
 					}
