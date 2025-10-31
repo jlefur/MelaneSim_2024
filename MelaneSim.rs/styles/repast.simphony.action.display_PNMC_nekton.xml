@@ -7,11 +7,19 @@
 			<string>repast.simphony.visualization.editedStyle.EditedStyle2D
 			</string>
 		</entry>
+		<entry>
+			<string>thing.C_Nekton</string>
+			<string>presentation.display.C_StyleAgent</string>
+		</entry>
 	</styles>
 	<editedStyles>
 		<entry>
 			<string>presentation.display.C_Background</string>
 			<string>presentation.display.C_Background.style_PNMC.nekton.xml</string>
+		</entry>
+		<entry>
+			<string>thing.C_Nekton</string>
+			<null />
 		</entry>
 	</editedStyles>
 	<netStyles />
@@ -34,6 +42,10 @@
 		<entry>
 			<string>presentation.display.C_Background</string>
 			<int>0</int>
+		</entry>
+		<entry>
+			<string>thing.C_Nekton</string>
+			<int>1</int>
 		</entry>
 	</layerOrder>
 	<projections>

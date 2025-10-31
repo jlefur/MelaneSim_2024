@@ -17,6 +17,7 @@ import repast.simphony.engine.environment.RunState;
 import thing.A_Amniote;
 import thing.A_Animal;
 import thing.A_NDS;
+import thing.C_Nekton;
 import thing.C_Plankton;
 import thing.C_Ship_cargo;
 import thing.C_StreamCurrent;
@@ -74,7 +75,7 @@ public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC, 
 			return TAGGED;
 		}
 		else if (C_Parameters.PROTOCOL.contains("PNMC")) return getNameOfImagePNMC(agent);
-		
+
 		else if (C_Parameters.PROTOCOL.equals(CHIZE)) return getNameOfImageChize(agent);
 		else if (C_Parameters.PROTOCOL.equals(GERBIL)) return getNameOfImageGerbil(agent);
 		else if (C_Parameters.PROTOCOL.equals(ENCLOSURE)) return getNameOfImageEnclosMbour(agent);
@@ -97,19 +98,23 @@ public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC, 
 			double speedEast = cell.getSpeedEastward_UmeterPerSecond();
 			if (speedNorth > 0.1) if (speedEast > 0.1) return NORTH_EAST_ICON;
 			else if (speedEast < -0.1) return NORTH_WEST_ICON;
-			else // speedEast == 0
-				return NORTH_ICON;
+			else return NORTH_ICON;// speedEast == 0
 			else if (speedNorth < -0.1) if (speedEast > 0.1) return SOUTH_EAST_ICON;
 			else if (speedEast < -0.1) return SOUTH_WEST_ICON;
-			else // speedEast == 0
-				return SOUTH_ICON;
+			else return SOUTH_ICON;// speedEast == 0
 			// speedNorth == 0.
 			else if (speedEast > 0.1) return EAST_ICON;
 			else if (speedEast < -0.1) return WEST_ICON;
 			else return null;// vitesse = nulle
 		}
+		else if (agent instanceof C_Nekton) {
+			return MICRONEKTON_ICON;
+		}
 		else if (agent instanceof C_Plankton) return PLANKTON_ICON;
-		else if (agent instanceof C_Ship_cargo) return SHIP_CARGO_ICON;
+		else if (agent instanceof C_Ship_cargo) {
+			if (((C_Ship_cargo) agent).getDestination().equals("NORTH")) return SHIP_CARGO_NORTHWARD_ICON;
+			else return SHIP_CARGO_SOUTHWARD_ICON;
+		}
 		else return TAGGED;// problem
 	}
 
@@ -297,8 +302,9 @@ public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC, 
 
 	/** agent is plankton JLF 2024 */
 	public static Color getColorPNMC_DRIFTERS(I_SituatedThing agent) {
-		if (agent instanceof C_Plankton && C_Protocol_PNMC_drifters.DISPLAY_FACILITY_MAP) return new Color(172, 117, 213);// violet
-		if (agent instanceof C_Ship_cargo) return Color.red;
+		if (agent instanceof C_Nekton) return Color.cyan;
+		else if (agent instanceof C_Plankton) return new Color(172, 117, 213);// violet
+		else if (agent instanceof C_Ship_cargo) return Color.red;
 		return Color.green;
 	}
 

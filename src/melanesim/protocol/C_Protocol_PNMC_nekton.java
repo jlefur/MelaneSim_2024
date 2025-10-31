@@ -78,9 +78,9 @@ public class C_Protocol_PNMC_nekton extends C_Protocol_PNMC_plankton {
 		C_SoilCellMarine cell = (C_SoilCellMarine) this.landscape.getGrid()[127][217];
 		if (cell.getOccupantList().size() >= 1)
 			A_Protocol.event("127-127 ", cell.getOccupantList().size() + "occupants, énergie: " + Math.round(cell
-					.computeFullEnergy_Ukcal() * 100.0) / 100.0 + ", xphylle: " + Math.round(cell.getChlorophyll()
-							* 100.0) / 100.0 + " ("+C_Parameters.CHLOROPHYLL_MULTIPLIER+"), necton: " + Math.round(cell.getMicroNekton() * 100.0) / 100.0+" ("+C_Parameters.NEKTON_MULTIPLIER+")",
-					isError);
+					.getEnergy_Ukcal()) + ", xphylle: " + Math.round(cell.getChlorophyll()) + " ("
+					+ C_Parameters.CHLOROPHYLL_MULTIPLIER + "), necton: " + Math.round(cell.getMicroNekton()) + " ("
+					+ C_Parameters.NEKTON_MULTIPLIER + ")", isError);
 	}
 
 }

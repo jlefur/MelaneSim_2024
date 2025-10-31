@@ -23,6 +23,7 @@ import melanesim.protocol.rodents.C_ProtocolGerbil;
 import melanesim.protocol.rodents.C_ProtocolHybridUniform;
 import melanesim.protocol.rodents.C_ProtocolMusTransport;
 import melanesim.util.C_RandomInNormalDistrib;
+import presentation.dataOutput.C_OutputConsole;
 import repast.simphony.context.Context;
 import repast.simphony.dataLoader.ContextBuilder;
 import repast.simphony.random.RandomHelper;

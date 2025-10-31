@@ -1,0 +1,31 @@
+C_ContextCreator.build(): console is backed up in retour_console.txt
+C_ContextCreator.build(): 11 random number generators initialized
+C_ContextCreator.build(): Initialized time and space converter class with the ground manager 
+A_Protocol.constructor(): simulation starts on 31 déc. 2020 - 16:40:33
+31/12/2020 (tick -1): meta-population set to true
+31/12/2020 (tick -1):  raster: data_raster/melanesia/20231128-TOPEX-ZEE2_GRILLEV2.1.txt
+
+31/12/2020 (tick -1): ASCII grid
+31/12/2020 (tick -1): dimensions dim-ucell: width = 412 height = 268
+31/12/2020 (tick -1): Initialized empty grid of containers
+31/12/2020 (tick -1): dimensions gridValueLayer (valuegrid): [412.0, 268.0]
+31/12/2020 (tick -1): dimensions continuous space:[412.0, 268.0]
+31/12/2020 (tick -1): 4807.43 metres in one cell
+31/12/2020 (tick -1):  identifying land plots ...
+31/12/2020 (tick -1): 922 land plot(s) initialized
+31/12/2020 (tick -1):  Initialized visible AGENT class with their landscape 
+31/12/2020 (tick -1): Chronogram file name : /20250701_PNMC.microNekton.csv
+C_ReadWriteFile.openBufferReader(): reading file data_csv/20250701_PNMC.microNekton.csv
+31/12/2020 (tick -1): 1896 events loaded in memory
+C_Protocol_PNMC_drifters.init: Population of 2954 plankton agent(s) created and positioned at the center of each grid cell
+C_Protocol_PNMC_drifters.init: Population of 2954 micronekton agent(s) created and positioned at the center of each grid cell
+C_Protocol_PNMC_ships.init: Population of 12 cargo ship(s) created and positioned
+31/12/2020 (tick -1): 2 inspectors defined: 
+A_Protocol.recordHeadersInFile(): Tick;Date;HourDate;objects;PlanktonPopSize;pkExportImport;NektonPopSize;nkExportImport;Tick;;NumRun
+C_ContextCreator.build(): protocol ocean.PNMC_ships selected
+C_ContextCreator.build(): Building the context ended: 120212 items
+------------------------------
+Now running at 4H. per tick, ...
+C_Style2dAffinityType(): colormap not found; creating colormap ocean.PNMC_plankton: 12 colors identified
+C_Style2dNekton(); creating PNMC nekton colormap: 9 colors identified
+C_Style2dGroundType(): creating PNMC energy colormap: 5 colors identified

@@ -12,6 +12,10 @@
 			<string>presentation.display.C_StyleAgent</string>
 		</entry>
 		<entry>
+			<string>thing.C_Nekton</string>
+			<string>presentation.display.C_StyleAgent</string>
+		</entry>
+		<entry>
 			<string>thing.C_StreamCurrent</string>
 			<string>presentation.display.C_StyleAgent</string>
 		</entry>
@@ -32,6 +36,10 @@
 		</entry>
 		<entry>
 			<string>thing.C_Plankton</string>
+			<null />
+		</entry>
+		<entry>
+			<string>thing.C_Nekton</string>
 			<null />
 		</entry>
 		<entry>
@@ -57,6 +65,14 @@
 	<layoutInterval>0</layoutInterval>
 	<layerOrder>
 		<entry>
+			<string>thing.C_StreamCurrent</string>
+			<int>0</int>
+		</entry>
+		<entry>
+			<string>thing.ground.C_LandPlot</string>
+			<int>1</int>
+		</entry>
+		<entry>
 			<string>presentation.display.C_Background</string>
 			<int>2</int>
 		</entry>
@@ -65,12 +81,8 @@
 			<int>3</int>
 		</entry>
 		<entry>
-			<string>thing.C_StreamCurrent</string>
-			<int>0</int>
-		</entry>
-		<entry>
-			<string>thing.ground.C_LandPlot</string>
-			<int>1</int>
+			<string>thing.C_Nekton</string>
+			<int>4</int>
 		</entry>
 	</layerOrder>
 	<projections>

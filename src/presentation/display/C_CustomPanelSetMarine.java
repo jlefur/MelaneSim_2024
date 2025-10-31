@@ -38,8 +38,8 @@ public class C_CustomPanelSetMarine extends C_CustomPanelSet {
 		curvePopSize.getChart().setData("Plankton ExportImport", RepastEssentials.GetTickCount(),
 				C_InspectorPopulationMarine.planktonExport);
 		curveDispersal.getChart().setData("Plankton Mean Dispersal", RepastEssentials.GetTickCount(),
-				C_InspectorPopulationMarine.meanDispersal);
+				C_InspectorPopulationMarine.meanDispersalPlankton);
 		curveDispersal.getChart().setData("Plankton Max Dispersal", RepastEssentials.GetTickCount(),
-				C_InspectorPopulationMarine.maxDispersal);
+				C_InspectorPopulationMarine.maxDispersalPlankton);
 	}
 }

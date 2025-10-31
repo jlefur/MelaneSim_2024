@@ -47,6 +47,7 @@ public interface I_ConstantPNMC extends I_ConstantString {
 	public static final int BACKWARD_NB_CELLS = 1;// if particle reach bordure move back nb cells
 	public static final int STREAM_DISPLAY_SIZE = 300;// taille des vecteurs courants affichés
 	public static final double PARTICLE_RESISTANCE_FACTOR = 1.;// freinage des particules vis à vis de la vitesse du courant)
+	public static final double NEKTON_RESISTANCE_FACTOR = 5.;// freinage des particules de micronecton vis à vis de la vitesse du courant)
 	public static final int BACKGROUND_COLOR = 38;
 	//
 	// ENERGY RANKING
@@ -57,9 +58,9 @@ public interface I_ConstantPNMC extends I_ConstantString {
 	public static final int ENERGY_RESET = 3;//
 	public static final int ENERGY_LAND = 4;//
 
-	public static final double GREEN_AREA_Upercent = .25;// green lower limit
-	public static final double ORANGE_AREA_Upercent = .50;// orange lower limit
-	public static final double RED_AREA_Upercent = .75;// red lower limit
+	public static final double GREEN_AREA_Upercent = .05;// green lower limit
+	public static final double ORANGE_AREA_Upercent = .10;// orange lower limit
+	public static final double RED_AREA_Upercent = .25;// red lower limit
 	//
 	// DRIVERS NORMALIZATION
 	//

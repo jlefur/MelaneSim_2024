@@ -13,6 +13,7 @@ import data.constants.I_ConstantPNMC;
 import data.converters.C_ConvertGeographicCoordinates;
 import presentation.display.C_Background;
 import repast.simphony.context.Context;
+import thing.C_Nekton;
 import thing.C_Plankton;
 import thing.C_StreamCurrent;
 import thing.dna.C_GenomeAnimalia;
@@ -41,6 +42,9 @@ public class C_Protocol_PNMC_drifters extends A_Protocol_PNMC {
 	public C_Plankton createPlankton() {
 		return new C_Plankton(new C_GenomeAnimalia());
 	}
+	public C_Nekton createNekton() {
+		return new C_Nekton(new C_GenomeAnimalia());
+	}
 
 	/** Add plankton particle in the center of each cell of the grid at a specified interval - JLF 07.2024 */
 	protected void initPopulations() {
@@ -59,6 +63,9 @@ public class C_Protocol_PNMC_drifters extends A_Protocol_PNMC {
 						cell = (C_SoilCellMarine) this.landscape.getGrid()[i - 1][j - 1];
 						if (cell.getAffinity() < TERRESTRIAL_MIN_AFFINITY) {
 							this.contextualizeNewThingInContainer(createPlankton(), cell);
+							// TODO 10.2025 patch pas très robuste
+							if (C_Parameters.PROTOCOL.equals(PNMC_NEKTON) || C_Parameters.PROTOCOL.equals(PNMC_SHIPS))
+								this.contextualizeNewThingInContainer(createNekton(), cell);
 							cell.setMyCurrent(new C_StreamCurrent(cell.getAffinity(), i - 1, j - 1));
 							contextualizeNewThingInSpace(cell.getMyCurrent(), i - 1, j - 1);
 							particleCount++;
@@ -73,6 +80,9 @@ public class C_Protocol_PNMC_drifters extends A_Protocol_PNMC {
 		}
 		System.out.println("C_Protocol_PNMC_drifters.init: Population of " + particleCount
 				+ " plankton agent(s) created and positioned at the center of each grid cell");
+		if (C_Parameters.PROTOCOL.equals(PNMC_NEKTON) || C_Parameters.PROTOCOL.equals(PNMC_SHIPS))
+			System.out.println("C_Protocol_PNMC_drifters.init: Population of " + particleCount
+					+ " micronekton agent(s) created and positioned at the center of each grid cell");
 	}
 	//
 	// OVERRIDEN METHODS

@@ -77,6 +77,7 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 		// ((C_LandscapeMarine) this.landscape).assertCellsEnergy();
 		// saveScreen();
 		Integer currentMonth = A_Protocol.protocolCalendar.get(Calendar.MONTH);
+		Integer currentWeek = A_Protocol.protocolCalendar.get(Calendar.WEEK_OF_MONTH);
 		A_Protocol.protocolCalendar.incrementDate();
 
 		// Check if map has to be switched Version JLF 08.2014, rev.10.2015, 05.2017
@@ -85,9 +86,10 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 		if (displayMapBefore != C_Parameters.DISPLAY_MAP) switchDisplayMap();
 		// if (C_Parameters.VERBOSE) C_sound.sound("tip.wav");
 
-		if (currentMonth != A_Protocol.protocolCalendar.get(Calendar.MONTH)) {
+		//if (currentMonth != A_Protocol.protocolCalendar.get(Calendar.MONTH)) {
+			if (currentWeek != A_Protocol.protocolCalendar.get(Calendar.WEEK_OF_MONTH)) {
 			((C_LandscapeMarine) this.landscape).assertCellsEnergy();
-			saveScreen();
+			//saveScreen();
 		}
 
 	}

@@ -85,5 +85,12 @@ public class C_Ship_cargo extends A_Animal {
 			this.destination = "NOUMEA";
 			this.setTarget(myLandscape.getGrid()[231][94]);
 		}
+
+	}
+	//
+	// GETTER
+	//
+	public String getDestination() {
+		return destination;
 	}
 }

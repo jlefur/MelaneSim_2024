@@ -15,7 +15,7 @@ public class C_Plankton extends A_Organism {
 	//
 	public C_Plankton(I_DiploidGenome genome) {
 		super(genome);
-		this.setMyName("marine plankton" + NAMES_SEPARATOR + myId);
+		this.setMyName("phyto-plankton" + NAMES_SEPARATOR + myId);
 	}
 	//
 	// OVERRIDEN METHOD

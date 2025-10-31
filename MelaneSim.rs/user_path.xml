@@ -3,6 +3,7 @@
 <!-- MELANESIM -->
 		<agents path="../bin, ../bin-groovy" filter="thing.C_StreamCurrent" />
 		<agents path="../bin, ../bin-groovy" filter="thing.C_Plankton" />
+		<agents path="../bin, ../bin-groovy" filter="thing.C_Nekton" />
 		<agents path="../bin, ../bin-groovy" filter="thing.C_Ship_cargo" />
 		<agents path="../bin, ../bin-groovy" filter="thing.ground.C_SoilCellMarine" />
 		

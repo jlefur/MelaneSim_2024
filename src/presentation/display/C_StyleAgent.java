@@ -19,6 +19,7 @@ import thing.A_Amniote;
 import thing.A_Animal;
 import thing.A_NDS;
 import thing.A_VisibleAgent;
+import thing.C_Nekton;
 import thing.C_Plankton;
 import thing.C_Ship_cargo;
 import thing.C_StreamCurrent;
@@ -64,7 +65,9 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 		this.ellipseScale = 2.f;
 		this.imageScale = .07f;
 		factory.registerImage(PLANKTON_ICON, selectImg.loadImage(PLANKTON_ICON));
-		factory.registerImage(SHIP_CARGO_ICON, selectImg.loadImage(SHIP_CARGO_ICON));
+		factory.registerImage(MICRONEKTON_ICON, selectImg.loadImage(MICRONEKTON_ICON));
+		factory.registerImage(SHIP_CARGO_NORTHWARD_ICON, selectImg.loadImage(SHIP_CARGO_NORTHWARD_ICON));
+		factory.registerImage(SHIP_CARGO_SOUTHWARD_ICON, selectImg.loadImage(SHIP_CARGO_SOUTHWARD_ICON));
 		factory.registerImage(NORTH_ICON, selectImg.loadImage(NORTH_ICON));
 		factory.registerImage(NORTH_EAST_ICON, selectImg.loadImage(NORTH_EAST_ICON));
 		factory.registerImage(EAST_ICON, selectImg.loadImage(EAST_ICON));
@@ -275,7 +278,7 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 				if (agent instanceof C_Vegetation) {
 					spatial = factory.createCircle(CIRCLE_RADIUS * 0.5f, 3);// triangle shape
 				} // mature=circle, immature=square
-				if (agent instanceof C_Ship_cargo) return factory.createCircle(CIRCLE_RADIUS * 2.5f, 3);
+				else if (agent instanceof C_Ship_cargo) return factory.createCircle(CIRCLE_RADIUS * 2.5f, 3);
 				else
 					if (agent instanceof A_Amniote && !((A_Amniote) agent).isSexualMature())
 						spatial = factory.createRectangle((int) CIRCLE_RADIUS, (int) CIRCLE_RADIUS);
@@ -323,21 +326,30 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 				sscale = (float) (((C_StreamCurrent) object).getSpeedEast() * ((C_StreamCurrent) object).getSpeedEast()
 						* sscale * STREAM_DISPLAY_SIZE * 1.5);
 			}
-			// plankton image reflects the number of plankton agent within their cell
-			if (object instanceof C_Plankton) {
+			// nekton image reflects the number of nekton agent within their cell
+			else if (object instanceof C_Nekton) {
 				if (((A_SupportedContainer) object).isa_Tag()) sscale = sscale * 17;
 				else {
 					C_SoilCellMarine cell = (C_SoilCellMarine) object.getCurrentSoilCell();
-					sscale = (float) Math.max(Math.pow(cell.getPlanktonTotalChlorophyll(), 2.5)/450000,.1);
+					sscale = (float) Math.max(Math.pow(cell.getNektonTotalDensity(), 2.5) / 450000, .1);
 					// float size = (float) (this.imageScale * 10.);
 				}
 			}
 			// plankton image reflects the number of plankton agent within their cell
-			if (object instanceof C_Ship_cargo) {
+			else if (object instanceof C_Plankton) {
+				if (((A_SupportedContainer) object).isa_Tag()) sscale = sscale * 17;
+				else {
+					C_SoilCellMarine cell = (C_SoilCellMarine) object.getCurrentSoilCell();
+					sscale = (float) Math.max(Math.pow(cell.getPlanktonTotalChlorophyll(), 2.5) / 450000, .1);
+					// float size = (float) (this.imageScale * 10.);
+				}
+			}
+			// plankton image reflects the number of plankton agent within their cell
+			else if (object instanceof C_Ship_cargo) {
 				if (((A_SupportedContainer) object).isa_Tag()) sscale = sscale * 17;
 				else sscale = sscale * 7;
 			}
-			if (object instanceof A_HumanUrban) {
+			else if (object instanceof A_HumanUrban) {
 				if (((A_HumanUrban) object).isa_Tag()) sscale = sscale * 5;
 				if (!((A_Animal) object).getDesire().equals(REST)) sscale = sscale * 2;
 				else sscale = sscale / 2;// taille humains
