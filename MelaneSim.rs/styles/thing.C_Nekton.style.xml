@@ -1,15 +1,18 @@
 <repast.simphony.visualization.editedStyle.DefaultEditedStyleData2D>
   <shapeWkt>circle</shapeWkt>
-  <size>-1.0</size>
-  <sizeMax>2.0</sizeMax>
+  <size>19.0</size>
+  <sizeMax>200.0</sizeMax>
   <sizeMin>1.0</sizeMin>
-  <sizeScale>2.37</sizeScale>
-  <sizeMethodName>getScale</sizeMethodName>
+  <sizeScale>1000.0</sizeScale>
+  <sizeMethodName>getSize</sizeMethodName>
+  <sizeMaxMethodName>getSize</sizeMaxMethodName>
+  <sizeMinMethodName>getSize</sizeMinMethodName>
   <label></label>
+  <labelMethod>retrieveId</labelMethod>
   <labelPosition>bottom</labelPosition>
   <labelPrecision>3</labelPrecision>
   <labelOffset>5.0</labelOffset>
-  <labelFontSize>14</labelFontSize>
+  <labelFontSize>6</labelFontSize>
   <labelFontType>0</labelFontType>
   <labelFontFamily>Arial</labelFontFamily>
   <labelColor>
@@ -17,10 +20,10 @@
     <float>0.0</float>
     <float>0.0</float>
   </labelColor>
-  <color>
+   <color>
+    <float>0.5</float>
     <float>0.0</float>
-    <float>0.0</float>
-    <float>1.0</float>
+    <float>0.8</float>
   </color>
   <colorMax>
     <float>10.0</float>
@@ -37,5 +40,4 @@
     <float>1.0</float>
     <float>1.0</float>
   </colorScale>
-  <iconFile2D>icons/PNMC.nekton.gif</iconFile2D>
 </repast.simphony.visualization.editedStyle.DefaultEditedStyleData2D>

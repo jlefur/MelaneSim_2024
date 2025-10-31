@@ -9,7 +9,7 @@
 		</entry>
 		<entry>
 			<string>thing.C_Nekton</string>
-			<string>presentation.display.C_StyleAgent</string>
+			<string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
 		</entry>
 	</styles>
 	<editedStyles>
@@ -19,7 +19,7 @@
 		</entry>
 		<entry>
 			<string>thing.C_Nekton</string>
-			<null />
+           <string>thing.C_Nekton.style.xml</string>
 		</entry>
 	</editedStyles>
 	<netStyles />
