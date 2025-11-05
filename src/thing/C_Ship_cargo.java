@@ -1,11 +1,14 @@
 package thing;
 
 import java.util.Random;
+
+import data.C_Parameters;
+import data.constants.I_ConstantPNMC;
 import data.converters.C_ConvertTimeAndSpace;
 import melanesim.C_ContextCreator;
 import thing.dna.I_DiploidGenome;
 
-public class C_Ship_cargo extends A_Animal {
+public class C_Ship_cargo extends A_Animal implements I_ConstantPNMC {
 	//
 	// FIELD
 	//
@@ -16,6 +19,7 @@ public class C_Ship_cargo extends A_Animal {
 	public C_Ship_cargo(I_DiploidGenome genome) {
 		super(genome);
 		this.initParameters();
+		this.energy_Ukcal = 100. / CARGO_POPULATION;// TODO number in source 2025 energie des cargos
 		this.setMyName("Cargo-" + this.myId);
 		this.setNewTarget();
 	}
@@ -24,7 +28,8 @@ public class C_Ship_cargo extends A_Animal {
 	//
 	@Override
 	public void step_Utick() {
-		this.energy_Ukcal = 500.;// TODO number in source 2025 energie des cargos
+		this.energy_Ukcal = 100. / CARGO_POPULATION * C_Parameters.SHIP_MULTIPLIER;// TODO number in source 2025 energie des
+																					// cargos
 		if (this.target == null) this.setNewTarget();
 		else {
 			computeNextMoveToTarget();
@@ -54,8 +59,10 @@ public class C_Ship_cargo extends A_Animal {
 	 * @author lefur 2025.10 */
 	@Override
 	public void initParameters() {
-		double speed_UmeterByDay = 1852. * 24. * 10.;// speed = 10 milles/heure (10 noeuds) TODO number in source 2025 speed = 10
-														// noeuds
+		Random rand = new Random();
+		double speed_UmeterByDay = 1852. * 24. * rand.nextDouble(10.) + 1.;// speed = 1-10 milles/heure (10 noeuds) TODO number in
+																			// source 2025 speed = 10
+		// noeuds
 		this.speed_UmeterByTick = speed_UmeterByDay / C_ConvertTimeAndSpace.oneDay_Utick;
 	}
 	//

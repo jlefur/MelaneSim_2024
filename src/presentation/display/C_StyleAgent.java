@@ -331,7 +331,8 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 				if (((A_SupportedContainer) object).isa_Tag()) sscale = sscale * 17;
 				else {
 					C_SoilCellMarine cell = (C_SoilCellMarine) object.getCurrentSoilCell();
-					sscale = (float) Math.max(Math.pow(cell.getNektonTotalDensity(), 2.5) / 450000, .1);
+					// sscale = (float) Math.max(Math.pow(cell.getNektonTotalDensity(), 2.5) / 450000, .1);
+					sscale = (float) (cell.getTotalNektonDensity()/200.);
 					// float size = (float) (this.imageScale * 10.);
 				}
 			}
@@ -340,7 +341,8 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 				if (((A_SupportedContainer) object).isa_Tag()) sscale = sscale * 17;
 				else {
 					C_SoilCellMarine cell = (C_SoilCellMarine) object.getCurrentSoilCell();
-					sscale = (float) Math.max(Math.pow(cell.getPlanktonTotalChlorophyll(), 2.5) / 450000, .1);
+					sscale = (float) (cell.getTotalChlorophyll_U100()/200.);
+//					sscale = (float) Math.max(Math.pow(cell.getPlanktonTotalChlorophyll(), 2.5) / 450000, .1);
 					// float size = (float) (this.imageScale * 10.);
 				}
 			}

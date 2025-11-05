@@ -20,7 +20,7 @@ public class C_Protocol_PNMC_plankton extends C_Protocol_PNMC_drifters {
 		super(ctxt);
 	}
 	//
-	// OVERRIDEN METHODS
+	// OVERRIDEN METHOD
 	//
 	@Override
 	/** read chlorophyll values */
@@ -43,7 +43,8 @@ public class C_Protocol_PNMC_plankton extends C_Protocol_PNMC_drifters {
 						value = convertTo100(value, CHLORO_MIN, CHLORO_MAX);
 						marineCell = ((C_SoilCellMarine) this.landscape.getGrid()[i][j]);
 						if (!marineCell.isTerrestrial()) {
-							marineCell.setChlorophyll(value);
+							marineCell.setChlorophyll_U100(value);
+							marineCell.setTotalChlorophyll_U100(value*marineCell.getPlanktonPopulation());
 							marineCell.setAffinity((int) (value / 10.));// for xphyl min=0 max=9
 						}
 						// this.landscape.getGridValueLayer().set( value - 1, i, j);

@@ -86,11 +86,11 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 		if (displayMapBefore != C_Parameters.DISPLAY_MAP) switchDisplayMap();
 		// if (C_Parameters.VERBOSE) C_sound.sound("tip.wav");
 
-		//if (currentMonth != A_Protocol.protocolCalendar.get(Calendar.MONTH)) {
-			if (currentWeek != A_Protocol.protocolCalendar.get(Calendar.WEEK_OF_MONTH)) {
-			((C_LandscapeMarine) this.landscape).assertCellsEnergy();
+//		if (currentMonth != A_Protocol.protocolCalendar.get(Calendar.MONTH)) {
+//			if (currentWeek != A_Protocol.protocolCalendar.get(Calendar.WEEK_OF_MONTH)) {
+//			((C_LandscapeMarine) this.landscape).assertCellsEnergy();
 			//saveScreen();
-		}
+//		}
 
 	}
 
@@ -155,6 +155,17 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 		if (oldValueExclos != C_Parameters.EXCLOS)
 			A_Protocol.event("C_Protocol_PNMC_drifters.readUserParameters", "meta-population set to "
 					+ C_Parameters.EXCLOS, isNotError);
+	}
+	@Override
+	public void step_Utick() {
+		super.step_Utick();
+		C_SoilCellMarine cell = (C_SoilCellMarine) this.landscape.getGrid()[127][217];
+		if (cell.getOccupantList().size() >= 1)
+			A_Protocol.event("127-127 ", cell.getOccupantList().size() + "occupants, énergie: " + Math.round(cell
+					.getEnergy_Ukcal()) + " (" + C_Parameters.PARTICLE_MULTIPLIER + "), " + ", xphylle: " + Math.round(
+							cell.getChlorophyll_U100()) + " (" + C_Parameters.CHLOROPHYLL_MULTIPLIER + "), necton: " + Math
+									.round(cell.getMicroNekton()) + " (" + C_Parameters.NEKTON_MULTIPLIER + ")",
+					isError);
 	}
 	//
 	// METHODS

@@ -7,6 +7,7 @@ import org.locationtech.jts.geom.Coordinate;
 import data.C_Parameters;
 import data.constants.I_ConstantPNMC;
 import data.converters.C_ConvertTimeAndSpace;
+import thing.A_Animal;
 import thing.A_VisibleAgent;
 import thing.C_Nekton;
 import thing.C_Plankton;
@@ -23,8 +24,8 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	private C_StreamCurrent myCurrent;
 	/** Sum of energies (situated things) passed through this cell since last resetColors */
 	private double integralEnergy_Ukcal = 0.;
-	private double chlorophyll = 0.;
-	private double totalChlorophyll = 0.;
+	private double chlorophyll_U100 = 0.;
+	private double totalChlorophyll_U100 = 0.;
 	private double totalNektonDensity = 0.;
 	/** microNekton is not moved by currents */
 	private double microNekton = 0.;
@@ -44,17 +45,17 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	 * @author JLF 04.2025 */
 	@Override
 	public boolean agentIncoming(I_SituatedThing thing) {
-		if (thing instanceof C_Nekton) {
-			this.totalNektonDensity += this.microNekton;
-			((C_Nekton) thing).energy_Ukcal = this.microNekton * C_Parameters.NEKTON_MULTIPLIER;
-		}
-		else if (thing instanceof C_Plankton) {
-			this.totalChlorophyll += this.chlorophyll;
-			((C_Plankton) thing).energy_Ukcal = this.chlorophyll * C_Parameters.CHLOROPHYLL_MULTIPLIER;
-		}
-		this.energy_Ukcal += thing.getEnergy_Ukcal();
 		if (!(thing instanceof C_StreamCurrent)) {// stream current agent are not counted
 			this.energy_Ukcal += C_Parameters.PARTICLE_MULTIPLIER;
+			if (thing instanceof C_Nekton) {
+				this.totalNektonDensity += this.microNekton;
+				((C_Nekton) thing).energy_Ukcal = this.microNekton * C_Parameters.NEKTON_MULTIPLIER;
+			}
+			else if (thing instanceof C_Plankton) {
+				this.totalChlorophyll_U100 += this.chlorophyll_U100;
+				((C_Plankton) thing).energy_Ukcal = this.chlorophyll_U100 * C_Parameters.CHLOROPHYLL_MULTIPLIER;
+			}
+			this.energy_Ukcal += thing.getEnergy_Ukcal();
 		}
 		return super.agentIncoming(thing);
 	}
@@ -65,7 +66,9 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	@Override
 	public boolean agentLeaving(I_SituatedThing thing) {
 		if (thing instanceof C_Nekton) this.totalNektonDensity -= this.microNekton;
-		else if (thing instanceof C_Plankton) this.totalChlorophyll -= this.chlorophyll;
+		else if (thing instanceof C_Plankton) {
+			this.totalChlorophyll_U100 -= this.chlorophyll_U100;
+		}
 		this.energy_Ukcal -= thing.getEnergy_Ukcal();
 		if (!(thing instanceof C_StreamCurrent)) {
 			this.energy_Ukcal -= C_Parameters.PARTICLE_MULTIPLIER;
@@ -128,11 +131,11 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	public C_StreamCurrent getMyCurrent() {
 		return myCurrent;
 	}
-	public double getChlorophyll() {
-		return chlorophyll;
+	public double getChlorophyll_U100() {
+		return chlorophyll_U100;
 	}
-	public void setChlorophyll(double chlorophyll) {
-		this.chlorophyll = chlorophyll;
+	public void setChlorophyll_U100(double chlorophyll) {
+		this.chlorophyll_U100 = chlorophyll;
 	}
 	public double getMicroNekton() {
 		return microNekton;
@@ -140,10 +143,30 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	public void setMicroNekton(double microNekton) {
 		this.microNekton = microNekton;
 	}
-	public double getPlanktonTotalChlorophyll() {
-		return totalChlorophyll;
+	public double getTotalChlorophyll_U100() {
+		return totalChlorophyll_U100;
 	}
-	public double getNektonTotalDensity() {
+	public void setTotalChlorophyll_U100(double totalChlorophyll_U100) {
+		this.totalChlorophyll_U100 = totalChlorophyll_U100;
+	}
+	public int getNektonPopulation() {
+		int size = 0;
+		for (Object occupant : this.getOccupantList().toArray()) {
+			if (occupant instanceof C_Nekton) size++;
+		}
+		return size;
+	}
+	public int getPlanktonPopulation() {
+		int size = 0;
+		for (Object occupant : this.getOccupantList().toArray()) {
+			if (occupant instanceof C_Plankton && !(occupant instanceof C_Nekton)) size++;
+		}
+		return size;
+	}
+	public double getTotalNektonDensity() {
 		return totalNektonDensity;
+	}
+	public void setTotalNektonDensity(double totalNektonDensity) {
+		this.totalNektonDensity = totalNektonDensity;
 	}
 }

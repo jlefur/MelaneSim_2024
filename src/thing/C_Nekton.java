@@ -33,6 +33,6 @@ public class C_Nekton extends C_Plankton implements I_ConstantPNMC{
 	/** to display on GUI @see thing.C_Nekton.style.xml */
 	public double getSize() {
 		C_SoilCellMarine mycell = (C_SoilCellMarine) this.currentSoilCell;
-		return mycell.getNektonTotalDensity()/2.;
+		return mycell.getTotalNektonDensity()/2.;
 	}
 }

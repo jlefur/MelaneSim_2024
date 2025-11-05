@@ -42,7 +42,7 @@ public class C_Protocol_PNMC_ships extends C_Protocol_PNMC_nekton {
 	protected void initPopulations() {
 		super.initPopulations();
 		int nbCargos = 12;// TODO number in source 2025 nombre de cargos
-		for (int i = 1; i < nbCargos; i++) {
+		for (int i = 1; i <= CARGO_POPULATION; i++) {
 			C_Ship_cargo cargo = createCargoShip();
 			this.contextualizeNewThingInContainer(cargo, (I_Container) cargo.getTarget());
 			cargo.setNewTarget();

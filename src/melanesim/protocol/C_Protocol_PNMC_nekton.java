@@ -65,22 +65,12 @@ public class C_Protocol_PNMC_nekton extends C_Protocol_PNMC_plankton {
 						value = convertTo100(matriceLue[i][j], NEKTON_MIN, NEKTON_MAX);
 						marineCell = ((C_SoilCellMarine) this.landscape.getGrid()[i][j]);
 						marineCell.setMicroNekton(value);
+						marineCell.setTotalNektonDensity(value * marineCell.getNektonPopulation());
 					}
 				}
 				break;
 		}
 		super.manageOneEvent(event);
-	}
-
-	@Override
-	public void step_Utick() {
-		super.step_Utick();
-		C_SoilCellMarine cell = (C_SoilCellMarine) this.landscape.getGrid()[127][217];
-		if (cell.getOccupantList().size() >= 1)
-			A_Protocol.event("127-127 ", cell.getOccupantList().size() + "occupants, énergie: " + Math.round(cell
-					.getEnergy_Ukcal()) + ", xphylle: " + Math.round(cell.getChlorophyll()) + " ("
-					+ C_Parameters.CHLOROPHYLL_MULTIPLIER + "), necton: " + Math.round(cell.getMicroNekton()) + " ("
-					+ C_Parameters.NEKTON_MULTIPLIER + ")", isError);
 	}
 
 }

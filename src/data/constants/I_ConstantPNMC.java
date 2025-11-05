@@ -58,9 +58,9 @@ public interface I_ConstantPNMC extends I_ConstantString {
 	public static final int ENERGY_RESET = 3;//
 	public static final int ENERGY_LAND = 4;//
 
-	public static final double GREEN_AREA_Upercent = .05;// green lower limit
-	public static final double ORANGE_AREA_Upercent = .10;// orange lower limit
-	public static final double RED_AREA_Upercent = .25;// red lower limit
+	public static final double GREEN_AREA_Upercent = .25;// green lower limit
+	public static final double ORANGE_AREA_Upercent = .40;// orange lower limit
+	public static final double RED_AREA_Upercent = .60;// red lower limit
 	//
 	// DRIVERS NORMALIZATION
 	//
@@ -68,5 +68,6 @@ public interface I_ConstantPNMC extends I_ConstantString {
 	public static final double CHLORO_MAX = 0.40059945;
 	public static final double NEKTON_MIN = 0.000196165;// for year 2021
 	public static final double NEKTON_MAX = 4.904100;
+	public static final double CARGO_POPULATION = 12;
 
 }
