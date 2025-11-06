@@ -29,13 +29,9 @@ public class C_Style2dAffinityType implements ValueLayerStyleOGL, I_ConstantNume
 				this.colorMap = colorMapPNMC_drifters(this.colorMap);
 				System.out.print(PNMC_DRIFTERS);
 			}
-			else if ((C_Parameters.PROTOCOL.equals(PNMC_PLANKTON) || (C_Parameters.PROTOCOL.equals(PNMC_SHIPS)))) {
+			else if ((C_Parameters.PROTOCOL.equals(PNMC_PLANKTON) || C_Parameters.PROTOCOL.equals(PNMC_NEKTON) || (C_Parameters.PROTOCOL.equals(PNMC_SHIPS)))) {
 				this.colorMap = colorMapPNMC_plankton(this.colorMap);
 				System.out.print(PNMC_PLANKTON);
-			}
-			else if (C_Parameters.PROTOCOL.equals(PNMC_NEKTON)) {
-				this.colorMap = colorMapPNMC_plankton(this.colorMap);
-				System.out.print(PNMC_NEKTON);
 			}
 			else if (C_Parameters.PROTOCOL.equals(CHIZE)) {
 				this.colorMap = colorMapChizeGrid(this.colorMap);
@@ -102,6 +98,7 @@ public class C_Style2dAffinityType implements ValueLayerStyleOGL, I_ConstantNume
 		colorMap.put(7, new Color(241, 229, 213));// lagon
 		colorMap.put(TERRESTRIAL_MIN_AFFINITY, new Color(58, 124, 76));// terre
 		colorMap.put(BLACK_MAP_COLOR, new Color(0, 0, 0));
+		colorMap.put(11, Color.red);// spot most occupied cells, @see A_Protocol_PNMC#haltSimulation()
 		return colorMap;
 	}
 	public Map<Integer, Color> colorMapPNMC_plankton(Map<Integer, Color> colorMap) {
@@ -118,6 +115,7 @@ public class C_Style2dAffinityType implements ValueLayerStyleOGL, I_ConstantNume
 		colorMap.put(9, new Color(1, 160, 60));
 		colorMap.put(TERRESTRIAL_MIN_AFFINITY, new Color(58, 124, 76));// terre
 		colorMap.put(BLACK_MAP_COLOR, new Color(0, 0, 0));
+		colorMap.put(11, Color.red);// spot most occupied cells, @see A_Protocol_PNMC#haltSimulation()
 		return colorMap;
 	}
 	public Map<Integer, Color> colorMapDodel2(Map<Integer, Color> colorMap) {

@@ -7,7 +7,6 @@ import org.locationtech.jts.geom.Coordinate;
 import data.C_Parameters;
 import data.constants.I_ConstantPNMC;
 import data.converters.C_ConvertTimeAndSpace;
-import thing.A_Animal;
 import thing.A_VisibleAgent;
 import thing.C_Nekton;
 import thing.C_Plankton;
@@ -29,6 +28,7 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	private double totalNektonDensity = 0.;
 	/** microNekton is not moved by currents */
 	private double microNekton = 0.;
+	public int totalOccupants = 0;
 	//
 	// CONSTRUCTOR
 	//
@@ -45,6 +45,7 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	 * @author JLF 04.2025 */
 	@Override
 	public boolean agentIncoming(I_SituatedThing thing) {
+		totalOccupants++;
 		if (!(thing instanceof C_StreamCurrent)) {// stream current agent are not counted
 			this.energy_Ukcal += C_Parameters.PARTICLE_MULTIPLIER;
 			if (thing instanceof C_Nekton) {
@@ -168,5 +169,8 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	}
 	public void setTotalNektonDensity(double totalNektonDensity) {
 		this.totalNektonDensity = totalNektonDensity;
+	}
+	public int getTotalOccupants() {
+		return this.totalOccupants;
 	}
 }

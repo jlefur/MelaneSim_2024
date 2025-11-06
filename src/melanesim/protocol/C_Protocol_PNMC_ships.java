@@ -1,12 +1,12 @@
 package melanesim.protocol;
 
-import data.C_Parameters;
 import repast.simphony.context.Context;
-import repast.simphony.engine.environment.RunEnvironment;
-import repast.simphony.essentials.RepastEssentials;
-import repast.simphony.parameter.Parameters;
+import repast.simphony.util.collections.IndexedIterable;
+import thing.A_NDS;
+import thing.A_VisibleAgent;
 import thing.C_Ship_cargo;
 import thing.dna.C_GenomeAnimalia;
+import thing.ground.C_SoilCellMarine;
 import thing.ground.I_Container;
 
 /** Various types of ships navigating within the landscape
@@ -27,6 +27,25 @@ public class C_Protocol_PNMC_ships extends C_Protocol_PNMC_nekton {
 	//
 	// OVERRIDEN METHOD
 	//
+	@Override
+	// /**Affiche les icones au step 2 pour éviter le bug de démarrage @author jlf 10.2025*/
+	public void step_Utick() {
+		A_NDS oneAgent;
+		IndexedIterable<Object> it = this.context.getObjects(A_NDS.class);
+		for (int i = 0; i < it.size(); i++) {
+			oneAgent = (A_NDS) it.get(i);
+			if (oneAgent instanceof C_Ship_cargo) {
+				C_SoilCellMarine currentCell = (C_SoilCellMarine) ((A_VisibleAgent) oneAgent).getCurrentSoilCell();
+				if (currentCell.isTerrestrial()) {
+					oneAgent.setDead(true);
+					C_Ship_cargo newCargo = createCargoShip();
+					this.contextualizeNewThingInContainer(newCargo,  (I_Container) newCargo.getTarget());
+					newCargo.setNewTarget();
+				}
+			}
+		}
+		super.step_Utick();
+	}
 	// @Override
 	// /**Affiche les icones au step 2 pour éviter le bug de démarrage @author jlf 10.2025*/
 	// public void step_Utick() {

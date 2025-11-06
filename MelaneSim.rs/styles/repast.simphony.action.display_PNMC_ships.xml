@@ -16,10 +16,6 @@
 			<string>presentation.display.C_StyleAgent</string>
 		</entry>
 		<entry>
-			<string>thing.C_StreamCurrent</string>
-			<string>presentation.display.C_StyleAgent</string>
-		</entry>
-		<entry>
 			<string>thing.ground.C_LandPlot</string>
 			<string>repast.simphony.visualization.editedStyle.EditedStyle2D
 			</string>
@@ -42,10 +38,6 @@
 			<string>thing.C_Ship_cargo</string>
 			<null />
 		</entry>
-		<entry>
-			<string>thing.C_StreamCurrent</string>
-			<null />
-		</entry>
 	</editedStyles>
 	<netStyles />
 	<editedNetStyles />
@@ -65,24 +57,20 @@
 	<layoutInterval>0</layoutInterval>
 	<layerOrder>
 		<entry>
-			<string>thing.C_StreamCurrent</string>
+			<string>thing.ground.C_LandPlot</string>
 			<int>0</int>
 		</entry>
 		<entry>
-			<string>thing.ground.C_LandPlot</string>
+			<string>presentation.display.C_Background</string>
 			<int>1</int>
 		</entry>
 		<entry>
-			<string>presentation.display.C_Background</string>
+			<string>thing.C_Plankton</string>
 			<int>2</int>
 		</entry>
 		<entry>
-			<string>thing.C_Plankton</string>
-			<int>3</int>
-		</entry>
-		<entry>
 			<string>thing.C_Ship_cargo</string>
-			<int>4</int>
+			<int>3</int>
 		</entry>
 	</layerOrder>
 	<projections>

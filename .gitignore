@@ -2,3 +2,4 @@ data_output/
 bin/
 Repast.settings
 .classpath
+debug.log

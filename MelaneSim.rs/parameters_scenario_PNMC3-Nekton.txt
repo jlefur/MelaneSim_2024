@@ -42,7 +42,7 @@
 		converter="repast.simphony.parameter.StringConverterFactory$StringStringConverter" />
 
 	<!-- SIMULATION SETTING -->
-	<parameter name="TERMINATE" displayName="2a/ Terminate simulation"
+	<parameter name="TERMINATE" displayName="2a/ display most occupied cells"
 		type="boolean" defaultValue="false" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$BooleanConverter" />
 	<parameter name="randomSeed" displayName="2b/ Default Random Seed (unused)"

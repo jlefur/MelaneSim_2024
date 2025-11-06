@@ -1,6 +1,9 @@
 package melanesim.protocol;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
+import java.util.List;
 
 import org.locationtech.jts.geom.Coordinate;
 
@@ -14,6 +17,7 @@ import repast.simphony.context.Context;
 import thing.ground.C_LandPlot;
 import thing.ground.C_SoilCell;
 import thing.ground.C_SoilCellMarine;
+import thing.ground.I_Container;
 import thing.ground.landscape.C_LandscapeMarine;
 
 public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPNMC {
@@ -86,11 +90,11 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 		if (displayMapBefore != C_Parameters.DISPLAY_MAP) switchDisplayMap();
 		// if (C_Parameters.VERBOSE) C_sound.sound("tip.wav");
 
-//		if (currentMonth != A_Protocol.protocolCalendar.get(Calendar.MONTH)) {
-//			if (currentWeek != A_Protocol.protocolCalendar.get(Calendar.WEEK_OF_MONTH)) {
-//			((C_LandscapeMarine) this.landscape).assertCellsEnergy();
-			//saveScreen();
-//		}
+		// if (currentMonth != A_Protocol.protocolCalendar.get(Calendar.MONTH)) {
+		// if (currentWeek != A_Protocol.protocolCalendar.get(Calendar.WEEK_OF_MONTH)) {
+		// ((C_LandscapeMarine) this.landscape).assertCellsEnergy();
+		// saveScreen();
+		// }
 
 	}
 
@@ -163,12 +167,11 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 		if (cell.getOccupantList().size() >= 1)
 			A_Protocol.event("127-127 ", cell.getOccupantList().size() + "occupants, énergie: " + Math.round(cell
 					.getEnergy_Ukcal()) + " (" + C_Parameters.PARTICLE_MULTIPLIER + "), " + ", xphylle: " + Math.round(
-							cell.getChlorophyll_U100()) + " (" + C_Parameters.CHLOROPHYLL_MULTIPLIER + "), necton: " + Math
-									.round(cell.getMicroNekton()) + " (" + C_Parameters.NEKTON_MULTIPLIER + ")",
-					isError);
+							cell.getChlorophyll_U100()) + " (" + C_Parameters.CHLOROPHYLL_MULTIPLIER + "), necton: "
+					+ Math.round(cell.getMicroNekton()) + " (" + C_Parameters.NEKTON_MULTIPLIER + ")", isError);
 	}
 	//
-	// METHODS
+	// SPECIFIC METHODS
 	//
 	/** Convertit les valeurs d'entrée des paramètres en valeurs sur une échelle de 1 à 100 <br>
 	 * @author chatGPT 10.2025 */
@@ -181,4 +184,45 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 		return ((y - 1) * (xMax - xMin)) / 99 + xMin;
 	}
 
+	/** _STREAM_: Un Stream est un “tuyau” dans lequel tu fais passer des éléments pour les transformer, filtrer, trier,
+	 * collecter<br>
+	 * Il ne stocke pas de données, il permet d’appliquer des opérations comme sur une chaîne de montage. <br>
+	 * _FLATMAP_: Comme la grille est un tableau 2D, stream() donne un flux de lignes, pas de cellules; flatMap sert à aplatir un
+	 * flux de flux en un seul flux (sans flatMap, tu aurais un Stream<C_SoilCellMarine[]>)<br>
+	 */
+	@Override
+	/** JUNK replace terminate par afficher les cellules les plus occupées JLF 11.2025 */
+	protected void haltSimulation() {
+		if (C_Parameters.TERMINATE) {
+			final int[] rank = {1};
+			// convertit la grille de I_Container en grille de C_SoilCellMarine
+			I_Container[][] landscapeGrid = this.landscape.getGrid();
+			C_SoilCellMarine[][] grid = new C_SoilCellMarine[landscapeGrid.length][landscapeGrid[0].length];
+			for (int i = 0; i < landscapeGrid.length; i++) {
+				for (int j = 0; j < landscapeGrid[i].length; j++) {
+					grid[i][j] = (C_SoilCellMarine) landscapeGrid[i][j]; // cast élément par élément
+				}
+			}
+
+			java.util.Arrays.stream(grid).flatMap(java.util.Arrays::stream) // transforme la grille 2D en flux de cellules
+					.sorted(Comparator.comparingInt(C_SoilCellMarine::getTotalOccupants).reversed()).limit(2000)
+					.forEach(cell -> {
+						int ix = (int) cell.getCoordinate_Ucs().x;
+						int jy = (int) cell.getCoordinate_Ucs().y;
+						// cell.setAffinity(11);
+						this.landscape.getValueLayer().set(11, ix, jy);
+					});
+			java.util.Arrays.stream(grid).flatMap(java.util.Arrays::stream) // transforme la grille 2D en flux de cellules
+					.sorted(Comparator.comparingInt(C_SoilCellMarine::getTotalOccupants).reversed()).limit(5).forEach(
+							cell -> {
+								int ix = (int) cell.getCoordinate_Ucs().x;
+								int jy = (int) cell.getCoordinate_Ucs().y;
+								System.out.println(rank[0] + ". Cell (" + ix + "," + jy + ") = " + cell
+										.getTotalOccupants());
+								rank[0]++;
+							});
+			C_Parameters.TERMINATE = false;
+			// super.haltSimulation();
+		}
+	}
 }

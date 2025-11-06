@@ -88,7 +88,7 @@ public class C_Ship_cargo extends A_Animal implements I_ConstantPNMC {
 			column = rand.nextInt(max - min + 1) + min;
 			this.setTarget(myLandscape.getGrid()[column][266]);// TODO number in source 2025.10 jlf
 		}
-		if (rand.nextDouble() < .1) {
+		if (rand.nextDouble() < .2) {
 			this.destination = "NOUMEA";
 			this.setTarget(myLandscape.getGrid()[231][94]);
 		}
