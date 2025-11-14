@@ -19,7 +19,7 @@ public class C_Ship_cargo extends A_Animal implements I_ConstantPNMC {
 	public C_Ship_cargo(I_DiploidGenome genome) {
 		super(genome);
 		this.initParameters();
-		this.energy_Ukcal = 100. / CARGO_POPULATION;// TODO number in source 2025 energie des cargos
+		this.energy_Ukcal = 1000. / CARGO_POPULATION;// TODO number in source 2025 energie des cargos
 		this.setMyName("Cargo-" + this.myId);
 		this.setNewTarget();
 	}

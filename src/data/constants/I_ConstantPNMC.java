@@ -43,7 +43,7 @@ public interface I_ConstantPNMC extends I_ConstantString {
 	public static int TERRESTRIAL_MIN_AFFINITY = 99;
 	/** Used to lighten the GUI calculations: interval where to post current and plankton particles<br>
 	 * @see C_Protocol_PNMC_drifters#initPopulations() */
-	public static final int PARTICLE_CELLS_SPACING = 6; // 3 //
+	public static final int PARTICLE_CELLS_SPACING = 3; // 3 //
 	public static final int BACKWARD_NB_CELLS = 1;// if particle reach bordure move back nb cells
 	public static final int STREAM_DISPLAY_SIZE = 300;// taille des vecteurs courants affichés
 	public static final double PARTICLE_RESISTANCE_FACTOR = 1.;// freinage des particules vis à vis de la vitesse du courant)

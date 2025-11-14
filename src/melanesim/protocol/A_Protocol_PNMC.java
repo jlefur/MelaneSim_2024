@@ -1,9 +1,7 @@
 package melanesim.protocol;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Comparator;
-import java.util.List;
 
 import org.locationtech.jts.geom.Coordinate;
 
@@ -90,11 +88,11 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 		if (displayMapBefore != C_Parameters.DISPLAY_MAP) switchDisplayMap();
 		// if (C_Parameters.VERBOSE) C_sound.sound("tip.wav");
 
-		// if (currentMonth != A_Protocol.protocolCalendar.get(Calendar.MONTH)) {
+		 if (currentMonth != A_Protocol.protocolCalendar.get(Calendar.MONTH)) {
 		// if (currentWeek != A_Protocol.protocolCalendar.get(Calendar.WEEK_OF_MONTH)) {
-		// ((C_LandscapeMarine) this.landscape).assertCellsEnergy();
-		// saveScreen();
-		// }
+		 ((C_LandscapeMarine) this.landscape).assertCellsEnergy();
+		 saveScreen();
+		 }
 
 	}
 
