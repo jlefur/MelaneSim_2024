@@ -6,6 +6,8 @@ import melanesim.util.C_VariousUtilities;
 import repast.simphony.engine.environment.RunState;
 import repast.simphony.essentials.RepastEssentials;
 import thing.A_NDS;
+import thing.C_StreamCurrent;
+import thing.ground.C_LandPlot;
 
 /** Retrieves mean energy for each species in the context J.Le Fur 02.2018 */
 public class C_InspectorEnergy extends A_Inspector {
@@ -51,7 +53,7 @@ public class C_InspectorEnergy extends A_Inspector {
 		this.sizeBySpecies.clear();
 		for (int i = 0; i < contextContent.length; i++) {
 			Object item = contextContent[i];
-			if (item instanceof A_NDS ) {//&& !(item instanceof C_StreamCurrent)) {
+			if ((item instanceof A_NDS ) && !(item instanceof C_LandPlot) && !(item instanceof C_StreamCurrent)) {
 				speciesName = C_VariousUtilities.getShortClassName(item.getClass()).substring(2);
 				// If key exist, add values
 				if (this.EnergyBySpecies.get(speciesName) != null) {

@@ -19,7 +19,6 @@ public class C_Ship_cargo extends A_Animal implements I_ConstantPNMC {
 	public C_Ship_cargo(I_DiploidGenome genome) {
 		super(genome);
 		this.initParameters();
-		this.energy_Ukcal = 1000. / CARGO_POPULATION;// TODO number in source 2025 energie des cargos
 		this.setMyName("Cargo-" + this.myId);
 		this.setNewTarget();
 	}
@@ -28,12 +27,10 @@ public class C_Ship_cargo extends A_Animal implements I_ConstantPNMC {
 	//
 	@Override
 	public void step_Utick() {
-		this.energy_Ukcal = 100. / CARGO_POPULATION * C_Parameters.SHIP_MULTIPLIER;// TODO number in source 2025 energie des
-																					// cargos
 		if (this.target == null) this.setNewTarget();
 		else {
 			computeNextMoveToTarget();
-			if (this.isArrived(this.speed_UmeterByTick)) {
+			if (this.isArrived()) {
 				this.setHasToSwitchFace(true);
 				this.nextMove_Umeter.x = 0.0;
 				this.nextMove_Umeter.y = 0.0;
@@ -88,10 +85,10 @@ public class C_Ship_cargo extends A_Animal implements I_ConstantPNMC {
 			column = rand.nextInt(max - min + 1) + min;
 			this.setTarget(myLandscape.getGrid()[column][266]);// TODO number in source 2025.10 jlf
 		}
-		if (rand.nextDouble() < .2) {
-			this.destination = "NOUMEA";
-			this.setTarget(myLandscape.getGrid()[231][94]);
-		}
+//		if (rand.nextDouble() < .2) {
+//			this.destination = "NOUMEA";
+//			this.setTarget(myLandscape.getGrid()[231][94]);
+//		}
 
 	}
 	//

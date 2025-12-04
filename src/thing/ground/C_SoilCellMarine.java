@@ -7,9 +7,11 @@ import org.locationtech.jts.geom.Coordinate;
 import data.C_Parameters;
 import data.constants.I_ConstantPNMC;
 import data.converters.C_ConvertTimeAndSpace;
+import thing.A_Animal;
 import thing.A_VisibleAgent;
 import thing.C_Nekton;
 import thing.C_Plankton;
+import thing.C_Ship_cargo;
 import thing.C_StreamCurrent;
 import thing.I_SituatedThing;
 
@@ -56,6 +58,11 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 				this.totalChlorophyll_U100 += this.chlorophyll_U100;
 				((C_Plankton) thing).energy_Ukcal = this.chlorophyll_U100 * C_Parameters.CHLOROPHYLL_MULTIPLIER;
 			}
+			else if (thing instanceof C_Ship_cargo) {
+				if (((A_Animal) thing).isArrived()) ((C_Ship_cargo) thing).energy_Ukcal = 0.;// Do not account for ships arrived
+																								// at boundaries
+				else((C_Ship_cargo) thing).energy_Ukcal = C_Parameters.SHIP_MULTIPLIER;
+			}
 			this.energy_Ukcal += thing.getEnergy_Ukcal();
 		}
 		return super.agentIncoming(thing);
@@ -66,14 +73,12 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	 * @author JLF 04,10.2025 */
 	@Override
 	public boolean agentLeaving(I_SituatedThing thing) {
-		if (thing instanceof C_Nekton) this.totalNektonDensity -= this.microNekton;
-		else if (thing instanceof C_Plankton) {
-			this.totalChlorophyll_U100 -= this.chlorophyll_U100;
-		}
-		this.energy_Ukcal -= thing.getEnergy_Ukcal();
 		if (!(thing instanceof C_StreamCurrent)) {
+			this.energy_Ukcal -= thing.getEnergy_Ukcal();
 			this.energy_Ukcal -= C_Parameters.PARTICLE_MULTIPLIER;
 		}
+		if (thing instanceof C_Nekton) this.totalNektonDensity -= this.microNekton;
+		else if (thing instanceof C_Plankton) this.totalChlorophyll_U100 -= this.chlorophyll_U100;
 		return super.agentLeaving(thing);
 	}
 

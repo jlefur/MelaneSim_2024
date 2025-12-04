@@ -48,7 +48,7 @@ public class C_Protocol_PNMC_drifters extends A_Protocol_PNMC {
 		return new C_Nekton(new C_GenomeAnimalia());
 	}
 
-	/** Add plankton particle in the center of each cell of the grid at a specified interval - JLF 07.2024 */
+	/** Add plankton and micronekton particle in the center of each cell of the grid at a specified interval - JLF 07.2024 */
 	protected void initPopulations() {
 		int particleCount = 0;
 		int countHeight = 1;
@@ -64,10 +64,10 @@ public class C_Protocol_PNMC_drifters extends A_Protocol_PNMC {
 					if (countHeight == PARTICLE_CELLS_SPACING) {
 						cell = (C_SoilCellMarine) this.landscape.getGrid()[i - 1][j - 1];
 						if (cell.getAffinity() < TERRESTRIAL_MIN_AFFINITY) {
-//							this.contextualizeNewThingInContainer(createPlankton(), cell);
+							this.contextualizeNewThingInContainer(createPlankton(), cell);
 							// TODO 10.2025 patch pas très robuste
 							if (C_Parameters.PROTOCOL.equals(PNMC_NEKTON) || C_Parameters.PROTOCOL.equals(PNMC_SHIPS))
-	//							this.contextualizeNewThingInContainer(createNekton(), cell);
+								this.contextualizeNewThingInContainer(createNekton(), cell);
 							cell.setMyCurrent(new C_StreamCurrent(cell.getAffinity(), i - 1, j - 1));
 							contextualizeNewThingInSpace(cell.getMyCurrent(), i - 1, j - 1);
 							particleCount++;
@@ -105,9 +105,9 @@ public class C_Protocol_PNMC_drifters extends A_Protocol_PNMC {
 		C_SoilCellMarine cell = null;
 		switch (event.type) {
 			case COMPUTE_ENERGY :// Permet de suivre l'évolution saisonnière par exemple
-//				 ((C_LandscapeMarine) this.landscape).assertCellsEnergy();
-//				 saveScreen();
-//				 Toolkit.getDefaultToolkit().beep();
+				// ((C_LandscapeMarine) this.landscape).assertCellsEnergy();
+				// saveScreen();
+				// Toolkit.getDefaultToolkit().beep();
 				break;
 			case CURRENT_EVENT :// file name example: PNMC_current_2021/202101_North.grd and
 								// PNMC_current_2021/202101_East.grd
