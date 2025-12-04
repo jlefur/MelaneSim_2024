@@ -1,4 +1,4 @@
-<context id="SIMmasto0">
+<context id="Map2D">
 	<projection id="geography" type="geography" />
 	<projection id="space" type="continuous space" />
 <!-- 	<projection id="nektonGrid" type="value layer" /> -->

@@ -1,4 +1,4 @@
-<model name="SIMmasto0">
+<model name="testX">
 	<classpath>
 <!-- MELANESIM -->
 		<agents path="../bin, ../bin-groovy" filter="thing.C_StreamCurrent" />

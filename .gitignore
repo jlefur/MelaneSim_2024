@@ -3,3 +3,5 @@ bin/
 Repast.settings
 .classpath
 debug.log
+MelaneSim.rs/parameters.xml
+MelaneSim.rs/scenario.xml

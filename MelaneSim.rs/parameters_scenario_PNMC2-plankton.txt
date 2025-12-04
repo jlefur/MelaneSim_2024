@@ -55,9 +55,9 @@
 <!-- fileName : scenario.xml -->
 <!-- protocolName : PNMC_plankton -->
 <Scenario>
-	<repast.simphony.dataLoader.engine.ClassNameDataLoaderAction context="SIMmasto0" file="repast.simphony.dataLoader.engine.ClassNameDataLoaderAction_0.xml" />
-	<repast.simphony.action.display context="SIMmasto0" file="styles\repast.simphony.action.display_PNMC_plankton.xml" />
-	<repast.simphony.action.display context="SIMmasto0" file="styles\repast.simphony.action.display_PNMC_energy.xml" />
-	<repast.simphony.userpanel.ui.DefaultUserPanelDescriptorAction context="SIMmasto0" file="repast.simphony.userpanel.ui.DefaultUserPanelDescriptorAction_marine.xml" />
+	<repast.simphony.dataLoader.engine.ClassNameDataLoaderAction context="Map2D" file="repast.simphony.dataLoader.engine.ClassNameDataLoaderAction_0.xml" />
+	<repast.simphony.action.display context="Map2D" file="styles\repast.simphony.action.display_PNMC_plankton.xml" />
+	<repast.simphony.action.display context="Map2D" file="styles\repast.simphony.action.display_PNMC_energy.xml" />
+	<repast.simphony.userpanel.ui.DefaultUserPanelDescriptorAction context="Map2D" file="repast.simphony.userpanel.ui.DefaultUserPanelDescriptorAction_marine.xml" />
 	<model.initializer class="presentation.display.C_CustomPanelSetMarine" />
 </Scenario>
