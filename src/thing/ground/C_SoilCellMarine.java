@@ -7,7 +7,6 @@ import org.locationtech.jts.geom.Coordinate;
 import data.C_Parameters;
 import data.constants.I_ConstantPNMC;
 import data.converters.C_ConvertTimeAndSpace;
-import thing.A_Animal;
 import thing.A_VisibleAgent;
 import thing.C_Nekton;
 import thing.C_Plankton;
@@ -59,8 +58,8 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 				((C_Plankton) thing).energy_Ukcal = this.chlorophyll_U100 * C_Parameters.CHLOROPHYLL_MULTIPLIER;
 			}
 			else if (thing instanceof C_Ship_cargo) {
-				if (((A_Animal) thing).isArrived()) ((C_Ship_cargo) thing).energy_Ukcal = 0.;// Do not account for ships arrived
-																								// at boundaries
+				// Do not account for ships arrived at boundaries
+				if (((C_Ship_cargo) thing).isArrived()) ((C_Ship_cargo) thing).energy_Ukcal = 0.;
 				else((C_Ship_cargo) thing).energy_Ukcal = C_Parameters.SHIP_MULTIPLIER;
 			}
 			this.energy_Ukcal += thing.getEnergy_Ukcal();
@@ -74,7 +73,9 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	@Override
 	public boolean agentLeaving(I_SituatedThing thing) {
 		if (!(thing instanceof C_StreamCurrent)) {
-			this.energy_Ukcal -= thing.getEnergy_Ukcal();
+			if (thing instanceof C_Ship_cargo) this.energy_Ukcal -= C_Parameters.SHIP_MULTIPLIER;// ships actionMove changes
+																									// energy
+			else this.energy_Ukcal -= thing.getEnergy_Ukcal();
 			this.energy_Ukcal -= C_Parameters.PARTICLE_MULTIPLIER;
 		}
 		if (thing instanceof C_Nekton) this.totalNektonDensity -= this.microNekton;
@@ -107,7 +108,7 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 		}
 	}
 	//
-	// SETTERS & GETTERS
+	// SETTERS
 	//
 	public void setSpeedEastward_UmeterPerSecond(double currentSpeedEastward_UmeterPerSecond) {
 		this.speedEastward_UmeterPerSecond = currentSpeedEastward_UmeterPerSecond;
@@ -122,6 +123,21 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	public void setIntegralEnergy_Ukcal(double d) {
 		this.integralEnergy_Ukcal = d;
 	}
+	public void setChlorophyll_U100(double chlorophyll) {
+		this.chlorophyll_U100 = chlorophyll;
+	}
+	public void setMicroNekton(double microNekton) {
+		this.microNekton = microNekton;
+	}
+	public void setTotalChlorophyll_U100(double totalChlorophyll_U100) {
+		this.totalChlorophyll_U100 = totalChlorophyll_U100;
+	}
+	public void setTotalNektonDensity(double totalNektonDensity) {
+		this.totalNektonDensity = totalNektonDensity;
+	}
+	//
+	// GETTTERS
+	//
 	public double getIntegralEnergy_Ukcal() {
 		return integralEnergy_Ukcal;
 	}
@@ -140,20 +156,11 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	public double getChlorophyll_U100() {
 		return chlorophyll_U100;
 	}
-	public void setChlorophyll_U100(double chlorophyll) {
-		this.chlorophyll_U100 = chlorophyll;
-	}
 	public double getMicroNekton() {
 		return microNekton;
 	}
-	public void setMicroNekton(double microNekton) {
-		this.microNekton = microNekton;
-	}
 	public double getTotalChlorophyll_U100() {
 		return totalChlorophyll_U100;
-	}
-	public void setTotalChlorophyll_U100(double totalChlorophyll_U100) {
-		this.totalChlorophyll_U100 = totalChlorophyll_U100;
 	}
 	public int getNektonPopulation() {
 		int size = 0;
@@ -171,9 +178,6 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	}
 	public double getTotalNektonDensity() {
 		return totalNektonDensity;
-	}
-	public void setTotalNektonDensity(double totalNektonDensity) {
-		this.totalNektonDensity = totalNektonDensity;
 	}
 	public int getTotalOccupants() {
 		return this.totalOccupants;

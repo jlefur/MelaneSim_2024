@@ -6,7 +6,7 @@ import repast.simphony.visualization.*;
 
 import javax.swing.*;
 
-/** Un onglet ajouté à la simulation
+/** Un onglet ajoutÃ© Ã  la simulation
  * @author A. Realini */
 public class C_CustomPanelFactory implements IDisplay {
 
@@ -14,7 +14,7 @@ public class C_CustomPanelFactory implements IDisplay {
 	private RendererListenerSupport support;
 	private C_Chart chart;
 
-	/** Crée un nouveau display
+	/** CrÃ©e un nouveau display
 	 * @param title : le titre du chart
 	 * @param type : le type de chart (C_Chart.LINE/PIE3D/PIE2D/RING) */
 	public C_CustomPanelFactory(String title, int type) {
@@ -22,14 +22,14 @@ public class C_CustomPanelFactory implements IDisplay {
 	    this.chart = new C_Chart(title, type);
 	}
 
-	/** Crée un nouveau display en précisant les noms des axes du graphique (pour les Line charts) */
+	/** Crï¿½e un nouveau display en prï¿½cisant les noms des axes du graphique (pour les Line charts) */
 	public C_CustomPanelFactory(String title, int type, String XLabel, String YLabel) {
 	    this.support = new RendererListenerSupport();
 	    this.chart = new C_Chart(title, type, XLabel, YLabel);
 	}
 
 	@Override
-	// Appelée juste après le constructeur //
+	// AppelÃ©e juste aprÃ¨s le constructeur //
 	public JPanel getPanel() {
 		return this.chart.getChartPanel();
 	}

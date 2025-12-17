@@ -18,6 +18,8 @@ import java.util.function.DoubleConsumer;
 import java.util.function.DoubleSupplier;
 import data.C_Parameters;
 import data.constants.rodents.I_ConstantImagesNames;
+import data.constants.I_ConstantString;
+import melanesim.protocol.A_Protocol;
 
 public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantImagesNames {
 
@@ -310,7 +312,7 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 			// si changement significatif, on applique ET on logue
 			if (prev == null || Math.abs(prev - v) > EPS) {
 				ch.set.accept(v); // écrit dans C_Parameters
-				System.out.printf("[EnergyGrid] Changed: %s (%s) -> %.2fx%n", ch.label, ch.id, v);
+				A_Protocol.event("C_UserPanelEnergyLinearGrid", ch.label + "(" + ch.id + ") " + v, true);
 				lastApplied.put(ch.id, v);
 			}
 			// sinon: rien (pas de log, pas de réécriture)

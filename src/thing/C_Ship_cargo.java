@@ -1,12 +1,14 @@
 package thing;
 
 import java.util.Random;
+import java.util.TreeSet;
 
 import data.C_Parameters;
 import data.constants.I_ConstantPNMC;
 import data.converters.C_ConvertTimeAndSpace;
 import melanesim.C_ContextCreator;
 import thing.dna.I_DiploidGenome;
+import thing.ground.landscape.C_Landscape;
 
 public class C_Ship_cargo extends A_Animal implements I_ConstantPNMC {
 	//
@@ -50,6 +52,12 @@ public class C_Ship_cargo extends A_Animal implements I_ConstantPNMC {
 			}
 		}
 	}
+	/** patch - récupère l'énergie enlevée par l'actionMove de super 12.2025 */
+	@Override
+	public void actionMove() {
+		this.energy_Ukcal++;
+		super.actionMove();
+	}
 	/** Initialize speed and sensing using time and space conversion<br>
 	 * override retrieve speed from genome @see NB: can be used standalone if users parameters are changed during simulation<br>
 	 * sensing conversion is bypassed<br>
@@ -85,10 +93,10 @@ public class C_Ship_cargo extends A_Animal implements I_ConstantPNMC {
 			column = rand.nextInt(max - min + 1) + min;
 			this.setTarget(myLandscape.getGrid()[column][266]);// TODO number in source 2025.10 jlf
 		}
-//		if (rand.nextDouble() < .2) {
-//			this.destination = "NOUMEA";
-//			this.setTarget(myLandscape.getGrid()[231][94]);
-//		}
+		// if (rand.nextDouble() < .2) {
+		// this.destination = "NOUMEA";
+		// this.setTarget(myLandscape.getGrid()[231][94]);
+		// }
 
 	}
 	//

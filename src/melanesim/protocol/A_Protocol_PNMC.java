@@ -165,10 +165,10 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 		super.step_Utick();
 		C_SoilCellMarine cell = (C_SoilCellMarine) this.landscape.getGrid()[127][217];
 		if (cell.getOccupantList().size() >= 1)
-			A_Protocol.event("127-127 ", cell.getOccupantList().size() + "occupants, énergie: " + Math.round(cell
-					.getEnergy_Ukcal()) + " (" + C_Parameters.PARTICLE_MULTIPLIER + "), " + ", xphylle: " + Math.round(
-							cell.getChlorophyll_U100()) + " (" + C_Parameters.CHLOROPHYLL_MULTIPLIER + "), necton: "
-					+ Math.round(cell.getMicroNekton()) + " (" + C_Parameters.NEKTON_MULTIPLIER + ")", isError);
+			A_Protocol.event("127-127 ", cell.getOccupantList() + "@ énergie: @" + Math.round(cell
+					.getEnergy_Ukcal()) + "@" + C_Parameters.PARTICLE_MULTIPLIER + "@, " + ", xphylle: @" + Math.round(
+							cell.getChlorophyll_U100()) + "@" + C_Parameters.CHLOROPHYLL_MULTIPLIER + "@, necton: "
+					+ Math.round(cell.getMicroNekton()) + "@" + C_Parameters.NEKTON_MULTIPLIER + "@", isError);
 	}
 	//
 	// SPECIFIC METHODS

@@ -30,7 +30,8 @@ public class C_CustomPanelSet implements IAction, ModelInitializer {
 	protected static C_InspectorEnergy energyInspector = null;
 	protected static C_InspectorPopulation populationInspector = null;
 	protected Map<String, Double> energyMap = null;// used for energy graph
-	protected Map<String, Double> populationMap = null;// used for energy graph
+	protected Map<String, Double> populationMap = null;// used for population graph
+	protected Map<String, Double> dispersalMap = null;// used for dispersal graph
 	public static ArrayList<String> energyCurves = new ArrayList<String>();// used for energy graph (must be static to be invoked
 																			// and cleared in
 	public static ArrayList<String> populationCurves = new ArrayList<String>();// used for energy graph (must be static to be

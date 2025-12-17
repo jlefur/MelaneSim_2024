@@ -53,12 +53,12 @@ public class C_InspectorEnergy extends A_Inspector {
 		this.sizeBySpecies.clear();
 		for (int i = 0; i < contextContent.length; i++) {
 			Object item = contextContent[i];
-			if ((item instanceof A_NDS ) && !(item instanceof C_LandPlot) && !(item instanceof C_StreamCurrent)) {
+			if ((item instanceof A_NDS) && !(item instanceof C_LandPlot)) {// && !(item instanceof C_StreamCurrent)) {
 				speciesName = C_VariousUtilities.getShortClassName(item.getClass()).substring(2);
 				// If key exist, add values
 				if (this.EnergyBySpecies.get(speciesName) != null) {
-					this.EnergyBySpecies.put(speciesName, this.EnergyBySpecies.get(speciesName)
-							+ ((A_NDS) item).getEnergy_Ukcal());
+					this.EnergyBySpecies.put(speciesName, this.EnergyBySpecies.get(speciesName) + ((A_NDS) item)
+							.getEnergy_Ukcal());
 					this.sizeBySpecies.put(speciesName, this.sizeBySpecies.get(speciesName) + 1);
 				}
 				// If not, create an entry and set values
