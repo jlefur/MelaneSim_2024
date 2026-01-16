@@ -26,9 +26,8 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	private double integralEnergy_Ukcal = 0.;
 	private double chlorophyll_U100 = 0.;
 	private double totalChlorophyll_U100 = 0.;
-	private double totalNektonDensity = 0.;
-	/** microNekton is not moved by currents */
-	private double microNekton = 0.;
+	private double totalNekton_U100 = 0.;
+	private double nekton_U100 = 0.;
 	public int totalOccupants = 0;
 	//
 	// CONSTRUCTOR
@@ -50,8 +49,8 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 		if (!(thing instanceof C_StreamCurrent)) {// stream current agent are not counted
 			this.energy_Ukcal += C_Parameters.PARTICLE_MULTIPLIER;
 			if (thing instanceof C_Nekton) {
-				this.totalNektonDensity += this.microNekton;
-				((C_Nekton) thing).energy_Ukcal = this.microNekton * C_Parameters.NEKTON_MULTIPLIER;
+				this.totalNekton_U100 += this.nekton_U100;
+				((C_Nekton) thing).energy_Ukcal = this.nekton_U100 * C_Parameters.NEKTON_MULTIPLIER;
 			}
 			else if (thing instanceof C_Plankton) {
 				this.totalChlorophyll_U100 += this.chlorophyll_U100;
@@ -78,7 +77,7 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 			else this.energy_Ukcal -= thing.getEnergy_Ukcal();
 			this.energy_Ukcal -= C_Parameters.PARTICLE_MULTIPLIER;
 		}
-		if (thing instanceof C_Nekton) this.totalNektonDensity -= this.microNekton;
+		if (thing instanceof C_Nekton) this.totalNekton_U100 -= this.nekton_U100;
 		else if (thing instanceof C_Plankton) this.totalChlorophyll_U100 -= this.chlorophyll_U100;
 		return super.agentLeaving(thing);
 	}
@@ -122,9 +121,9 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	}
 	public void setIntegralEnergy_Ukcal(double d) {this.integralEnergy_Ukcal = d;}
 	public void setChlorophyll_U100(double chlorophyll) {this.chlorophyll_U100 = chlorophyll;}
-	public void setMicroNekton(double microNekton) {this.microNekton = microNekton;}
+	public void setMicroNekton(double microNekton) {this.nekton_U100 = microNekton;}
 	public void setTotalChlorophyll_U100(double totalChlorophyll_U100) {this.totalChlorophyll_U100 = totalChlorophyll_U100;}
-	public void setTotalNektonDensity(double totalNektonDensity) {this.totalNektonDensity = totalNektonDensity;	}
+	public void setTotalNektonDensity(double totalNektonDensity) {this.totalNekton_U100 = totalNektonDensity;	}
 	//
 	// GETTTERS
 	//
@@ -134,9 +133,9 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	public boolean isTerrestrial() {return this.getAffinity() >= TERRESTRIAL_MIN_AFFINITY;}
 	public C_StreamCurrent getMyCurrent() {return myCurrent;}
 	public double getChlorophyll_U100() {return chlorophyll_U100;}
-	public double getMicroNekton() {return microNekton;}
+	public double getMicroNekton() {return nekton_U100;}
 	public double getTotalChlorophyll_U100() {return totalChlorophyll_U100;}
-	public double getTotalNektonDensity() {return totalNektonDensity;}
+	public double getTotalNektonDensity() {return totalNekton_U100;}
 	public int getTotalOccupants() {return this.totalOccupants;}
 	
 	public int getNektonPopulation() {

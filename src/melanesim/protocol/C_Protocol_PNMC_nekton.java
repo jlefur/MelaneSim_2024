@@ -51,6 +51,7 @@ public class C_Protocol_PNMC_nekton extends C_Protocol_PNMC_plankton {
 				for (int i = 0; i < imax; i++) {
 					for (int j = 0; j < jmax; j++) {
 						double value = matriceLue[i][j];
+						double value_100 = convertTo100(value, NEKTON_MIN, NEKTON_MAX);
 						// classement des valeurs pour colorMap
 						if (value == 0.) value = 0;
 						else if (value > 0 && value <= 0.2) value = 1;
@@ -62,10 +63,9 @@ public class C_Protocol_PNMC_nekton extends C_Protocol_PNMC_plankton {
 						else value = 7; // value > 3
 						this.nektonValueLayer.set(value, i, j);
 						// Intégration de la valeur normalisée dans marine cells
-						value = convertTo100(matriceLue[i][j], NEKTON_MIN, NEKTON_MAX);
 						marineCell = ((C_SoilCellMarine) this.landscape.getGrid()[i][j]);
-						marineCell.setMicroNekton(value);
-						marineCell.setTotalNektonDensity(value * marineCell.getNektonPopulation());
+						marineCell.setMicroNekton(value_100);
+						marineCell.setTotalNektonDensity(value_100 * marineCell.getNektonPopulation());
 					}
 				}
 				break;
