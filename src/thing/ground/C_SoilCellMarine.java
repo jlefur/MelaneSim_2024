@@ -7,36 +7,37 @@ import org.locationtech.jts.geom.Coordinate;
 import data.C_Parameters;
 import data.constants.I_ConstantPNMC;
 import data.converters.C_ConvertTimeAndSpace;
+import thing.A_NDS;
 import thing.A_VisibleAgent;
 import thing.C_Nekton;
 import thing.C_Plankton;
-import thing.C_Ship_cargo;
 import thing.C_StreamCurrent;
+import thing.I_MarineActor;
+import thing.I_MarineActor.TypeActeur;
 import thing.I_SituatedThing;
 
 /** Ocean unit used in MelaneSim
  * @author JLF 2024 */
-public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
+public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_ConstantPNMC {
 	//
 	// FIELDS
 	//
-	private double speedEastward_UmeterPerSecond, speedNorthward_UmeterPerSecond;
+	private double speedEastward_UmeterPerSecond,speedNorthward_UmeterPerSecond;
 	private C_StreamCurrent myCurrent;
 	/** Sum of energies (situated things) passed through this cell since last resetColors */
 	private double integralEnergy_Ukcal = 0.;
-	private double chlorophyll_U100 = 0.;
-	private double totalChlorophyll_U100 = 0.;
-	private double totalNekton_U100 = 0.;
-	private double nekton_U100 = 0.;
 	public int totalOccupants = 0;
 	//
 	// CONSTRUCTOR
 	//
-	public C_SoilCellMarine(int aff, int lineNo, int colNo) {
-		super(aff, lineNo, colNo);
-		// TODO number in source OK 2024 JLF speed has to be != from 0 before read from file in order to avoid plankton bordure
+	public C_SoilCellMarine(int aff,int lineNo,int colNo) {
+		super(aff,lineNo,colNo);
+		// TODO number in source OK 2024 JLF speed has to be != from 0 before read from file in order to avoid plankton
+		// bordure
 		this.speedEastward_UmeterPerSecond = 1e-10;
 		this.speedNorthward_UmeterPerSecond = 1e-10;
+		this.add(TypeActeur.SHIP,Champ._100,1.0);
+		this.add(TypeActeur.SHIP,Champ.VALEUR,1.0);
 	}
 	//
 	// OVERRIDEN METHODS
@@ -46,39 +47,31 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	@Override
 	public boolean agentIncoming(I_SituatedThing thing) {
 		totalOccupants++;
-		if (!(thing instanceof C_StreamCurrent)) {// stream current agent are not counted
-			this.energy_Ukcal += C_Parameters.PARTICLE_MULTIPLIER;
-			if (thing instanceof C_Nekton) {
-				this.totalNekton_U100 += this.nekton_U100;
-				((C_Nekton) thing).energy_Ukcal = this.nekton_U100 * C_Parameters.NEKTON_MULTIPLIER;
+		if(!(thing instanceof C_StreamCurrent)){// stream current agent are not counted
+			this.energy_Ukcal++;
+			if(thing instanceof I_MarineActor actor){
+				this.add(TypeActeur.OCCUPANTS,Champ.INTEGRE,1.0);
+				this.add(actor.getTypeActeur(),Champ.INTEGRE,1.0);
+				thing.setEnergy_Ukcal(this.get(actor.getTypeActeur(),Champ._100));
+				this.energy_Ukcal += thing.getEnergy_Ukcal();
 			}
-			else if (thing instanceof C_Plankton) {
-				this.totalChlorophyll_U100 += this.chlorophyll_U100;
-				((C_Plankton) thing).energy_Ukcal = this.chlorophyll_U100 * C_Parameters.CHLOROPHYLL_MULTIPLIER;
-			}
-			else if (thing instanceof C_Ship_cargo) {
-				// Do not account for ships arrived at boundaries
-				if (((C_Ship_cargo) thing).isArrived()) ((C_Ship_cargo) thing).energy_Ukcal = 0.;
-				else((C_Ship_cargo) thing).energy_Ukcal = C_Parameters.SHIP_MULTIPLIER;
-			}
-			this.energy_Ukcal += thing.getEnergy_Ukcal();
 		}
 		return super.agentIncoming(thing);
 	}
 
-	/** Leaving nekton decreases nektonDensity, leaving plankton decrease cell's total chlorophyll, all particle decrease cell's
-	 * energy
+	/** Leaving nekton decreases nektonDensity, leaving plankton decrease cell's total chlorophyll, all particle
+	 * decrease cell's energy
 	 * @author JLF 04,10.2025 */
 	@Override
 	public boolean agentLeaving(I_SituatedThing thing) {
-		if (!(thing instanceof C_StreamCurrent)) {
-			if (thing instanceof C_Ship_cargo) this.energy_Ukcal -= C_Parameters.SHIP_MULTIPLIER;// ships actionMove changes
-																									// energy
-			else this.energy_Ukcal -= thing.getEnergy_Ukcal();
-			this.energy_Ukcal -= C_Parameters.PARTICLE_MULTIPLIER;
+		if(!(thing instanceof C_StreamCurrent)){
+			this.energy_Ukcal--;
+			if(thing instanceof I_MarineActor actor){
+				this.add(TypeActeur.OCCUPANTS,Champ.INTEGRE,-1.0);
+				this.add(actor.getTypeActeur(),Champ.INTEGRE,-1.0);
+				this.energy_Ukcal -= thing.getEnergy_Ukcal();
+			}
 		}
-		if (thing instanceof C_Nekton) this.totalNekton_U100 -= this.nekton_U100;
-		else if (thing instanceof C_Plankton) this.totalChlorophyll_U100 -= this.chlorophyll_U100;
 		return super.agentLeaving(thing);
 	}
 
@@ -88,22 +81,20 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	public void step_Utick() {
 		super.step_Utick();
 		this.integralEnergy_Ukcal += this.energy_Ukcal;
-		double speedEastward_UmeterPerTick, speedNorthward_UmeterPerTick;
+		double speedEastward_UmeterPerTick,speedNorthward_UmeterPerTick;
 		TreeSet<I_SituatedThing> occupants = new TreeSet<>(this.getOccupantList());
-		for (I_SituatedThing agent : occupants) {
+		for(I_SituatedThing agent:occupants){
 			speedEastward_UmeterPerTick = C_ConvertTimeAndSpace.convertSpeed_UspaceByTick(
-					this.speedEastward_UmeterPerSecond, "m", "s") / PARTICLE_RESISTANCE_FACTOR;
+					this.speedEastward_UmeterPerSecond,"m","s")/PARTICLE_RESISTANCE_FACTOR;
 			speedNorthward_UmeterPerTick = C_ConvertTimeAndSpace.convertSpeed_UspaceByTick(
-					this.speedNorthward_UmeterPerSecond, "m", "s") / PARTICLE_RESISTANCE_FACTOR;
-			if (agent instanceof C_Nekton)
-				// micronekton particle are not submitted to surface current half of day
-				A_VisibleAgent.myLandscape.translate((A_VisibleAgent) agent, new Coordinate(speedEastward_UmeterPerTick
-						/ NEKTON_RESISTANCE_FACTOR, speedNorthward_UmeterPerTick / NEKTON_RESISTANCE_FACTOR));
+					this.speedNorthward_UmeterPerSecond,"m","s")/PARTICLE_RESISTANCE_FACTOR;
+			if(agent instanceof C_Nekton)// micronekton particle are not submitted to surface current half of day
+				A_VisibleAgent.myLandscape.translate((A_VisibleAgent)agent,new Coordinate(speedEastward_UmeterPerTick
+						/NEKTON_RESISTANCE_FACTOR,speedNorthward_UmeterPerTick/NEKTON_RESISTANCE_FACTOR));
 			else
-				if (agent instanceof C_Plankton)
-					A_VisibleAgent.myLandscape.translate((A_VisibleAgent) agent, new Coordinate(
-							speedEastward_UmeterPerTick, speedNorthward_UmeterPerTick));
-
+				if(agent instanceof C_Plankton)
+					A_VisibleAgent.myLandscape.translate((A_VisibleAgent)agent,new Coordinate(
+							speedEastward_UmeterPerTick,speedNorthward_UmeterPerTick));
 		}
 	}
 	//
@@ -115,42 +106,26 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	public void setSpeedNorthward_UmeterPerSecond(double currentSpeedNorthward_UmeterPerSecond) {
 		this.speedNorthward_UmeterPerSecond = currentSpeedNorthward_UmeterPerSecond;
 	}
-	public void setMyCurrent(C_StreamCurrent myCurrent) {
-		this.myCurrent = myCurrent;
-		myCurrent.setMyCell(this);
-	}
-	public void setIntegralEnergy_Ukcal(double d) {this.integralEnergy_Ukcal = d;}
-	public void setChlorophyll_U100(double chlorophyll) {this.chlorophyll_U100 = chlorophyll;}
-	public void setMicroNekton(double microNekton) {this.nekton_U100 = microNekton;}
-	public void setTotalChlorophyll_U100(double totalChlorophyll_U100) {this.totalChlorophyll_U100 = totalChlorophyll_U100;}
-	public void setTotalNektonDensity(double totalNektonDensity) {this.totalNekton_U100 = totalNektonDensity;	}
+	public void setMyCurrent(C_StreamCurrent myCurrent) { this.myCurrent = myCurrent; myCurrent.setMyCell(this); }
+	public void setIntegralEnergy_Ukcal(double d) { this.integralEnergy_Ukcal = d; }
 	//
 	// GETTTERS
 	//
-	public double getIntegralEnergy_Ukcal() {return integralEnergy_Ukcal;}
-	public double getSpeedEastward_UmeterPerSecond() {return speedEastward_UmeterPerSecond;	}
-	public double getSpeedNorthward_UmeterPerSecond() {return speedNorthward_UmeterPerSecond;}
-	public boolean isTerrestrial() {return this.getAffinity() >= TERRESTRIAL_MIN_AFFINITY;}
-	public C_StreamCurrent getMyCurrent() {return myCurrent;}
-	public double getChlorophyll_U100() {return chlorophyll_U100;}
-	public double getMicroNekton() {return nekton_U100;}
-	public double getTotalChlorophyll_U100() {return totalChlorophyll_U100;}
-	public double getTotalNektonDensity() {return totalNekton_U100;}
-	public int getTotalOccupants() {return this.totalOccupants;}
-	
-	public int getNektonPopulation() {
-		int size = 0;
-		for (Object occupant : this.getOccupantList().toArray()) {
-			if (occupant instanceof C_Nekton) size++;
-		}
-		return size;
+	public double getIntegralEnergy_Ukcal() { return integralEnergy_Ukcal; }
+	public double getSpeedEastward_UmeterPerSecond() { return speedEastward_UmeterPerSecond; }
+	public double getSpeedNorthward_UmeterPerSecond() { return speedNorthward_UmeterPerSecond; }
+	public boolean isTerrestrial() { return this.getAffinity()>=TERRESTRIAL_MIN_AFFINITY; }
+	public C_StreamCurrent getMyCurrent() { return myCurrent; }
+
+	public double getTotalChlorophyll_U100() {
+		return this.get(TypeActeur.PLANKTON,Champ.INTEGRE)*this.get(TypeActeur.PLANKTON,Champ._100);
 	}
-	
-	public int getPlanktonPopulation() {
-		int size = 0;
-		for (Object occupant : this.getOccupantList().toArray()) {
-			if (occupant instanceof C_Plankton && !(occupant instanceof C_Nekton)) size++;
-		}
-		return size;
+	public double getTotalNektonDensity() {
+		return this.get(TypeActeur.NEKTON,Champ.INTEGRE)*this.get(TypeActeur.NEKTON,Champ._100);
+	}
+	public double getTotalOccupants() { //
+		return this.get(TypeActeur.OCCUPANTS,Champ.INTEGRE);
+	}
+	public void setEnergy_Ukcal(double d) { // TODO Auto-generated method stub
 	}
 }

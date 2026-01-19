@@ -91,4 +91,8 @@ public class C_SoilCell extends A_Container implements I_ConstantStringRodents {
 		return new Coordinate((lineNo * cellSize_Ucs) + cellSize_Ucs / 2.0, (colNo * cellSize_Ucs) + cellSize_Ucs
 				/ 2.0);
 	}
+
+	@Override
+	public void setEnergy_Ukcal(double d) { // TODO Auto-generated method stub
+	 }
 }

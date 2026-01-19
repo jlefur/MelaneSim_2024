@@ -1,11 +1,12 @@
 package thing;
 
+import data.constants.I_ConstantPNMC;
 import thing.dna.I_DiploidGenome;
 import thing.ground.C_SoilCellMarine;
 
 /** A simple structure containing a diploid genome, owns all properties of A_Organism
  * @author J.LeFur 2024 */
-public class C_Plankton extends A_Organism {
+public class C_Plankton extends A_Organism implements I_ConstantPNMC,I_MarineActor {
 	//
 	// FIELD
 	//
@@ -13,40 +14,35 @@ public class C_Plankton extends A_Organism {
 	//
 	// CONSTRUCTOR
 	//
-	public C_Plankton(I_DiploidGenome genome) {
-		super(genome);
-		this.setMyName("phyto-plankton" + NAMES_SEPARATOR + myId);
-	}
+	public C_Plankton(I_DiploidGenome genome) { super(genome); this.setMyName("phyto-plankton"+NAMES_SEPARATOR+myId); }
 	//
 	// OVERRIDEN METHOD
 	//
-	public void step_Utick() {
-		computeMaxDispersalDistance_Umeter();
-		super.step_Utick();
-	}
+	public void step_Utick() { computeMaxDispersalDistance_Umeter(); super.step_Utick(); }
 	//
 	// GETTERS
 	//
+	@Override
+	public TypeActeur getTypeActeur() { return TypeActeur.PLANKTON; }
+
 	/** for probe display purpose */
 	public double getSpeedEast() {
-		if (this.isDead()) return 0.0;
-		else return ((C_SoilCellMarine) this.getCurrentSoilCell()).getSpeedEastward_UmeterPerSecond();
+		if(this.isDead()) return 0.0;
+		else return ((C_SoilCellMarine)this.getCurrentSoilCell()).getSpeedEastward_UmeterPerSecond();
 	}
 
 	/** for probe display purpose */
 	public double getSpeedNorth() {
-		if (this.isDead()) return 0.0;
-		else return ((C_SoilCellMarine) this.getCurrentSoilCell()).getSpeedNorthward_UmeterPerSecond();
+		if(this.isDead()) return 0.0;
+		else return ((C_SoilCellMarine)this.getCurrentSoilCell()).getSpeedNorthward_UmeterPerSecond();
 	}
 
 	/** Maximum distance (straight line) from its birth location */
 	public void computeMaxDispersalDistance_Umeter() {
 		double currentDispersalDistance_Umeter = this.getDistance_Umeter(this.bornCoord_Umeter);
-		if (currentDispersalDistance_Umeter > this.maxDispersalDistance_Umeter)
+		if(currentDispersalDistance_Umeter>this.maxDispersalDistance_Umeter)
 			this.maxDispersalDistance_Umeter = currentDispersalDistance_Umeter;
 	}
 
-	public double getMaxDispersalDistance_Umeter() {
-		return maxDispersalDistance_Umeter;
-	}
+	public double getMaxDispersalDistance_Umeter() { return maxDispersalDistance_Umeter; }
 }

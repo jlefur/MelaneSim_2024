@@ -134,4 +134,7 @@ public class C_Background implements I_SituatedThing {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	@Override
+	public void setEnergy_Ukcal(double d) { // TODO Auto-generated method stub
+	 }
 }

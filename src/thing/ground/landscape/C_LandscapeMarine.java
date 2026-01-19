@@ -144,6 +144,7 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC {
 						if (cellIntegralEnergy_Ukcal >= energyRanks[ENERGY_RED])
 							this.energyValueLayer.set(ENERGY_RED, i, j);
 				((C_SoilCellMarine) grid[i][j]).setIntegralEnergy_Ukcal(0.);
+				((C_SoilCellMarine) grid[i][j]).setEnergy_Ukcal(0.);
 			}
 		}
 	}

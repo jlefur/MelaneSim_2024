@@ -1,74 +1,75 @@
 package thing;
 
 import java.util.Random;
-import java.util.TreeSet;
 
-import data.C_Parameters;
 import data.constants.I_ConstantPNMC;
 import data.converters.C_ConvertTimeAndSpace;
 import melanesim.C_ContextCreator;
 import thing.dna.I_DiploidGenome;
-import thing.ground.landscape.C_Landscape;
 
-public class C_Ship_cargo extends A_Animal implements I_ConstantPNMC {
+public class C_Ship_cargo extends A_Animal implements I_ConstantPNMC,I_MarineActor {
 	//
 	// FIELD
 	//
-	private String destination = new java.util.Random().nextBoolean() ? "NORTH" : "SOUTH"; // au choix à l'initialisation
+	private String destination = new java.util.Random().nextBoolean()?"NORTH":"SOUTH"; // au choix à l'initialisation
 	//
 	// CONSTRUCTOR
 	//
 	public C_Ship_cargo(I_DiploidGenome genome) {
 		super(genome);
 		this.initParameters();
-		this.setMyName("Cargo-" + this.myId);
+		this.setMyName("Cargo-"+this.myId);
 		this.setNewTarget();
 	}
 	//
 	// OVERRIDEN METHOD
 	//
 	@Override
+	/** Do not account for ships arrived at boundaries */
+	public boolean isArrived() {
+		boolean yes = this.isArrived(this.speed_UmeterByTick);
+		if(yes) this.energy_Ukcal = 0.;
+		return yes;
+	}
+	@Override
 	public void step_Utick() {
-		if (this.target == null) this.setNewTarget();
-		else {
+		if(this.target==null) this.setNewTarget();
+		else{
 			computeNextMoveToTarget();
-			if (this.isArrived()) {
+			if(this.isArrived()){
 				this.setHasToSwitchFace(true);
 				this.nextMove_Umeter.x = 0.0;
 				this.nextMove_Umeter.y = 0.0;
-				A_VisibleAgent.myLandscape.moveToLocation(this, this.target.getCoordinate_Ucs());
+				A_VisibleAgent.myLandscape.moveToLocation(this,this.target.getCoordinate_Ucs());
 				this.setNewTarget();
 			}
-			else {
+			else{
 				this.computeNextMoveToTarget();
 				// add a slight random to moves
-				this.nextMove_Umeter.x += ((C_ContextCreator.randomGeneratorForMovement.nextDouble()
-						* speed_UmeterByTick) - (C_ContextCreator.randomGeneratorForMovement.nextDouble()
-								* speed_UmeterByTick)) / 10.;
-				this.nextMove_Umeter.y += ((C_ContextCreator.randomGeneratorForMovement.nextDouble()
-						* speed_UmeterByTick) - (C_ContextCreator.randomGeneratorForMovement.nextDouble()
-								* speed_UmeterByTick)) / 10.;
+				this.nextMove_Umeter.x += ((C_ContextCreator.randomGeneratorForMovement.nextDouble()*speed_UmeterByTick)
+						-(C_ContextCreator.randomGeneratorForMovement.nextDouble()*speed_UmeterByTick))/10.;
+				this.nextMove_Umeter.y += ((C_ContextCreator.randomGeneratorForMovement.nextDouble()*speed_UmeterByTick)
+						-(C_ContextCreator.randomGeneratorForMovement.nextDouble()*speed_UmeterByTick))/10.;
 				this.actionMove();
 			}
 		}
 	}
 	/** patch - récupère l'énergie enlevée par l'actionMove de super 12.2025 */
 	@Override
-	public void actionMove() {
-		this.energy_Ukcal++;
-		super.actionMove();
-	}
+	public void actionMove() { this.energy_Ukcal++; super.actionMove(); }
 	/** Initialize speed and sensing using time and space conversion<br>
-	 * override retrieve speed from genome @see NB: can be used standalone if users parameters are changed during simulation<br>
+	 * override retrieve speed from genome @see NB: can be used standalone if users parameters are changed during
+	 * simulation<br>
 	 * sensing conversion is bypassed<br>
 	 * @author lefur 2025.10 */
 	@Override
 	public void initParameters() {
 		Random rand = new Random();
-		double speed_UmeterByDay = 1852. * 24. * rand.nextDouble(10.) + 1.;// speed = 1-10 milles/heure (10 noeuds) TODO number in
-																			// source 2025 speed = 10
+		double speed_UmeterByDay = 1852.*24.*rand.nextDouble(10.)+1.;// speed = 1-10 milles/heure (10 noeuds) TODO
+																		// number in
+																		// source 2025 speed = 10
 		// noeuds
-		this.speed_UmeterByTick = speed_UmeterByDay / C_ConvertTimeAndSpace.oneDay_Utick;
+		this.speed_UmeterByTick = speed_UmeterByDay/C_ConvertTimeAndSpace.oneDay_Utick;
 	}
 	//
 	// SPECIFIC METHOD
@@ -77,20 +78,20 @@ public class C_Ship_cargo extends A_Animal implements I_ConstantPNMC {
 	// SOUTH: 225, 0 -> 272, 0
 	// NOUMEA: 231, 94 -> 272, 0
 	public void setNewTarget() {
-		int min, max, column;
+		int min,max,column;
 		Random rand = new Random();
-		if (this.destination.equals("NORTH")) {
+		if(this.destination.equals("NORTH")){
 			this.destination = "SOUTH";
 			min = 225;
 			max = 272;// TODO number in source 2025.10 jlf
-			column = rand.nextInt(max - min + 1) + min;
+			column = rand.nextInt(max-min+1)+min;
 			this.setTarget(myLandscape.getGrid()[column][1]);// TODO number in source 2025.10 jlf
 		}
-		else {
+		else{
 			this.destination = "NORTH";
 			min = 53;
 			max = 96;// TODO number in source 2018.03 jlf
-			column = rand.nextInt(max - min + 1) + min;
+			column = rand.nextInt(max-min+1)+min;
 			this.setTarget(myLandscape.getGrid()[column][266]);// TODO number in source 2025.10 jlf
 		}
 		// if (rand.nextDouble() < .2) {
@@ -100,9 +101,9 @@ public class C_Ship_cargo extends A_Animal implements I_ConstantPNMC {
 
 	}
 	//
-	// GETTER
+	// GETTERS
 	//
-	public String getDestination() {
-		return destination;
-	}
+	@Override
+	public TypeActeur getTypeActeur() { return TypeActeur.SHIP; }
+	public String getDestination() { return destination; }
 }
