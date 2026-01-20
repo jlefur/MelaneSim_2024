@@ -121,8 +121,4 @@ public class C_LandPlot extends A_Container implements I_ConstantStringRodents {
 	public C_LandPlot getMyLandPlot() {
 		return null;
 	}
-
-	@Override
-	public void setEnergy_Ukcal(double d) { // TODO Auto-generated method stub
-	 }
 }

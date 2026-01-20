@@ -35,13 +35,9 @@ public class C_SoilCellMarineEnergy extends C_SoilCell {
 			valeurs[t.ordinal()] = new Valeurs();
 		}
 	}
-	// MÉTHODE INTERNE FACTORISÉE
-	private Valeurs valeurs(TypeActeur type) { return valeurs[type.ordinal()]; }
-	// API GÉNÉRIQUE (Type + Champ)
-	public void add(TypeActeur type,Champ champ,double delta) { valeurs(type).add(champ,delta); }
-	public void set(TypeActeur type,Champ champ,double value) { valeurs(type).set(champ,value); }
-	public double get(TypeActeur type,Champ champ) { return valeurs(type).get(champ); }
-
+	//
+	// OVERRIDEN METHOD
+	//
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder("C_SoilCellMarineEnergy {\n");
@@ -51,17 +47,11 @@ public class C_SoilCellMarineEnergy extends C_SoilCell {
 		return sb.toString();
 	}
 	//
-	// MAIN
+	// METHODS
 	//
-	public static void main(String[] args) {
-		C_SoilCellMarineEnergy cell = new C_SoilCellMarineEnergy(1,1,1);
-		// Ajouts demandés
-		cell.add(TypeActeur.PLANKTON,Champ.INTEGRE,1.2);
-		cell.add(TypeActeur.PLANKTON,Champ.INTEGRE,3.4);
-		cell.add(TypeActeur.NEKTON,Champ.INTEGRE,4.5);
-		cell.add(TypeActeur.SHIP,Champ.INTEGRE,4.5);
-		System.out.println("Valeur du plancton = "+cell.get(TypeActeur.PLANKTON,Champ.INTEGRE));
-		System.out.println("Valeur ship = "+cell.get(TypeActeur.SHIP,Champ.INTEGRE));
-		System.out.println(cell.toString());
-	}
+	private Valeurs valeurs(TypeActeur type) { return valeurs[type.ordinal()]; }
+	// API GÉNÉRIQUE (Type + Champ)
+	public void add(TypeActeur type,Champ champ,double delta) { valeurs(type).add(champ,delta); }
+	public void set(TypeActeur type,Champ champ,double value) { valeurs(type).set(champ,value); }
+	public double get(TypeActeur type,Champ champ) { return valeurs(type).get(champ); }
 }

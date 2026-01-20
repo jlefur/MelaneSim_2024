@@ -1,4 +1,6 @@
 package data;
+import java.util.EnumMap;
+import thing.I_MarineActor.TypeActeur;
 import data.constants.I_ConstantPNMC;
 import data.constants.rodents.I_ConstantStringRodents;
 import repast.simphony.engine.environment.RunEnvironment;
@@ -7,7 +9,7 @@ import thing.A_Animal;
 
 /** declare every parameters _for all protocols_ which may be modified within the GUI @see parameters.xml
  * @author Longueville, 2011, rev. jlefur 07.2012, rev.PAMBOUP 03.2014, JLF 07.2014 */
-public class C_Parameters implements I_ConstantStringRodents, I_ConstantPNMC {
+public class C_Parameters implements I_ConstantStringRodents,I_ConstantPNMC {
 	public static Parameters parameters;
 
 	// GENERAL //
@@ -19,8 +21,8 @@ public class C_Parameters implements I_ConstantStringRodents, I_ConstantPNMC {
 	public static boolean BLACK_MAP = false;
 
 	// SPACE //
-	/** EXCLOS: if yes, agents leave the domain when they reach bordure (+ replaced with a new one), if no, rebound and stay
-	 * within the domain<br>
+	/** EXCLOS: if yes, agents leave the domain when they reach bordure (+ replaced with a new one), if no, rebound and
+	 * stay within the domain<br>
 	 * @see thing.ground.landscape.C_Landscape#bordure(A_Animal) */
 	public static boolean EXCLOS;
 	/** IMAGE: if yes, display objects as icons, else display dots */
@@ -28,8 +30,8 @@ public class C_Parameters implements I_ConstantStringRodents, I_ConstantPNMC {
 
 	public static String RASTER_URL;
 	public static String[] RASTERLIST_URL;
-	/** Raster background conversion factors: the width (in meter)of one pixel (was formerly size_of_one_box Chize: 747.8
-	 * cm.px^-1 */
+	/** Raster background conversion factors: the width (in meter)of one pixel (was formerly size_of_one_box Chize:
+	 * 747.8 cm.px^-1 */
 	public static int CELL_WIDTH_Ucentimeter;
 	public static double CELL_WIDTH_Umeter;
 	/** conversion factor (e.g., Chize: 7.478 m.cs^-1, continuous space unit -> meters */
@@ -65,50 +67,51 @@ public class C_Parameters implements I_ConstantStringRodents, I_ConstantPNMC {
 	//
 	// Weight conservation priority
 	//
-	public static double CHLOROPHYLL_MULTIPLIER = 1.;
-	public static double NEKTON_MULTIPLIER = 1.;
-	public static double PARTICLE_MULTIPLIER = 1.;
-	public static double MOUNT_MULTIPLIER = 1.;
-	public static double TEMPERATURE_MULTIPLIER = 1.;
-	public static double TUNA_MULTIPLIER = 1.;
-	public static double WHALE_MULTIPLIER = 1.;
-	public static double SHARK_MULTIPLIER = 1.;
-	public static double BIRD_MULTIPLIER = 1.;
-	public static double TURTLE_MULTIPLIER = 1.;
-	public static double FISHER_MULTIPLIER = 1.;
-	public static double SHIP_MULTIPLIER = 1.;
-	public static double TOURISM_MULTIPLIER = 1.;
-	public static double POLICE_MULTIPLIER = 1.;
-	public static double POLLUTION_MULTIPLIER = 1.;
-	public static double ONG_MULTIPLIER = 1.;
-	public static double CORAL_MULTIPLIER = 1.;
-	public static double SMALL_PELAGIC_MULTIPLIER = 1.;
-	public static double BENTHOS_MULTIPLIER = 1.;
-	public static double GROUND_MULTIPLIER = 1.;
-	public static double MEADOW_MULTIPLIER = 1.;
-	public static double MEGAFAUNA_MULTIPLIER = 1.;
+	private static final EnumMap<TypeActeur,Double> multipliers = new EnumMap<>(TypeActeur.class);
+	public static double multiplier(TypeActeur type) { return multipliers.get(type); }
+	public static void setMultiplier(TypeActeur type,double value) { multipliers.put(type,value); }
+	static{resetMultipliers();}
+	public static void resetMultipliers() {
+		for(TypeActeur t:TypeActeur.values()){
+			multipliers.put(t,1.0);
+		}
+	}
 
-	/** Instantiate the parameters object and retrieve the shared parameters. NB It is compulsory to make it followed with
-	 * C_ContextCreator.protocol.readUserParameters() */
+	/*
+	 * public static double CHLOROPHYLL_MULTIPLIER = 1.; public static double NEKTON_MULTIPLIER = 1.; public static
+	 * double PARTICLE_MULTIPLIER = 1.; public static double MOUNT_MULTIPLIER = 1.; public static double
+	 * TEMPERATURE_MULTIPLIER = 1.; public static double TUNA_MULTIPLIER = 1.; public static double WHALE_MULTIPLIER =
+	 * 1.; public static double SHARK_MULTIPLIER = 1.; public static double BIRD_MULTIPLIER = 1.; public static double
+	 * TURTLE_MULTIPLIER = 1.; public static double FISHER_MULTIPLIER = 1.; public static double SHIP_MULTIPLIER = 1.;
+	 * public static double TOURISM_MULTIPLIER = 1.; public static double POLICE_MULTIPLIER = 1.; public static double
+	 * POLLUTION_MULTIPLIER = 1.; public static double ONG_MULTIPLIER = 1.; public static double CORAL_MULTIPLIER = 1.;
+	 * public static double SMALL_PELAGIC_MULTIPLIER = 1.; public static double BENTHOS_MULTIPLIER = 1.; public static
+	 * double GROUND_MULTIPLIER = 1.; public static double MEADOW_MULTIPLIER = 1.; public static double
+	 * MEGAFAUNA_MULTIPLIER = 1.;
+	 */
+
+	/** Instantiate the parameters object and retrieve the shared parameters. NB It is compulsory to make it followed
+	 * with C_ContextCreator.protocol.readUserParameters() */
 	public C_Parameters() {
 		parameters = RunEnvironment.getInstance().getParameters();
-		// Following lines are compulsory here for C_ContextCreator to build the calendar and the raster before defining the
+		// Following lines are compulsory here for C_ContextCreator to build the calendar and the raster before defining
+		// the
 		// protocol.
-		PROTOCOL = (String) parameters.getValue("PROTOCOL");
-		if (C_Parameters.PROTOCOL.contains("rodents")) RASTER_PATH = RASTER_PATH_RODENTS;
+		PROTOCOL = (String)parameters.getValue("PROTOCOL");
+		if(C_Parameters.PROTOCOL.contains("rodents")) RASTER_PATH = RASTER_PATH_RODENTS;
 		else RASTER_PATH = RASTER_PATH_MELANESIA;
 
-		RASTER_URL = RASTER_PATH + parameters.getValue("RASTER_FILE");
-		/** Raster background conversion factors: the width (in meter)of one pixel (was formerly size_of_one_box Chize: 747.8
-		 * cm.px^-1 */
+		RASTER_URL = RASTER_PATH+parameters.getValue("RASTER_FILE");
+		/** Raster background conversion factors: the width (in meter)of one pixel (was formerly size_of_one_box Chize:
+		 * 747.8 cm.px^-1 */
 		{
-			CELL_WIDTH_Ucentimeter = ((Integer) parameters.getValue("CELL_WIDTH_Ucm")).intValue();
-			CELL_WIDTH_Umeter = (double) CELL_WIDTH_Ucentimeter / 100.;
+			CELL_WIDTH_Ucentimeter = ((Integer)parameters.getValue("CELL_WIDTH_Ucm")).intValue();
+			CELL_WIDTH_Umeter = (double)CELL_WIDTH_Ucentimeter/100.;
 			/** conversion factor (e.g., Chize: 7.478 m.cs^-1, continuous space unit -> meters */
 			UCS_WIDTH_Umeter = CELL_WIDTH_Umeter;
 		}
-		TICK_LENGTH_Ucalendar = ((Integer) parameters.getValue("TICK_LENGTH_Ucalendar")).intValue();
-		TICK_UNIT_Ucalendar = (String) parameters.getValue("TICK_UNIT_Ucalendar");
-		TERMINATE = ((Boolean) C_Parameters.parameters.getValue("TERMINATE")).booleanValue();
+		TICK_LENGTH_Ucalendar = ((Integer)parameters.getValue("TICK_LENGTH_Ucalendar")).intValue();
+		TICK_UNIT_Ucalendar = (String)parameters.getValue("TICK_UNIT_Ucalendar");
+		TERMINATE = ((Boolean)C_Parameters.parameters.getValue("TERMINATE")).booleanValue();
 	}
 }

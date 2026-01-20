@@ -4,10 +4,8 @@ import java.util.TreeSet;
 
 import org.locationtech.jts.geom.Coordinate;
 
-import data.C_Parameters;
 import data.constants.I_ConstantPNMC;
 import data.converters.C_ConvertTimeAndSpace;
-import thing.A_NDS;
 import thing.A_VisibleAgent;
 import thing.C_Nekton;
 import thing.C_Plankton;
@@ -36,8 +34,8 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 		// bordure
 		this.speedEastward_UmeterPerSecond = 1e-10;
 		this.speedNorthward_UmeterPerSecond = 1e-10;
-		this.add(TypeActeur.SHIP,Champ._100,1.0);
-		this.add(TypeActeur.SHIP,Champ.VALEUR,1.0);
+		this.set(TypeActeur.SHIP,Champ.VALEUR,1.0);// default value for ships
+		this.set(TypeActeur.SHIP,Champ._100,1.0);
 	}
 	//
 	// OVERRIDEN METHODS
@@ -125,7 +123,5 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 	}
 	public double getTotalOccupants() { //
 		return this.get(TypeActeur.OCCUPANTS,Champ.INTEGRE);
-	}
-	public void setEnergy_Ukcal(double d) { // TODO Auto-generated method stub
 	}
 }

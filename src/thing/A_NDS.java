@@ -7,9 +7,11 @@ import melanesim.C_ContextCreator;
 import melanesim.util.C_VariousUtilities;
 import repast.simphony.essentials.RepastEssentials;
 
-/** The root class of most business objects "A_" means abstract & "NDS" means Nearly Decomposable System (See Simon, 1962)
- * @author Jean Le Fur, kyle wagner, Quentin Baduel, Jean-Emmanuel Longueville Version 2.1, 17.feb.2011, rev. JLF 09-10.2014 */
-public abstract class A_NDS implements I_CyberneticThing, I_LivingThing, Comparable<A_NDS>, I_ConstantNumeric,
+/** The root class of most business objects "A_" means abstract & "NDS" means Nearly Decomposable System (See Simon,
+ * 1962)
+ * @author Jean Le Fur, kyle wagner, Quentin Baduel, Jean-Emmanuel Longueville Version 2.1, 17.feb.2011, rev. JLF
+ *         09-10.2014 */
+public abstract class A_NDS implements I_CyberneticThing,I_LivingThing,Comparable<A_NDS>,I_ConstantNumeric,
 		I_ConstantStringRodents {
 	//
 	// FIELDS
@@ -20,7 +22,7 @@ public abstract class A_NDS implements I_CyberneticThing, I_LivingThing, Compara
 	private String myName;
 	protected final double birthDate_Utick;
 	protected double age_Utick = DEFAULT_AGE0_Utick;
-	protected double age_Uday = age_Utick / C_ConvertTimeAndSpace.oneDay_Utick;
+	protected double age_Uday = age_Utick/C_ConvertTimeAndSpace.oneDay_Utick;
 	/** Used to avoid concurrent modification exception in inspector's rodent list */
 	protected boolean dead = false;
 	//
@@ -29,11 +31,11 @@ public abstract class A_NDS implements I_CyberneticThing, I_LivingThing, Compara
 	/** Has to be initialized by a ground manager @see A_VisibleAgent#init(landscape) */
 	public A_NDS() {
 		this.myId = String.valueOf(C_ContextCreator.AGENT_NUMBER);
-		this.setMyName(C_VariousUtilities.getShortClassName(this.getClass()) + "_" + this.myId);
+		this.setMyName(C_VariousUtilities.getShortClassName(this.getClass())+"_"+this.myId);
 		this.birthDate_Utick = RepastEssentials.GetTickCount();
 		this.dead = false;// used to avoid concurrent modification exception in inspector's rodent list
 		this.age_Utick = DEFAULT_AGE0_Utick;
-		this.age_Uday = age_Utick / C_ConvertTimeAndSpace.oneDay_Utick;
+		this.age_Uday = age_Utick/C_ConvertTimeAndSpace.oneDay_Utick;
 		this.energy_Ukcal = INITIAL_ENERGY_Ukcal;
 		C_ContextCreator.AGENT_NUMBER++;
 	}
@@ -42,17 +44,15 @@ public abstract class A_NDS implements I_CyberneticThing, I_LivingThing, Compara
 	//
 	/** Remove references to other objects. Overriden in daughter classes
 	 * @revision JLF 2016.05 */
-	public void discardThis() {
-		this.myId = null;
-		this.myName = null;
-	}
-	/** Increases age.Ensures the validity of the time scales (+ exploratory research on time scales: ticks vs calendars).<br>
-	 * Tested with several times scales : System.out.println("A_NDS.getAge_Uday()" + age_Utick + "/" + age_Utick / oneDay_Utick +
-	 * "days (1day:" + oneDay_Utick + "ticks)");<br>
+	public void discardThis() { this.myId = null; this.myName = null; }
+	/** Increases age.Ensures the validity of the time scales (+ exploratory research on time scales: ticks vs
+	 * calendars).<br>
+	 * Tested with several times scales : System.out.println("A_NDS.getAge_Uday()" + age_Utick + "/" + age_Utick /
+	 * oneDay_Utick + "days (1day:" + oneDay_Utick + "ticks)");<br>
 	 * Version J.Le Fur 08.2014, rev. 11.2015 */
 	public void actionGrowOlder_Utick() {
 		this.age_Utick++;
-		this.age_Uday += 1 / C_ConvertTimeAndSpace.oneDay_Utick;
+		this.age_Uday += 1/C_ConvertTimeAndSpace.oneDay_Utick;
 	}
 	/** Computing time allocated to the agentActivity<br>
 	 * Called at each time tick; overriden in successive daughter classes */
@@ -62,11 +62,11 @@ public abstract class A_NDS implements I_CyberneticThing, I_LivingThing, Compara
 	}
 	public int compareTo(A_NDS other) {
 		// patch for test TODO JLF 2021.03 to remove
-		if ((this.myId == null) || (other.myId == null)) {
+		if((this.myId==null)||(other.myId==null)){
 			/*
-			 * A_Protocol.event("A_NDS.compareTo()", this.myId + " (" + C_VariousUtilities.getShortClassName(this.getClass()) +
-			 * ") not comparable to " + other.myId + " (" + C_VariousUtilities.getShortClassName(other.getClass()) + ")",
-			 * isError);
+			 * A_Protocol.event("A_NDS.compareTo()", this.myId + " (" +
+			 * C_VariousUtilities.getShortClassName(this.getClass()) + ") not comparable to " + other.myId + " (" +
+			 * C_VariousUtilities.getShortClassName(other.getClass()) + ")", isError);
 			 */
 			return 1;
 		}
@@ -74,32 +74,24 @@ public abstract class A_NDS implements I_CyberneticThing, I_LivingThing, Compara
 	}
 	/** set Dead if random number is lower than death probability passed in arg */
 	public void checkDeath(double deathProbability) {
-		if (C_ContextCreator.randomGeneratorForDeathProb.nextDouble() <= deathProbability) this.dead = true;
+		if(C_ContextCreator.randomGeneratorForDeathProb.nextDouble()<=deathProbability) this.dead = true;
 	}
 	@Override
-	public String toString() {
-		return this.myName;
-	}
+	public String toString() { return this.myName; }
 	//
 	// SETTERS & GETTERS
 	//
 
 	public void setAge_Uday(double age_Uday) {
 		this.age_Uday = age_Uday;
-		this.age_Utick = Math.round(age_Uday * C_ConvertTimeAndSpace.oneDay_Utick);
+		this.age_Utick = Math.round(age_Uday*C_ConvertTimeAndSpace.oneDay_Utick);
 	}
 	/** Used to toggle death on the GUI, JLF 09.2012 */
-	public void setDead(boolean dead) {
-		this.dead = dead;
-	}
-	public void setThisName(String oneName) {
-		if (!oneName.equals("")) this.setMyName(oneName);
-	}
-	public boolean isDead() {
-		return this.dead;
-	}
+	public void setDead(boolean dead) { this.dead = dead; }
+	public void setThisName(String oneName) { if(!oneName.equals("")) this.setMyName(oneName); }
+	public boolean isDead() { return this.dead; }
 	protected double getDeathProbability_Utick() {
-		return computeDeathProbability_Uday() / C_ConvertTimeAndSpace.oneDay_Utick;
+		return computeDeathProbability_Uday()/C_ConvertTimeAndSpace.oneDay_Utick;
 	}
 	/** Retrieve death probability
 	 * @return double value */
@@ -107,31 +99,20 @@ public abstract class A_NDS implements I_CyberneticThing, I_LivingThing, Compara
 		return I_ConstantNumeric.DEFAULT_DEATH_PROBABILITY_UperDay;
 	}
 	public String retrieveId() {
-		if (this.myId == null) {
+		if(this.myId==null){
 			return new String();// Patch 03.2021 JLF if dead NDS still not wiped of
 		}
 		else return this.myId;
 	}
 	/** Ensures the validity of the time scales (+ exploratory research on time scales: ticks vs calendars).<br>
-	 * Tested with several times scales : System.out.println("A_NDS.getAge_Uday()" + age_Utick + "/" + age_Utick / oneDay_Utick +
-	 * "days (1day:" + oneDay_Utick + "ticks)");<br>
+	 * Tested with several times scales : System.out.println("A_NDS.getAge_Uday()" + age_Utick + "/" + age_Utick /
+	 * oneDay_Utick + "days (1day:" + oneDay_Utick + "ticks)");<br>
 	 * J.Le Fur 08.2014 */
-	public double getAge_Uday() {
-		return this.age_Uday;
-	}
-	public double getBirthDate_Utick() {
-		return this.birthDate_Utick;
-	}
-	public double getAge_Utick() {
-		return this.age_Utick;
-	}
-	public String retrieveMyName() {
-		return this.myName;
-	}
-	public double getEnergy_Ukcal() {// for GUI display
-		return energy_Ukcal;
-	}
-	public void setMyName(String myName) {
-		this.myName = myName;
-	}
+	public double getAge_Uday() { return this.age_Uday; }
+	public double getBirthDate_Utick() { return this.birthDate_Utick; }
+	public double getAge_Utick() { return this.age_Utick; }
+	public String retrieveMyName() { return this.myName; }
+	public double getEnergy_Ukcal() { return energy_Ukcal; }
+	public void setEnergy_Ukcal(double d) { this.energy_Ukcal = d; }
+	public void setMyName(String myName) { this.myName = myName; }
 }
