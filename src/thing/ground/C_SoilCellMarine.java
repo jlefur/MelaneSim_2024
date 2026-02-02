@@ -36,6 +36,8 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 		this.speedNorthward_UmeterPerSecond = 1e-10;
 		this.set(TypeActeur.SHIP,Champ.VALEUR,1.0);// default value for ships
 		this.set(TypeActeur.SHIP,Champ._100,1.0);
+		this.set(TypeActeur.PARTICLES,Champ.VALEUR,1.0);// default value for ships
+		this.set(TypeActeur.PARTICLES,Champ._100,1.0);
 	}
 	//
 	// OVERRIDEN METHODS
@@ -48,8 +50,9 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 		if(!(thing instanceof C_StreamCurrent)){// stream current agent are not counted
 			this.energy_Ukcal++;
 			if(thing instanceof I_MarineActor actor){
-				this.add(TypeActeur.OCCUPANTS,Champ.INTEGRE,1.0);
-				this.add(actor.getTypeActeur(),Champ.INTEGRE,1.0);
+				this.add(TypeActeur.PARTICLES,Champ.INTEGRAL_100,1.0);
+				this.add(actor.getTypeActeur(),Champ.INTEGRAL_100,this.get(actor.getTypeActeur(),Champ._100));
+				this.add(actor.getTypeActeur(),Champ.NB_VAL,1.0);
 				thing.setEnergy_Ukcal(this.get(actor.getTypeActeur(),Champ._100));
 				this.energy_Ukcal += thing.getEnergy_Ukcal();
 			}
@@ -65,8 +68,9 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 		if(!(thing instanceof C_StreamCurrent)){
 			this.energy_Ukcal--;
 			if(thing instanceof I_MarineActor actor){
-				this.add(TypeActeur.OCCUPANTS,Champ.INTEGRE,-1.0);
-				this.add(actor.getTypeActeur(),Champ.INTEGRE,-1.0);
+				this.add(TypeActeur.PARTICLES,Champ.INTEGRAL_100,-1.0);
+				this.add(actor.getTypeActeur(),Champ.INTEGRAL_100,-1.0*this.get(actor.getTypeActeur(),Champ._100));
+				this.add(actor.getTypeActeur(),Champ.NB_VAL,-1.0);
 				this.energy_Ukcal -= thing.getEnergy_Ukcal();
 			}
 		}
@@ -116,12 +120,12 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 	public C_StreamCurrent getMyCurrent() { return myCurrent; }
 
 	public double getTotalChlorophyll_U100() {
-		return this.get(TypeActeur.PLANKTON,Champ.INTEGRE)*this.get(TypeActeur.PLANKTON,Champ._100);
+		return this.get(TypeActeur.PLANKTON,Champ.NB_VAL)*this.get(TypeActeur.PLANKTON,Champ._100);
 	}
 	public double getTotalNektonDensity() {
-		return this.get(TypeActeur.NEKTON,Champ.INTEGRE)*this.get(TypeActeur.NEKTON,Champ._100);
+		return this.get(TypeActeur.NEKTON,Champ.NB_VAL)*this.get(TypeActeur.NEKTON,Champ._100);
 	}
 	public double getTotalOccupants() { //
-		return this.get(TypeActeur.OCCUPANTS,Champ.INTEGRE);
+		return this.get(TypeActeur.PARTICLES,Champ.NB_VAL);
 	}
 }

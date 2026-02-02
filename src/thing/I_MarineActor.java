@@ -3,7 +3,7 @@ package thing;
 /** ENUM DES TYPES MÉTIER */
 public interface I_MarineActor {
 	enum TypeActeur {
-		OCCUPANTS ("size"), PLANKTON("chlorophylle mg/m3"),NEKTON("densité g/m2"),SHIP("effectif");
+		PARTICLES ("size"), PLANKTON("chlorophylle mg/m3"),NEKTON("densité g/m2"),SHIP("effectif");
 		// FIELD
 		private final String unite;
 		// CONSTRUCTOR

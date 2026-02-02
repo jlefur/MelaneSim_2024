@@ -6,7 +6,7 @@ public class C_SoilCellMarineEnergy extends C_SoilCell {
 	//
 	// FIELDS
 	//
-	public enum Champ { VALEUR, INTEGRE, _100 }// ENUM DES CHAMPS (multi-valeurs par type)
+	public enum Champ { VALEUR, NB_VAL, INTEGRAL_100, _100 }// ENUM DES CHAMPS (multi-valeurs par type)
 	private final Valeurs[] valeurs;// STOCKAGE INTERNE : enum + tableau
 	//
 	// INTERNAL CLASS
@@ -21,7 +21,7 @@ public class C_SoilCellMarineEnergy extends C_SoilCell {
 		// OVERRIDEN METHOD
 		@Override
 		public String toString() {
-			return "valeur="+champs[Champ.VALEUR.ordinal()]+", integre="+champs[Champ.INTEGRE.ordinal()]+", _100="
+			return "valeur="+champs[Champ.VALEUR.ordinal()]+", integre="+champs[Champ.INTEGRAL_100.ordinal()]+", _100="
 					+champs[Champ._100.ordinal()];
 		}
 	}

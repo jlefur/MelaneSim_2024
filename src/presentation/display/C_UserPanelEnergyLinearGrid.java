@@ -102,8 +102,8 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 
 	// ---- Déclare ici tes 9 canaux (exemples) ----
 	private final List<Channel> channels = Arrays.asList(//
-			new Channel("par","particle",PARTICLE_ICON,()->C_Parameters.multiplier(TypeActeur.OCCUPANTS),v->C_Parameters
-					.setMultiplier(TypeActeur.OCCUPANTS,v)), //
+			new Channel("par","particle",PARTICLE_ICON,()->C_Parameters.multiplier(TypeActeur.PARTICLES),v->C_Parameters
+					.setMultiplier(TypeActeur.PARTICLES,v)), //
 			new Channel("chl","chlorophyll",CHLOROPHYLL_ICON,()->C_Parameters.multiplier(TypeActeur.PLANKTON),
 					v->C_Parameters.setMultiplier(TypeActeur.PLANKTON,v)),//
 			new Channel("nec","necton",NEKTON_ICON,()->C_Parameters.multiplier(TypeActeur.NEKTON),v->C_Parameters
