@@ -58,7 +58,7 @@ public class C_Protocol_PNMC_nekton extends C_Protocol_PNMC_plankton {
 						double value_100 = convertTo100(rawValue, NEKTON_MIN, NEKTON_MAX);
 						// Intégration de la valeur dans marine cells
 						marineCell = ((C_SoilCellMarine)this.landscape.getGrid()[i][j]);
-						marineCell.set(TypeActeur.NEKTON,Champ.VALEUR,rawValue);
+						marineCell.set(TypeActeur.NEKTON,Champ.RAW_VAL,rawValue);
 						marineCell.set(TypeActeur.NEKTON,Champ._100,value_100);
 						// marineCell.setTotalNektonDensity(value_100 * marineCell.getNektonPopulation());
 						// classement des valeurs pour colorMap

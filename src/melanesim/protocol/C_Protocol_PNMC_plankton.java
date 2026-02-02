@@ -45,7 +45,7 @@ public class C_Protocol_PNMC_plankton extends C_Protocol_PNMC_drifters {
 						double value_100 = convertTo100(rawValue,CHLORO_MIN,CHLORO_MAX);
 						marineCell = ((C_SoilCellMarine)this.landscape.getGrid()[i][j]);
 						if(!marineCell.isTerrestrial()){
-							marineCell.set(TypeActeur.PLANKTON,Champ.VALEUR,rawValue);
+							marineCell.set(TypeActeur.PLANKTON,Champ.RAW_VAL,rawValue);
 							marineCell.set(TypeActeur.PLANKTON,Champ._100,value_100);
 							marineCell.setAffinity((int)(value_100/10.));// for xphyl min=0 max=9
 						}

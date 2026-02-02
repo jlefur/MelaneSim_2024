@@ -32,7 +32,7 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 		super(ctxt);
 		// Position landplots at the barycentre of cells
 		for(C_LandPlot lp:this.landscape.getAffinityLandPlots()){
-			double xx = 0.,yy = 0.;
+			double xx = 0., yy = 0.;
 			for(C_SoilCell cell:lp.getCells()){
 				xx += cell.getCoordinate_Ucs().x;
 				yy += cell.getCoordinate_Ucs().y;
@@ -163,8 +163,9 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 		super.step_Utick();
 		C_SoilCellMarine cell = (C_SoilCellMarine)this.landscape.getGrid()[127][217];
 		if(cell.getOccupantList().size()>=1)
-			A_Protocol.event("127-127 ",cell.getOccupantList()+"@ énergie: @"+Math.round(cell.getEnergy_Ukcal()),
-					isError);
+			A_Protocol.event("127-127 ",cell.toString(),isError);
+//		A_Protocol.event("127-127 ",cell.getOccupantList()+"@ énergie: @"+Math.round(cell.getEnergy_Ukcal())
+//		+"@ integral: @"+Math.round(cell.getIntegralEnergy_Ukcal()),isError);
 	}
 	//
 	// SPECIFIC METHODS
@@ -211,13 +212,13 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 					});
 			java.util.Arrays.stream(grid).flatMap(java.util.Arrays::stream) // transforme la grille 2D en flux de
 																			// cellules
-					.sorted(Comparator.comparingDouble(C_SoilCellMarine::getTotalOccupants).reversed()).limit(5).forEach(
-							cell->{
-								int ix = (int)cell.getCoordinate_Ucs().x;
-								int jy = (int)cell.getCoordinate_Ucs().y;
-								System.out.println(rank[0]+". Cell ("+ix+","+jy+") = "+cell.getTotalOccupants());
-								rank[0]++;
-							});
+					.sorted(Comparator.comparingDouble(C_SoilCellMarine::getTotalOccupants).reversed()).limit(5)
+					.forEach(cell->{
+						int ix = (int)cell.getCoordinate_Ucs().x;
+						int jy = (int)cell.getCoordinate_Ucs().y;
+						System.out.println(rank[0]+". Cell ("+ix+","+jy+") = "+cell.getTotalOccupants());
+						rank[0]++;
+					});
 			C_Parameters.TERMINATE = false;
 			// super.haltSimulation();
 		}

@@ -1,12 +1,13 @@
 package thing.ground;
 
 import thing.I_MarineActor.TypeActeur;
+import thing.ground.C_SoilCellMarineEnergy.Champ;
 
 public class C_SoilCellMarineEnergy extends C_SoilCell {
 	//
 	// FIELDS
 	//
-	public enum Champ { VALEUR, NB_VAL, INTEGRAL_100, _100 }// ENUM DES CHAMPS (multi-valeurs par type)
+	public enum Champ { RAW_VAL, NB_VAL, INTEGRAL_100, _100 }// ENUM DES CHAMPS (multi-valeurs par type)
 	private final Valeurs[] valeurs;// STOCKAGE INTERNE : enum + tableau
 	//
 	// INTERNAL CLASS
@@ -21,7 +22,7 @@ public class C_SoilCellMarineEnergy extends C_SoilCell {
 		// OVERRIDEN METHOD
 		@Override
 		public String toString() {
-			return "valeur="+champs[Champ.VALEUR.ordinal()]+", integre="+champs[Champ.INTEGRAL_100.ordinal()]+", _100="
+			return "valeur="+champs[Champ.RAW_VAL.ordinal()]+", integre="+champs[Champ.INTEGRAL_100.ordinal()]+", _100="
 					+champs[Champ._100.ordinal()];
 		}
 	}
@@ -54,4 +55,19 @@ public class C_SoilCellMarineEnergy extends C_SoilCell {
 	public void add(TypeActeur type,Champ champ,double delta) { valeurs(type).add(champ,delta); }
 	public void set(TypeActeur type,Champ champ,double value) { valeurs(type).set(champ,value); }
 	public double get(TypeActeur type,Champ champ) { return valeurs(type).get(champ); }
+	public double getEnergy_Ukcal() { /** sum_NB_VAL_times_100_overAllTypes() */
+		double sum = 0.0;
+		for(TypeActeur type:TypeActeur.values()) sum += this.get(type,Champ.NB_VAL)*this.get(type,Champ._100);
+		return sum;
+	}
+	public double getIntegralEnergy_Ukcal() { /** sum_NB_VAL_times_100_overAllTypes() */
+		double sum = 0.0;
+		for(TypeActeur type:TypeActeur.values()) sum += this.get(type,Champ.INTEGRAL_100);
+		return sum;
+	}
+	/** Reset all values of INTEGRAL_100 for every driver */
+	public void resetIntegralEnergy_Ukcal() {
+		for(TypeActeur type:TypeActeur.values()) this.set(type,Champ.INTEGRAL_100,0.0);
+	}
+
 }

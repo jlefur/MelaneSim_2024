@@ -20,11 +20,9 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 	//
 	// FIELDS
 	//
-	private double speedEastward_UmeterPerSecond,speedNorthward_UmeterPerSecond;
+	private double speedEastward_UmeterPerSecond, speedNorthward_UmeterPerSecond;
 	private C_StreamCurrent myCurrent;
 	/** Sum of energies (situated things) passed through this cell since last resetColors */
-	private double integralEnergy_Ukcal = 0.;
-	public int totalOccupants = 0;
 	//
 	// CONSTRUCTOR
 	//
@@ -34,9 +32,9 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 		// bordure
 		this.speedEastward_UmeterPerSecond = 1e-10;
 		this.speedNorthward_UmeterPerSecond = 1e-10;
-		this.set(TypeActeur.SHIP,Champ.VALEUR,1.0);// default value for ships
+		this.set(TypeActeur.SHIP,Champ.RAW_VAL,1.0);// default value for ships
 		this.set(TypeActeur.SHIP,Champ._100,1.0);
-		this.set(TypeActeur.PARTICLES,Champ.VALEUR,1.0);// default value for ships
+		this.set(TypeActeur.PARTICLES,Champ.RAW_VAL,1.0);// default value for ships
 		this.set(TypeActeur.PARTICLES,Champ._100,1.0);
 	}
 	//
@@ -46,15 +44,12 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 	 * @author JLF 04.2025 */
 	@Override
 	public boolean agentIncoming(I_SituatedThing thing) {
-		totalOccupants++;
 		if(!(thing instanceof C_StreamCurrent)){// stream current agent are not counted
-			this.energy_Ukcal++;
 			if(thing instanceof I_MarineActor actor){
 				this.add(TypeActeur.PARTICLES,Champ.INTEGRAL_100,1.0);
 				this.add(actor.getTypeActeur(),Champ.INTEGRAL_100,this.get(actor.getTypeActeur(),Champ._100));
 				this.add(actor.getTypeActeur(),Champ.NB_VAL,1.0);
 				thing.setEnergy_Ukcal(this.get(actor.getTypeActeur(),Champ._100));
-				this.energy_Ukcal += thing.getEnergy_Ukcal();
 			}
 		}
 		return super.agentIncoming(thing);
@@ -66,12 +61,10 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 	@Override
 	public boolean agentLeaving(I_SituatedThing thing) {
 		if(!(thing instanceof C_StreamCurrent)){
-			this.energy_Ukcal--;
 			if(thing instanceof I_MarineActor actor){
 				this.add(TypeActeur.PARTICLES,Champ.INTEGRAL_100,-1.0);
 				this.add(actor.getTypeActeur(),Champ.INTEGRAL_100,-1.0*this.get(actor.getTypeActeur(),Champ._100));
 				this.add(actor.getTypeActeur(),Champ.NB_VAL,-1.0);
-				this.energy_Ukcal -= thing.getEnergy_Ukcal();
 			}
 		}
 		return super.agentLeaving(thing);
@@ -82,8 +75,7 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 	 * Compute the marineCell's integral energy -JLF 03,10 2025 */
 	public void step_Utick() {
 		super.step_Utick();
-		this.integralEnergy_Ukcal += this.energy_Ukcal;
-		double speedEastward_UmeterPerTick,speedNorthward_UmeterPerTick;
+		double speedEastward_UmeterPerTick, speedNorthward_UmeterPerTick;
 		TreeSet<I_SituatedThing> occupants = new TreeSet<>(this.getOccupantList());
 		for(I_SituatedThing agent:occupants){
 			speedEastward_UmeterPerTick = C_ConvertTimeAndSpace.convertSpeed_UspaceByTick(
@@ -109,11 +101,9 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 		this.speedNorthward_UmeterPerSecond = currentSpeedNorthward_UmeterPerSecond;
 	}
 	public void setMyCurrent(C_StreamCurrent myCurrent) { this.myCurrent = myCurrent; myCurrent.setMyCell(this); }
-	public void setIntegralEnergy_Ukcal(double d) { this.integralEnergy_Ukcal = d; }
 	//
 	// GETTTERS
 	//
-	public double getIntegralEnergy_Ukcal() { return integralEnergy_Ukcal; }
 	public double getSpeedEastward_UmeterPerSecond() { return speedEastward_UmeterPerSecond; }
 	public double getSpeedNorthward_UmeterPerSecond() { return speedNorthward_UmeterPerSecond; }
 	public boolean isTerrestrial() { return this.getAffinity()>=TERRESTRIAL_MIN_AFFINITY; }
@@ -126,6 +116,6 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 		return this.get(TypeActeur.NEKTON,Champ.NB_VAL)*this.get(TypeActeur.NEKTON,Champ._100);
 	}
 	public double getTotalOccupants() { //
-		return this.get(TypeActeur.PARTICLES,Champ.NB_VAL);
+		return this.get(TypeActeur.PARTICLES,Champ.INTEGRAL_100);
 	}
 }
