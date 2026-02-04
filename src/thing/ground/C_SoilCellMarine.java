@@ -102,7 +102,7 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 	}
 	public void setMyCurrent(C_StreamCurrent myCurrent) { this.myCurrent = myCurrent; myCurrent.setMyCell(this); }
 	//
-	// GETTTERS
+	// GETTERS
 	//
 	public double getSpeedEastward_UmeterPerSecond() { return speedEastward_UmeterPerSecond; }
 	public double getSpeedNorthward_UmeterPerSecond() { return speedNorthward_UmeterPerSecond; }
@@ -112,10 +112,10 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 	public double getTotalChlorophyll_U100() {
 		return this.get(TypeActeur.PLANKTON,Champ.NB_VAL)*this.get(TypeActeur.PLANKTON,Champ._100);
 	}
-	public double getTotalNektonDensity() {
+	public double getTotalNektonDensity_U100() {
 		return this.get(TypeActeur.NEKTON,Champ.NB_VAL)*this.get(TypeActeur.NEKTON,Champ._100);
 	}
-	public double getTotalOccupants() { //
+	public double getIntegralOccupants() { //
 		return this.get(TypeActeur.PARTICLES,Champ.INTEGRAL_100);
 	}
 }

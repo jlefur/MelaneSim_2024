@@ -2,6 +2,8 @@ package melanesim.protocol;
 
 import java.util.Calendar;
 import java.util.Comparator;
+import java.util.EnumMap;
+import java.util.Locale;
 
 import org.locationtech.jts.geom.Coordinate;
 
@@ -10,14 +12,25 @@ import data.constants.I_ConstantPNMC;
 import data.converters.C_ConvertGeographicCoordinates;
 import melanesim.util.CaptureEcranPeriodique;
 import presentation.epiphyte.C_InspectorEnergy;
-import presentation.epiphyte.C_InspectorEnergyMarine;
 import presentation.epiphyte.C_InspectorPopulationMarine;
 import repast.simphony.context.Context;
+import repast.simphony.engine.environment.RunEnvironment;
 import thing.ground.C_LandPlot;
 import thing.ground.C_SoilCell;
 import thing.ground.C_SoilCellMarine;
+import thing.ground.C_SoilCellMarineEnergy.Champ;
 import thing.ground.I_Container;
 import thing.ground.landscape.C_LandscapeMarine;
+import thing.I_MarineActor.TypeActeur;
+
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.EnumMap;
 
 public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPNMC {
 	//
@@ -25,6 +38,7 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 	//
 	protected C_ConvertGeographicCoordinates geographicCoordinateConverter = null;
 	public static boolean DISPLAY_FACILITY_MAP = false;// used to change plankton color if facility map is on
+	public record MinMax(double min,double max){};
 	//
 	// CONSTRUCTOR
 	//
@@ -54,22 +68,6 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 	// OVERRIDEN METHODS
 	//
 	@Override
-	/** set grid content to C_SoilCellMarine, JLF 2024 */
-	protected void initLandscape(Context<Object> context) {
-		this.setLandscape(new C_LandscapeMarine(context,C_Parameters.RASTER_URL,VALUE_LAYER_NAME,
-				CONTINUOUS_SPACE_NAME));
-		for(int i = 0;i<this.landscape.dimension_Ucell.width;i++){
-			for(int j = 0;j<this.landscape.dimension_Ucell.height;j++){
-				C_SoilCellMarine cell = new C_SoilCellMarine(this.landscape.getGrid()[i][j].getAffinity(),i,j);
-				// Comment the following line to undisplay soil cells, JLF 10.2015, 11.2015
-				context.add(cell);
-				this.landscape.setGridCell(i,j,cell);
-				this.landscape.moveToLocation(cell,cell.getCoordinate_Ucs());
-			}
-		}
-	}
-
-	@Override
 	public void initCalendar() { protocolCalendar.set(2020,Calendar.DECEMBER,31); }
 
 	@Override
@@ -90,12 +88,24 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 
 		// if (currentMonth != A_Protocol.protocolCalendar.get(Calendar.MONTH)) {
 		if(currentWeek!=A_Protocol.protocolCalendar.get(Calendar.WEEK_OF_MONTH)){
+			this.computeMinMaxIntegrals();
 			((C_LandscapeMarine)this.landscape).assertCellsEnergy();
 			// saveScreen();
 		}
-
 	}
-
+	protected void initLandscape(Context<Object> context) {
+		this.setLandscape(new C_LandscapeMarine(context,C_Parameters.RASTER_URL,VALUE_LAYER_NAME,
+				CONTINUOUS_SPACE_NAME));
+		for(int i = 0;i<this.landscape.dimension_Ucell.width;i++){
+			for(int j = 0;j<this.landscape.dimension_Ucell.height;j++){
+				C_SoilCellMarine cell = new C_SoilCellMarine(this.landscape.getGrid()[i][j].getAffinity(),i,j);
+				// Comment the following line to undisplay soil cells, JLF 10.2015, 11.2015
+				context.add(cell);
+				this.landscape.setGridCell(i,j,cell);
+				this.landscape.moveToLocation(cell,cell.getCoordinate_Ucs());
+			}
+		}
+	}
 	public void saveScreen() { /** // Uncomment lines below to slightly randomly move the mouse to avoid screen sleep
 								 * mode (for recording printscreen) try { Robot robot = new Robot(); // Get the current
 								 * mouse coordinates Point mouseLocation = MouseInfo.getPointerInfo().getLocation(); int
@@ -128,7 +138,6 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 			DISPLAY_FACILITY_MAP = true;
 		}
 	}
-
 	@Override
 	/** Color the map in black to see the overall distribution of burrows<br>
 	 * Author J.Le Fur 10.2014 TODO JLF 2014.10 should be in presentation package ? */
@@ -141,7 +150,6 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 					}
 		}
 	}
-
 	@Override
 	public void readUserParameters() {
 		/** Check black map and exclos (metapopulation) */
@@ -162,25 +170,10 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 	public void step_Utick() {
 		super.step_Utick();
 		C_SoilCellMarine cell = (C_SoilCellMarine)this.landscape.getGrid()[127][217];
-		if(cell.getOccupantList().size()>=1)
-			A_Protocol.event("127-127 ",cell.toString(),isError);
-//		A_Protocol.event("127-127 ",cell.getOccupantList()+"@ énergie: @"+Math.round(cell.getEnergy_Ukcal())
-//		+"@ integral: @"+Math.round(cell.getIntegralEnergy_Ukcal()),isError);
+		if(cell.getOccupantList().size()>=1) A_Protocol.event("127-127 ",cell.toString(),isError);
+		// A_Protocol.event("127-127 ",cell.getOccupantList()+"@ énergie: @"+Math.round(cell.getEnergy_Ukcal())
+		// +"@ integral: @"+Math.round(cell.getIntegralEnergy_Ukcal()),isError);
 	}
-	//
-	// SPECIFIC METHODS
-	//
-	/** Convertit les valeurs d'entrée des paramètres en valeurs sur une échelle de 1 à 100 <br>
-	 * @author chatGPT 10.2025 */
-	public double convertTo100(double x,double xMin,double xMax) {
-		return ((x-xMin)*99)/(xMax-xMin)+1;
-	}
-	/** Convertit les valeurs sur une échelle de 1 à 100 des paramètres en valeurs lues dans les fichiers<br>
-	 * @author chatGPT 10.2025 */
-	public double convertFrom100(double y,double xMin,double xMax) {
-		return ((y-1)*(xMax-xMin))/99+xMin;
-	}
-
 	/** _STREAM_: Un Stream est un “tuyau” dans lequel tu fais passer des éléments pour les transformer, filtrer, trier,
 	 * collecter<br>
 	 * Il ne stocke pas de données, il permet d’appliquer des opérations comme sur une chaîne de montage. <br>
@@ -200,27 +193,103 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 					grid[i][j] = (C_SoilCellMarine)landscapeGrid[i][j]; // cast élément par élément
 				}
 			}
-
-			java.util.Arrays.stream(grid).flatMap(java.util.Arrays::stream) // transforme la grille 2D en flux de
-																			// cellules
-					.sorted(Comparator.comparingDouble(C_SoilCellMarine::getTotalOccupants).reversed()).limit(2000)
-					.forEach(cell->{
+			// transforme la grille 2D en flux de cellules
+			java.util.Arrays.stream(grid).flatMap(java.util.Arrays::stream).sorted(Comparator.comparingDouble(
+					C_SoilCellMarine::getIntegralOccupants).reversed()).limit(2000).forEach(cell->{
 						int ix = (int)cell.getCoordinate_Ucs().x;
 						int jy = (int)cell.getCoordinate_Ucs().y;
 						// cell.setAffinity(11);
 						this.landscape.getValueLayer().set(11,ix,jy);
 					});
-			java.util.Arrays.stream(grid).flatMap(java.util.Arrays::stream) // transforme la grille 2D en flux de
-																			// cellules
-					.sorted(Comparator.comparingDouble(C_SoilCellMarine::getTotalOccupants).reversed()).limit(5)
-					.forEach(cell->{
-						int ix = (int)cell.getCoordinate_Ucs().x;
-						int jy = (int)cell.getCoordinate_Ucs().y;
-						System.out.println(rank[0]+". Cell ("+ix+","+jy+") = "+cell.getTotalOccupants());
-						rank[0]++;
-					});
+			// transforme la grille 2D en flux de cellules
+			/*
+			 * java.util.Arrays.stream(grid).flatMap(java.util.Arrays::stream).sorted(Comparator.comparingDouble(
+			 * C_SoilCellMarine::getIntegralOccupants).reversed()).limit(5).forEach(cell->{ int ix =
+			 * (int)cell.getCoordinate_Ucs().x; int jy = (int)cell.getCoordinate_Ucs().y;
+			 * System.out.println(rank[0]+". Cell ("+ix+","+jy+") = "+cell.getIntegralOccupants()); rank[0]++; });
+			 */
 			C_Parameters.TERMINATE = false;
 			// super.haltSimulation();
 		}
 	}
+	//
+	// SPECIFIC METHODS
+	//
+	/** compute the current max and min integral 'energy' value for each factor, then normalize to [1..100], JLF 2026 */
+	protected void computeMinMaxIntegrals() {
+		DecimalFormat df = new DecimalFormat("0.00",DecimalFormatSymbols.getInstance(Locale.US)); // import
+																									// java.text.DecimalFormat;
+		long tick = (long)RunEnvironment.getInstance().getCurrentSchedule().getTickCount();
+		Path csvPath = Path.of("data_output/grid_tick_"+tick+".csv");
+		final EnumMap<TypeActeur,MinMax> minMaxDrivers = new EnumMap<>(TypeActeur.class);
+		// init
+		for(TypeActeur type:TypeActeur.values()){
+			minMaxDrivers.put(type,new MinMax(Double.POSITIVE_INFINITY,Double.NEGATIVE_INFINITY));
+		}
+		// 1) pass: compute global min/max
+		for(int i = 0;i<this.landscape.dimension_Ucell.width;i++){
+			for(int j = 0;j<this.landscape.dimension_Ucell.height;j++){
+				C_SoilCellMarine cell = (C_SoilCellMarine)this.landscape.getGrid()[i][j];
+				for(TypeActeur type:TypeActeur.values()){
+					double value = cell.get(type,Champ.INTEGRAL_100);
+					if(!Double.isFinite(value)) continue; // ignore NaN/Inf
+					MinMax mm = minMaxDrivers.get(type);
+					minMaxDrivers.put(type,new MinMax(Math.min(mm.min(),value),Math.max(mm.max(),value)));
+				}
+			}
+		}
+		try(BufferedWriter out1 = Files.newBufferedWriter(csvPath,StandardCharsets.UTF_8)){
+			StringBuilder sb = new StringBuilder(6400);
+			// 2) pass: normalize each cell value to [1..100] using global min/max per type
+			for(int i = 0;i<this.landscape.dimension_Ucell.width;i++){
+				for(int j = 0;j<this.landscape.dimension_Ucell.height;j++){
+					C_SoilCellMarine cell = (C_SoilCellMarine)this.landscape.getGrid()[i][j];
+					for(TypeActeur type:TypeActeur.values()){
+						MinMax mm = minMaxDrivers.get(type);
+						double xMin = mm.min();
+						double xMax = mm.max();
+						double x = cell.get(type,Champ.INTEGRAL_100);
+						if(!Double.isFinite(x)) continue;
+						double normalized = convertTo100(x,xMin,xMax);
+
+						// 3) pass: weight value with the weight attributed to this factor
+						double weighted = normalized*C_Parameters.multiplier(type);
+						cell.set(type,Champ.INTEGRAL_100,weighted);
+					}
+					sb.append(';').append(df.format(cell.getIntegralEnergy_Ukcal()));
+				}
+				out1.write(sb.toString());
+				out1.newLine();
+				sb.setLength(0);
+			}
+			// Optionnel: si tu veux conserver minMaxDrivers quelque part (champ de classe)
+			// this.minMaxDrivers = minMaxDrivers;
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+	}
+
+	/** Convertit les valeurs d'entrée des paramètres en valeurs sur une échelle de 1 à 100 <br>
+	 * @author chatGPT 10.2025 */
+	public double convertTo100_old(double x,double xMin,double xMax) {
+		return ((x-xMin)*99)/(xMax-xMin)+1;
+	}
+	/** Convertit les valeurs d'entrée des paramètres en valeurs sur une échelle de 1 à 100 <br>
+	 * @author chatGPT 02.2026 */
+	public double convertTo100(double x,double xMin,double xMax) {
+		if(!Double.isFinite(x)||!Double.isFinite(xMin)||!Double.isFinite(xMax)) return Double.NaN;
+		if(xMax==xMin){
+			// A_Protocol.event("A_Protocol_PNMC: ","xmin = xmax: "+xMin,isError);
+			return 50.0;// ou 1.0, ou 100.0
+		}
+		// selon ton choix
+		return ((x-xMin)*99.0)/(xMax-xMin)+1.0;
+	}
+
+	/** Convertit les valeurs sur une échelle de 1 à 100 des paramètres en valeurs lues dans les fichiers<br>
+	 * @author chatGPT 10.2025 */
+	public double convertFrom100(double y,double xMin,double xMax) {
+		return ((y-1)*(xMax-xMin))/99+xMin;
+	}
+
 }

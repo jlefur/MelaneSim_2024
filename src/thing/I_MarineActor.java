@@ -1,6 +1,6 @@
 package thing;
 
-/** ENUM DES TYPES MÉTIER */
+/** ENUM OF CONSERVATION TARGETS */
 public interface I_MarineActor {
 	enum TypeActeur {
 		PARTICLES ("size"), PLANKTON("chlorophylle mg/m3"),NEKTON("densité g/m2"),SHIP("effectif");

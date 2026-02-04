@@ -1,8 +1,8 @@
 package thing.ground;
 
-import thing.I_MarineActor.TypeActeur;
-import thing.ground.C_SoilCellMarineEnergy.Champ;
+import java.text.DecimalFormat;
 
+import thing.I_MarineActor.TypeActeur;
 public class C_SoilCellMarineEnergy extends C_SoilCell {
 	//
 	// FIELDS
@@ -22,8 +22,10 @@ public class C_SoilCellMarineEnergy extends C_SoilCell {
 		// OVERRIDEN METHOD
 		@Override
 		public String toString() {
-			return "valeur="+champs[Champ.RAW_VAL.ordinal()]+", integre="+champs[Champ.INTEGRAL_100.ordinal()]+", _100="
-					+champs[Champ._100.ordinal()];
+			DecimalFormat df = new DecimalFormat("0.00"); // import java.text.DecimalFormat;
+			return "RAW_VAL="+df.format(champs[Champ.RAW_VAL.ordinal()])+", NB_VAL="+champs[Champ.NB_VAL.ordinal()]
+					+", INTEGRAL_100="+df.format(champs[Champ.INTEGRAL_100.ordinal()])+", _100="+df.format(
+							champs[Champ._100.ordinal()]);
 		}
 	}
 	//
@@ -60,7 +62,9 @@ public class C_SoilCellMarineEnergy extends C_SoilCell {
 		for(TypeActeur type:TypeActeur.values()) sum += this.get(type,Champ.NB_VAL)*this.get(type,Champ._100);
 		return sum;
 	}
-	public double getIntegralEnergy_Ukcal() { /** sum_NB_VAL_times_100_overAllTypes() */
+	/** sum INTEGRAL_100_overAllTypes() 
+	 * @see A_Protocol_PNMC#computeMinMaxIntegrals*/
+	public double getIntegralEnergy_Ukcal() {
 		double sum = 0.0;
 		for(TypeActeur type:TypeActeur.values()) sum += this.get(type,Champ.INTEGRAL_100);
 		return sum;

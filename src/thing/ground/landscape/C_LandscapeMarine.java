@@ -1,6 +1,7 @@
 /* This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt */
 package thing.ground.landscape;
 
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Map;
 import java.util.TreeMap;
@@ -187,7 +188,8 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC {
 				}
 				currentSum += entry.getValue();
 			}
-		}
+		}System.out.println("C_LandscapeMarine.rankEnergy()"+energyByRank.toString());
+		System.out.println(">>>> "+Arrays.toString(energyRanks));System.out.println();
 		C_LandscapeMarine.overallEnergyMean_Ukcal = C_LandscapeMarine.overallEnergy_Ukcal/(this.dimension_Ucell
 				.getWidth()*this.dimension_Ucell.getHeight());
 	}

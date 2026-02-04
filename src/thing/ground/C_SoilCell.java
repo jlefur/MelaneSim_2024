@@ -8,7 +8,7 @@ import data.constants.rodents.I_ConstantStringRodents;
 
 /** a soil unit, cell, pixel, ... (initially stood for land parcel)
  * @author Q.Baduel - 2009, JLF 2011, PAM 2013 */
-public class C_SoilCell extends A_Container implements I_ConstantStringRodents {
+public class C_SoilCell extends A_Container  {
 	//
 	// FIELDS
 	//
