@@ -787,3 +787,31 @@ Caused by: java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for 
 	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
 	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
 	... 7 more
+FATAL [Thread-4] 2026-02-05T17:03:27,150 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (304.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:1583) ~[?:?]
+Caused by: java.lang.reflect.InvocationTargetException
+	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more
+Caused by: java.lang.Error: Unresolved compilation problems: 
+	The final field A_Protocol_PNMC.MinMax.min cannot be assigned
+	The final field A_Protocol_PNMC.MinMax.max cannot be assigned
+
+	at melanesim.protocol.A_Protocol_PNMC.computeMinMaxIntegrals(A_Protocol_PNMC.java:237) ~[?:?]
+	at melanesim.protocol.A_Protocol_PNMC.manageTimeLandmarks(Unknown Source) ~[?:?]
+	at melanesim.protocol.A_Protocol.step_Utick(A_Protocol.java:115) ~[?:?]
+	at melanesim.protocol.A_Protocol_PNMC.step_Utick(Unknown Source) ~[?:?]
+	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
+	... 7 more

@@ -1,6 +1,8 @@
 package thing.ground;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 import thing.I_MarineActor.TypeActeur;
 public class C_SoilCellMarineEnergy extends C_SoilCell {
@@ -22,7 +24,7 @@ public class C_SoilCellMarineEnergy extends C_SoilCell {
 		// OVERRIDEN METHOD
 		@Override
 		public String toString() {
-			DecimalFormat df = new DecimalFormat("0.00"); // import java.text.DecimalFormat;
+			DecimalFormat df = new DecimalFormat("0.00",DecimalFormatSymbols.getInstance(Locale.US));
 			return "RAW_VAL="+df.format(champs[Champ.RAW_VAL.ordinal()])+", NB_VAL="+champs[Champ.NB_VAL.ordinal()]
 					+", INTEGRAL_100="+df.format(champs[Champ.INTEGRAL_100.ordinal()])+", _100="+df.format(
 							champs[Champ._100.ordinal()]);
@@ -62,16 +64,17 @@ public class C_SoilCellMarineEnergy extends C_SoilCell {
 		for(TypeActeur type:TypeActeur.values()) sum += this.get(type,Champ.NB_VAL)*this.get(type,Champ._100);
 		return sum;
 	}
-	/** sum INTEGRAL_100_overAllTypes() 
-	 * @see A_Protocol_PNMC#computeMinMaxIntegrals*/
+	/** sum INTEGRAL_100_overAllTypes()
+	 * @see A_Protocol_PNMC#computeMinMaxIntegrals */
 	public double getIntegralEnergy_Ukcal() {
 		double sum = 0.0;
 		for(TypeActeur type:TypeActeur.values()) sum += this.get(type,Champ.INTEGRAL_100);
 		return sum;
 	}
-	/** Reset all values of INTEGRAL_100 for every driver */
+	/** Reset all values of INTEGRAL_100 for every driver to value corresponding to the actors still in the cell */
 	public void resetIntegralEnergy_Ukcal() {
-		for(TypeActeur type:TypeActeur.values()) this.set(type,Champ.INTEGRAL_100,0.0);
+		for(TypeActeur type:TypeActeur.values()) this.set(type,Champ.INTEGRAL_100,this.get(type,Champ.NB_VAL)*this.get(
+				type,Champ._100));
 	}
 
 }

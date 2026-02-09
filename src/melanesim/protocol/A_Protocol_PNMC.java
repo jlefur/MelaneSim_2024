@@ -76,6 +76,7 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 	public void manageTimeLandmarks() {
 		// ((C_LandscapeMarine) this.landscape).assertCellsEnergy();
 		// saveScreen();
+		Integer currentYear = A_Protocol.protocolCalendar.get(Calendar.YEAR);
 		Integer currentMonth = A_Protocol.protocolCalendar.get(Calendar.MONTH);
 		Integer currentWeek = A_Protocol.protocolCalendar.get(Calendar.WEEK_OF_MONTH);
 		A_Protocol.protocolCalendar.incrementDate();
@@ -87,10 +88,11 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 		// if (C_Parameters.VERBOSE) C_sound.sound("tip.wav");
 
 		// if (currentMonth != A_Protocol.protocolCalendar.get(Calendar.MONTH)) {
+		// if(currentYear!=A_Protocol.protocolCalendar.get(Calendar.YEAR)){
 		if(currentWeek!=A_Protocol.protocolCalendar.get(Calendar.WEEK_OF_MONTH)){
 			this.computeMinMaxIntegrals();
 			((C_LandscapeMarine)this.landscape).assertCellsEnergy();
-			// saveScreen();
+			saveScreen();
 		}
 	}
 	protected void initLandscape(Context<Object> context) {
@@ -169,8 +171,8 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 	@Override
 	public void step_Utick() {
 		super.step_Utick();
-		C_SoilCellMarine cell = (C_SoilCellMarine)this.landscape.getGrid()[127][217];
-		if(cell.getOccupantList().size()>=1) A_Protocol.event("127-127 ",cell.toString(),isError);
+		C_SoilCellMarine cell = (C_SoilCellMarine)this.landscape.getGrid()[49][91];
+		if(cell.getOccupantList().size()>=5) A_Protocol.event("49-91 ",cell.toString(),isError);
 		// A_Protocol.event("127-127 ",cell.getOccupantList()+"@ énergie: @"+Math.round(cell.getEnergy_Ukcal())
 		// +"@ integral: @"+Math.round(cell.getIntegralEnergy_Ukcal()),isError);
 	}
@@ -217,8 +219,8 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 	//
 	/** compute the current max and min integral 'energy' value for each factor, then normalize to [1..100], JLF 2026 */
 	protected void computeMinMaxIntegrals() {
-		DecimalFormat df = new DecimalFormat("0.00",DecimalFormatSymbols.getInstance(Locale.US)); // import
-																									// java.text.DecimalFormat;
+		DecimalFormat df = new DecimalFormat("0.00",DecimalFormatSymbols.getInstance(Locale.US));
+		double value = 0.0;
 		long tick = (long)RunEnvironment.getInstance().getCurrentSchedule().getTickCount();
 		Path csvPath = Path.of("data_output/grid_tick_"+tick+".csv");
 		final EnumMap<TypeActeur,MinMax> minMaxDrivers = new EnumMap<>(TypeActeur.class);
@@ -230,33 +232,47 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 		for(int i = 0;i<this.landscape.dimension_Ucell.width;i++){
 			for(int j = 0;j<this.landscape.dimension_Ucell.height;j++){
 				C_SoilCellMarine cell = (C_SoilCellMarine)this.landscape.getGrid()[i][j];
+				if(cell.isTerrestrial()) continue;
 				for(TypeActeur type:TypeActeur.values()){
-					double value = cell.get(type,Champ.INTEGRAL_100);
+					value = cell.get(type,Champ.INTEGRAL_100);
+
+					if(value<0.&&type==TypeActeur.PARTICLES){// for breakpoint
+						int ii = 0;
+					}
+
 					if(!Double.isFinite(value)) continue; // ignore NaN/Inf
 					MinMax mm = minMaxDrivers.get(type);
+					// NB pas propre voir correctif dans chat "MinMax Calcul pour Acteurs"
 					minMaxDrivers.put(type,new MinMax(Math.min(mm.min(),value),Math.max(mm.max(),value)));
 				}
 			}
 		}
+
+		if(C_Parameters.BLACK_MAP){
+			for(TypeActeur type:TypeActeur.values()) System.out.println(type+" après: "+minMaxDrivers.get(type));
+		}
+
 		try(BufferedWriter out1 = Files.newBufferedWriter(csvPath,StandardCharsets.UTF_8)){
 			StringBuilder sb = new StringBuilder(6400);
 			// 2) pass: normalize each cell value to [1..100] using global min/max per type
 			for(int i = 0;i<this.landscape.dimension_Ucell.width;i++){
 				for(int j = 0;j<this.landscape.dimension_Ucell.height;j++){
 					C_SoilCellMarine cell = (C_SoilCellMarine)this.landscape.getGrid()[i][j];
-					for(TypeActeur type:TypeActeur.values()){
-						MinMax mm = minMaxDrivers.get(type);
-						double xMin = mm.min();
-						double xMax = mm.max();
-						double x = cell.get(type,Champ.INTEGRAL_100);
-						if(!Double.isFinite(x)) continue;
-						double normalized = convertTo100(x,xMin,xMax);
+					if(!cell.isTerrestrial()){
+						for(TypeActeur type:TypeActeur.values()){
+							MinMax mm = minMaxDrivers.get(type);
+							double xMin = mm.min();
+							double xMax = mm.max();
+							double x = cell.get(type,Champ.INTEGRAL_100);
+							if(!Double.isFinite(x)) continue;
+							double normalized = convertTo100(x,xMin,xMax);
 
-						// 3) pass: weight value with the weight attributed to this factor
-						double weighted = normalized*C_Parameters.multiplier(type);
-						cell.set(type,Champ.INTEGRAL_100,weighted);
+							// 3) pass: weight value with the weight attributed to this factor
+							double weighted = normalized*C_Parameters.multiplier(type);
+							cell.set(type,Champ.INTEGRAL_100,weighted);
+						}
 					}
-					sb.append(';').append(df.format(cell.getIntegralEnergy_Ukcal()));
+					sb.append(df.format(cell.getIntegralEnergy_Ukcal())).append(';');
 				}
 				out1.write(sb.toString());
 				out1.newLine();
@@ -280,7 +296,7 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 		if(!Double.isFinite(x)||!Double.isFinite(xMin)||!Double.isFinite(xMax)) return Double.NaN;
 		if(xMax==xMin){
 			// A_Protocol.event("A_Protocol_PNMC: ","xmin = xmax: "+xMin,isError);
-			return 50.0;// ou 1.0, ou 100.0
+			return 0.0;// ou 50.0, ou 100.0
 		}
 		// selon ton choix
 		return ((x-xMin)*99.0)/(xMax-xMin)+1.0;

@@ -326,7 +326,7 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 			// si changement significatif, on applique ET on logue
 			if(prev==null||Math.abs(prev-v)>EPS){
 				ch.set.accept(v); // écrit dans C_Parameters
-				A_Protocol.event("C_UserPanelEnergyLinearGrid",ch.label+"("+ch.id+") "+v,true);
+				A_Protocol.event("C_UserPanelEnergyLinearGrid",ch.label+"("+ch.id+") "+v,false);
 				lastApplied.put(ch.id,v);
 			}
 			// sinon: rien (pas de log, pas de réécriture)

@@ -47,6 +47,7 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 		if(!(thing instanceof C_StreamCurrent)){// stream current agent are not counted
 			if(thing instanceof I_MarineActor actor){
 				this.add(TypeActeur.PARTICLES,Champ.INTEGRAL_100,1.0);
+				this.add(TypeActeur.PARTICLES,Champ.NB_VAL,1.0);
 				this.add(actor.getTypeActeur(),Champ.INTEGRAL_100,this.get(actor.getTypeActeur(),Champ._100));
 				this.add(actor.getTypeActeur(),Champ.NB_VAL,1.0);
 				thing.setEnergy_Ukcal(this.get(actor.getTypeActeur(),Champ._100));
@@ -62,8 +63,9 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 	public boolean agentLeaving(I_SituatedThing thing) {
 		if(!(thing instanceof C_StreamCurrent)){
 			if(thing instanceof I_MarineActor actor){
-				this.add(TypeActeur.PARTICLES,Champ.INTEGRAL_100,-1.0);
-				this.add(actor.getTypeActeur(),Champ.INTEGRAL_100,-1.0*this.get(actor.getTypeActeur(),Champ._100));
+				//this.add(TypeActeur.PARTICLES,Champ.INTEGRAL_100,-1.0);
+				this.add(TypeActeur.PARTICLES,Champ.NB_VAL,-1.0);
+				//this.add(actor.getTypeActeur(),Champ.INTEGRAL_100,-1.0*this.get(actor.getTypeActeur(),Champ._100));
 				this.add(actor.getTypeActeur(),Champ.NB_VAL,-1.0);
 			}
 		}

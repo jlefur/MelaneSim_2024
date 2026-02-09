@@ -132,17 +132,20 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC {
 		this.rankEnergy();
 		for(int i = 0;i<this.dimension_Ucell.getWidth();i++){
 			for(int j = 0;j<this.dimension_Ucell.getHeight();j++){
-				this.energyValueLayer.set(ENERGY_RESET,i,j);// reset cell color
 				if(((C_SoilCellMarine)grid[i][j]).isTerrestrial()) this.energyValueLayer.set(ENERGY_LAND,i,j);
-				cellIntegralEnergy_Ukcal = ((C_SoilCellMarine)grid[i][j]).getIntegralEnergy_Ukcal();
-				if(cellIntegralEnergy_Ukcal>=energyRanks[ENERGY_GREEN]) this.energyValueLayer.set(ENERGY_GREEN,i,j);
-				else
-					if(cellIntegralEnergy_Ukcal>=energyRanks[ENERGY_ORANGE])
-						this.energyValueLayer.set(ENERGY_ORANGE,i,j);
+				else{
+					this.energyValueLayer.set(ENERGY_RESET,i,j);// reset cell color
+					cellIntegralEnergy_Ukcal = ((C_SoilCellMarine)grid[i][j]).getIntegralEnergy_Ukcal();
+					if(cellIntegralEnergy_Ukcal>=energyRanks[ENERGY_GREEN]) this.energyValueLayer.set(ENERGY_GREEN,i,j);
 					else
-						if(cellIntegralEnergy_Ukcal>=energyRanks[ENERGY_RED]) this.energyValueLayer.set(ENERGY_RED,i,j);
-				((C_SoilCellMarine)grid[i][j]).resetIntegralEnergy_Ukcal();
-				// ((C_SoilCellMarine) grid[i][j]).setEnergy_Ukcal(0.);
+						if(cellIntegralEnergy_Ukcal>=energyRanks[ENERGY_ORANGE])
+							this.energyValueLayer.set(ENERGY_ORANGE,i,j);
+						else
+							if(cellIntegralEnergy_Ukcal>=energyRanks[ENERGY_RED])
+								this.energyValueLayer.set(ENERGY_RED,i,j);
+					((C_SoilCellMarine)grid[i][j]).resetIntegralEnergy_Ukcal();
+					// ((C_SoilCellMarine) grid[i][j]).setEnergy_Ukcal(0.);
+				}
 			}
 		}
 	}
@@ -159,15 +162,14 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC {
 			for(int j = 0;j<this.dimension_Ucell.getHeight();j++){
 				Integer cellIntegralEnergy_Ukcal = (int)((C_SoilCellMarine)grid[i][j]).getIntegralEnergy_Ukcal();
 				if(energyByRank.get(cellIntegralEnergy_Ukcal)!=null)
-					energyByRank.put(cellIntegralEnergy_Ukcal,energyByRank.get(cellIntegralEnergy_Ukcal)
-							+cellIntegralEnergy_Ukcal);
+					energyByRank.put(cellIntegralEnergy_Ukcal,energyByRank.get(cellIntegralEnergy_Ukcal)+1);
 				else// If energy key not found, create an entry and set values
-					energyByRank.put(cellIntegralEnergy_Ukcal,cellIntegralEnergy_Ukcal);
+					energyByRank.put(cellIntegralEnergy_Ukcal,1);
 				// NB: chatGPT suggère de remplacer les 4 lignes ci-dessous par:
 				// EnergyByRank.compute(cellEnergy_Ukcal, (k, v) -> (v == null) ? cellEnergy_Ukcal : v +
 				// cellEnergy_Ukcal);
 
-				overallEnergy_Ukcal += cellIntegralEnergy_Ukcal;
+				overallEnergy_Ukcal += 1;
 			}
 		}
 
@@ -182,14 +184,19 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC {
 			// additionner les valeurs en partant de la clé la plus grande
 			double currentSum = 0.0;
 			for(Map.Entry<Integer,Integer> entry:energyByRank.descendingMap().entrySet()){
+				if (C_Parameters.BLACK_MAP) {
+					System.out.println(entry.getKey()+" = "+entry.getValue());
+				}
 				if(currentSum>=targetSum){
 					energyRanks[i] = entry.getKey();// the threshold key
 					break;// Arrêter si la somme cible est atteinte
 				}
 				currentSum += entry.getValue();
 			}
-		}System.out.println("C_LandscapeMarine.rankEnergy()"+energyByRank.toString());
-		System.out.println(">>>> "+Arrays.toString(energyRanks));System.out.println();
+		}
+		System.out.println("C_LandscapeMarine.rankEnergy()"+energyByRank.toString());
+		System.out.println(">>>> "+Arrays.toString(energyRanks));
+		System.out.println();
 		C_LandscapeMarine.overallEnergyMean_Ukcal = C_LandscapeMarine.overallEnergy_Ukcal/(this.dimension_Ucell
 				.getWidth()*this.dimension_Ucell.getHeight());
 	}
