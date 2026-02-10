@@ -6,6 +6,7 @@ import org.locationtech.jts.geom.Coordinate;
 
 import data.constants.I_ConstantPNMC;
 import data.converters.C_ConvertTimeAndSpace;
+import repast.simphony.essentials.RepastEssentials;
 import thing.A_VisibleAgent;
 import thing.C_Nekton;
 import thing.C_Plankton;
@@ -92,6 +93,7 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 					A_VisibleAgent.myLandscape.translate((A_VisibleAgent)agent,new Coordinate(
 							speedEastward_UmeterPerTick,speedNorthward_UmeterPerTick));
 		}
+		//if(get(TypeActeur.PARTICLES,Champ.NB_VAL)>90.)System.err.println(RepastEssentials.GetTickCount()+","+this.lineNo+","+this.colNo+","+this.toString());
 	}
 	//
 	// SETTERS

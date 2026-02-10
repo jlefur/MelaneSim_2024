@@ -184,9 +184,6 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC {
 			// additionner les valeurs en partant de la clé la plus grande
 			double currentSum = 0.0;
 			for(Map.Entry<Integer,Integer> entry:energyByRank.descendingMap().entrySet()){
-				if (C_Parameters.BLACK_MAP) {
-					System.out.println(entry.getKey()+" = "+entry.getValue());
-				}
 				if(currentSum>=targetSum){
 					energyRanks[i] = entry.getKey();// the threshold key
 					break;// Arrêter si la somme cible est atteinte

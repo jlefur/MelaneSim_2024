@@ -15,6 +15,7 @@ import presentation.epiphyte.C_InspectorEnergy;
 import presentation.epiphyte.C_InspectorPopulationMarine;
 import repast.simphony.context.Context;
 import repast.simphony.engine.environment.RunEnvironment;
+import repast.simphony.essentials.RepastEssentials;
 import thing.ground.C_LandPlot;
 import thing.ground.C_SoilCell;
 import thing.ground.C_SoilCellMarine;
@@ -89,10 +90,10 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 
 		// if (currentMonth != A_Protocol.protocolCalendar.get(Calendar.MONTH)) {
 		// if(currentYear!=A_Protocol.protocolCalendar.get(Calendar.YEAR)){
-		if(currentWeek!=A_Protocol.protocolCalendar.get(Calendar.WEEK_OF_MONTH)){
+		if(currentMonth!=A_Protocol.protocolCalendar.get(Calendar.MONTH)){
 			this.computeMinMaxIntegrals();
 			((C_LandscapeMarine)this.landscape).assertCellsEnergy();
-			saveScreen();
+			//saveScreen();
 		}
 	}
 	protected void initLandscape(Context<Object> context) {
@@ -107,6 +108,14 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 				this.landscape.moveToLocation(cell,cell.getCoordinate_Ucs());
 			}
 		}
+		// most occupied cells in red - jlf 02.2026
+		this.landscape.getValueLayer().set(11, 47, 89);
+		this.landscape.getValueLayer().set(11, 48, 89);
+		this.landscape.getValueLayer().set(11, 48, 90);
+		this.landscape.getValueLayer().set(11, 49, 90);
+		this.landscape.getValueLayer().set(11, 56, 100);
+		this.landscape.getValueLayer().set(11, 57, 102);
+		this.landscape.getValueLayer().set(11, 62, 112);
 	}
 	public void saveScreen() { /** // Uncomment lines below to slightly randomly move the mouse to avoid screen sleep
 								 * mode (for recording printscreen) try { Robot robot = new Robot(); // Get the current
@@ -171,8 +180,9 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 	@Override
 	public void step_Utick() {
 		super.step_Utick();
-		C_SoilCellMarine cell = (C_SoilCellMarine)this.landscape.getGrid()[49][91];
-		if(cell.getOccupantList().size()>=5) A_Protocol.event("49-91 ",cell.toString(),isError);
+		C_SoilCellMarine cell = (C_SoilCellMarine)this.landscape.getGrid()[49][90];
+//		if(cell.getOccupantList().size()>=5) System.err.println("49-91: "+RepastEssentials.GetTickCount()+", "+cell.toString());
+		A_Protocol.event("49-90 ",cell.toString(),isError);
 		// A_Protocol.event("127-127 ",cell.getOccupantList()+"@ énergie: @"+Math.round(cell.getEnergy_Ukcal())
 		// +"@ integral: @"+Math.round(cell.getIntegralEnergy_Ukcal()),isError);
 	}
@@ -249,7 +259,7 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 		}
 
 		if(C_Parameters.BLACK_MAP){
-			for(TypeActeur type:TypeActeur.values()) System.out.println(type+" après: "+minMaxDrivers.get(type));
+			for(TypeActeur type:TypeActeur.values()) System.out.println(type+" thresholds: "+minMaxDrivers.get(type));
 		}
 
 		try(BufferedWriter out1 = Files.newBufferedWriter(csvPath,StandardCharsets.UTF_8)){
