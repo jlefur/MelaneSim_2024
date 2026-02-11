@@ -22,7 +22,7 @@ import thing.ground.C_SoilCellMarine;
 import thing.ground.C_SoilCellMarineEnergy.Champ;
 import thing.ground.I_Container;
 import thing.ground.landscape.C_LandscapeMarine;
-import thing.I_MarineActor.TypeActeur;
+import thing.I_MarineActor.DriverType;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -90,10 +90,10 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 
 		// if (currentMonth != A_Protocol.protocolCalendar.get(Calendar.MONTH)) {
 		// if(currentYear!=A_Protocol.protocolCalendar.get(Calendar.YEAR)){
-		if(currentWeek!=A_Protocol.protocolCalendar.get(Calendar.WEEK_OF_MONTH)){
+		if(currentMonth!=A_Protocol.protocolCalendar.get(Calendar.MONTH)){
 			this.computeMinMaxIntegrals();
 			((C_LandscapeMarine)this.landscape).assertCellsEnergy();
-			// saveScreen();
+			saveScreen();
 		}
 	}
 	protected void initLandscape(Context<Object> context) {
@@ -234,9 +234,9 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 		double value = 0.0;
 		long tick = (long)RunEnvironment.getInstance().getCurrentSchedule().getTickCount();
 		Path csvPath = Path.of("data_output/grid_tick_"+tick+".csv");
-		final EnumMap<TypeActeur,MinMax> minMaxDrivers = new EnumMap<>(TypeActeur.class);
+		final EnumMap<DriverType,MinMax> minMaxDrivers = new EnumMap<>(DriverType.class);
 		// init
-		for(TypeActeur type:TypeActeur.values()){
+		for(DriverType type:DriverType.values()){
 			minMaxDrivers.put(type,new MinMax(Double.POSITIVE_INFINITY,Double.NEGATIVE_INFINITY));
 		}
 		// 1) pass: compute global min/max
@@ -244,10 +244,10 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 			for(int j = 0;j<this.landscape.dimension_Ucell.height;j++){
 				C_SoilCellMarine cell = (C_SoilCellMarine)this.landscape.getGrid()[i][j];
 				if(cell.isTerrestrial()) continue;
-				for(TypeActeur type:TypeActeur.values()){
+				for(DriverType type:DriverType.values()){
 					value = cell.get(type,Champ.INTEGRAL_100);
 
-					if(value<0.&&type==TypeActeur.PARTICLES){// for breakpoint
+					if(value<0.&&type==DriverType.PARTICLES){// for breakpoint
 						int ii = 0;
 					}
 
@@ -260,7 +260,7 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 		}
 
 		if(C_Parameters.BLACK_MAP){
-			for(TypeActeur type:TypeActeur.values()) System.out.println(type+" thresholds: "+minMaxDrivers.get(type));
+			for(DriverType type:DriverType.values()) System.out.println(type+" thresholds: "+minMaxDrivers.get(type));
 		}
 
 		try(BufferedWriter out1 = Files.newBufferedWriter(csvPath,StandardCharsets.UTF_8)){
@@ -270,7 +270,7 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 				for(int j = 0;j<this.landscape.dimension_Ucell.height;j++){
 					C_SoilCellMarine cell = (C_SoilCellMarine)this.landscape.getGrid()[i][j];
 					if(!cell.isTerrestrial()){
-						for(TypeActeur type:TypeActeur.values()){
+						for(DriverType type:DriverType.values()){
 							MinMax mm = minMaxDrivers.get(type);
 							double xMin = mm.min();
 							double xMax = mm.max();

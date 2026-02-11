@@ -1,6 +1,6 @@
 package data;
 import java.util.EnumMap;
-import thing.I_MarineActor.TypeActeur;
+import thing.I_MarineActor.DriverType;
 import data.constants.I_ConstantPNMC;
 import data.constants.rodents.I_ConstantStringRodents;
 import repast.simphony.engine.environment.RunEnvironment;
@@ -67,12 +67,12 @@ public class C_Parameters implements I_ConstantStringRodents,I_ConstantPNMC {
 	//
 	// Weight conservation priority
 	//
-	private static final EnumMap<TypeActeur,Double> multipliers = new EnumMap<>(TypeActeur.class);
-	public static double getMultiplier(TypeActeur type) { return multipliers.get(type); }
-	public static void setMultiplier(TypeActeur type,double value) { multipliers.put(type,value); }
+	private static final EnumMap<DriverType,Double> multipliers = new EnumMap<>(DriverType.class);
+	public static double getMultiplier(DriverType type) { return multipliers.get(type); }
+	public static void setMultiplier(DriverType type,double value) { multipliers.put(type,value); }
 	static{resetMultipliers();}
 	public static void resetMultipliers() {
-		for(TypeActeur t:TypeActeur.values()){
+		for(DriverType t:DriverType.values()){
 			multipliers.put(t,1.0);
 		}
 	}

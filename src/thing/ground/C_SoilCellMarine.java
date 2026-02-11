@@ -12,7 +12,7 @@ import thing.C_Nekton;
 import thing.C_Plankton;
 import thing.C_StreamCurrent;
 import thing.I_MarineActor;
-import thing.I_MarineActor.TypeActeur;
+import thing.I_MarineActor.DriverType;
 import thing.I_SituatedThing;
 
 /** Ocean unit used in MelaneSim
@@ -33,10 +33,10 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 		// bordure
 		this.speedEastward_UmeterPerSecond = 1e-10;
 		this.speedNorthward_UmeterPerSecond = 1e-10;
-		this.set(TypeActeur.SHIP,Champ.RAW_VAL,CARGO_ENERGY_Ukcal);// default value for ships
-		this.set(TypeActeur.SHIP,Champ._100,CARGO_ENERGY_Ukcal);
-		this.set(TypeActeur.PARTICLES,Champ.RAW_VAL,1.0);// default value for ships
-		this.set(TypeActeur.PARTICLES,Champ._100,1.0);
+		this.set(DriverType.SHIP,Champ.RAW_VAL,CARGO_ENERGY_Ukcal);// default value for ships
+		this.set(DriverType.SHIP,Champ._100,CARGO_ENERGY_Ukcal);
+		this.set(DriverType.PARTICLES,Champ.RAW_VAL,1.0);// default value for ships
+		this.set(DriverType.PARTICLES,Champ._100,1.0);
 	}
 	//
 	// OVERRIDEN METHODS
@@ -47,8 +47,8 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 	public boolean agentIncoming(I_SituatedThing thing) {
 		if(!(thing instanceof C_StreamCurrent)){// stream current agent are not counted
 			if(thing instanceof I_MarineActor actor){
-				this.add(TypeActeur.PARTICLES,Champ.INTEGRAL_100,1.0);
-				this.add(TypeActeur.PARTICLES,Champ.NB_VAL,1.0);
+				this.add(DriverType.PARTICLES,Champ.INTEGRAL_100,1.0);
+				this.add(DriverType.PARTICLES,Champ.NB_VAL,1.0);
 				this.add(actor.getTypeActeur(),Champ.INTEGRAL_100,this.get(actor.getTypeActeur(),Champ._100));
 				this.add(actor.getTypeActeur(),Champ.NB_VAL,1.0);
 				thing.setEnergy_Ukcal(this.get(actor.getTypeActeur(),Champ._100));
@@ -65,7 +65,7 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 		if(!(thing instanceof C_StreamCurrent)){
 			if(thing instanceof I_MarineActor actor){
 				//this.add(TypeActeur.PARTICLES,Champ.INTEGRAL_100,-1.0);
-				this.add(TypeActeur.PARTICLES,Champ.NB_VAL,-1.0);
+				this.add(DriverType.PARTICLES,Champ.NB_VAL,-1.0);
 				//this.add(actor.getTypeActeur(),Champ.INTEGRAL_100,-1.0*this.get(actor.getTypeActeur(),Champ._100));
 				this.add(actor.getTypeActeur(),Champ.NB_VAL,-1.0);
 			}
@@ -114,12 +114,12 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 	public C_StreamCurrent getMyCurrent() { return myCurrent; }
 
 	public double getTotalChlorophyll_U100() {
-		return this.get(TypeActeur.PLANKTON,Champ.NB_VAL)*this.get(TypeActeur.PLANKTON,Champ._100);
+		return this.get(DriverType.PLANKTON,Champ.NB_VAL)*this.get(DriverType.PLANKTON,Champ._100);
 	}
 	public double getTotalNektonDensity_U100() {
-		return this.get(TypeActeur.NEKTON,Champ.NB_VAL)*this.get(TypeActeur.NEKTON,Champ._100);
+		return this.get(DriverType.NEKTON,Champ.NB_VAL)*this.get(DriverType.NEKTON,Champ._100);
 	}
 	public double getIntegralOccupants() { //
-		return this.get(TypeActeur.PARTICLES,Champ.INTEGRAL_100);
+		return this.get(DriverType.PARTICLES,Champ.INTEGRAL_100);
 	}
 }

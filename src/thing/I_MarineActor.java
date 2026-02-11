@@ -2,15 +2,15 @@ package thing;
 
 /** ENUM OF CONSERVATION TARGETS */
 public interface I_MarineActor {
-	enum TypeActeur {
+	enum DriverType {
 		PARTICLES ("size"), PLANKTON("chlorophylle mg/m3"),NEKTON("densité g/m2"),SHIP("effectif");
 		// FIELD
-		private final String unite;
+		private final String unit;
 		// CONSTRUCTOR
-		TypeActeur(String unite) { this.unite = unite; }
+		DriverType(String unite) { this.unit = unite; }
 		// GETTER
-		public String getUnite() { return unite; }
+		public String getUnit() { return unit; }
 	}
 
-	TypeActeur getTypeActeur();
+	DriverType getTypeActeur();
 }

@@ -10,7 +10,7 @@ import repast.simphony.context.Context;
 import repast.simphony.valueLayer.GridValueLayer;
 import thing.I_MarineActor;
 import thing.ground.C_SoilCellMarine;
-import thing.I_MarineActor.TypeActeur;
+import thing.I_MarineActor.DriverType;
 import thing.ground.C_SoilCellMarineEnergy.Champ;
 
 /** Chlorophyll loaded Plankton particles drifted by surface currents
@@ -58,8 +58,8 @@ public class C_Protocol_PNMC_nekton extends C_Protocol_PNMC_plankton {
 						double value_100 = convertTo100(rawValue, NEKTON_MIN, NEKTON_MAX);
 						// Intégration de la valeur dans marine cells
 						marineCell = ((C_SoilCellMarine)this.landscape.getGrid()[i][j]);
-						marineCell.set(TypeActeur.NEKTON,Champ.RAW_VAL,rawValue);
-						marineCell.set(TypeActeur.NEKTON,Champ._100,value_100);
+						marineCell.set(DriverType.NEKTON,Champ.RAW_VAL,rawValue);
+						marineCell.set(DriverType.NEKTON,Champ._100,value_100);
 						// marineCell.setTotalNektonDensity(value_100 * marineCell.getNektonPopulation());
 						// classement des valeurs pour colorMap
 						if(rawValue==0.) rawValue = 0;

@@ -23,7 +23,7 @@ public class C_Plankton extends A_Organism implements I_ConstantPNMC,I_MarineAct
 	// GETTERS
 	//
 	@Override
-	public TypeActeur getTypeActeur() { return TypeActeur.PLANKTON; }
+	public DriverType getTypeActeur() { return DriverType.PLANKTON; }
 
 	/** for probe display purpose */
 	public double getSpeedEast() {

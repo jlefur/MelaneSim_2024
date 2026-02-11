@@ -8,7 +8,7 @@ import data.C_ReadRasterDouble;
 import repast.simphony.context.Context;
 import thing.ground.C_SoilCellMarine;
 import thing.ground.C_SoilCellMarineEnergy.Champ;
-import thing.I_MarineActor.TypeActeur;
+import thing.I_MarineActor.DriverType;
 
 /** Chlorophyll loaded Plankton particles drifted by surface currents
  * @author J.Le Fur 06.2024 */
@@ -45,8 +45,8 @@ public class C_Protocol_PNMC_plankton extends C_Protocol_PNMC_drifters {
 						double value_100 = convertTo100(rawValue,CHLORO_MIN,CHLORO_MAX);
 						marineCell = ((C_SoilCellMarine)this.landscape.getGrid()[i][j]);
 						if(!marineCell.isTerrestrial()){
-							marineCell.set(TypeActeur.PLANKTON,Champ.RAW_VAL,rawValue);
-							marineCell.set(TypeActeur.PLANKTON,Champ._100,value_100);
+							marineCell.set(DriverType.PLANKTON,Champ.RAW_VAL,rawValue);
+							marineCell.set(DriverType.PLANKTON,Champ._100,value_100);
 							marineCell.setAffinity((int)(value_100/10.));// for xphyl min=0 max=9
 						}
 						// this.landscape.getGridValueLayer().set( value - 1, i, j);

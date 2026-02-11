@@ -31,5 +31,5 @@ public class C_Nekton extends C_Plankton implements I_ConstantPNMC,I_MarineActor
 	// GETTER
 	//
 	@Override
-	public TypeActeur getTypeActeur() { return TypeActeur.NEKTON; }
+	public DriverType getTypeActeur() { return DriverType.NEKTON; }
 }

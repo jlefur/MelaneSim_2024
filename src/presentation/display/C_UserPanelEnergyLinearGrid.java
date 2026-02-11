@@ -43,7 +43,7 @@ import javax.swing.event.ChangeEvent;
 import data.C_Parameters;
 import data.constants.rodents.I_ConstantImagesNames;
 import melanesim.protocol.A_Protocol;
-import thing.I_MarineActor.TypeActeur;
+import thing.I_MarineActor.DriverType;
 
 public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantImagesNames {
 
@@ -102,14 +102,14 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 
 	// ---- Déclare ici tes 9 canaux (exemples) ----
 	private final List<Channel> channels = Arrays.asList(//
-			new Channel("par","particle",PARTICLE_ICON,()->C_Parameters.getMultiplier(TypeActeur.PARTICLES),v->C_Parameters
-					.setMultiplier(TypeActeur.PARTICLES,v)), //
-			new Channel("chl","chlorophyll",CHLOROPHYLL_ICON,()->C_Parameters.getMultiplier(TypeActeur.PLANKTON),
-					v->C_Parameters.setMultiplier(TypeActeur.PLANKTON,v)),//
-			new Channel("nec","necton",NEKTON_ICON,()->C_Parameters.getMultiplier(TypeActeur.NEKTON),v->C_Parameters
-					.setMultiplier(TypeActeur.NEKTON,v)),//
-			new Channel("shi","ship",SHIP_ICON,()->C_Parameters.getMultiplier(TypeActeur.SHIP),v->C_Parameters
-					.setMultiplier(TypeActeur.SHIP,v)));//
+			new Channel("par","particle",PARTICLE_ICON,()->C_Parameters.getMultiplier(DriverType.PARTICLES),v->C_Parameters
+					.setMultiplier(DriverType.PARTICLES,v)), //
+			new Channel("chl","chlorophyll",CHLOROPHYLL_ICON,()->C_Parameters.getMultiplier(DriverType.PLANKTON),
+					v->C_Parameters.setMultiplier(DriverType.PLANKTON,v)),//
+			new Channel("nec","necton",NEKTON_ICON,()->C_Parameters.getMultiplier(DriverType.NEKTON),v->C_Parameters
+					.setMultiplier(DriverType.NEKTON,v)),//
+			new Channel("shi","ship",SHIP_ICON,()->C_Parameters.getMultiplier(DriverType.SHIP),v->C_Parameters
+					.setMultiplier(DriverType.SHIP,v)));//
 	// new Channel("mou", "mount", MOUNT_ICON, () -> C_Parameters.MOUNT_MULTIPLIER,
 	// v -> C_Parameters.MOUNT_MULTIPLIER = v), //
 	// new Channel("tem", "temperature", TEMPERATURE_ICON, () -> C_Parameters.TEMPERATURE_MULTIPLIER,

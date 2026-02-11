@@ -106,6 +106,6 @@ public class C_Ship_cargo extends A_Animal implements I_ConstantPNMC,I_MarineAct
 	// GETTERS
 	//
 	@Override
-	public TypeActeur getTypeActeur() { return TypeActeur.SHIP; }
+	public DriverType getTypeActeur() { return DriverType.SHIP; }
 	public String getDestination() { return destination; }
 }
