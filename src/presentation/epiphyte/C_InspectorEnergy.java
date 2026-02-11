@@ -2,11 +2,14 @@ package presentation.epiphyte;
 import java.util.HashMap;
 import java.util.Map;
 
+import data.C_Parameters;
 import melanesim.util.C_VariousUtilities;
 import repast.simphony.engine.environment.RunState;
 import repast.simphony.essentials.RepastEssentials;
 import thing.A_NDS;
+import thing.C_Ship_cargo;
 import thing.C_StreamCurrent;
+import thing.I_MarineActor;
 import thing.ground.C_LandPlot;
 
 /** Retrieves mean energy for each species in the context J.Le Fur 02.2018 */
@@ -14,8 +17,9 @@ public class C_InspectorEnergy extends A_Inspector {
 	//
 	// FIELDS
 	//
-	protected Map<String, Double> EnergyBySpecies = new HashMap<String, Double>();// the map [speciesGenome, cumulated energy]
-	protected Map<String, Integer> sizeBySpecies = new HashMap<String, Integer>();// size is necessary to compute means
+	protected Map<String,Double> EnergyBySpecies = new HashMap<String,Double>();// the map [speciesGenome, cumulated
+																				// energy]
+	protected Map<String,Integer> sizeBySpecies = new HashMap<String,Integer>();// size is necessary to compute means
 	/** Writer of an outer csv file */
 	// private C_FileWriter dataSaverEnergyGeneral;
 	//
@@ -38,39 +42,43 @@ public class C_InspectorEnergy extends A_Inspector {
 	}
 
 	@Override
-	/** stores the current state of indicators in the field including the super ones has to be conform with indicatorsHeader / JLF
-	 * 01.2013 */
+	/** stores the current state of indicators in the field including the super ones has to be conform with
+	 * indicatorsHeader / JLF 01.2013 */
 	public String indicatorsStoreValues() {
-		indicatorsValues = RepastEssentials.GetTickCount() + CSV_FIELD_SEPARATOR;
-		return (indicatorsValues);
+		indicatorsValues = RepastEssentials.GetTickCount()+CSV_FIELD_SEPARATOR;
+		return(indicatorsValues);
 	}
-	/** compute mean energy for each taxon within the context (compute somme and size then divide and replace EnergyBySpecies) */
+	/** compute mean energy for each taxon within the context (compute somme and size then divide and replace
+	 * EnergyBySpecies) */
 	@Override
 	public void indicatorsCompute() {
 		Object[] contextContent = RunState.getInstance().getMasterContext().toArray();
 		String speciesName = "";
 		this.EnergyBySpecies.clear();
 		this.sizeBySpecies.clear();
-		for (int i = 0; i < contextContent.length; i++) {
+		for(int i = 0;i<contextContent.length;i++){
 			Object item = contextContent[i];
-			if ((item instanceof A_NDS) && !(item instanceof C_LandPlot) && !(item instanceof C_StreamCurrent)) {
+			if((item instanceof A_NDS)&&!(item instanceof C_LandPlot)&&!(item instanceof C_StreamCurrent)){
 				speciesName = C_VariousUtilities.getShortClassName(item.getClass()).substring(2);
+				double itemEnergy_Ukcal = ((A_NDS)item).getEnergy_Ukcal();
+				if(item instanceof I_MarineActor)
+					itemEnergy_Ukcal = itemEnergy_Ukcal*C_Parameters.getMultiplier(((I_MarineActor)item)
+							.getTypeActeur());
 				// If key exist, add values
-				if (this.EnergyBySpecies.get(speciesName) != null) {
-					this.EnergyBySpecies.put(speciesName, this.EnergyBySpecies.get(speciesName) + ((A_NDS) item)
-							.getEnergy_Ukcal());
-					this.sizeBySpecies.put(speciesName, this.sizeBySpecies.get(speciesName) + 1);
+				if(this.EnergyBySpecies.get(speciesName)!=null){
+					this.EnergyBySpecies.put(speciesName,this.EnergyBySpecies.get(speciesName)+itemEnergy_Ukcal);
+					this.sizeBySpecies.put(speciesName,this.sizeBySpecies.get(speciesName)+1);
 				}
 				// If not, create an entry and set values
-				else {
-					this.EnergyBySpecies.put(speciesName, ((A_NDS) item).getEnergy_Ukcal());
-					this.sizeBySpecies.put(speciesName, 1);
+				else{
+					this.EnergyBySpecies.put(speciesName,itemEnergy_Ukcal);
+					this.sizeBySpecies.put(speciesName,1);
 				}
 			}
 		}
 		// Replace energy values with mean energyvalues
-		for (String key : this.EnergyBySpecies.keySet())
-			this.EnergyBySpecies.put(key, this.EnergyBySpecies.get(key) / this.sizeBySpecies.get(key));
+		for(String key:this.EnergyBySpecies.keySet()) this.EnergyBySpecies.put(key,this.EnergyBySpecies.get(key)
+				/this.sizeBySpecies.get(key));
 	}
 
 	/** Writes data in the Energy indicators csv output file */
@@ -87,7 +95,5 @@ public class C_InspectorEnergy extends A_Inspector {
 	//
 	// GETTER
 	//
-	public Map<String, Double> getEnergyBySpecies() {
-		return EnergyBySpecies;
-	}
+	public Map<String,Double> getEnergyBySpecies() { return EnergyBySpecies; }
 }

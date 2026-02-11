@@ -102,13 +102,13 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 
 	// ---- Déclare ici tes 9 canaux (exemples) ----
 	private final List<Channel> channels = Arrays.asList(//
-			new Channel("par","particle",PARTICLE_ICON,()->C_Parameters.multiplier(TypeActeur.PARTICLES),v->C_Parameters
+			new Channel("par","particle",PARTICLE_ICON,()->C_Parameters.getMultiplier(TypeActeur.PARTICLES),v->C_Parameters
 					.setMultiplier(TypeActeur.PARTICLES,v)), //
-			new Channel("chl","chlorophyll",CHLOROPHYLL_ICON,()->C_Parameters.multiplier(TypeActeur.PLANKTON),
+			new Channel("chl","chlorophyll",CHLOROPHYLL_ICON,()->C_Parameters.getMultiplier(TypeActeur.PLANKTON),
 					v->C_Parameters.setMultiplier(TypeActeur.PLANKTON,v)),//
-			new Channel("nec","necton",NEKTON_ICON,()->C_Parameters.multiplier(TypeActeur.NEKTON),v->C_Parameters
+			new Channel("nec","necton",NEKTON_ICON,()->C_Parameters.getMultiplier(TypeActeur.NEKTON),v->C_Parameters
 					.setMultiplier(TypeActeur.NEKTON,v)),//
-			new Channel("shi","ship",SHIP_ICON,()->C_Parameters.multiplier(TypeActeur.SHIP),v->C_Parameters
+			new Channel("shi","ship",SHIP_ICON,()->C_Parameters.getMultiplier(TypeActeur.SHIP),v->C_Parameters
 					.setMultiplier(TypeActeur.SHIP,v)));//
 	// new Channel("mou", "mount", MOUNT_ICON, () -> C_Parameters.MOUNT_MULTIPLIER,
 	// v -> C_Parameters.MOUNT_MULTIPLIER = v), //
@@ -168,7 +168,7 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 		actions.add(btnApply);
 		actions.add(btnReset);
 		actions.add(btnLoad);
-		add(actions,BorderLayout.SOUTH);
+		add(actions,BorderLayout.NORTH);
 
 		debounce.setRepeats(false);
 
@@ -326,7 +326,7 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 			// si changement significatif, on applique ET on logue
 			if(prev==null||Math.abs(prev-v)>EPS){
 				ch.set.accept(v); // écrit dans C_Parameters
-				A_Protocol.event("C_UserPanelEnergyLinearGrid",ch.label+"("+ch.id+") "+v,false);
+				A_Protocol.event("C_UserPanelEnergyLinearGrid","!!!!!! PATRIMONIAL WEIGHT CHANGED: "+ch.label+"("+ch.id+") "+v,false);
 				lastApplied.put(ch.id,v);
 			}
 			// sinon: rien (pas de log, pas de réécriture)

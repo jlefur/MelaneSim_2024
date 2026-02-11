@@ -69,5 +69,6 @@ public interface I_ConstantPNMC extends I_ConstantString {
 	public static final double NEKTON_MIN = 0.000196165;// for year 2021
 	public static final double NEKTON_MAX = 4.904100;
 	public static final double CARGO_POPULATION = 12;
+	public static final double CARGO_ENERGY_Ukcal = 12;
 
 }

@@ -68,7 +68,7 @@ public class C_Parameters implements I_ConstantStringRodents,I_ConstantPNMC {
 	// Weight conservation priority
 	//
 	private static final EnumMap<TypeActeur,Double> multipliers = new EnumMap<>(TypeActeur.class);
-	public static double multiplier(TypeActeur type) { return multipliers.get(type); }
+	public static double getMultiplier(TypeActeur type) { return multipliers.get(type); }
 	public static void setMultiplier(TypeActeur type,double value) { multipliers.put(type,value); }
 	static{resetMultipliers();}
 	public static void resetMultipliers() {

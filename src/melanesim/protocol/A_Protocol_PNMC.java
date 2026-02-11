@@ -90,10 +90,10 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 
 		// if (currentMonth != A_Protocol.protocolCalendar.get(Calendar.MONTH)) {
 		// if(currentYear!=A_Protocol.protocolCalendar.get(Calendar.YEAR)){
-		if(currentMonth!=A_Protocol.protocolCalendar.get(Calendar.MONTH)){
+		if(currentWeek!=A_Protocol.protocolCalendar.get(Calendar.WEEK_OF_MONTH)){
 			this.computeMinMaxIntegrals();
 			((C_LandscapeMarine)this.landscape).assertCellsEnergy();
-			//saveScreen();
+			// saveScreen();
 		}
 	}
 	protected void initLandscape(Context<Object> context) {
@@ -109,13 +109,13 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 			}
 		}
 		// most occupied cells in red - jlf 02.2026
-		this.landscape.getValueLayer().set(11, 47, 89);
-		this.landscape.getValueLayer().set(11, 48, 89);
-		this.landscape.getValueLayer().set(11, 48, 90);
-		this.landscape.getValueLayer().set(11, 49, 90);
-		this.landscape.getValueLayer().set(11, 56, 100);
-		this.landscape.getValueLayer().set(11, 57, 102);
-		this.landscape.getValueLayer().set(11, 62, 112);
+		this.landscape.getValueLayer().set(11,47,89);
+		this.landscape.getValueLayer().set(11,48,89);
+		this.landscape.getValueLayer().set(11,48,90);
+		this.landscape.getValueLayer().set(11,49,90);
+		this.landscape.getValueLayer().set(11,56,100);
+		this.landscape.getValueLayer().set(11,57,102);
+		this.landscape.getValueLayer().set(11,62,112);
 	}
 	public void saveScreen() { /** // Uncomment lines below to slightly randomly move the mouse to avoid screen sleep
 								 * mode (for recording printscreen) try { Robot robot = new Robot(); // Get the current
@@ -180,9 +180,10 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 	@Override
 	public void step_Utick() {
 		super.step_Utick();
-		C_SoilCellMarine cell = (C_SoilCellMarine)this.landscape.getGrid()[49][90];
-//		if(cell.getOccupantList().size()>=5) System.err.println("49-91: "+RepastEssentials.GetTickCount()+", "+cell.toString());
-		A_Protocol.event("49-90 ",cell.toString(),isError);
+		// C_SoilCellMarine cell = (C_SoilCellMarine)this.landscape.getGrid()[49][90];
+		// if(cell.getOccupantList().size()>=5) System.err.println("49-91: "+RepastEssentials.GetTickCount()+",
+		// "+cell.toString());
+		// A_Protocol.event("49-90 ",cell.toString(),isError);
 		// A_Protocol.event("127-127 ",cell.getOccupantList()+"@ énergie: @"+Math.round(cell.getEnergy_Ukcal())
 		// +"@ integral: @"+Math.round(cell.getIntegralEnergy_Ukcal()),isError);
 	}
@@ -278,7 +279,7 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 							double normalized = convertTo100(x,xMin,xMax);
 
 							// 3) pass: weight value with the weight attributed to this factor
-							double weighted = normalized*C_Parameters.multiplier(type);
+							double weighted = normalized*C_Parameters.getMultiplier(type);
 							cell.set(type,Champ.INTEGRAL_100,weighted);
 						}
 					}

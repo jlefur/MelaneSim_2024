@@ -33,8 +33,8 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 		// bordure
 		this.speedEastward_UmeterPerSecond = 1e-10;
 		this.speedNorthward_UmeterPerSecond = 1e-10;
-		this.set(TypeActeur.SHIP,Champ.RAW_VAL,1.0);// default value for ships
-		this.set(TypeActeur.SHIP,Champ._100,1.0);
+		this.set(TypeActeur.SHIP,Champ.RAW_VAL,CARGO_ENERGY_Ukcal);// default value for ships
+		this.set(TypeActeur.SHIP,Champ._100,CARGO_ENERGY_Ukcal);
 		this.set(TypeActeur.PARTICLES,Champ.RAW_VAL,1.0);// default value for ships
 		this.set(TypeActeur.PARTICLES,Champ._100,1.0);
 	}

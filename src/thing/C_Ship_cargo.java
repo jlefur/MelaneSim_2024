@@ -56,7 +56,9 @@ public class C_Ship_cargo extends A_Animal implements I_ConstantPNMC,I_MarineAct
 	}
 	/** patch - récupère l'énergie enlevée par l'actionMove de super 12.2025 */
 	@Override
-	public void actionMove() { this.energy_Ukcal++; super.actionMove(); }
+	public void actionMove() { 
+		this.energy_Ukcal++; 
+		super.actionMove(); }
 	/** Initialize speed and sensing using time and space conversion<br>
 	 * override retrieve speed from genome @see NB: can be used standalone if users parameters are changed during
 	 * simulation<br>

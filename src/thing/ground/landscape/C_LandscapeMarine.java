@@ -191,9 +191,9 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC {
 				currentSum += entry.getValue();
 			}
 		}
-		System.out.println("C_LandscapeMarine.rankEnergy()"+energyByRank.toString());
-		System.out.println(">>>> "+Arrays.toString(energyRanks));
-		System.out.println();
+		// System.out.println("C_LandscapeMarine.rankEnergy()"+energyByRank.toString());
+		// System.out.println(">>>> "+Arrays.toString(energyRanks));
+		// System.out.println();
 		C_LandscapeMarine.overallEnergyMean_Ukcal = C_LandscapeMarine.overallEnergy_Ukcal/(this.dimension_Ucell
 				.getWidth()*this.dimension_Ucell.getHeight());
 	}

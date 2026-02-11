@@ -44,15 +44,15 @@ public class C_SoilCellMarineEnergy extends C_SoilCell {
 	// OVERRIDEN METHOD
 	//
 
-	public String toString0() {
+	@Override
+	public String toString() {
 		StringBuilder sb = new StringBuilder("C_SoilCellMarineEnergy {\n");
 		for(TypeActeur type:TypeActeur.values()) sb.append("  ").append(type).append(" (").append(type.getUnite())
 				.append(")").append(" -> ").append(valeurs(type)).append("\n");
 		sb.append("}");
 		return sb.toString();
 	}
-	@Override
-	public String toString() { TypeActeur type = TypeActeur.PLANKTON; return(type.toString()+": "+valeurs(type)); }
+	public String toString0() { TypeActeur type = TypeActeur.PLANKTON; return(type.toString()+": "+valeurs(type)); }
 	//
 	// METHODS
 	//

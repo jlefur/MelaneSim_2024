@@ -15,15 +15,11 @@ public class C_Protocol_PNMC_ships extends C_Protocol_PNMC_nekton {
 	//
 	// CONSTRUCTOR
 	//
-	public C_Protocol_PNMC_ships(Context<Object> ctxt) {
-		super(ctxt);
-	}
+	public C_Protocol_PNMC_ships(Context<Object> ctxt) { super(ctxt); }
 	//
 	// SPECIFIC METHODS
 	//
-	public C_Ship_cargo createCargoShip() {
-		return new C_Ship_cargo(new C_GenomeAnimalia());
-	}
+	public C_Ship_cargo createCargoShip() { return new C_Ship_cargo(new C_GenomeAnimalia()); }
 	//
 	// OVERRIDEN METHOD
 	//
@@ -32,14 +28,14 @@ public class C_Protocol_PNMC_ships extends C_Protocol_PNMC_nekton {
 	public void step_Utick() {
 		A_NDS oneAgent;
 		IndexedIterable<Object> it = this.context.getObjects(A_NDS.class);
-		for (int i = 0; i < it.size(); i++) {
-			oneAgent = (A_NDS) it.get(i);
-			if (oneAgent instanceof C_Ship_cargo) {
-				C_SoilCellMarine currentCell = (C_SoilCellMarine) ((A_VisibleAgent) oneAgent).getCurrentSoilCell();
-				if (currentCell.isTerrestrial()) {
+		for(int i = 0;i<it.size();i++){
+			oneAgent = (A_NDS)it.get(i);
+			if(oneAgent instanceof C_Ship_cargo){
+				C_SoilCellMarine currentCell = (C_SoilCellMarine)((A_VisibleAgent)oneAgent).getCurrentSoilCell();
+				if(currentCell.isTerrestrial()){
 					oneAgent.setDead(true);
 					C_Ship_cargo newCargo = createCargoShip();
-					this.contextualizeNewThingInContainer(newCargo,  (I_Container) newCargo.getTarget());
+					this.contextualizeNewThingInContainer(newCargo,(I_Container)newCargo.getTarget());
 					newCargo.setNewTarget();
 				}
 			}
@@ -60,13 +56,12 @@ public class C_Protocol_PNMC_ships extends C_Protocol_PNMC_nekton {
 	/** Add cargo ship at any end of the main corridor - JLF 10.2025 */
 	protected void initPopulations() {
 		super.initPopulations();
-		int nbCargos = 12;// TODO number in source 2025 nombre de cargos
-		for (int i = 1; i <= CARGO_POPULATION; i++) {
+		for(int i = 1;i<=CARGO_POPULATION;i++){
 			C_Ship_cargo cargo = createCargoShip();
-			this.contextualizeNewThingInContainer(cargo, (I_Container) cargo.getTarget());
+			this.contextualizeNewThingInContainer(cargo,(I_Container)cargo.getTarget());
 			cargo.setNewTarget();
 		}
-		System.out.println("C_Protocol_PNMC_ships.init: Population of " + nbCargos
-				+ " cargo ship(s) created and positioned");
+		System.out.println("C_Protocol_PNMC_ships.init: Population of "+CARGO_POPULATION
+				+" cargo ship(s) created and positioned");
 	}
 }
