@@ -58,9 +58,9 @@ public interface I_ConstantPNMC extends I_ConstantString {
 	public static final int ENERGY_RESET = 3;//
 	public static final int ENERGY_LAND = 4;//
 
-	public static final double GREEN_AREA_Upercent = .01;// green lower limit
-	public static final double ORANGE_AREA_Upercent = .02;// orange lower limit
-	public static final double RED_AREA_Upercent = .03;// red lower limit
+	public static final double GREEN_AREA_Upercent = .05;// green lower limit
+	public static final double ORANGE_AREA_Upercent = .10;// orange lower limit
+	public static final double RED_AREA_Upercent = .25;// red lower limit
 	//
 	// DRIVERS NORMALIZATION
 	//

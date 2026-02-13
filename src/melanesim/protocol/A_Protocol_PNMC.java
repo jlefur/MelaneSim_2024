@@ -90,11 +90,11 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 
 		// if (currentMonth != A_Protocol.protocolCalendar.get(Calendar.MONTH)) {
 		// if(currentYear!=A_Protocol.protocolCalendar.get(Calendar.YEAR)){
-		if(currentMonth!=A_Protocol.protocolCalendar.get(Calendar.MONTH)){
-			this.computeMinMaxIntegrals();
-			((C_LandscapeMarine)this.landscape).assertCellsEnergy();
-			saveScreen();
-		}
+//		if(currentMonth!=A_Protocol.protocolCalendar.get(Calendar.MONTH)){
+//			this.computeMinMaxIntegrals();
+//			((C_LandscapeMarine)this.landscape).assertCellsEnergy();
+//			saveScreen();
+//		}
 	}
 	protected void initLandscape(Context<Object> context) {
 		this.setLandscape(new C_LandscapeMarine(context,C_Parameters.RASTER_URL,VALUE_LAYER_NAME,
@@ -298,12 +298,12 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 
 	/** Convertit les valeurs d'entrée des paramètres en valeurs sur une échelle de 1 à 100 <br>
 	 * @author chatGPT 10.2025 */
-	public double convertTo100_old(double x,double xMin,double xMax) {
+	public double convertTo100_old(double x, double xMin, double xMax) {
 		return ((x-xMin)*99)/(xMax-xMin)+1;
 	}
 	/** Convertit les valeurs d'entrée des paramètres en valeurs sur une échelle de 1 à 100 <br>
 	 * @author chatGPT 02.2026 */
-	public double convertTo100(double x,double xMin,double xMax) {
+	public double convertTo100(double x, double xMin, double xMax) {
 		if(!Double.isFinite(x)||!Double.isFinite(xMin)||!Double.isFinite(xMax)) return Double.NaN;
 		if(xMax==xMin){
 			// A_Protocol.event("A_Protocol_PNMC: ","xmin = xmax: "+xMin,isError);
@@ -315,7 +315,7 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 
 	/** Convertit les valeurs sur une échelle de 1 à 100 des paramètres en valeurs lues dans les fichiers<br>
 	 * @author chatGPT 10.2025 */
-	public double convertFrom100(double y,double xMin,double xMax) {
+	public double convertFrom100(double y, double xMin, double xMax) {
 		return ((y-1)*(xMax-xMin))/99+xMin;
 	}
 
