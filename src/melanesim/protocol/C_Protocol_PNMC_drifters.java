@@ -103,10 +103,10 @@ public class C_Protocol_PNMC_drifters extends A_Protocol_PNMC {
 		C_SoilCellMarine cell = null;
 		switch(event.type){
 			case COMPUTE_ENERGY:// Permet de suivre l'évolution saisonnière par exemple
-				 this.computeMinMaxIntegrals();
-				 ((C_LandscapeMarine) this.landscape).assertCellsEnergy();
-				 Toolkit.getDefaultToolkit().beep();
-				 saveScreen();
+//				 this.computeMinMaxIntegrals();
+//				 ((C_LandscapeMarine) this.landscape).assertCellsEnergy();
+//				 Toolkit.getDefaultToolkit().beep();
+//				 saveScreen();
 				break;
 			case CURRENT_EVENT:// file name example: PNMC_current_2021/202101_North.grd and
 								// PNMC_current_2021/202101_East.grd

@@ -88,13 +88,13 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 		if(displayMapBefore!=C_Parameters.DISPLAY_MAP) switchDisplayMap();
 		// if (C_Parameters.VERBOSE) C_sound.sound("tip.wav");
 
-		// if (currentMonth != A_Protocol.protocolCalendar.get(Calendar.MONTH)) {
+		 if (currentMonth != A_Protocol.protocolCalendar.get(Calendar.MONTH)) {
 		// if(currentYear!=A_Protocol.protocolCalendar.get(Calendar.YEAR)){
 //		if(currentMonth!=A_Protocol.protocolCalendar.get(Calendar.MONTH)){
-//			this.computeMinMaxIntegrals();
-//			((C_LandscapeMarine)this.landscape).assertCellsEnergy();
+			this.computeMinMaxIntegrals();
+			((C_LandscapeMarine)this.landscape).assertCellsEnergy();
 //			saveScreen();
-//		}
+		}
 	}
 	protected void initLandscape(Context<Object> context) {
 		this.setLandscape(new C_LandscapeMarine(context,C_Parameters.RASTER_URL,VALUE_LAYER_NAME,
