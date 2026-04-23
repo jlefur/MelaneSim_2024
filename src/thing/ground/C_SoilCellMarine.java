@@ -29,6 +29,7 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	private double totalNektonDensity = 0.;
 	/** microNekton is not moved by currents */
 	private double microNekton = 0.;
+	private double temperature = 0.;
 	public int totalOccupants = 0;
 	//
 	// CONSTRUCTOR
@@ -128,6 +129,9 @@ public class C_SoilCellMarine extends C_SoilCell implements I_ConstantPNMC {
 	}
 	public void setMicroNekton(double microNekton) {
 		this.microNekton = microNekton;
+	}
+	public void setTemperature(double temperature) {
+		this.temperature = temperature;
 	}
 	public void setTotalChlorophyll_U100(double totalChlorophyll_U100) {
 		this.totalChlorophyll_U100 = totalChlorophyll_U100;
