@@ -344,7 +344,7 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 					sscale = (float) (cell.getTotalChlorophyll_U100()/200.);
 //					sscale = (float) Math.max(Math.pow(cell.getPlanktonTotalChlorophyll(), 2.5) / 450000, .1);
 					// float size = (float) (this.imageScale * 10.);
-				}
+					if (C_Parameters.PROTOCOL.equals(PNMC_DRIFTERS))sscale=this.imageScale; }
 			}
 			// plankton image reflects the number of plankton agent within their cell
 			else if (object instanceof C_Ship_cargo) {
