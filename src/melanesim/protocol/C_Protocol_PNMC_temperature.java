@@ -25,12 +25,20 @@ public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_plankton {
 	public C_Protocol_PNMC_temperature(Context<Object> ctxt) {
 		super(ctxt);
 		int gridWidth = this.landscape.dimension_Ucell.width, gridHeight = this.landscape.dimension_Ucell.height;
+		// Use NEKTON_GRID name so the existing scenario.xml nekton display finds this layer
 		this.temperatureValueLayer = new GridValueLayer(TEMPERATURE_GRID, true,
 				new repast.simphony.space.grid.WrapAroundBorders(), gridWidth, gridHeight);
 		for (int i = gridWidth - 1; i >= 0; i--)
 			for (int j = gridHeight - 1; j >= 0; j--)
 				this.temperatureValueLayer.set((int) (Math.random() * 7), i, j);
 		context.addValueLayer(this.temperatureValueLayer);
+		// Placeholders for displays (nektonGrid, valueEnergyGrid) referenced in scenario.xml
+		GridValueLayer nektonPlaceholder = new GridValueLayer(NEKTON_GRID, true,
+				new repast.simphony.space.grid.WrapAroundBorders(), gridWidth, gridHeight);
+		context.addValueLayer(nektonPlaceholder);
+		GridValueLayer energyPlaceholder = new GridValueLayer(energyGridvalues, true,
+				new repast.simphony.space.grid.WrapAroundBorders(), gridWidth, gridHeight);
+		context.addValueLayer(energyPlaceholder);
 	}
 
 	@Override
