@@ -8,7 +8,6 @@ import data.constants.rodents.I_ConstantCentenal;
 import data.converters.C_ConvertTimeAndSpace;
 import melanesim.C_ContextCreator;
 import melanesim.protocol.A_Protocol;
-import melanesim.protocol.A_ProtocolTransportation;
 import presentation.display.C_Background;
 import presentation.display.C_CustomPanelSet_Rodent;
 import presentation.display.C_UserPanelRodent;

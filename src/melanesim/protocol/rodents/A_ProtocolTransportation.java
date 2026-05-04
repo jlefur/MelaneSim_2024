@@ -1,5 +1,5 @@
 /* This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt */
-package melanesim.protocol;
+package melanesim.protocol.rodents;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -26,7 +26,7 @@ import thing.rodents.C_TaxiMan;
 import data.C_Event;
 import data.C_Parameters;
 import data.constants.rodents.I_ConstantTransportation;
-import melanesim.protocol.rodents.A_ProtocolRodent;
+import melanesim.protocol.A_Protocol;
 import melanesim.util.C_Graph;
 
 /** Initialize the simulation and manage the inputs coming from the events file.csv

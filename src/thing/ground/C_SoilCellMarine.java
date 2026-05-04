@@ -6,7 +6,6 @@ import org.locationtech.jts.geom.Coordinate;
 
 import data.constants.I_ConstantPNMC;
 import data.converters.C_ConvertTimeAndSpace;
-import repast.simphony.essentials.RepastEssentials;
 import thing.A_VisibleAgent;
 import thing.C_Nekton;
 import thing.C_Plankton;
@@ -45,14 +44,12 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 	 * @author JLF 04.2025 */
 	@Override
 	public boolean agentIncoming(I_SituatedThing thing) {
-		if(!(thing instanceof C_StreamCurrent)){// stream current agent are not counted
-			if(thing instanceof I_MarineActor actor){
-				this.add(DriverType.PARTICLES,Champ.INTEGRAL_100,1.0);
-				this.add(DriverType.PARTICLES,Champ.NB_VAL,1.0);
-				this.add(actor.getTypeActeur(),Champ.INTEGRAL_100,this.get(actor.getTypeActeur(),Champ._100));
-				this.add(actor.getTypeActeur(),Champ.NB_VAL,1.0);
-				thing.setEnergy_Ukcal(this.get(actor.getTypeActeur(),Champ._100));
-			}
+		if(thing instanceof I_MarineActor actor){
+			this.add(DriverType.PARTICLES,Champ.INTEGRAL_100,1.0);
+			this.add(DriverType.PARTICLES,Champ.NB_VAL,1.0);
+			this.add(actor.getTypeActeur(),Champ.INTEGRAL_100,this.get(actor.getTypeActeur(),Champ._100));
+			this.add(actor.getTypeActeur(),Champ.NB_VAL,1.0);
+			thing.setEnergy_Ukcal(this.get(actor.getTypeActeur(),Champ._100));
 		}
 		return super.agentIncoming(thing);
 	}
@@ -62,13 +59,9 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 	 * @author JLF 04,10.2025 */
 	@Override
 	public boolean agentLeaving(I_SituatedThing thing) {
-		if(!(thing instanceof C_StreamCurrent)){
-			if(thing instanceof I_MarineActor actor){
-				//this.add(TypeActeur.PARTICLES,Champ.INTEGRAL_100,-1.0);
-				this.add(DriverType.PARTICLES,Champ.NB_VAL,-1.0);
-				//this.add(actor.getTypeActeur(),Champ.INTEGRAL_100,-1.0*this.get(actor.getTypeActeur(),Champ._100));
-				this.add(actor.getTypeActeur(),Champ.NB_VAL,-1.0);
-			}
+		if(thing instanceof I_MarineActor actor){
+			this.add(DriverType.PARTICLES,Champ.NB_VAL,-1.0);
+			this.add(actor.getTypeActeur(),Champ.NB_VAL,-1.0);
 		}
 		return super.agentLeaving(thing);
 	}
@@ -93,7 +86,7 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 					A_VisibleAgent.myLandscape.translate((A_VisibleAgent)agent,new Coordinate(
 							speedEastward_UmeterPerTick,speedNorthward_UmeterPerTick));
 		}
-		//if(get(TypeActeur.PARTICLES,Champ.NB_VAL)>90.)System.err.println(RepastEssentials.GetTickCount()+","+this.lineNo+","+this.colNo+","+this.toString());
+		// if(get(TypeActeur.PARTICLES,Champ.NB_VAL)>90.)System.err.println(RepastEssentials.GetTickCount()+","+this.lineNo+","+this.colNo+","+this.toString());
 	}
 	//
 	// SETTERS

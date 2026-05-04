@@ -24,7 +24,6 @@ import data.constants.rodents.I_ConstantMusTransport;
 import data.converters.C_ConvertGeographicCoordinates;
 import melanesim.C_ContextCreator;
 import melanesim.protocol.A_Protocol;
-import melanesim.protocol.A_ProtocolTransportation;
 
 /** @author J.Le Fur, Mboup 07/2012, Version rev. P.A.Mboup, 08.2013, JLF 10.2015 */
 public class C_ProtocolMusTransport extends A_ProtocolTransportation implements I_ConstantMusTransport {

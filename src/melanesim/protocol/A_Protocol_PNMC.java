@@ -88,12 +88,12 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 		if(displayMapBefore!=C_Parameters.DISPLAY_MAP) switchDisplayMap();
 		// if (C_Parameters.VERBOSE) C_sound.sound("tip.wav");
 
-		 if (currentMonth != A_Protocol.protocolCalendar.get(Calendar.MONTH)) {
-		// if(currentYear!=A_Protocol.protocolCalendar.get(Calendar.YEAR)){
-//		if(currentMonth!=A_Protocol.protocolCalendar.get(Calendar.MONTH)){
+		if(currentMonth!=A_Protocol.protocolCalendar.get(Calendar.MONTH)){
+			// if(currentYear!=A_Protocol.protocolCalendar.get(Calendar.YEAR)){
+			// if(currentMonth!=A_Protocol.protocolCalendar.get(Calendar.MONTH)){
 			this.computeMinMaxIntegrals();
 			((C_LandscapeMarine)this.landscape).assertCellsEnergy();
-//			saveScreen();
+			// saveScreen();
 		}
 	}
 	protected void initLandscape(Context<Object> context) {
@@ -228,7 +228,10 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 	//
 	// SPECIFIC METHODS
 	//
-	/** compute the current max and min integral 'energy' value for each factor, then normalize to [1..100], JLF 2026 */
+	/** 1] compute the current max and min integral 'energy' value for each factor, <br>
+	 * 2] then normalize to [1..100], <br>
+	 * 3] then weight value with the weight attributed to this factor<br>
+	 * @author JLF 2026 */
 	protected void computeMinMaxIntegrals() {
 		DecimalFormat df = new DecimalFormat("0.00",DecimalFormatSymbols.getInstance(Locale.US));
 		double value = 0.0;
@@ -246,11 +249,6 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 				if(cell.isTerrestrial()) continue;
 				for(DriverType type:DriverType.values()){
 					value = cell.get(type,Champ.INTEGRAL_100);
-
-					if(value<0.&&type==DriverType.PARTICLES){// for breakpoint
-						int ii = 0;
-					}
-
 					if(!Double.isFinite(value)) continue; // ignore NaN/Inf
 					MinMax mm = minMaxDrivers.get(type);
 					// NB pas propre voir correctif dans chat "MinMax Calcul pour Acteurs"
@@ -258,7 +256,7 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 				}
 			}
 		}
-
+		// for debugging
 		if(C_Parameters.BLACK_MAP){
 			for(DriverType type:DriverType.values()) System.out.println(type+" thresholds: "+minMaxDrivers.get(type));
 		}

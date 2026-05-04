@@ -125,7 +125,7 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC {
 		replaceOutcomer(animalLeavingLandscape,newLocation,x,y);
 	}
 
-	/** recompute marine cells energy<br>
+	/** recompute marine cells energy as red, orange, green<br>
 	 * JLF 03.2025 */
 	public void assertCellsEnergy() {
 		double cellIntegralEnergy_Ukcal;

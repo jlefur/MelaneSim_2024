@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
-import melanesim.protocol.A_ProtocolTransportation;
+import melanesim.protocol.rodents.A_ProtocolTransportation;
 
 /** Gather all variables since software specifications require no numbers in the java sources
  * @author P.A.Mboup, 2013, rev. JLF 09.2014 */
@@ -73,7 +73,7 @@ public interface I_ConstantTransportation extends I_ConstantStringRodents {
 	/*
 	 * //comment 10.2016 JLF public static final Map<String, Integer> EVENT_AFFINITY_CODES = new HashMap<String, Integer>() { {
 	 * put(BORDER, -1); put(RIVER, 0); put(ROAD, 1); put(TOWN, 10); put(CITY, 13); // put(MARKET, 13); PAM 2015.12 n'est
-	 * plus utile MARKET est considéré comme un city 08/12/15 } private static final long serialVersionUID = 1L; };
+	 * plus utile MARKET est considï¿½rï¿½ comme un city 08/12/15 } private static final long serialVersionUID = 1L; };
 	 */
 	public static int DEFAULT_HAMLET_SIZE_Uindividual = 500;// Population sizes of hamlets
 	/** accounted for in calculating effect of bioclimate
@@ -95,7 +95,7 @@ public interface I_ConstantTransportation extends I_ConstantStringRodents {
 	// Used for weighted/unweighted graphs, PAM, 10.2015
 	public static final Map<String, String[]> GRAPH_TYPES_MAP = new HashMap<String, String[]>() {
 		{
-			put(ROAD_EVENT, new String[]{TRACK_EVENT, GOOD_TRACK_EVENT, ROAD_EVENT});// une cellule contenant track et road est réellement track
+			put(ROAD_EVENT, new String[]{TRACK_EVENT, GOOD_TRACK_EVENT, ROAD_EVENT});// une cellule contenant track et road est rï¿½ellement track
 			put(RAIL_EVENT, new String[]{RAIL_EVENT});
 			put(RIVER_EVENT, new String[]{RIVER_EVENT});
 		}
