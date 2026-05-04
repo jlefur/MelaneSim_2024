@@ -34,7 +34,7 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 		this.speedNorthward_UmeterPerSecond = 1e-10;
 		this.set(DriverType.SHIP,Champ.RAW_VAL,CARGO_ENERGY_Ukcal);// default value for ships
 		this.set(DriverType.SHIP,Champ._100,CARGO_ENERGY_Ukcal);
-		this.set(DriverType.PARTICLES,Champ.RAW_VAL,1.0);// default value for ships
+		this.set(DriverType.PARTICLES,Champ.RAW_VAL,1.0);// default value for particles
 		this.set(DriverType.PARTICLES,Champ._100,1.0);
 	}
 	//

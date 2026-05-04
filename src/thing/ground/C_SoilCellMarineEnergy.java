@@ -3,8 +3,8 @@ package thing.ground;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
-
 import thing.I_MarineActor.DriverType;
+/***/
 public class C_SoilCellMarineEnergy extends C_SoilCell {
 	//
 	// FIELDS
