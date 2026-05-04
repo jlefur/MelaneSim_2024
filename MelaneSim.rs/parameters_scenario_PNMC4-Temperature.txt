@@ -6,10 +6,10 @@
 	<!-- COMMON INTER-PROTOCOLS -->
 	<!-- Time scale -->
 	<parameter name="TICK_UNIT_Ucalendar" displayName="0a/ Tick unit (ms,s,m,h,d,mon,y)"
-		type="java.lang.String" defaultValue="H" isReadOnly="false"
+		type="java.lang.String" defaultValue="D" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$StringStringConverter" />
 	<parameter name="TICK_LENGTH_Ucalendar" displayName="0b/ Tick length"
-		type="java.lang.Integer" defaultValue="24" isReadOnly="false"
+		type="java.lang.Integer" defaultValue="7" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
 	<parameter name="CELL_WIDTH_Ucm" displayName="0c/ nb centimeters in one pixel (default=exact scale)"
 		type="java.lang.Integer" defaultValue="480743" isReadOnly="false"
@@ -59,6 +59,7 @@
 	<repast.simphony.action.display context="Map2D" file="styles\repast.simphony.action.display_PNMC_plankton.xml" />
 	<repast.simphony.action.display context="Map2D" file="styles\repast.simphony.action.display_PNMC_nekton.xml" />
 	<repast.simphony.action.display context="Map2D" file="styles\repast.simphony.action.display_PNMC_energy.xml" />
+	<repast.simphony.action.display context="Map2D" file="styles\repast.simphony.action.display_PNMC_temperature.xml" />
 	<repast.simphony.userpanel.ui.DefaultUserPanelDescriptorAction context="Map2D" file="repast.simphony.userpanel.ui.DefaultUserPanelDescriptorAction_marine.xml" />
 	<model.initializer class="presentation.display.C_CustomPanelSetMarine" />
 </Scenario>

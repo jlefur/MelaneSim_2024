@@ -6,6 +6,7 @@
 	<repast.simphony.action.display context="Map2D" file="styles\repast.simphony.action.display_PNMC_plankton.xml" />
 	<repast.simphony.action.display context="Map2D" file="styles\repast.simphony.action.display_PNMC_nekton.xml" />
 	<repast.simphony.action.display context="Map2D" file="styles\repast.simphony.action.display_PNMC_energy.xml" />
+	<repast.simphony.action.display context="Map2D" file="styles\repast.simphony.action.display_PNMC_temperature.xml" />
 	<repast.simphony.userpanel.ui.DefaultUserPanelDescriptorAction context="Map2D" file="repast.simphony.userpanel.ui.DefaultUserPanelDescriptorAction_marine.xml" />
 	<model.initializer class="presentation.display.C_CustomPanelSetMarine" />
 </Scenario>
