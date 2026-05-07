@@ -1,0 +1,106 @@
+class C_PathWandererAstar
+!!!176386.java!!!	C_PathWandererAstar()
+		this.indexPath = 0;
+		this.lengthOfPath = 0;
+		this.isPathEnd = false;
+
+!!!176514.java!!!	getPath(inout currentCell : C_SoilCellUrban, inout targetCell : C_SoilCellUrban) : void
+		C_SoilCellUrban streetTarget = this.closestStreet(targetCell);
+		C_SoilCellUrban streetStart = this.closestStreet(currentCell);
+		this.pathKey = String.format("%03d", streetStart.retrieveLineNo()) + String.format("%03d", streetStart
+				.retrieveColNo()) + String.format("%03d", streetTarget.retrieveLineNo()) + String.format("%03d",
+						streetTarget.retrieveColNo());
+		this.nodesList = C_ProtocolDodel2.paths.get(this.pathKey);
+		if (this.nodesList == null) buildBestPath(currentCell, targetCell);
+		else this.initPath();
+!!!176642.java!!!	buildBestPath(inout currentCell : C_SoilCellUrban, inout targetCell : C_SoilCellUrban) : void
+		// first get into street
+		C_SoilCellUrban streetTarget = this.closestStreet(targetCell);
+		C_SoilCellUrban streetStart = this.closestStreet(currentCell);
+		// Build the graph
+		ArrayList<C_SoilCellNode> nodes = astar.findPath(streetStart, streetTarget);
+		// add target concession cell in case path ends to closest street
+		int numberNodes = nodes.size();
+		if (currentCell != streetStart) numberNodes++;
+		if (targetCell != streetTarget) numberNodes++;
+		this.nodesList = new C_SoilCellNode[numberNodes];
+		int istart = 0;
+		if (currentCell != streetStart) {
+			this.nodesList[0] = currentCell;
+			istart = 1;
+		}
+		for (int i = 0; i < nodes.size(); i++) {
+			this.nodesList[i + istart] = nodes.get(i);
+			// Trace the new paths generated in green
+			if (C_Parameters.VERBOSE)
+				A_VisibleAgent.myLandscape.getValueLayer().set(10, ((C_SoilCellUrban) nodes.get(i)).retrieveLineNo(),
+						nodes.get(i).retrieveColNo());// @@vert boutique
+		}
+		if (targetCell != streetTarget) {
+			this.nodesList[numberNodes - 1] = targetCell;
+		}
+		this.initPath();
+		// store the new path
+		this.pathKey = String.format("%03d", streetStart.retrieveLineNo()) + String.format("%03d", streetStart
+				.retrieveColNo()) + String.format("%03d", streetTarget.retrieveLineNo()) + String.format("%03d",
+						streetTarget.retrieveColNo());
+		C_ProtocolDodel2.paths.put(this.pathKey, this.nodesList);
+		/*
+		 * // use the following lines to generate the paths files @see C_ProtocolDodel2.initPaths System.out.print(this.pathKey +
+		 * CSV_FIELD_SEPARATOR); for (int i = 0; i < this.nodesList.length; i++) { this.pathKey = String.format("%03d",
+		 * this.nodesList[i].retrieveLineNo()) + String.format("%03d", this.nodesList[i].retrieveColNo());
+		 * System.out.print(this.pathKey + CSV_FIELD_SEPARATOR); } System.out.println();
+		 */
+!!!176770.java!!!	initPath() : void
+		this.lengthOfPath = this.nodesList.length - 1;
+		this.indexPath = 0;
+		this.isPathEnd = false;
+		if (this.lengthOfPath == 0) {
+			this.indexPath--;// In case a graph has got only one city
+		}
+		else this.targetCell = this.nodesList[this.lengthOfPath - 1]; // select a cell within a destination city
+!!!176898.java!!!	closestStreet(inout currentCell : C_SoilCellUrban) : C_SoilCellUrban
+		C_SoilCellUrban streetCell = null;
+		if (currentCell.isStreet()) return currentCell;
+		else {
+			int gridLength_y = A_VisibleAgent.myLandscape.getGrid()[0].length;
+			int gridLength_x = A_VisibleAgent.myLandscape.getGrid().length;
+			C_SoilCellUrban testCell = null;
+			int y = currentCell.retrieveColNo(), x = currentCell.retrieveLineNo(), i = 1;
+			do {
+				if (y + i < gridLength_y) {
+					testCell = (C_SoilCellUrban) A_VisibleAgent.myLandscape.getGridCell(x, y + i);
+					if (testCell.isStreet()) streetCell = testCell;
+				}
+				else if (y - i >= 0) {
+					testCell = (C_SoilCellUrban) A_VisibleAgent.myLandscape.getGridCell(x, y - i);
+					if (testCell.isStreet()) streetCell = testCell;
+				}
+				else if (x + i < gridLength_x) {
+					testCell = (C_SoilCellUrban) A_VisibleAgent.myLandscape.getGridCell(x + i, y);
+					if (testCell.isStreet()) streetCell = testCell;
+				}
+				else if (x - i >= 0) {
+					testCell = (C_SoilCellUrban) A_VisibleAgent.myLandscape.getGridCell(x - i, y);
+					if (testCell.isStreet()) streetCell = testCell;
+				}
+				i++;
+			} while (streetCell == null);
+		}
+		return streetCell;
+!!!177026.java!!!	crossingIntermediateDistance(in distanceTravelled : double, in speed_UmeterByTick : double) : boolean
+		this.intermediateDistanceTravelled += distanceTravelled;
+		return this.intermediateDistanceTravelled < speed_UmeterByTick;
+!!!177154.java!!!	computeNextNodeAndGetTargetPoint_Umeter(inout targetPoint_Umeter : Coordinate) : Coordinate
+		if (this.indexPath >= this.lengthOfPath) this.isPathEnd = true;
+		else this.targetCell = this.nodesList[++this.indexPath];
+		return this.targetCell.getCoordinate_Umeter();
+!!!177282.java!!!	discardThis() : void
+		this.astar = null;
+		this.targetCell = null;
+		this.nodesList = null;
+!!!177410.java!!!	hasToSetNextNode(inout currentSC : I_Container) : boolean
+ // arrived in any path cell towards the targetCell
+		if (this.isPathEnd) return false;
+		else if (this.indexPath == 0) return true;
+		return (this.targetCell == null || this.targetCell == currentSC);

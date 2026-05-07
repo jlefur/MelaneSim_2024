@@ -1,0 +1,79 @@
+class C_RodentCmr
+!!!352642.java!!!	C_RodentCmr(inout genome : I_DiploidGenome)
+		super(genome);
+		this.tag = -1;
+!!!352770.java!!!	giveBirth(inout genome : I_DiploidGenome) : A_Animal
+		return new C_RodentCmr(genome);
+!!!352898.java!!!	recordCatch(in session : int, in date : String) : void
+		String[] event = {date, currentSoilCell.getCoordinate_Umeter().x + "", currentSoilCell.getCoordinate_Umeter().y + ""};
+		if (catchHistory.get(session) == null) // Initialize a key when new session
+			catchHistory.put(session, new ArrayList<String[]>());
+		catchHistory.get(session).add(event); // add the current catch in the given session number
+!!!353026.java!!!	aliveInSession(in session : int) : boolean
+		boolean alive = false;
+		for (int oneSession = session; oneSession == C_ProtocolBandia.numSession; oneSession++) {
+			if (catchHistory.get(oneSession) != null) {
+				alive = true;
+				break;
+			}
+		}
+		return alive;
+!!!353154.java!!!	processTarget() : boolean
+		// Sucked up by the container target, when arrived at proximity.
+		if (this.target instanceof C_Trap) {
+			C_Trap trap = (C_Trap) this.target;// the following instruction remove the target of this
+			C_ContextCreator.protocol.contextualizeOldThingInCell(this, (I_Container) this.target);
+			trap.trapRodent(this);
+			return true;
+		}
+		else return super.processTarget();
+!!!353282.java!!!	computeDRS(in session : int) : double
+		double xa, xb, ya, yb, drs = 0., nbDistances = 0., sumDistances = 0.;
+		int catchEvent, nbCatches;
+		if (catchHistory.get(session) != null) {// null occurs when rodent is in inspectors' tagged list but was catched in other
+												// sessions and not this one
+			nbCatches = catchHistory.get(session).size();
+			if (nbCatches != 0) {
+				for (catchEvent = 0; catchEvent < nbCatches - 1; catchEvent++) {
+					// retrieve the coordinates for the current catchEvent
+					xa = Double.parseDouble(catchHistory.get(session).get(catchEvent)[1]);
+					ya = Double.parseDouble(catchHistory.get(session).get(catchEvent)[2]);
+					// retrieve the coordinates for the following catchEvent
+					xb = Double.parseDouble(catchHistory.get(session).get(catchEvent + 1)[1]);
+					yb = Double.parseDouble(catchHistory.get(session).get(catchEvent + 1)[2]);
+					// compute the hypotenuse/distance between the two catches
+					sumDistances += Math.sqrt(Math.pow(xa - xb, 2) + Math.pow(ya - yb, 2));
+					nbDistances++;
+				}
+				if (nbDistances > 0.) drs = sumDistances / nbDistances; // if nbDistances = 0. -> drs = 0.
+			}
+		}
+		return drs;
+!!!353410.java!!!	computeDMR(in session : int) : double
+		double xa, xb, ya, yb, dmr = 0., catchDistance = 0.;
+		int catchEvent1, catchEvent2, nbCatches;
+		if (catchHistory.get(session) != null) {// null occurs when rodent is in inspectors' tagged list but was catched in other
+			// sessions and not this one
+			nbCatches = catchHistory.get(session).size();
+			for (catchEvent1 = 0; catchEvent1 < nbCatches; catchEvent1++) {
+				// retrieve the coordinates for the first catchEvent
+				xa = Double.parseDouble(catchHistory.get(session).get(catchEvent1)[1]);
+				ya = Double.parseDouble(catchHistory.get(session).get(catchEvent1)[2]);
+				for (catchEvent2 = 0; catchEvent2 < nbCatches; catchEvent2++) {
+					// retrieve the coordinates for the other catchEvents
+					xb = Double.parseDouble(catchHistory.get(session).get(catchEvent2)[1]);
+					yb = Double.parseDouble(catchHistory.get(session).get(catchEvent2)[2]);
+					// compute the hypotenuse/distance between the two catches
+					if ((xa != xb) || (ya != yb)) // avoid that when only one catch DMR= sqrt(2)
+						catchDistance = Math.sqrt(Math.pow(xa - xb, 2) + Math.pow(ya - yb, 2));
+					if (dmr < catchDistance) dmr = catchDistance;
+				}
+			}
+		}
+		return dmr;
+
+		// SETTER & GETTERS
+!!!353538.java!!!	setTag(in tag : int) : void
+		this.tag = tag;
+!!!353666.java!!!	getTag() : int
+		return tag;

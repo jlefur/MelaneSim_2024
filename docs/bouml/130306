@@ -1,0 +1,5657 @@
+format 224
+"rodents" // src::thing::rodents
+  revision 1
+  modified_by 2 "lefur"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:\\Users\\lefur\\Documents\\GitHub\\MelaneSim_2024\\src/thing/rodents/"
+  java_package "thing.rodents"
+  classview 130306 "rodents"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 137218 "C_Rodent"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " @author JEL & AR, rev. J.Le Fur 2012-2013-2014 "
+      classrelation 189314 // <generalisation>
+	relation 189314 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 189314 // <generalisation>
+	  b parent class_ref 152578 // A_Amniote
+      end
+
+      operation 332930 "C_Rodent"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 333058 "actionInteract"
+	protected explicit_return_type "boolean"
+	nparams 1
+	  param inout name "animal" type class_ref 144770 // A_Animal
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " METHODS
+
+ select the kind of animal to interact to, then triggers the corresponding interact procedure
+@return true if interaction occurred
+@see interact#C_Rodent
+@see interact#C_HumanCarrier author JLF, rev. 02.2014 "
+      end
+
+      operation 333186 "actionInteract"
+	protected explicit_return_type "boolean"
+	nparams 1
+	  param inout name "rodent" type class_ref 137218 // C_Rodent
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Interact with another rodent. systematically mates if both partner reproductive status are ok. <br>
+it is always the male which interact (mateWithMale) with the female
+@see A_Amniote#mateWithMale COMMENT THE recognized(rodent) CONDITION TO STOP THE PRE-ZYGOTIC AND SCARCITY BARRIERS "
+      end
+
+      operation 333314 "actionInteract"
+	protected explicit_return_type "boolean"
+	nparams 1
+	  param inout name "carrier" type class_ref 152450 // C_HumanCarrier
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " simple interaction with a human carrier (no survival chance for any rodent)- extended in RodentCommensal JLF feb.2014 "
+      end
+
+      operation 333442 "recognized"
+	protected explicit_return_type "boolean"
+	nparams 1
+	  param inout name "rodentPartner" type class_ref 137218 // C_Rodent
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Specific procedure for hybrids olfaction recognition<br>
+Author J.LeFur and A. Comte, 05.2012, rev.JLF 07.2014 <br>
+TODO JLF 2014.07 should be more general: Animal.recognized on any genetic signature
+@return true if the two rodents olfaction signature are sufficiently close to mate
+@see C_GenomeEucaryote#hybridRatio() "
+      end
+
+      operation 333570 "evalScarcity"
+	protected explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Scarcity is evaluated from within the perception sphere of the rodent. <br>
+@return A value between ~0 (scarcity: no conspecific rodents) and 1 (no scarcity: this species only)<br>
+@version J.LeFur and A. Comte, 05.2012, rev. jlf 04.2015 "
+      end
+
+      operation 333698 "giveBirth"
+	public return_type class_ref 144770 // A_Animal
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " generate a new animal : compulsory for every A_Mammal daughter class "
+      end
+
+      operation 333826 "computeDeathProbability_Uday"
+	protected explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " GETTERS
+
+ Retrieves death probability
+@return double value "
+      end
+
+      operation 333954 "getCarryingCapacity_Urodent"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " JLF 03.2021 "
+      end
+
+      operation 334082 "getDeathProbabilityMicrotusArvalis_Uday"
+	protected explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Retrieves death probability from a table
+@return double value "
+      end
+    end
+
+    class 137474 "C_RodentFossorial"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Rodents bound to burrow systems : female use or dig burrow to spawn and suckle, mating is outside burrow<br>
+Implement digging, perception, spawning, dispersing, "
+      classrelation 189442 // <generalisation>
+	relation 189442 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 189442 // <generalisation>
+	  b parent class_ref 137218 // C_Rodent
+      end
+
+      operation 334210 "C_RodentFossorial"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 334338 "giveBirth"
+	public return_type class_ref 144770 // A_Animal
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " METHODS
+
+ Generate a new animal, necessary to use spawn
+@see A_Amniote#spawn "
+      end
+
+      operation 334466 "actionSpawn"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Spawn if within a burrow, else dig a burrow and super.spawn , rev. JLF 01,09.2017 "
+      end
+
+      operation 334594 "setHasToLeaveFullContainer"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "dispersal" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 334722 "actionForage"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " If within burrow exit before super.wander<br>
+JLF 01.2018 "
+      end
+
+      operation 334850 "actionDisperse"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Exit from burrow before dispersing using super "
+      end
+
+      operation 334978 "perception"
+	protected return_type class_ref 135682 // I_SituatedThing
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " If within a burrow system, only retrieve the burrow's occupants, else super<br>
+Version Authors J.E. Longueville 2011 - J.Le Fur 03.2012,04.2015,01.2016
+@see A_VisibleAgent#retrieveCell2Perception
+@return TreeSet<I_situated_thing> listeVisibleObject "
+      end
+
+      operation 335106 "actionDig"
+	public return_type class_ref 152066 // C_BurrowSystem
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Dig a burrow (at the same coordinates), then enter within it <br>
+Version Author JE Longueville 2011, rev. jlf 08.2015, 12.2015, 09.2017
+@return new C_BurrowSystem
+@see C_RodentFossorial#spawn "
+      end
+
+      operation 335234 "actionEnterBurrow"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "oneburrow" type class_ref 152066 // C_BurrowSystem
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Enter burrow; if target was the burrow, remove target "
+      end
+
+      operation 335362 "actionEat"
+	protected explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Exit from burrow before foraging
+@version JLF 09.2017
+@return true if success "
+      end
+    end
+
+    class 138882 "C_RodentCmr"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Implements a rodent able to compute the CMR indicator on its own. Uses a catchHistory table with date, session n� and x,y
+coordinates of the catches
+@author Malick Diakhate 2013, rev. Le Fur 10.2013 "
+      classrelation 193282 // <generalisation>
+	relation 193282 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 193282 // <generalisation>
+	  b parent class_ref 137474 // C_RodentFossorial
+      end
+
+      attribute 257666 "tag"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+"
+      end
+
+      attribute 257794 "catchHistory"
+	private explicit_type "Integer, ArrayList<String[]>"
+	init_value " new HashMap<Integer, ArrayList<String[]>>()"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " catchHistory: key=session number, String[]=date, x, y
+"
+      end
+
+      operation 352642 "C_RodentCmr"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 352770 "giveBirth"
+	public return_type class_ref 144770 // A_Animal
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " METHODS
+
+ Generate a new animal, necessary to use spawn
+@see A_Amniote#spawn "
+      end
+
+      operation 352898 "recordCatch"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "session" explicit_type "int"
+	  param in name "date" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Record date and position when rodent is trapped
+@param session : the session number "
+      end
+
+      operation 353026 "aliveInSession"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param in name "session" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Return true if captured within the session or within a further one (used to compute MNA) "
+      end
+
+      operation 353154 "processTarget"
+	protected explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Trap this-self if target is a C_Trap, else super<br>(RodentCMR's skill)<br>
+JLF 07.2014, rev.05.2018 "
+      end
+
+      operation 353282 "computeDRS"
+	public explicit_return_type "double"
+	nparams 1
+	  param in name "session" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Mean distance between successive catches within a given session (DRS: \"Distance entre Recaptures Successives\")
+@param session : the session number "
+      end
+
+      operation 353410 "computeDMR"
+	public explicit_return_type "double"
+	nparams 1
+	  param in name "session" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " compute every distances between catches and keep the largest one (DMR: Distance maximum de recapture) "
+      end
+
+      operation 353538 "setTag"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "tag" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 353666 "getTag"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 139394 "C_RodentCaged"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Standard rodent only living in cage and not dying
+@author JLF, 03.2012 rev. jlf 2017-2018 "
+      classrelation 192642 // <generalisation>
+	relation 192642 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 192642 // <generalisation>
+	  b parent class_ref 137218 // C_Rodent
+      end
+
+      classrelation 192770 // <realization>
+	relation 192770 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 192770 // <realization>
+	  b parent class_ref 131458 // I_ConstantCage
+      end
+
+      attribute 257282 "generation"
+	public explicit_type "String"
+	init_value " \"F0\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+"
+      end
+
+      classrelation 192898 // birthCage (<unidirectional association>)
+	relation 192898 --->
+	  a role_name "birthCage" private
+	    comment " used to identify inbreeding rodents."
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 192898 // birthCage (<unidirectional association>)
+	  b parent class_ref 138370 // C_LandPlot
+      end
+
+      classrelation 193026 // currentCage (<unidirectional association>)
+	relation 193026 --->
+	  a role_name "currentCage" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 193026 // currentCage (<unidirectional association>)
+	  b parent class_ref 138370 // C_LandPlot
+      end
+
+      attribute 257410 "currentLine"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 349698 "C_RodentCaged"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 349826 "giveBirth"
+	public return_type class_ref 144770 // A_Animal
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " METHODS
+
+ generate a new animal, necessary to use spawn
+@see A_Amniote#spawn "
+      end
+
+      operation 349954 "initParameters"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " can be used standalone if users parameters are changed during simulation, JLF 2017.08 "
+      end
+
+      operation 350082 "setDestination"
+	protected return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "alternatives" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Random selection of the target from undecidable alternatives / rev. JLF 02.2019
+@param alternatives : the possible alternatives set (any situated thing)<br>
+           TODO JLF 2018.01 select min de getDistance_Umeter() should slow simulations "
+      end
+
+      operation 350210 "discardThis"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Remove references to cages "
+      end
+
+      operation 350338 "getChildren"
+	protected return_type class_ref 152578 // A_Amniote
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Do not get stuck to children "
+      end
+
+      operation 350466 "deliberation"
+	protected return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "perceivedThings" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Special procedure for MBour experiment<br>
+@version jlefur
+@return Perceived cells within the cage
+@param perceivedThings "
+      end
+
+      operation 350594 "perception"
+	protected return_type class_ref 135682 // I_SituatedThing
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Special procedure for MBour experiment<br>
+@version jlefur
+@return cells and agents within the cage "
+      end
+
+      operation 350722 "actionSpawn"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Remove mother as a target, JLF 02.2019 "
+      end
+
+      operation 350850 "setBirthCage"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "birthLandPlot" type class_ref 138370 // C_LandPlot
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SETTERS & GETTERS
+"
+      end
+
+      operation 350978 "setCurrentCage"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "currentCage" type class_ref 138370 // C_LandPlot
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 351106 "setCurrentLine"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "currentLine" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 351234 "getGeneration"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 351362 "computeDeathProbability_Uday"
+	protected explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Either super/10., either 0. (for unbiased outputs) <br>
+rev. jlf 06.2018 TODO number in source OK reduce deathProb caged rodents jlf 04.2018 "
+      end
+
+      operation 351490 "getBirthCage"
+	public return_type class_ref 138370 // C_LandPlot
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 351618 "getCurrentCage"
+	public return_type class_ref 138370 // C_LandPlot
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 351746 "getCurrentLine"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 351874 "getDiploidNumber"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Use for GUI probe rodent display TODO number in source OK "
+      end
+    end
+
+    class 140034 "C_TaxiManDodel"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 194562 // <generalisation>
+	relation 194562 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 194562 // <generalisation>
+	  b parent class_ref 162690 // C_TaxiMan
+      end
+
+      classrelation 194690 // marketPlace (<unidirectional association>)
+	relation 194690 --->
+	  a role_name "marketPlace" init_value " myLandscape.getGrid()[7][21]" private
+	    comment " TODO number in source 2018.03 jlf"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 194690 // marketPlace (<unidirectional association>)
+	  b parent class_ref 135810 // I_Container
+      end
+
+      operation 360706 "C_TaxiManDodel"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 360834 "step_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 360962 "getTargetPoint_Umeter"
+	public explicit_return_type "Coordinate"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 361090 "discardThis"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 140674 "C_RodentDomestic2"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Rodent agents that are used to live within cities buildings and can interact with different agents like humans, cats,
+bacterias and ticks <br>
+created for protocol Dodel 2
+@author Moussa Sall, July 2018, rev. JLF 03.2021 "
+      classrelation 193410 // <generalisation>
+	relation 193410 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 193410 // <generalisation>
+	  b parent class_ref 161922 // C_RodentCommensal
+      end
+
+      classrelation 193538 // <realization>
+	relation 193538 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 193538 // <realization>
+	  b parent class_ref 132098 // I_ConstantDodel2
+      end
+
+      classrelation 193666 // wallFollower (<unidirectional association>)
+	relation 193666 --->
+	  a role_name "wallFollower" init_value " new C_WallFollower()" private
+	    comment " FIELDS
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 193666 // wallFollower (<unidirectional association>)
+	  b parent class_ref 144898 // C_WallFollower
+      end
+
+      attribute 257922 "hasToCreateHome"
+	private explicit_type "boolean"
+	init_value " false"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 353794 "C_RodentDomestic2"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " private boolean hasToStay = false;// keep agent in a favorable land
+
+ CONSTRUCTOR
+"
+      end
+
+      operation 353922 "step_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " OVERRIDEN METHODS
+"
+      end
+
+      operation 354050 "updatePhysiologicStatus"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 354178 "perception"
+	protected return_type class_ref 135682 // I_SituatedThing
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Remove perceived things beyond obstacles "
+      end
+
+      operation 354306 "checkDanger"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Author MS 2018, Check if human are perceived "
+      end
+
+      operation 354434 "deliberation"
+	protected return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "perceivedThings" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " (1) If agent has to hide or rest choose myHome, or select shelters or select closest wall "
+      end
+
+      operation 354562 "chooseFood"
+	public return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "perceivedThings" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 354690 "chooseShelter"
+	public return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "perceivedThings" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 354818 "chooseDoor"
+	public return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "perceivedThings" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 354946 "manageArrival"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Position close to the sightObtacle, not within "
+      end
+
+      operation 355074 "processTarget"
+	protected explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 355202 "giveBirth"
+	public return_type class_ref 144770 // A_Animal
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " generate a new animal, necessary to use spawn
+@see A_Amniote#spawn "
+      end
+
+      operation 355330 "discardThis"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Remove references to last container left, targeted container children and eggs "
+      end
+
+      operation 355458 "actionMoveToDestination"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Allow ticks to move with rodent host "
+      end
+
+      operation 355586 "actionNoChoice"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 355714 "actionFlee"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Try to reach myHome even if distant. rev. JLF 01.2022 "
+      end
+
+      operation 355842 "actionRest"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " retrieve energy when resting, has to be generalized JLF 07.2021 "
+      end
+
+      operation 355970 "wallsPerceived"
+	public return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "perceivedThings" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " OTHER METHODS
+
+ Receive all perceived things and return walls perceived "
+      end
+
+      operation 356098 "createNewHome"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " TODO MS de JLF 2022.01 redondant avec digBurrow de fossorial ?"
+      end
+
+      operation 356226 "setNewRandomMove"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " SETTER & GETTERS
+"
+      end
+
+      operation 356354 "isArrived"
+	protected explicit_return_type "boolean"
+	nparams 1
+	  param in name "speed" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " If target is an obstacle - do not enter in it, is arrived if near (i.e., within reboundZone)
+@param speed: the speed of the agent + the target cell half diagonal + MIN_VALUE_OF_REBOUNDZONE_Umeter
+@author LeFur 08.2012, 08.2017 rev M.Sall 2019.01 "
+      end
+
+      operation 356482 "isSightObstacle"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "thing" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Check if thing is a wall "
+      end
+
+      operation 356610 "inFavourableLand"
+	private explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 356738 "inDangerousArea"
+	private explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 356866 "setHasToCreateHome"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "hasToCreateHome" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 140802 "C_HumanWalker"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Used for animals within urban network landscapes @see C_LandscapeUrban Le Fur 02,03,04,05.2022 "
+      classrelation 191618 // <generalisation>
+	relation 191618 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 191618 // <generalisation>
+	  b parent class_ref 141442 // A_HumanUrban
+      end
+
+      attribute 256258 "targetPoint_Umeter"
+	protected explicit_type "Coordinate"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+ From PAM, Human_Carrier Caution: disconnected from this.target"
+      end
+
+      classrelation 191746 // pathWanderer (<unidirectional association>)
+	relation 191746 --->
+	  a role_name "pathWanderer" public
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 191746 // pathWanderer (<unidirectional association>)
+	  b parent class_ref 143618 // C_PathWandererAstar
+      end
+
+      classrelation 191874 // nextStepStartCell (<unidirectional association>)
+	relation 191874 --->
+	  a role_name "nextStepStartCell" private
+	    comment " since WANDER desire leads to random cell, get back to this initial cell when starting a new path 
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 191874 // nextStepStartCell (<unidirectional association>)
+	  b parent class_ref 143874 // C_SoilCellUrban
+      end
+
+      operation 343554 "C_HumanWalker"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 343682 "giveBirth"
+	public return_type class_ref 144770 // A_Animal
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " OVERRIDEN METHODS
+"
+      end
+
+      operation 343810 "getTargetPoint_Umeter"
+	public explicit_return_type "Coordinate"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Overrides A_Animal since targetPoint_Umeter is coded hard in C_Human that uses pathWander
+@see melanesim.util.C_PathWanderer
+@Version J.Le Fur, 04.2017 "
+      end
+
+      operation 343938 "step_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Activity within one time step : if target is reached: select a new one, elaborates its path. If target not reached : steps
+towards its current path. If speed is higher than cell size setNextNode() is repeated several times / authors P.A.Mboup &
+J.Le Fur - sept.2012, rev. PAM 03.2014, JLF 10.2015, 01,05.2022 "
+      end
+
+      operation 344066 "manageArrival"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Manage the position if thing is arrived "
+      end
+
+      operation 344194 "isArrived"
+	protected explicit_return_type "boolean"
+	nparams 1
+	  param in name "speed" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Test graph end if not, super
+@param speed the speed of the agent or agent's vehicle
+@author LeFur 08.2012, 08.2017, rev. 01.2022 "
+      end
+
+      operation 344322 "actionMoveToDestination"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Compute next move to target, move on the GUI "
+      end
+
+      operation 344450 "discardThis"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Remove references to targetPoint_Umeter discards pathwanderer, JLF 02.2022 "
+      end
+
+      operation 344578 "ActionWalkOnPath"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 344706 "setNextNode"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+ Progress within a graph, JLF 01.2022, from PAM HumanCarrier"
+      end
+
+      operation 344834 "startTraveling"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "finalDestination" type class_ref 143874 // C_SoilCellUrban
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "   "
+      end
+    end
+
+    class 140930 "C_OrnitodorosSonrai"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " This class accounts for Tick .
+@author M. Sall 10.2019 "
+      classrelation 192002 // <generalisation>
+	relation 192002 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 192002 // <generalisation>
+	  b parent class_ref 144770 // A_Animal
+      end
+
+      classrelation 192130 // <realization>
+	relation 192130 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 192130 // <realization>
+	  b parent class_ref 132098 // I_ConstantDodel2
+      end
+
+      classrelation 192258 // <realization>
+	relation 192258 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 192258 // <realization>
+	  b parent class_ref 153602 // I_ReproducingThing
+      end
+
+      attribute 256386 "curMealDuration_Umn"
+	private explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+ hanging duration for the meal"
+      end
+
+      attribute 256514 "hibernationDuration_Uday"
+	private explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " starvation duration in a burrow"
+      end
+
+      attribute 256642 "hasEaten"
+	private explicit_type "boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " private boolean canSpawn;// TODO MS de JLF 2020.04 utiliser la proc�dure (override de Amniote) TODO MS 2020.04 Ornithodoros
+ is not an Amniote
+ Allow to know if agent has eaten"
+      end
+
+      attribute 256770 "curMatingLatency_Uday"
+	protected explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 256898 "curGestationLength_Uday"
+	protected explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 257026 "stasis"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " different stasis (egg, larvae, nymph and adult) of tick in its evolution"
+      end
+
+      classrelation 192386 // eggList (<unidirectional association>)
+	relation 192386 --->
+	  stereotype "TreeSet"
+	  a role_name "eggList" protected
+	    comment " Simple data structure to hold zygote information during matingLatency"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 192386 // eggList (<unidirectional association>)
+	  b parent class_ref 153730 // C_Egg
+      end
+
+      attribute 257154 "biteNumber"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 344962 "C_OrnitodorosSonrai"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 345090 "perception"
+	protected return_type class_ref 135682 // I_SituatedThing
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " OVERRIDEN METHODS
+
+ If its current position is a burrow, all burrow containers can be perceived by the tick; If tick is in feeding stage it stay trapped, no
+cognitive process! "
+      end
+
+      operation 345218 "deliberation"
+	protected return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "perceivedThings" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Return burrows perceived if it's no trapped and its current position is the ground "
+      end
+
+      operation 345346 "step_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 345474 "chooseFood"
+	public return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "perceivedThings" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " return the potential perceived preys "
+      end
+
+      operation 345602 "chooseShelter"
+	public return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "perceivedThings" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " return the potential perceived shelter "
+      end
+
+      operation 345730 "processTarget"
+	protected explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Process to action corresponding to the selected desire "
+      end
+
+      operation 345858 "actionMateWithMale"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "male" type class_ref 153602 // I_ReproducingThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Female mating with a selected male "
+      end
+
+      operation 345986 "actionNoChoice"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 346114 "actionEat"
+	protected explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Eating process of tick, only egg can't take blood meal ! larvae and nymph take a blood meal to grow up and moult; adult eat to produce a
+viable egg and to stay alive "
+      end
+
+      operation 346242 "actionHide"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Do nothing when tick hasn't choice "
+      end
+
+      operation 346370 "giveBirth"
+	public return_type class_ref 144770 // A_Animal
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 346498 "isSightObstacle"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "thing" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Check if thing is a wall "
+      end
+
+      operation 346626 "perceivedPrey"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "perceivedThings" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " OTHERS METHODS
+
+ Return all perceived preys "
+      end
+
+      operation 346754 "updatePhysiologicStatus"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Manage ticks physiology <br>
+"
+      end
+
+      operation 346882 "choosePartner"
+	public return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "perceivedThings" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " return the potential perceived partners "
+      end
+
+      operation 347010 "updateStasis"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Manage tick evolution stasis Source: R.Tiwari_2017: General life cycle of ticks "
+      end
+
+      operation 347138 "actionSpawn"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Spawn two egg; one female egg and one male egg before blood meal "
+      end
+
+      operation 347266 "resetCurMealDuration_Umn"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Restore the meal duration after eating
+@see actionEat "
+      end
+
+      operation 347394 "inDangerousArea"
+	private explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 347522 "setStasis"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "stasis" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SETTERS && GETTERS
+"
+      end
+
+      operation 347650 "setRandomAge"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Give a random age to this and its corresponding stasis "
+      end
+
+      operation 347778 "setBiteNumber"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "biteNumber" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 347906 "isreadyToMate"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Check if it is ready to mate "
+      end
+
+      operation 348034 "isPregnant"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 348162 "getStasis"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 348290 "canSpawn"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Get if it can Spawn "
+      end
+
+      operation 348418 "canMateWith"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "oneTick" type class_ref 144770 // A_Animal
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Get if it can mate with the targeting tick "
+      end
+
+      operation 348546 "haveSameSex"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "oneTick" type class_ref 144770 // A_Animal
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Verify if it has the same sex than the targeting tick "
+      end
+
+      operation 348674 "getCurrentMealDuration"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Return its current meal duration "
+      end
+
+      operation 348802 "getHibernationDuration_Uday"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Return the spending time without taking blood meal "
+      end
+
+      operation 348930 "getBiteNumber"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Return the number of bite in the current step "
+      end
+    end
+
+    class 141058 "C_BorreliaCrocidurae"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " This class accounts for Tick .
+@author M. Sall 04.2020 "
+      classrelation 190210 // <generalisation>
+	relation 190210 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 190210 // <generalisation>
+	  b parent class_ref 144770 // A_Animal
+      end
+
+      classrelation 190338 // <realization>
+	relation 190338 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 190338 // <realization>
+	  b parent class_ref 132098 // I_ConstantDodel2
+      end
+
+      operation 338562 "C_BorreliaCrocidurae"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 338690 "giveBirth"
+	public return_type class_ref 144770 // A_Animal
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " OVERRIDEN METHODS
+"
+      end
+
+      operation 338818 "step_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 338946 "getEnergy_Ukcal"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 141186 "C_Food"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "Extends A_Container since Food can be infected by organisms"
+      classrelation 190722 // <generalisation>
+	relation 190722 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 190722 // <generalisation>
+	  b parent class_ref 152834 // A_SupportedContainer
+      end
+
+      operation 340354 "C_Food"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "affinity" explicit_type "int"
+	  param in name "lineNo" explicit_type "int"
+	  param in name "colNo" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 340482 "getCarryingCapacity_Urodent"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 141314 "C_Cat"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 190466 // <generalisation>
+	relation 190466 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 190466 // <generalisation>
+	  b parent class_ref 152578 // A_Amniote
+      end
+
+      classrelation 190594 // <realization>
+	relation 190594 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 190594 // <realization>
+	  b parent class_ref 132098 // I_ConstantDodel2
+      end
+
+      operation 339074 "C_Cat"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 339202 "giveBirth"
+	public return_type class_ref 144770 // A_Animal
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " OVERRIDDEN METHODS"
+      end
+
+      operation 339330 "updatePhysiologicStatus"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 339458 "perception"
+	protected return_type class_ref 135682 // I_SituatedThing
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 339586 "deliberation"
+	protected return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "perceivedThings" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 339714 "chooseFood"
+	public return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "perceivedThings" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 339842 "choosePartner"
+	protected return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "perceivedThings" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 339970 "actionInteract"
+	protected explicit_return_type "boolean"
+	nparams 1
+	  param inout name "prey" type class_ref 144770 // A_Animal
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 340098 "isSightObstacle"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "thing" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " GETTERS
+ Check if thing is a wall "
+      end
+
+      operation 340226 "isJuvenile"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 141442 "A_HumanUrban"
+      abstract visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Abstract Urban humans have a daily activity list with location and desires list with desires for each slice of days.<br>
+They do not deliberate but got their activity location and perform the corresponding desire<br>
+@author J.Le Fur, oct 2019, jan-feb 2020, 03.2021, 06.2022 "
+      classrelation 189058 // <generalisation>
+	relation 189058 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 189058 // <generalisation>
+	  b parent class_ref 161666 // A_Human
+      end
+
+      classrelation 189186 // <realization>
+	relation 189186 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 189186 // <realization>
+	  b parent class_ref 132098 // I_ConstantDodel2
+      end
+
+      attribute 255362 "aim"
+	protected explicit_type "String"
+	init_value " \"\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+ details on desire"
+      end
+
+      attribute 255490 "activityList"
+	private explicit_type "String, Coordinate"
+	init_value " new HashMap<String, Coordinate>()"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 255618 "desireList"
+	private explicit_type "String, String"
+	init_value " new HashMap<String, String>()"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 255746 "aimList"
+	private explicit_type "String, String"
+	init_value " new HashMap<String, String>()"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 331010 "A_HumanUrban"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 331138 "perception"
+	protected return_type class_ref 135682 // I_SituatedThing
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " OVERRIDEN METHODS
+
+ Human urban do not need to make a perception, they are driven by their activityList "
+      end
+
+      operation 331266 "deliberation"
+	protected return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "perceivedThings" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Human urban do not deliberate, they are driven by their activityList "
+      end
+
+      operation 331394 "setDestination"
+	protected return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "alternatives" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Human urban do not choose a destination, they are driven by their activityList "
+      end
+
+      operation 331522 "actionNoChoice"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " JLF, 03.2021 ,rev MS 08.2021 if desire is wander, keep wandering, if "
+      end
+
+      operation 331650 "actionEat"
+	protected explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " JLF & MS 08.2021 Gain energy "
+      end
+
+      operation 331778 "actionWander"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Stay wandering in his current land plot / MS 08.2021, rev JLF 01.2022 "
+      end
+
+      operation 331906 "discardThis"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 332034 "manageActivities"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+ MS 08.2021 Allow human to choose the next activities "
+      end
+
+      operation 332162 "addActivityList"
+	public explicit_return_type "void"
+	nparams 4
+	  param in name "time" explicit_type "String"
+	  param inout name "location" explicit_type "Coordinate"
+	  param in name "desire1" explicit_type "String"
+	  param in name "desire2" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SETTERS & GETTERS
+"
+      end
+
+      operation 332290 "isIncludedInTimeStepInterval"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param in name "key" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " TODO MS de JLF 03.2021 inclure MS, D, MON, Y "
+      end
+
+      operation 332418 "getCurrentSimulationTime_Utick"
+	public explicit_return_type "double"
+	nparams 1
+	  param in name "unit" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " TODO MS de JLF 03.2021 inclure MS, D, MON, Y "
+      end
+
+      operation 332546 "getActivityList"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 332674 "setAim"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "aim" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 332802 "getAim"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 141954 "C_RodentGerbil"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Case study on Gerbillus nigeriae: gerbils choose food, partners or shelter depending on their energetic state and their perceived environment.
+@author Moussa Sall, 2015, rev. 2016, JLF 04.2017, JLF&MS 01.2018, JLF 07.218 "
+      classrelation 193922 // <generalisation>
+	relation 193922 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 193922 // <generalisation>
+	  b parent class_ref 137474 // C_RodentFossorial
+      end
+
+      classrelation 194050 // <realization>
+	relation 194050 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 194050 // <realization>
+	  b parent class_ref 129922 // I_ConstantGerbil
+      end
+
+      attribute 258050 "methoxybenzoxazolinone"
+	protected explicit_type "boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELD
+
+ 6-methoxybenzoquinone is a molecule produced by young shoots that could trigger rodents'reproduction (Schadler et al.,1988,Biol.Reprod.
+38:817-820; Butterstein et al. Biol Reprod. 1985,32(5):1018-23. 
+"
+      end
+
+      operation 357506 "isMethoxybenzoxazolinone"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 357634 "C_RodentGerbil"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 357762 "step_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " METHODS
+
+ - if day comes find or remain in burrow, desire=NONE<br>
+- if night comes if not suckling, desire = empty + exit from burrow (by reflex)<br>
+- at night do super<br>
+JLF&MS 2017, rev.02-07.2018 "
+      end
+
+      operation 357890 "perception"
+	protected return_type class_ref 135682 // I_SituatedThing
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " If within a burrow system, only retrieve the burrow's occupants, else super<br>
+Version Authors J.E. Longueville 2011 - J.Le Fur 03.2012,04.2015,01.2016
+@see A_VisibleAgent#retrieveCell2Perception
+@return TreeSet<I_situated_thing> listeVisibleObject "
+      end
+
+      operation 358018 "checkDanger"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Author MS 2018, Check if barn owl are perceived "
+      end
+
+      operation 358146 "deliberation"
+	protected return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "perceivedThings" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Author MS 2016, rev. JLF&MS 05.2017, JLF 03.2018.
+@return list of candidates selected "
+      end
+
+      operation 358274 "chooseShelter"
+	public return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "perceivedThings" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Use list perceived things and choose the candidate shelter which can be one burrow, a vegetation list or nothing "
+      end
+
+      operation 358402 "chooseFood"
+	public return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "perceivedThings" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Use list perceived things and choose grass or crop "
+      end
+
+      operation 358530 "canInteractWith"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "oneOccupant" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Account for the vegetation coverage radius to determine if vegetation is perceived; return true if it can interact with it else return
+false "
+      end
+
+      operation 358658 "processTarget"
+	protected explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " process target when desire==HIDE "
+      end
+
+      operation 358786 "actionDig"
+	public return_type class_ref 152066 // C_BurrowSystem
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Change burrow affinity to the number of vegetation in the cell (affinity is used for landcover coding) JLF 02.2018 "
+      end
+
+      operation 358914 "actionEat"
+	protected explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 359042 "actionEat0"
+	protected explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Consume vegetation biomass and return gain energy (1g vegetation = 1000 cal); intake proportional to available biomass
+@version JLF 09.2017, rev. JLF&MS 01.2018, JLF 02.2021
+@return true if success "
+      end
+
+      operation 359170 "actionNoChoice"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " choose to disperse if no target found.<br>
+May be overridden in daughter classes<br>
+J.Le Fur, 07.2018 "
+      end
+
+      operation 359298 "updatePhysiologicStatus"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Methoxybenzoxazolinone is used to trigger readyToMate<br>
+author: MS et JLF 04.2018 "
+      end
+
+      operation 359426 "giveBirth"
+	public return_type class_ref 144770 // A_Animal
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Generate a new animal, necessary to use spawn
+@see A_Amniote#spawn "
+      end
+    end
+
+    class 142082 "C_BarnOwl"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " This class accounts for rodent gerbil predator in the sahel zone .
+@author M. Sall 04.2016 "
+      classrelation 189954 // <generalisation>
+	relation 189954 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 189954 // <generalisation>
+	  b parent class_ref 152578 // A_Amniote
+      end
+
+      classrelation 190082 // <realization>
+	relation 190082 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 190082 // <realization>
+	  b parent class_ref 129922 // I_ConstantGerbil
+      end
+
+      operation 337154 "C_BarnOwl"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 337282 "actionNoChoice"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " OVERRIDEN METHODS
+
+ choose to disperse if no target found.<br>
+May be overridden in daughter classes<br>
+J.Le Fur, 07.2018 "
+      end
+
+      operation 337410 "perception"
+	protected return_type class_ref 135682 // I_SituatedThing
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 337538 "deliberation"
+	public return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "perceivedThings" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Get list of perceived things, create list of rodent gerbil and call interact function
+@return empty list of soilcell
+@param perceivedThings Authors MS 10.2016 "
+      end
+
+      operation 337666 "chooseFood"
+	public return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "percevingRodent" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Choose the prey if barn owl need to eat and return rodent list perceived "
+      end
+
+      operation 337794 "step_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Eat its preys when back to nest, hide at dawn or rest if home, rev JLF 03.2021 "
+      end
+
+      operation 337922 "actionEat"
+	private explicit_return_type "boolean"
+	nparams 1
+	  param inout name "prey" type class_ref 137218 // C_Rodent
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "  "
+      end
+
+      operation 338050 "processTarget"
+	protected explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " process target when desire==HIDE "
+      end
+
+      operation 338178 "actionInteract"
+	protected explicit_return_type "boolean"
+	nparams 1
+	  param inout name "prey" type class_ref 144770 // A_Animal
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Random draw using PREDATION_SUCCESS parameter. If predation succeeds prey dead and energy back to 0. "
+      end
+
+      operation 338306 "actionSetNest"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Create a tree and a nest at the owl location, put the nest in the tree and the owl in the nest<br>
+JLF 02.2021 "
+      end
+
+      operation 338434 "giveBirth"
+	public return_type class_ref 144770 // A_Animal
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 142338 "C_Vegetation"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Vegetation objects grow depending on rain intensity.
+@author M.Sall 10.2015, rev. JLF&MS 03.2016, 05.2017 "
+      classrelation 194818 // <generalisation>
+	relation 194818 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 194818 // <generalisation>
+	  b parent class_ref 152706 // A_Organism
+      end
+
+      classrelation 194946 // <realization>
+	relation 194946 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 194946 // <realization>
+	  b parent class_ref 129922 // I_ConstantGerbil
+      end
+
+      attribute 258178 "growthRate_UkcalPerDay"
+	private explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+ Used to speed computation by avoiding access to genome 
+"
+      end
+
+      attribute 258306 "methoxybenzoxazolinone"
+	protected explicit_type "boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " 6-methoxybenzoquinone is a molecule produced by young shoots that may trigger rodents'reproduction 
+"
+      end
+
+      operation 361218 "C_Vegetation"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+
+ Set vegetation type, initial biomass and growth rate "
+      end
+
+      operation 361346 "deliberation"
+	protected return_type class_ref 138114 // C_SoilCell
+	nparams 1
+	  param inout name "perceivedThings" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+"
+      end
+
+      operation 361474 "seedsProductionTODO"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Release seeds at a given threshold "
+      end
+
+      operation 361602 "actionGrowOlder_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Compute the change of biomass given the level of rain in the cell.<br>
+The model follow a logistic law : biomass <- biomass(t-1) * (1 + growth_rate * ( 1 - biomass(t-1) / carrying_capacity))
+Version J.Le Fur & M.Sall, 02-03 2016 "
+      end
+
+      operation 361730 "discardThis"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 361858 "cellArea_UsquareMeter"
+	protected explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Compute the cell area "
+      end
+
+      operation 361986 "getMethoxybenzoxazolinone"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SETTERS & GETTERS
+"
+      end
+
+      operation 362114 "getAffinity"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " if animal check danger in vegetation, affinity must not be 0 / JLF 03.2021 "
+      end
+
+      operation 362242 "getAlleles"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " TODO JLF 2020.11 test bug probe vegetation "
+      end
+    end
+
+    class 152450 "C_HumanCarrier"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " A human carrier owns a C_Vehicle and go from one city to the other.
+@author Mboup & Le Fur 07-09.2012 "
+      classrelation 190850 // <generalisation>
+	relation 190850 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 190850 // <generalisation>
+	  b parent class_ref 161666 // A_Human
+      end
+
+      classrelation 190978 // <realization>
+	relation 190978 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 190978 // <realization>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      classrelation 191106 // <realization>
+	relation 191106 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 191106 // <realization>
+	  b parent class_ref 131714 // I_ConstantTransportation
+      end
+
+      classrelation 191234 // vehicle (<unidirectional association>)
+	relation 191234 --->
+	  a role_name "vehicle" protected
+	    comment " FIELDS
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 191234 // vehicle (<unidirectional association>)
+	  b parent class_ref 160642 // C_Vehicle
+      end
+
+      classrelation 191362 // cityList (<unidirectional association>)
+	relation 191362 --->
+	  stereotype "TreeSet"
+	  a role_name "cityList" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 191362 // cityList (<unidirectional association>)
+	  b parent class_ref 137858 // C_City
+      end
+
+      attribute 256002 "citiesToTradeInfo_Ustring"
+	protected explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 256130 "targetPoint_Umeter"
+	protected explicit_type "Coordinate"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " From PAM, Human_Carrier"
+      end
+
+      classrelation 191490 // pathWanderer (<unidirectional association>)
+	relation 191490 --->
+	  a role_name "pathWanderer" public
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 191490 // pathWanderer (<unidirectional association>)
+	  b parent class_ref 143490 // C_PathWanderer
+      end
+
+      operation 340610 "C_HumanCarrier"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+
+ used to allow the giveBirth procedure
+@see #giveBirth "
+      end
+
+      operation 340738 "setDead"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "dead" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " METHODS
+
+ Used to toggle death on the GUI, JLF 09.2012 "
+      end
+
+      operation 340866 "discardThis"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " If carrier load rodents, reach a city and unload them. Remove references to vehicle and cities<br>
+Version rev. JLF 05.2016, 03.2021 "
+      end
+
+      operation 340994 "ownVehicle"
+	public return_type class_ref 160642 // C_Vehicle
+	nparams 1
+	  param in name "vehicleType" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Get a new vehicle, instantiate the graph (no node in path yet), name the carrier,
+@param vehicleType "
+      end
+
+      operation 341122 "step_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Activity within one time step : if a city is reached: select a new city, elaborates its path, unload rodents. If new city
+not reached : steps towards its current path. If vehicle speed is higher than cell size selectNextNode() is repeated
+several times / authors P.A.Mboup & J.Le Fur - sept.2012, rev. PAM 03.2014, JLF 10.2015 "
+      end
+
+      operation 341250 "retrieveLoad_Urodent"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 341378 "actionMoveToCell"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "cell" type class_ref 138114 // C_SoilCell
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 341506 "setNextNode"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 341634 "manageArrival"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " TODO PAM 2016.10 unifier cette m�thode avec goParked reachPathEndNow"
+      end
+
+      operation 341762 "startTraveling"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Can be overridden "
+      end
+
+      operation 341890 "actionMoveToDestination"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 342018 "actionReachPathEndNow"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Force agent to reach destination (useful just before updating the ground) 
+ TODO PAM 2016.10 unifier cette m�thode avec la m�thode goParked()"
+      end
+
+      operation 342146 "perception"
+	protected return_type class_ref 135682 // I_SituatedThing
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Retrieve this.cityList and convert into I_SituatedThing for compatibility with upper procedure
+@see A_VisibleAgent#retrieveCell2Perception Version JLF&PAM 03.2016 "
+      end
+
+      operation 342274 "deliberation"
+	protected return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "candidateCells" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Elaborate carrier known city list with cumulated population divided by distance Select a destination city - build a map
+<city,cumulative weights> from carrier known cities, draw a random number.<br>
+The number has more chances to be in the interval of a big city, since it gets a great contribution to the total population
+/ Author Mboup 07.2014, rev. JLF 09.2014 "
+      end
+
+      operation 342402 "giveBirth"
+	public return_type class_ref 144770 // A_Animal
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Generating a new animal is compulsory for each A_Mammal daughter class "
+      end
+
+      operation 342530 "actionInteract"
+	protected explicit_return_type "boolean"
+	nparams 1
+	  param inout name "animal" type class_ref 144770 // A_Animal
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Do nothing and overrides previous methods "
+      end
+
+      operation 342658 "setCityList"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "newCityList" explicit_type "TreeSet<C_City>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SETTERS & GETTERS
+"
+      end
+
+      operation 342786 "getTargetPoint_Umeter"
+	public explicit_return_type "Coordinate"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Overrides A_Animal since targetPoint_Umeter is coded hard in C_HumanCarrier that uses pathWander
+@see melanesim.util.C_PathWanderer
+@Version J.Le Fur, 04.2017 "
+      end
+
+      operation 342914 "getVehicle"
+	public return_type class_ref 160642 // C_Vehicle
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 343042 "getCityList"
+	public return_type class_ref 137858 // C_City
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 343170 "getCitiesToTradeInfo_Ustring"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 343298 "setCitiesToTradeInfo_Ustring"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "citiesToTradeFromEvent" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 343426 "isParked"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 161666 "A_Human"
+      abstract visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " A human owns a room.
+@author Sall 02-10-2018,rev. J.Le Fur 06.2022 "
+      classrelation 188930 // <generalisation>
+	relation 188930 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 188930 // <generalisation>
+	  b parent class_ref 152578 // A_Amniote
+      end
+
+      operation 330498 "A_Human"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+
+ used to allow the giveBirth procedure
+@see #giveBirth "
+      end
+
+      operation 330626 "actionInteract"
+	protected explicit_return_type "boolean"
+	nparams 1
+	  param inout name "animal" type class_ref 144770 // A_Animal
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " OVERRIDEN METHODS
+
+ Do not interact with other animals "
+      end
+
+      operation 330754 "checkDeath"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "deathProbability" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Do not check death "
+      end
+
+      operation 330882 "checkDanger"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Do not check danger (no dangerous area) jlf 02.2020 "
+      end
+    end
+
+    class 161794 "A_RodentCommensalSimplified"
+      abstract visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Simplified rodent for transportation protocol: do not move outside this city, perceive only this current cell content
+@author J.Le Fur 04.2015 "
+      classrelation 189826 // <generalisation>
+	relation 189826 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 189826 // <generalisation>
+	  b parent class_ref 161922 // C_RodentCommensal
+      end
+
+      operation 336258 "A_RodentCommensalSimplified"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 336386 "checkDanger"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " @Override
+ public void step_Utick() {
+ if (this.trappedOnBoard || ((C_SoilCellGraphed) currentSoilCell).getGroundTypes().contains(CITY))
+ super.step_Utick();
+ else this.dead = true;
+ }
+ TODO JLF 2022.04 Remove this below; used for test only
+ @Override
+ public boolean actionMateWithMale(I_ReproducingThing male) {this.setDesire(\"\");return true;}
+ @Override
+ protected double computeDeathProbability_Uday() {return I_ConstantNumeric.DEFAULT_DEATH_PROBABILITY_UperDay;}
+ Cities affinity are not significant for this / JLF 01.2017 "
+      end
+
+      operation 336514 "isArrived"
+	protected explicit_return_type "boolean"
+	nparams 1
+	  param in name "speed" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Test is agent arrives to destination within one tick. If yes next move = (0,0)
+@param speed the speed of the agent or agent's vehicle
+@author LeFur 08.2012, 08.2017 "
+      end
+
+      operation 336642 "perception"
+	protected return_type class_ref 135682 // I_SituatedThing
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Do not perform exact perception radius computation: only perceive this current cell objects "
+      end
+
+      operation 336770 "actionForage"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Do not leave the cityCell "
+      end
+
+      operation 336898 "actionMove"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 337026 "deliberation"
+	protected return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "perceivedThings" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Select the available vehicle in the surrounding
+@param perceivedThings TreeSet <I_situated_thing> listeVisibleObjects from perception method
+@return candidate targets<br>
+        Version J.Le Fur 2011 / jlefur 03.2012 / Complete rev. JLF 08,10.2017 "
+      end
+    end
+
+    class 161922 "C_RodentCommensal"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Define rodent agents that are used to live with humans (e.g., random move if no destination, try boarding in vehicles)<br>
+created for protocolCentenal
+@author Jean Le Fur, oct.2014 "
+      classrelation 189570 // <generalisation>
+	relation 189570 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 189570 // <generalisation>
+	  b parent class_ref 137474 // C_RodentFossorial
+      end
+
+      classrelation 189698 // <realization>
+	relation 189698 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 189698 // <realization>
+	  b parent class_ref 131714 // I_ConstantTransportation
+      end
+
+      attribute 255874 "everTransported"
+	public explicit_type "boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELD
+
+"
+      end
+
+      operation 335490 "C_RodentCommensal"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 335618 "giveBirth"
+	public return_type class_ref 144770 // A_Animal
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " METHODS
+
+ Generate a new animal, necessary to use spawn
+@see A_Amniote#actionSpawn "
+      end
+
+      operation 335746 "isEverTransported"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 335874 "actionInteract"
+	protected explicit_return_type "boolean"
+	nparams 1
+	  param inout name "rodent" type class_ref 137218 // C_Rodent
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Interact with another rodent. systematically mate if both partner reproductive status are ok. <br>
+@see C_Rodent#mateWithMale <br>
+     Here, no breeding season test: commensal rodent do not have a reproduction season, they mate all year long "
+      end
+
+      operation 336002 "processTarget"
+	protected explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Sucked up by the container "
+      end
+
+      operation 336130 "actionTryBoardingContainer"
+	protected explicit_return_type "boolean"
+	nparams 1
+	  param inout name "vehicle" type class_ref 160642 // C_Vehicle
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Rat boarding is computed following the loading probability of the carrier's vehicle Mboup 2013 Version rev. JLF 02.2014, 10.2015 MS 2019.10"
+      end
+    end
+
+    class 162050 "C_RodentBlackRat"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " JLF 01.2017 "
+      classrelation 192514 // <generalisation>
+	relation 192514 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 192514 // <generalisation>
+	  b parent class_ref 161794 // A_RodentCommensalSimplified
+      end
+
+      operation 349058 "C_RodentBlackRat"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 349186 "giveBirth"
+	public return_type class_ref 144770 // A_Animal
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " generate a new animal, necessary to use spawn
+@see A_Amniote#spawn "
+      end
+
+      operation 349314 "actionTryBoardingContainer"
+	protected explicit_return_type "boolean"
+	nparams 1
+	  param inout name "vehicle" type class_ref 160642 // C_Vehicle
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Black rats do not board in taxis JLF 01,10.2017 "
+      end
+
+      operation 349442 "updatePhysiologicStatus"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " For centenal simulation : cell affinity account for bioclimate, from favourable (12) to unfavourable (2) -> this provide
+the length of the breeding season for Rattus: if current month < affinity*3 readyToMate=false<br>
+JLeFur, 10.2016 "
+      end
+
+      operation 349570 "deliberation"
+	protected return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "perceivedThings" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Select the available trucks in the surrounding
+@param perceivedThings TreeSet <I_situated_thing> listeVisibleObjects from perception method
+@return candidate taxis<br>
+        Version J.Le Fur 2011 / jlefur 03.2012 / Complete rev. JLF 08,10.2017 "
+      end
+    end
+
+    class 162178 "C_RodentCircadian"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Define rodent agents that account for hourly change of their environment (e.g., suspend activity during daytime)<br>
+created for protocol Dodel
+@author Jean Le Fur, march 2015 "
+      classrelation 193154 // <generalisation>
+	relation 193154 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 193154 // <generalisation>
+	  b parent class_ref 161922 // C_RodentCommensal
+      end
+
+      attribute 257538 "speed_Origin"
+	package explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELD
+
+"
+      end
+
+      operation 352002 "C_RodentCircadian"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 352130 "giveBirth"
+	public return_type class_ref 144770 // A_Animal
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " OVERRIDEN METHODS
+
+ generate a new animal, necessary to use spawn
+@see A_Amniote#spawn "
+      end
+
+      operation 352258 "checkDanger"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " TODO JLF 2020.01 to remove<br>
+Do not test death as domestic rodent may often be within a dangerous area JLF&MS 01.2017 "
+      end
+
+      operation 352386 "perception"
+	protected return_type class_ref 135682 // I_SituatedThing
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Transform Perception according time / author: M.Diakhate, rev. J.Le Fur 11.2016 "
+      end
+
+      operation 352514 "computeNextMoveToTarget"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Transform Speed according time / author: M.Diakhate, rev. J.Le Fur 11.2016 "
+      end
+    end
+
+    class 162306 "C_RodentFossorialColonial"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 193794 // <generalisation>
+	relation 193794 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 193794 // <generalisation>
+	  b parent class_ref 137474 // C_RodentFossorial
+      end
+
+      operation 356994 "C_RodentFossorialColonial"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 357122 "giveBirth"
+	public return_type class_ref 144770 // A_Animal
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " generate a new animal, necessary to use spawn
+@see A_Amniote#spawn "
+      end
+
+      operation 357250 "step_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Manage activity when rodent is within a burrow system, mature...<br>
+Adapted from JEL 2010, JLF 03,06.2014 full rev. from svn507, JLF 07.2014, 12.2016, 01,09.2017 "
+      end
+
+      operation 357378 "deliberation"
+	protected return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "perceivedThings" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Uses A_Animal deliberation (super). If breeding season, the burrow list replaces the soil cells list
+@return list of candidate soilCells
+@param perceivedThings Authors JE. Longueville 2011 / drastically simplified jlefur 03.2012, rev. jlf 09.2017 "
+      end
+    end
+
+    class 162434 "C_RodentHouseMouse"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Used only for display, JLF 01.2017 "
+      classrelation 194178 // <generalisation>
+	relation 194178 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 194178 // <generalisation>
+	  b parent class_ref 161794 // A_RodentCommensalSimplified
+      end
+
+      operation 359554 "C_RodentHouseMouse"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 359682 "giveBirth"
+	public return_type class_ref 144770 // A_Animal
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " generate a new animal, necessary to use spawn
+@see A_Amniote#spawn "
+      end
+
+      operation 359810 "actionTryBoardingContainer"
+	protected explicit_return_type "boolean"
+	nparams 1
+	  param inout name "vehicle" type class_ref 160642 // C_Vehicle
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Mouse board only in taxis JLF 01,10.2017 "
+      end
+
+      operation 359938 "deliberation"
+	protected return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "perceivedThings" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Select the available taxis in the surrounding
+@param perceivedThings TreeSet <I_situated_thing> listeVisibleObjects from perception method
+@return candidate taxis<br>
+        Version J.Le Fur 2011 / jlefur 03.2012 / Complete rev. JLF 08,10.2017 "
+      end
+    end
+
+    class 162562 "C_RodentMastoErySimple"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Used only for display, JLF 01.2017 "
+      classrelation 194306 // <generalisation>
+	relation 194306 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 194306 // <generalisation>
+	  b parent class_ref 161794 // A_RodentCommensalSimplified
+      end
+
+      operation 360066 "C_RodentMastoErySimple"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 360194 "giveBirth"
+	public return_type class_ref 144770 // A_Animal
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " generate a new animal, necessary to use spawn
+@see A_Amniote#spawn "
+      end
+
+      operation 360322 "actionTryBoardingContainer"
+	protected explicit_return_type "boolean"
+	nparams 1
+	  param inout name "vehicle" type class_ref 160642 // C_Vehicle
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Mastomys do not board in vehicles JLF 01,10.2017 "
+      end
+    end
+
+    class 162690 "C_TaxiMan"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 194434 // <generalisation>
+	relation 194434 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 194434 // <generalisation>
+	  b parent class_ref 152450 // C_HumanCarrier
+      end
+
+      operation 360450 "C_TaxiMan"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 360578 "perception"
+	protected return_type class_ref 135682 // I_SituatedThing
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Retrieve this.cityList and select markets with market day <br>
+Convert into I_SituatedThing for compatibility with upper procedure
+@see A_VisibleAgent#retrieveCell2Perception
+Version JLF&PAM 03.2016 "
+      end
+    end
+
+    class 162818 "C_Vegetation0"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Vegetation objects grow depending on rain intensity.
+@author M.Sall 10.2015, rev. JLF&MS 03.2016, 05.2017 "
+      classrelation 195074 // <generalisation>
+	relation 195074 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 195074 // <generalisation>
+	  b parent class_ref 152706 // A_Organism
+      end
+
+      classrelation 195202 // <realization>
+	relation 195202 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 195202 // <realization>
+	  b parent class_ref 129922 // I_ConstantGerbil
+      end
+
+      attribute 258434 "biomass_Ugram"
+	private explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+"
+      end
+
+      attribute 258562 "growthRate_UgramPerDay"
+	private explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Used to speed computation by avoiding access to genome 
+"
+      end
+
+      attribute 258690 "methoxybenzoxazolinone"
+	protected explicit_type "boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " 6-methoxybenzoquinone is a molecule produced by young shoots that may trigger rodents'reproduction 
+"
+      end
+
+      operation 362370 "C_Vegetation0"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+
+ Set vegetation type, initial biomass and growth rate "
+      end
+
+      operation 362498 "deliberation"
+	protected return_type class_ref 138114 // C_SoilCell
+	nparams 1
+	  param inout name "perceivedThings" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+"
+      end
+
+      operation 362626 "seedsProductionTODO"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Release seeds at a given threshold "
+      end
+
+      operation 362754 "actionGrowOlder_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Compute the change of biomass given the level of rain in the cell.<br>
+The model follow a logistic law : biomass <- biomass(t-1) * (1 + growth_rate * ( 1 - biomass(t-1) / carrying_capacity))
+Version J.Le Fur & M.Sall, 02-03 2016 "
+      end
+
+      operation 362882 "cellArea_UsquareMeter"
+	protected explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Compute the cell area "
+      end
+
+      operation 363010 "setBiomass_Ugram"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "growBiomass_Ugram" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SETTERS & GETTERS
+"
+      end
+
+      operation 363138 "getBiomass_Ugram"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 363266 "getMethoxybenzoxazolinone"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 363394 "getAlleles"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " TODO JLF 2020.11 test bug probe vegetation "
+      end
+    end
+  end
+
+  deploymentview 131202 "rodents"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 156418 "A_Human"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import thing.A_Amniote;
+import thing.A_Animal;
+import thing.dna.I_DiploidGenome;
+${definition}"
+      associated_elems
+	class_ref 161666 // A_Human
+      end
+    end
+
+    artifact 156546 "A_HumanUrban"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeSet;
+import org.locationtech.jts.geom.Coordinate;
+import data.constants.rodents.I_ConstantDodel2;
+import data.converters.C_ConvertTimeAndSpace;
+import melanesim.C_ContextCreator;
+import melanesim.protocol.A_Protocol;
+import thing.A_VisibleAgent;
+import thing.I_SituatedThing;
+import thing.dna.I_DiploidGenome;
+import thing.ground.C_SoilCell;
+import thing.ground.C_SoilCellUrban;
+${definition}"
+      associated_elems
+	class_ref 141442 // A_HumanUrban
+      end
+    end
+
+    artifact 156674 "C_Rodent"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.TreeSet;
+import thing.A_Amniote;
+import thing.A_Animal;
+import thing.I_SituatedThing;
+import thing.dna.C_GenomeAnimalia;
+import thing.dna.C_GenomeEucaryote;
+import thing.dna.I_DiploidGenome;
+import data.C_Parameters;
+import melanesim.C_ContextCreator;
+import melanesim.protocol.A_Protocol;
+${definition}"
+      associated_elems
+	class_ref 137218 // C_Rodent
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 156802 "C_RodentFossorial"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.TreeSet;
+import melanesim.C_ContextCreator;
+import melanesim.protocol.A_Protocol;
+import thing.A_Amniote;
+import thing.A_Animal;
+import thing.A_VisibleAgent;
+import thing.I_SituatedThing;
+import thing.dna.I_DiploidGenome;
+import thing.ground.C_BurrowSystem;
+${definition}"
+      associated_elems
+	class_ref 137474 // C_RodentFossorial
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 156930 "C_RodentCommensal"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import data.constants.rodents.I_ConstantTransportation;
+import melanesim.C_ContextCreator;
+import thing.A_Amniote;
+import thing.A_Animal;
+import thing.dna.I_DiploidGenome;
+import thing.ground.C_Vehicle;
+${definition}"
+      associated_elems
+	class_ref 161922 // C_RodentCommensal
+      end
+    end
+
+    artifact 157058 "A_RodentCommensalSimplified"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.TreeSet;
+import thing.I_SituatedThing;
+import thing.dna.I_DiploidGenome;
+import thing.ground.C_Vehicle;
+${definition}"
+      associated_elems
+	class_ref 161794 // A_RodentCommensalSimplified
+      end
+    end
+
+    artifact 157186 "C_BarnOwl"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.TreeSet;
+import org.locationtech.jts.geom.Coordinate;
+import data.C_Parameters;
+import data.constants.rodents.I_ConstantGerbil;
+import melanesim.C_ContextCreator;
+import melanesim.protocol.A_Protocol;
+import repast.simphony.engine.environment.RunState;
+import thing.A_Amniote;
+import thing.A_Animal;
+import thing.A_VisibleAgent;
+import thing.I_SituatedThing;
+import thing.dna.I_DiploidGenome;
+import thing.dna.species.plants.C_GenomeAcacia;
+import thing.ground.C_BurrowSystem;
+import thing.ground.C_Nest;
+import thing.ground.I_Container;
+${definition}"
+      associated_elems
+	class_ref 142082 // C_BarnOwl
+      end
+    end
+
+    artifact 157314 "C_BorreliaCrocidurae"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import data.constants.rodents.I_ConstantDodel2;
+import thing.A_Animal;
+import thing.dna.I_DiploidGenome;
+${definition}"
+      associated_elems
+	class_ref 141058 // C_BorreliaCrocidurae
+      end
+    end
+
+    artifact 157442 "C_Cat"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.TreeSet;
+import data.constants.rodents.I_ConstantDodel2;
+import melanesim.protocol.A_Protocol;
+import melanesim.util.C_VariousUtilities;
+import thing.A_Amniote;
+import thing.A_Animal;
+import thing.I_SituatedThing;
+import thing.dna.I_DiploidGenome;
+import thing.ground.C_SoilCellUrban;
+${definition}"
+      associated_elems
+	class_ref 141314 // C_Cat
+      end
+    end
+
+    artifact 157570 "C_Food"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import thing.ground.A_SupportedContainer;
+${definition}"
+      associated_elems
+	class_ref 141186 // C_Food
+      end
+    end
+
+    artifact 157698 "C_HumanCarrier"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.TreeSet;
+import org.locationtech.jts.geom.Coordinate;
+import data.constants.rodents.I_ConstantStringRodents;
+import data.constants.rodents.I_ConstantTransportation;
+import melanesim.C_ContextCreator;
+import melanesim.util.C_PathWanderer;
+import thing.A_Animal;
+import thing.A_VisibleAgent;
+import thing.I_SituatedThing;
+import thing.dna.I_DiploidGenome;
+import thing.ground.C_City;
+import thing.ground.C_SoilCell;
+import thing.ground.C_SoilCellGraphed;
+import thing.ground.C_Vehicle;
+import thing.ground.landscape.C_Landscape;
+${definition}"
+      associated_elems
+	class_ref 152450 // C_HumanCarrier
+      end
+    end
+
+    artifact 157826 "C_HumanWalker"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import org.locationtech.jts.geom.Coordinate;
+import data.C_Parameters;
+import melanesim.protocol.A_Protocol;
+import melanesim.util.C_PathWandererAstar;
+import thing.A_Animal;
+import thing.A_VisibleAgent;
+import thing.I_SituatedThing;
+import thing.dna.I_DiploidGenome;
+import thing.ground.C_LandPlot;
+import thing.ground.C_SoilCellUrban;
+${definition}"
+      associated_elems
+	class_ref 140802 // C_HumanWalker
+      end
+    end
+
+    artifact 157954 "C_OrnitodorosSonrai"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.TreeSet;
+import data.C_Parameters;
+import data.constants.rodents.I_ConstantDodel2;
+import data.converters.C_ConvertTimeAndSpace;
+import melanesim.C_ContextCreator;
+import melanesim.protocol.A_Protocol;
+import melanesim.util.C_VariousUtilities;
+import thing.A_Animal;
+import thing.C_Egg;
+import thing.I_ReproducingThing;
+import thing.I_SituatedThing;
+import thing.dna.C_GenomeEucaryote;
+import thing.dna.I_DiploidGenome;
+import thing.dna.species.C_GenomeAcaria;
+import thing.ground.C_BurrowSystem;
+import thing.ground.C_SoilCellUrban;
+import thing.ground.I_Container;
+${definition}"
+      associated_elems
+	class_ref 140930 // C_OrnitodorosSonrai
+      end
+    end
+
+    artifact 158082 "C_RodentBlackRat"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Calendar;
+import java.util.TreeSet;
+import melanesim.protocol.A_Protocol;
+import thing.A_Amniote;
+import thing.A_Animal;
+import thing.I_SituatedThing;
+import thing.dna.I_DiploidGenome;
+import thing.ground.C_Vehicle;
+${definition}"
+      associated_elems
+	class_ref 162050 // C_RodentBlackRat
+      end
+    end
+
+    artifact 158210 "C_RodentCaged"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.TreeSet;
+import data.constants.rodents.I_ConstantCage;
+import thing.A_Amniote;
+import thing.A_Animal;
+import thing.I_SituatedThing;
+import thing.dna.I_DiploidGenome;
+import thing.dna.species.rodents.C_GenomeMastoErythroleucus;
+import thing.dna.species.rodents.C_GenomeMastoNatalensis;
+import thing.dna.species.rodents.C_GenomeMastomys;
+import thing.ground.C_LandPlot;
+import thing.ground.C_SoilCell;
+import melanesim.C_ContextCreator;
+${definition}"
+      associated_elems
+	class_ref 139394 // C_RodentCaged
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 158338 "C_RodentCircadian"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Calendar;
+import java.util.TreeSet;
+import data.constants.rodents.I_ConstantDodel;
+import thing.A_Amniote;
+import thing.A_Animal;
+import thing.I_SituatedThing;
+import thing.dna.I_DiploidGenome;
+import melanesim.protocol.A_Protocol;
+${definition}"
+      associated_elems
+	class_ref 162178 // C_RodentCircadian
+      end
+    end
+
+    artifact 158466 "C_RodentCmr"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import melanesim.C_ContextCreator;
+import melanesim.protocol.rodents.C_ProtocolBandia;
+import thing.A_Amniote;
+import thing.A_Animal;
+import thing.dna.I_DiploidGenome;
+import thing.ground.C_Trap;
+import thing.ground.I_Container;
+${definition}"
+      associated_elems
+	class_ref 138882 // C_RodentCmr
+      end
+    end
+
+    artifact 158594 "C_RodentDomestic2"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.TreeSet;
+import org.locationtech.jts.geom.Coordinate;
+import data.C_Parameters;
+import data.constants.rodents.I_ConstantDodel2;
+import melanesim.C_ContextCreator;
+import melanesim.protocol.A_Protocol;
+import melanesim.util.C_VariousUtilities;
+import melanesim.util.C_WallFollower;
+import thing.A_Amniote;
+import thing.A_Animal;
+import thing.A_VisibleAgent;
+import thing.I_SituatedThing;
+import thing.dna.I_DiploidGenome;
+import thing.ground.A_Container;
+import thing.ground.C_BurrowSystem;
+import thing.ground.C_LandPlot;
+import thing.ground.C_SoilCell;
+import thing.ground.C_SoilCellUrban;
+import thing.ground.I_Container;
+import thing.ground.landscape.C_Landscape;
+${definition}"
+      associated_elems
+	class_ref 140674 // C_RodentDomestic2
+      end
+    end
+
+    artifact 158722 "C_RodentFossorialColonial"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.TreeSet;
+import thing.A_Amniote;
+import thing.A_Animal;
+import thing.I_SituatedThing;
+import thing.dna.I_DiploidGenome;
+import thing.ground.C_BurrowSystem;
+${definition}"
+      associated_elems
+	class_ref 162306 // C_RodentFossorialColonial
+      end
+    end
+
+    artifact 158850 "C_RodentGerbil"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.TreeSet;
+import data.C_Parameters;
+import data.constants.rodents.I_ConstantGerbil;
+import data.converters.C_ConvertTimeAndSpace;
+import melanesim.protocol.A_Protocol;
+import thing.A_Amniote;
+import thing.A_Animal;
+import thing.A_VisibleAgent;
+import thing.I_SituatedThing;
+import thing.dna.I_DiploidGenome;
+import thing.dna.species.plants.C_GenomeBalanites;
+import thing.dna.species.plants.C_GenomeFabacea;
+import thing.dna.species.plants.C_GenomePoacea;
+import thing.ground.C_BurrowSystem;
+import thing.ground.C_Nest;
+import thing.ground.I_Container;
+${definition}"
+      associated_elems
+	class_ref 141954 // C_RodentGerbil
+      end
+    end
+
+    artifact 158978 "C_RodentHouseMouse"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.TreeSet;
+import thing.A_Amniote;
+import thing.A_Animal;
+import thing.I_SituatedThing;
+import thing.dna.I_DiploidGenome;
+import thing.ground.C_Vehicle;
+${definition}"
+      associated_elems
+	class_ref 162434 // C_RodentHouseMouse
+      end
+    end
+
+    artifact 159106 "C_RodentMastoErySimple"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import thing.A_Amniote;
+import thing.A_Animal;
+import thing.dna.I_DiploidGenome;
+import thing.ground.C_Vehicle;
+${definition}"
+      associated_elems
+	class_ref 162562 // C_RodentMastoErySimple
+      end
+    end
+
+    artifact 159234 "C_TaxiMan"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.TreeSet;
+import thing.A_VisibleAgent;
+import thing.I_SituatedThing;
+import thing.dna.I_DiploidGenome;
+import thing.ground.C_City;
+import thing.ground.C_Market;
+${definition}"
+      associated_elems
+	class_ref 162690 // C_TaxiMan
+      end
+    end
+
+    artifact 159362 "C_TaxiManDodel"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import org.locationtech.jts.geom.Coordinate;
+import melanesim.C_ContextCreator;
+import melanesim.protocol.A_Protocol;
+import thing.A_VisibleAgent;
+import thing.dna.I_DiploidGenome;
+import thing.ground.I_Container;
+${definition}"
+      associated_elems
+	class_ref 140034 // C_TaxiManDodel
+      end
+    end
+
+    artifact 159490 "C_Vegetation"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.TreeSet;
+import thing.A_Animal;
+import thing.A_Organism;
+import thing.A_VisibleAgent;
+import thing.I_SituatedThing;
+import thing.dna.I_DiploidGenome;
+import thing.dna.species.plants.C_GenomeBalanites;
+import thing.dna.species.plants.C_GenomeFabacea;
+import thing.dna.species.plants.C_GenomePoacea;
+import thing.dna.species.plants.C_GenomeSpermatophyta;
+import thing.ground.A_Container;
+import thing.ground.C_SoilCell;
+import thing.ground.C_SoilCellSavanna;
+import data.C_Parameters;
+import data.constants.rodents.I_ConstantGerbil;
+import data.converters.C_ConvertTimeAndSpace;
+import melanesim.protocol.A_Protocol;
+${definition}"
+      associated_elems
+	class_ref 142338 // C_Vegetation
+      end
+      comment " This source code is licensed under a BSD license as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 159618 "C_Vegetation0"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.TreeSet;
+import thing.A_Organism;
+import thing.I_SituatedThing;
+import thing.dna.I_DiploidGenome;
+import thing.dna.species.plants.C_GenomeBalanites;
+import thing.dna.species.plants.C_GenomeFabacea;
+import thing.dna.species.plants.C_GenomePoacea;
+import thing.dna.species.plants.C_GenomeSpermatophyta;
+import thing.ground.C_SoilCell;
+import thing.ground.C_SoilCellSavanna;
+import data.C_Parameters;
+import data.constants.rodents.I_ConstantGerbil;
+import data.converters.C_ConvertTimeAndSpace;
+${definition}"
+      associated_elems
+	class_ref 162818 // C_Vegetation0
+      end
+      comment " This source code is licensed under a BSD license as detailed in file SIMmasto_0.license.txt "
+    end
+  end
+end

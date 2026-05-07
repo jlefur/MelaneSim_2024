@@ -1,0 +1,5996 @@
+format 224
+"display" // src::presentation::display
+  revision 1
+  modified_by 2 "lefur"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:\\Users\\lefur\\Documents\\GitHub\\MelaneSim_2024\\src/presentation/display/"
+  java_package "presentation.display"
+  classview 129922 "display"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 135426 "C_Background"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Provides a display-able object (background facility map) to the GUI<br>
+The bitmap is declared in presentation.display.C_Background.style_0.xml or equivalent
+@author J.Le Fur, 08.2014, rev. 04.2018, 03.2025 "
+      classrelation 150018 // <realization>
+	relation 150018 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 150018 // <realization>
+	  b parent class_ref 135682 // I_SituatedThing
+      end
+
+      attribute 215938 "hasToSwitchFace"
+	public explicit_type "boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+"
+      end
+
+      attribute 216066 "scale"
+	protected explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 216194 "coordinate_Umeter"
+	protected explicit_type "Coordinate"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 216322 "whereX"
+	public explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 216450 "whereY"
+	public explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 200834 "C_Background"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "scale" explicit_type "double"
+	  param in name "x_position_Ucs" explicit_type "double"
+	  param in name "y_position_Ucs" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 200962 "contextualize"
+	public explicit_return_type "void"
+	nparams 2
+	  param inout name "context" explicit_type "Context<Object>"
+	  param inout name "landscape" type class_ref 135042 // C_Landscape
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+"
+      end
+
+      operation 201090 "getScale"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " GETTER
+"
+      end
+
+      operation 201218 "actionInfect"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "thing" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " OVERRIDEN METHODS (Useless, for compatibility with I_SituatedThing and I_LivingThing
+
+ Useless, for compatibility with I_SituatedThing "
+      end
+
+      operation 201346 "discardThis"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 201474 "assertColNo"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "colNo" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Needed & unused to conform to @see I_SituatedThing / JLF 02.2020 "
+      end
+
+      operation 201602 "assertLineNo"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "lineNo" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Needed & unused to conform to @see I_SituatedThing / JLF 02.2020 "
+      end
+
+      operation 201730 "setCurrentSoilCell"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "cell" type class_ref 135810 // I_Container
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 201858 "retrieveColNo"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 201986 "retrieveLineNo"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 202114 "isInfected"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 202242 "getCoordinate_Umeter"
+	public explicit_return_type "Coordinate"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 202370 "getCoordinate_Ucs"
+	public explicit_return_type "Coordinate"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 202498 "getCurrentSoilCell"
+	public return_type class_ref 135810 // I_Container
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 202626 "getDistance_Umeter"
+	public explicit_return_type "double"
+	nparams 1
+	  param inout name "oneCoordinate" explicit_type "Coordinate"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Used for compatibility with I_SituatedThing @rev JLF 10.2019 "
+      end
+
+      operation 202754 "getDistance_Umeter"
+	public explicit_return_type "double"
+	nparams 1
+	  param inout name "agent" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Used for compatibility with I_SituatedThing @rev JLF 10.2019 "
+      end
+
+      operation 202882 "canInteractWith"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "oneOccupant" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 203010 "getMyLandPlot"
+	public return_type class_ref 138370 // C_LandPlot
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Used for compatibility with I_SituatedThing @rev JLF 10.2019 "
+      end
+
+      operation 203138 "retrieveMyName"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Used for compatibility with I_LivingThing @rev JLF 03.2025 "
+      end
+
+      operation 203266 "getBirthDate_Utick"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Used for compatibility with I_LivingThing @rev JLF 03.2025 "
+      end
+
+      operation 203394 "getAge_Uday"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Used for compatibility with I_LivingThing @rev JLF 03.2025 "
+      end
+
+      operation 203522 "actionGrowOlder_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Used for compatibility with I_LivingThing @rev JLF 03.2025 "
+      end
+
+      operation 203650 "getEnergy_Ukcal"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Used for compatibility with I_LivingThing @rev JLF 03.2025 "
+      end
+
+      operation 203778 "setEnergy_Ukcal"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "d" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Used for compatibility with I_LivingThing @rev JLF 01.2026 "
+      end
+    end
+
+    class 135554 "C_StyleAgent"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Style des agents \"animaux\". Définit une icône ou une ellipse pour chaque agent au lancement de la simulation en fonction de
+son sexe et la fait varier suivant son âge.
+@author A Realini 2011 "
+      classrelation 155266 // <realization>
+	relation 155266 -_-|>
+	  a public
+	    java "${type}<I_SituatedThing>"
+	    classrelation_ref 155266 // <realization>
+	  b parent class_ref 149890 // StyleOGL2D
+      end
+
+      classrelation 155394 // <realization>
+	relation 155394 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 155394 // <realization>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      classrelation 155522 // <realization>
+	relation 155522 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 155522 // <realization>
+	  b parent class_ref 129026 // I_ConstantPNMC
+      end
+
+      classrelation 155650 // <realization>
+	relation 155650 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 155650 // <realization>
+	  b parent class_ref 129794 // I_ConstantNumeric
+      end
+
+      classrelation 155778 // <realization>
+	relation 155778 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 155778 // <realization>
+	  b parent class_ref 132226 // I_ConstantImagesNames
+      end
+
+      attribute 220418 "imageScale"
+	private explicit_type "float"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 220546 "ellipseScale"
+	private explicit_type "float"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 220674 "CIRCLE_RADIUS"
+	const_attribute private explicit_type "float"
+	init_value " 5"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Rayon de l'ellipse"
+      end
+
+      attribute 220802 "CIRCLE_SLICES"
+	const_attribute private explicit_type "int"
+	init_value " 10"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Nombres d'arêtes de l'ellipse (joue sur le rendu : sera plus ou moins rond)"
+      end
+
+      classrelation 155906 // selectImg (<unidirectional association>)
+	relation 155906 --->
+	  a role_name "selectImg" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 155906 // selectImg (<unidirectional association>)
+	  b parent class_ref 149122 // C_IconSelector
+      end
+
+      attribute 220930 "factory"
+	private explicit_type "ShapeFactory2D"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 217602 "init"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "factory" explicit_type "ShapeFactory2D"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Initialise un gestionnaire d'images et enregistre les images qui seront utilis�es au cours de la simulation dans le
+factory "
+      end
+
+      operation 217730 "initPNMC"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 217858 "initChize"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 217986 "initDodel"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 218114 "initDodel2"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 218242 "initGerbil"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 218370 "initCentenal"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 218498 "initMusTransport"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 218626 "initDecenal"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 218754 "initEnclosMbour"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 218882 "initBandia"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 219010 "getVSpatial"
+	public explicit_return_type "VSpatial"
+	nparams 2
+	  param inout name "agent" type class_ref 135682 // I_SituatedThing
+	  param inout name "spatial" explicit_type "VSpatial"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Attribue une nouvelle \"image\" à un agent ou la modifie si besoin est, sinon renvoie le spatial en paramètre sans le
+modifier.
+@param agent : l'agent à qui appartient l'icône
+@param spatial : représentation de l'agent (image ou forme géométrique) "
+      end
+
+      operation 219138 "getColor"
+	public explicit_return_type "Color"
+	nparams 1
+	  param inout name "agent" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 219266 "getScale"
+	public explicit_return_type "float"
+	nparams 1
+	  param inout name "object" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " TODO number in source for image scales MS 2016, JLF 2021, 2024 "
+      end
+
+      operation 219394 "getRotation"
+	public explicit_return_type "float"
+	nparams 1
+	  param inout name "object" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " OVERRIDEN & UNUSED METHODS //"
+      end
+
+      operation 219522 "getBorderSize"
+	public explicit_return_type "int"
+	nparams 1
+	  param inout name "object" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 219650 "getBorderColor"
+	public explicit_return_type "Color"
+	nparams 1
+	  param inout name "object" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 219778 "getLabel"
+	public explicit_return_type "String"
+	nparams 1
+	  param inout name "object" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 219906 "getLabelFont"
+	public explicit_return_type "Font"
+	nparams 1
+	  param inout name "object" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 220034 "getLabelXOffset"
+	public explicit_return_type "float"
+	nparams 1
+	  param inout name "object" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 220162 "getLabelYOffset"
+	public explicit_return_type "float"
+	nparams 1
+	  param inout name "object" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 220290 "getFactory"
+	public explicit_return_type "ShapeFactory2D"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 220418 "getLabelPosition"
+	public explicit_return_type "Position"
+	nparams 1
+	  param inout name "object" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 220546 "getLabelColor"
+	public explicit_return_type "Color"
+	nparams 1
+	  param inout name "object" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 147970 "C_Chart"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 216578 "LINE"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Types de chart disponibles //
+"
+      end
+
+      attribute 216706 "PIE3D"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 1"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 216834 "PIE2D"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 2"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 216962 "RING"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 3"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 217090 "BAR"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 4"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 217218 "dataPie"
+	private explicit_type "DefaultPieDataset"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Pour la représentation Pie2D, Pie3D et Ring"
+      end
+
+      attribute 217346 "dataLine"
+	private explicit_type "XYSeriesCollection"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Pour la représentation Line"
+      end
+
+      attribute 217474 "dataBar"
+	private explicit_type "CategoryDataset"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Pour la représentation Bar JLF 08.2015"
+      end
+
+      attribute 217602 "chartPanel"
+	private explicit_type "ChartPanel"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 217730 "chart"
+	private explicit_type "JFreeChart"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 217858 "type"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 203906 "C_Chart"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "title" explicit_type "String"
+	  param in name "type" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Constructeur des Pie charts. Peut aussi être utilisé pour les Line charts mais les noms des axes seront par défault \"X\" et
+\"Y\".
+@param title : le titre du graphique
+@param type : le type de graphique "
+      end
+
+      operation 204034 "C_Chart"
+	public explicit_return_type ""
+	nparams 4
+	  param in name "title" explicit_type "String"
+	  param in name "type" explicit_type "int"
+	  param in name "XLabel" explicit_type "String"
+	  param in name "YLabel" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Constructeur d'un Line/Bar/Pie Chart
+@param title : le titre du graphique
+@param type : le type de graphique
+@param XLabel : le nom de l'axe des abscisses
+@param YLabel : le nom de l'axe des ordonnées "
+      end
+
+      operation 204162 "init"
+	private explicit_return_type "void"
+	nparams 4
+	  param in name "title" explicit_type "String"
+	  param in name "type" explicit_type "int"
+	  param in name "XLabel" explicit_type "String"
+	  param in name "YLabel" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Crée un nouvel ensemble de données et un graphique
+@param title : le titre du graphique
+@param type : le type de graphique
+@param XLabel : le nom de l'axe des abscisses (utilisé uniquement avec les Line charts)
+@param YLabel : le nom de l'axe des ordonnées (utilisé uniquement avec les Line charts) "
+      end
+
+      operation 204290 "createBarChart"
+	private explicit_return_type "JFreeChart"
+	nparams 3
+	  param in name "title" explicit_type "String"
+	  param in name "XLabel" explicit_type "String"
+	  param in name "YLabel" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Build a chart of type Bar , JLF 08.2015 "
+      end
+
+      operation 204418 "createPieChart"
+	private explicit_return_type "JFreeChart"
+	nparams 1
+	  param in name "title" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Crée un chart de type Pie, Pie3D ou Ring "
+      end
+
+      operation 204546 "createLineChart"
+	private explicit_return_type "JFreeChart"
+	nparams 3
+	  param in name "title" explicit_type "String"
+	  param in name "XLabel" explicit_type "String"
+	  param in name "YLabel" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Crée un line chart "
+      end
+
+      operation 204674 "addData"
+	public explicit_return_type "void"
+	nparams 3
+	  param in name "title" explicit_type "String"
+	  param inout name "Xvalue" explicit_type "Number"
+	  param inout name "Yvalue" explicit_type "Number"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Ajoute une donnée à la série en paramètre.
+@param title : le titre de la série utilisé lors de sa création
+@param Xvalue : la valeur en X
+@param Yvalue : la valeur en Y (null pour PIE2D, PIE3D, RING); "
+      end
+
+      operation 204802 "addXYSerie"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "title" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Ajoute une série (courbe) au chart (à utiliser avec les lines charts).
+@param title : le titre de la série "
+      end
+
+      operation 204930 "setData"
+	public explicit_return_type "void"
+	nparams 3
+	  param in name "serie" explicit_type "String"
+	  param inout name "Xvalue" explicit_type "Number"
+	  param inout name "Yvalue" explicit_type "Number"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Met à jour les données d'un chart
+@param serie : le nom de la série à mettre à jour
+@param Xvalue : la valeur en X
+@param Yvalue : la valeur en Y (null pour PIE2D, PIE3D, RING); "
+      end
+
+      operation 205058 "setBarData"
+	public explicit_return_type "void"
+	nparams 3
+	  param in name "value" explicit_type "int"
+	  param in name "serie" explicit_type "String"
+	  param in name "category" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Met à jour les données d'un bar chart, JLF 08.2015
+@param value : la valeur de la barre
+@param serie : le nom de la barre à mettre à jour
+@param category : la série de données globale "
+      end
+
+      operation 205186 "getChartPanel"
+	public explicit_return_type "ChartPanel"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 205314 "getDataLine"
+	public explicit_return_type "XYSeriesCollection"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 205442 "getDataBar"
+	public explicit_return_type "CategoryDataset"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 205570 "getChart"
+	public explicit_return_type "JFreeChart"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 205698 "setTitle"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "title" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 148098 "C_CustomPanelFactory"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Un onglet ajouté à la simulation
+@author A. Realini "
+      classrelation 150146 // <realization>
+	relation 150146 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 150146 // <realization>
+	  b parent class_ref 148226 // IDisplay
+      end
+
+      attribute 217986 "support"
+	private explicit_type "RendererListenerSupport"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Support du RendererListener qui rafraichit ce display 
+"
+      end
+
+      classrelation 150274 // chart (<unidirectional association>)
+	relation 150274 --->
+	  a role_name "chart" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 150274 // chart (<unidirectional association>)
+	  b parent class_ref 147970 // C_Chart
+      end
+
+      operation 205826 "C_CustomPanelFactory"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "title" explicit_type "String"
+	  param in name "type" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Crée un nouveau display
+@param title : le titre du chart
+@param type : le type de chart (C_Chart.LINE/PIE3D/PIE2D/RING) "
+      end
+
+      operation 205954 "C_CustomPanelFactory"
+	public explicit_return_type ""
+	nparams 4
+	  param in name "title" explicit_type "String"
+	  param in name "type" explicit_type "int"
+	  param in name "XLabel" explicit_type "String"
+	  param in name "YLabel" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Cr�e un nouveau display en pr�cisant les noms des axes du graphique (pour les Line charts) "
+      end
+
+      operation 206082 "getPanel"
+	public explicit_return_type "JPanel"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Appelée juste après le constructeur //"
+      end
+
+      operation 206210 "addRenderListener"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "listener" explicit_type "RenderListener"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @Override // A NE SURTOUT PAS SUPPRIMER //"
+      end
+
+      operation 206338 "render"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " A NE SURTOUT PAS SUPPRIMER //"
+      end
+
+      operation 206466 "getChart"
+	public return_type class_ref 147970 // C_Chart
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 206594 "init"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " OVERRIDE & UNUSED METHODS //"
+      end
+
+      operation 206722 "update"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Called after getPanel()"
+      end
+
+      operation 206850 "destroy"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 206978 "setPause"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "pause" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 207106 "resetHomeView"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 207234 "registerToolBar"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "bar" explicit_type "JToolBar"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 207362 "addDisplayListener"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "listener" explicit_type "DisplayListener"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 207490 "iconified"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 207618 "deIconified"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 207746 "closed"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 207874 "addProbeListener"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "listener" explicit_type "ProbeListener"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 208002 "setLayout"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "layout" explicit_type "Layout"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 208130 "setLayoutFrequency"
+	public explicit_return_type "void"
+	nparams 2
+	  param inout name "frequency" explicit_type "LayoutFrequency"
+	  param in name "interval" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 208258 "getLayout"
+	public explicit_return_type "Layout"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 208386 "createEditor"
+	public explicit_return_type "DisplayEditorLifecycle"
+	nparams 1
+	  param inout name "panel" explicit_type "JPanel"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 148354 "C_CustomPanelSet"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Initialise la simulation avec des onglets \"programmables\"
+@author A. Realini, rev. J. Le Fur 02.2013, O2.2017, 02.2021 "
+      classrelation 150402 // <realization>
+	relation 150402 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 150402 // <realization>
+	  b parent class_ref 148482 // IAction
+      end
+
+      classrelation 150530 // <realization>
+	relation 150530 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 150530 // <realization>
+	  b parent class_ref 148610 // ModelInitializer
+      end
+
+      classrelation 150658 // energyInspector (<unidirectional association>)
+	relation 150658 --->
+	  a role_name "energyInspector" init_value " null" class_relation protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 150658 // energyInspector (<unidirectional association>)
+	  b parent class_ref 134914 // C_InspectorEnergy
+      end
+
+      classrelation 150786 // populationInspector (<unidirectional association>)
+	relation 150786 --->
+	  a role_name "populationInspector" init_value " null" class_relation protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 150786 // populationInspector (<unidirectional association>)
+	  b parent class_ref 134786 // C_InspectorPopulation
+      end
+
+      attribute 218114 "energyMap"
+	protected explicit_type "String, Double"
+	init_value " null"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " used for energy graph"
+      end
+
+      attribute 218242 "populationMap"
+	protected explicit_type "String, Double"
+	init_value " null"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " used for population graph"
+      end
+
+      attribute 218370 "dispersalMap"
+	protected explicit_type "String, Double"
+	init_value " null"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " used for dispersal graph"
+      end
+
+      attribute 218498 "energyCurves"
+	class_attribute public explicit_type "String"
+	init_value " new ArrayList<String>()"
+	stereotype "ArrayList"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " used for energy graph (must be static to be invoked"
+      end
+
+      attribute 218626 "populationCurves"
+	class_attribute public explicit_type "String"
+	init_value " new ArrayList<String>()"
+	stereotype "ArrayList"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " and cleared in
+ used for energy graph (must be static to be"
+      end
+
+      attribute 218754 "action"
+	protected explicit_type "IAction"
+	init_value " this"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " invoked and cleared in
+ Récupère l'implémentation de IDisplay"
+      end
+
+      classrelation 150914 // curveEnergy (<unidirectional association>)
+	relation 150914 --->
+	  a role_name "curveEnergy" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 150914 // curveEnergy (<unidirectional association>)
+	  b parent class_ref 148098 // C_CustomPanelFactory
+      end
+
+      classrelation 151042 // curvePopSize (<unidirectional association>)
+	relation 151042 --->
+	  a role_name "curvePopSize" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 151042 // curvePopSize (<unidirectional association>)
+	  b parent class_ref 148098 // C_CustomPanelFactory
+      end
+
+      classrelation 151170 // curveDispersal (<unidirectional association>)
+	relation 151170 --->
+	  a role_name "curveDispersal" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 151170 // curveDispersal (<unidirectional association>)
+	  b parent class_ref 148098 // C_CustomPanelFactory
+      end
+
+      operation 208514 "initialize"
+	public explicit_return_type "void"
+	nparams 2
+	  param inout name "scen" explicit_type "Scenario"
+	  param inout name "builder" explicit_type "RunEnvironmentBuilder"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " This is ran after the model has been loaded. This is only ran once, but the settings set through the
+{@link repast.simphony.scenario.Scenario} will apply to every run of the simulation.
+@param scen the {@link repast.simphony.scenario.Scenario} object that hold settings for the run "
+      end
+
+      operation 208642 "initWorldSpecificPlots"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "runstate" explicit_type "RunState"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 208770 "execute0"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Use it for no graphs in the GUI "
+      end
+
+      operation 208898 "execute"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Update each series with the corresponding data "
+      end
+    end
+
+    class 148738 "C_CustomPanelSet_Rodent"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Initialise la simulation avec des onglets \"programmables\"
+@author A. Realini, rev. J. Le Fur 02.2013, O2.2017, 02.2021 "
+      classrelation 151298 // <generalisation>
+	relation 151298 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 151298 // <generalisation>
+	  b parent class_ref 148354 // C_CustomPanelSet
+      end
+
+      classrelation 151426 // curveFIS (<unidirectional association>)
+	relation 151426 --->
+	  a role_name "curveFIS" private
+	    comment " the following are meant to avoid multiple calls to ContextCreator (see execute()) // JLF 02.2013
+ protected C_InspectorPopulationRodent inspector;
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 151426 // curveFIS (<unidirectional association>)
+	  b parent class_ref 148098 // C_CustomPanelFactory
+      end
+
+      classrelation 151554 // curveRates (<unidirectional association>)
+	relation 151554 --->
+	  a role_name "curveRates" private
+	    comment " the following are meant to avoid multiple calls to ContextCreator (see execute()) // JLF 02.2013
+ protected C_InspectorPopulationRodent inspector;
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 151554 // curveRates (<unidirectional association>)
+	  b parent class_ref 148098 // C_CustomPanelFactory
+      end
+
+      classrelation 151682 // curveVegetation (<unidirectional association>)
+	relation 151682 --->
+	  a role_name "curveVegetation" private
+	    comment " the following are meant to avoid multiple calls to ContextCreator (see execute()) // JLF 02.2013
+ protected C_InspectorPopulationRodent inspector;
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 151682 // curveVegetation (<unidirectional association>)
+	  b parent class_ref 148098 // C_CustomPanelFactory
+      end
+
+      classrelation 151810 // curveOrnithodoros (<unidirectional association>)
+	relation 151810 --->
+	  a role_name "curveOrnithodoros" private
+	    comment " the following are meant to avoid multiple calls to ContextCreator (see execute()) // JLF 02.2013
+ protected C_InspectorPopulationRodent inspector;
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 151810 // curveOrnithodoros (<unidirectional association>)
+	  b parent class_ref 148098 // C_CustomPanelFactory
+      end
+
+      classrelation 151938 // curvedesease (<unidirectional association>)
+	relation 151938 --->
+	  a role_name "curvedesease" private
+	    comment " the following are meant to avoid multiple calls to ContextCreator (see execute()) // JLF 02.2013
+ protected C_InspectorPopulationRodent inspector;
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 151938 // curvedesease (<unidirectional association>)
+	  b parent class_ref 148098 // C_CustomPanelFactory
+      end
+
+      classrelation 152066 // hybridInspector (<unidirectional association>)
+	relation 152066 --->
+	  a role_name "hybridInspector" init_value " null" class_relation private
+	    comment " the following are meant to avoid multiple calls to ContextCreator (see execute()) // JLF 02.2013
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 152066 // hybridInspector (<unidirectional association>)
+	  b parent class_ref 139266 // C_InspectorHybrid
+      end
+
+      classrelation 152194 // transportationInspector (<unidirectional association>)
+	relation 152194 --->
+	  a role_name "transportationInspector" init_value " null" class_relation private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 152194 // transportationInspector (<unidirectional association>)
+	  b parent class_ref 137730 // C_InspectorTransportation
+      end
+
+      classrelation 152322 // geneticInspector (<unidirectional association>)
+	relation 152322 --->
+	  a role_name "geneticInspector" init_value " null" class_relation private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 152322 // geneticInspector (<unidirectional association>)
+	  b parent class_ref 138626 // C_InspectorGenetic
+      end
+
+      classrelation 152450 // C_InspectorCMR (<unidirectional association>)
+	relation 152450 --->
+	  a role_name "C_InspectorCMR" init_value " null" class_relation private
+	    comment " Ajout Malick"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 152450 // C_InspectorCMR (<unidirectional association>)
+	  b parent class_ref 138754 // C_InspectorCMR
+      end
+
+      classrelation 152578 // vegetationInspector (<unidirectional association>)
+	relation 152578 --->
+	  a role_name "vegetationInspector" init_value " null" class_relation private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 152578 // vegetationInspector (<unidirectional association>)
+	  b parent class_ref 141826 // C_InspectorVegetation
+      end
+
+      classrelation 152706 // ornithodorosInspector (<unidirectional association>)
+	relation 152706 --->
+	  a role_name "ornithodorosInspector" init_value " null" class_relation private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 152706 // ornithodorosInspector (<unidirectional association>)
+	  b parent class_ref 140290 // C_InspectorOrnithodorosSonrai
+      end
+
+      operation 209026 "initWorldSpecificPlots"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "runState" explicit_type "RunState"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 209154 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 209282 "execute0"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Use it for no graphs in the GUI "
+      end
+
+      operation 209410 "execute"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Update each series with the corresponding data "
+      end
+
+      operation 209538 "addHybridInspector"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "inspector" type class_ref 139266 // C_InspectorHybrid
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 209666 "addGeneticInspector"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "inspector" type class_ref 138626 // C_InspectorGenetic
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 209794 "addTransportationInspector"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "inspector" type class_ref 137730 // C_InspectorTransportation
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 209922 "addBurrowInspector"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "inspector" type class_ref 137346 // C_InspectorFossorialRodents
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 210050 "addCMRInspector"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "inspector" type class_ref 138754 // C_InspectorCMR
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 210178 "addVegetationInspector"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "inspector" type class_ref 141826 // C_InspectorVegetation
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 210306 "addOrnithodorosInspector"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "inspector" type class_ref 140290 // C_InspectorOrnithodorosSonrai
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 210434 "addBorreliaInspector"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "inspector" type class_ref 140418 // C_InspectorBorreliaCrocidurae
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 148866 "C_CustomPanelSetMarine"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Initialise la simulation avec des onglets \"programmables\"
+@author JLF 2024 "
+      classrelation 152834 // <generalisation>
+	relation 152834 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 152834 // <generalisation>
+	  b parent class_ref 148354 // C_CustomPanelSet
+      end
+
+      operation 210562 "initWorldSpecificPlots"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "runState" explicit_type "RunState"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " OVERRIDEN METHODS
+"
+      end
+
+      operation 210690 "execute0"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Use it for no graphs in the GUI "
+      end
+
+      operation 210818 "execute"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Update each series with the corresponding data "
+      end
+    end
+
+    class 148994 "C_IconNightDay"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Provides a display-able object showing succession of night-dawn-day-twilight- to the GUI<br>
+The bitmap is declared in presentation.display.C_Background.style_0.xml or equivalent
+@author J.Le Fur, 08.2014, rev. 04.2018 "
+      classrelation 152962 // <generalisation>
+	relation 152962 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 152962 // <generalisation>
+	  b parent class_ref 135426 // C_Background
+      end
+
+      operation 210946 "C_IconNightDay"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "scale" explicit_type "double"
+	  param in name "x_Ucell" explicit_type "double"
+	  param in name "y_Ucell" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 149122 "C_IconSelector"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Gestionnaire d'images / Icons may be either gif image files or geonetric icons
+@author A Realini, rev. JLF 10.2015 "
+      classrelation 153090 // <realization>
+	relation 153090 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 153090 // <realization>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      classrelation 153218 // <realization>
+	relation 153218 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 153218 // <realization>
+	  b parent class_ref 129026 // I_ConstantPNMC
+      end
+
+      classrelation 153346 // <realization>
+	relation 153346 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 153346 // <realization>
+	  b parent class_ref 132226 // I_ConstantImagesNames
+      end
+
+      operation 211074 "loadImage"
+	public explicit_return_type "BufferedImage"
+	nparams 1
+	  param in name "nomImage" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Charge une image
+@param nomImage : le nom de l'image � charger "
+      end
+
+      operation 211202 "getNameOfImage"
+	public explicit_return_type "String"
+	nparams 1
+	  param inout name "agent" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Renvoie le nom de l'image à utiliser pour l'agent en paramètre "
+      end
+
+      operation 211330 "getNameOfImagePNMC"
+	public explicit_return_type "String"
+	nparams 1
+	  param inout name "agent" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 211458 "getNameOfImageBandia"
+	public explicit_return_type "String"
+	nparams 1
+	  param inout name "agent" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 211586 "getNameOfImageTransportMus"
+	public explicit_return_type "String"
+	nparams 1
+	  param inout name "agent" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 211714 "getNameOfImageTransportRattus"
+	public explicit_return_type "String"
+	nparams 1
+	  param inout name "agent" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 211842 "getNameOfImageChize"
+	public explicit_return_type "String"
+	nparams 1
+	  param inout name "agent" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 211970 "getNameOfImageDodel"
+	public explicit_return_type "String"
+	nparams 1
+	  param inout name "agent" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 212098 "getNameOfImageDodel2"
+	public explicit_return_type "String"
+	nparams 1
+	  param inout name "agent" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 212226 "getNameOfImageGerbil"
+	public explicit_return_type "String"
+	nparams 1
+	  param inout name "agent" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 212354 "getNameOfImageEnclosMbour"
+	public explicit_return_type "String"
+	nparams 1
+	  param inout name "agent" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Renvoie le nom de l'image � utiliser pour l'agent en param�tre "
+      end
+
+      operation 212482 "getColor"
+	class_operation public explicit_return_type "Color"
+	nparams 1
+	  param inout name "agent" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " D�finit la couleur de l'agent en param�tre en fonction de son sexe, de son �ge, son �tat... (A utiliser avec l'affichage
+d'ellipses et non d'images)
+@return la nouvelle couleur de l'agent "
+      end
+
+      operation 212610 "getColorPNMC_DRIFTERS"
+	class_operation public explicit_return_type "Color"
+	nparams 1
+	  param inout name "agent" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " agent is plankton JLF 2024 "
+      end
+
+      operation 212738 "getColorGerbil"
+	class_operation public explicit_return_type "Color"
+	nparams 1
+	  param inout name "agent" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 212866 "getColorBandia"
+	class_operation public explicit_return_type "Color"
+	nparams 1
+	  param inout name "agent" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " D�finit la couleur de l'agent en param�tre en fonction de son sexe et de son �ge (A utiliser avec l'affichage d'ellipses
+et non d'images)
+@return la nouvelle couleur de l'agent "
+      end
+
+      operation 212994 "getColorDodel2"
+	class_operation public explicit_return_type "Color"
+	nparams 1
+	  param inout name "agent" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 213122 "getColorMbour"
+	class_operation public explicit_return_type "Color"
+	nparams 1
+	  param inout name "agent" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 213250 "getColorTransportation"
+	class_operation public explicit_return_type "Color"
+	nparams 1
+	  param inout name "agent" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 213378 "getColorChize"
+	class_operation public explicit_return_type "Color"
+	nparams 1
+	  param inout name "agent" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " D�finit la couleur de l'agent en param�tre en fonction de son sexe et de son �ge (A utiliser avec l'affichage d'ellipses
+et non d'images)
+@return la nouvelle couleur de l'agent "
+      end
+    end
+
+    class 149250 "C_Meter"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " @author Audrey Realini 2011 "
+      attribute 218882 "data"
+	private explicit_type "DefaultValueDataset"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 219010 "scale"
+	private explicit_type "StandardDialScale"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 219138 "pan"
+	private explicit_type "ChartPanel"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 219266 "tailleInterval"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 219394 "multiplicateur"
+	private explicit_type "boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 219522 "compteTours"
+	private explicit_type "DialTextAnnotation"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 213506 "C_Meter"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "title" explicit_type "String"
+	  param inout name "multiplicateur" explicit_type "boolean"
+	  param in name "interval" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Cr�e un meter
+@param title : Le nom du meter
+@param multiplicateur : Active ou non l'indice (le multiplicateur) au centre du meter
+@param interval : La valeur max du meter "
+      end
+
+      operation 213634 "C_Meter"
+	public explicit_return_type ""
+	nparams 4
+	  param in name "title" explicit_type "String"
+	  param inout name "multiplicateur" explicit_type "boolean"
+	  param in name "min" explicit_type "int"
+	  param in name "max" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 213762 "setData"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "value" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 213890 "setData"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "value" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 214018 "gestionMultiplicateur"
+	private explicit_return_type "void"
+	nparams 1
+	  param inout name "value" explicit_type "Integer"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Met � jour le multiplicateur au centre du compteur
+@param value : la valeur enti�re de la donn�e mise � jour avec setData() "
+      end
+
+      operation 214146 "getPan"
+	public explicit_return_type "ChartPanel"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 149378 "C_Style2dAffinityType"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 153474 // <realization>
+	relation 153474 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 153474 // <realization>
+	  b parent class_ref 149506 // ValueLayerStyleOGL
+      end
+
+      classrelation 153602 // <realization>
+	relation 153602 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 153602 // <realization>
+	  b parent class_ref 129794 // I_ConstantNumeric
+      end
+
+      classrelation 153730 // <realization>
+	relation 153730 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 153730 // <realization>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      classrelation 153858 // <realization>
+	relation 153858 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 153858 // <realization>
+	  b parent class_ref 129026 // I_ConstantPNMC
+      end
+
+      attribute 219650 "layer"
+	protected explicit_type "ValueLayer"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " the layer to represent"
+      end
+
+      attribute 219778 "colorMap"
+	package explicit_type "Integer, Color"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " http://vminfotron-dev.mpl.ird.fr:8080/masto2_2/model/memos/memo16_ImplantationRaster.htm
+ the colormap is used to associate a color at each value of the layer"
+      end
+
+      operation 214274 "C_Style2dAffinityType"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 214402 "getCellSize"
+	public explicit_return_type "float"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Return the necessary size for the display "
+      end
+
+      operation 214530 "colorMapPNMC_drifters"
+	public explicit_return_type "Map<Integer, Color>"
+	nparams 1
+	  param inout name "colorMap" explicit_type "Map<Integer, Color>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 214658 "colorMapPNMC_plankton"
+	public explicit_return_type "Map<Integer, Color>"
+	nparams 1
+	  param inout name "colorMap" explicit_type "Map<Integer, Color>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 214786 "colorMapDodel2"
+	public explicit_return_type "Map<Integer, Color>"
+	nparams 1
+	  param inout name "colorMap" explicit_type "Map<Integer, Color>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 214914 "colorMapCentenalGrid"
+	public explicit_return_type "Map<Integer, Color>"
+	nparams 1
+	  param inout name "colorMap" explicit_type "Map<Integer, Color>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 215042 "colorMapChizeGrid"
+	public explicit_return_type "Map<Integer, Color>"
+	nparams 1
+	  param inout name "colorMap" explicit_type "Map<Integer, Color>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 215170 "colorMapGerbilLandcover"
+	public explicit_return_type "Map<Integer, Color>"
+	nparams 1
+	  param inout name "colorMap" explicit_type "Map<Integer, Color>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 215298 "colorMapDecenalGrid"
+	public explicit_return_type "Map<Integer, Color>"
+	nparams 1
+	  param inout name "colorMap" explicit_type "Map<Integer, Color>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 215426 "colorMapAfricanVillage"
+	public explicit_return_type "Map<Integer, Color>"
+	nparams 1
+	  param inout name "colorMap" explicit_type "Map<Integer, Color>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 215554 "colorMapBandia"
+	public explicit_return_type "Map<Integer, Color>"
+	nparams 1
+	  param inout name "colorMap" explicit_type "Map<Integer, Color>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 215682 "getColor"
+	public explicit_return_type "Color"
+	nparams 1
+	  param inout name "" explicit_type "double...coordinates"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 215810 "init"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "layer" explicit_type "ValueLayer"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 149634 "C_Style2dGroundType"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 153986 // <realization>
+	relation 153986 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 153986 // <realization>
+	  b parent class_ref 149506 // ValueLayerStyleOGL
+      end
+
+      classrelation 154114 // <realization>
+	relation 154114 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 154114 // <realization>
+	  b parent class_ref 129794 // I_ConstantNumeric
+      end
+
+      classrelation 154242 // <realization>
+	relation 154242 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 154242 // <realization>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      classrelation 154370 // <realization>
+	relation 154370 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 154370 // <realization>
+	  b parent class_ref 131714 // I_ConstantTransportation
+      end
+
+      classrelation 154498 // <realization>
+	relation 154498 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 154498 // <realization>
+	  b parent class_ref 129026 // I_ConstantPNMC
+      end
+
+      attribute 219906 "layer"
+	protected explicit_type "ValueLayer"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+ the layer to represent"
+      end
+
+      attribute 220034 "colorMap"
+	package explicit_type "Integer,Color"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Used to associate a color to each value of the layer"
+      end
+
+      operation 215938 "C_Style2dGroundType"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 216066 "init"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "layer" explicit_type "ValueLayer"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " METHODS
+"
+      end
+
+      operation 216194 "colorMapPNMC_energyGrid"
+	public explicit_return_type "Map<Integer,Color>"
+	nparams 1
+	  param inout name "colorMap" explicit_type "Map<Integer,Color>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 216322 "colorMapCentenalGrid"
+	public explicit_return_type "Map<Integer,Color>"
+	nparams 1
+	  param inout name "colorMap" explicit_type "Map<Integer,Color>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 216450 "colorMapMusTransportGrid"
+	public explicit_return_type "Map<Integer,Color>"
+	nparams 1
+	  param inout name "colorMap" explicit_type "Map<Integer,Color>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 216578 "colorapChizeGrid"
+	public explicit_return_type "Map<Integer,Color>"
+	nparams 1
+	  param inout name "colorMap" explicit_type "Map<Integer,Color>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 216706 "getColor"
+	public explicit_return_type "Color"
+	nparams 1
+	  param inout name "" explicit_type "double...coordinates"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " GETTERS
+"
+      end
+
+      operation 216834 "getCellSize"
+	public explicit_return_type "float"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 149762 "C_Style2dNekton"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 154626 // <realization>
+	relation 154626 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 154626 // <realization>
+	  b parent class_ref 149506 // ValueLayerStyleOGL
+      end
+
+      classrelation 154754 // <realization>
+	relation 154754 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 154754 // <realization>
+	  b parent class_ref 129794 // I_ConstantNumeric
+      end
+
+      classrelation 154882 // <realization>
+	relation 154882 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 154882 // <realization>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      classrelation 155010 // <realization>
+	relation 155010 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 155010 // <realization>
+	  b parent class_ref 131714 // I_ConstantTransportation
+      end
+
+      classrelation 155138 // <realization>
+	relation 155138 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 155138 // <realization>
+	  b parent class_ref 129026 // I_ConstantPNMC
+      end
+
+      attribute 220162 "layer"
+	protected explicit_type "ValueLayer"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+ the layer to represent"
+      end
+
+      attribute 220290 "colorMap"
+	package explicit_type "Integer, Color"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Used to associate a color to each value of the layer"
+      end
+
+      operation 216962 "C_Style2dNekton"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 217090 "init"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "layer" explicit_type "ValueLayer"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " METHODS
+"
+      end
+
+      operation 217218 "colorMapNekton"
+	public explicit_return_type "Map<Integer, Color>"
+	nparams 1
+	  param inout name "colorMap" explicit_type "Map<Integer, Color>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 217346 "getColor"
+	public explicit_return_type "Color"
+	nparams 1
+	  param inout name "" explicit_type "double...coordinates"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " GETTERS
+"
+      end
+
+      operation 217474 "getCellSize"
+	public explicit_return_type "float"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 150018 "C_UserPanel"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Tableau de bord de la simulation. Contient la date de la simulation (à chaque tick), des moteurs et un retour de la console.
+@author A Realini 2011, rev. Le Fur 2013, 2018, 2024 "
+      classrelation 156034 // <generalisation>
+	relation 156034 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 156034 // <generalisation>
+	  b parent class_ref 150146 // JPanel
+      end
+
+      classrelation 156162 // <realization>
+	relation 156162 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 156162 // <realization>
+	  b parent class_ref 150274 // UserPanelCreator
+      end
+
+      classrelation 156290 // <realization>
+	relation 156290 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 156290 // <realization>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      classrelation 156418 // <realization>
+	relation 156418 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 156418 // <realization>
+	  b parent class_ref 129026 // I_ConstantPNMC
+      end
+
+      classrelation 156546 // <realization>
+	relation 156546 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 156546 // <realization>
+	  b parent class_ref 132226 // I_ConstantImagesNames
+      end
+
+      attribute 221058 "serialVersionUID"
+	class_attribute const_attribute protected explicit_type "long"
+	init_value " 1L"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+"
+      end
+
+      classrelation 156674 // populationInspector (<unidirectional association>)
+	relation 156674 --->
+	  a role_name "populationInspector" init_value " null" class_relation public
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 156674 // populationInspector (<unidirectional association>)
+	  b parent class_ref 135170 // A_Inspector
+      end
+
+      attribute 221186 "titleBox"
+	protected explicit_type "JPanel"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 221314 "dateBox"
+	protected explicit_type "JPanel"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 221442 "metersPopulation"
+	protected explicit_type "JPanel"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 221570 "consoleOutBox"
+	protected explicit_type "JPanel"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 221698 "consoleErrBox"
+	protected explicit_type "JPanel"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 221826 "daytimeJpanel"
+	protected explicit_type "JPanel"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 221954 "dayMomentsJlabel"
+	protected explicit_type "JLabel"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 222082 "METER_POPSIZE_TITLE"
+	class_attribute public explicit_type "String"
+	init_value " \"Context Size (X1E3)\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 222210 "font"
+	protected explicit_type "Font"
+	init_value " new Font(\"Courier\", Font.BOLD, 18)"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 222338 "img"
+	protected explicit_type "BufferedImage"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 222466 "chronoImage"
+	protected explicit_type "BufferedImage"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 222594 "dateLab"
+	protected explicit_type "JLabel"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 222722 "consoleOut"
+	class_attribute public explicit_type "JConsole"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 222850 "consoleErr"
+	class_attribute public explicit_type "JConsole"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 156802 // meterPopSize (<unidirectional association>)
+	relation 156802 --->
+	  a role_name "meterPopSize" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 156802 // meterPopSize (<unidirectional association>)
+	  b parent class_ref 149250 // C_Meter
+      end
+
+      attribute 222978 "currentImageName"
+	package explicit_type "String"
+	init_value " \"\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 220674 "C_UserPanel"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 220802 "adjustPanelSizes"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 220930 "createPanel"
+	public explicit_return_type "JPanel"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+ Méthode utilisée par le UserPanelCreator pour afficher le tableau de bord dans le userPanel "
+      end
+
+      operation 221058 "step"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@ScheduledMethod(start = 0, interval = 1, shuffle = false, priority = 0)
+"
+	
+	
+	
+      end
+
+      operation 221186 "init"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Initialise les composants du tableau de bord "
+      end
+
+      operation 221314 "initTop"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 221442 "initBottom0"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 221570 "initBottom"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 221698 "wrapConsoleWithTitle"
+	private explicit_return_type "JPanel"
+	nparams 2
+	  param in name "title" explicit_type "String"
+	  param inout name "console" explicit_type "JConsole"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @author chatGPT 03.2025 "
+      end
+
+      operation 221826 "createConsole"
+	protected explicit_return_type "JConsole"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 221954 "update_Meters"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Met à jour les données des compteurs "
+      end
+
+      operation 222082 "initBoxLayout"
+	protected explicit_return_type "JPanel"
+	nparams 1
+	  param in name "title" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 222210 "createTitleBlock"
+	protected explicit_return_type "JLabel"
+	nparams 1
+	  param in name "fileName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Gestion de l'image centrale (JLF 2011, 2018) "
+      end
+
+      operation 222338 "createDayMomentsJanel"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " It the container of the daytime display.
+@author M SALL 2020, "
+      end
+
+      operation 222466 "updateDaysMomentsJpanel"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Verify the current display of the daytime JPanel and change it if necessary.
+@author M SALL 12.2020, "
+      end
+
+      operation 222594 "updateChronoBlock"
+	protected explicit_return_type "JLabel"
+	nparams 1
+	  param in name "imageName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Create the chrono block image if it null or update it if not.
+@author M SALL 12.2020, "
+      end
+
+      operation 222722 "hasToShowDayMoments"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Create the chrono block image if it null or update it if not.
+@author M SALL 12.2020, "
+      end
+
+      operation 222850 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 150402 "C_UserPanelEnergyLinearGrid"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 156930 // <generalisation>
+	relation 156930 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 156930 // <generalisation>
+	  b parent class_ref 150146 // JPanel
+      end
+
+      classrelation 157058 // <realization>
+	relation 157058 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 157058 // <realization>
+	  b parent class_ref 132226 // I_ConstantImagesNames
+      end
+
+      attribute 223106 "serialVersionUID"
+	class_attribute const_attribute private explicit_type "long"
+	init_value " 1L"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 223234 "MIN"
+	class_attribute const_attribute private explicit_type "double"
+	init_value " 0.25"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " ---- Réglages linéaires ----
+"
+      end
+
+      attribute 223362 "MAX"
+	class_attribute const_attribute private explicit_type "double"
+	init_value " 10.00"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " ---- Réglages linéaires ----
+"
+      end
+
+      attribute 223490 "CSV_FILE"
+	class_attribute const_attribute private explicit_type "File"
+	init_value " new File(\"energy_scales.csv\")"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 223618 "ROWS"
+	class_attribute const_attribute private explicit_type "int"
+	init_value " 3"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 223746 "COLS"
+	class_attribute const_attribute private explicit_type "int"
+	init_value " 5"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " <-- change ici si tu veux une autre grille"
+      end
+
+      attribute 223874 "df"
+	const_attribute private explicit_type "DecimalFormat"
+	init_value " new DecimalFormat(\"0.00\")"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 224002 "debounce"
+	const_attribute private explicit_type "Timer"
+	init_value " new Timer(200,e->applyToParametersAndSave())"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 224130 "live"
+	private explicit_type "boolean"
+	init_value " false"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 224258 "syncing"
+	private explicit_type "boolean"
+	init_value " false"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 224386 "lastApplied"
+	const_attribute private explicit_type "String,Double"
+	init_value " new java.util.HashMap<>()"
+	stereotype "java.util.Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Pour imprimer le changement de valeur
+"
+      end
+
+      attribute 224514 "EPS"
+	class_attribute const_attribute private explicit_type "double"
+	init_value " 1e-6"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 222978 "loadIconFromFile"
+	class_operation private explicit_return_type "ImageIcon"
+	nparams 2
+	  param in name "imageName" explicit_type "String"
+	  param in name "size" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      class 150530 "Channel"
+	visibility private 
+	cpp_decl ""
+	static java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	mysql_decl ""
+	
+	attribute 224642 "id"
+	  const_attribute package explicit_type "String"
+	  cpp_decl ""
+	  java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	  comment " clé CSV: ex \"chl\""
+	end
+
+	attribute 224770 "label"
+	  const_attribute package explicit_type "String"
+	  cpp_decl ""
+	  java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	  comment " titre visible: ex \"Chlorophyll\""
+	end
+
+	attribute 224898 "icon"
+	  const_attribute package explicit_type "String"
+	  cpp_decl ""
+	  java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+
+	attribute 225026 "get"
+	  const_attribute package explicit_type "DoubleSupplier"
+	  cpp_decl ""
+	  java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	  comment " lit C_Parameters"
+	end
+
+	attribute 225154 "set"
+	  const_attribute package explicit_type "DoubleConsumer"
+	  cpp_decl ""
+	  java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	  comment " écrit C_Parameters"
+	end
+
+	attribute 225282 "slider"
+	  package explicit_type "JSlider"
+	  cpp_decl ""
+	  java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+
+	attribute 225410 "spinner"
+	  package explicit_type "JSpinner"
+	  cpp_decl ""
+	  java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+
+	attribute 225538 "valLabel"
+	  package explicit_type "JLabel"
+	  cpp_decl ""
+	  java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+
+	operation 223106 "Channel"
+	  package explicit_return_type ""
+	  nparams 5
+	    param in name "id" explicit_type "String"
+	    param in name "label" explicit_type "String"
+	    param in name "icon" explicit_type "String"
+	    param inout name "get" explicit_type "DoubleSupplier"
+	    param inout name "set" explicit_type "DoubleConsumer"
+	  
+	  preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}${)}${throws}${staticnl}{
+  ${body}}
+"
+	  
+	  
+	  
+	end
+      end
+
+      classrelation 157186 // channels (<unidirectional association>)
+	relation 157186 --->
+	  stereotype "List"
+	  a role_name "channels" init_value " Arrays.asList(//
+			new Channel(\"par\",\"particle\",PARTICLE_ICON,()->C_Parameters.getMultiplier(DriverType.PARTICLES),v->C_Parameters
+					.setMultiplier(DriverType.PARTICLES,v)), //
+			new Channel(\"chl\",\"chlorophyll\",CHLOROPHYLL_ICON,()->C_Parameters.getMultiplier(DriverType.PLANKTON),
+					v->C_Parameters.setMultiplier(DriverType.PLANKTON,v)),//
+			new Channel(\"nec\",\"necton\",NEKTON_ICON,()->C_Parameters.getMultiplier(DriverType.NEKTON),v->C_Parameters
+					.setMultiplier(DriverType.NEKTON,v)),//
+			new Channel(\"shi\",\"ship\",SHIP_ICON,()->C_Parameters.getMultiplier(DriverType.SHIP),v->C_Parameters
+					.setMultiplier(DriverType.SHIP,v)))" const_relation private
+	    comment " ---- Déclare ici tes 9 canaux (exemples) ----
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 157186 // channels (<unidirectional association>)
+	  b parent class_ref 150530 // Channel
+      end
+
+      operation 223234 "C_UserPanelEnergyLinearGrid"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " new Channel(\"mou\", \"mount\", MOUNT_ICON, () -> C_Parameters.MOUNT_MULTIPLIER,
+ v -> C_Parameters.MOUNT_MULTIPLIER = v), //
+ new Channel(\"tem\", \"temperature\", TEMPERATURE_ICON, () -> C_Parameters.TEMPERATURE_MULTIPLIER,
+ v -> C_Parameters.TEMPERATURE_MULTIPLIER = v), //
+ new Channel(\"tun\", \"tuna\", TUNA_ICON, () -> C_Parameters.TUNA_MULTIPLIER,
+ v -> C_Parameters.TUNA_MULTIPLIER = v), //
+ new Channel(\"wha\", \"whale\", WHALE_ICON, () -> C_Parameters.WHALE_MULTIPLIER,
+ v -> C_Parameters.WHALE_MULTIPLIER = v), //
+ new Channel(\"sha\", \"shark\", SHARK_ICON, () -> C_Parameters.SHARK_MULTIPLIER,
+ v -> C_Parameters.SHARK_MULTIPLIER = v), //
+ new Channel(\"bir\", \"bird\", BIRD_ICON, () -> C_Parameters.BIRD_MULTIPLIER,
+ v -> C_Parameters.BIRD_MULTIPLIER = v), //
+ new Channel(\"tur\", \"turtle\", TURTLE_ICON, () -> C_Parameters.TURTLE_MULTIPLIER,
+ v -> C_Parameters.TURTLE_MULTIPLIER = v), //
+ new Channel(\"fis\", \"fisher\", FISHER_ICON, () -> C_Parameters.FISHER_MULTIPLIER,
+ v -> C_Parameters.FISHER_MULTIPLIER = v), //
+ new Channel(\"tou\", \"tourism\", TOURISM_ICON, () -> C_Parameters.TOURISM_MULTIPLIER,
+ v -> C_Parameters.TOURISM_MULTIPLIER = v), //
+ new Channel(\"pol\", \"policeControl\", POLICE_ICON, () -> C_Parameters.POLICE_MULTIPLIER,
+ v -> C_Parameters.POLICE_MULTIPLIER = v), //
+ new Channel(\"sew\", \"sewage\", POLLUTION_ICON, () -> C_Parameters.POLLUTION_MULTIPLIER,
+ v -> C_Parameters.POLLUTION_MULTIPLIER = v)) //
+
+ CONSTRUCTOR
+"
+      end
+
+      operation 223362 "buildColumn"
+	private explicit_return_type "JPanel"
+	nparams 1
+	  param inout name "ch" type class_ref 150530 // Channel
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " ---------- Construction d'une \"colonne\" (vertical) ----------"
+      end
+
+      operation 223490 "vSlider"
+	class_operation private explicit_return_type "JSlider"
+	nparams 3
+	  param in name "min" explicit_type "int"
+	  param in name "max" explicit_type "int"
+	  param in name "val" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 223618 "createLinearLabelTable"
+	class_operation private explicit_return_type "java.util.Dictionary<Integer,JLabel>"
+	nparams 2
+	  param in name "min" explicit_type "int"
+	  param in name "max" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 223746 "spinner"
+	class_operation private explicit_return_type "JSpinner"
+	nparams 1
+	  param in name "init" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 223874 "setUI"
+	private explicit_return_type "void"
+	nparams 2
+	  param inout name "ch" type class_ref 150530 // Channel
+	  param in name "v" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " ---------- Helpers de synchro UI ----------"
+      end
+
+      operation 224002 "setAllTo"
+	private explicit_return_type "void"
+	nparams 1
+	  param in name "v" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 224130 "safe"
+	class_operation private explicit_return_type "double"
+	nparams 1
+	  param in name "v" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 224258 "applyToParametersWithLogging"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " ---------- Application & CSV générique ----------"
+      end
+
+      operation 224386 "applyToParameters"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 224514 "applyToParameters0"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 224642 "applyToParametersAndSave"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 224770 "loadCSV"
+	private explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 224898 "saveCSV"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 225026 "parseSafe"
+	class_operation private explicit_return_type "double"
+	nparams 2
+	  param in name "s" explicit_type "String"
+	  param in name "def" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 150658 "C_UserPanelMarine"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Plankton
+@author JLF 2024 "
+      classrelation 157314 // <generalisation>
+	relation 157314 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 157314 // <generalisation>
+	  b parent class_ref 150018 // C_UserPanel
+      end
+
+      classrelation 157442 // <realization>
+	relation 157442 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 157442 // <realization>
+	  b parent class_ref 129026 // I_ConstantPNMC
+      end
+
+      attribute 225666 "serialVersionUID"
+	class_attribute const_attribute protected explicit_type "long"
+	init_value " 1L"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+"
+      end
+
+      classrelation 157570 // meterPlankton (<unidirectional association>)
+	relation 157570 --->
+	  a role_name "meterPlankton" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 157570 // meterPlankton (<unidirectional association>)
+	  b parent class_ref 149250 // C_Meter
+      end
+
+      classrelation 157698 // meterEnergy (<unidirectional association>)
+	relation 157698 --->
+	  a role_name "meterEnergy" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 157698 // meterEnergy (<unidirectional association>)
+	  b parent class_ref 149250 // C_Meter
+      end
+
+      operation 225154 "initTop"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " OVERRIDEN METHODS
+
+ Initialise les composants du tableau de bord "
+      end
+
+      operation 225282 "update_Meters"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Met à jour les données des compteurs "
+      end
+
+      operation 225410 "createTitleBlock"
+	protected explicit_return_type "JLabel"
+	nparams 1
+	  param in name "FileName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Gestion de l'image centrale (JLF - 2011, 2018, 2025) "
+      end
+
+      operation 225538 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 150786 "C_UserPanelMasterButtons"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 157826 // <generalisation>
+	relation 157826 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 157826 // <generalisation>
+	  b parent class_ref 150146 // JPanel
+      end
+
+      attribute 225794 "serialVersionUID"
+	class_attribute const_attribute private explicit_type "long"
+	init_value " 1L"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 225922 "CARD_MARINE"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"MARINE\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 226050 "CARD_ENERGY"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"ENERGY\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 225666 "C_UserPanelMasterButtons"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 150914 "C_UserPanelMasterButtonsCreator"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 157954 // <realization>
+	relation 157954 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 157954 // <realization>
+	  b parent class_ref 150274 // UserPanelCreator
+      end
+
+      operation 225794 "createPanel"
+	public explicit_return_type "JPanel"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 151042 "C_UserPanelMasterTabs"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 158082 // <generalisation>
+	relation 158082 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 158082 // <generalisation>
+	  b parent class_ref 150146 // JPanel
+      end
+
+      attribute 226178 "serialVersionUID"
+	class_attribute const_attribute private explicit_type "long"
+	init_value " 1L"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 226306 "cards"
+	const_attribute private explicit_type "CardLayout"
+	init_value " new CardLayout()"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 225922 "C_UserPanelMasterTabs"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 151170 "C_UserPanelMasterTabsCreator"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 158210 // <realization>
+	relation 158210 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 158210 // <realization>
+	  b parent class_ref 150274 // UserPanelCreator
+      end
+
+      operation 226050 "createPanel"
+	public explicit_return_type "JPanel"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 151298 "C_UserPanelRodent"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Tableau de bord de la simulation.
+@author A Realini 2011, rev. Le Fur 2013, 2018, 2024 "
+      classrelation 158338 // <generalisation>
+	relation 158338 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 158338 // <generalisation>
+	  b parent class_ref 150018 // C_UserPanel
+      end
+
+      classrelation 158466 // populationInspector (<unidirectional association>)
+	relation 158466 --->
+	  a role_name "populationInspector" init_value " null" class_relation private
+	    comment " FIELDS
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 158466 // populationInspector (<unidirectional association>)
+	  b parent class_ref 151426 // C_InspectorPopulationRodent
+      end
+
+      attribute 226434 "serialVersionUID"
+	class_attribute const_attribute private explicit_type "long"
+	init_value " 1L"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 158594 // burrowInspector (<unidirectional association>)
+	relation 158594 --->
+	  a role_name "burrowInspector" init_value " null" class_relation private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 158594 // burrowInspector (<unidirectional association>)
+	  b parent class_ref 137346 // C_InspectorFossorialRodents
+      end
+
+      classrelation 158722 // transportationInspector (<unidirectional association>)
+	relation 158722 --->
+	  a role_name "transportationInspector" init_value " null" class_relation private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 158722 // transportationInspector (<unidirectional association>)
+	  b parent class_ref 137730 // C_InspectorTransportation
+      end
+
+      classrelation 158850 // geneticInspector (<unidirectional association>)
+	relation 158850 --->
+	  a role_name "geneticInspector" init_value " null" class_relation private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 158850 // geneticInspector (<unidirectional association>)
+	  b parent class_ref 138626 // C_InspectorGenetic
+      end
+
+      classrelation 158978 // hybridInspector (<unidirectional association>)
+	relation 158978 --->
+	  a role_name "hybridInspector" init_value " null" class_relation private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 158978 // hybridInspector (<unidirectional association>)
+	  b parent class_ref 139266 // C_InspectorHybrid
+      end
+
+      attribute 226562 "metersDispersal"
+	private explicit_type "JPanel"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 226690 "metersHybrid"
+	private explicit_type "JPanel"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 226818 "METER_POPSIZE_TITLE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"Rodent pop. (X100)\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " JPanel metersTransportation = initBoxLayout(\"Transportation\");
+ JPanel metersHybridization = initBoxLayout(\"Hybridization\");
+"
+      end
+
+      attribute 226946 "METER_SEXRATIO_TITLE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"sex ratio\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 227074 "METER_MAXDISP_TITLE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"Max (x100m)\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 227202 "METER_MEANDISP_TITLE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"Mean  (x100m)\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 227330 "METER_FIS_TITLE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"Inbreeding (FISx100)\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 227458 "METER_WANDERERS_TITLE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"Wanderers(%)\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 227586 "METER_NIPPED_EGG_TITLE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"Nipped eggs (X1000)\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 227714 "METER_HYBRIDS_TITLE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"hybrids (x100)\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 227842 "METER_LAZARUS_TITLE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"introgressed (x100)\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 159106 // meterPopSize (<unidirectional association>)
+	relation 159106 --->
+	  a role_name "meterPopSize" private
+	    comment " meters Population
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 159106 // meterPopSize (<unidirectional association>)
+	  b parent class_ref 149250 // C_Meter
+      end
+
+      classrelation 159234 // meterSexRatio (<unidirectional association>)
+	relation 159234 --->
+	  a role_name "meterSexRatio" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 159234 // meterSexRatio (<unidirectional association>)
+	  b parent class_ref 149250 // C_Meter
+      end
+
+      classrelation 159362 // meterFIS (<unidirectional association>)
+	relation 159362 --->
+	  a role_name "meterFIS" private
+	    comment " meters Dispersal
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 159362 // meterFIS (<unidirectional association>)
+	  b parent class_ref 149250 // C_Meter
+      end
+
+      classrelation 159490 // meterMeanDispersal (<unidirectional association>)
+	relation 159490 --->
+	  a role_name "meterMeanDispersal" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 159490 // meterMeanDispersal (<unidirectional association>)
+	  b parent class_ref 149250 // C_Meter
+      end
+
+      classrelation 159618 // meterMaxDispersal (<unidirectional association>)
+	relation 159618 --->
+	  a role_name "meterMaxDispersal" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 159618 // meterMaxDispersal (<unidirectional association>)
+	  b parent class_ref 149250 // C_Meter
+      end
+
+      classrelation 159746 // meterWanderers (<unidirectional association>)
+	relation 159746 --->
+	  a role_name "meterWanderers" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 159746 // meterWanderers (<unidirectional association>)
+	  b parent class_ref 149250 // C_Meter
+      end
+
+      classrelation 159874 // meterCities (<unidirectional association>)
+	relation 159874 --->
+	  a role_name "meterCities" private
+	    comment " meters Transportation
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 159874 // meterCities (<unidirectional association>)
+	  b parent class_ref 149250 // C_Meter
+      end
+
+      classrelation 160002 // meterLoads (<unidirectional association>)
+	relation 160002 --->
+	  a role_name "meterLoads" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 160002 // meterLoads (<unidirectional association>)
+	  b parent class_ref 149250 // C_Meter
+      end
+
+      classrelation 160130 // meterHybrids (<unidirectional association>)
+	relation 160130 --->
+	  a role_name "meterHybrids" private
+	    comment " meters Hybridization
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 160130 // meterHybrids (<unidirectional association>)
+	  b parent class_ref 149250 // C_Meter
+      end
+
+      classrelation 160258 // meterIntrogressed (<unidirectional association>)
+	relation 160258 --->
+	  a role_name "meterIntrogressed" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 160258 // meterIntrogressed (<unidirectional association>)
+	  b parent class_ref 149250 // C_Meter
+      end
+
+      classrelation 160386 // meterNippedEggs (<unidirectional association>)
+	relation 160386 --->
+	  a role_name "meterNippedEggs" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 160386 // meterNippedEggs (<unidirectional association>)
+	  b parent class_ref 149250 // C_Meter
+      end
+
+      attribute 227970 "currentImageName"
+	package explicit_type "String"
+	init_value " \"\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " meters General
+ private C_Meter meterObjects;
+"
+      end
+
+      operation 226178 "C_UserPanelRodent"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 226306 "addBurrowInspector"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "inspector" type class_ref 137346 // C_InspectorFossorialRodents
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+"
+      end
+
+      operation 226434 "addTransportationInspector"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "inspector" type class_ref 137730 // C_InspectorTransportation
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 226562 "addGeneticInspector"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "inspector" type class_ref 138626 // C_InspectorGenetic
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 226690 "addHybridInspector"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "inspector" type class_ref 139266 // C_InspectorHybrid
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 226818 "initTop"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Initialise les composants du tableau de bord "
+      end
+
+      operation 226946 "update_Meters"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Met à jour les données des compteurs "
+      end
+
+      operation 227074 "createTitleBlock"
+	protected explicit_return_type "JLabel"
+	nparams 1
+	  param in name "FileName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Gestion de l'image centrale (JLF - june 2011, may 2018) "
+      end
+
+      operation 227202 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 151554 "EnergyColumn"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "Curseur vertical + champ numérique + presets. Pour tester : instancie-la
+depuis une JFrame.
+"
+      classrelation 160514 // <generalisation>
+	relation 160514 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 160514 // <generalisation>
+	  b parent class_ref 150146 // JPanel
+      end
+
+      attribute 228098 "serialVersionUID"
+	class_attribute const_attribute private explicit_type "long"
+	init_value " 1L"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 228226 "title"
+	const_attribute private explicit_type "JLabel"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 228354 "slider"
+	const_attribute private explicit_type "JSlider"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 228482 "spinner"
+	const_attribute private explicit_type "JSpinner"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 228610 "df"
+	const_attribute private explicit_type "DecimalFormat"
+	init_value " new DecimalFormat(\"0.00\")"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 228738 "updating"
+	private explicit_type "boolean"
+	init_value " false"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 227330 "EnergyColumn"
+	public explicit_return_type ""
+	nparams 5
+	  param in name "name" explicit_type "String"
+	  param in name "initial" explicit_type "double"
+	  param in name "min" explicit_type "double"
+	  param in name "max" explicit_type "double"
+	  param inout name "onChange" explicit_type "DoubleConsumer"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 227458 "setValue"
+	private explicit_return_type "void"
+	nparams 2
+	  param in name "v" explicit_type "double"
+	  param inout name "onChange" explicit_type "DoubleConsumer"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 151682 "TestEnergyColumn"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      operation 227586 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+  end
+
+  deploymentview 129922 "display"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 140034 "C_Background"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import thing.I_SituatedThing;
+import thing.ground.C_LandPlot;
+import thing.ground.I_Container;
+import thing.ground.landscape.C_Landscape;
+import org.locationtech.jts.geom.Coordinate;
+import repast.simphony.context.Context;
+${definition}"
+      associated_elems
+	class_ref 135426 // C_Background
+      end
+    end
+
+    artifact 140162 "C_Chart"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.Color;
+import java.awt.Font;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.axis.CategoryLabelPositions;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.block.BlockBorder;
+import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PiePlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import org.jfree.chart.title.TextTitle;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+import melanesim.protocol.A_Protocol;
+import repast.simphony.essentials.RepastEssentials;
+${definition}"
+      associated_elems
+	class_ref 147970 // C_Chart
+      end
+    end
+
+    artifact 140290 "C_CustomPanelFactory"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import repast.simphony.render.RenderListener;
+import repast.simphony.render.RendererListenerSupport;
+import repast.simphony.visualization.*;
+import javax.swing.*;
+${definition}"
+      associated_elems
+	class_ref 148098 // C_CustomPanelFactory
+      end
+    end
+
+    artifact 140418 "C_CustomPanelSet"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.BasicStroke;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Map;
+import org.jfree.chart.plot.XYPlot;
+import melanesim.protocol.A_Protocol;
+import presentation.epiphyte.C_InspectorEnergy;
+import presentation.epiphyte.C_InspectorPopulation;
+import repast.simphony.context.Context;
+import repast.simphony.engine.controller.NullAbstractControllerAction;
+import repast.simphony.engine.environment.GUIRegistryType;
+import repast.simphony.engine.environment.RunEnvironmentBuilder;
+import repast.simphony.engine.environment.RunState;
+import repast.simphony.engine.schedule.IAction;
+import repast.simphony.engine.schedule.ScheduleParameters;
+import repast.simphony.essentials.RepastEssentials;
+import repast.simphony.parameter.Parameters;
+import repast.simphony.scenario.ModelInitializer;
+import repast.simphony.scenario.Scenario;
+${definition}"
+      associated_elems
+	class_ref 148354 // C_CustomPanelSet
+      end
+    end
+
+    artifact 140546 "C_CustomPanelSet_Rodent"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.BasicStroke;
+import java.awt.Color;
+import org.jfree.chart.plot.XYPlot;
+import melanesim.protocol.A_Protocol;
+import presentation.epiphyte.C_InspectorBorreliaCrocidurae;
+import presentation.epiphyte.C_InspectorCMR;
+import presentation.epiphyte.C_InspectorEnergy;
+import presentation.epiphyte.C_InspectorFossorialRodents;
+import presentation.epiphyte.C_InspectorGenetic;
+import presentation.epiphyte.C_InspectorHybrid;
+import presentation.epiphyte.C_InspectorOrnithodorosSonrai;
+import presentation.epiphyte.C_InspectorPopulationRodent;
+import presentation.epiphyte.C_InspectorTransportation;
+import presentation.epiphyte.C_InspectorVegetation;
+import repast.simphony.engine.environment.GUIRegistryType;
+import repast.simphony.engine.environment.RunState;
+import repast.simphony.essentials.RepastEssentials;
+${definition}"
+      associated_elems
+	class_ref 148738 // C_CustomPanelSet_Rodent
+      end
+    end
+
+    artifact 140674 "C_CustomPanelSetMarine"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.Color;
+import org.jfree.chart.plot.XYPlot;
+import presentation.epiphyte.C_InspectorPopulationMarine;
+import repast.simphony.engine.environment.RunState;
+import repast.simphony.essentials.RepastEssentials;
+${definition}"
+      associated_elems
+	class_ref 148866 // C_CustomPanelSetMarine
+      end
+    end
+
+    artifact 140802 "C_IconNightDay"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 148994 // C_IconNightDay
+      end
+    end
+
+    artifact 140930 "C_IconSelector"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import data.C_Parameters;
+import data.constants.I_ConstantPNMC;
+import data.constants.rodents.I_ConstantImagesNames;
+import data.constants.rodents.I_ConstantStringRodents;
+import melanesim.protocol.A_Protocol;
+import melanesim.protocol.C_Protocol_PNMC_drifters;
+import repast.simphony.engine.environment.RunState;
+import thing.A_Amniote;
+import thing.A_Animal;
+import thing.A_NDS;
+import thing.C_Nekton;
+import thing.C_Plankton;
+import thing.C_Ship_cargo;
+import thing.C_StreamCurrent;
+import thing.I_SituatedThing;
+import thing.dna.species.plants.C_GenomeAcacia;
+import thing.dna.species.plants.C_GenomeBalanites;
+import thing.dna.species.plants.C_GenomeFabacea;
+import thing.dna.species.plants.C_GenomePoacea;
+import thing.dna.species.rodents.C_GenomeMastoErythroleucus;
+import thing.dna.species.rodents.C_GenomeMastoNatalensis;
+import thing.dna.species.rodents.C_GenomeMastomys;
+import thing.ground.A_SupportedContainer;
+import thing.ground.C_BurrowSystem;
+import thing.ground.C_SoilCellMarine;
+import thing.ground.C_Market;
+import thing.ground.C_Nest;
+import thing.ground.C_SoilCellSavanna;
+import thing.ground.C_Trap;
+import thing.rodents.A_Human;
+import thing.rodents.A_HumanUrban;
+import thing.rodents.C_BarnOwl;
+import thing.rodents.C_Cat;
+import thing.rodents.C_Food;
+import thing.rodents.C_HumanCarrier;
+import thing.rodents.C_OrnitodorosSonrai;
+import thing.rodents.C_Rodent;
+import thing.rodents.C_RodentGerbil;
+import thing.rodents.C_RodentHouseMouse;
+import thing.rodents.C_RodentMastoErySimple;
+import thing.rodents.C_TaxiManDodel;
+import thing.rodents.C_Vegetation;
+${definition}"
+      associated_elems
+	class_ref 149122 // C_IconSelector
+      end
+    end
+
+    artifact 141058 "C_Meter"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.Dimension;
+import java.awt.Font;
+import java.text.NumberFormat;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.dial.DialCap;
+import org.jfree.chart.plot.dial.DialPlot;
+import org.jfree.chart.plot.dial.DialPointer;
+import org.jfree.chart.plot.dial.DialTextAnnotation;
+import org.jfree.chart.plot.dial.StandardDialFrame;
+import org.jfree.chart.plot.dial.StandardDialScale;
+import org.jfree.chart.title.TextTitle;
+import org.jfree.data.general.DefaultValueDataset;
+${definition}"
+      associated_elems
+	class_ref 149250 // C_Meter
+      end
+    end
+
+    artifact 141186 "C_Style2dAffinityType"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.Color;
+import java.util.HashMap;
+import java.util.Map;
+import data.C_Parameters;
+import data.constants.I_ConstantNumeric;
+import data.constants.I_ConstantPNMC;
+import data.constants.rodents.I_ConstantStringRodents;
+import repast.simphony.valueLayer.ValueLayer;
+import repast.simphony.visualizationOGL2D.ValueLayerStyleOGL;
+import thing.ground.landscape.C_Landscape;
+${definition}"
+      associated_elems
+	class_ref 149378 // C_Style2dAffinityType
+      end
+    end
+
+    artifact 141314 "C_Style2dGroundType"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.Color;
+import java.util.HashMap;
+import java.util.Map;
+import repast.simphony.valueLayer.ValueLayer;
+import repast.simphony.visualizationOGL2D.ValueLayerStyleOGL;
+import thing.ground.landscape.C_Landscape;
+import data.C_Parameters;
+import data.constants.I_ConstantNumeric;
+import data.constants.I_ConstantPNMC;
+import data.constants.rodents.I_ConstantStringRodents;
+import data.constants.rodents.I_ConstantTransportation;
+${definition}"
+      associated_elems
+	class_ref 149634 // C_Style2dGroundType
+      end
+    end
+
+    artifact 141442 "C_Style2dNekton"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.Color;
+import java.util.HashMap;
+import java.util.Map;
+import data.constants.I_ConstantNumeric;
+import data.constants.I_ConstantPNMC;
+import data.constants.rodents.I_ConstantStringRodents;
+import data.constants.rodents.I_ConstantTransportation;
+import repast.simphony.valueLayer.ValueLayer;
+import repast.simphony.visualizationOGL2D.ValueLayerStyleOGL;
+import thing.ground.landscape.C_Landscape;
+${definition}"
+      associated_elems
+	class_ref 149762 // C_Style2dNekton
+      end
+    end
+
+    artifact 141570 "C_StyleAgent"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.Color;
+import java.awt.Font;
+import data.C_Parameters;
+import data.constants.I_ConstantNumeric;
+import data.constants.I_ConstantPNMC;
+import data.constants.rodents.I_ConstantGerbil;
+import data.constants.rodents.I_ConstantImagesNames;
+import data.constants.rodents.I_ConstantStringRodents;
+import melanesim.C_ContextCreator;
+import repast.simphony.engine.environment.RunEnvironment;
+import repast.simphony.visualizationOGL2D.StyleOGL2D;
+import saf.v3d.ShapeFactory2D;
+import saf.v3d.scene.Position;
+import saf.v3d.scene.VSpatial;
+import thing.A_Amniote;
+import thing.A_Animal;
+import thing.A_NDS;
+import thing.A_VisibleAgent;
+import thing.C_Nekton;
+import thing.C_Plankton;
+import thing.C_Ship_cargo;
+import thing.C_StreamCurrent;
+import thing.I_SituatedThing;
+import thing.ground.A_SupportedContainer;
+import thing.ground.C_SoilCellMarine;
+import thing.rodents.A_HumanUrban;
+import thing.rodents.C_Vegetation;
+${definition}"
+      associated_elems
+	class_ref 135554 // C_StyleAgent
+      end
+    end
+
+    artifact 141698 "C_UserPanel"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.ScrollPaneConstants;
+import bsh.util.JConsole;
+import data.C_Parameters;
+import data.constants.I_ConstantPNMC;
+import data.constants.rodents.I_ConstantImagesNames;
+import data.constants.rodents.I_ConstantStringRodents;
+import melanesim.C_ContextCreator;
+import melanesim.protocol.A_Protocol;
+import presentation.epiphyte.A_Inspector;
+import presentation.epiphyte.C_InspectorPopulation;
+import repast.simphony.engine.environment.RunState;
+import repast.simphony.engine.schedule.ScheduledMethod;
+import repast.simphony.userpanel.ui.UserPanelCreator;
+${definition}"
+      associated_elems
+	class_ref 150018 // C_UserPanel
+      end
+    end
+
+    artifact 141826 "C_UserPanelEnergyLinearGrid"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Insets;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.text.DecimalFormat;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.function.DoubleConsumer;
+import java.util.function.DoubleSupplier;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSlider;
+import javax.swing.JSpinner;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingConstants;
+import javax.swing.Timer;
+import javax.swing.event.ChangeEvent;
+import data.C_Parameters;
+import data.constants.rodents.I_ConstantImagesNames;
+import melanesim.protocol.A_Protocol;
+import thing.I_MarineActor.DriverType;
+${definition}"
+      associated_elems
+	class_ref 150402 // C_UserPanelEnergyLinearGrid
+      end
+    end
+
+    artifact 141954 "C_UserPanelMarine"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import javax.swing.JLabel;
+import data.C_Parameters;
+import data.constants.I_ConstantPNMC;
+import presentation.epiphyte.C_InspectorPopulationMarine;
+${definition}"
+      associated_elems
+	class_ref 150658 // C_UserPanelMarine
+      end
+    end
+
+    artifact 142082 "C_UserPanelMasterButtons"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import javax.swing.*;
+import java.awt.*;
+${definition}"
+      associated_elems
+	class_ref 150786 // C_UserPanelMasterButtons
+      end
+    end
+
+    artifact 142210 "C_UserPanelMasterButtonsCreator"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import javax.swing.JPanel;
+import repast.simphony.userpanel.ui.UserPanelCreator;
+${definition}"
+      associated_elems
+	class_ref 150914 // C_UserPanelMasterButtonsCreator
+      end
+    end
+
+    artifact 142338 "C_UserPanelMasterTabs"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import javax.swing.*;
+import java.awt.*;
+${definition}"
+      associated_elems
+	class_ref 151042 // C_UserPanelMasterTabs
+      end
+    end
+
+    artifact 142466 "C_UserPanelMasterTabsCreator"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import javax.swing.JPanel;
+import repast.simphony.userpanel.ui.UserPanelCreator;
+${definition}"
+      associated_elems
+	class_ref 151170 // C_UserPanelMasterTabsCreator
+      end
+    end
+
+    artifact 142594 "C_UserPanelRodent"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import data.C_Parameters;
+import melanesim.protocol.A_Protocol;
+import presentation.epiphyte.C_InspectorFossorialRodents;
+import presentation.epiphyte.C_InspectorGenetic;
+import presentation.epiphyte.C_InspectorHybrid;
+import presentation.epiphyte.C_InspectorPopulationRodent;
+import presentation.epiphyte.C_InspectorTransportation;
+${definition}"
+      associated_elems
+	class_ref 151298 // C_UserPanelRodent
+      end
+    end
+
+    artifact 142722 "EnergyColumn"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import java.awt.*;
+import java.text.DecimalFormat;
+import java.util.function.DoubleConsumer;
+${definition}"
+      associated_elems
+	class_ref 151554 // EnergyColumn
+      end
+    end
+
+    artifact 142850 "TestEnergyColumn"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import javax.swing.*;
+import java.awt.*;
+${definition}"
+      associated_elems
+	class_ref 151682 // TestEnergyColumn
+      end
+    end
+  end
+end

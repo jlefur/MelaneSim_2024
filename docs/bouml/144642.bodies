@@ -1,0 +1,161 @@
+class C_Chromosome
+!!!276994.java!!!	C_Chromosome(in numGenes : int, inout recombinator : I_Recombinator)
+		this.recombinator = recombinator;
+		this.mapLength = MAP_LENGTH;
+		this.myId = C_ContextCreator.XSOME_NUMBER;
+		C_ContextCreator.XSOME_NUMBER++;
+		genes = new ArrayList<C_Gene>(numGenes);
+		for (int i = 0; i < numGenes; i++)
+			// Fill with dummy values (all 0s)
+			genes.add(new C_Gene(0, new C_GeneMutatorDouble(), this.myId));
+!!!277122.java!!!	C_Chromosome(in mapLength : double, in numGenes : int, inout recombinator : I_Recombinator)
+		this.myId = C_ContextCreator.XSOME_NUMBER;
+		C_ContextCreator.XSOME_NUMBER++;
+		this.recombinator = recombinator;
+		this.mapLength = mapLength;
+		genes = new ArrayList<C_Gene>(numGenes);
+		// Fill with dummy values (all 0s)
+		for (int i = 0; i < numGenes; i++)
+			genes.add(new C_Gene(0, new C_GeneMutatorDouble(), this.myId));
+!!!277250.java!!!	mutate(inout info : Object) : void
+		Iterator<C_Gene> genesIter = genes.iterator();
+		C_Gene gene;
+		while (genesIter.hasNext()) {
+			gene = (C_Gene) genesIter.next();
+			gene.mutate(info);
+		}
+!!!277378.java!!!	copySegment(in startLocus : int, in endLocus : int) : I_DnaThing
+		// Make a new chromosome that's big enough to hold the copied genes.
+		int numGenesToCopy = endLocus - startLocus;
+		C_Chromosome copyChrmosome = new C_Chromosome(mapLength, numGenesToCopy, this.recombinator);
+		// Do the copy from my alleles in the specified range to copychromosome.
+		for (int locus = startLocus; locus < endLocus; locus++) {
+			C_Gene gene = (C_Gene) genes.get(locus);
+			copyChrmosome.setGeneAtLocus(locus, gene);
+		}
+		int lastSegLocus = endLocus - 1;
+		int finalLocus = (getNumLoci() - 1);
+		// Estimate the map length of this segment ... this isn't terribly accurate. Just finds out the map locations of the loci right around the
+		// segment and splits the difference when creating the new segment.
+		double copyMapBegin = this.getGene(startLocus).getMapLoc();
+		if (startLocus > 0) {
+			double copyMapBefore = this.getGene(startLocus - 1).getMapLoc();
+			double copyMapAfter = copyMapBegin;
+			copyMapBegin = (copyMapBefore + copyMapAfter) / 2;
+		}
+		else if (startLocus == 0) copyMapBegin = 0;
+
+		double copyMapEnd = this.getGene(lastSegLocus).getMapLoc();
+		if (lastSegLocus < finalLocus) {
+			double copyMapBefore = copyMapEnd;
+			double copyMapAfter = this.getGene(lastSegLocus + 1).getMapLoc();
+			copyMapEnd = (copyMapBefore + copyMapAfter) / 2;
+		}
+		else if (lastSegLocus == finalLocus) copyMapEnd = mapLength;
+		double copyMapLength = copyMapEnd - copyMapBegin;
+		copyChrmosome.mapLength = copyMapLength;
+		return copyChrmosome;
+!!!277506.java!!!	replicate(inout info : Object) : C_Chromosome
+		C_Chromosome copyGenes = new C_Chromosome(mapLength, genes.size(), recombinator);
+		copyGenes.setMergedXsome(mergedXsome);
+		C_Gene gene;
+		C_Gene geneClone;
+		for (int i = 0; i < genes.size(); i++) {
+			gene = getGene(i);
+			geneClone = gene.copy();
+			// geneClone.ownerXsomeNumber = copyGenes.myId; false since it does not account for
+			// inbreeding
+			copyGenes.setGeneAtLocus(i, geneClone);
+		}
+		/*
+		 * JLF 02.2012 WAS FORMERLY (to account for addGene which is currently deprecated) : Iterator<C_Gene> genesIter = genes.iterator(); while
+		 * (genesIter.hasNext()) { gene = (C_Gene) genesIter.next(); // copy gene ... add to copyGenes geneClone = gene.copy();
+		 * copyGenes.addGene(geneClone);
+		 */
+		copyGenes.mutate(info);
+		copyGenes.recombinator = this.recombinator;
+		return copyGenes;
+!!!277634.java!!!	mate(inout info : Object, inout parent2 : I_DnaThing) : I_DnaThing
+		C_Chromosome offspring = (C_Chromosome) this.crossover(parent2);
+		offspring.mutate(info);
+		offspring.recombinator = this.recombinator;
+		offspring.mapLength = this.mapLength;
+		return offspring;
+		// throw new RuntimeException("not implemented yet");
+!!!277762.java!!!	randomize() : void
+		// Mutation rate is 1 for this operation - we want all genes to
+		// be changed.
+		Double mutRate = 1.0;
+		Iterator<C_Gene> genesIter = genes.iterator();
+		C_Gene gene;
+		while (genesIter.hasNext()) {
+			gene = (C_Gene) genesIter.next();
+			gene.mutate(mutRate);
+		}
+!!!277890.java!!!	crossover(inout parent2 : I_DnaThing) : I_DnaThing
+		return null;
+!!!278018.java!!!	toString() : String
+		return genes.toString();
+!!!278146.java!!!	compareTo(inout other : C_Chromosome) : int
+ // to sort in descending orders from the biggest to the smallest.
+		int nb1 = other.getNumGenes();
+		int nb2 = this.getNumGenes();
+		if (nb1 > nb2) return 1;
+		else if (nb1 == nb2) return 0;
+		else return -1;
+!!!278274.java!!!	getMapLength() : double
+		return mapLength;
+!!!278402.java!!!	getGeneMapLoc(in locus : int) : double
+		C_Gene gene = getGene(locus);
+		return gene.getMapLoc();
+!!!278530.java!!!	setRecombinator(inout recombinator : I_Recombinator) : void
+		this.recombinator = recombinator;
+!!!278658.java!!!	getNumGenes() : int
+		return genes.size();
+!!!278786.java!!!	getNumLoci() : int
+		return genes.size();
+!!!278914.java!!!	addAllGenes(inout genes2 : List<C_Gene>) : void
+		genes.addAll(genes2);
+!!!279042.java!!!	addGene(inout g : C_Gene) : void
+		genes.add(g);
+!!!279170.java!!!	setGeneAtLocus(in locus : int, inout g : C_Gene) : void
+		genes.set(locus, g);
+!!!279298.java!!!	getGene(in locus : int) : C_Gene
+		return (C_Gene) genes.get(locus);
+!!!279426.java!!!	getGeneIterator() : C_Gene
+		return genes.iterator();
+!!!279554.java!!!	getLocusAllele(in locus : int) : Object
+		C_Gene gene = (C_Gene) genes.get(locus);
+		return gene.getAllele();
+		// throw new RuntimeException("not implemented yet");
+!!!279682.java!!!	getLocusAllele(in mapLoc : double) : Object
+		for (int locus = 0; locus < getNumLoci(); locus++) {
+			double curMapLoc = getGeneMapLoc(locus);
+			if (mapLoc == curMapLoc) return getLocusAllele(locus);
+		}
+		return "empty";
+		// throw new RuntimeException("can't find any map location " + mapLoc);
+!!!279810.java!!!	getAlleles() : List<Object>
+		List<Object> alleles = new LinkedList<Object>();
+		Iterator<C_Gene> geneIter = genes.iterator();
+		C_Gene gene;
+		while (geneIter.hasNext()) {
+			gene = (C_Gene) geneIter.next();
+			alleles.add(gene.getAllele());
+		}
+		return alleles;
+!!!279938.java!!!	getGenes() : C_Gene
+		return genes;
+!!!280066.java!!!	getRecombinator() : I_Recombinator
+		return recombinator;
+!!!280194.java!!!	getGeneWithMaploc(in mapLoc : double) : Object
+		for (C_Gene gene : genes) {
+			if (gene.mapLoc == mapLoc) return gene;
+		}
+		return "empty";
+!!!280322.java!!!	setMergedXsome(inout mergedXsome : boolean) : void
+		this.mergedXsome = mergedXsome;
+!!!280450.java!!!	isMergedXsome() : boolean
+		return mergedXsome;
+!!!280578.java!!!	getMyId() : Integer
+		return myId;

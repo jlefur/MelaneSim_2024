@@ -1,0 +1,1890 @@
+format 224
+"landscape" // src::thing::ground::landscape
+  revision 1
+  modified_by 2 "lefur"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:\\Users\\lefur\\Documents\\GitHub\\MelaneSim_2024\\src/thing/ground/landscape/"
+  java_package "thing.ground.landscape"
+  classview 129154 "landscape"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 133250 "C_LandscapeRodent"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " The global container of a given protocol.<br>
+1/ Owns a grid/matrix with values ('affinity'), landplots of cells with the same affinity values.<br>
+Values are read from a file. It can be an ASCII text grid or an image raster. (the image must be in grey levels or in 256 or
+less colors). affinity values are stored in a gridValueLayer (as well as in the cell container attributes) <br>
+2/ Owns a continuous space
+@see A_Protocol
+@author Baduel 2009.04, Le Fur 2009.12, Longueville 2011.02, Le Fur 02.2011, 07.2012, 04.2015<br>
+        rev. JLF 10.2015, 11.2015 - was formerly C_Raster <br>
+        TODO JLF 2020.04 Should be normally in ground package "
+      classrelation 186882 // <generalisation>
+	relation 186882 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 186882 // <generalisation>
+	  b parent class_ref 135042 // C_Landscape
+      end
+
+      classrelation 187010 // <realization>
+	relation 187010 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 187010 // <realization>
+	  b parent class_ref 129154 // I_ConstantString
+      end
+
+      operation 325762 "C_LandscapeRodent"
+	public explicit_return_type ""
+	nparams 4
+	  param inout name "context" explicit_type "Context<Object>"
+	  param in name "url" explicit_type "String"
+	  param in name "gridValueName" explicit_type "String"
+	  param in name "continuousSpaceName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 325890 "addChildAgent"
+	public explicit_return_type "void"
+	nparams 2
+	  param inout name "parent" type class_ref 144770 // A_Animal
+	  param inout name "child" type class_ref 144770 // A_Animal
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Addition of new agent in simulation. The agent is not sexed in this method. And get the position of it's \"parents\".
+@param parent the parents agent
+@param child the new agent it's sex can be provided by its type.<br>
+           Author Jean-Emmanuel Longueville 2011-01 "
+      end
+
+      operation 326018 "updateInspectors"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "incomer" type class_ref 152706 // A_Organism
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 326146 "createGround"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "matriceLue" explicit_type "int"
+	multiplicity "[][]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[][] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Initialize both (!) gridValueLayer and container(ex: C_SoilCell) matrices
+@param matriceLue the values read in the raster, bitmap<br>
+           rev. JLF 2015, 2024 "
+      end
+    end
+
+    class 135042 "C_Landscape"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " The global container of a given protocol.<br>
+1/ Owns a grid/matrix with values ('affinity'), landplots of cells with the same affinity values.<br>
+Values are read from a file. It can be an ASCII text grid or an image raster. (the image must be in grey levels or in 256 or
+less colors). affinity values are stored in a gridValueLayer (as well as in the cell container attributes) <br>
+2/ Owns a continuous space
+@see A_Protocol
+@author Baduel 2009.04, Le Fur 2009.12, Longueville 2011.02, Le Fur 02.2011, 07.2012, 04.2015<br>
+        rev. JLF 10.2015, 11.2015 - was formerly C_Raster <br>
+        TODO JLF 2020.04 Should be normally in ground package "
+      classrelation 186370 // <realization>
+	relation 186370 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 186370 // <realization>
+	  b parent class_ref 129154 // I_ConstantString
+      end
+
+      classrelation 186498 // continuousSpace (<unidirectional association>)
+	relation 186498 --->
+	  stereotype "ContinuousSpace"
+	  a role_name "continuousSpace" init_value " null" protected
+	    comment " FIELDS
+
+ virtual agents' space (continuous)"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 186498 // continuousSpace (<unidirectional association>)
+	  b parent class_ref 135682 // I_SituatedThing
+      end
+
+      classrelation 186626 // grid (<unidirectional association>)
+	relation 186626 --->
+	  a role_name "grid" multiplicity "[][]" protected
+	    comment " Matrix of the containers, usually C_SoilCell, associated to the grids and rasters"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}${multiplicity} ${name}${value};
+"
+	    classrelation_ref 186626 // grid (<unidirectional association>)
+	  b parent class_ref 135810 // I_Container
+      end
+
+      attribute 253826 "dimension_Ucell"
+	public explicit_type "Dimension"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " width and height of grid"
+      end
+
+      attribute 253954 "nbCells"
+	class_attribute public explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 254082 "gridValueLayer"
+	protected explicit_type "GridValueLayer"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " used by the gui and xml files 
+ grid value layer will be used to represent the area"
+      end
+
+      classrelation 186754 // landPlots (<unidirectional association>)
+	relation 186754 --->
+	  stereotype "TreeSet"
+	  a role_name "landPlots" protected
+	    comment " contiguous sets with the same 'affinity' value"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 186754 // landPlots (<unidirectional association>)
+	  b parent class_ref 138370 // C_LandPlot
+      end
+
+      attribute 254210 "colorMap"
+	class_attribute protected explicit_type "Integer, Color"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " color associated to each different value of the raster or text grid file"
+      end
+
+      operation 321922 "C_Landscape"
+	public explicit_return_type ""
+	nparams 4
+	  param inout name "context" explicit_type "Context<Object>"
+	  param in name "url" explicit_type "String"
+	  param in name "gridValueName" explicit_type "String"
+	  param in name "continuousSpaceName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+
+ Constructor of grid ground : creates a gridValueLayer with values (affinity); an equivalent matrix with field agents, a
+continuous space where agents have real coordinates. Retrieves also for that the user parameters provided within the GUI "
+      end
+
+      operation 322050 "readRasterFile"
+	protected explicit_return_type "int"
+	nparams 1
+	  param in name "url" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type}[][] ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+"
+      end
+
+      operation 322178 "createGround"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "matriceLue" explicit_type "int"
+	multiplicity "[][]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[][] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Initialize both (!) gridValueLayer and container(ex: C_SoilCell) matrices
+@param matriceLue the values read in the raster, bitmap<br>
+           rev. JLF 11.2015 "
+      end
+
+      operation 322306 "addChildAgent"
+	public explicit_return_type "void"
+	nparams 2
+	  param inout name "parent" type class_ref 144770 // A_Animal
+	  param inout name "child" type class_ref 144770 // A_Animal
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Addition of new agent in simulation. The agent is not sexed in this method. And get the position of it's \"parents\".
+@param parent the parents agent
+@param child the new agent it's sex can be provided by its type.<br>
+           Author Jean-Emmanuel Longueville 2011-01 "
+      end
+
+      operation 322434 "findObjectsOncontinuousSpace"
+	public return_type class_ref 135682 // I_SituatedThing
+	nparams 2
+	  param inout name "thing" type class_ref 135682 // I_SituatedThing
+	  param in name "radius_Umeter" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Provide list of all perceptible things in a radius of vision_Umeter (except this).<br>
+This method deals with gridcells (i.e., C_SoilCell); we convert the vision of the agent from a vision in meter to a vision
+in cells then we obtain the field agent associated to the concerned cells. We then keep only those within their perception
+radius
+@param thing : I_situated_thing
+@param radius_Umeter the perception sphere of agent
+@return list of situated things "
+      end
+
+      operation 322562 "moveToLocation"
+	public explicit_return_type "boolean"
+	nparams 2
+	  param inout name "thing" type class_ref 135682 // I_SituatedThing
+	  param inout name "positionVG_Ucell" explicit_type "Coordinate"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Move the desired object to a Coordinate of continuous space. <br />
+CAUTION This method is a patch : using this procedure should be accompanied with the various list update necessary (see
+previous uses for suggestion) Version JEL/JLF 2011, rev. PAM 2013, 06.2015, jlf 12.2015 @param thing I_SituatedThing to
+move
+@param positionVG_Ucell location on continuous space "
+      end
+
+      operation 322690 "moveToContainer"
+	public explicit_return_type "boolean"
+	nparams 2
+	  param inout name "thing" type class_ref 135682 // I_SituatedThing
+	  param inout name "destination" type class_ref 135810 // I_Container
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @param thing the thing to move
+@param destination the destination container Version Author P.A. MBOUP 22/06/2015, rev. JLF 12.2015 "
+      end
+
+      operation 322818 "translate"
+	public explicit_return_type "void"
+	nparams 2
+	  param inout name "thing" type class_ref 153090 // A_VisibleAgent
+	  param inout name "moveDistance_Umeter" explicit_type "Coordinate"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Move the agent on the continuous space p_Ucell.getX() + (int) (distanceDeplacement_Ucs.x / SPACE_CELL_SIZE_UCS), Remark:
+The ground manager may change the requested move to match the field constraint Link between raster and continuous space<br>
+Was formerly moveByDisplacement, JLF 11.2015
+@param thing A_Animal
+@param moveDistance_Umeter Coordinate in meters SI units "
+      end
+
+      operation 322946 "translate_ChatGPT_unused"
+	public explicit_return_type "void"
+	nparams 2
+	  param inout name "thing" type class_ref 153090 // A_VisibleAgent
+	  param inout name "moveDistance_Umeter" explicit_type "Coordinate"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Move the agent in continuous space. Was formerly moveByDisplacement, JLF 11.2015, ChatGPT 03.2025
+@param thing A_Animal
+@param moveDistance_Umeter Coordinate in meters (SI units) "
+      end
+
+      operation 323074 "checkAndMoveToNewCell"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "thing" type class_ref 153090 // A_VisibleAgent
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " 2. Move thing IN THE GRID if previousCell and newCell are not same coordinates (line & column)<br>
+@version J.Le Fur 01.2018 "
+      end
+
+      operation 323202 "checkGoalPosition"
+	protected explicit_return_type "Coordinate"
+	nparams 3
+	  param inout name "currentPosition_Ucs" explicit_type "NdPoint"
+	  param inout name "moveDistance_Ucs" explicit_type "Coordinate"
+	  param inout name "agent" type class_ref 153090 // A_VisibleAgent
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Check next position and backward if leaving the continuous space.
+@param currentPosition_Ucs
+@param moveDistance_Ucs
+@return The distance of displacement in cs "
+      end
+
+      operation 323330 "bordure"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "animalLeavingLandscape" type class_ref 153090 // A_VisibleAgent
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Results in the exit of an agent and the entry of a new one in a random point at the edges of the simulation space. author
+Longueville 2011, rev. JLF 11.2015
+@param animalLeavingLandscape will be removed and a new one of the same class will enter "
+      end
+
+      operation 323458 "replaceOutcomer"
+	protected explicit_return_type "void"
+	nparams 4
+	  param inout name "animalLeavingLandscape" type class_ref 153090 // A_VisibleAgent
+	  param inout name "newLocation" explicit_type "double"
+	multiplicity "[]"
+	  param in name "x" explicit_type "int"
+	  param in name "y" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1}[] ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Procedure split from bordure(), JLF 2024 "
+      end
+
+      operation 323586 "updateInspectors"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "incomer" type class_ref 152706 // A_Organism
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 323714 "identifyAffinityLandPlots"
+	public return_type class_ref 138370 // C_LandPlot
+	nparams 1
+	  param inout name "context" explicit_type "Context<Object>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Scan all SoilCells and allocate them to a given landPlot, create a new one each time it changes. <br />
+This method doesn't update old landPlots but it builds new ones. And old ones remain in the context. <br />
+If necessary, it is possible to \"update\" the old see (C_RasterGraphManager.identifyTypeLandPlots()).<br />
+25/09/2013
+@param context
+@see thing.ground.landscape.C_LandscapeNetwork#identifyTypeLandPlots "
+      end
+
+      operation 323842 "resetCellsColor"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " TODO JLF 2014.12 should be moved to hasToChange for a C_SoilCell ? "
+      end
+
+      operation 323970 "halfCellDiagonal"
+	class_operation public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Compute the half cell of diagonal "
+      end
+
+      operation 324098 "getCellNeighbours"
+	public return_type class_ref 135810 // I_Container
+	nparams 1
+	  param inout name "cell" type class_ref 135810 // I_Container
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Get the neighbours of a given cell / JLF 2024 from PAM 2013 "
+      end
+
+      operation 324226 "isPointInGrid"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "onePoint" explicit_type "Coordinate"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " GETTERS
+
+ Verify if point is in grid<br>
+author MS 2019.08<br>
+TODO JLF&MS 2019.08 verify redundancy with @see checkGoalPosition "
+      end
+
+      operation 324354 "getColormap"
+	class_operation public explicit_return_type "Map<Integer, Color>"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Getter of the color colorMap.
+@return map "
+      end
+
+      operation 324482 "getThingCoord_Ucell"
+	protected explicit_return_type "Coordinate"
+	nparams 1
+	  param inout name "thing" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Gives the location of the agent in matrix coordinates.
+@param thing I_situated_thing
+@return Coordinate of location in Ucell "
+      end
+
+      operation 324610 "getThingCoord_Umeter"
+	public explicit_return_type "Coordinate"
+	nparams 1
+	  param inout name "thing" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Return the current coordinate of the agent in meter
+@param thing I_situated_thing
+@return coordinate of the agent in meter "
+      end
+
+      operation 324738 "getThingCoord_Ucs"
+	public explicit_return_type "Coordinate"
+	nparams 1
+	  param inout name "thing" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Coordinate getter in unit of Continuous Space
+@param thing any object
+@return Object coordinate in continuous space unit. <br>
+        rev. jlf 02.2018 "
+      end
+
+      operation 324866 "getGrid"
+	public return_type class_ref 135810 // I_Container
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type}[][] ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 324994 "setGridCell"
+	public explicit_return_type "void"
+	nparams 3
+	  param in name "line" explicit_type "int"
+	  param in name "col" explicit_type "int"
+	  param inout name "cell" type class_ref 135810 // I_Container
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 325122 "getGridCell"
+	public return_type class_ref 135810 // I_Container
+	nparams 2
+	  param in name "line" explicit_type "int"
+	  param in name "col" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 325250 "getValueLayer"
+	public explicit_return_type "GridValueLayer"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 325378 "getDimension_Ucell"
+	public explicit_return_type "Dimension"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 325506 "getAffinityLandPlots"
+	public return_type class_ref 138370 // C_LandPlot
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 325634 "getContinuousSpace"
+	public return_type class_ref 135682 // I_SituatedThing
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}ContinuousSpace<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 159490 "C_LandscapeUrban"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " The global container of a given protocol.<br>
+1/ Owns a grid/matrix with values ('affinity'), landplots of cells with the same affinity values.<br>
+Values are read from a file. It can be an ASCII text grid or an image raster. (the image must be in grey levels or in 256 or
+less colors). affinity values are stored in a gridValueLayer (as well as in the cell container attributes) <br>
+2/ Owns a continuous space
+@see A_Protocol
+@author Baduel 2009.04, Le Fur 2009.12, Longueville 2011.02, Le Fur 02.2011, 07.2012, 04.2015<br>
+        rev. JLF 10.2015, 11.2015 - was formerly C_Raster <br>
+        TODO JLF 2020.04 Should be normally in ground package "
+      classrelation 188418 // <generalisation>
+	relation 188418 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 188418 // <generalisation>
+	  b parent class_ref 133250 // C_LandscapeRodent
+      end
+
+      classrelation 188546 // <realization>
+	relation 188546 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 188546 // <realization>
+	  b parent class_ref 132098 // I_ConstantDodel2
+      end
+
+      operation 329474 "C_LandscapeUrban"
+	public explicit_return_type ""
+	nparams 4
+	  param inout name "context" explicit_type "Context<Object>"
+	  param in name "url" explicit_type "String"
+	  param in name "gridValueName" explicit_type "String"
+	  param in name "continuousSpaceName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+
+ Constructor of grid ground : creates a gridValueLayer with values (affinity); an equivalent matrix with field agents, a
+continuous space where agents have real coordinates. Retrieves also for that the user parameters provided within the GUI "
+      end
+
+      operation 329602 "createGround"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "matriceLue" explicit_type "int"
+	multiplicity "[][]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[][] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " METHODS
+
+ Initialize both (!) gridValueLayer and container matrix with C_SoilCellUrbanUrban
+@param matriceLue the values read in the raster, bitmap<br>
+           rev. JLF 02.2022 "
+      end
+
+      operation 329730 "identifyAffinityLandPlots"
+	public return_type class_ref 138370 // C_LandPlot
+	nparams 1
+	  param inout name "context" explicit_type "Context<Object>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Uses affinity values of the soil cells in this.grid to delineate landplots of equivalent affinities, put them in
+this.affinityLandPlots<br>
+If SoilCell of house, room, shop, or market is not in contact with two same SoilCells it will not be add in the current
+LandPlot "
+      end
+
+      operation 329858 "isConcessionCell"
+	private explicit_return_type "boolean"
+	nparams 1
+	  param inout name "oneSoilCell" type class_ref 143874 // C_SoilCellUrban
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " GETTERS
+"
+      end
+
+      operation 329986 "isRoomCell"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "oneCell" type class_ref 143874 // C_SoilCellUrban
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 160898 "C_LandscapeCountry"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Tag C_soilCellGraphed inside or outside domain Author: PAM 2013, rev. jlf 10.2015 "
+      classrelation 187394 // <generalisation>
+	relation 187394 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 187394 // <generalisation>
+	  b parent class_ref 161026 // C_LandscapeNetwork
+      end
+
+      classrelation 187522 // <realization>
+	relation 187522 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 187522 // <realization>
+	  b parent class_ref 131714 // I_ConstantTransportation
+      end
+
+      operation 327426 "C_LandscapeCountry"
+	public explicit_return_type ""
+	nparams 4
+	  param inout name "context" explicit_type "Context<Object>"
+	  param in name "url" explicit_type "String"
+	  param in name "gridValueName" explicit_type "String"
+	  param in name "continuousSpaceName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 327554 "createGround"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "matriceLue" explicit_type "int"
+	multiplicity "[][]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[][] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " METHOD
+
+ Tag C_soilCellGraphed inside or outside domain <br>
+Author: PAM 2013, rev. jlf 10.2015 "
+      end
+    end
+
+    class 161026 "C_LandscapeNetwork"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Classe encapsulant les informations sur le graphe Dans cette classe nous allons constuire principalement le graphe et sa
+matrice d'adjacence (edgesList) en utilisant les classes C_Graph et C_SoilCellGraphed
+@see melanesim.util.C_Graph
+@see thing.ground.C_SoilCellGraphed
+@author Mboup 05/08/2012, rev. JLF 10.2015, was formerly C_RasterGraph "
+      classrelation 187138 // <generalisation>
+	relation 187138 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 187138 // <generalisation>
+	  b parent class_ref 133250 // C_LandscapeRodent
+      end
+
+      classrelation 187266 // graphList (<unidirectional association>)
+	relation 187266 --->
+	  stereotype "List"
+	  a role_name "graphList" protected
+	    comment " FIELDS
+
+ the whole set of graph in the simulation"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 187266 // graphList (<unidirectional association>)
+	  b parent class_ref 138242 // C_Graph
+      end
+
+      attribute 254338 "graphedValueLayer"
+	protected explicit_type "GridValueLayer"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " It will be used to represent the ground types"
+      end
+
+      attribute 254466 "graphTypes"
+	protected explicit_type "String"
+	stereotype "Set"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 254594 "areaTypes"
+	protected explicit_type "String"
+	stereotype "Set"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 326274 "C_LandscapeNetwork"
+	public explicit_return_type ""
+	nparams 4
+	  param inout name "context" explicit_type "Context<Object>"
+	  param in name "url" explicit_type "String"
+	  param in name "gridValueName" explicit_type "String"
+	  param in name "continuousSpaceName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 326402 "createGround"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "matriceLue" explicit_type "int"
+	multiplicity "[][]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[][] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " METHODS
+
+ Use C_soilCellGraphed as containers for the raster matrix<br>
+Author: PAM 2013, rev. jlf 10.2015, 11.2015 "
+      end
+
+      operation 326530 "buildGraphsFromLandPlots"
+	public explicit_return_type "void"
+	nparams 2
+	  param inout name "aLandPlotList" explicit_type "TreeSet<C_LandPlot>"
+	  param inout name "" explicit_type "String...graphTypeParam"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Build new graphs and update the old ones for a group of landPlot in the same groundType. <br />
+This method can also build a graph (or a portion of graph) contained in another landPlot with optional parameter; <br />
+e.g., build a graph corresponding to the portion of road located on the Groundnut Basin.
+@param aLandPlotList
+@param graphTypeParam optional "
+      end
+
+      operation 326658 "identifyNodeList"
+	protected return_type class_ref 137986 // C_SoilCellGraphed
+	nparams 3
+	  param inout name "aGraph" type class_ref 138242 // C_Graph
+	  param inout name "aLandPlot" type class_ref 138370 // C_LandPlot
+	  param in name "newGraphType" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}ArrayList<${type}> ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Constuction ou mise ï¿½ jour du graphe aGraphe
+Identification des noeuds de ce graphe et comptage de son nombre de noeuds 
+PAM 2012, rev JLF 01.2022 (encapsulated for C_HumanWalker management)"
+      end
+
+      operation 326786 "identifyTypeLandPlots"
+	public return_type class_ref 138370 // C_LandPlot
+	nparams 1
+	  param in name "groundType" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " This method scan all the soilCellMatrix and detect all landPlots with the groundType in param; <br />
+taking into account that a soilCell may belong simultaneously to several landPlots with differents groundTypes. <br />
+This method doesn't update old landPlots but it build new ones.<br />
+@param groundType
+@return a list of landPlot author: P.A. Mboup, 2014, rev. JLF 11.2014 "
+      end
+
+      operation 326914 "getGraphedValueLayer"
+	public explicit_return_type "GridValueLayer"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 327042 "setGraphedValueLayer"
+	public explicit_return_type "void"
+	nparams 3
+	  param in name "eventCode" explicit_type "int"
+	  param in name "x" explicit_type "int"
+	  param in name "y" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 327170 "getGraphTypes"
+	public explicit_return_type "Set<String>"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 327298 "getAreaTypes"
+	public explicit_return_type "Set<String>"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 161154 "C_LandscapeMarine"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " The global container of MelaneSim's protocols<br>
+Owns a continuous space and a grid/matrix with values ('affinity'), landplots of marine cells with the same affinity
+values. Values are read from an ascii file. Affinity values are stored in a gridValueLayer (as well as in the cell
+container attributes) <br>
+@see A_Protocol
+@author Baduel 2009.04, Le Fur 2009.12, Longueville 2011.02, Le Fur 2011,2012,2015,2024<br>
+        formerly C_Raster "
+      classrelation 187650 // <generalisation>
+	relation 187650 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 187650 // <generalisation>
+	  b parent class_ref 135042 // C_Landscape
+      end
+
+      classrelation 187778 // <realization>
+	relation 187778 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 187778 // <realization>
+	  b parent class_ref 129026 // I_ConstantPNMC
+      end
+
+      attribute 254722 "energyValueLayer"
+	protected explicit_type "GridValueLayer"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+"
+      end
+
+      attribute 254850 "energyRanks"
+	protected explicit_type "int"
+	multiplicity "[]"
+	init_value " new int[3]"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}${multiplicity} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " energy values are 0-green, 1-orange, 2-red or 3-black forN/A ( viz. land)
+"
+      end
+
+      attribute 254978 "overallEnergy_Ukcal"
+	class_attribute public explicit_type "double"
+	init_value " 0.0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 255106 "overallEnergyMean_Ukcal"
+	class_attribute public explicit_type "double"
+	init_value " 0.0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 327682 "C_LandscapeMarine"
+	public explicit_return_type ""
+	nparams 4
+	  param inout name "context" explicit_type "Context<Object>"
+	  param in name "url" explicit_type "String"
+	  param in name "gridValueName" explicit_type "String"
+	  param in name "continuousSpaceName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 327810 "translate"
+	public explicit_return_type "void"
+	nparams 2
+	  param inout name "thing" type class_ref 153090 // A_VisibleAgent
+	  param inout name "moveDistance_Umeter" explicit_type "Coordinate"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " OVERRIDEN METHODS
+
+ Remove plankton washed along the shores JLF 2024 "
+      end
+
+      operation 327938 "readRasterFile"
+	protected explicit_return_type "int"
+	nparams 1
+	  param in name "url" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type}[][] ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Read raster in true surfer format LeFur 07.2024 "
+      end
+
+      operation 328066 "createGround"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "matriceLue" explicit_type "int"
+	multiplicity "[][]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[][] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Initialize both (!) gridValueLayer and container(ex: C_SoilCell) matrices
+@param matriceLue the values read in the raster, bitmap<br>
+           rev. JLF 2015, 2024, 2025 "
+      end
+
+      operation 328194 "replaceOutcomer"
+	protected explicit_return_type "void"
+	nparams 4
+	  param inout name "animalLeavingLandscape" type class_ref 153090 // A_VisibleAgent
+	  param inout name "newLocation" explicit_type "double"
+	multiplicity "[]"
+	  param in name "x" explicit_type "int"
+	  param in name "y" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1}[] ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Inform inspector then super, JLF 2024 "
+      end
+
+      operation 328322 "bordure"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "animalLeavingLandscape" type class_ref 153090 // A_VisibleAgent
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Results in the exit of an agent and the entry of a new one in a random point in the grid
+@author Longueville 2011, rev. JLF 11.2015, 04.2025
+@param animalLeavingLandscape will be removed and a new one of the same class will enter "
+      end
+
+      operation 328450 "assertCellsEnergy"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " recompute marine cells energy as red, orange, green<br>
+JLF 03.2025 "
+      end
+
+      operation 328578 "rankEnergy"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " fill energyRanks map with the current thresholds<br>
+The cells energies distribution is heavily asymmetrical (generalized Pareto distribution or truncated Zipf
+distribution), hence the ranks are asymmetrical<br>
+@author JLF 03.2025 "
+      end
+    end
+
+    class 161282 "C_LandscapeMarineNekton"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " @author Le Fur 2025 "
+      classrelation 187906 // <generalisation>
+	relation 187906 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 187906 // <generalisation>
+	  b parent class_ref 161154 // C_LandscapeMarine
+      end
+
+      classrelation 188034 // <realization>
+	relation 188034 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 188034 // <realization>
+	  b parent class_ref 129026 // I_ConstantPNMC
+      end
+
+      attribute 255234 "nektonValueLayer"
+	protected explicit_type "GridValueLayer"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELD
+
+"
+      end
+
+      operation 328706 "C_LandscapeMarineNekton"
+	public explicit_return_type ""
+	nparams 4
+	  param inout name "context" explicit_type "Context<Object>"
+	  param in name "url" explicit_type "String"
+	  param in name "gridValueName" explicit_type "String"
+	  param in name "continuousSpaceName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 328834 "createGround"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "matriceLue" explicit_type "int"
+	multiplicity "[][]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[][] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " OVERRIDEN METHOD
+
+ Super then randomly Initialize nektonValueLayer @author JLF 2025 "
+      end
+
+      operation 328962 "getNektonValueLayer"
+	public explicit_return_type "GridValueLayer"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " GETTER
+"
+      end
+    end
+
+    class 161410 "C_LandscapePathMboup"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 188162 // <generalisation>
+	relation 188162 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 188162 // <generalisation>
+	  b parent class_ref 161026 // C_LandscapeNetwork
+      end
+
+      classrelation 188290 // <realization>
+	relation 188290 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 188290 // <realization>
+	  b parent class_ref 132098 // I_ConstantDodel2
+      end
+
+      operation 329090 "C_LandscapePathMboup"
+	public explicit_return_type ""
+	nparams 4
+	  param inout name "context" explicit_type "Context<Object>"
+	  param in name "url" explicit_type "String"
+	  param in name "gridValueName" explicit_type "String"
+	  param in name "continuousSpaceName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 329218 "identifyNodeList"
+	protected return_type class_ref 137986 // C_SoilCellGraphed
+	nparams 3
+	  param inout name "aGraph" type class_ref 138242 // C_Graph
+	  param inout name "aLandPlot" type class_ref 138370 // C_LandPlot
+	  param in name "newGraphType" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}ArrayList<${type}> ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Constuction ou mise ï¿½ jour du graphe aGraphe Identification des noeuds de ce graphe et comptage de son nombre de noeuds
+@author PAM 2012, rev JLF 01.2022 "
+      end
+
+      operation 329346 "buildGraph"
+	public return_type class_ref 138242 // C_Graph
+	nparams 1
+	  param inout name "aLandPlot" type class_ref 138370 // C_LandPlot
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Build one graph / adapted from buildGraphsFromLandPlots
+@see C_LandScapeNetwork.buildGraphsFromLandPlots
+@param aLandPlot treeSet for compatibility however, here contain only one graph
+@param graphTypeParam for compatibility @author PAM, rev JLF 01.2022 "
+      end
+    end
+
+    class 161538 "C_LandscapeUrbanMboup"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "testing landscape with dijkstra for Dodel2 - Le Fur 01.2022"
+      classrelation 188674 // <generalisation>
+	relation 188674 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 188674 // <generalisation>
+	  b parent class_ref 161026 // C_LandscapeNetwork
+      end
+
+      classrelation 188802 // <realization>
+	relation 188802 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 188802 // <realization>
+	  b parent class_ref 132098 // I_ConstantDodel2
+      end
+
+      operation 330114 "C_LandscapeUrbanMboup"
+	public explicit_return_type ""
+	nparams 4
+	  param inout name "context" explicit_type "Context<Object>"
+	  param in name "url" explicit_type "String"
+	  param in name "gridValueName" explicit_type "String"
+	  param in name "continuousSpaceName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 330242 "identifyNodeList"
+	protected return_type class_ref 137986 // C_SoilCellGraphed
+	nparams 3
+	  param inout name "aGraph" type class_ref 138242 // C_Graph
+	  param inout name "aLandPlot" type class_ref 138370 // C_LandPlot
+	  param in name "newGraphType" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}ArrayList<${type}> ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Constuction ou mise à jour du graphe aGraphe Identification des noeuds de ce graphe et comptage de son nombre de noeuds
+@author PAM 2012, rev JLF 01.2022 "
+      end
+
+      operation 330370 "buildGraph"
+	public return_type class_ref 138242 // C_Graph
+	nparams 1
+	  param inout name "aLandPlot" type class_ref 138370 // C_LandPlot
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Build one graph / adapted from buildGraphsFromLandPlots
+@see C_LandScapeNetwork.buildGraphsFromLandPlots
+@param aLandPlot treeSet for compatibility however, here contain only one graph
+@param graphTypeParam for compatibility @author PAM, rev JLF 01.2022 "
+      end
+    end
+  end
+
+  deploymentview 131074 "landscape"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 155266 "C_Landscape"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.Color;
+import java.awt.Dimension;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
+import org.locationtech.jts.geom.Coordinate;
+import data.C_Parameters;
+import data.C_ReadRaster;
+import data.constants.I_ConstantString;
+import melanesim.C_ContextCreator;
+import melanesim.protocol.A_Protocol;
+import repast.simphony.context.Context;
+import repast.simphony.context.space.continuous.ContinuousSpaceFactory;
+import repast.simphony.context.space.continuous.ContinuousSpaceFactoryFinder;
+import repast.simphony.space.continuous.ContinuousSpace;
+import repast.simphony.space.continuous.NdPoint;
+import repast.simphony.space.continuous.SimpleCartesianAdder;
+import repast.simphony.space.continuous.WrapAroundBorders;
+import repast.simphony.space.grid.GridPoint;
+import repast.simphony.util.ContextUtils;
+import repast.simphony.valueLayer.GridValueLayer;
+import thing.A_Animal;
+import thing.A_Organism;
+import thing.A_VisibleAgent;
+import thing.I_SituatedThing;
+import thing.dna.I_DiploidGenome;
+import thing.ground.A_SupportedContainer;
+import thing.ground.C_LandPlot;
+import thing.ground.C_SoilCell;
+import thing.ground.I_Container;
+${definition}"
+      associated_elems
+	class_ref 135042 // C_Landscape
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 155394 "C_LandscapeRodent"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import data.constants.I_ConstantString;
+import melanesim.protocol.A_Protocol;
+import presentation.epiphyte.C_InspectorOrnithodorosSonrai;
+import presentation.epiphyte.C_InspectorPopulationRodent;
+import repast.simphony.context.Context;
+import repast.simphony.space.continuous.NdPoint;
+import repast.simphony.util.ContextUtils;
+import thing.A_Animal;
+import thing.A_Organism;
+import thing.ground.C_SoilCell;
+import thing.rodents.C_OrnitodorosSonrai;
+import thing.rodents.C_Rodent;
+${definition}"
+      associated_elems
+	class_ref 133250 // C_LandscapeRodent
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 155522 "C_LandscapeNetwork"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+import repast.simphony.context.Context;
+import repast.simphony.valueLayer.GridValueLayer;
+import thing.ground.C_City;
+import thing.ground.C_LandPlot;
+import thing.ground.C_Market;
+import thing.ground.C_Region;
+import thing.ground.C_SoilCell;
+import thing.ground.C_SoilCellGraphed;
+import data.C_Parameters;
+import data.constants.rodents.I_ConstantStringRodents;
+import melanesim.protocol.A_Protocol;
+import melanesim.util.C_Graph;
+${definition}"
+      associated_elems
+	class_ref 161026 // C_LandscapeNetwork
+      end
+    end
+
+    artifact 155650 "C_LandscapeCountry"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import data.constants.rodents.I_ConstantTransportation;
+import repast.simphony.context.Context;
+import thing.ground.C_SoilCellGraphed;
+${definition}"
+      associated_elems
+	class_ref 160898 // C_LandscapeCountry
+      end
+    end
+
+    artifact 155778 "C_LandscapeMarine"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Map;
+import java.util.TreeMap;
+import org.locationtech.jts.geom.Coordinate;
+import data.C_Parameters;
+import data.C_ReadRasterOcean;
+import data.constants.I_ConstantPNMC;
+import melanesim.C_ContextCreator;
+import melanesim.protocol.A_Protocol;
+import melanesim.util.CaptureEcranPeriodique;
+import presentation.epiphyte.C_InspectorPopulationMarine;
+import repast.simphony.context.Context;
+import repast.simphony.valueLayer.GridValueLayer;
+import thing.A_Organism;
+import thing.A_VisibleAgent;
+import thing.ground.C_SoilCellMarine;
+import thing.ground.I_Container;
+${definition}"
+      associated_elems
+	class_ref 161154 // C_LandscapeMarine
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 155906 "C_LandscapeMarineNekton"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import data.constants.I_ConstantPNMC;
+import repast.simphony.context.Context;
+import repast.simphony.valueLayer.GridValueLayer;
+${definition}"
+      associated_elems
+	class_ref 161282 // C_LandscapeMarineNekton
+      end
+      comment " This source code is licensed under a BSD licence "
+    end
+
+    artifact 156034 "C_LandscapePathMboup"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import data.constants.rodents.I_ConstantDodel2;
+import melanesim.util.C_Graph;
+import repast.simphony.context.Context;
+import thing.ground.C_LandPlot;
+import thing.ground.C_SoilCell;
+import thing.ground.C_SoilCellGraphed;
+${definition}"
+      associated_elems
+	class_ref 161410 // C_LandscapePathMboup
+      end
+    end
+
+    artifact 156162 "C_LandscapeUrban"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+import data.constants.rodents.I_ConstantDodel2;
+import melanesim.protocol.A_Protocol;
+import repast.simphony.context.Context;
+import thing.ground.C_Concession;
+import thing.ground.C_LandPlot;
+import thing.ground.C_Room;
+import thing.ground.C_SoilCellUrban;
+${definition}"
+      associated_elems
+	class_ref 159490 // C_LandscapeUrban
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 156290 "C_LandscapeUrbanMboup"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import data.constants.rodents.I_ConstantDodel2;
+import melanesim.util.C_Graph;
+import repast.simphony.context.Context;
+import thing.ground.C_LandPlot;
+import thing.ground.C_SoilCell;
+import thing.ground.C_SoilCellGraphed;
+${definition}"
+      associated_elems
+	class_ref 161538 // C_LandscapeUrbanMboup
+      end
+    end
+  end
+end

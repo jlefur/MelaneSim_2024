@@ -1,0 +1,47 @@
+class C_ReadRasterDouble
+!!!131842.java!!!	doubleRasterLoader(in url : String) : double
+		File fichier_raster = new File(url);
+		String chaine = null;
+		StringTokenizer st;
+		double[][] matrice = null;
+		try {
+			// on cr�e un flux de lecture du fichier
+			DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(fichier_raster)));
+			// on cr�e un lecteur de flux
+			InputStreamReader isr = new InputStreamReader(in);
+			BufferedReader lecteur = new BufferedReader(isr);
+			lecteur.readLine();// DSAA
+			int largeur = 0, hauteur = 0;
+			st = new StringTokenizer(lecteur.readLine());
+			largeur = Integer.parseInt((st.nextToken()));
+			hauteur = Integer.parseInt((st.nextToken()));
+			lecteur.readLine();
+			lecteur.readLine();
+			matrice = new double[largeur][hauteur];
+			lecteur.readLine();
+			int i = 0;
+			int j = 0;
+			// tant qu'il y a des lignes � lire :
+			while ((chaine = lecteur.readLine()) != null) {
+				// on r�cup�re une ligne ...
+				st = new StringTokenizer(chaine);
+				// ... tant qu'elle a des �l�ments
+				while (st.hasMoreElements()) {
+					// on lit l'entier correspondant et on l'enregistre dans la matrice.
+					matrice[j][i] = Double.parseDouble(st.nextToken()); // OCEAN
+					// matrice[j][hauteur - i - 1] = Integer.parseInt((st.nextToken())); // RODENTS
+					j++;
+				}
+				j = 0;
+				i++;
+			}
+			lecteur.close();
+			if (C_Parameters.VERBOSE)
+				A_Protocol.event("C_ReadRasterDouble.doubleRasterLoader(): matrix read: ", largeur + " x " + hauteur
+						+ " From :  " + url + " lue", isNotError);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return matrice;

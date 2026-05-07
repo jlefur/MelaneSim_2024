@@ -1,0 +1,9 @@
+class C_SoilCellSavanna
+!!!317442.java!!!	C_SoilCellSavanna(in aff : int, in lineNo : int, in colNo : int)
+		super(aff, lineNo, colNo);
+!!!317570.java!!!	setRainLevel(in rainLevel : int) : void
+		this.rainLevel = rainLevel;
+!!!317698.java!!!	getRainLevel() : int
+		return this.rainLevel;
+!!!317826.java!!!	getCarryingCapacity_Urodent() : int
+		return (int) Math.ceil(CARRYING_CAPACITY_SAVANNA_UrodentPerSquareMeter * C_Parameters.CELL_WIDTH_Umeter * C_Parameters.CELL_WIDTH_Umeter);

@@ -1,0 +1,224 @@
+class A_Protocol_PNMC
+!!!147074.java!!!	A_Protocol_PNMC(inout ctxt : Context<Object>)
+		super(ctxt);
+		// Position landplots at the barycentre of cells
+		for(C_LandPlot lp:this.landscape.getAffinityLandPlots()){
+			double xx = 0., yy = 0.;
+			for(C_SoilCell cell:lp.getCells()){
+				xx += cell.getCoordinate_Ucs().x;
+				yy += cell.getCoordinate_Ucs().y;
+			}
+			xx = xx/lp.getCells().size();
+			yy = yy/lp.getCells().size();
+			this.landscape.moveToLocation(lp,new Coordinate(xx,yy));
+			lp.setCurrentSoilCell(this.landscape.getGrid()[(int)xx][(int)yy]);
+			lp.bornCoord_Umeter = this.landscape.getThingCoord_Umeter(lp.getCurrentSoilCell());
+		}
+		// INSPECTORS
+		A_Protocol.inspectorPopulation = new C_InspectorPopulationMarine();
+		inspectorList.add(inspectorPopulation);
+		A_Protocol.inspectorEnergy = new C_InspectorEnergy();
+		// A_Protocol.inspectorEnergy = new C_InspectorEnergyMarine();
+		this.inspectorList.add(inspectorEnergy);
+!!!147202.java!!!	initCalendar() : void
+ protocolCalendar.set(2020,Calendar.DECEMBER,31);
+!!!147330.java!!!	manageTimeLandmarks() : void
+		// ((C_LandscapeMarine) this.landscape).assertCellsEnergy();
+		// saveScreen();
+		Integer currentYear = A_Protocol.protocolCalendar.get(Calendar.YEAR);
+		Integer currentMonth = A_Protocol.protocolCalendar.get(Calendar.MONTH);
+		Integer currentWeek = A_Protocol.protocolCalendar.get(Calendar.WEEK_OF_MONTH);
+		A_Protocol.protocolCalendar.incrementDate();
+
+		// Check if map has to be switched Version JLF 08.2014, rev.10.2015, 05.2017
+		boolean displayMapBefore = C_Parameters.DISPLAY_MAP;
+		this.readUserParameters();
+		if(displayMapBefore!=C_Parameters.DISPLAY_MAP) switchDisplayMap();
+		// if (C_Parameters.VERBOSE) C_sound.sound("tip.wav");
+
+		if(currentMonth!=A_Protocol.protocolCalendar.get(Calendar.MONTH)){
+			// if(currentYear!=A_Protocol.protocolCalendar.get(Calendar.YEAR)){
+			// if(currentMonth!=A_Protocol.protocolCalendar.get(Calendar.MONTH)){
+			this.computeMinMaxIntegrals();
+			((C_LandscapeMarine)this.landscape).assertCellsEnergy();
+			// saveScreen();
+		}
+!!!147458.java!!!	initLandscape(inout context : Context<Object>) : void
+		this.setLandscape(new C_LandscapeMarine(context,C_Parameters.RASTER_URL,VALUE_LAYER_NAME,
+				CONTINUOUS_SPACE_NAME));
+		for(int i = 0;i<this.landscape.dimension_Ucell.width;i++){
+			for(int j = 0;j<this.landscape.dimension_Ucell.height;j++){
+				C_SoilCellMarine cell = new C_SoilCellMarine(this.landscape.getGrid()[i][j].getAffinity(),i,j);
+				// Comment the following line to undisplay soil cells, JLF 10.2015, 11.2015
+				context.add(cell);
+				this.landscape.setGridCell(i,j,cell);
+				this.landscape.moveToLocation(cell,cell.getCoordinate_Ucs());
+			}
+		}
+		// most occupied cells in red - jlf 02.2026
+		this.landscape.getValueLayer().set(11,47,89);
+		this.landscape.getValueLayer().set(11,48,89);
+		this.landscape.getValueLayer().set(11,48,90);
+		this.landscape.getValueLayer().set(11,49,90);
+		this.landscape.getValueLayer().set(11,56,100);
+		this.landscape.getValueLayer().set(11,57,102);
+		this.landscape.getValueLayer().set(11,62,112);
+!!!147586.java!!!	saveScreen() : void
+ /** // Uncomment lines below to slightly randomly move the mouse to avoid screen sleep
+								 * mode (for recording printscreen) try { Robot robot = new Robot(); // Get the current
+								 * mouse coordinates Point mouseLocation = MouseInfo.getPointerInfo().getLocation(); int
+								 * x = mouseLocation.x; int y = mouseLocation.y; robot.mouseMove(x + random.nextInt(3),
+								 * y + random.nextInt(3)); } catch (AWTException e) { e.printStackTrace(); } */
+
+		// uncomment lines below to save screen // save screen each new day
+		Integer currentYear = A_Protocol.protocolCalendar.get(Calendar.YEAR);
+		Integer currentMonth = A_Protocol.protocolCalendar.get(Calendar.MONTH);
+		Integer currentDay = A_Protocol.protocolCalendar.get(Calendar.DAY_OF_YEAR);
+		Integer currentHour = A_Protocol.protocolCalendar.get(Calendar.HOUR_OF_DAY);
+		String currentDate = "Energy-"+currentYear+"."+String.format("%02d",currentMonth+1)+String.format("%03d",
+				currentDay)+"_"+String.format("%02d",currentHour);
+		// or String currentDate = currentYear + "." + String.format("%03d", currentDay)
+		// + "_"+ String.format("%03d", currentHour);
+		CaptureEcranPeriodique.captureEcranPlankton(currentDate);
+		// end of uncomment
+!!!147714.java!!!	switchDisplayMap() : void
+		if(this.context.contains(this.facilityMap)){
+			this.context.remove(this.facilityMap);
+			DISPLAY_FACILITY_MAP = false;
+		} // Wipe off map
+		else{// contextualizeNewThingInSpace(facilityMap, facilityMap.whereX,
+				// facilityMap.whereY);
+			this.facilityMap.contextualize(this.context,this.landscape);
+			DISPLAY_FACILITY_MAP = true;
+		}
+!!!147842.java!!!	blackMap() : void
+		if(this.landscape!=null){
+			for(int i = 0;i<this.landscape.getDimension_Ucell().getWidth();i++) for(int j = 0;j<this.landscape
+					.getDimension_Ucell().getHeight();j++){
+						if(this.landscape.getValueLayer().get(i,j)<TERRESTRIAL_MIN_AFFINITY) // marine area
+							this.landscape.getValueLayer().set(BLACK_MAP_COLOR,i,j);
+					}
+		}
+!!!147970.java!!!	readUserParameters() : void
+		/** Check black map and exclos (metapopulation) */
+		super.readUserParameters();
+		boolean oldValueBlackMap = C_Parameters.BLACK_MAP;
+		C_Parameters.BLACK_MAP = ((Boolean)C_Parameters.parameters.getValue("BLACK_MAP")).booleanValue();
+		if(oldValueBlackMap!=C_Parameters.BLACK_MAP){
+			if(C_Parameters.BLACK_MAP) this.blackMap();
+			else if(this.landscape!=null) this.landscape.resetCellsColor();
+		}
+		boolean oldValueExclos = C_Parameters.EXCLOS;
+		C_Parameters.EXCLOS = ((Boolean)C_Parameters.parameters.getValue("EXCLOS")).booleanValue();
+		if(oldValueExclos!=C_Parameters.EXCLOS)
+			A_Protocol.event("C_Protocol_PNMC_drifters.readUserParameters","meta-population set to "
+					+C_Parameters.EXCLOS,isNotError);
+!!!148098.java!!!	step_Utick() : void
+		super.step_Utick();
+		// C_SoilCellMarine cell = (C_SoilCellMarine)this.landscape.getGrid()[49][90];
+		// if(cell.getOccupantList().size()>=5) System.err.println("49-91: "+RepastEssentials.GetTickCount()+",
+		// "+cell.toString());
+		// A_Protocol.event("49-90 ",cell.toString(),isError);
+		// A_Protocol.event("127-127 ",cell.getOccupantList()+"@ énergie: @"+Math.round(cell.getEnergy_Ukcal())
+		// +"@ integral: @"+Math.round(cell.getIntegralEnergy_Ukcal()),isError);
+!!!148226.java!!!	haltSimulation() : void
+		if(C_Parameters.TERMINATE){
+			final int[] rank = {1};
+			// convertit la grille de I_Container en grille de C_SoilCellMarine
+			I_Container[][] landscapeGrid = this.landscape.getGrid();
+			C_SoilCellMarine[][] grid = new C_SoilCellMarine[landscapeGrid.length][landscapeGrid[0].length];
+			for(int i = 0;i<landscapeGrid.length;i++){
+				for(int j = 0;j<landscapeGrid[i].length;j++){
+					grid[i][j] = (C_SoilCellMarine)landscapeGrid[i][j]; // cast élément par élément
+				}
+			}
+			// transforme la grille 2D en flux de cellules
+			java.util.Arrays.stream(grid).flatMap(java.util.Arrays::stream).sorted(Comparator.comparingDouble(
+					C_SoilCellMarine::getIntegralOccupants).reversed()).limit(2000).forEach(cell->{
+						int ix = (int)cell.getCoordinate_Ucs().x;
+						int jy = (int)cell.getCoordinate_Ucs().y;
+						// cell.setAffinity(11);
+						this.landscape.getValueLayer().set(11,ix,jy);
+					});
+			// transforme la grille 2D en flux de cellules
+			/*
+			 * java.util.Arrays.stream(grid).flatMap(java.util.Arrays::stream).sorted(Comparator.comparingDouble(
+			 * C_SoilCellMarine::getIntegralOccupants).reversed()).limit(5).forEach(cell->{ int ix =
+			 * (int)cell.getCoordinate_Ucs().x; int jy = (int)cell.getCoordinate_Ucs().y;
+			 * System.out.println(rank[0]+". Cell ("+ix+","+jy+") = "+cell.getIntegralOccupants()); rank[0]++; });
+			 */
+			C_Parameters.TERMINATE = false;
+			// super.haltSimulation();
+		}
+!!!148354.java!!!	computeMinMaxIntegrals() : void
+		DecimalFormat df = new DecimalFormat("0.00",DecimalFormatSymbols.getInstance(Locale.US));
+		double value = 0.0;
+		long tick = (long)RunEnvironment.getInstance().getCurrentSchedule().getTickCount();
+		Path csvPath = Path.of("data_output/grid_tick_"+tick+".csv");
+		final EnumMap<DriverType,MinMax> minMaxDrivers = new EnumMap<>(DriverType.class);
+		// init
+		for(DriverType type:DriverType.values()){
+			minMaxDrivers.put(type,new MinMax(Double.POSITIVE_INFINITY,Double.NEGATIVE_INFINITY));
+		}
+		// 1) pass: compute global min/max
+		for(int i = 0;i<this.landscape.dimension_Ucell.width;i++){
+			for(int j = 0;j<this.landscape.dimension_Ucell.height;j++){
+				C_SoilCellMarine cell = (C_SoilCellMarine)this.landscape.getGrid()[i][j];
+				if(cell.isTerrestrial()) continue;
+				for(DriverType type:DriverType.values()){
+					value = cell.get(type,Champ.INTEGRAL_100);
+					if(!Double.isFinite(value)) continue; // ignore NaN/Inf
+					MinMax mm = minMaxDrivers.get(type);
+					// NB pas propre voir correctif dans chat "MinMax Calcul pour Acteurs"
+					minMaxDrivers.put(type,new MinMax(Math.min(mm.min(),value),Math.max(mm.max(),value)));
+				}
+			}
+		}
+		// for debugging
+		if(C_Parameters.BLACK_MAP){
+			for(DriverType type:DriverType.values()) System.out.println(type+" thresholds: "+minMaxDrivers.get(type));
+		}
+
+		try(BufferedWriter out1 = Files.newBufferedWriter(csvPath,StandardCharsets.UTF_8)){
+			StringBuilder sb = new StringBuilder(6400);
+			// 2) pass: normalize each cell value to [1..100] using global min/max per type
+			for(int i = 0;i<this.landscape.dimension_Ucell.width;i++){
+				for(int j = 0;j<this.landscape.dimension_Ucell.height;j++){
+					C_SoilCellMarine cell = (C_SoilCellMarine)this.landscape.getGrid()[i][j];
+					if(!cell.isTerrestrial()){
+						for(DriverType type:DriverType.values()){
+							MinMax mm = minMaxDrivers.get(type);
+							double xMin = mm.min();
+							double xMax = mm.max();
+							double x = cell.get(type,Champ.INTEGRAL_100);
+							if(!Double.isFinite(x)) continue;
+							double normalized = convertTo100(x,xMin,xMax);
+
+							// 3) pass: weight value with the weight attributed to this factor
+							double weighted = normalized*C_Parameters.getMultiplier(type);
+							cell.set(type,Champ.INTEGRAL_100,weighted);
+						}
+					}
+					sb.append(df.format(cell.getIntegralEnergy_Ukcal())).append(';');
+				}
+				out1.write(sb.toString());
+				out1.newLine();
+				sb.setLength(0);
+			}
+			// Optionnel: si tu veux conserver minMaxDrivers quelque part (champ de classe)
+			// this.minMaxDrivers = minMaxDrivers;
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+!!!148482.java!!!	convertTo100_old(in x : double, in xMin : double, in xMax : double) : double
+		return ((x-xMin)*99)/(xMax-xMin)+1;
+!!!148610.java!!!	convertTo100(in x : double, in xMin : double, in xMax : double) : double
+		if(!Double.isFinite(x)||!Double.isFinite(xMin)||!Double.isFinite(xMax)) return Double.NaN;
+		if(xMax==xMin){
+			// A_Protocol.event("A_Protocol_PNMC: ","xmin = xmax: "+xMin,isError);
+			return 0.0;// ou 50.0, ou 100.0
+		}
+		// selon ton choix
+		return ((x-xMin)*99.0)/(xMax-xMin)+1.0;
+!!!148738.java!!!	convertFrom100(in y : double, in xMin : double, in xMax : double) : double
+		return ((y-1)*(xMax-xMin))/99+xMin;

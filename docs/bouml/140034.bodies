@@ -1,0 +1,33 @@
+class C_TaxiManDodel
+!!!360706.java!!!	C_TaxiManDodel(inout genome : I_DiploidGenome)
+		super(genome);
+!!!360834.java!!!	step_Utick() : void
+		computeNextMoveToTarget();
+		if (this.isArrived(this.speed_UmeterByTick)) {
+			this.setHasToSwitchFace(true);
+			this.nextMove_Umeter.x = 0.0;
+			this.nextMove_Umeter.y = 0.0;
+			A_VisibleAgent.myLandscape.moveToLocation(this, this.target.getCoordinate_Ucs());
+			if (this.target == marketPlace) {
+				this.vehicle.unloadRodents();
+				A_Protocol.event("C_ProtocolDodel.step_Utick", "Unloaded one rodent", isNotError);
+				if (C_ContextCreator.randomGeneratorForInitialisation.nextDouble() > .5)
+					this.setTarget(myLandscape.getGrid()[0][31]);// TODO number in source 2018.03 jlf
+				else
+					this.setTarget(myLandscape.getGrid()[18][0]);// TODO number in source 2018.03 jlf
+			}
+			else this.setDead(true);
+		}
+		else {
+			this.computeNextMoveToTarget();
+			this.actionMove();
+			A_VisibleAgent.myLandscape.moveToLocation(this.vehicle, this.getCoordinate_Ucs());
+			this.vehicle.carryRodentsToMyLocation_Ucs();
+		}
+!!!360962.java!!!	getTargetPoint_Umeter() : Coordinate
+		return this.target.getCoordinate_Umeter();
+!!!361090.java!!!	discardThis() : void
+		if (!this.getVehicle().getFullRodentList().isEmpty()) {
+			this.vehicle.unloadRodents();
+		}
+		this.vehicle = null;

@@ -1,0 +1,62 @@
+class C_ProtocolChize
+!!!159618.java!!!	C_ProtocolChize(inout ctxt : Context<Object>)
+		super(ctxt);
+		geneticInspector = new C_InspectorGenetic();
+		inspectorList.add(geneticInspector);
+		C_CustomPanelSet_Rodent.addGeneticInspector(geneticInspector);
+		C_UserPanelRodent.addGeneticInspector(geneticInspector);
+		
+		
+		cropRotation = new C_CropRotationChize((C_LandscapeRodent) this.landscape);
+		// Position crop at the barycentre of cells
+		for (C_LandPlot lp : this.landscape.getAffinityLandPlots()) {
+			double xx = 0., yy = 0.;
+			for (C_SoilCell cell : lp.getCells()) {
+				xx += cell.getCoordinate_Ucs().x;
+				yy += cell.getCoordinate_Ucs().y;
+			}
+			xx = xx / lp.getCells().size();
+			yy = yy / lp.getCells().size();
+			this.landscape.moveToLocation(lp, new Coordinate(xx, yy));
+			lp.setCurrentSoilCell(this.landscape.getGrid()[(int) xx][(int) yy]);
+			lp.bornCoord_Umeter = this.landscape.getThingCoord_Umeter(lp.getCurrentSoilCell());
+		}
+		// facilityMap = new C_Background(-.05, 26, 27); //chize 1
+		facilityMap = new C_Background(-.1, 27 - .4, 32 - .4); // chize 2
+!!!159746.java!!!	readUserParameters() : void
+		super.readUserParameters();
+		C_Parameters.REPRO_START_Umonth = ((Integer) C_Parameters.parameters.getValue("REPRO_START_Umonth")).intValue();
+		C_Parameters.REPRO_END_Umonth = ((Integer) C_Parameters.parameters.getValue("REPRO_END_Umonth")).intValue();
+!!!159874.java!!!	initProtocol() : void
+		super.initProtocol();// initializes burrow systems in C_ProtocolFossorial
+		this.cropRotation.setInitialLandplotTypes();
+!!!160002.java!!!	createRodent() : C_RodentFossorial
+		return new C_RodentFossorial(new C_GenomeMicrotusArvalis());
+!!!160130.java!!!	step_Utick() : void
+		super.step_Utick();// has to be after the other inspectors step since it records indicators in file
+		if (!C_Parameters.BLACK_MAP) this.landscape.resetCellsColor();// account for culture changes
+!!!160258.java!!!	manageTimeLandmarks() : void
+		if (RepastEssentials.GetTickCount() == 1.) ((C_InspectorPopulationRodent) inspectorPopulation).recordSpatialDistributionInFile(this.landscape.getGrid());
+		int currentYear = protocolCalendar.get(Calendar.YEAR);
+		int currentMonth = protocolCalendar.get(Calendar.MONTH);
+		super.manageTimeLandmarks();
+		if (currentYear != protocolCalendar.get(Calendar.YEAR)) {
+			A_Protocol.event("C_ProtocolChize.manageTimeLandmarks", "Crop Transition", isNotError);
+			((C_InspectorPopulationRodent) inspectorPopulation).recordSpatialDistributionInFile(this.landscape.getGrid());
+			cropRotation.cropTransition(protocolCalendar.get(Calendar.MONTH));
+		}
+		if (currentMonth != protocolCalendar.get(Calendar.MONTH)) {
+			A_Protocol.event("C_ProtocolChize.manageTimeLandmarks", "Cultural Practice", isNotError);;
+			cropRotation.culturalPractice(protocolCalendar.get(Calendar.MONTH));
+		}
+!!!160386.java!!!	initCalendar() : void
+		super.initCalendar();
+		protocolCalendar.set(protocolCalendar.get(Calendar.YEAR), Calendar.FEBRUARY, 1, 0, 0, 0);
+!!!160514.java!!!	blackMap() : void
+		for (int i = 0; i < this.landscape.getDimension_Ucell().getWidth(); i++)
+			for (int j = 0; j < this.landscape.getDimension_Ucell().getHeight(); j++) {
+				if (this.landscape.getValueLayer().get(i, j) == 1) // houses
+					this.landscape.getValueLayer().set(2, i, j);
+				else if (this.landscape.getValueLayer().get(i, j) != 7) // hedges
+					this.landscape.getValueLayer().set(BLACK_MAP_COLOR, i, j);
+			}

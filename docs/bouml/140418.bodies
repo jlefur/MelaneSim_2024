@@ -1,0 +1,10 @@
+class C_InspectorBorreliaCrocidurae
+!!!229762.java!!!	C_InspectorBorreliaCrocidurae()
+        super();
+        this.borreliaList.clear();
+        // add to the super class header, this proper header
+        this.indicatorsHeader = "Borrelia;Bite Number;Hibernation Average;Birth Number;Population";
+!!!229890.java!!!	addBorreliaToList(inout oneBorrelia : C_BorreliaCrocidurae) : void
+        if (!this.borreliaList.add(oneBorrelia)) System.out.println("C_InspectorOrnithodorosSonrai.addTickToList() : : could not add" + oneBorrelia);
+!!!230018.java!!!	getBorreliaList() : C_BorreliaCrocidurae
+    	return this.borreliaList;

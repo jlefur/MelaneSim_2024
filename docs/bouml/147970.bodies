@@ -1,0 +1,130 @@
+class C_Chart
+!!!203906.java!!!	C_Chart(in title : String, in type : int)
+		init(title, type, "X", "Y");
+!!!204034.java!!!	C_Chart(in title : String, in type : int, in XLabel : String, in YLabel : String)
+		init(title, type, XLabel, YLabel);
+!!!204162.java!!!	init(in title : String, in type : int, in XLabel : String, in YLabel : String) : void
+		this.type = type;
+
+		if (type == LINE) {
+		    this.dataLine = new XYSeriesCollection();
+		    this.chartPanel = new ChartPanel(createLineChart(title, XLabel, YLabel));
+		}
+		else if (type == BAR) {
+		    this.dataBar = new DefaultCategoryDataset();
+		    this.chartPanel = new ChartPanel(createBarChart(title, XLabel, YLabel));
+		}
+		else {
+		    this.dataPie = new DefaultPieDataset();
+		    this.chartPanel = new ChartPanel(createPieChart(title));
+		}
+
+		this.chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
+		this.chartPanel.setMouseZoomable(true, false);
+		this.chartPanel.getChart().setBackgroundPaint(Color.getColor("#F0F0F0")); // Couleur de java
+
+!!!204290.java!!!	createBarChart(in title : String, in XLabel : String, in YLabel : String) : JFreeChart
+	    this.chart = ChartFactory.createBarChart(title, XLabel, YLabel, this.dataBar, PlotOrientation.VERTICAL, true, true, true);
+		CategoryPlot plot = (CategoryPlot) this.chart.getPlot();
+
+		this.chart.addSubtitle(new TextTitle("total / city"));
+		this.chart.setBackgroundPaint(Color.white);
+		NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
+		rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+		BarRenderer renderer = (BarRenderer) plot.getRenderer();
+		renderer.setDrawBarOutline(false);
+		this.chart.getLegend().setFrame(BlockBorder.NONE);
+		CategoryAxis thisCategoryAxis = this.chart.getCategoryPlot().getDomainAxisForDataset(0);
+		thisCategoryAxis.setTickLabelFont(new Font("SansSerif", Font.PLAIN, 9));
+		thisCategoryAxis.setCategoryLabelPositions(CategoryLabelPositions.createUpRotationLabelPositions(Math.PI / 6.0));
+		plot.setBackgroundPaint(Color.white);
+		plot.getRenderer().setBaseItemLabelGenerator(new StandardCategoryItemLabelGenerator());
+		plot.getRenderer().setBaseItemLabelsVisible(true);
+		for (int i = 0; i < 2; i++) {
+			plot.getRenderer().setSeriesItemLabelFont(i, new java.awt.Font("Times New Roman", Font.PLAIN, 7));
+		}
+
+		return this.chart;
+!!!204418.java!!!	createPieChart(in title : String) : JFreeChart
+	    this.chart = null;
+
+		if (type == PIE3D) {
+		    this.chart = ChartFactory.createPieChart3D(title, this.dataPie, false, false, false);
+		}
+		else if (type == RING) {
+		    this.chart = ChartFactory.createRingChart(title, this.dataPie, false, true, false);
+		}
+		else if (type == PIE2D) {
+		    this.chart = ChartFactory.createPieChart(title, this.dataPie, false, true, false);
+		}
+		PiePlot plot = (PiePlot) this.chart.getPlot();
+		plot.setBackgroundPaint(Color.getColor("#F0F0F0")); // Couleur de fond du pie
+		if (this.type == PIE3D) plot.setForegroundAlpha(0.5f); // Pour la transparence
+		plot.setOutlineVisible(false); // Définit si l'encadré autour du chart est visible ou non
+
+		plot.setLabelFont(new Font("SansSerif", Font.PLAIN, 12));
+		plot.setLabelBackgroundPaint(Color.white);
+		plot.setNoDataMessage("No data available"); // Message à afficher quand il n'y a pas de données disponibles
+
+		return this.chart;
+!!!204546.java!!!	createLineChart(in title : String, in XLabel : String, in YLabel : String) : JFreeChart
+
+		JFreeChart chart = ChartFactory.createXYLineChart(title, XLabel, YLabel, this.dataLine, PlotOrientation.VERTICAL, true, true,
+				false);
+
+		XYPlot plot = (XYPlot) chart.getPlot();
+		plot.setBackgroundPaint(Color.white); // Couleur de fond du graphe //
+		plot.setDomainGridlinePaint(Color.lightGray); // Couleur des lignes horizontales //
+		plot.setRangeGridlinePaint(Color.lightGray); // Couleur des lignes verticales //
+		// plot.setAxisOffset(new RectangleInsets(5.0, 5.0, 5.0, 5.0));
+		// plot.setDomainCrosshairVisible(false);
+		// plot.setRangeCrosshairVisible(false);
+
+		// Gestion légende //
+		// LegendTitle lt = new LegendTitle(plot);
+		// lt.setItemFont(new Font("Dialog", Font.PLAIN, 9));
+		// lt.setFrame(new BlockBorder(Color.white));
+		// lt.setPosition(RectangleEdge.BOTTOM);
+		// XYTitleAnnotation ta = new XYTitleAnnotation(0.98, 0.02, lt,RectangleAnchor.BOTTOM_RIGHT);
+		// ta.setMaxWidth(0.48);
+		// plot.addAnnotation(ta);
+
+		XYLineAndShapeRenderer renderer = (XYLineAndShapeRenderer) plot.getRenderer();
+		renderer.setSeriesLinesVisible(0, true); // Affichage lignes
+		renderer.setSeriesShapesVisible(0, false); // Affichage carrés
+
+		// Gestion valeurs sur les axes //
+		// ValueAxis xAxis = plot.getDomainAxis();
+		// xAxis.setLowerMargin(0);
+		// ValueAxis yAxis = plot.getRangeAxis();
+		// yAxis.setLowerMargin(0);
+
+		return chart;
+!!!204674.java!!!	addData(in title : String, inout Xvalue : Number, inout Yvalue : Number) : void
+		if (type == LINE) this.dataLine.getSeries(title).add(Xvalue, Yvalue);
+		else {
+			int numItem = this.dataPie.getItemCount();
+			this.dataPie.insertValue(numItem, title, Xvalue);
+			// adding colors to the pie sectors - ad hoc for the sex-ratio pie - JLeFur 02.2013
+			Color[] colors = {new Color(127, 127, 127), Color.LIGHT_GRAY, Color.WHITE, Color.BLACK};
+			PiePlot plot = (PiePlot) this.chart.getPlot();
+			Comparable key = this.dataPie.getKey(numItem);
+			plot.setSectionPaint(key, colors[numItem]);
+		}
+!!!204802.java!!!	addXYSerie(in title : String) : void
+		if (type == LINE) this.dataLine.addSeries(new XYSeries(title));
+!!!204930.java!!!	setData(in serie : String, inout Xvalue : Number, inout Yvalue : Number) : void
+		if (type == LINE) this.dataLine.getSeries(serie).add(Xvalue, Yvalue);
+		else this.dataPie.setValue(serie, Xvalue);
+!!!205058.java!!!	setBarData(in value : int, in serie : String, in category : String) : void
+		((DefaultCategoryDataset) this.dataBar).setValue(value, serie, category);
+!!!205186.java!!!	getChartPanel() : ChartPanel
+		return this.chartPanel;
+!!!205314.java!!!	getDataLine() : XYSeriesCollection
+		return this.dataLine;
+!!!205442.java!!!	getDataBar() : CategoryDataset
+		return this.dataBar;
+!!!205570.java!!!	getChart() : JFreeChart
+		return this.chart;
+!!!205698.java!!!	setTitle(in title : String) : void
+	    this.chart.setTitle((int) RepastEssentials.GetTickCount() + " / " + A_Protocol.protocolCalendar.stringHourDate() + ": " + title);

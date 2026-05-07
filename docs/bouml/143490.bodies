@@ -1,0 +1,50 @@
+class C_PathWanderer
+!!!175106.java!!!	C_PathWanderer(inout currentSoilCell : C_SoilCell)
+		this.path = new ArrayList<Integer>();
+		this.indexPath = 0;
+		this.lengthOfPath = 0;
+		this.track_slow_factor = 1;
+		this.pathEnd = false;
+!!!175234.java!!!	discardThis() : void
+		this.path = null;
+		this.myGraph.discardThis();
+		this.myGraph = null;
+		this.path = null;
+		this.targetSoilCell = null;
+!!!175362.java!!!	crossingIntermediateDistance(in distanceTravelled : double, in speed_UmeterByTick : double) : boolean
+		this.intermediateDistanceTravelled += distanceTravelled;
+		return this.intermediateDistanceTravelled < speed_UmeterByTick;
+!!!175490.java!!!	prepareToReachPathEndNow() : void
+		if (this.indexPath != this.lengthOfPath) {
+			this.targetSoilCell = this.myGraph.getNextNode(this.path.get(this.lengthOfPath));
+			this.indexPath = this.lengthOfPath;
+			pathEnd = true;
+		}
+!!!175618.java!!!	computeNextNodeAndGetTargetPoint_Umeter(inout targetPoint_Umeter : Coordinate) : Coordinate
+		if (this.indexPath >= this.lengthOfPath) this.pathEnd = true;
+		else this.targetSoilCell = this.myGraph.getNextNode(this.path.get(++this.indexPath));
+		return this.targetSoilCell.getCoordinate_Umeter();
+!!!175746.java!!!	builgPath0(inout currentSoilCell : C_SoilCell, inout targetSoilCell : C_SoilCell) : ArrayList<Integer>
+		return this.myGraph.buildPath(((C_SoilCellGraphed) currentSoilCell).getNumberInGraph(this.myGraph),
+				((C_SoilCellGraphed) targetSoilCell).getNumberInGraph(this.myGraph));
+!!!175874.java!!!	buildPath(inout currentSoilCell : C_SoilCell, inout targetSoilCell : C_SoilCell) : void
+		this.targetSoilCell = (C_SoilCellGraphed) targetSoilCell; // select a cell within a destination city
+		this.path = builgPath0(currentSoilCell, targetSoilCell);
+		this.lengthOfPath = this.path.size() - 1;
+		this.indexPath = 0;
+		this.pathEnd = false;
+		if (this.lengthOfPath == 0) this.indexPath--;// In case a graph has got only one city
+!!!176002.java!!!	getPathWeight(inout currentSoilCell : C_SoilCell, inout targetSoilCell : C_SoilCell) : double
+		int entree = ((C_SoilCellGraphed) currentSoilCell).getNumberInGraph(this.myGraph);
+		int sortie = ((C_SoilCellGraphed) targetSoilCell).getNumberInGraph(this.myGraph);
+		if (this.myGraph.pathWeightTab.get(entree) == null || this.myGraph.pathWeightTab.get(entree).get(sortie) == null)
+			builgPath0(currentSoilCell, targetSoilCell);
+		return this.myGraph.pathWeightTab.get(entree).get(sortie);
+!!!176130.java!!!	getPathEnd() : boolean
+// When a carrier has reached a destination city
+		return this.pathEnd;
+!!!176258.java!!!	hasToSetNextNode(inout currentSC : I_Container) : boolean
+ // arrived in any path cell towards the targetCell
+		if (getPathEnd()) return false;
+		else if (this.indexPath == 0) return true;
+		return this.targetSoilCell == currentSC;

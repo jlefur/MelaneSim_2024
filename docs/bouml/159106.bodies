@@ -1,0 +1,3 @@
+class C_RecombinatorNull
+!!!305538.java!!!	crossover(inout g1 : C_Chromosome, inout g2 : C_Chromosome) : C_ChromosomePair
+		return new C_ChromosomePair(g1, g2) ;

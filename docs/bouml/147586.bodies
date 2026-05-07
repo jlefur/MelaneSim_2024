@@ -1,0 +1,27 @@
+class C_OutputConsole
+!!!197634.java!!!	C_OutputConsole()
+	    this.file = new File(CONSOLE_OUTPUT_FILE);
+		try {
+			System.setOut(new PrintStream(this.file));
+			this.reader = new InputStreamReader(new FileInputStream(this.file));
+			this.buff = new BufferedReader(this.reader);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		/*
+		 * The file is overwritten at the start of each simulation
+		 */
+!!!197762.java!!!	C_OutputConsole(inout area : JTextArea)
+		super();
+		this.area = area;
+		this.file.setReadable(true);
+!!!197890.java!!!	write() : void
+	    this.buff = new BufferedReader(this.reader);
+		System.out.println("Youhou");
+		try {
+		    this.area.append(this.buff.readLine() + "\n");
+		    this.buff = null;
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+

@@ -1,0 +1,98 @@
+class C_HumanWalker
+!!!343554.java!!!	C_HumanWalker(inout genome : I_DiploidGenome)
+		super(genome);
+!!!343682.java!!!	giveBirth(inout genome : I_DiploidGenome) : A_Animal
+		return new C_HumanWalker(genome);
+!!!343810.java!!!	getTargetPoint_Umeter() : Coordinate
+		if (this.targetPoint_Umeter == null) return super.getTargetPoint_Umeter();
+		else return this.targetPoint_Umeter;
+!!!343938.java!!!	step_Utick() : void
+		if (this.nextStepStartCell == null) this.nextStepStartCell = (C_SoilCellUrban) this.currentSoilCell;// init once at start
+		// Due to manageActivities() activities chrono may have changed before reaching the preceding target and has to
+		// be accounted for
+		I_SituatedThing initialTarget = this.target;
+		String aim = this.aim;
+		this.manageActivities();
+		// reset the path in case target has changed meanwhile
+		if (this.target != initialTarget && this.pathWanderer.nodesList != null) {
+			if (C_Parameters.VERBOSE)
+				A_Protocol.event("C_HumanWalker.step_Utick()", this + " could not fullfill " + aim + "; switches to "
+						+ this.aim, isNotError);
+			this.pathWanderer.nodesList = null;
+			this.nextStepStartCell = (C_SoilCellUrban) this.currentSoilCell;
+		}
+		// already walking a path
+		if (this.pathWanderer.nodesList != null) this.ActionWalkOnPath();
+		else {
+			if (this.target != null && this.target != this.currentSoilCell) {// safety test to remove ?
+				// Check if path is requested :
+				// 1) If target is in the same concession then no pathwandering, direct move.
+				// 2) If within a street has to path wander (and almost all street are the same concession)
+				C_LandPlot currentConcession = this.nextStepStartCell.getConcession();
+				C_LandPlot targetConcession = ((C_SoilCellUrban) this.target).getConcession();
+				if ((targetConcession != currentConcession) || targetConcession.getPlotType() == "STREET"
+						|| currentConcession.getPlotType() == "STREET") {
+					this.pathWanderer.getPath(this.nextStepStartCell, (C_SoilCellUrban) this.target);
+					this.ActionWalkOnPath();
+				}
+			}
+			else super.step_Utick(); // No path wandering
+		}
+!!!344066.java!!!	manageArrival() : void
+		this.targetPoint_Umeter = null;
+		this.pathWanderer.nodesList = null;
+		this.nextMove_Umeter.x = 0.0;
+		this.nextMove_Umeter.y = 0.0;
+		this.nextStepStartCell = (C_SoilCellUrban) this.target;
+		this.discardTarget();
+		// if (C_Parameters.VERBOSE) A_VisibleAgent.myLandscape.resetCellsColor();// @@TEMPORARY JLF 2022.02
+!!!344194.java!!!	isArrived(in speed : double) : boolean
+		if (this.pathWanderer.isPathEnd) return true;
+		else return super.isArrived(speed);
+!!!344322.java!!!	actionMoveToDestination() : void
+		// arrived in any path cell towards the targetCell
+		if (this.pathWanderer.hasToSetNextNode(this.currentSoilCell)) this.setNextNode();
+		super.actionMoveToDestination();
+		// if (C_Parameters.VERBOSE)
+		 A_VisibleAgent.myLandscape.getValueLayer().set(10, ((C_SoilCellUrban) this.currentSoilCell)
+		 .retrieveLineNo(), this.currentSoilCell.retrieveColNo());// @@vert boutique
+!!!344450.java!!!	discardThis() : void
+		this.targetPoint_Umeter = null;
+		this.pathWanderer.discardThis();
+		this.pathWanderer = null;
+		this.nextStepStartCell = null;
+		super.discardThis();
+!!!344578.java!!!	ActionWalkOnPath() : void
+		double distanceTravelled = 0;
+		this.pathWanderer.intermediateDistanceTravelled = 0;
+		this.pathWanderer.isPathEnd = false;
+		while (this.pathWanderer.crossingIntermediateDistance(distanceTravelled, this.speed_UmeterByTick)) {
+			distanceTravelled = 0; // it is because continue of the loop.
+			// 1) arrived in any path cell towards the targetCell
+			if (this.pathWanderer.hasToSetNextNode(this.currentSoilCell)) this.setNextNode();
+			// 2) reached a destination (just before stopped)
+			else if (this.pathWanderer.isPathEnd && this.isArrived(this.speed_UmeterByTick)) {
+				manageArrival();
+				break; // pour que parked reste plus de temps true (pendant un step)
+			}
+			// 3) just before leaving (if targetPoint is null, then has to define it
+			else if (this.targetPoint_Umeter == null) {
+				startTraveling((C_SoilCellUrban) this.target);
+				continue;
+			}
+			double maxDistanceToMove_Umeter = this.speed_UmeterByTick - this.pathWanderer.intermediateDistanceTravelled;
+			this.computeNextMoveToTarget(maxDistanceToMove_Umeter);
+			distanceTravelled = Math.sqrt(this.nextMove_Umeter.x * this.nextMove_Umeter.x + this.nextMove_Umeter.y
+					* this.nextMove_Umeter.y);// @@ inutile ?
+			this.actionMoveToDestination();
+		}
+!!!344706.java!!!	setNextNode() : void
+		this.targetPoint_Umeter = this.pathWanderer.computeNextNodeAndGetTargetPoint_Umeter(this.targetPoint_Umeter);
+!!!344834.java!!!	startTraveling(inout finalDestination : C_SoilCellUrban) : void
+ // just before leaving
+		if (finalDestination != null) { // patch in cases (unexplained, #1/1000) where deliberation does not succeed, JLF 09.2014
+			this.targetPoint_Umeter = finalDestination.getCoordinate_Umeter();
+			this.setTarget(finalDestination);
+			this.pathWanderer.buildBestPath((C_SoilCellUrban) this.currentSoilCell, finalDestination);
+		}
+		this.hasToSwitchFace = true;

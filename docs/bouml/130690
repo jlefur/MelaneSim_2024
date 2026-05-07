@@ -1,0 +1,1346 @@
+format 224
+"variator" // src::thing::dna::variator
+  revision 1
+  modified_by 2 "lefur"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:\\Users\\lefur\\Documents\\GitHub\\MelaneSim_2024\\src/thing/dna/variator/"
+  java_package "thing.dna.variator"
+  classview 130690 "variator"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 144514 "I_Recombinator"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "Interface for all recombinators of HaploidGenomes.
+Provides the interface for performing crossover between 2 HaploidGenomes.
+
+@author kyle wagner, elyk@cs.indiana.edu
+Version 1.0, nov 30, 1998
+"
+      operation 304898 "crossover"
+	public return_type class_ref 154754 // C_ChromosomePair
+	nparams 2
+	  param inout name "g1" type class_ref 144642 // C_Chromosome
+	  param inout name "g2" type class_ref 144642 // C_Chromosome
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Perform some kind of crossover (1-pt, multi-point, probabilistic)
+ on these two chromosomes.
+
+ @param g1 g2 chromosomes to be recombined - parents of a new chromosome pair
+ @return a NEW chromosome pair which is the recombination of
+         genes from g1 and g2
+"
+      end
+    end
+
+    class 154370 "I_GeneMutator"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+
+@author kyle wagner, elyk@acm.org
+Version 1.0, Wed Dec 13 20:32:02 2000
+"
+      operation 302338 "mutate"
+	public explicit_return_type "Object"
+	nparams 2
+	  param inout name "info" explicit_type "Object"
+	  param inout name "value" explicit_type "Object"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Determine a new value for the parameter, value, and return it.
+
+ @param info is usually mutation rate, but it could be anything
+        necessary for proper mutation.
+ @param value the value that is being mutated.
+"
+      end
+    end
+
+    class 154882 "C_GeneConstraint"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " @author kyle wagner, elyk@acm.org
+Version 1.0, Wed Dec 13 20:55:33 2000 "
+      attribute 247938 "MIN_MAX"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " CONSTANTS
+
+"
+      end
+
+      attribute 248066 "ALLELE_SET"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 1"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 248194 "constraintType"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+"
+      end
+
+      attribute 248322 "legalAlleles"
+	private explicit_type "Set"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	java_annotation "@SuppressWarnings(\"rawtypes\")
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " alleles may be of any type"
+      end
+
+      attribute 248450 "defaultAllele"
+	private explicit_type "Object"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 248578 "minAllele"
+	private explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 248706 "maxAllele"
+	private explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 248834 "minAlleleDbl"
+	private explicit_type "Double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 248962 "maxAlleleDbl"
+	private explicit_type "Double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 301570 "C_GeneConstraint"
+	public explicit_return_type ""
+	nparams 2
+	  param inout name "legalAlleles" explicit_type "Set"
+	  param inout name "defaultAllele" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@SuppressWarnings(\"rawtypes\")
+"
+	
+	
+	
+	comment " METHODS
+"
+      end
+
+      operation 301698 "C_GeneConstraint"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "minAllele" explicit_type "double"
+	  param in name "maxAllele" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 301826 "constrain"
+	public explicit_return_type "Object"
+	nparams 1
+	  param inout name "allele" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Check the given allele. If it's out of bounds or not in the set of allowable alleles, return a new, default allele (either a
+default allele or the closest min/max allele allowed).
+@param allele the Gene value that must be constrained
+@return the constrained allele for the Gene (no change if allele is a legal allele) "
+      end
+
+      operation 301954 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 302082 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " MAIN
+"
+      end
+
+      operation 302210 "testConstraint"
+	class_operation private explicit_return_type "void"
+	nparams 2
+	  param inout name "gc" type class_ref 154882 // C_GeneConstraint
+	  param inout name "testValues" explicit_type "Object"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1}[] ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 158338 "C_GeneMutatorDouble"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " @author kyle wagner, elyk@acm.org / modif. J.LeFur 2011
+Version 1.0, Wed Dec 13 20:33:52 2000 "
+      classrelation 180738 // <realization>
+	relation 180738 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 180738 // <realization>
+	  b parent class_ref 154370 // I_GeneMutator
+      end
+
+      classrelation 180866 // <realization>
+	relation 180866 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 180866 // <realization>
+	  b parent class_ref 129794 // I_ConstantNumeric
+      end
+
+      attribute 249090 "mutMin"
+	private explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+"
+      end
+
+      attribute 249218 "mutMax"
+	private explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+"
+      end
+
+      attribute 249346 "mutRange"
+	private explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 302466 "C_GeneMutatorDouble"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "mutMin" explicit_type "double"
+	  param in name "mutMax" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTORS
+
+ @param mutMin Usually a negative number - how low the mutation can go
+@param mutMax Usually a positive number - how high the mutation can go "
+      end
+
+      operation 302594 "C_GeneMutatorDouble"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Creates a new Random object to use for mutation. "
+      end
+
+      operation 302722 "mutate"
+	public explicit_return_type "Object"
+	nparams 2
+	  param inout name "info" explicit_type "Object"
+	  param inout name "value" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+ Determine a new value for the Double, value, and return it. A number between mutMin and MutMax is generated, added to value,
+and that is returned. Does no checking on info's or value's type, for efficiency's sake.
+@param info the mutation rate, expressed as a Double in interval [0,1]
+@param value the value that is being mutated. A Double. "
+      end
+
+      operation 302850 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 302978 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " MAIN et al.
+"
+      end
+    end
+
+    class 158466 "C_GeneMutatorInteger"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+
+
+@author kyle wagner, elyk@acm.org / modif. J.LeFur 2011 (for JEL microsats)
+Version 1.0, Wed Dec 13 20:33:52 2000
+"
+      classrelation 180994 // <realization>
+	relation 180994 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 180994 // <realization>
+	  b parent class_ref 154370 // I_GeneMutator
+      end
+
+      attribute 249474 "DEFAULT_MUT_MIN"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " -1"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " CONSTANTS
+
+"
+      end
+
+      attribute 249602 "DEFAULT_MUT_MAX"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 1"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 249730 "mutMin"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+"
+      end
+
+      attribute 249858 "mutMax"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+"
+      end
+
+      attribute 249986 "mutRange"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 303106 "C_GeneMutatorInteger"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "mutMin" explicit_type "int"
+	  param in name "mutMax" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+
+@param mutMin
+           Usually a negative number - how low the mutation can go
+@param mutMax
+           Usually a positive number - how high the mutation can go
+"
+      end
+
+      operation 303234 "C_GeneMutatorInteger"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Creates a new Random object to use for mutation.
+"
+      end
+
+      operation 303362 "mutate"
+	public explicit_return_type "Object"
+	nparams 2
+	  param inout name "mutationRate" explicit_type "Object"
+	  param inout name "alleleValue" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Determine a new value for the Integer, value, and return it. A number between mutMin and
+MutMax is generated, added to value, and that is returned. Does no checking on info's or
+value's type, for efficiency's sake.
+
+@param mutationRate
+           the mutation rate, expressed as a Double in interval [0,1]
+@param alleleValue
+           the value that is being mutated. A Double.
+"
+      end
+
+      operation 303490 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 303618 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " ////////////////////////////////////////////////////////////////////////
+ PROTECTED/PRIVATE METHODS
+ ////////////////////////////////////////////////////////////////////////
+
+ MAIN
+"
+      end
+    end
+
+    class 158594 "C_GeneMutatorNormal"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "Mutate double-valued genes (alleles) under a normal distribution.
+
+
+@author kyle wagner, elyk@acm.org
+Version 1.0, Wed Dec 13 20:33:52 2000
+"
+      classrelation 181122 // <realization>
+	relation 181122 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 181122 // <realization>
+	  b parent class_ref 154370 // I_GeneMutator
+      end
+
+      attribute 250114 "DEFAULT_GENE_MUTATOR_MEAN"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " CONSTANTS
+
+
+public static final double DEFAULT_MUT_MIN = -0.1; public static final
+double DEFAULT_MUT_MAX = 0.1;
+
+"
+      end
+
+      attribute 250242 "DEFAULT_GENE_MUTATOR_STAND_DEV"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 1"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 250370 "mean"
+	private explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+"
+      end
+
+      attribute 250498 "standDev"
+	private explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+"
+      end
+
+      operation 303746 "C_GeneMutatorNormal"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "mean" explicit_type "double"
+	  param in name "standDev" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " private double mutRange;
+
+ METHODS
+
+
+@param mean
+           the mean of generated allele values
+@param standDev
+           the standard deviation of allele values (should be >0)
+"
+      end
+
+      operation 303874 "C_GeneMutatorNormal"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Creates a new random object to use for mutation.
+"
+      end
+
+      operation 304002 "mutate"
+	public explicit_return_type "Object"
+	nparams 2
+	  param inout name "info" explicit_type "Object"
+	  param inout name "value" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Determine a new value for the Double, value, and return it. A number
+between mutMin and MutMax is generated, added to value, and that is
+returned. Does no checking on info's or value's type, for efficiency's
+sake.
+
+@param info
+           the mutation rate, expressed as a Double in interval [0,1]
+@param value
+           the value that is being mutated. A Double.
+"
+      end
+
+      operation 304130 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 304258 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " ////////////////////////////////////////////////////////////////////////
+ PROTECTED/PRIVATE METHODS
+ ////////////////////////////////////////////////////////////////////////
+
+ MAIN
+"
+      end
+    end
+
+    class 158722 "C_GeneMutatorSet"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Simple mutator for genes whose values come from a set (actually, a List since random indices into the set must be computed).
+When this set is provided to the mutator, any call to mutate will produce a value from the set, randomly selected.
+@author kyle wagner, elyk@acm.org Version 1.0, Sun Jan 28 17:41:21 2001, J.LeFur 09/2011 "
+      classrelation 181250 // <realization>
+	relation 181250 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 181250 // <realization>
+	  b parent class_ref 154370 // I_GeneMutator
+      end
+
+      attribute 250626 "alleleList"
+	private explicit_type "?"
+	stereotype "List"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+"
+      end
+
+      operation 304386 "C_GeneMutatorSet"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "alleleList" explicit_type "List<?>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS"
+      end
+
+      operation 304514 "mutate"
+	public explicit_return_type "Object"
+	nparams 2
+	  param inout name "info" explicit_type "Object"
+	  param inout name "value" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Determine a new value for the allele, value, and return it. An index into the alleleList is randomly generated (uniform
+distribution, java.util.Random is used). value is ignored in this computation. Does no checking on info's or value's type,
+for efficiency's sake.
+@param info the mutation rate, expressed as a Double in interval [0,1]
+@param value the value that is being mutated. A member of the alleleSet, presumably. "
+      end
+
+      operation 304642 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 304770 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " MAIN
+"
+      end
+    end
+
+    class 158850 "C_RecombinatorMapGenome"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "Single-point crossover using map units (on MapGenomes). Crossover point is chosen based on map
+length (a \"virtual\" length) of the chromosome pair, not based on how many loci it has.
+
+@author kyle wagner, elyk@cs.indiana.edu
+Version 1.0, april 25, 2002, modif. J.LeFur 09/2011
+"
+      classrelation 181378 // <realization>
+	relation 181378 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 181378 // <realization>
+	  b parent class_ref 144514 // I_Recombinator
+      end
+
+      operation 305026 "C_RecombinatorMapGenome"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 305154 "crossover"
+	public return_type class_ref 154754 // C_ChromosomePair
+	nparams 2
+	  param inout name "xsome1" type class_ref 144642 // C_Chromosome
+	  param inout name "xsome2" type class_ref 144642 // C_Chromosome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Perform 1-pt crossover on these two chromosomes and return the resulting new chromosome. This
+is efficient if Chromatids's getGene() is constant or even log(n) access time.
+
+@param xsome1
+           xsome2 chromosomes to be recombined - parents of a new chromosome
+@return a NEW chromosome pair which is the recombination of genes from xsome1 and xsome2
+        Author kyle Wagner / rev. J.Le Fur 2011
+"
+      end
+    end
+
+    class 158978 "C_RecombinatorMicrosat"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " generalized crossover for chromosome pair dedicated to microsatelites genes
+@author @author JE.Longueville, 2011 / J.LeFur, 01.2012 "
+      classrelation 181506 // <realization>
+	relation 181506 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 181506 // <realization>
+	  b parent class_ref 144514 // I_Recombinator
+      end
+
+      operation 305282 "C_RecombinatorMicrosat"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 305410 "crossover"
+	public return_type class_ref 154754 // C_ChromosomePair
+	nparams 2
+	  param inout name "xtid1" type class_ref 144642 // C_Chromosome
+	  param inout name "xtid2" type class_ref 144642 // C_Chromosome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Performs a full multi-point crossover on left and right strands of the C_XsomeMicrosat Retrieves a composite chromosome
+pair containing the value of NUMBER_GENES unlinked microsat locus. This procedure substitutes to extract unbound microsats
+positioned on various chromosome pairs (Cheat d'un nombre de 1 locus par chromosome pair).
+@return a NEW Chromosome pair which is the recombination of genes from left and right strands of the C_XsomeMicrosat "
+      end
+    end
+
+    class 159106 "C_RecombinatorNull"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "Return the same chromosome pair than the parent. The two homologous chromosomes aren't crossed.
+@author J.LeFur 01/2012
+
+"
+      classrelation 181634 // <realization>
+	relation 181634 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 181634 // <realization>
+	  b parent class_ref 144514 // I_Recombinator
+      end
+
+      operation 305538 "crossover"
+	public return_type class_ref 154754 // C_ChromosomePair
+	nparams 2
+	  param inout name "g1" type class_ref 144642 // C_Chromosome
+	  param inout name "g2" type class_ref 144642 // C_Chromosome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 159234 "C_RecombinatorOnePt"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "Single-point crossover.
+
+@author kyle wagner, elyk@cs.indiana.edu
+Version 1.0, nov 30, 1998
+"
+      classrelation 181762 // <realization>
+	relation 181762 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 181762 // <realization>
+	  b parent class_ref 144514 // I_Recombinator
+      end
+
+      operation 305666 "C_RecombinatorOnePt"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 305794 "crossover"
+	public return_type class_ref 154754 // C_ChromosomePair
+	nparams 2
+	  param inout name "xtid1" type class_ref 144642 // C_Chromosome
+	  param inout name "xtid2" type class_ref 144642 // C_Chromosome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Perform a one point crossover on these two chromosomes homologous and return a new chromosome
+pair.
+@param xtid1
+           , xtid2 chromosomes to be recombined -
+@return a NEW Chromosome pair with two new homologous chromosomes which are the recombination
+        of xtid1 and xtid2 (contain the same genes, but not necessarily at the same place).
+"
+      end
+    end
+  end
+
+  deploymentview 130946 "variator"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 151554 "C_GeneConstraint"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.*;
+${definition}"
+      associated_elems
+	class_ref 154882 // C_GeneConstraint
+      end
+    end
+
+    artifact 151682 "I_GeneMutator"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 154370 // I_GeneMutator
+      end
+    end
+
+    artifact 151810 "C_GeneMutatorDouble"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import data.constants.I_ConstantNumeric;
+import melanesim.C_ContextCreator;
+${definition}"
+      associated_elems
+	class_ref 158338 // C_GeneMutatorDouble
+      end
+    end
+
+    artifact 151938 "C_GeneMutatorInteger"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import melanesim.C_ContextCreator;
+${definition}"
+      associated_elems
+	class_ref 158466 // C_GeneMutatorInteger
+      end
+    end
+
+    artifact 152066 "C_GeneMutatorNormal"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import melanesim.C_ContextCreator;
+${definition}"
+      associated_elems
+	class_ref 158594 // C_GeneMutatorNormal
+      end
+    end
+
+    artifact 152194 "C_GeneMutatorSet"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.*;
+import melanesim.C_ContextCreator;
+import thing.dna.C_Chromosome;
+import thing.dna.C_Gene;
+${definition}"
+      associated_elems
+	class_ref 158722 // C_GeneMutatorSet
+      end
+    end
+
+    artifact 152322 "I_Recombinator"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import thing.dna.C_Chromosome;
+import thing.dna.C_ChromosomePair;
+${definition}"
+      associated_elems
+	class_ref 144514 // I_Recombinator
+      end
+    end
+
+    artifact 152450 "C_RecombinatorMapGenome"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import melanesim.C_ContextCreator;
+import thing.dna.C_Chromosome;
+import thing.dna.C_ChromosomePair;
+import thing.dna.C_Gene;
+${definition}"
+      associated_elems
+	class_ref 158850 // C_RecombinatorMapGenome
+      end
+    end
+
+    artifact 152578 "C_RecombinatorMicrosat"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import melanesim.C_ContextCreator;
+import thing.dna.C_Chromosome;
+import thing.dna.C_ChromosomePair;
+${definition}"
+      associated_elems
+	class_ref 158978 // C_RecombinatorMicrosat
+      end
+    end
+
+    artifact 152706 "C_RecombinatorNull"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import thing.dna.C_Chromosome;
+import thing.dna.C_ChromosomePair;
+${definition}"
+      associated_elems
+	class_ref 159106 // C_RecombinatorNull
+      end
+    end
+
+    artifact 152834 "C_RecombinatorOnePt"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import melanesim.C_ContextCreator;
+import thing.dna.C_Chromosome;
+import thing.dna.C_ChromosomePair;
+import thing.dna.C_Gene;
+${definition}"
+      associated_elems
+	class_ref 159234 // C_RecombinatorOnePt
+      end
+    end
+  end
+end

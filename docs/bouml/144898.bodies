@@ -1,0 +1,225 @@
+class C_WallFollower
+!!!181890.java!!!	discardThis() : void
+		this.myBackCell = null;
+		this.myRightCell = null;
+		this.myFrontCell = null;
+		this.myLeftCell = null;
+		this.orientationPoint_Umeter = null;
+!!!182018.java!!!	guiding(inout oneThing : A_Animal) : void
+		this.computeOrientations(oneThing, A_VisibleAgent.myLandscape
+				.getGrid()[(int) this.orientationPoint_Umeter.x][(int) this.orientationPoint_Umeter.y]);
+		switch (nearestWallPosition) {
+			case FORWARD_TO_AGENT : {
+				// if (C_ContextCreator.randomGeneratorForMovement.nextDouble() > 0.5) {
+				if (!oneThing.isSightObstacle(this.myRightCell)) oneThing.setTarget(this.selectRightAim(oneThing));
+				else if (!oneThing.isSightObstacle(this.myLeftCell)) oneThing.setTarget(this.selectLeftAim(oneThing));
+				else if (!oneThing.isSightObstacle(this.myBackCell)) oneThing.setTarget(this.selectBackAim(oneThing));
+				// }
+				// else {
+				// if (this.isObstacle(this.myLeftCell)) this.target = this.selectLeftAim();
+				// else if (this.isObstacle(this.myRightCell)) this.target = this.selectRightAim();
+				// else if (this.isObstacle(this.myBackCell)) this.target = this.selectBackAim();
+				// }
+			}
+				break;
+			case LEFT_TO_AGENT : {
+				if (!oneThing.isSightObstacle(this.myFrontCell)) oneThing.setTarget(this.selectFrontAim(oneThing));
+				else if (!oneThing.isSightObstacle(this.myRightCell)) oneThing.setTarget(this.selectRightAim(oneThing));
+				else if (!oneThing.isSightObstacle(this.myBackCell)) oneThing.setTarget(this.selectBackAim(oneThing));
+				else if (!oneThing.isSightObstacle(this.myLeftCell)) oneThing.setTarget(this.selectLeftAim(oneThing));
+			}
+				break;
+			case RIGHT_TO_AGENT : {
+				if (!oneThing.isSightObstacle(this.myFrontCell)) oneThing.setTarget(this.selectFrontAim(oneThing));
+				else if (!oneThing.isSightObstacle(this.myLeftCell)) oneThing.setTarget(this.selectLeftAim(oneThing));
+				else if (!oneThing.isSightObstacle(this.myBackCell)) oneThing.setTarget(this.selectBackAim(oneThing));
+				else if (!oneThing.isSightObstacle(this.myRightCell)) oneThing.setTarget(this.selectRightAim(oneThing));
+			}
+		}
+
+!!!182146.java!!!	computeOrientations(inout oneThing : A_Animal, inout selectedThing : I_SituatedThing) : void
+		Coordinate selectedThingCoordinate_Umeter = selectedThing.getCoordinate_Umeter();
+		Coordinate leftCoordinate_Umeter = new Coordinate();
+		Coordinate rightCoordinate_Umeter = new Coordinate();
+		Coordinate backwardCoordinate_Umeter = new Coordinate();
+		this.myRightCell = null;
+		this.myLeftCell = null;
+		this.myBackCell = null;
+		this.myFrontCell = selectedThing;
+		// We consider the same distance between selected thing and right, left or backward formula : see chronoThesisSall
+		double distanceToTarget_Umeter = C_VariousUtilities.distance_Umeter(
+				selectedThingCoordinate_Umeter, oneThing.getCoordinate_Umeter());
+
+		rightCoordinate_Umeter.x = oneThing.getCoordinate_Umeter().x + (C_Parameters.CELL_WIDTH_Umeter
+				/ distanceToTarget_Umeter) * (selectedThingCoordinate_Umeter.y - oneThing.getCoordinate_Umeter().y);
+		rightCoordinate_Umeter.y = oneThing.getCoordinate_Umeter().y - (C_Parameters.CELL_WIDTH_Umeter
+				/ distanceToTarget_Umeter) * (selectedThingCoordinate_Umeter.x - oneThing.getCoordinate_Umeter().x);
+
+		leftCoordinate_Umeter.x = oneThing.getCoordinate_Umeter().x - (C_Parameters.CELL_WIDTH_Umeter
+				/ distanceToTarget_Umeter) * (selectedThingCoordinate_Umeter.y - oneThing.getCoordinate_Umeter().y);
+		leftCoordinate_Umeter.y = oneThing.getCoordinate_Umeter().y + (C_Parameters.CELL_WIDTH_Umeter
+				/ distanceToTarget_Umeter) * (selectedThingCoordinate_Umeter.x - oneThing.getCoordinate_Umeter().x);
+
+		if (A_VisibleAgent.myLandscape.isPointInGrid(rightCoordinate_Umeter)) {
+			this.myRightCell = A_VisibleAgent.myLandscape
+					.getGrid()[(int) rightCoordinate_Umeter.x][(int) rightCoordinate_Umeter.y];
+			if (C_VariousUtilities.checkObstacleBefore0(oneThing, this.myRightCell) != null) this.myRightCell = null;
+		}
+		if (A_VisibleAgent.myLandscape.isPointInGrid(leftCoordinate_Umeter)) {
+			this.myLeftCell = A_VisibleAgent.myLandscape
+					.getGrid()[(int) leftCoordinate_Umeter.x][(int) leftCoordinate_Umeter.y];
+			if (C_VariousUtilities.checkObstacleBefore0(oneThing, this.myLeftCell) != null) this.myLeftCell = null;
+		}
+		backwardCoordinate_Umeter.x = (2 * oneThing.getCoordinate_Umeter().x - selectedThingCoordinate_Umeter.x);
+		backwardCoordinate_Umeter.y = (2 * oneThing.getCoordinate_Umeter().y - selectedThingCoordinate_Umeter.y);
+		if (A_VisibleAgent.myLandscape.isPointInGrid(backwardCoordinate_Umeter)) {
+			this.myBackCell = A_VisibleAgent.myLandscape
+					.getGrid()[(int) backwardCoordinate_Umeter.x][(int) backwardCoordinate_Umeter.y];
+			if (C_VariousUtilities.checkObstacleBefore0(oneThing, this.myBackCell) != null) this.myBackCell = null;
+		}
+!!!182274.java!!!	selectRightAim(inout oneThing : A_Animal) : I_SituatedThing
+		if (nearestWallPosition == RIGHT_TO_AGENT) {
+			if (this.myBackCell != null)
+				this.orientationPoint_Umeter = C_VariousUtilities.substract(C_VariousUtilities.sum(this.myBackCell
+						.getCoordinate_Umeter(), this.myRightCell.getCoordinate_Umeter()), oneThing.getCurrentSoilCell()
+								.getCoordinate_Umeter());
+			else
+				if (this.myFrontCell != null) {
+					this.orientationPoint_Umeter = C_VariousUtilities.substract(C_VariousUtilities.sum(oneThing
+							.getCurrentSoilCell().getCoordinate_Umeter(), this.myRightCell.getCoordinate_Umeter()),
+							this.myFrontCell.getCoordinate_Umeter());
+					nearestWallPosition = LEFT_TO_AGENT;
+				}
+		}
+		else {
+			if (((A_Animal) oneThing).isSightObstacle(this.myFrontCell))
+				this.orientationPoint_Umeter = C_VariousUtilities.substract(C_VariousUtilities.sum(this.myFrontCell
+						.getCoordinate_Umeter(), this.myRightCell.getCoordinate_Umeter()), oneThing.getCurrentSoilCell()
+								.getCoordinate_Umeter());
+			else
+				if (this.myLeftCell != null)
+					this.orientationPoint_Umeter = C_VariousUtilities.substract(C_VariousUtilities.sum(this.myFrontCell
+							.getCoordinate_Umeter(), this.myLeftCell.getCoordinate_Umeter()), oneThing
+									.getCurrentSoilCell().getCoordinate_Umeter());
+				else
+					this.orientationPoint_Umeter = C_VariousUtilities.substract(C_VariousUtilities.sum(this.myFrontCell
+							.getCoordinate_Umeter(), oneThing.getCurrentSoilCell().getCoordinate_Umeter()),
+							this.myRightCell.getCoordinate_Umeter());
+
+			nearestWallPosition = LEFT_TO_AGENT;
+		}
+		return myRightCell;
+!!!182402.java!!!	selectLeftAim(inout oneThing : A_Animal) : I_SituatedThing
+		if (nearestWallPosition == LEFT_TO_AGENT) {
+			if (this.myBackCell != null)
+				this.orientationPoint_Umeter = C_VariousUtilities.substract(C_VariousUtilities.sum(this.myBackCell
+						.getCoordinate_Umeter(), this.myLeftCell.getCoordinate_Umeter()), oneThing.getCurrentSoilCell()
+								.getCoordinate_Umeter());
+			else
+				if (this.myFrontCell != null) {
+					this.orientationPoint_Umeter = C_VariousUtilities.substract(C_VariousUtilities.sum(oneThing
+							.getCurrentSoilCell().getCoordinate_Umeter(), this.myLeftCell.getCoordinate_Umeter()),
+							this.myFrontCell.getCoordinate_Umeter());
+					nearestWallPosition = RIGHT_TO_AGENT;
+				}
+		}
+		else {
+			if (oneThing.isSightObstacle(this.myFrontCell))
+				this.orientationPoint_Umeter = C_VariousUtilities.substract(C_VariousUtilities.sum(this.myFrontCell
+						.getCoordinate_Umeter(), this.myLeftCell.getCoordinate_Umeter()), oneThing.getCurrentSoilCell()
+								.getCoordinate_Umeter());
+			else
+				if (this.myRightCell != null)
+					this.orientationPoint_Umeter = C_VariousUtilities.substract(C_VariousUtilities.sum(this.myFrontCell
+							.getCoordinate_Umeter(), this.myRightCell.getCoordinate_Umeter()), oneThing
+									.getCurrentSoilCell().getCoordinate_Umeter());
+				else
+					this.orientationPoint_Umeter = C_VariousUtilities.substract(C_VariousUtilities.sum(this.myFrontCell
+							.getCoordinate_Umeter(), oneThing.getCurrentSoilCell().getCoordinate_Umeter()),
+							this.myLeftCell.getCoordinate_Umeter());
+			nearestWallPosition = RIGHT_TO_AGENT;
+		}
+		return myLeftCell;
+!!!182530.java!!!	selectBackAim(inout oneThing : A_Animal) : I_SituatedThing
+		if (nearestWallPosition == RIGHT_TO_AGENT) {
+			if (this.myLeftCell != null)
+				this.orientationPoint_Umeter = C_VariousUtilities.substract(C_VariousUtilities.sum(this.myLeftCell
+						.getCoordinate_Umeter(), this.myBackCell.getCoordinate_Umeter()), oneThing.getCurrentSoilCell()
+								.getCoordinate_Umeter());
+			else {
+				this.orientationPoint_Umeter = null;
+				this.nearestWallPosition = NO_WALL;
+			}
+		}
+		else if (nearestWallPosition == LEFT_TO_AGENT) {
+			if (this.myRightCell != null)
+				this.orientationPoint_Umeter = C_VariousUtilities.substract(C_VariousUtilities.sum(this.myRightCell
+						.getCoordinate_Umeter(), this.myBackCell.getCoordinate_Umeter()), oneThing.getCurrentSoilCell()
+								.getCoordinate_Umeter());
+			else {
+				this.orientationPoint_Umeter = null;
+				this.nearestWallPosition = NO_WALL;
+			}
+		}
+		else
+			this.orientationPoint_Umeter = C_VariousUtilities.substract(C_VariousUtilities.sum(this.myBackCell
+					.getCoordinate_Umeter(), this.myBackCell.getCoordinate_Umeter()), oneThing.getCurrentSoilCell()
+							.getCoordinate_Umeter());
+		return this.myBackCell;
+!!!182658.java!!!	selectFrontAim(inout oneThing : A_Animal) : I_SituatedThing
+		if (nearestWallPosition == RIGHT_TO_AGENT) {
+			if (this.myRightCell != null) {
+				this.orientationPoint_Umeter = C_VariousUtilities.substract(C_VariousUtilities.sum(this.myFrontCell
+						.getCoordinate_Umeter(), this.myRightCell.getCoordinate_Umeter()), oneThing.getCurrentSoilCell()
+								.getCoordinate_Umeter());
+			}
+			else {
+				if (this.myLeftCell != null)
+					this.orientationPoint_Umeter = C_VariousUtilities.substract(C_VariousUtilities.sum(this.myFrontCell
+							.getCoordinate_Umeter(), oneThing.getCurrentSoilCell().getCoordinate_Umeter()),
+							this.myLeftCell.getCoordinate_Umeter());
+			}
+		}
+		else if (nearestWallPosition == LEFT_TO_AGENT) {
+			if (this.myRightCell != null)
+				this.orientationPoint_Umeter = C_VariousUtilities.substract(C_VariousUtilities.sum(this.myFrontCell
+						.getCoordinate_Umeter(), oneThing.getCurrentSoilCell().getCoordinate_Umeter()), this.myRightCell
+								.getCoordinate_Umeter());
+			else
+				if (this.myLeftCell != null)
+					this.orientationPoint_Umeter = C_VariousUtilities.substract(C_VariousUtilities.sum(this.myLeftCell
+							.getCoordinate_Umeter(), this.myFrontCell.getCoordinate_Umeter()), oneThing
+									.getCurrentSoilCell().getCoordinate_Umeter());
+		}
+		else {
+			this.orientationPoint_Umeter = C_VariousUtilities.substract(C_VariousUtilities.sum(this.myFrontCell
+					.getCoordinate_Umeter(), oneThing.getCurrentSoilCell().getCoordinate_Umeter()), this.myRightCell
+							.getCoordinate_Umeter());
+		}
+		return this.myFrontCell;
+!!!182786.java!!!	computeNewPositionWithTarget_Umeter(inout oneAnimal : A_Animal, inout targetingThing : I_SituatedThing) : Coordinate
+		Coordinate newPositionCoordinate_Umeter = targetingThing.getCoordinate_Umeter();
+		double verificationDistance_Umeter = MIN_VALUE_OF_REBOUNDZONE_Umeter;
+		Coordinate findingPoint_Umeter = new Coordinate();
+		double distanceToCurrentPosition = 0.;
+		I_SituatedThing newThingContainer = null;
+		do {
+			distanceToCurrentPosition = C_VariousUtilities.distance_Umeter(oneAnimal
+					.getCoordinate_Umeter(), newPositionCoordinate_Umeter);
+			findingPoint_Umeter = C_VariousUtilities.computeVectorBetweenTwoPoints(oneAnimal.getCoordinate_Umeter(),
+					newPositionCoordinate_Umeter, verificationDistance_Umeter);
+			newPositionCoordinate_Umeter.x -= findingPoint_Umeter.x;
+			newPositionCoordinate_Umeter.y -= findingPoint_Umeter.y;
+			newThingContainer = A_VisibleAgent.myLandscape
+					.getGrid()[(int) newPositionCoordinate_Umeter.x][(int) newPositionCoordinate_Umeter.y];
+		} while ((distanceToCurrentPosition > verificationDistance_Umeter) && oneAnimal.isSightObstacle(
+				newThingContainer));
+		return newThingContainer.getCoordinate_Umeter();
+!!!182914.java!!!	setOrientationPoint(inout orientationPoint_Umeter : Coordinate) : void
+		this.orientationPoint_Umeter = orientationPoint_Umeter;
+!!!183042.java!!!	setNearestWallPosition(in nearestWallPosition : int) : void
+		this.nearestWallPosition = nearestWallPosition;
+!!!183170.java!!!	getOrientationPoint() : Coordinate
+		return orientationPoint_Umeter;
+!!!183298.java!!!	getNearestWallPosition() : int
+		return nearestWallPosition;

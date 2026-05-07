@@ -1,0 +1,12 @@
+class C_Nekton
+!!!273026.java!!!	C_Nekton(inout genome : I_DiploidGenome)
+ super(genome); this.setMyName("micro-Nekton"+NAMES_SEPARATOR+myId);
+!!!273154.java!!!	getSpeedEast() : double
+ return super.getSpeedEast()/NEKTON_RESISTANCE_FACTOR;
+!!!273282.java!!!	getSpeedNorth() : double
+ return super.getSpeedNorth()/NEKTON_RESISTANCE_FACTOR;
+!!!273410.java!!!	getSize() : double
+		C_SoilCellMarine mycell = (C_SoilCellMarine)this.currentSoilCell;
+		return mycell.getTotalNektonDensity_U100()/2.;
+!!!273538.java!!!	getTypeActeur() : I_MarineActor::DriverType
+ return DriverType.NEKTON;

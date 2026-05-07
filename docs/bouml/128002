@@ -1,0 +1,630 @@
+format 224
+"src" // src
+  revision 1
+  modified_by 2 "lefur"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:\\Users\\lefur\\Documents\\GitHub\\MelaneSim_2024\\src/"
+  classview 128130 "src"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 128002 "addSortedMap"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      operation 128002 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 128130 "bougeSouris"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 128002 "r"
+	class_attribute const_attribute private explicit_type "Random"
+	init_value " new Random()"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 128130 "saveScreen"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Déplace légèrement la souris en ajoutant un petit décalage aléatoire.
+"
+      end
+
+      operation 128258 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Point d'entrée : déplace la souris périodiquement.
+Args (optionnels) :
+  [0] intervalle en millisecondes (par défaut 5000)
+  [1] durée totale en secondes (par défaut 60, 0 = infini)
+"
+      end
+    end
+
+    class 128258 "InfoAccessToCSV"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " @author chatGPT 23.06.2025 "
+      operation 128386 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	nexceptions 1
+	  explicit_exception "IOException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 128514 "formatDate"
+	class_operation private explicit_return_type "String"
+	nparams 1
+	  param in name "raw" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Convertit une date 20200203 → 2020-02-03"
+      end
+    end
+
+    class 128386 "InterfaceGraphique"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      operation 128642 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 128514 "MaFenetrePrincipale"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 128002 // <generalisation>
+	relation 128002 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 128002 // <generalisation>
+	  b parent class_ref 128642 // JFrame
+      end
+
+      attribute 128130 "serialVersionUID"
+	class_attribute const_attribute private explicit_type "long"
+	init_value " 1L"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 128770 "MaFenetrePrincipale"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 128898 "ouvrirNouvelleFenetre"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 129026 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 128770 "Main"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      operation 129154 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 128898 "MoyenneMensuelleGrille"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 128258 // <realization>
+	relation 128258 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 128258 // <realization>
+	  b parent class_ref 129026 // I_ConstantPNMC
+      end
+
+      attribute 135938 "NB_LIGNES"
+	class_attribute const_attribute private explicit_type "int"
+	init_value " 145"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 136066 "NB_COLONNES"
+	class_attribute const_attribute private explicit_type "int"
+	init_value " 223"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 136194 "DATE_FORMAT"
+	class_attribute const_attribute private explicit_type "DateTimeFormatter"
+	init_value " DateTimeFormatter.ofPattern(\"dd/MM/yyyy\")"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 129282 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	nexceptions 1
+	  explicit_exception "IOException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 129282 "SimpleGUI"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 128386 // <generalisation>
+	relation 128386 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 128386 // <generalisation>
+	  b parent class_ref 128642 // JFrame
+      end
+
+      attribute 136322 "serialVersionUID"
+	class_attribute const_attribute private explicit_type "long"
+	init_value " 1L"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 136450 "redButton"
+	private explicit_type "JButton"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 136578 "greenButton"
+	private explicit_type "JButton"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 129410 "SimpleGUI"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 129538 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 129410 "TableInfoAccess"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+  end
+
+  deploymentview 128002 "src"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 128002 "addSortedMap"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.*;
+${definition}"
+      associated_elems
+	class_ref 128002 // addSortedMap
+      end
+    end
+
+    artifact 128130 "bougeSouris"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.AWTException;
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.Robot;
+import java.util.Random;
+${definition}"
+      associated_elems
+	class_ref 128130 // bougeSouris
+      end
+    end
+
+    artifact 128258 "InfoAccessToCSV"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.io.*;
+import java.nio.file.*;
+import java.util.*;
+import java.util.regex.*;
+${definition}"
+      associated_elems
+	class_ref 128258 // InfoAccessToCSV
+      end
+    end
+
+    artifact 128386 "InterfaceGraphique"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+${definition}"
+      associated_elems
+	class_ref 128386 // InterfaceGraphique
+      end
+    end
+
+    artifact 128514 "MaFenetrePrincipale"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+${definition}"
+      associated_elems
+	class_ref 128514 // MaFenetrePrincipale
+      end
+    end
+
+    artifact 128642 "Main"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+${definition}"
+      associated_elems
+	class_ref 128770 // Main
+      end
+    end
+
+    artifact 129026 "MoyenneMensuelleGrille"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.io.*;
+import java.nio.file.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+import data.constants.I_ConstantPNMC;
+${definition}"
+      associated_elems
+	class_ref 128898 // MoyenneMensuelleGrille
+      end
+    end
+
+    artifact 129154 "SimpleGUI"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+${definition}"
+      associated_elems
+	class_ref 129282 // SimpleGUI
+      end
+    end
+
+    artifact 129282 "TableInfoAccess"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 129410 // TableInfoAccess
+      end
+    end
+  end
+
+  package_ref 128258 // data
+
+  package_ref 128642 // thing
+
+  package_ref 129282 // melanesim
+
+  package_ref 129666 // presentation
+end

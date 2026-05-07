@@ -1,0 +1,53 @@
+class C_InspectorEnergy
+!!!232194.java!!!	C_InspectorEnergy()
+		super();
+		indicatorsHeader = "Tick;";
+		/*
+		 * dataSaverEnergyGeneral = new C_FileWriter("EnergyIndicators.csv", true); dataSaverEnergyGeneral.writeln(
+		 * "Tick;TaillePop;NbEry;NbNat;NbLaz;NbHyb;HybridsRate;pbUnbalancedGene;pbSynteny;pbGeneNotFound;pbEspistasie;pbMatching;pbHaldane"
+		 * );
+		 */
+!!!232322.java!!!	step_Utick() : void
+		super.step_Utick();// compute in cascade and store indicators values
+		// save private files
+		writeDataToFileGeneral();
+!!!232450.java!!!	indicatorsStoreValues() : String
+		indicatorsValues = RepastEssentials.GetTickCount()+CSV_FIELD_SEPARATOR;
+		return(indicatorsValues);
+!!!232578.java!!!	indicatorsCompute() : void
+		Object[] contextContent = RunState.getInstance().getMasterContext().toArray();
+		String speciesName = "";
+		this.EnergyBySpecies.clear();
+		this.sizeBySpecies.clear();
+		for(int i = 0;i<contextContent.length;i++){
+			Object item = contextContent[i];
+			if((item instanceof A_NDS)&&!(item instanceof C_LandPlot)&&!(item instanceof C_StreamCurrent)){
+				speciesName = C_VariousUtilities.getShortClassName(item.getClass()).substring(2);
+				double itemEnergy_Ukcal = ((A_NDS)item).getEnergy_Ukcal();
+				if(item instanceof I_MarineActor)
+					itemEnergy_Ukcal = itemEnergy_Ukcal*C_Parameters.getMultiplier(((I_MarineActor)item)
+							.getTypeActeur());
+				// If key exist, add values
+				if(this.EnergyBySpecies.get(speciesName)!=null){
+					this.EnergyBySpecies.put(speciesName,this.EnergyBySpecies.get(speciesName)+itemEnergy_Ukcal);
+					this.sizeBySpecies.put(speciesName,this.sizeBySpecies.get(speciesName)+1);
+				}
+				// If not, create an entry and set values
+				else{
+					this.EnergyBySpecies.put(speciesName,itemEnergy_Ukcal);
+					this.sizeBySpecies.put(speciesName,1);
+				}
+			}
+		}
+		// Replace energy values with mean energyvalues
+		for(String key:this.EnergyBySpecies.keySet()) this.EnergyBySpecies.put(key,this.EnergyBySpecies.get(key)
+				/this.sizeBySpecies.get(key));
+!!!232706.java!!!	writeDataToFileGeneral() : void
+		// dataSaverEnergyGeneral.writeln(RepastEssentials.GetTickCount() + CSV_FIELD_SEPARATOR
+		// + C_InspectorPopulation.rodentList.size() + CSV_FIELD_SEPARATOR + nbGerbils + CSV_FIELD_SEPARATOR
+		// + nbOwls + CSV_FIELD_SEPARATOR + nbTrees + CSV_FIELD_SEPARATOR + nbShrubs + CSV_FIELD_SEPARATOR
+		// + nbGrasses + CSV_FIELD_SEPARATOR + nbCrops + CSV_FIELD_SEPARATOR + nbTrees);
+!!!232834.java!!!	closeSimulation() : void
+		// dataSaverEnergyGeneral.closeFile();
+!!!232962.java!!!	getEnergyBySpecies() : Map<String,Double>
+ return EnergyBySpecies;

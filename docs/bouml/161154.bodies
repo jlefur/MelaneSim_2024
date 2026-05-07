@@ -1,0 +1,118 @@
+class C_LandscapeMarine
+!!!327682.java!!!	C_LandscapeMarine(inout context : Context<Object>, in url : String, in gridValueName : String, in continuousSpaceName : String)
+		super(context,url,gridValueName,continuousSpaceName);
+		context.addValueLayer(this.energyValueLayer);
+!!!327810.java!!!	translate(inout thing : A_VisibleAgent, inout moveDistance_Umeter : Coordinate) : void
+		C_SoilCellMarine cell = (C_SoilCellMarine)thing.getCurrentSoilCell();
+		if(cell.getSpeedEastward_UmeterPerSecond()==0.0&&cell.getSpeedNorthward_UmeterPerSecond()==0.0){
+			if(((C_SoilCellMarine)thing.getCurrentSoilCell()).isTerrestrial()) bordure((A_Organism)thing);
+			else{
+				boolean washedOnShore = false;
+				for(I_Container oneNeighbour:this.getCellNeighbours(cell)) if(((C_SoilCellMarine)oneNeighbour)
+						.isTerrestrial()){
+							washedOnShore = true;
+						}
+				if(washedOnShore) bordure((A_Organism)thing);
+			}
+		}
+		else super.translate(thing,moveDistance_Umeter);
+!!!327938.java!!!	readRasterFile(in url : String) : int
+		int[][] matriceLue;
+		System.out.println();
+		matriceLue = C_ReadRasterOcean.txtRasterLoader(url);
+		A_Protocol.event("C_LandscapeMarine constructor","ASCII grid",isNotError);
+		return matriceLue;
+!!!328066.java!!!	createGround(inout matriceLue : int [[][]]) : void
+		this.energyValueLayer = new GridValueLayer(energyGridvalues,true,
+				new repast.simphony.space.grid.WrapAroundBorders(),dimension_Ucell.width,dimension_Ucell.height);
+		for(int i = this.dimension_Ucell.width-1;i>=0;i--){
+			for(int j = this.dimension_Ucell.height-1;j>=0;j--){
+				// TODO number in source Terrestrial in raster bathymetry JLF 04.2025;
+				if(matriceLue[i][j]>=8) matriceLue[i][j] = TERRESTRIAL_MIN_AFFINITY;
+				this.getValueLayer().set(matriceLue[i][j],i,j);
+				// energy values are 0-green, 1-orange, 2-red or 3-black forN/A ( viz. land)
+				this.energyValueLayer.set((int)(Math.random()*3),i,j);
+				this.grid[i][j] = new C_SoilCellMarine(matriceLue[i][j],i,j);
+			}
+		}
+!!!328194.java!!!	replaceOutcomer(inout animalLeavingLandscape : A_VisibleAgent, inout newLocation : double [[]], in x : int, in y : int) : void
+		C_InspectorPopulationMarine.planktonExport++;
+		super.replaceOutcomer(animalLeavingLandscape,newLocation,x,y);
+!!!328322.java!!!	bordure(inout animalLeavingLandscape : A_VisibleAgent) : void
+// TODO JLF 2015.11 change name (agentLeaving)
+		// Identify on which side the new animal will appear
+		if(animalLeavingLandscape.isDead()) return;// Could leave landscape in the middle of a step.
+		double[] newLocation = new double[2];
+		int x = 0, y = 0;
+		do{
+			int randkey = (int)(C_ContextCreator.randomGeneratorForInitialisation.nextDouble()*4);// TODO number in
+																									// source
+			x = (int)(C_ContextCreator.randomGeneratorForInitialisation.nextDouble()*this.dimension_Ucell.getWidth());
+			y = (int)(C_ContextCreator.randomGeneratorForInitialisation.nextDouble()*this.dimension_Ucell.getHeight());
+		}while(((C_SoilCellMarine)grid[x][y]).isTerrestrial());
+		newLocation[0] = x*C_Parameters.CELL_SIZE_UcontinuousSpace; // cell / cs.cell^-1 -> cs;
+		newLocation[1] = y*C_Parameters.CELL_SIZE_UcontinuousSpace; // cell / cs.cell^-1 -> cs;
+		replaceOutcomer(animalLeavingLandscape,newLocation,x,y);
+!!!328450.java!!!	assertCellsEnergy() : void
+		double cellIntegralEnergy_Ukcal;
+		this.rankEnergy();
+		for(int i = 0;i<this.dimension_Ucell.getWidth();i++){
+			for(int j = 0;j<this.dimension_Ucell.getHeight();j++){
+				if(((C_SoilCellMarine)grid[i][j]).isTerrestrial()) this.energyValueLayer.set(ENERGY_LAND,i,j);
+				else{
+					this.energyValueLayer.set(ENERGY_RESET,i,j);// reset cell color
+					cellIntegralEnergy_Ukcal = ((C_SoilCellMarine)grid[i][j]).getIntegralEnergy_Ukcal();
+					if(cellIntegralEnergy_Ukcal>=energyRanks[ENERGY_GREEN]) this.energyValueLayer.set(ENERGY_GREEN,i,j);
+					else
+						if(cellIntegralEnergy_Ukcal>=energyRanks[ENERGY_ORANGE])
+							this.energyValueLayer.set(ENERGY_ORANGE,i,j);
+						else
+							if(cellIntegralEnergy_Ukcal>=energyRanks[ENERGY_RED])
+								this.energyValueLayer.set(ENERGY_RED,i,j);
+					((C_SoilCellMarine)grid[i][j]).resetIntegralEnergy_Ukcal();
+					// ((C_SoilCellMarine) grid[i][j]).setEnergy_Ukcal(0.);
+				}
+			}
+		}
+!!!328578.java!!!	rankEnergy() : void
+		C_LandscapeMarine.overallEnergy_Ukcal = 0.0;
+		// Put each energy rank in keys of a sorted map and fill values with the corresponding energy sum
+		TreeMap<Integer,Integer> energyByRank = new TreeMap<>();
+		for(int i = 0;i<this.dimension_Ucell.getWidth();i++){
+			for(int j = 0;j<this.dimension_Ucell.getHeight();j++){
+				Integer cellIntegralEnergy_Ukcal = (int)((C_SoilCellMarine)grid[i][j]).getIntegralEnergy_Ukcal();
+				if(energyByRank.get(cellIntegralEnergy_Ukcal)!=null)
+					energyByRank.put(cellIntegralEnergy_Ukcal,energyByRank.get(cellIntegralEnergy_Ukcal)+1);
+				else// If energy key not found, create an entry and set values
+					energyByRank.put(cellIntegralEnergy_Ukcal,1);
+				// NB: chatGPT suggère de remplacer les 4 lignes ci-dessous par:
+				// EnergyByRank.compute(cellEnergy_Ukcal, (k, v) -> (v == null) ? cellEnergy_Ukcal : v +
+				// cellEnergy_Ukcal);
+
+				overallEnergy_Ukcal += 1;
+			}
+		}
+
+		// Définition des seuils d'énergie (Temporary stores the threshold to proceed to the coming loop)
+		energyRanks[ENERGY_GREEN] = (int)(overallEnergy_Ukcal*GREEN_AREA_Upercent);
+		energyRanks[ENERGY_ORANGE] = (int)(overallEnergy_Ukcal*ORANGE_AREA_Upercent);
+		energyRanks[ENERGY_RED] = (int)(overallEnergy_Ukcal*RED_AREA_Upercent);
+
+		// Classement des valeurs pour atteindre les seuils
+		for(int i = 0;i<3;i++){
+			int targetSum = energyRanks[i];
+			// additionner les valeurs en partant de la clé la plus grande
+			double currentSum = 0.0;
+			for(Map.Entry<Integer,Integer> entry:energyByRank.descendingMap().entrySet()){
+				if(currentSum>=targetSum){
+					energyRanks[i] = entry.getKey();// the threshold key
+					break;// Arrêter si la somme cible est atteinte
+				}
+				currentSum += entry.getValue();
+			}
+		}
+		// System.out.println("C_LandscapeMarine.rankEnergy()"+energyByRank.toString());
+		// System.out.println(">>>> "+Arrays.toString(energyRanks));
+		// System.out.println();
+		C_LandscapeMarine.overallEnergyMean_Ukcal = C_LandscapeMarine.overallEnergy_Ukcal/(this.dimension_Ucell
+				.getWidth()*this.dimension_Ucell.getHeight());

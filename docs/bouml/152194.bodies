@@ -1,0 +1,27 @@
+class C_GenePair
+!!!286466.java!!!	C_GenePair(inout leftGene : C_Gene, inout rightGene : C_Gene)
+		this.leftGene = leftGene;
+		this.rightGene = rightGene;
+!!!286594.java!!!	getMapLoc() : double
+		// the position is the same for the two genes.
+		return leftGene.getMapLoc();
+!!!286722.java!!!	getGene(in position : int) : C_Gene
+		if (position == LEFT)
+			return leftGene;
+		else
+			return rightGene;
+!!!286850.java!!!	toString() : String
+//		return "<" + leftGene.toString() + ", " + rightGene.toString() + ">";
+		return leftGene.toString()+rightGene.toString();
+!!!286978.java!!!	toString2() : String
+		return "<" + leftGene.toString() + "/" + rightGene.toString() + ">";
+!!!287106.java!!!	main(inout args : String [[]]) : void
+		System.out.println("Testing GenePair");
+
+		C_Gene g1 = new C_Gene(.81, 2.5, new C_GeneMutatorDouble(),LEFT);
+		C_Gene g2 = new C_Gene(.73, 2.5, new C_GeneMutatorDouble(),RIGHT);
+		C_GenePair gp = new C_GenePair(g1, g2);
+		System.out.println("gp: " + gp);
+		System.out.println("gp.getMapLoc(): " + gp.getMapLoc());
+		System.out.println("gp.getGene(LEFT): " + gp.getGene(LEFT));
+		System.out.println("gp.getGene(RIGHT): " + gp.getGene(RIGHT));

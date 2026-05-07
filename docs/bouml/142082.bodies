@@ -1,0 +1,111 @@
+class C_BarnOwl
+!!!337154.java!!!	C_BarnOwl(inout genome : I_DiploidGenome)
+		super(genome);
+		// TODO JLF 2018.09 temporary - used to avoid bug with metapopulation
+		Object[] list = RunState.getInstance().getMasterContext().toArray();
+		for (int i = 0; i < list.length; i++)
+			if (list[i] instanceof C_Nest) {
+				this.setMyHome((C_Nest) list[i]);
+				break;
+			}
+!!!337282.java!!!	actionNoChoice() : void
+		this.actionDisperse();
+!!!337410.java!!!	perception() : I_SituatedThing
+		TreeSet<I_SituatedThing> perceptList = super.perception();
+		TreeSet<I_SituatedThing> barnOwlPerceptList = new TreeSet<I_SituatedThing>();
+		if (!perceptList.isEmpty()) {
+			for (I_SituatedThing oneThing : perceptList) {
+				if ((oneThing instanceof C_Rodent) && !this.occupantList.contains(oneThing) && !(oneThing
+						.getCurrentSoilCell() instanceof C_BurrowSystem)) barnOwlPerceptList.add(oneThing);
+			}
+		}
+		// JLF 02.2021 go to vegetation in search of rodents
+		if (barnOwlPerceptList.isEmpty()) {
+			for (I_SituatedThing oneThing : perceptList) {
+				if ((oneThing instanceof C_Vegetation)) barnOwlPerceptList.add(oneThing);
+			}
+		}
+		return barnOwlPerceptList;
+!!!337538.java!!!	deliberation(inout perceivedThings : TreeSet<I_SituatedThing>) : I_SituatedThing
+		if (this.getDesire().equals(HIDE)) {
+			perceivedThings.clear();
+			perceivedThings.add(this.myHome);
+			return perceivedThings;
+		}
+		return super.deliberation(perceivedThings);
+!!!337666.java!!!	chooseFood(inout percevingRodent : TreeSet<I_SituatedThing>) : I_SituatedThing
+		TreeSet<I_SituatedThing> rodentList = new TreeSet<I_SituatedThing>();
+		for (I_SituatedThing oneThing : percevingRodent) {
+			if (oneThing instanceof C_Rodent) rodentList.add(oneThing);
+		}
+		return rodentList;
+!!!337794.java!!!	step_Utick() : void
+		if (this.currentSoilCell.equals(this.myHome) && !this.occupantList.isEmpty()) {
+			C_Rodent prey;
+			for (I_SituatedThing occupant : this.getOccupantList())
+				if (occupant instanceof C_Rodent) {
+					prey = (C_Rodent) occupant;
+					this.actionEat(prey);
+				}
+		}
+
+		// Keep quiet at dawn
+		if (A_Protocol.protocolCalendar.isDawn() || A_Protocol.protocolCalendar.isDayTime()) {
+			if (this.currentSoilCell instanceof C_Nest) this.setDesire(NONE);
+			else {
+				this.setDesire(HIDE); // search shelter
+			}
+		}
+		else if (A_Protocol.protocolCalendar.isTwilight() || A_Protocol.protocolCalendar.isNightTime()) {
+			// Exit from Nest when night comes
+			if (this.currentSoilCell instanceof C_Nest) {
+				C_ContextCreator.protocol.contextualizeOldThingInCell(this, this.myHome.getCurrentSoilCell().getCurrentSoilCell());
+				this.setDesire("");
+			}
+		}
+		super.step_Utick();
+!!!337922.java!!!	actionEat(inout prey : C_Rodent) : boolean
+		// this.energy_Ukcal += prey.energy_Ukcal;
+		this.energy_Ukcal = 0.;
+		prey.setDead(true);
+		return true;
+!!!338050.java!!!	processTarget() : boolean
+		if (this.getDesire().equals(HIDE)) {//
+			if (this.target instanceof C_Nest) {
+				this.actionEnterContainer((C_Nest) this.target);
+				this.setDesire(NONE);
+				return true;
+			}
+		}
+		return super.processTarget();
+!!!338178.java!!!	actionInteract(inout prey : A_Animal) : boolean
+		double x = C_ContextCreator.randomGeneratorForInitialisation.nextDouble() / PREDATION_SUCCESS;
+		prey.checkDeath(x);
+		// if prey catched (checkDeath) prey enters the owl's belly (dead is used only to benefit from checkDeath).
+		if (prey.isDead()) {
+			prey.setDead(false);
+			prey.setDesire(NONE);
+			prey.setTrappedOnBoard(true);
+			A_VisibleAgent.myLandscape.moveToContainer(prey, this);
+			this.setDesire(HIDE);// return to nest for eating
+			if (C_Parameters.VERBOSE) A_Protocol.event("C_BarnOwl.actionInteract", "PREDATION event: " + this + " catches " + prey, isNotError);
+		}
+		return true;
+!!!338306.java!!!	actionSetNest() : void
+		I_Container thisCell = this.currentSoilCell;
+		Coordinate oneCoordinate = new Coordinate(thisCell.retrieveLineNo() + C_ContextCreator.randomGeneratorForInitialisation.nextDouble(), thisCell
+				.retrieveColNo() + C_ContextCreator.randomGeneratorForInitialisation.nextDouble());
+		// create tree
+		C_Vegetation oneTree = new C_Vegetation(new C_GenomeAcacia());
+		C_ContextCreator.protocol.contextualizeNewThingInContainer(oneTree, thisCell);
+		myLandscape.moveToLocation(oneTree, oneCoordinate);// Place tree at the owl position
+		// create nest
+		C_Nest oneNest = new C_Nest(thisCell.getAffinity(), thisCell.retrieveColNo(), thisCell.retrieveLineNo());
+		C_ContextCreator.protocol.contextualizeNewThingInContainer(oneNest, oneTree);
+		myLandscape.moveToLocation(oneNest, oneCoordinate);// Place nest at the tree position
+		this.setMyHome(oneNest);
+		this.energy_Ukcal--;
+		if (C_Parameters.VERBOSE)
+			A_Protocol.event("C_BarnOwl.actionSetNest()", "New TREE and NEST for " + this + " at " + this.getCurrentSoilCell(), isNotError);
+!!!338434.java!!!	giveBirth(inout genome : I_DiploidGenome) : A_Animal
+		return new C_BarnOwl(genome);

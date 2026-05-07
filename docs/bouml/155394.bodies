@@ -1,0 +1,15 @@
+class C_XsomePairMicrosat
+!!!293378.java!!!	C_XsomePairMicrosat(in numLociMicrosat : int)
+		super(numLociMicrosat, new C_RecombinatorMicrosat()); // specifies a microsatellite recombinator (i.e., shuffling alleles)
+		// Variable propre à l'ajout des gènes microsat un style de mutation et une contrainte de taille.
+		I_GeneMutator geneMutator = new C_GeneMutatorInteger((int) (MEAN_GAUSS - STD_GAUSS), (int) (MEAN_GAUSS + STD_GAUSS));
+		// Boucle de remplissage du nombre désiré de gènes.
+		for (int i = 0; i < numLociMicrosat; i++) {
+			double mapLoc = i * SPACE_BETWEEN_GENES;
+			Integer randAllele1 = (int) C_ContextCreator.randomGaussianGenerator.nextGaussian(MEAN_GAUSS, STD_GAUSS);
+			Integer randAllele2 = (int) C_ContextCreator.randomGaussianGenerator.nextGaussian(MEAN_GAUSS, STD_GAUSS);
+			this.setGenePairAtLocus(i, new C_Gene(randAllele1, mapLoc, geneMutator, this.xsomeStrands[PARENT_1].myId), new C_Gene(
+					randAllele2, mapLoc, geneMutator, this.xsomeStrands[PARENT_2].myId));
+		}
+!!!293506.java!!!	C_XsomePairMicrosat(inout p1Gamete : C_Chromosome, inout p2Gamete : C_Chromosome)
+		super(p1Gamete, p2Gamete);

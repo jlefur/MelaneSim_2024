@@ -507,7 +507,7 @@ public class C_ProtocolDodel2 extends A_ProtocolFossorial implements I_ConstantD
 			String[] activities = activitiesList.get(i).split(CSV_FIELD_SEPARATOR);
 			String humanID = oneHuman.retrieveMyName().split(NAMES_SEPARATOR)[DATE_COL];
 			if (humanID.equals(activities[DATE_COL])) {
-				if (activities[X_COL].contains(".") || activities[X_COL].contains("."))// TODO MS de JLF 2021.07.21 redondant ?
+				if (activities[X_COL].contains(".") || activities[X_COL].contains("."))// coordinate in decimal degrees
 					oneHuman.addActivityList(activities[EVENT_COL], this.geographicCoordinateConverter
 							.convertCoordinate_Ucs(Double.parseDouble(activities[X_COL]), Double.parseDouble(
 									activities[Y_COL])), activities[VALUE1_COL], activities[VALUE2_COL] + "/"

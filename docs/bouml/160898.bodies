@@ -1,0 +1,20 @@
+class C_LandscapeCountry
+!!!327426.java!!!	C_LandscapeCountry(inout context : Context<Object>, in url : String, in gridValueName : String, in continuousSpaceName : String)
+		super(context, url, gridValueName, continuousSpaceName);
+		this.graphTypes = I_ConstantTransportation.GRAPH_TYPES;
+		this.areaTypes = I_ConstantTransportation.AREA_TYPES;
+!!!327554.java!!!	createGround(inout matriceLue : int [[][]]) : void
+		super.createGround(matriceLue);
+		for (int i = 0; i < this.dimension_Ucell.width; i++) {
+			for (int j = 0; j < this.dimension_Ucell.height; j++) {
+				// set cells and value layer as outside or inside domain
+				if (!(matriceLue[i][j] == AFFINITY_OUTSIDE_DOMAIN)) {
+					((C_SoilCellGraphed) this.grid[i][j]).addGroundType(GROUNDTYPE_INSIDE_DOMAIN + "");
+					this.graphedValueLayer.set(GROUNDTYPE_INSIDE_DOMAIN, i, j);
+				}
+				else {
+					((C_SoilCellGraphed) this.grid[i][j]).addGroundType(GROUNDTYPE_OUTSIDE_DOMAIN + "");
+					this.graphedValueLayer.set(GROUNDTYPE_OUTSIDE_DOMAIN, i, j);
+				}
+			}
+		}

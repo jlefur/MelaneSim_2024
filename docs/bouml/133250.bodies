@@ -1,0 +1,32 @@
+class C_LandscapeRodent
+!!!325762.java!!!	C_LandscapeRodent(inout context : Context<Object>, in url : String, in gridValueName : String, in continuousSpaceName : String)
+		super(context, url, gridValueName, continuousSpaceName);
+!!!325890.java!!!	addChildAgent(inout parent : A_Animal, inout child : A_Animal) : void
+ // TODO JLF 2015.08 move to Animal (same as digBurrow)
+		double[] new_location = new double[2];
+		NdPoint p_Ucs = continuousSpace.getLocation(parent);
+		new_location[0] = p_Ucs.getX();
+		new_location[1] = p_Ucs.getY();
+		parent.getCurrentSoilCell().agentIncoming(child);
+		Context<Object> context = ContextUtils.getContext(parent);
+		context.add(child);
+		// TODO JLF 2015.10 epiphyte in business, move to protocol ?
+		if (child instanceof C_Rodent) C_InspectorPopulationRodent.addRodentToBirthList((C_Rodent) child);
+		// TODO MS 2020.04 Add birth tick in the corresponding inspector list!
+		// TODO MS de JLF 2022.01 reference to OrnitodorosSonrai misplaced + epiphyte in business, move to protocol ?
+		else
+			if (child instanceof C_OrnitodorosSonrai)
+				C_InspectorOrnithodorosSonrai.addTickBirthList((C_OrnitodorosSonrai) child);
+		continuousSpace.moveTo(child, new_location);
+		child.bornCoord_Umeter = getThingCoord_Umeter(child);
+!!!326018.java!!!	updateInspectors(inout incomer : A_Organism) : void
+ // JLF 2016.05 cannot add rodent to birthList since it has age of sexual
+														// maturity (see above) ?
+		if (incomer instanceof C_Rodent) C_InspectorPopulationRodent.addRodentToList((C_Rodent) incomer);
+!!!326146.java!!!	createGround(inout matriceLue : int [[][]]) : void
+		for (int i = 0; i<=this.dimension_Ucell.width - 1; i++) {
+			for (int j = 0; j<=this.dimension_Ucell.height - 1; j++) {
+				this.getValueLayer().set(matriceLue[i][j], i, j);
+				this.grid[i][j] = new C_SoilCell(matriceLue[i][j], i, j);
+			}
+		}

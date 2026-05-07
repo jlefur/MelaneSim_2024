@@ -1,0 +1,65 @@
+class C_SoilCellMarine
+!!!314370.java!!!	C_SoilCellMarine(in aff : int, in lineNo : int, in colNo : int)
+		super(aff,lineNo,colNo);
+		// TODO number in source OK 2024 JLF speed has to be != from 0 before read from file in order to avoid plankton
+		// bordure
+		this.speedEastward_UmeterPerSecond = 1e-10;
+		this.speedNorthward_UmeterPerSecond = 1e-10;
+		this.set(DriverType.SHIP,Champ.RAW_VAL,CARGO_ENERGY_Ukcal);// default value for ships
+		this.set(DriverType.SHIP,Champ._100,CARGO_ENERGY_Ukcal);
+		this.set(DriverType.PARTICLES,Champ.RAW_VAL,1.0);// default value for particles
+		this.set(DriverType.PARTICLES,Champ._100,1.0);
+!!!314498.java!!!	agentIncoming(inout thing : I_SituatedThing) : boolean
+		if(thing instanceof I_MarineActor actor){
+			this.add(DriverType.PARTICLES,Champ.INTEGRAL_100,1.0);
+			this.add(DriverType.PARTICLES,Champ.NB_VAL,1.0);
+			this.add(actor.getTypeActeur(),Champ.INTEGRAL_100,this.get(actor.getTypeActeur(),Champ._100));
+			this.add(actor.getTypeActeur(),Champ.NB_VAL,1.0);
+			thing.setEnergy_Ukcal(this.get(actor.getTypeActeur(),Champ._100));
+		}
+		return super.agentIncoming(thing);
+!!!314626.java!!!	agentLeaving(inout thing : I_SituatedThing) : boolean
+		if(thing instanceof I_MarineActor actor){
+			this.add(DriverType.PARTICLES,Champ.NB_VAL,-1.0);
+			this.add(actor.getTypeActeur(),Champ.NB_VAL,-1.0);
+		}
+		return super.agentLeaving(thing);
+!!!314754.java!!!	step_Utick() : void
+		super.step_Utick();
+		double speedEastward_UmeterPerTick, speedNorthward_UmeterPerTick;
+		TreeSet<I_SituatedThing> occupants = new TreeSet<>(this.getOccupantList());
+		for(I_SituatedThing agent:occupants){
+			speedEastward_UmeterPerTick = C_ConvertTimeAndSpace.convertSpeed_UspaceByTick(
+					this.speedEastward_UmeterPerSecond,"m","s")/PARTICLE_RESISTANCE_FACTOR;
+			speedNorthward_UmeterPerTick = C_ConvertTimeAndSpace.convertSpeed_UspaceByTick(
+					this.speedNorthward_UmeterPerSecond,"m","s")/PARTICLE_RESISTANCE_FACTOR;
+			if(agent instanceof C_Nekton)// micronekton particle are not submitted to surface current half of day
+				A_VisibleAgent.myLandscape.translate((A_VisibleAgent)agent,new Coordinate(speedEastward_UmeterPerTick
+						/NEKTON_RESISTANCE_FACTOR,speedNorthward_UmeterPerTick/NEKTON_RESISTANCE_FACTOR));
+			else
+				if(agent instanceof C_Plankton)
+					A_VisibleAgent.myLandscape.translate((A_VisibleAgent)agent,new Coordinate(
+							speedEastward_UmeterPerTick,speedNorthward_UmeterPerTick));
+		}
+		// if(get(TypeActeur.PARTICLES,Champ.NB_VAL)>90.)System.err.println(RepastEssentials.GetTickCount()+","+this.lineNo+","+this.colNo+","+this.toString());
+!!!314882.java!!!	setSpeedEastward_UmeterPerSecond(in currentSpeedEastward_UmeterPerSecond : double) : void
+		this.speedEastward_UmeterPerSecond = currentSpeedEastward_UmeterPerSecond;
+!!!315010.java!!!	setSpeedNorthward_UmeterPerSecond(in currentSpeedNorthward_UmeterPerSecond : double) : void
+		this.speedNorthward_UmeterPerSecond = currentSpeedNorthward_UmeterPerSecond;
+!!!315138.java!!!	setMyCurrent(inout myCurrent : C_StreamCurrent) : void
+ this.myCurrent = myCurrent; myCurrent.setMyCell(this);
+!!!315266.java!!!	getSpeedEastward_UmeterPerSecond() : double
+ return speedEastward_UmeterPerSecond;
+!!!315394.java!!!	getSpeedNorthward_UmeterPerSecond() : double
+ return speedNorthward_UmeterPerSecond;
+!!!315522.java!!!	isTerrestrial() : boolean
+ return this.getAffinity()>=TERRESTRIAL_MIN_AFFINITY;
+!!!315650.java!!!	getMyCurrent() : C_StreamCurrent
+ return myCurrent;
+!!!315778.java!!!	getTotalChlorophyll_U100() : double
+		return this.get(DriverType.PLANKTON,Champ.NB_VAL)*this.get(DriverType.PLANKTON,Champ._100);
+!!!315906.java!!!	getTotalNektonDensity_U100() : double
+		return this.get(DriverType.NEKTON,Champ.NB_VAL)*this.get(DriverType.NEKTON,Champ._100);
+!!!316034.java!!!	getIntegralOccupants() : double
+ //
+		return this.get(DriverType.PARTICLES,Champ.INTEGRAL_100);

@@ -1,0 +1,1786 @@
+format 224
+"constants" // src::data::constants
+  revision 1
+  modified_by 2 "lefur"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:\\Users\\lefur\\Documents\\GitHub\\MelaneSim_2024\\src/data/constants/"
+  java_package "data.constants"
+  classview 128386 "constants"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 129026 "I_ConstantPNMC"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Gathers all variables since software specifications requires no numbers in the java sources <br>
+@author Le Fur & Sall 2015, rev. 2024 "
+      classrelation 128130 // <generalisation>
+	relation 128130 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 128130 // <generalisation>
+	  b parent class_ref 129154 // I_ConstantString
+      end
+
+      attribute 131330 "CSV_PATH"
+	const_attribute public explicit_type "String"
+	init_value " \"data_csv/melanesia/\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FILES & URLs //
+"
+      end
+
+      attribute 131458 "RASTER_PATH_MELANESIA"
+	const_attribute public explicit_type "String"
+	init_value " \"data_raster/melanesia/\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 131586 "PNMC_DRIFTERS"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"ocean.PNMC_drifters\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " MELANESIM PROTOCOL NAMES - used in context creator"
+      end
+
+      attribute 131714 "PNMC_PLANKTON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"ocean.PNMC_plankton\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " MELANESIM PROTOCOL NAMES - used in context creator"
+      end
+
+      attribute 131842 "PNMC_NEKTON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"ocean.PNMC_nekton\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " MELANESIM PROTOCOL NAMES - used in context creator"
+      end
+
+      attribute 131970 "PNMC_SHIPS"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"ocean.PNMC_ships\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " MELANESIM PROTOCOL NAMES - used in context creator"
+      end
+
+      attribute 132098 "energyGridvalues"
+	const_attribute public explicit_type "String"
+	init_value " \"valueEnergyGrid\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " used to display energy"
+      end
+
+      attribute 132226 "NEKTON_GRID"
+	const_attribute public explicit_type "String"
+	init_value " \"nektonGrid\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " used to display nekton abundance"
+      end
+
+      attribute 132354 "CELL_SIZE"
+	class_attribute public explicit_type "int"
+	init_value " 245"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " DEFAULT : 15 //Junk Value"
+      end
+
+      attribute 132482 "rasterLongitudeWest_LatitudeSouth_Udegree"
+	class_attribute const_attribute public explicit_type "Double"
+	init_value " new ArrayList<Double>() {
+		{
+			add(156.);
+			add(-26.5);
+		}
+		private static final long serialVersionUID = 1L;
+	}"
+	stereotype "ArrayList"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 132610 "currentSpeed_URL_suffix"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " new ArrayList<String>() {
+		{
+			add(\"\");
+			add(\"\");
+		}
+		private static final long serialVersionUID = 1L;
+	}"
+	stereotype "ArrayList"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 132738 "CURRENT_EVENT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"current\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " EVENT TYPES CONSTANTS - used in chrono events
+"
+      end
+
+      attribute 132866 "CHLOROPHYLL_EVENT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"chlorophyll\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 132994 "NEKTON_EVENT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"microNekton\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 133122 "COMPUTE_ENERGY"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"compute_energy\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 133250 "TERRESTRIAL_MIN_AFFINITY"
+	class_attribute public explicit_type "int"
+	init_value " 99"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " OTHERS
+
+"
+      end
+
+      attribute 133378 "PARTICLE_CELLS_SPACING"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 3"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Used to lighten the GUI calculations: interval where to post current and plankton particles<br>
+@see C_Protocol_PNMC_drifters#initPopulations() 
+ 3 //"
+      end
+
+      attribute 133506 "BACKWARD_NB_CELLS"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 1"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " if particle reach bordure move back nb cells"
+      end
+
+      attribute 133634 "STREAM_DISPLAY_SIZE"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 300"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " taille des vecteurs courants affichés"
+      end
+
+      attribute 133762 "PARTICLE_RESISTANCE_FACTOR"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 1."
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " freinage des particules vis à vis de la vitesse du courant)"
+      end
+
+      attribute 133890 "NEKTON_RESISTANCE_FACTOR"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 5."
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " freinage des particules de micronecton vis à vis de la vitesse du courant)"
+      end
+
+      attribute 134018 "BACKGROUND_COLOR"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 38"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 134146 "ENERGY_GREEN"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " ENERGY RANKING
+
+"
+      end
+
+      attribute 134274 "ENERGY_ORANGE"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 1"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 134402 "ENERGY_RED"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 2"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 134530 "ENERGY_RESET"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 3"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 134658 "ENERGY_LAND"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 4"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 134786 "GREEN_AREA_Upercent"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " .01"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " green lower limit"
+      end
+
+      attribute 134914 "ORANGE_AREA_Upercent"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " .03"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " orange lower limit"
+      end
+
+      attribute 135042 "RED_AREA_Upercent"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " .05"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " red lower limit"
+      end
+
+      attribute 135170 "CHLORO_MIN"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 0.047118366"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " DRIVERS NORMALIZATION
+
+ for year 2021"
+      end
+
+      attribute 135298 "CHLORO_MAX"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 0.40059945"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 135426 "NEKTON_MIN"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 0.000196165"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " for year 2021"
+      end
+
+      attribute 135554 "NEKTON_MAX"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 4.904100"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 135682 "CARGO_POPULATION"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 12."
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 135810 "CARGO_ENERGY_Ukcal"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 12."
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+    end
+
+    class 129154 "I_ConstantString"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " - Constant names concerning types names shared within all protocols<br>
+- Strings as well as unnecessary numbers are meant to disappear from the source code (see also I_numeric_constants and other
+data/I_???_constants.java) <br>
+- The correspondence is centralized here for string parameters.<br>
+- Almost all packages implement this interface.
+@see I_ConstantNumeric
+@author J.Le Fur 08.2014, rev. JLF 11.2014, 02.2021, 07.2024 "
+      attribute 128258 "RASTER_MODE"
+	const_attribute public explicit_type "String"
+	init_value " \"ascii\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " SPATIAL PROJECTIONS NAMES
+ options: 1) ascii (provide a grid.csv), 2) any other string, image (/ provide e.g. one *.gif,.jpg,.bmp).
+"
+      end
+
+      attribute 128386 "GEOGRAPHY_NAME"
+	const_attribute public explicit_type "String"
+	init_value " \"geography\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " used in SIMmasto0.rs/context.xml"
+      end
+
+      attribute 128514 "CONTINUOUS_SPACE_NAME"
+	const_attribute public explicit_type "String"
+	init_value " \"space\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " used in SIMmasto0.rs/context.xml"
+      end
+
+      attribute 128642 "VALUE_LAYER_NAME"
+	const_attribute public explicit_type "String"
+	init_value " \"valuegrid\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " used in SIMmasto0.rs/context.xml"
+      end
+
+      attribute 128770 "proj_gridvalue2"
+	const_attribute public explicit_type "String"
+	init_value " \"valuegrid2\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " used in networked/graphed landscapes"
+      end
+
+      attribute 128898 "isError"
+	const_attribute public explicit_type "boolean"
+	init_value " true"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " CONSOLE OUTPUT
+"
+      end
+
+      attribute 129026 "isNotError"
+	const_attribute public explicit_type "boolean"
+	init_value " false"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 129154 "CONSOLE_OUTPUT_FILE"
+	const_attribute public explicit_type "String"
+	init_value " \"retour_console.txt\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FILES & URLs //
+"
+      end
+
+      attribute 129282 "CSV_PATH"
+	const_attribute public explicit_type "String"
+	init_value " \"data_csv\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 129410 "OUTPUT_PATH"
+	const_attribute public explicit_type "String"
+	init_value " \"data_output/\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 129538 "REPAST_PATH"
+	const_attribute public explicit_type "String"
+	init_value " \"MelaneSim.rs/\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 129666 "EVENT_VALUE2_FIELD_SEPARATOR"
+	const_attribute public explicit_type "String"
+	init_value " \":\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " used when event value2 is a list"
+      end
+
+      attribute 129794 "HOUR_MINUTE_SEPARATOR"
+	const_attribute public explicit_type "String"
+	init_value " \":\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " used when event value2 is a list"
+      end
+
+      attribute 129922 "CSV_FIELD_SEPARATOR"
+	const_attribute public explicit_type "String"
+	init_value " \";\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 130050 "NAMES_SEPARATOR"
+	const_attribute public explicit_type "String"
+	init_value " \"_\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " used when event value2 is a list"
+      end
+
+      attribute 130178 "LITTER_SIZE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"litterSize\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " LIFE TRAITS CONSTANTS - used in genomes
+"
+      end
+
+      attribute 130306 "WEANING_AGE_Uday"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"weaningAge_Uday\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 130434 "MATING_LATENCY_Uday"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"matingLatency_Uday\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 130562 "GESTATION_LENGTH_Uday"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"gestationLength_Uday\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 130690 "GROWTH_RATE_UkcalPerDay"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"growthRate_UgramPerDay\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 130818 "SEXUAL_MATURITY_Uday"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"sexualMaturity_Uday\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 130946 "SPEED_UmeterByDay"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"speed_UmeterByDay\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 131074 "SENSING_UmeterByDay"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"sensing_UmeterByDay\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 131202 "MAX_AGE_Uday"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"maxAge_Uday\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+    end
+
+    class 129794 "I_ConstantNumeric"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Centralizes all shared numbered variables since software specifications requires no numbers in the java sources.<br>
+protocols may overload it with their specific constants. Was formerly I_sim_constants
+@author Q.Baduel, 2008, rev. Le Fur 07-09-11.2014, 10.2015
+@see I_ConstantStringRodents "
+      attribute 144002 "FIS_COMPUTATION_THRESHOLD_Urodent"
+	const_attribute public explicit_type "int"
+	init_value " 30"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " SIMULATION CONDITIONS //
+ If pop size < threshold, FIS is not computed @see: C_InspectorGenetic#getFixationIndex 
+ Below this population size, FIS is not computed (= 0.)"
+      end
+
+      attribute 144130 "cellSize"
+	class_attribute const_attribute public explicit_type "Integer"
+	init_value " new ArrayList<Integer>() {
+		{
+			add(15);
+		}
+		private static final long serialVersionUID = 1L;
+	}"
+	stereotype "ArrayList"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " SPACE: GROUND AND PROJECTIONS //
+ Size of one cell in the grid value layer (it must be checked that it is the same value that the scale given to the
+Continuous space within the definition of Raster display in the Repast Simphony GUI.. there is no known unit. 
+"
+      end
+
+      attribute 144258 "BOARDING_RANDOM_SEED"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 1554563219"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " RANDOM GENERATORS SEEDS //
+ 1554563209"
+      end
+
+      attribute 144386 "CULTURE_RANDOM_SEED"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 254983425"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 144514 "DEATH_PROB_RANDOM_SEED"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 1554563209"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 144642 "DESTINATION_RANDOM_SEED"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 1122259370"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " 1122259370"
+      end
+
+      attribute 144770 "DNA_RANDOM_SEED"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 984863554"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 144898 "EPISTASIS_RANDOM_SEED"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 654824589"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 145026 "GAMETE_RANDOM_SEED"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 987654321"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 145154 "INITIALISATION_RANDOM_SEED"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 1122259370"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 145282 "MOVEMENT_RANDOM_SEED"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 564823654"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 145410 "OLFACTION_RECOGNITION_RANDOM_SEED"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 564811123"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 145538 "GAUSSIAN_RANDOM_SEED"
+	class_attribute const_attribute public explicit_type "long"
+	init_value " 321657567"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 145666 "DIRECTION_RANDOM_SEED"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 1"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 145794 "INTERVAL_ECRITURE_GENE_POP"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 80"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FILES & URLs //
+"
+      end
+
+      attribute 145922 "DATE_COL"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " csv file chronoEvents fields' order and values/ author pamboup
+"
+      end
+
+      attribute 146050 "X_COL"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 1"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " csv file chronoEvents fields' order and values/ author pamboup
+"
+      end
+
+      attribute 146178 "Y_COL"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 2"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " csv file chronoEvents fields' order and values/ author pamboup
+"
+      end
+
+      attribute 146306 "EVENT_COL"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 3"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " csv file chronoEvents fields' order and values/ author pamboup
+"
+      end
+
+      attribute 146434 "VALUE1_COL"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 4"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " csv file chronoEvents fields' order and values/ author pamboup
+"
+      end
+
+      attribute 146562 "VALUE2_COL"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 5"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " csv file chronoEvents fields' order and values/ author pamboup
+"
+      end
+
+      attribute 146690 "VALUE3_COL"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 6"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " csv file chronoEvents fields' order and values/ author pamboup
+"
+      end
+
+      attribute 146818 "CELL_ID_COL"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 6"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " csv file chronoEvents fields' order and values/ author pamboup
+"
+      end
+
+      attribute 146946 "COMMENT_COL"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 7"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " csv file chronoEvents fields' order and values/ author pamboup
+"
+      end
+
+      attribute 147074 "CIRCLE_ACCURACY_Upx"
+	const_attribute public explicit_type "int"
+	init_value " 32"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " DISPLAY & PRESENTATION
+ number of points used to draw circles"
+      end
+
+      attribute 147202 "GUI_SPRITE_SIZE_Upx"
+	const_attribute public explicit_type "int"
+	init_value " 32"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 147330 "BLACK_MAP_COLOR"
+	const_attribute public explicit_type "int"
+	init_value " 10"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 147458 "IMAGE_SCALE"
+	public explicit_type "float"
+	init_value " .2f"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Taille d'une image initiale .15"
+      end
+
+      attribute 147586 "ELLIPSE_SCALE"
+	public explicit_type "float"
+	init_value " 1.5f"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " (NB: 50x50-> .3)"
+      end
+
+      attribute 147714 "DEFAULT_SEXUAL_MATURITY_Uday"
+	const_attribute public explicit_type "double"
+	init_value " 10.001"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " GENETICS //
+ life traits default values
+ amniota
+ NB: .001 on any allele means junk value, else literature value<br>
+Warning: this invalidate the hybrid test @see C_GenomeEucaryote#isHybrid<br>
+JLF 03.2018, 02.2021 
+ source: junk value must be redefined in daughter genomes"
+      end
+
+      attribute 147842 "DEFAULT_LITTER_SIZE"
+	const_attribute public explicit_type "double"
+	init_value " 1.001"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " source: junk value must be redefined in daughter genomes"
+      end
+
+      attribute 147970 "DEFAULT_WEANING_AGE_Uday"
+	const_attribute public explicit_type "double"
+	init_value " 1.001"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " source: junk value must be redefined in daughter genomes"
+      end
+
+      attribute 148098 "DEFAULT_MATING_LATENCY_Uday"
+	const_attribute public explicit_type "double"
+	init_value " 1.001"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " source: junk value must be redefined in daughter genomes"
+      end
+
+      attribute 148226 "DEFAULT_GESTATION_LENGTH_Uday"
+	const_attribute public explicit_type "double"
+	init_value " 1.001"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " source: junk value must be redefined in daughter genomes"
+      end
+
+      attribute 148354 "DEFAULT_SPEED_UmeterByDay"
+	const_attribute public explicit_type "double"
+	init_value " 50.001"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " animalia
+ source: junk value must be redefined in daughter genomes"
+      end
+
+      attribute 148482 "DEFAULT_SENSING_UmeterByDay"
+	const_attribute public explicit_type "double"
+	init_value " 150.001"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " DEFAULT_SPEED_UmeterByDay*3.; // TODO number in source JLF"
+      end
+
+      attribute 148610 "INSTANTANEOUS_SENSING_Umeter"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 5.001"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " 2018.03 Check if really accounted for
+ TODO number in source JLF 2018.03 used when tick is very"
+      end
+
+      attribute 148738 "DEFAULT_MAX_AGE_Uday"
+	const_attribute public explicit_type "double"
+	init_value " 600.001"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " small and leads to sensing sphere too small
+ source: junk value must be redefined in daughter genomes"
+      end
+
+      attribute 148866 "DEFAULT_GROWTH_RATE_UgramPerDay"
+	const_attribute public explicit_type "double"
+	init_value " 2.001"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " spermatophyta
+ source: junk value must be redefined in daughter genomes"
+      end
+
+      attribute 148994 "NB_MICROSAT_GENES"
+	const_attribute public explicit_type "int"
+	init_value " 10"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " microsats //
+"
+      end
+
+      attribute 149122 "MEAN_GAUSS"
+	public explicit_type "double"
+	init_value " 35"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 149250 "STD_GAUSS"
+	public explicit_type "double"
+	init_value " 10"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 149378 "SPACE_BETWEEN_GENES"
+	public explicit_type "double"
+	init_value " 4.3"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 149506 "DEFAULT_MUT_RATE"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 1E-9"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " other genetics
+ JLF; source talk Mathieu Gauthier, 04.11.2014"
+      end
+
+      attribute 149634 "SEX_GENE_Y"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 149762 "SEX_GENE_X"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 1"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 149890 "LOCUS_LETHAL_ALLELE"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 150018 "STRAND_LETHAL_ALLELE"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 150146 "DEFAULT_DEATH_PROBABILITY_UperDay"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 1E-10"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Living things (A_NDS) attributes
+ quasi immortality: 1/(213 billion years)"
+      end
+
+      attribute 150274 "DEFAULT_AGE0_Utick"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 150402 "EMPTY_BURROW_LIFESPAN_Uday"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 10"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 150530 "INITIAL_ENERGY_Ukcal"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Animal attributes /
+"
+      end
+
+      attribute 150658 "REPEAT_DISPERSAL"
+	class_attribute const_attribute public explicit_type "int"
+	init_value "4"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 150786 "DANGEROUS_AREA_AFFINITY"
+	class_attribute public explicit_type "int"
+	init_value " 1"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Value 2 For Chize (highway, houses, plugged fields)"
+      end
+
+      attribute 150914 "DANGEROUS_AREA_MORTALITY_RATE"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " .8"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " induce a mortality when in dangerous area (=.8 for ploughing"
+      end
+    end
+  end
+
+  deploymentview 128130 "constants"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 128770 "I_ConstantString"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 129154 // I_ConstantString
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 128898 "I_ConstantPNMC"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+${definition}"
+      associated_elems
+	class_ref 129026 // I_ConstantPNMC
+      end
+    end
+
+    artifact 129538 "I_ConstantNumeric"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import data.constants.rodents.I_ConstantStringRodents;
+${definition}"
+      associated_elems
+	class_ref 129794 // I_ConstantNumeric
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+  end
+
+  package_ref 128514 // rodents
+end

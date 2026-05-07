@@ -1,0 +1,42 @@
+class C_Background
+!!!200834.java!!!	C_Background(in scale : double, in x_position_Ucs : double, in y_position_Ucs : double)
+		this.hasToSwitchFace = true;
+		this.whereX = x_position_Ucs;
+		this.whereY = y_position_Ucs;
+		this.scale = scale;
+!!!200962.java!!!	contextualize(inout context : Context<Object>, inout landscape : C_Landscape) : void
+		if(!context.contains(this)){
+			context.add(this);
+			landscape.getContinuousSpace().moveTo(this,this.whereX,this.whereY);
+		}
+!!!201090.java!!!	getScale() : double
+// needed by GUI
+		return this.scale;
+!!!201858.java!!!	retrieveColNo() : int
+ return (int)this.whereY;
+!!!201986.java!!!	retrieveLineNo() : int
+ return (int)this.whereX;
+!!!202114.java!!!	isInfected() : boolean
+ return false;
+!!!202242.java!!!	getCoordinate_Umeter() : Coordinate
+ return null;
+!!!202370.java!!!	getCoordinate_Ucs() : Coordinate
+ return null;
+!!!202498.java!!!	getCurrentSoilCell() : I_Container
+ return null;
+!!!202626.java!!!	getDistance_Umeter(inout oneCoordinate : Coordinate) : double
+		return 0;
+!!!202754.java!!!	getDistance_Umeter(inout agent : I_SituatedThing) : double
+		return 0;
+!!!202882.java!!!	canInteractWith(inout oneOccupant : I_SituatedThing) : boolean
+ return false;
+!!!203010.java!!!	getMyLandPlot() : C_LandPlot
+		return null;
+!!!203138.java!!!	retrieveMyName() : String
+ return null;
+!!!203266.java!!!	getBirthDate_Utick() : double
+ return 0;
+!!!203394.java!!!	getAge_Uday() : double
+ return 0;
+!!!203650.java!!!	getEnergy_Ukcal() : double
+ return 0;

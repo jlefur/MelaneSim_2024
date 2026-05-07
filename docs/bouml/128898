@@ -1,0 +1,360 @@
+format 224
+"rodents" // src::data::rodents
+  revision 1
+  modified_by 2 "lefur"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:\\Users\\lefur\\Documents\\GitHub\\MelaneSim_2024\\src/data/rodents/"
+  java_package "data.rodents"
+  classview 129026 "rodents"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 133122 "C_CircadianAffinitiesMus"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " @author Malick Diakhate, 2014, rev. JLF 10.2014 "
+      attribute 198658 "INITIAL_AFFINITIES_MUS"
+	class_attribute private explicit_type "Integer, String"
+	init_value " new HashMap<Integer, String>()"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 198786 "HOURLY_AFFINITIES"
+	class_attribute private explicit_type "String, int[]"
+	init_value " new HashMap<String, int[]>()"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 132482 // landscape (<unidirectional association>)
+	relation 132482 --->
+	  a role_name "landscape" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 132482 // landscape (<unidirectional association>)
+	  b parent class_ref 133250 // C_LandscapeRodent
+      end
+
+      operation 137858 "C_CircadianAffinitiesMus"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "landscape" type class_ref 133250 // C_LandscapeRodent
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+ hourly change of the danger in areas "
+      end
+
+      operation 137986 "setAffinity"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "hour" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " used to change land plot affinities "
+      end
+
+      operation 138114 "setInitialAffinities"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " initializing the land plot types "
+      end
+    end
+
+    class 133378 "C_CropRotationChize"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " @see C_Style2dAffinityType#colorMapChizeGrid
+@author Jean Le Fur, 2011 "
+      attribute 198914 "PLOT_TYPES"
+	class_attribute private explicit_type "String"
+	multiplicity "[]"
+	init_value " {\"HIGHWAY\", \"HOUSES_AND_ROADS\", \"HEDGE\", \"PERENNIAL_MEADOWS\", \"PERENNIAL_ALFALFA\",
+			\"ANNUAL_WINTER\", \"ANNUAL_SPRING\"}"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}${multiplicity} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " CONSTANTS
+
+"
+      end
+
+      attribute 199042 "PLOUGHING"
+	private explicit_type "int"
+	init_value " 2"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " , MOWING = 3"
+      end
+
+      attribute 199170 "INITIAL_AFFINITIES"
+	class_attribute private explicit_type "Integer, String"
+	init_value " new HashMap<Integer, String>()"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+"
+      end
+
+      attribute 199298 "CHIZE_CROP_TRANSITION"
+	class_attribute private explicit_type "String, double[]"
+	init_value " new HashMap<String, double[]>()"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 199426 "MONTHLY_AFFINITIES"
+	class_attribute private explicit_type "String, int[]"
+	init_value " new HashMap<String, int[]>()"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 132610 // landscape (<unidirectional association>)
+	relation 132610 --->
+	  a role_name "landscape" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 132610 // landscape (<unidirectional association>)
+	  b parent class_ref 133250 // C_LandscapeRodent
+      end
+
+      operation 138242 "C_CropRotationChize"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "landscape" type class_ref 133250 // C_LandscapeRodent
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+
+ monthly change of the farming technical operations "
+      end
+
+      operation 138370 "GenerateCropTransitionMatrix"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+ yearly change of the fields (viz. landPlots) culture type : Draw within the cumulated probability distribution: the more
+probable a transition the more its contribution and chances to be drawn <br>
+Author JLF 10.2011 "
+      end
+
+      operation 138498 "culturalPractice"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "month" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 138626 "cropTransition"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "month" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 138754 "setInitialLandplotTypes"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " initializing the land plot types - JLF 02.2012, 02.2013, 07.2014 "
+      end
+    end
+  end
+
+  deploymentview 128642 "rodents"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 132610 "C_CircadianAffinitiesMus"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeSet;
+import thing.ground.C_LandPlot;
+import thing.ground.landscape.C_LandscapeRodent;
+${definition}"
+      associated_elems
+	class_ref 133122 // C_CircadianAffinitiesMus
+      end
+    end
+
+    artifact 132738 "C_CropRotationChize"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.TreeSet;
+import melanesim.C_ContextCreator;
+import thing.ground.C_LandPlot;
+import thing.ground.landscape.C_LandscapeRodent;
+${definition}"
+      associated_elems
+	class_ref 133378 // C_CropRotationChize
+      end
+    end
+  end
+end

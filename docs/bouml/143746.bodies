@@ -1,0 +1,109 @@
+class AStar
+!!!185474.java!!!	AStar()
+		this.hvCost = DEFAULT_HV_COST;
+		this.diagonalCost = DEFAULT_DIAGONAL_COST;
+		this.searchArea = A_VisibleAgent.myLandscape.getGrid();
+!!!185602.java!!!	findPath(inout initialCellNode : C_SoilCellNode, inout finalCellNode : C_SoilCellNode) : C_SoilCellNode
+//		this.initialCellNode = initialCellNode;
+		this.finalCellNode = finalCellNode;
+		this.openList = new PriorityQueue<C_SoilCellNode>(new Comparator<C_SoilCellNode>() {
+			@Override
+			public int compare(C_SoilCellNode node0, C_SoilCellNode node1) {
+				return Integer.compare(node0.getF(), node1.getF());
+			}
+		});
+		this.setCellNodes();
+		this.closedSet = new HashSet<>();
+		this.openList.add(initialCellNode);
+		while (!isEmpty(this.openList)) {
+			C_SoilCellNode currentCellNode = this.openList.poll();
+			this.closedSet.add(currentCellNode);
+			if (isFinalCellNode(currentCellNode)) return getPath(currentCellNode);
+			else addAdjacentCellNodes(currentCellNode);
+		}
+		return new ArrayList<C_SoilCellNode>();
+!!!185730.java!!!	setCellNodes() : void
+		for (int i = 0; i < searchArea.length; i++) {
+			for (int j = 0; j < searchArea[0].length; j++) {
+				((C_SoilCellNode) this.searchArea[i][j]).calculateHeuristic(this.finalCellNode);
+			}
+		}
+!!!185858.java!!!	getPath(inout currentCellNode : C_SoilCellNode) : C_SoilCellNode
+		ArrayList<C_SoilCellNode> path = new ArrayList<C_SoilCellNode>();
+		path.add(currentCellNode);
+		C_SoilCellNode parent;
+		while ((parent = currentCellNode.getParent()) != null //
+				&& parent.getParent() != currentCellNode) {// added to avoid loops JLF 05.2022
+			path.add(0, parent);
+			currentCellNode = parent;
+		}
+		return path;
+!!!185986.java!!!	addAdjacentCellNodes(inout currentCellNode : C_SoilCellNode) : void
+		addAdjacentUpperRow(currentCellNode);
+		addAdjacentMiddleRow(currentCellNode);
+		addAdjacentLowerRow(currentCellNode);
+!!!186114.java!!!	addAdjacentLowerRow(inout currentCellNode : C_SoilCellNode) : void
+		int row = currentCellNode.retrieveLineNo();
+		int col = currentCellNode.retrieveColNo();
+		int lowerRow = row + 1;
+		if (lowerRow < this.searchArea.length) {
+			if (col - 1 >= 0) {
+				// Comment this line if diagonal movements are not allowed
+				checkCellNode(currentCellNode, col - 1, lowerRow, this.diagonalCost);
+			}
+			if (col + 1 < this.searchArea[0].length) {
+				// Comment this line if diagonal movements are not allowed
+				checkCellNode(currentCellNode, col + 1, lowerRow, this.diagonalCost);
+			}
+			checkCellNode(currentCellNode, col, lowerRow, this.hvCost);
+		}
+!!!186242.java!!!	addAdjacentMiddleRow(inout currentCellNode : C_SoilCellNode) : void
+		int row = currentCellNode.retrieveLineNo();
+		int col = currentCellNode.retrieveColNo();
+		int middleRow = row;
+		if (col - 1 >= 0) {
+			checkCellNode(currentCellNode, col - 1, middleRow, this.hvCost);
+		}
+		if (col + 1 < this.searchArea[0].length) {
+			checkCellNode(currentCellNode, col + 1, middleRow, this.hvCost);
+		}
+!!!186370.java!!!	addAdjacentUpperRow(inout currentCellNode : C_SoilCellNode) : void
+		int row = currentCellNode.retrieveLineNo();
+		int col = currentCellNode.retrieveColNo();
+		int upperRow = row - 1;
+		if (upperRow >= 0) {
+			if (col - 1 >= 0) {
+				// Comment this if diagonal movements are not allowed
+				checkCellNode(currentCellNode, col - 1, upperRow, this.diagonalCost);
+			}
+			if (col + 1 < this.searchArea[0].length) {
+				// Comment this if diagonal movements are not allowed
+				checkCellNode(currentCellNode, col + 1, upperRow, this.diagonalCost);
+			}
+			checkCellNode(currentCellNode, col, upperRow, this.hvCost);
+		}
+!!!186498.java!!!	checkCellNode(inout currentCellNode : C_SoilCellNode, in col : int, in row : int, in cost : int) : void
+		C_SoilCellNode adjacentCellNode = (C_SoilCellNode) this.searchArea[row][col];
+		if (!adjacentCellNode.isBlock() && !closedSet.contains(adjacentCellNode)) {
+			if (!getOpenList().contains(adjacentCellNode)) {
+				adjacentCellNode.setNodeData(currentCellNode, cost);
+				getOpenList().add(adjacentCellNode);
+			}
+			else {
+				boolean changed = adjacentCellNode.checkBetterPath(currentCellNode, cost);
+				if (changed) {
+					// Remove and Add the changed node, so that the PriorityQueue can sort again its
+					// contents with the modified "finalCost" value of the modified node
+					getOpenList().remove(adjacentCellNode);
+					getOpenList().add(adjacentCellNode);
+				}
+			}
+		}
+!!!186626.java!!!	isFinalCellNode(inout currentCellNode : C_SoilCellNode) : boolean
+		return currentCellNode.equals(finalCellNode);
+!!!186754.java!!!	isEmpty(inout openList : PriorityQueue<C_SoilCellNode>) : boolean
+		return openList.size() == 0;
+!!!186882.java!!!	getOpenList() : C_SoilCellNode
+		return openList;
+!!!187010.java!!!	setOpenList(inout openList : PriorityQueue<C_SoilCellNode>) : void
+		this.openList = openList;

@@ -1,0 +1,49 @@
+class C_GenomeMastoErythroleucus
+!!!299138.java!!!	C_GenomeMastoErythroleucus()
+		super();
+		addHybridTestAutosomes();
+		alleles.put(SEXUAL_MATURITY_Uday, 84.); // source: 12 weeks [Hubert et Adam, 1975 ; Granjon, 1987]
+		alleles.put(LITTER_SIZE, 8.); // source: 12 embryos*60% -> Granjon & Duplantier 2009]/7.5*70% (LG), 40d if favourable
+										// rainy season, else between 40-60 given resources availability/
+										// 7-13, 15 max. [Hubert and Adam, 1975] / 1 to 16, mean 7.1 (dont 66% or 80 % (?) survive
+										// to weaning) – in summary: 13 [Duplantier et al., 1996] / 12-16 [Hubert 1982]
+		alleles.put(MATING_LATENCY_Uday, 40.); // source: 61-21(weaningAgeMastomys) Duplantier et al., 1996
+		alleles.put(GESTATION_LENGTH_Uday, 21.); // source: 3 weeks [Hubert and Adam, 1975; Poulet, 1972; Duplantier et al., 1996]
+		makeAmniotaBivalent(this.alleles);
+
+!!!299266.java!!!	C_GenomeMastoErythroleucus(inout microsatXsome : C_XsomePairMicrosat, inout gonosome : C_XsomePairSexual, inout autosomes : ArrayList<C_ChromosomePair>)
+		super(microsatXsome, gonosome, autosomes);
+!!!299394.java!!!	C_GenomeMastoErythroleucus(inout gender : Integer)
+		this();
+		gonosome = new C_XsomePairSexual(gender);
+!!!299522.java!!!	addHybridTestAutosomes() : void
+		double allele2e = 20, allele3e = 30, allele4e = 40, allele5e = 50;
+		// locus maplocs of the chromosome Pairs:
+		double xsome3q30 = 30, xsome5q70 = 70, xsome2q90 = 90, xsome4q50 = 50;
+		int numGenesXsome2 = 1, numGenesXsome3 = 1, numGenesXsome4 = 1, numGenesXsome5 = 1;
+
+		// four specific autosomes pairs for this species
+		C_ChromosomePair xsomePair2 = new C_ChromosomePair(C_Chromosome.MAP_LENGTH, numGenesXsome2, recombinator);
+		C_ChromosomePair xsomePair3 = new C_ChromosomePair(C_Chromosome.MAP_LENGTH, numGenesXsome3, recombinator);
+		C_ChromosomePair xsomePair4 = new C_ChromosomePair(C_Chromosome.MAP_LENGTH, numGenesXsome4, recombinator);
+		C_ChromosomePair xsomePair5 = new C_ChromosomePair(C_Chromosome.MAP_LENGTH, numGenesXsome5, recombinator);
+		//
+		C_Gene gene20 = new C_Gene(allele2e + getTaxonSignature(), xsome2q90, mutator, xsomePair2.xsomeStrands[0].getMyId());
+		C_Gene gene21 = new C_Gene(allele2e + getTaxonSignature(), xsome2q90, mutator, xsomePair2.xsomeStrands[1].getMyId());
+		C_Gene gene30 = new C_Gene(allele3e + getTaxonSignature(), xsome3q30, mutator, xsomePair3.xsomeStrands[0].getMyId());
+		C_Gene gene31 = new C_Gene(allele3e + getTaxonSignature(), xsome3q30, mutator, xsomePair3.xsomeStrands[1].getMyId());
+		C_Gene gene40 = new C_Gene(allele4e + getTaxonSignature(), xsome4q50, mutator, xsomePair4.xsomeStrands[0].getMyId());
+		C_Gene gene41 = new C_Gene(allele4e + getTaxonSignature(), xsome4q50, mutator, xsomePair4.xsomeStrands[1].getMyId());
+		C_Gene gene50 = new C_Gene(allele5e + getTaxonSignature(), xsome5q70, mutator, xsomePair5.xsomeStrands[0].getMyId());
+		C_Gene gene51 = new C_Gene(allele5e + getTaxonSignature(), xsome5q70, mutator, xsomePair5.xsomeStrands[1].getMyId());
+
+		xsomePair2.setGenePairAtLocus(0, new C_GenePair(gene20, gene21));
+		xsomePair3.setGenePairAtLocus(0, new C_GenePair(gene30, gene31));
+		xsomePair4.setGenePairAtLocus(0, new C_GenePair(gene40, gene41));
+		xsomePair5.setGenePairAtLocus(0, new C_GenePair(gene50, gene51));
+		bivalents.add(bivalents.size(), xsomePair2);
+		bivalents.add(bivalents.size(), xsomePair3);
+		bivalents.add(bivalents.size(), xsomePair4);
+		bivalents.add(bivalents.size(), xsomePair5);
+!!!299650.java!!!	getTaxonSignature() : Double
+		return .12;

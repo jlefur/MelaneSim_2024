@@ -1,0 +1,9 @@
+class C_GenomeMastomys
+!!!298754.java!!!	C_GenomeMastomys()
+		super();
+		this.alleles.put(WEANING_AGE_Uday, 21.);// source:3 weeks for genus Mastomys [Duplantier et al. 1996]
+		makeAmniotaBivalent(this.alleles);
+!!!298882.java!!!	C_GenomeMastomys(inout microsatXsome : C_XsomePairMicrosat, inout gonosome : C_XsomePairSexual, inout autosomes : ArrayList<C_ChromosomePair>)
+		super(microsatXsome, gonosome, autosomes);
+!!!299010.java!!!	getTaxonSignature() : Double
+		return .10;

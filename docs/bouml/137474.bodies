@@ -1,0 +1,59 @@
+class C_RodentFossorial
+!!!334210.java!!!	C_RodentFossorial(inout genome : I_DiploidGenome)
+		super(genome);
+!!!334338.java!!!	giveBirth(inout genome : I_DiploidGenome) : A_Animal
+		return new C_RodentFossorial(genome);
+!!!334466.java!!!	actionSpawn() : void
+		if (!(this.getCurrentSoilCell() instanceof C_BurrowSystem)) { // if within a burrow do not dig
+			// Choose burrow not full and stop
+			for (I_SituatedThing onePerceivedThing : this.perception())
+				if ((onePerceivedThing instanceof C_BurrowSystem) && !(((C_BurrowSystem) onePerceivedThing).isFull())) {
+					this.actionEnterBurrow((C_BurrowSystem) onePerceivedThing);
+					break;
+				}
+		}
+		// Dig a burrow and enter it.
+		if (!(this.getCurrentSoilCell() instanceof C_BurrowSystem)) actionEnterBurrow(actionDig());
+		this.setHasToLeaveFullContainer(false);// for children care
+		super.actionSpawn(); // use giveBirth() for each egg's genome.
+!!!334594.java!!!	setHasToLeaveFullContainer(inout dispersal : boolean) : void
+		if (this.isSucklingChild()) this.hasToLeaveFullContainer = false;
+		else super.setHasToLeaveFullContainer(dispersal);
+!!!334722.java!!!	actionForage() : void
+		if (this.currentSoilCell instanceof C_BurrowSystem) this.actionRandomExitOfContainer();
+		super.actionForage();
+!!!334850.java!!!	actionDisperse() : void
+		if (this.getCurrentSoilCell() instanceof C_BurrowSystem) actionRandomExitOfContainer();
+		super.actionDisperse();
+!!!334978.java!!!	perception() : I_SituatedThing
+		if (this.currentSoilCell instanceof C_BurrowSystem) return this.currentSoilCell.getOccupantList();
+		else return super.perception();
+!!!335106.java!!!	actionDig() : C_BurrowSystem
+		if (this.currentSoilCell instanceof C_BurrowSystem) {
+			A_Protocol.event("C_RodentFossorial.actionDig", this + " cannot dig, already in " + this.currentSoilCell, isError);
+			return (C_BurrowSystem) this.currentSoilCell;
+		}
+		else {
+			C_BurrowSystem newBurrow = new C_BurrowSystem(currentSoilCell.getAffinity(), currentSoilCell.retrieveLineNo(), currentSoilCell
+					.retrieveColNo());
+			C_ContextCreator.protocol.contextualizeNewThingInContainer(newBurrow, currentSoilCell);// Put burrow in digger's
+																									// current soilCell
+			myLandscape.moveToLocation(newBurrow, myLandscape.getThingCoord_Ucs(this));// Place burrow at the rodent position
+			this.energy_Ukcal--;
+/*			if (C_Parameters.VERBOSE)
+				A_Protocol.event("C_RodentFossorial.actionDig()", "BURROW DUG by " + this + " at " + this.getCurrentSoilCell(), isNotError);*/
+			return newBurrow;
+		}
+!!!335234.java!!!	actionEnterBurrow(inout oneburrow : C_BurrowSystem) : void
+		C_ContextCreator.protocol.contextualizeOldThingInCell(this, oneburrow);// Put rodent in burrow
+		myLandscape.moveToLocation(this, myLandscape.getThingCoord_Ucs(oneburrow));// Place rodent at the burrow position
+		// Remove any target not belonging to occupant list JLF 01.2018
+		if (this.target != null) {
+			if (oneburrow.getOccupantList().contains(this.target)) {} // In case target is a thing within the burrow (a priori
+																		// never happens)
+			else this.discardTarget();
+		}
+		this.energy_Ukcal--;
+!!!335362.java!!!	actionEat() : boolean
+		if (this.currentSoilCell instanceof C_BurrowSystem) this.actionRandomExitOfContainer();
+		return super.actionEat();

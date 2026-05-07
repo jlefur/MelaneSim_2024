@@ -1,0 +1,4 @@
+class C_Egg
+!!!271618.java!!!	C_Egg(inout genome : I_DiploidGenome)
+		super(genome);
+		this.setMyName("egg" + NAMES_SEPARATOR + myId);

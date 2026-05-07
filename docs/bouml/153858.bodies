@@ -1,0 +1,12 @@
+class C_StreamCurrent
+!!!274690.java!!!	C_StreamCurrent(in affinity : int, in lineNo : int, in colNo : int)
+		super(affinity, lineNo, colNo);
+		this.setHasToSwitchFace(true);
+!!!274818.java!!!	getMyCell() : C_SoilCellMarine
+		return myCell;
+!!!274946.java!!!	setMyCell(inout myCell : C_SoilCellMarine) : void
+		this.myCell = myCell;
+!!!275074.java!!!	getSpeedEast() : double
+		return myCell.getSpeedEastward_UmeterPerSecond();
+!!!275202.java!!!	getSpeedNorth() : double
+		return myCell.getSpeedNorthward_UmeterPerSecond();

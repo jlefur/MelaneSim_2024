@@ -1,0 +1,413 @@
+class C_Landscape
+!!!321922.java!!!	C_Landscape(inout context : Context<Object>, in url : String, in gridValueName : String, in continuousSpaceName : String)
+		int[][] matriceLue = readRasterFile(url);
+		// IDENTIFY DIMENSIONS
+		this.dimension_Ucell = new Dimension(matriceLue.length, matriceLue[0].length);
+		A_Protocol.event("C_Landscape constructor", "dimensions dim-ucell: width = " + dimension_Ucell.width
+				+ " height = " + dimension_Ucell.height, isNotError);
+		// INIT EMPTY GRID OF CONTAINERS
+		this.grid = new I_Container[(int) dimension_Ucell.getWidth()][(int) dimension_Ucell.getHeight()];
+		A_Protocol.event("C_Landscape constructor", "Initialized empty grid of containers", isNotError);
+		// SET GRID VALUE LAYER WITH DIMENSIONS, PUT IT IN THE CONTEXT
+		this.gridValueLayer = new GridValueLayer(gridValueName, true,
+				new repast.simphony.space.grid.WrapAroundBorders(), dimension_Ucell.width, dimension_Ucell.height);
+		context.addValueLayer(this.gridValueLayer);
+		A_Protocol.event("C_Landscape constructor", "dimensions gridValueLayer (" + gridValueName+"): "+gridValueLayer.getDimensions(),
+				isNotError);
+		C_Landscape.nbCells = gridValueLayer.size();
+		// SET CONTINUOUS SPACE
+		ContinuousSpaceFactory continousfactory = ContinuousSpaceFactoryFinder.createContinuousSpaceFactory(
+				new TreeMap<String, Object>());
+		this.continuousSpace = continousfactory.createContinuousSpace(continuousSpaceName, context,
+				new SimpleCartesianAdder(), new WrapAroundBorders(), gridValueLayer.getDimensions().getWidth(),
+				gridValueLayer.getDimensions().getHeight());
+		A_Protocol.event("C_Landscape constructor", "dimensions continuous space:" + continuousSpace.getDimensions(),
+				isNotError);
+		A_Protocol.event("C_Landscape constructor", C_Parameters.CELL_WIDTH_Umeter + " metres in one cell", isNotError);
+
+		// Fill both (!) gridValueLayer and C_SoilCell matrices with the value read in the raster
+		this.createGround(matriceLue);
+!!!322050.java!!!	readRasterFile(in url : String) : int
+		// READ RASTER FILE
+		int[][] matriceLue;
+		if (RASTER_MODE.compareTo("ascii") == 0) {
+			System.out.println();
+			matriceLue = C_ReadRaster.txtRasterLoader(url);
+			A_Protocol.event("C_Landscape constructor", "ASCII grid", isNotError);
+		}
+		else {
+			matriceLue = C_ReadRaster.imgRasterLoader(url);
+			A_Protocol.event("C_Landscape constructor", "bitmap", isNotError);
+		}
+		return matriceLue;
+!!!322178.java!!!	createGround(inout matriceLue : int [[][]]) : void
+		for (int i = this.dimension_Ucell.width - 1; i >= 0; i--) {
+			for (int j = this.dimension_Ucell.height - 1; j >= 0; j--) {
+				this.gridValueLayer.set(matriceLue[i][j], i, j);
+				this.grid[i][j] = new C_SoilCell(matriceLue[i][j], i, j);
+			}
+		}
+!!!322306.java!!!	addChildAgent(inout parent : A_Animal, inout child : A_Animal) : void
+ // TODO JLF 2015.08 move to Animal (same as digBurrow)
+		double[] new_location = new double[2];
+		NdPoint p_Ucs = continuousSpace.getLocation(parent);
+		new_location[0] = p_Ucs.getX();
+		new_location[1] = p_Ucs.getY();
+		parent.getCurrentSoilCell().agentIncoming(child);
+		Context<Object> context = ContextUtils.getContext(parent);
+		context.add(child);
+		continuousSpace.moveTo(child, new_location);
+		child.bornCoord_Umeter = getThingCoord_Umeter(child);
+!!!322434.java!!!	findObjectsOncontinuousSpace(inout thing : I_SituatedThing, in radius_Umeter : double) : I_SituatedThing
+		TreeSet<I_SituatedThing> surroundingObjects = new TreeSet<I_SituatedThing>();
+		// next declaration aims to avoid ConcurrentModificationException when checking the unwanted agents
+		int vision_Ucell = (int) Math.ceil(radius_Umeter / C_Parameters.CELL_WIDTH_Umeter); // m*(m.Ucell^-1)=Ucell
+		int gridWidth_Ucell = (int) gridValueLayer.getDimensions().getWidth();
+		int gridHeight_Ucell = (int) gridValueLayer.getDimensions().getHeight();
+		Coordinate position_Ucell = this.getThingCoord_Ucell(thing);
+		GridPoint gridPoint_Ucell = new GridPoint((int) position_Ucell.x, (int) position_Ucell.y);
+		int maxX_Ucell = gridPoint_Ucell.getX() + vision_Ucell;
+		int maxY_Ucell = gridPoint_Ucell.getY() + vision_Ucell;
+		int minX_Ucell = gridPoint_Ucell.getX() - vision_Ucell;
+		int minY_Ucell = gridPoint_Ucell.getY() - vision_Ucell;
+		// Agent restricts cellsContent to acquaintances strictly within their sensing radius - LeFur 2011, Mboup 2014 JLF 2020 */
+		for (int i = minX_Ucell; i <= maxX_Ucell; i++) {
+			for (int j = minY_Ucell; j <= maxY_Ucell; j++) {
+				if (i >= 0 && j >= 0 && i < gridWidth_Ucell && j < gridHeight_Ucell && ((A_Animal) thing)
+						.canPerceiveThing(grid[i][j])) {
+					surroundingObjects.add((I_SituatedThing) grid[i][j]);// TODO JLF 2020.01 should use also radius_Umeter ?
+					// TODO JLF 2017.08 should work also with getOccupants only - should speed up simulations
+					for (I_SituatedThing oneOccupant : grid[i][j].getFullOccupantList()) {
+						/** Agent restricts cellsContent to acquaintances strictly within their sensing radius - LeFur 2011 */
+						if (continuousSpace.getLocation(oneOccupant) != null) { // Patch: occurs when border drives agent out
+							if (thing.canInteractWith(oneOccupant))
+								surroundingObjects.add((I_SituatedThing) oneOccupant);
+						}
+					}
+				}
+			}
+		}
+		surroundingObjects.remove(thing);
+		return surroundingObjects;
+!!!322562.java!!!	moveToLocation(inout thing : I_SituatedThing, inout positionVG_Ucell : Coordinate) : boolean
+		return continuousSpace.moveTo(thing, positionVG_Ucell.x, positionVG_Ucell.y);
+!!!322690.java!!!	moveToContainer(inout thing : I_SituatedThing, inout destination : I_Container) : boolean
+		if (thing.getCurrentSoilCell().agentLeaving(thing) && destination.agentIncoming(thing)) return true;
+		else A_Protocol.event("C_Landscape.moveToContainer", "Could not move" + thing + " to " + destination, isError);
+		return false;
+!!!322818.java!!!	translate(inout thing : A_VisibleAgent, inout moveDistance_Umeter : Coordinate) : void
+		// 1. MOVE IN CONTINUOUS SPACE: 1) Retrieve coordinates in continuous space, compute move vector
+		NdPoint thingLocation_Ucs = this.continuousSpace.getLocation(thing);
+		Coordinate moveDistance_Ucs = new Coordinate(moveDistance_Umeter.x / C_Parameters.UCS_WIDTH_Umeter,
+				moveDistance_Umeter.y / C_Parameters.UCS_WIDTH_Umeter); // m/m.cs^-1=cs
+		// Check the validity of the displacement, if necessary, this function will modify the given value
+		Coordinate distanceDeplacement_Ucs = this.checkGoalPosition(thingLocation_Ucs, moveDistance_Ucs, thing);
+		if (C_Parameters.EXCLOS && thing.hasLeftDomain && thing instanceof A_Organism) this.bordure((A_Organism) thing);
+		else {
+			moveDistance_Umeter.x = moveDistance_Ucs.x * C_Parameters.UCS_WIDTH_Umeter;
+			moveDistance_Umeter.y = moveDistance_Ucs.y * C_Parameters.UCS_WIDTH_Umeter; // cs*m.cs^-1 = m
+			// Move the agent by mean of the projection's methods
+			this.continuousSpace.moveByDisplacement(thing, distanceDeplacement_Ucs.x, distanceDeplacement_Ucs.y);
+			if (thing instanceof A_Animal && !((A_Animal) thing).isTrappedOnBoard()) this.checkAndMoveToNewCell(thing);
+			else if (thing instanceof A_Organism) this.checkAndMoveToNewCell(thing);
+			thing.hasLeftDomain = false;
+		}
+!!!322946.java!!!	translate_ChatGPT_unused(inout thing : A_VisibleAgent, inout moveDistance_Umeter : Coordinate) : void
+		// Retrieve coordinates in continuous space
+		NdPoint thingLocation_Ucs = this.continuousSpace.getLocation(thing);
+
+		// Convert move distance from meters to continuous space units
+		double moveDistanceX_Ucs = moveDistance_Umeter.x / C_Parameters.UCS_WIDTH_Umeter;
+		double moveDistanceY_Ucs = moveDistance_Umeter.y / C_Parameters.UCS_WIDTH_Umeter;
+		Coordinate moveDistance_Ucs = new Coordinate(moveDistanceX_Ucs, moveDistanceY_Ucs);
+
+		// Validate the displacement; this function may modify moveDistance_Ucs
+		Coordinate distanceDeplacement_Ucs = this.checkGoalPosition(thingLocation_Ucs, moveDistance_Ucs, thing);
+
+		// Handle boundary conditions
+		if (C_Parameters.EXCLOS && thing.hasLeftDomain && thing instanceof A_Organism) {
+			this.bordure((A_Organism) thing);
+			return;
+		}
+
+		// Convert back to meters
+		double correctedMoveX = moveDistance_Ucs.x * C_Parameters.UCS_WIDTH_Umeter;
+		double correctedMoveY = moveDistance_Ucs.y * C_Parameters.UCS_WIDTH_Umeter;
+		moveDistance_Umeter.x = correctedMoveX;
+		moveDistance_Umeter.y = correctedMoveY;
+
+		// Move the agent
+		this.continuousSpace.moveByDisplacement(thing, distanceDeplacement_Ucs.x, distanceDeplacement_Ucs.y);
+
+		// Check and move to a new cell if needed
+		if (thing instanceof A_Animal) {
+			A_Animal animal = (A_Animal) thing;
+			if (!animal.isTrappedOnBoard()) this.checkAndMoveToNewCell(animal);
+		}
+		else if (thing instanceof A_Organism) {
+			this.checkAndMoveToNewCell(thing);
+		}
+
+		// Reset domain flag
+		thing.hasLeftDomain = false;
+!!!323074.java!!!	checkAndMoveToNewCell(inout thing : A_VisibleAgent) : void
+		// !!! do not use previousCell==newCell or previousCell.equals(newCell) )
+		I_Container previousCell = thing.getCurrentSoilCell();
+		I_Container newCell = grid[(int) getThingCoord_Ucell(thing).x][(int) getThingCoord_Ucell(thing).y];
+		if (previousCell != newCell) this.moveToContainer(thing, newCell);
+!!!323202.java!!!	checkGoalPosition(inout currentPosition_Ucs : NdPoint, inout moveDistance_Ucs : Coordinate, inout agent : A_VisibleAgent) : Coordinate
+		NdPoint goalPoint_Ucs = new NdPoint(currentPosition_Ucs.getX() + moveDistance_Ucs.x, currentPosition_Ucs.getY()
+				+ moveDistance_Ucs.y);
+		Coordinate dep_Ucs = new Coordinate();
+		dep_Ucs.x = moveDistance_Ucs.x;
+		dep_Ucs.y = moveDistance_Ucs.y;
+		// we test the four cases where the agent is going out and if needed, we put them at one unit of Continuous space of the
+		// boundaries and we reverse their displacements
+		if (goalPoint_Ucs.getX() < 0) {
+			moveDistance_Ucs.x = -moveDistance_Ucs.x;
+			dep_Ucs.x = -currentPosition_Ucs.getX() + 1;
+			agent.hasLeftDomain = true;
+		}
+		else if (goalPoint_Ucs.getX() >= continuousSpace.getDimensions().getWidth()) {
+			moveDistance_Ucs.x = -moveDistance_Ucs.x;
+			dep_Ucs.x = (continuousSpace.getDimensions().getWidth() - 1) - currentPosition_Ucs.getX();
+			agent.hasLeftDomain = true;
+		}
+		else if (goalPoint_Ucs.getY() < 0) {
+			moveDistance_Ucs.y = -moveDistance_Ucs.y;
+			dep_Ucs.y = -currentPosition_Ucs.getY() + 1;
+			agent.hasLeftDomain = true;
+		}
+		else if (goalPoint_Ucs.getY() > continuousSpace.getDimensions().getHeight()) {
+			moveDistance_Ucs.y = -moveDistance_Ucs.y;
+			dep_Ucs.y = (continuousSpace.getDimensions().getHeight() - 1) - currentPosition_Ucs.getY();
+			agent.hasLeftDomain = true;
+		}
+		return dep_Ucs;
+!!!323330.java!!!	bordure(inout animalLeavingLandscape : A_VisibleAgent) : void
+// TODO JLF 2015.11 change name (agentLeaving)
+		// Identify on which side the new animal will appear
+		if (animalLeavingLandscape.isDead()) return;// Could leave landscape in the middle of a step.
+		double[] newLocation = new double[2];
+		int x = 0, y = 0;
+		int randkey = (int) (C_ContextCreator.randomGeneratorForInitialisation.nextDouble() * 4);// TODO number in source
+		switch (randkey) {
+			case 0 : // bottom
+				x = (int) (C_ContextCreator.randomGeneratorForInitialisation.nextDouble() * this.dimension_Ucell
+						.getWidth());
+				y = 0;
+				newLocation[0] = x * C_Parameters.CELL_SIZE_UcontinuousSpace; // cell / cs.cell^-1 -> cs;
+				newLocation[1] = y * C_Parameters.CELL_SIZE_UcontinuousSpace; // cell / cs.cell^-1 -> cs;
+				break;
+			case 1 : // left
+				x = 0;
+				y = (int) (C_ContextCreator.randomGeneratorForInitialisation.nextDouble() * this.dimension_Ucell
+						.getHeight());
+				newLocation[0] = x * C_Parameters.CELL_SIZE_UcontinuousSpace; // cell / cs.cell^-1 -> cs;
+				newLocation[1] = y * C_Parameters.CELL_SIZE_UcontinuousSpace; // cell / cs.cell^-1 -> cs;
+				break;
+			case 2 : // top
+				x = (int) (C_ContextCreator.randomGeneratorForInitialisation.nextDouble() * this.dimension_Ucell
+						.getWidth());
+				y = (int) (this.dimension_Ucell.getHeight() - 1);
+				newLocation[0] = x * C_Parameters.CELL_SIZE_UcontinuousSpace; // cell / cs.cell^-1 -> cs;
+				newLocation[1] = y * C_Parameters.CELL_SIZE_UcontinuousSpace; // cell / cs.cell^-1 -> cs;
+				break;
+			case 3 : // right
+				x = (int) (this.dimension_Ucell.getWidth() - 1);
+				y = (int) (C_ContextCreator.randomGeneratorForInitialisation.nextDouble() * this.dimension_Ucell
+						.getHeight());
+				newLocation[0] = x * C_Parameters.CELL_SIZE_UcontinuousSpace; // cell / cs.cell^-1 -> cs;
+				newLocation[1] = y * C_Parameters.CELL_SIZE_UcontinuousSpace; // cell / cs.cell^-1 -> cs;
+				break;
+			default :
+				A_Protocol.event("C_Landscape.bordure", "Nonsense", isError);
+				break;
+		}
+		replaceOutcomer(animalLeavingLandscape, newLocation, x, y);
+!!!323458.java!!!	replaceOutcomer(inout animalLeavingLandscape : A_VisibleAgent, inout newLocation : double [[]], in x : int, in y : int) : void
+		// The outcomer dies, a new incomer enters
+		Context<I_SituatedThing> context = ContextUtils.getContext(animalLeavingLandscape);// Keep context to introduce incomer
+		animalLeavingLandscape.setDead(true);// Kill the leaving agent
+
+		// Create new animal of the same class //
+		A_Organism incomer = null;
+		Class<? extends A_VisibleAgent> animalClass = animalLeavingLandscape.getClass();
+		if (animalLeavingLandscape instanceof A_Organism) {
+			Class<? extends I_DiploidGenome> genomeClass = ((A_Organism) animalLeavingLandscape).getGenome().getClass();
+			try {
+				Constructor<?> constructor = animalClass.getDeclaredConstructor(I_DiploidGenome.class);
+				constructor.setAccessible(true);
+				// Create an instance of genomeClass
+				Object genomeInstance = genomeClass.getDeclaredConstructor().newInstance();
+				// Create an instance of the class represented by the constructor
+				incomer = (A_Organism) constructor.newInstance(genomeInstance);
+			} catch (InstantiationException | IllegalAccessException | InvocationTargetException
+					| NoSuchMethodException e) {
+				e.printStackTrace();
+			}
+		}
+		// Initialize incomer
+		incomer.hasLeftDomain = false;
+		incomer.hasEnteredDomain = true;
+		incomer.hasToSwitchFace = true;
+		incomer.energy_Ukcal = animalLeavingLandscape.energy_Ukcal;// JLF 04.2025
+		// incomer.setAge_Uday(animalLeavingLandscape.getAge_Uday());
+		incomer.setAge_Uday(0.);
+		if (((A_SupportedContainer) animalLeavingLandscape).isa_Tag()) incomer.seta_Tag(true);
+		context.add(incomer);
+		if (incomer instanceof A_Animal) ((A_Animal) incomer).setHasToLeaveFullContainer(true);
+		if (incomer instanceof A_Organism) updateInspectors((A_Organism) incomer);
+		continuousSpace.moveTo(incomer, newLocation);
+		grid[x][y].agentIncoming(incomer);
+		incomer.setMyHome(grid[x][y]);
+		incomer.bornCoord_Umeter = getThingCoord_Umeter(incomer);
+
+		// Aim toward landscape center
+		incomer.hasEnteredDomain = true;
+		if (incomer instanceof A_Animal) {
+			((A_Animal) incomer).setTarget(grid[(int) (continuousSpace.getDimensions().getWidth()
+					/ 2)][(int) (continuousSpace.getDimensions().getHeight() / 2)]);
+			((A_Animal) incomer).computeNextMoveToTarget();
+			((A_Animal) incomer).actionDisperse();
+			((A_Animal) incomer).discardTarget();
+		}
+		if (C_Parameters.VERBOSE)
+			A_Protocol.event("C_Landscape:bordure", "BORDURE event: " + animalLeavingLandscape + " leaves landscape at "
+					+ animalLeavingLandscape.getCurrentSoilCell().retrieveLineNo() + "," + animalLeavingLandscape
+							.getCurrentSoilCell().retrieveColNo() + " / " + incomer + " enters at " + x + "," + y,
+					isNotError);
+!!!323714.java!!!	identifyAffinityLandPlots(inout context : Context<Object>) : C_LandPlot
+		int i = 0, j = 0, x, y, x0, y0, k, affinity0;
+		this.landPlots = new TreeSet<C_LandPlot>();
+		C_LandPlot newPlot;
+		C_SoilCell sc0, scI;
+		List<C_SoilCell> fileDattente = new ArrayList<C_SoilCell>();
+		Set<C_SoilCell> fileDattente2 = new HashSet<C_SoilCell>();
+		C_SoilCell oneSoilCell = null;
+		// Scan all the soilCellMatrix
+		for (i = 0; i < this.dimension_Ucell.getWidth(); i++) {
+			for (j = 0; j < this.dimension_Ucell.getHeight(); j++) {
+				oneSoilCell = (C_SoilCell) grid[i][j];
+				// if soil cell has no affinity landplot or affinity landplot init list does not contain soil cell then make a new
+				// land plot for the soil cell.
+				if (oneSoilCell.getMyLandPlot() == null || !landPlots.contains(oneSoilCell.getMyLandPlot())) {
+					// Alors je lui fabrique un nouveau landPlot
+					newPlot = new C_LandPlot(this);
+					context.add(newPlot);
+
+					landPlots.add(newPlot);
+					sc0 = oneSoilCell;
+					affinity0 = sc0.getAffinity();
+					// Je traite sc0
+					sc0.setAffinityLandPlot(newPlot);
+					newPlot.setAffinity(affinity0);
+					// And I detect and add to the newPlot all soilCells contiguous to this soilCell0 (sc0)
+					// So I build completely this new landPlot befor stating to build one other
+					// la fileDattente CONTIEN LES SOILCELL QUI SONT D�J� TRAIT�S :
+					// Et dans cette list, les sc � partir de la position k
+					// sont ceux dont les voisins ne sont pas encore tait�s
+					fileDattente.clear();
+					fileDattente.add(sc0); // Seul sc0 est trait� en ce moment
+					fileDattente2.clear();
+					fileDattente2.add(sc0);
+					k = 0;
+					// Je reste sur le m�me landPlot pour le construire enti�rement
+					while (k < fileDattente.size()) {
+						// On r�cup�re un � un les soilCells d�ja trait�, pour pouvoir localiser et traiter ses voisins
+						sc0 = fileDattente.get(k);
+						x0 = sc0.retrieveLineNo();
+						y0 = sc0.retrieveColNo();
+						for (x = x0 - 1; x <= x0 + 1; x++) {
+							for (y = y0 - 1; y <= y0 + 1; y++) { // avec ces 2 boucles j'accede � tous les 8 voisins de sc0
+								if (!(x == x0 && y == y0) && (0 <= x && x < dimension_Ucell.getWidth() && 0 <= y
+										&& y < dimension_Ucell.getHeight())) {
+									scI = (C_SoilCell) grid[x][y]; // Pour chaque voisin scI de sc0, on teste :
+									if (scI.getAffinity() == affinity0 && // si c'est de la m�me affinit� que sc0 et
+											!fileDattente2.contains(scI)) { // s'il n'est pas encore dans la file d'attente
+										scI.setAffinityLandPlot(newPlot); // pour le traiter
+										fileDattente.add(scI); // et l'ajoute dans la file d'attente pour �tudier � son tour
+																// chaqu'un de ses voisins
+										fileDattente2.add(scI);
+									}
+								}
+							}
+						}
+						k++; // pour prendre l'�l�ment suivant de la file d'attente
+					}
+					newPlot.setThisName(null);
+				}
+				// End of building a newlandPlot. We continue to build others
+			}
+		}
+		A_Protocol.event("C_Landscape.identifyAffinityLandPlots(): ", landPlots.size() + " land plot(s) initialized",
+				isNotError);
+		return landPlots;
+!!!323842.java!!!	resetCellsColor() : void
+		for (int i = 0; i < this.dimension_Ucell.getWidth(); i++) {
+			for (int j = 0; j < this.dimension_Ucell.getHeight(); j++) {
+				this.gridValueLayer.set(grid[i][j].getAffinity(), i, j);
+			}
+		}
+		C_Parameters.BLACK_MAP = false;
+!!!323970.java!!!	halfCellDiagonal() : double
+		return Math.sqrt((C_Parameters.CELL_WIDTH_Umeter / 2) * (C_Parameters.CELL_WIDTH_Umeter / 2)
+				+ (C_Parameters.CELL_WIDTH_Umeter / 2) * (C_Parameters.CELL_WIDTH_Umeter / 2));
+!!!324098.java!!!	getCellNeighbours(inout cell : I_Container) : I_Container
+		TreeSet<I_Container> neighbours = new TreeSet<I_Container>();
+		int x0 = cell.retrieveLineNo();
+		int y0 = cell.retrieveColNo();
+		for (int x = x0 - 1; x <= x0 + 1; x++) {
+			for (int y = y0 - 1; y <= y0 + 1; y++) {
+				if (!(x == x0 && y == y0) && (0 <= x && x < dimension_Ucell.getWidth() && 0 <= y && y < dimension_Ucell
+						.getHeight())) {
+					neighbours.add(grid[x][y]);
+				}
+			}
+		}
+		return neighbours;
+!!!324226.java!!!	isPointInGrid(inout onePoint : Coordinate) : boolean
+		if (onePoint == null) return false;
+		return (onePoint.x >= 0.) && (this.getDimension_Ucell().width > onePoint.x) && (this
+				.getDimension_Ucell().height > onePoint.y) && (onePoint.y >= 0.);
+!!!324354.java!!!	getColormap() : Map<Integer, Color>
+		return colorMap;
+!!!324482.java!!!	getThingCoord_Ucell(inout thing : I_SituatedThing) : Coordinate
+		NdPoint location_Ucs = continuousSpace.getLocation(thing);
+		Coordinate location_Ucell = new Coordinate(location_Ucs.getX() / C_Parameters.CELL_SIZE_UcontinuousSpace,
+				location_Ucs.getY() / C_Parameters.CELL_SIZE_UcontinuousSpace); // cs / cs.cell^-1= cell
+		// MS & PAM 2016.10 get if position not exist
+		if (dimension_Ucell.width <= location_Ucell.x) location_Ucell.x -= 1;
+		if (dimension_Ucell.height <= location_Ucell.y) location_Ucell.y -= 1;
+		return location_Ucell;
+!!!324610.java!!!	getThingCoord_Umeter(inout thing : I_SituatedThing) : Coordinate
+		// we call the ground manager to ask him the agent coordinate
+		Coordinate co = getThingCoord_Ucs(thing);
+		return new Coordinate(co.x * C_Parameters.UCS_WIDTH_Umeter, co.y * C_Parameters.UCS_WIDTH_Umeter);// cs*m.cs^-1
+!!!324738.java!!!	getThingCoord_Ucs(inout thing : I_SituatedThing) : Coordinate
+		NdPoint location = continuousSpace.getLocation(thing);
+		if (location != null) return new Coordinate(location.getX(), location.getY());
+		else// return null;
+		{
+			// Soil cells normally return null (not contextualized in space)
+			if (thing instanceof C_SoilCell) return thing.getCoordinate_Ucs();
+			// else problem
+			else {
+				A_Protocol.event("C_Landscape.getThingCoord_Ucs", "PB " + thing, isError);
+				return null;
+			}
+		}
+!!!324866.java!!!	getGrid() : I_Container
+		return grid;
+!!!324994.java!!!	setGridCell(in line : int, in col : int, inout cell : I_Container) : void
+		this.grid[line][col] = cell;
+!!!325122.java!!!	getGridCell(in line : int, in col : int) : I_Container
+		return this.grid[line][col];
+!!!325250.java!!!	getValueLayer() : GridValueLayer
+		return gridValueLayer;
+!!!325378.java!!!	getDimension_Ucell() : Dimension
+		return dimension_Ucell;
+!!!325506.java!!!	getAffinityLandPlots() : C_LandPlot
+		return landPlots;
+!!!325634.java!!!	getContinuousSpace() : I_SituatedThing
+		return continuousSpace;

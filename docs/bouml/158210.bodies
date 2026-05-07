@@ -1,0 +1,16 @@
+class C_GenomeRattusRattus
+!!!301186.java!!!	C_GenomeRattusRattus()
+		super();
+		alleles.put(LITTER_SIZE, 4.); // source:~60% survival at maturity => 7->4(LG) / Données Chancira -> 6.5 embryons / 3-4 mois [Kingdon, 1974] / 3
+										// mois [Rosevear 1969] / 90 & 112 [AnAge database 2014]
+		alleles.put(WEANING_AGE_Uday, 26.);// source: AnAge database 2014
+		alleles.put(MATING_LATENCY_Uday, 34.); // source: 5-6 litters/year [Rosevear, 1969] -> 60-26(weaning age) (LG) / 36-22 [AnAge database, 2014]
+		alleles.put(GESTATION_LENGTH_Uday, 21.); // source: 21-30d [Kingdon 1974] / 3 weeks or more [Rosevear, 1969] / AnAge database (2014)
+		alleles.put(SEXUAL_MATURITY_Uday,75.); // source JMD
+		alleles.put(MAX_AGE_Uday,365.); // Peu vivent plus d'un an [Kingdon, 1974] -> age max: 365, age moyen: 6 mois (LG
+		makeAmniotaBivalent(this.alleles);
+		makeAnimaliaBivalent(this.alleles);
+!!!301314.java!!!	C_GenomeRattusRattus(inout microsatXsome : C_XsomePairMicrosat, inout gonosome : C_XsomePairSexual, inout autosomes : ArrayList<C_ChromosomePair>)
+		super(microsatXsome, gonosome, autosomes);
+!!!301442.java!!!	getTaxonSignature() : Double
+		return .42;

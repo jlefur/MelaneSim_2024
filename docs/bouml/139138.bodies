@@ -1,0 +1,219 @@
+class C_ProtocolCage
+!!!157186.java!!!	C_ProtocolCage(inout ctxt : Context<Object>)
+		super(ctxt);
+		cagesMatrix = new C_LandPlot[NB_CAGES_LINES][NB_CAGES_COLUMNS];
+		geneticInspector = new C_InspectorGenetic();
+		hybridInspector = new C_InspectorHybrid();
+		inspectorList.add(geneticInspector);
+		inspectorList.add(hybridInspector);
+		C_GenomeEucaryote.init(hybridInspector);// declares the inspector that stores the lethal alleles causes JLF 02.2013
+		A_Amniote.init(hybridInspector);// declares the inspector that stores the lethal alleles causes JLF 02.2013
+		C_CustomPanelSet_Rodent.addGeneticInspector(geneticInspector);
+		C_CustomPanelSet_Rodent.addHybridInspector(hybridInspector);
+		C_UserPanelRodent.addGeneticInspector(geneticInspector);
+		C_UserPanelRodent.addHybridInspector(hybridInspector);
+		this.facilityMap = new C_Background(-.04, 31, 25);
+!!!157314.java!!!	initProtocol() : void
+		TreeSet<C_LandPlot> landPlotList = (TreeSet<C_LandPlot>) this.landscape.getAffinityLandPlots().clone();
+		for (C_LandPlot plot : landPlotList)
+			if (plot.getAffinity() < FORBID_ZONE) {
+				this.landscape.getAffinityLandPlots().remove(plot);
+				this.context.remove(plot);
+			}
+		C_LandPlot[] cageList = new C_LandPlot[NB_CAGES_COLUMNS * NB_CAGES_LINES];
+		this.landscape.getAffinityLandPlots().toArray(cageList);
+		// Invert the array, JLF 10.214
+		for (int i = 0; i < cageList.length / 2; i++) {
+			C_LandPlot temp = cageList[i];
+			cageList[i] = cageList[cageList.length - i - 1];
+			cageList[cageList.length - i - 1] = temp;
+		}
+		C_RodentCaged male = null;
+		C_RodentCaged female = null;
+		// The PlotMatrix is created to have the origin (line = 0, col = 0) at the upper left cage.
+		int line = NB_CAGES_LINES - 1, col = 0;
+		for (C_LandPlot cage : cageList) {
+			if (col < NB_CAGES_COLUMNS) {
+				if (line >= 0) {
+					this.cagesMatrix[line][col] = cage;
+					cage.setMyName("C" + line + "-" + col);
+					line--;
+				}
+				else {
+					line = NB_CAGES_LINES - 1;
+					col++;
+					this.cagesMatrix[line][col] = cage;
+					cage.setMyName("Cage-" + line + "-" + col);
+					line--;
+				}
+			}
+		}
+		// Position cages at the barycentre of cells
+		for (C_LandPlot oneCage : this.landscape.getAffinityLandPlots()) {
+			double xx = 0., yy = 0.;
+			for (C_SoilCell cell : oneCage.getCells()) {
+				xx += cell.getCoordinate_Ucs().x;
+				yy += cell.getCoordinate_Ucs().y;
+			}
+			xx = xx / oneCage.getCells().size();
+			yy = yy / oneCage.getCells().size();
+			this.landscape.moveToLocation(oneCage, new Coordinate(xx, yy));
+			oneCage.setCurrentSoilCell(oneCage.getCells().first());
+		}
+		// (NB_CAGES_COLUMNS / 2) is to have half the column erythroleucus and the other half natalensis.
+		for (int col2 = 0; col2 < NB_CAGES_COLUMNS / 2; col2++) {
+			// ery x ery and nat x nat
+			male = new C_RodentCaged(new C_GenomeMastoNatalensis(SEX_GENE_Y));
+			female = new C_RodentCaged(new C_GenomeMastoNatalensis(SEX_GENE_X));
+			contextualizeNewRodentInCage(female, 0, col2);
+			contextualizeNewRodentInCage(male, 0, col2);
+		}
+		for (int col2 = NB_CAGES_COLUMNS / 2; col2 < NB_CAGES_COLUMNS; col2++) {
+			male = new C_RodentCaged(new C_GenomeMastoErythroleucus(SEX_GENE_Y));
+			female = new C_RodentCaged(new C_GenomeMastoErythroleucus(SEX_GENE_X));
+			contextualizeNewRodentInCage(female, 0, col2);
+			contextualizeNewRodentInCage(male, 0, col2);
+		}
+		// Mery x Fnat and Mnat x Fery
+		for (int col2 = 0; col2 < NB_CAGES_COLUMNS / 2; col2++) {
+			male = new C_RodentCaged(new C_GenomeMastoNatalensis(SEX_GENE_Y));
+			female = new C_RodentCaged(new C_GenomeMastoErythroleucus(SEX_GENE_X));
+			contextualizeNewRodentInCage(female, 1, col2);
+			contextualizeNewRodentInCage(male, 1, col2);
+		}
+		for (int col2 = NB_CAGES_COLUMNS / 2; col2 < NB_CAGES_COLUMNS; col2++) {
+			male = new C_RodentCaged(new C_GenomeMastoErythroleucus(SEX_GENE_Y));
+			female = new C_RodentCaged(new C_GenomeMastoNatalensis(SEX_GENE_X));
+			contextualizeNewRodentInCage(female, 1, col2);
+			contextualizeNewRodentInCage(male, 1, col2);
+		}
+		// nat x Hyb and ery x Hyb --> here only the pure Nat and ery are added.
+		for (int line2 = 1; (line2 * 3 + 1) < NB_CAGES_LINES; line2++) {
+			for (int col2 = 0; col2 < NB_CAGES_COLUMNS / 2; col2++) {
+				male = new C_RodentCaged(new C_GenomeMastoNatalensis(SEX_GENE_Y));
+				contextualizeNewRodentInCage(male, (line2 * 3), col2); // males are added every three lines
+				female = new C_RodentCaged(new C_GenomeMastoNatalensis(SEX_GENE_X));
+				contextualizeNewRodentInCage(female, (line2 * 3 + 1), col2);// females are added every three lines after the males
+			}
+			for (int col2 = NB_CAGES_COLUMNS / 2; col2 < NB_CAGES_COLUMNS; col2++) {
+				male = new C_RodentCaged(new C_GenomeMastoErythroleucus(SEX_GENE_Y));
+				contextualizeNewRodentInCage(male, (line2 * 3), col2); // males are added every three lines
+				female = new C_RodentCaged(new C_GenomeMastoErythroleucus(SEX_GENE_X));
+				contextualizeNewRodentInCage(female, (line2 * 3 + 1), col2);// females are added every three lines after the males
+			}
+		}
+		super.initProtocol();
+!!!157442.java!!!	contextualizeNewRodentInCage(inout rodent : C_RodentCaged, in line : int, in col : int) : void
+		int h = (int) (C_ContextCreator.randomGeneratorForInitialisation.nextDouble() * (cagesMatrix[line][col]).getCells().size());
+		C_SoilCell cell = (cagesMatrix[line][col]).retrieveOneCell(h);
+		contextualizeNewThingInGrid(rodent, cell.retrieveLineNo(), cell.retrieveColNo());
+		rodent.setRandomAge();
+		rodent.setBirthCage(cagesMatrix[line][col]);
+		rodent.setCurrentCage(cagesMatrix[line][col]);
+		rodent.setCurrentLine(line);
+!!!157570.java!!!	step_Utick() : void
+		// Select hybrids
+		TreeSet<C_RodentCaged> hybridList = new TreeSet<C_RodentCaged>();
+		for (C_Rodent rodent : C_InspectorPopulationRodent.rodentList)
+			if (rodent.getGenome().getClass() == C_GenomeMastomys.class) hybridList.add((C_RodentCaged) rodent);
+		//
+		// LOOP
+		//
+		for (C_RodentCaged cagedRodent : hybridList) {
+			boolean found = false;
+			for (int i = 0; i < NB_CAGES_LINES / 3; i++) {
+				int lineHybrids = (i * 3) + 2, lineMixMale = lineHybrids + 1, lineMixFemale = lineMixMale + 1;
+				for (int col = 0; col < NB_CAGES_COLUMNS; col++) {
+					// System.out.println(cagedRodent.getCurrentLine()+" -- "+cagedRodent.getCurrentSoilCell().toString()+" --
+					// "+lineHybrids+" -- "+col);
+					C_LandPlot cage = cagesMatrix[lineHybrids][col];
+					TreeSet<C_Rodent> occupants = cage.getFullRodentList();
+					if (occupants.isEmpty()) {
+						changeCage(cagedRodent, lineHybrids, col, "F" + (i + 1));
+						found = true;
+						break;
+					}
+					else if (occupants.size() == 1) {
+						C_RodentCaged occupant = (C_RodentCaged) occupants.first();
+
+						if ((occupant.getBirthCage() != cagedRodent.getBirthCage()) && (!sameSex(occupant, cagedRodent))) {
+							changeCage(cagedRodent, lineHybrids, col, "F" + (i + 1));
+							found = true;
+							break;
+						}
+					}
+				}
+				if (!found) {
+					for (int col = 0; col < NB_CAGES_COLUMNS; col++) {
+						if ((cagesMatrix[lineMixMale][col].retrieveLoad_Urodent() == 1) && (cagedRodent.testFemale())) {
+							changeCage(cagedRodent, lineMixMale, col, "F" + (i + 1));
+							found = true;
+							break;
+						}
+						else if ((cagesMatrix[lineMixFemale][col].retrieveLoad_Urodent() == 1) && (cagedRodent.testMale())) {
+							changeCage(cagedRodent, lineMixFemale, col, "F" + (i + 1));
+							found = true;
+							break;
+						}
+					}
+				}
+				else break;
+			}
+		}
+		// Killing rodents not used
+		for (int line = 0; line < NB_CAGES_LINES; line++) {
+			for (int col = 0; col < NB_CAGES_COLUMNS; col++) {
+				C_LandPlot cage2 = cagesMatrix[line][col];
+				TreeSet<C_Rodent> occupants2 = cage2.getFullRodentList();
+				if (occupants2.size() >= 2) {
+					ArrayList<C_RodentCaged> parents = new ArrayList<C_RodentCaged>();
+					for (I_SituatedThing rodent : occupants2) {
+
+						// Rodents are not killed if they are pure and born at the beginning of the simulation (i.e
+						// first line, BirthDate = -1) OR if they are hybrid and older than newborn(age = 0).
+						if ((((((C_RodentCaged) rodent).getGenome()).getClass() != C_GenomeMastomys.class) && (((C_RodentCaged) rodent)
+								.getBirthDate_Utick() == -1)) || ((((C_RodentCaged) rodent).getAge_Uday() > 0)) && ((((C_RodentCaged) rodent)
+										.getGenome()).getClass() == C_GenomeMastomys.class)) {
+							parents.add((C_RodentCaged) rodent);
+						}
+					}
+					if (occupants2.size() > 2) {
+						occupants2.removeAll(parents);
+						for (Iterator<C_Rodent> iterator = occupants2.iterator(); iterator.hasNext();)
+							iterator.next().checkDeath(1);
+					}
+				}
+			}
+		}
+		super.step_Utick();// has to be after the other inspectors step since it records indicators in file
+!!!157698.java!!!	sameSex(inout one : C_RodentCaged, inout two : C_RodentCaged) : boolean
+		if (one.testMale() && two.testMale()) return true;
+		else if (one.testFemale() && two.testFemale()) return true;
+		else if (one.testFemale() && two.testMale()) return false;
+		if (one.testMale() && two.testFemale()) return false;
+		else {
+			System.err.println("C_ProtocolCage.compareSex(): unable to compute");
+			return false;
+		}
+!!!157826.java!!!	changeCage(inout rodent : C_RodentCaged, in line : int, in col : int, in generation : String) : void
+		int h = (int) (C_ContextCreator.randomGeneratorForInitialisation.nextDouble() * (cagesMatrix[line][col]).getCells().size());
+		rodent.generation = generation;
+		C_SoilCell destinationCell = (cagesMatrix[line][col]).retrieveOneCell(h);
+		this.landscape.moveToContainer(rodent, destinationCell);
+		this.landscape.moveToLocation(rodent, landscape.getThingCoord_Ucs(destinationCell));
+		rodent.setCurrentCage(cagesMatrix[line][col]);
+		rodent.setCurrentLine(line);
+!!!157954.java!!!	getCagesMatrix() : C_LandPlot
+		return cagesMatrix;
+!!!158082.java!!!	getNB_CAGES_COLUMNS() : int
+		return NB_CAGES_COLUMNS;
+!!!158210.java!!!	getNB_CAGES_LINES() : int
+		return NB_CAGES_LINES;
+!!!158338.java!!!	readUserParameters() : void
+		super.readUserParameters();
+		// DYNAMIC AGENTS CONSTANTS //
+		/** used only for the computation of the mortality table
+		 * @see C_Rodent#getDeathProbabilityMicrotusArvalis_Uday */
+		// Reproduction attributes common to both sexes //
+		C_Parameters.REPRO_START_Umonth = ((Integer) C_Parameters.parameters.getValue("REPRO_START_Umonth")).intValue(); // 91;
+		C_Parameters.REPRO_END_Umonth = ((Integer) C_Parameters.parameters.getValue("REPRO_END_Umonth")).intValue();

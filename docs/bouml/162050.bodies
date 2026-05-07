@@ -1,0 +1,27 @@
+class C_RodentBlackRat
+!!!349058.java!!!	C_RodentBlackRat(inout genome : I_DiploidGenome)
+		super(genome);
+!!!349186.java!!!	giveBirth(inout genome : I_DiploidGenome) : A_Animal
+		return new C_RodentBlackRat(genome);
+!!!349314.java!!!	actionTryBoardingContainer(inout vehicle : C_Vehicle) : boolean
+		if (vehicle.getType().equals(TAXI_EVENT)) return false;
+		else return super.actionTryBoardingContainer(vehicle);
+!!!349442.java!!!	updatePhysiologicStatus() : void
+		super.updatePhysiologicStatus();
+		if (this.isSexualMature() && !this.isPregnant())
+			// TODO number in source 2016.10 JLF affinity >=4 -> reproduction all year
+			if (this.getCurrentSoilCell().getAffinity() * 3 >= A_Protocol.protocolCalendar.get(Calendar.MONTH)) {
+				this.setDesire(REPRODUCE);
+				this.readyToMate = true;
+			}
+			else this.readyToMate = false;
+!!!349570.java!!!	deliberation(inout perceivedThings : TreeSet<I_SituatedThing>) : I_SituatedThing
+		if (this.getDesire().equals(FEED)) {
+			TreeSet<I_SituatedThing> candidateTargets = new TreeSet<I_SituatedThing>();// There may be several equivalent targets
+			for (I_SituatedThing oneThingPerceived : perceivedThings)
+				if ((oneThingPerceived instanceof C_Vehicle) && (((C_Vehicle) oneThingPerceived).getType().equals(TRUCK_EVENT))) {
+					candidateTargets.add(oneThingPerceived);
+				}
+			return candidateTargets;
+		}
+		else return super.deliberation(perceivedThings);

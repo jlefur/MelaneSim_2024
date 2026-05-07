@@ -1,0 +1,33 @@
+class C_XsomePairSexual
+!!!293634.java!!!	C_XsomePairSexual(in gender : int)
+		super(1, new C_RecombinatorNull());
+		// Assume it is female ... give it both sex alleles ("XX"). If it should be male, make one
+		// of the alleles a missing sex allele, "Y" (thus, the genome codes for a male - YX or XY).
+		Integer sexAlleleL = SEX_GENE_X;
+		Integer sexAlleleR = SEX_GENE_X;
+		if (gender == SEX_GENE_Y) {
+			// Randomly choose which gene is "Y" and which will remain "X".
+			if ((int) (C_ContextCreator.randomGeneratorForGameteAndSexSelection.nextDouble() * 2) == 0) sexAlleleL = SEX_GENE_Y;
+			else sexAlleleR = SEX_GENE_Y;
+		}
+		// put a unique sexual gene pair at locus 0.
+		setGenePairAtLocus(0, new C_Gene(sexAlleleL, DEFAULT_GONOSOME_MAPLOC, SEX_GENE_MUT,
+				this.xsomeStrands[PARENT_1].myId, SEX_GENE_CONSTR), new C_Gene(sexAlleleR,
+				DEFAULT_GONOSOME_MAPLOC, SEX_GENE_MUT, this.xsomeStrands[PARENT_2].myId, SEX_GENE_CONSTR));
+!!!293762.java!!!	C_XsomePairSexual(inout p1Gamete : C_Chromosome, inout p2Gamete : C_Chromosome)
+		super(p1Gamete, p2Gamete);
+!!!293890.java!!!	isMale() : boolean
+		C_GenePair alleles = (C_GenePair) getLocusAllele(DEFAULT_GONOSOME_MAPLOC);
+		if (alleles.getGene(PARENT_1).allele != alleles.getGene(PARENT_2).allele) return true;
+		else return false;
+!!!294018.java!!!	isFemale() : boolean
+		C_GenePair alleles = (C_GenePair) getLocusAllele(DEFAULT_GONOSOME_MAPLOC);
+		if (alleles.getGene(PARENT_1).allele == alleles.getGene(PARENT_2).allele) return true;
+		else return false;
+!!!294146.java!!!	crossover() : C_ChromosomePair
+		// Crossover both parents' original strands separately -> two haploid strands, or gametes.
+		C_ChromosomePair recombinedXsome = recombinator.crossover(xsomeStrands[PARENT_1],
+				xsomeStrands[PARENT_2]);
+		C_XsomePairSexual crossedGonosome = new C_XsomePairSexual(recombinedXsome.getXsomeStrand(PARENT_1),
+				recombinedXsome.getXsomeStrand(PARENT_2));
+		return crossedGonosome;

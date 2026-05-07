@@ -1,0 +1,84 @@
+class C_ProtocolDodel
+!!!161410.java!!!	C_ProtocolDodel(inout ctxt : Context<Object>)
+		super(ctxt);
+		this.facilityMap = new C_Background(0.05, 13, 19);// TODO number in source 2018.03 jlf
+
+		this.geneticInspector = new C_InspectorGenetic();
+		this.inspectorList.add(geneticInspector);
+		C_CustomPanelSet_Rodent.addGeneticInspector(geneticInspector);
+		this.circadianAffinities = new C_CircadianAffinitiesMus((C_LandscapeRodent) this.landscape);
+!!!161538.java!!!	initLandscape(inout context : Context<Object>) : void
+		this.setLandscape(new C_LandscapeRodent(context, C_Parameters.RASTER_URL, VALUE_LAYER_NAME, CONTINUOUS_SPACE_NAME));
+!!!161666.java!!!	readUserParameters() : void
+		boolean oldValueBlackMap = C_Parameters.BLACK_MAP;
+		super.readUserParameters();
+		C_Parameters.UNLOAD_FREQUENCY_Uweek = ((Integer) C_Parameters.parameters.getValue("UNLOAD_FREQUENCY_Uweek")).intValue();
+		C_Parameters.BLACK_MAP = ((Boolean) C_Parameters.parameters.getValue("BLACK_MAP")).booleanValue();
+		if (oldValueBlackMap != C_Parameters.BLACK_MAP) {
+			if (C_Parameters.BLACK_MAP) this.blackMap();
+			else if (this.landscape != null) this.landscape.resetCellsColor();
+		}
+!!!161794.java!!!	randomlyAddRodents(in nbAgent : int) : void
+		for (int i = 0; i < nbAgent; i++) {
+			C_Rodent agent = createRodent();
+			agent.setRandomAge();
+			contextualizeNewThingInSpace(agent, 7., 22.);// TODO number in source 2018.03 jlf
+			agent.setNewRandomMove();
+		}
+!!!161922.java!!!	initProtocol() : void
+		if (C_Parameters.DISPLAY_MAP) {
+			this.facilityMap.contextualize(this.context, this.landscape);
+		}
+		this.circadianAffinities.setInitialAffinities();
+		this.nbWeekCount = 0;
+		this.marketDay = 1;
+		this.currentDayOfWeek = protocolCalendar.get(Calendar.DAY_OF_WEEK) - 1;
+		// randomlyAddRodents(C_Parameters.INIT_POP_SIZE);// add rodents within already created burrows
+		// System.out.println("C_ProtocolRodents(): Population of " + C_Parameters.INIT_POP_SIZE
+		// + " rodents created and positioned randomly");
+		super.initProtocol();// manage inspectors and files after everything
+!!!162050.java!!!	createRodent() : C_Rodent
+		return new C_RodentCircadian(new C_GenomeMusMusculus());
+!!!162178.java!!!	step_Utick() : void
+		// market day and first tick within the market day
+		if (protocolCalendar.get(Calendar.DAY_OF_WEEK) != this.currentDayOfWeek//
+				&& protocolCalendar.get(Calendar.DAY_OF_WEEK) == this.marketDay) {
+			if (this.nbWeekCount + 1 == C_Parameters.UNLOAD_FREQUENCY_Uweek) {
+				C_TaxiManDodel taxi = this.createCarrier();
+				C_Rodent agent = createRodent();
+				agent.setRandomAge();
+				contextualizeNewThingInContainer(agent, taxi.getVehicle());
+				agent.setTrappedOnBoard(true);
+				this.nbWeekCount = 0;
+			}
+			else this.nbWeekCount++;
+		}
+		this.currentDayOfWeek = protocolCalendar.get(Calendar.DAY_OF_WEEK);
+		super.step_Utick();// has to come after the other inspectors' step since it records indicators in file
+!!!162306.java!!!	createCarrier() : C_TaxiManDodel
+		C_TaxiManDodel oneCarrier = new C_TaxiManDodel(new C_GenomeAmniota());
+		// Declares a new object in the context and positions it within the raster ground
+		I_Container cell;
+		if (C_ContextCreator.randomGeneratorForInitialisation.nextDouble() > .5) cell = landscape.getGrid()[0][31];// TODO number in source 2018.03 jlf
+		else cell = landscape.getGrid()[0][31];
+		contextualizeNewThingInContainer(oneCarrier, cell);
+		oneCarrier.ownVehicle(TAXI_EVENT);
+		oneCarrier.setTarget(landscape.getGrid()[7][21]);// TODO number in source 2018.03 jlf
+		return oneCarrier;
+!!!162434.java!!!	manageTimeLandmarks() : void
+		super.manageTimeLandmarks();
+		if (!C_Parameters.BLACK_MAP) {
+			circadianAffinities.setAffinity(protocolCalendar.get(Calendar.HOUR_OF_DAY) / 2);
+			this.landscape.resetCellsColor();
+		}
+		// NB: int hourOfDay = protocolCalendar.get(Calendar.HOUR_OF_DAY);
+!!!162562.java!!!	blackMap() : void
+		for (int i = 0; i < this.landscape.getDimension_Ucell().getWidth(); i++)
+			for (int j = 0; j < this.landscape.getDimension_Ucell().getHeight(); j++) {
+				if (this.landscape.getGrid()[i][j] instanceof C_SoilCell) {// safety measure
+					C_SoilCell x = (C_SoilCell) this.landscape.getGrid()[i][j];
+					String plotType = x.getMyLandPlot().getPlotType();
+					if (plotType.equals("ROAD")) this.landscape.getValueLayer().set(9, i, j);
+					else this.landscape.getValueLayer().set(BLACK_MAP_COLOR, i, j);
+				}
+			}

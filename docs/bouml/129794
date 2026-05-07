@@ -1,0 +1,4112 @@
+format 224
+"epiphyte" // src::presentation::epiphyte
+  revision 1
+  modified_by 2 "lefur"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:\\Users\\lefur\\Documents\\GitHub\\MelaneSim_2024\\src/presentation/epiphyte/"
+  java_package "presentation.epiphyte"
+  classview 129666 "epiphyte"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 134786 "C_InspectorPopulation"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Data inspector: retrieves informations e.g. population sizes and manages lists.
+@author A Realini 05.2011 / J.Le Fur 2011-2013, 2024, 2025 "
+      classrelation 162434 // <generalisation>
+	relation 162434 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 162434 // <generalisation>
+	  b parent class_ref 135170 // A_Inspector
+      end
+
+      attribute 230146 "populationBySpecies"
+	class_attribute public explicit_type "String, Double"
+	init_value " new HashMap<String, Double>()"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELD
+
+ the map [NDS type, size]"
+      end
+
+      operation 233218 "indicatorsCompute"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " METHODS
+
+ compute the number of agent within the context "
+      end
+
+      operation 233346 "getPopulationBySpecies"
+	class_operation public explicit_return_type "Map<String, Double>"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " GETTER
+"
+      end
+    end
+
+    class 134914 "C_InspectorEnergy"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Retrieves mean energy for each species in the context J.Le Fur 02.2018 "
+      classrelation 162178 // <generalisation>
+	relation 162178 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 162178 // <generalisation>
+	  b parent class_ref 135170 // A_Inspector
+      end
+
+      attribute 229890 "EnergyBySpecies"
+	protected explicit_type "String,Double"
+	init_value " new HashMap<String,Double>()"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+ the map [speciesGenome, cumulated"
+      end
+
+      attribute 230018 "sizeBySpecies"
+	protected explicit_type "String,Integer"
+	init_value " new HashMap<String,Integer>()"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " energy]
+ size is necessary to compute means"
+      end
+
+      operation 232194 "C_InspectorEnergy"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Writer of an outer csv file 
+ private C_FileWriter dataSaverEnergyGeneral;
+
+ CONSTRUCTOR
+"
+      end
+
+      operation 232322 "step_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 232450 "indicatorsStoreValues"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " stores the current state of indicators in the field including the super ones has to be conform with
+indicatorsHeader / JLF 01.2013 "
+      end
+
+      operation 232578 "indicatorsCompute"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " compute mean energy for each taxon within the context (compute somme and size then divide and replace
+EnergyBySpecies) "
+      end
+
+      operation 232706 "writeDataToFileGeneral"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Writes data in the Energy indicators csv output file "
+      end
+
+      operation 232834 "closeSimulation"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " close private files "
+      end
+
+      operation 232962 "getEnergyBySpecies"
+	public explicit_return_type "Map<String,Double>"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " GETTER
+"
+      end
+    end
+
+    class 135170 "A_Inspector"
+      abstract visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Data inspector: retrieves informations e.g. population sizes and manages lists. stores the values of the indicators to be
+recorded in the general indicators file.
+@author A Realini 05.2011 / J.LeFur 09.2011, 07.2012, 01.2013 "
+      classrelation 160642 // <realization>
+	relation 160642 -_-|>
+	  a public
+	    java "${type}<A_Inspector>"
+	    classrelation_ref 160642 // <realization>
+	  b parent class_ref 130178 // Comparable
+      end
+
+      classrelation 160770 // <realization>
+	relation 160770 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 160770 // <realization>
+	  b parent class_ref 151810 // I_Inspector
+      end
+
+      classrelation 160898 // <realization>
+	relation 160898 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 160898 // <realization>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      attribute 228866 "indicatorsHeader"
+	protected explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 228994 "indicatorsValues"
+	protected explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 161026 // SpatialDistributionFile (<unidirectional association>)
+	relation 161026 --->
+	  a role_name "SpatialDistributionFile" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 161026 // SpatialDistributionFile (<unidirectional association>)
+	  b parent class_ref 135298 // C_FileWriter
+      end
+
+      attribute 229122 "contextSize"
+	class_attribute public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 229250 "myId"
+	protected explicit_type "Integer"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " used to compare objects within sorts and treeSets - LeFur 02.2013"
+      end
+
+      operation 228482 "A_Inspector"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 228610 "step_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " also store indicators values for all other inspectors "
+      end
+
+      operation 228738 "indicatorsCompute"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Context size only, extended in daughter classes "
+      end
+
+      operation 228866 "indicatorsStoreValues"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " store all values as a string in the corresponding field "
+      end
+
+      operation 228994 "compareTo"
+	public explicit_return_type "int"
+	nparams 1
+	  param inout name "other" type class_ref 135170 // A_Inspector
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " used for comparison of inspectors within the A_Protocol inspectors field / JLF 02.2013 "
+      end
+
+      operation 229122 "getIndicatorsValues"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 229250 "getIndicatorsHeader"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 229378 "indicatorsReset"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 229506 "closeSimulation"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 229634 "discardDeadThing"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "I_deadThing" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 137346 "C_InspectorFossorialRodents"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Data inspector: retrieves information on burrow systems and manages lists.
+@author A Realini 05.2011 / J.Le Fur 09.2011, 07.2012, 01/2013 "
+      classrelation 163074 // <generalisation>
+	relation 163074 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 163074 // <generalisation>
+	  b parent class_ref 151426 // C_InspectorPopulationRodent
+      end
+
+      attribute 231938 "nbWanderingRodents"
+	protected explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 232066 "wanderingRodents_Upercent"
+	protected explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 163202 // burrowList (<unidirectional association>)
+	relation 163202 --->
+	  stereotype "TreeSet"
+	  a role_name "burrowList" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 163202 // burrowList (<unidirectional association>)
+	  b parent class_ref 152066 // C_BurrowSystem
+      end
+
+      operation 236290 "C_InspectorFossorialRodents"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 236418 "indicatorsCompute"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " computes nb of wandering rodents, nb of burrows "
+      end
+
+      operation 236546 "discardDeadThing"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "thing" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Remove burrow system, do not account for C_Traps "
+      end
+
+      operation 236674 "indicatorsStoreValues"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " stores the current state of indicators in the field including the super ones has to be conform with indicatorsHeader / JLF
+01.2013 "
+      end
+
+      operation 236802 "addBurrowToList"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "burrow" type class_ref 152066 // C_BurrowSystem
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 236930 "getNbBurrows"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " GETTERS"
+      end
+
+      operation 237058 "getWanderingRodents_Upercent"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 237186 "getBurrowList"
+	public return_type class_ref 152066 // C_BurrowSystem
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 137730 "C_InspectorTransportation"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " From case study number 3 - Senegal Centenal M2 P.A.Mboup
+@author J.Le Fur & Mboup 07/2012, rev. JLF 09.2014 "
+      classrelation 165378 // <generalisation>
+	relation 165378 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 165378 // <generalisation>
+	  b parent class_ref 135170 // A_Inspector
+      end
+
+      classrelation 165506 // <realization>
+	relation 165506 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 165506 // <realization>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      classrelation 165634 // <realization>
+	relation 165634 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 165634 // <realization>
+	  b parent class_ref 131586 // I_ConstantCentenal
+      end
+
+      attribute 235778 "outputBufferRodentPop"
+	private explicit_type "String"
+	stereotype "List"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+ Periodically discharged in the output file 
+"
+      end
+
+      attribute 235906 "outputBufferRodentRate"
+	private explicit_type "String"
+	stereotype "List"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 236034 "outputBufferHumanPop"
+	private explicit_type "String"
+	stereotype "List"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 165762 // rodentPop (<unidirectional association>)
+	relation 165762 --->
+	  a role_name "rodentPop" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 165762 // rodentPop (<unidirectional association>)
+	  b parent class_ref 135298 // C_FileWriter
+      end
+
+      classrelation 165890 // rodentRates (<unidirectional association>)
+	relation 165890 --->
+	  a role_name "rodentRates" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 165890 // rodentRates (<unidirectional association>)
+	  b parent class_ref 135298 // C_FileWriter
+      end
+
+      classrelation 166018 // humanPop (<unidirectional association>)
+	relation 166018 --->
+	  a role_name "humanPop" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 166018 // humanPop (<unidirectional association>)
+	  b parent class_ref 135298 // C_FileWriter
+      end
+
+      classrelation 166146 // landPlotList (<unidirectional association>)
+	relation 166146 --->
+	  stereotype "TreeSet"
+	  a role_name "landPlotList" protected
+	    comment " The landplots list is updated by adds and removes @see cityList 
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 166146 // landPlotList (<unidirectional association>)
+	  b parent class_ref 138370 // C_LandPlot
+      end
+
+      classrelation 166274 // cityList (<unidirectional association>)
+	relation 166274 --->
+	  stereotype "TreeSet"
+	  a role_name "cityList" protected
+	    comment " The cities list is fully renewed/recomputed @see computeCityList @see lanplotList 
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 166274 // cityList (<unidirectional association>)
+	  b parent class_ref 137858 // C_City
+      end
+
+      classrelation 166402 // carrierList (<unidirectional association>)
+	relation 166402 --->
+	  stereotype "TreeSet"
+	  a role_name "carrierList" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 166402 // carrierList (<unidirectional association>)
+	  b parent class_ref 152450 // C_HumanCarrier
+      end
+
+      operation 245250 "C_InspectorTransportation"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "landPlotInitList" explicit_type "TreeSet<C_LandPlot>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTORS
+"
+      end
+
+      operation 245378 "C_InspectorTransportation"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 245506 "step_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " METHODS
+
+ Do super() then add a data line to csv file<br>
+JLF 12.2015
+@see A_Protocol#step_Utick "
+      end
+
+      operation 245634 "discardDeadThing"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "thing" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Remove carriers or city or landplot from this inspector's lists "
+      end
+
+      operation 245762 "checkLandPlotLists"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 245890 "indicatorsStoreValues"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " DATA OUTPUT
+
+ stores the current state of indicators in the field including the super ones has to be conform with indicatorsHeader / JLF
+06.2016 "
+      end
+
+      operation 246018 "addOutputDataLineForRodent"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " This method avoid to open, write and close a rodent output data file in each step of the simulation\\n It just open, write and close the file
+when the size of the list outputBufferRodentRate reach OUTPUT_BUFFER_SIZE by flushAndCloseOutputBuffer()
+@see #flushAndCloseOutputBuffer(C_FileWriter, List) "
+      end
+
+      operation 246146 "resetCityToOutputHeader"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "outputDataList" explicit_type "List<String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 246274 "flushAndCloseOutputBuffer"
+	public explicit_return_type "void"
+	nparams 2
+	  param inout name "transportationIndicators" type class_ref 135298 // C_FileWriter
+	  param inout name "outputDataInternalBuffer" explicit_type "List<String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @see #addOutputDataLineForRodent() "
+      end
+
+      operation 246402 "closeSimulation"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " close private files "
+      end
+
+      operation 246530 "addCarrier"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "carrier" type class_ref 152450 // C_HumanCarrier
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SETTERS & GETTERS
+"
+      end
+
+      operation 246658 "addLandPlot"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "oneNewLandPlot" type class_ref 138370 // C_LandPlot
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 246786 "renewCityList"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Compute the whole list; supposes the landPlot list is up to date and reset city output header<br>
+author J.Le Fur 09.2014 "
+      end
+
+      operation 246914 "getLandPlotList"
+	public return_type class_ref 138370 // C_LandPlot
+	nparams 1
+	  param in name "groundType" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @param groundType : extract only landPlots of this type
+@return a subset of landPlots with all landPlots of the same type. author J.Le Fur, 09.2014 "
+      end
+
+      operation 247042 "getCityByName"
+	public return_type class_ref 137858 // C_City
+	nparams 1
+	  param in name "name" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 247170 "getCarriersLoad_Urodent"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 247298 "getPregnantLoad"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Count pregnant female tranported by vehicles; author JLF 06.2016 "
+      end
+
+      operation 247426 "getCarrierList"
+	public return_type class_ref 152450 // C_HumanCarrier
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 247554 "getLandPlotList"
+	public return_type class_ref 138370 // C_LandPlot
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}Set<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 247682 "getCityList"
+	public return_type class_ref 137858 // C_City
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 138626 "C_InspectorGenetic"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Retrieves information on genes and alleles of the whole population. <br>
+The rodents' list (listRodents) is obtained from the population inspector and updated when needed. This implementation to avoid permanent calls to
+C_InspectorPopulation.listRodents static field
+@see C_InspectorPopulationRodent#rodentList
+@author A Realini 05.2011 rev. J. Le Fur 03.2013 "
+      classrelation 163330 // <generalisation>
+	relation 163330 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 163330 // <generalisation>
+	  b parent class_ref 135170 // A_Inspector
+      end
+
+      classrelation 163458 // <realization>
+	relation 163458 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 163458 // <realization>
+	  b parent class_ref 129794 // I_ConstantNumeric
+      end
+
+      attribute 232194 "genePopSaveStep"
+	protected explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+ steps interval for writing genePop files"
+      end
+
+      classrelation 163586 // genesFile (<unidirectional association>)
+	relation 163586 --->
+	  a role_name "genesFile" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 163586 // genesFile (<unidirectional association>)
+	  b parent class_ref 135298 // C_FileWriter
+      end
+
+      classrelation 163714 // genePopFile (<unidirectional association>)
+	relation 163714 --->
+	  a role_name "genePopFile" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 163714 // genePopFile (<unidirectional association>)
+	  b parent class_ref 135298 // C_FileWriter
+      end
+
+      attribute 232322 "observedHeterozygosityHO"
+	protected explicit_type "double"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 232450 "expectedHeterozygosityHE"
+	protected explicit_type "double"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 232578 "meanAllelicRichness"
+	protected explicit_type "double"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 232706 "allelicFrequencies"
+	protected explicit_type "Double"
+	multiplicity "[]"
+	init_value " new ArrayList[NB_MICROSAT_GENES]"
+	stereotype "ArrayList"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}>${multiplicity} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " List of list of allelic frequencies for each locus 
+"
+      end
+
+      attribute 232834 "expectedHeterozygosityByLocus"
+	protected explicit_type "double"
+	multiplicity "[]"
+	init_value " new double[NB_MICROSAT_GENES]"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}${multiplicity} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 232962 "richnessByLocus"
+	protected explicit_type "int"
+	multiplicity "[]"
+	init_value " new int[NB_MICROSAT_GENES]"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}${multiplicity} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 237314 "C_InspectorGenetic"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 237442 "initDifferingAllelesList"
+	private explicit_return_type "ArrayList<Object>"
+	nparams 1
+	  param in name "locus" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+
+@Override public void step_Utick() { super.step_Utick(); // compute and store indicators values recordGenesInFile();// save private files //
+write genePop file only at an interval defined in I_numeric_constants if (RepastEssentials.GetTickCount() == INTERVAL_ECRITURE_GENE_POP *
+genePopSaveStep) { recordGenePopInFile(); genePopSaveStep++; } }
+
+ Initialize the list of different alleles, for the locus passed in parameter, with the first rodent of the listRodents list (list in
+C_InspectorPopulation).
+@param locus : locus number for which allelic richness is requested "
+      end
+
+      operation 237570 "computeAllelicRichnessEveryLocus"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Compute allelic richness for each locus (nb differing alleles for this locus).<br>
+Results are put in the table RichnessByLocus "
+      end
+
+      operation 237698 "computeAllelicRichnessPopMean"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Compute the mean allelic richness for the whole population <br>
+Formula: sum(allelic richness by locus)/nb genes "
+      end
+
+      operation 237826 "computeAllelicRichnessOneLocus"
+	private explicit_return_type "void"
+	nparams 1
+	  param in name "locus" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Compute allelic frequencies for the locus passed in parameter and writes in the allelicFrequencies list<br>
+Formula: nb occurences of one allele at locus i / (2 * nb indiv.) "
+      end
+
+      operation 237954 "getAllAllelesOneLocus"
+	private explicit_return_type "ArrayList<Object>"
+	nparams 1
+	  param in name "locus" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Return the list of every alleles existing for the locus passed as a parameter (used to compute the allelic frequency "
+      end
+
+      operation 238082 "computeHeterozygosityObservedHO"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Compute global observed heterozygosity <br>
+Formula : sum(nb heterozygotes at locus i/nb indiv) / nb locus "
+      end
+
+      operation 238210 "computeHeterozygosityExpectedHE"
+	private explicit_return_type "void"
+	nparams 1
+	  param in name "locus" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Compute expected heterozygosity for the locus passed as parameter <br>
+Formula : 1 - sum((allelic frequency at locus i)^2) "
+      end
+
+      operation 238338 "computeHeterozygosityExpectedGlobal"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Compute expected heterozygosity over the whole population <br>
+Formula: mean of expected heterozygosities "
+      end
+
+      operation 238466 "getFixationIndex"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Compute and return the fixation index "
+      end
+
+      operation 238594 "isHeterozygous"
+	private explicit_return_type "boolean"
+	nparams 1
+	  param inout name "paire" type class_ref 152194 // C_GenePair
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Return true is the gene pair passed as parameter is heterozygous, else return false "
+      end
+
+      operation 238722 "indicatorsCompute"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 238850 "indicatorsStoreValues"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Store the current state of indicators in the field including the super ones
+@see A_Protocol#recordIndicatorsInFile
+@revision JLF 01.2013 "
+      end
+
+      operation 238978 "initTabGenePopFile"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " OUTPUT FILES MANAGEMENT //
+ Initialize the header of the genetic indicators file 
+
+private void initTabGenesFile() { this.genesFile.write(\"Tick;\"); loopOnGenesForGenesFileHeader(\"locus\", ';');
+loopOnGenesForGenesFileHeader(\"LocusFrequency\", ';'); loopOnGenesForGenesFileHeader(\"expectedHetero\", ';');
+this.genesFile.writeln(\"ObservedHetero;ExpectedHetero;FIS;MeanAllelicRichness\"); }
+
+ Write the title with an index at the end as many times as there are requested genes to output
+@param title : column title to rewrite NUMBER_GENES times
+@param separator : separator between two strings of the headers 
+
+private void loopOnGenesForGenesFileHeader(String title, char separator) { for (int i = 0; i < NB_MICROSAT_GENES; i++)
+this.genesFile.write(title + i + separator); }
+
+ Initialize the header for genePop output file "
+      end
+
+      operation 239106 "recordGenePopInFile"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Output data in genePop file "
+      end
+
+      operation 239234 "closeSimulation"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Output data in genetic indicators file 
+
+private void recordGenesInFile() { this.genesFile.write(RepastEssentials.GetTickCount() + CSV_FIELD_SEPARATOR); for (int i
+= 0; i < NB_MICROSAT_GENES; i++) this.genesFile.write(this.richnessByLocus[i] + CSV_FIELD_SEPARATOR); for (int i = 0; i <
+NB_MICROSAT_GENES; i++) this.genesFile.write(this.allelicFrequencies[i] + CSV_FIELD_SEPARATOR); for (int i = 0; i <
+NB_MICROSAT_GENES; i++) this.genesFile.write(this.expectedHeterozygosityByLocus[i] + CSV_FIELD_SEPARATOR);
+this.genesFile.writeln(this.observedHeterozygosityHO + CSV_FIELD_SEPARATOR + this.expectedHeterozygosityHE +
+CSV_FIELD_SEPARATOR + getFixationIndex() + CSV_FIELD_SEPARATOR + this.meanAllelicRichness); }
+
+ close private files "
+      end
+
+      operation 239362 "convertNumber"
+	private explicit_return_type "double"
+	nparams 2
+	  param in name "val" explicit_type "double"
+	  param in name "n" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Utility: reduce to the requested number of digit after the decimal point(above 5 the double is automatically transformed in scientific format).
+@param val : the double to transform
+@param n : the number of digits after the decimal point "
+      end
+
+      operation 239490 "getMeanAllelicRichness"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " getter<br>
+Warning, the field is not updated at the call, this is done in step() procedure JLF 02.2013
+@see #step_Utick() "
+      end
+    end
+
+    class 138754 "C_InspectorCMR"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " manage traps and tagged rodents list, computes the global indicators from the retrieved individual values indicator
+definitions
+@see C_RodentCmr
+@author Le Fur and Diakhate, sept.2013, rev. JLF 08.2014 "
+      classrelation 161410 // <generalisation>
+	relation 161410 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 161410 // <generalisation>
+	  b parent class_ref 135170 // A_Inspector
+      end
+
+      classrelation 161538 // <realization>
+	relation 161538 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 161538 // <realization>
+	  b parent class_ref 131330 // I_ConstantBandia
+      end
+
+      attribute 229378 "currentDRS"
+	private explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+"
+      end
+
+      attribute 229506 "currentDMR"
+	private explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+"
+      end
+
+      attribute 229634 "currentMNA"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 161666 // trapList (<unidirectional association>)
+	relation 161666 --->
+	  stereotype "TreeSet"
+	  a role_name "trapList" init_value " new TreeSet<C_Trap>()" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 161666 // trapList (<unidirectional association>)
+	  b parent class_ref 139010 // C_Trap
+      end
+
+      classrelation 161794 // trapArea (<unidirectional association>)
+	relation 161794 --->
+	  stereotype "TreeSet"
+	  a role_name "trapArea" init_value " new TreeSet<I_Container>()" private
+	    comment " used to compute the effective number of rodents within"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 161794 // trapArea (<unidirectional association>)
+	  b parent class_ref 135810 // I_Container
+      end
+
+      classrelation 161922 // taggedRodentList (<unidirectional association>)
+	relation 161922 --->
+	  stereotype "TreeSet"
+	  a role_name "taggedRodentList" init_value " new TreeSet<C_RodentCmr>()" class_relation public
+	    comment " the area.
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 161922 // taggedRodentList (<unidirectional association>)
+	  b parent class_ref 138882 // C_RodentCmr
+      end
+
+      attribute 229762 "taggedRodentsNumber"
+	public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " current increment of tagged rodents,"
+      end
+
+      classrelation 162050 // dataSaverCMR (<unidirectional association>)
+	relation 162050 --->
+	  a role_name "dataSaverCMR" private
+	    comment " Writer of an outer csv file"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 162050 // dataSaverCMR (<unidirectional association>)
+	  b parent class_ref 135298 // C_FileWriter
+      end
+
+      operation 230146 "C_InspectorCMR"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 230274 "closeSimulation"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " METHODS
+
+ close private files "
+      end
+
+      operation 230402 "storeCMRIndicators"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "date" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " stores the current state of indicators - JLF 10.2013 "
+      end
+
+      operation 230530 "discardDeadThing"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "thing" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Remove tagged rodents from taggedList or trap from trapList "
+      end
+
+      operation 230658 "indicatorsReset"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 230786 "computeDRS"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "session" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Mean distance between successive catches within a given session (DRS: \"Distance entre Recaptures Successives\")
+@param session : the session number "
+      end
+
+      operation 230914 "computeDMR"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "session" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " compute every distances between catches and keep the largest one within a session (DMR: Distance maximum de recapture) "
+      end
+
+      operation 231042 "computeMNA"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "session" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " MNA : Minimum Number Alive for each session "
+      end
+
+      operation 231170 "tag"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "rodent" type class_ref 138882 // C_RodentCmr
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Give a tag number to rodent "
+      end
+
+      operation 231298 "addTrap"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "oneTrap" type class_ref 139010 // C_Trap
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Add trap in trapList "
+      end
+
+      operation 231426 "setTrapArea"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "trapArea" explicit_type "TreeSet<I_Container>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SETTERS & GETTERS
+
+ Used by protocol to set the initial values
+@see melanesim.protocol.rodents.C_ProtocolBandia#setTrapArea_Ucell
+@param trapArea the array of cells containing the trap system / Le Fur, 08.2014 "
+      end
+
+      operation 231554 "getTrapList"
+	public return_type class_ref 139010 // C_Trap
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 231682 "getCurrentDRS"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 231810 "getCurrentDMR"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 231938 "getCurrentMNA"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 232066 "getTrapAreaPopulation_Urodent"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " value of the population living within the area of the trap system. Value to be compared with MNA value, JLF 08.2014 "
+      end
+    end
+
+    class 139266 "C_InspectorHybrid"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " From case study number 2 - MBour M2 A.Comte
+@author J.Le Fur & A. Comte 03/2012, J.Le Fur 01.2013 "
+      classrelation 163842 // <generalisation>
+	relation 163842 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 163842 // <generalisation>
+	  b parent class_ref 135170 // A_Inspector
+      end
+
+      classrelation 163970 // hybridList (<unidirectional association>)
+	relation 163970 --->
+	  stereotype "TreeSet"
+	  a role_name "hybridList" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 163970 // hybridList (<unidirectional association>)
+	  b parent class_ref 137218 // C_Rodent
+      end
+
+      attribute 233090 "nbEry"
+	protected explicit_type "Integer"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 233218 "nbNat"
+	protected explicit_type "Integer"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 233346 "nbHybrids"
+	protected explicit_type "Integer"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 233474 "nbLazarus"
+	protected explicit_type "Integer"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 233602 "hybridsRate"
+	protected explicit_type "Double"
+	init_value " 0."
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 233730 "pbUnbalancedGene"
+	protected explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 233858 "pbSynteny"
+	protected explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 233986 "pbMatching"
+	protected explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 234114 "pbGeneNotFound"
+	protected explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 234242 "pbEpistasie"
+	protected explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 234370 "pbHaldane"
+	protected explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 234498 "pbNippedEgg"
+	protected explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 164098 // dataSaverHybridsGeneral (<unidirectional association>)
+	relation 164098 --->
+	  a role_name "dataSaverHybridsGeneral" private
+	    comment " Writer of an outer csv file 
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 164098 // dataSaverHybridsGeneral (<unidirectional association>)
+	  b parent class_ref 135298 // C_FileWriter
+      end
+
+      classrelation 164226 // dataSaverHybridsCages (<unidirectional association>)
+	relation 164226 --->
+	  a role_name "dataSaverHybridsCages" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 164226 // dataSaverHybridsCages (<unidirectional association>)
+	  b parent class_ref 135298 // C_FileWriter
+      end
+
+      classrelation 164354 // dataSaverHybridsDiploidNumber (<unidirectional association>)
+	relation 164354 --->
+	  a role_name "dataSaverHybridsDiploidNumber" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 164354 // dataSaverHybridsDiploidNumber (<unidirectional association>)
+	  b parent class_ref 135298 // C_FileWriter
+      end
+
+      operation 239618 "C_InspectorHybrid"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 239746 "step_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 239874 "indicatorsStoreValues"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " stores the current state of indicators in the field including the super ones 
+has to be conform with indicatorsHeader / JLF 01.2013"
+      end
+
+      operation 240002 "indicatorsCompute"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 240130 "writeDataToFileGeneral"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Writes data in the hybrids indicators csv output file "
+      end
+
+      operation 240258 "writeDataToFileDiploidNumber"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Writes data in the DiploidNumber csv output file "
+      end
+
+      operation 240386 "writeDataToFileCages"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Writes data in the cage report csv output file "
+      end
+
+      operation 240514 "closeSimulation"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " close private files"
+      end
+
+      operation 240642 "incrPbNippedEgg"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SETTERS & GETTERS
+"
+      end
+
+      operation 240770 "incrPbUnbalancedGene"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 240898 "incrPbSynteny"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 241026 "incrPbGeneNotFound"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 241154 "incrPbEpistasie"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 241282 "incrPbMatching"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 241410 "incrPbHaldane"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 241538 "getHybridList"
+	public return_type class_ref 137218 // C_Rodent
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 241666 "getNbHybrids"
+	public explicit_return_type "Integer"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 241794 "getHybridsRate"
+	public explicit_return_type "Double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 241922 "getNbEry"
+	public explicit_return_type "Integer"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 242050 "getNbNat"
+	public explicit_return_type "Integer"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 242178 "getNbLazarus"
+	public explicit_return_type "Integer"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 242306 "getPbUnbalancedGene"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 242434 "getPbAutostopNotFound"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 242562 "getPbGeneNotFound"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 242690 "getPbNippedEgg"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 242818 "resetPbNippedEggs"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Used for @see C_UserPanel, JLF 05.2018 "
+      end
+    end
+
+    class 140290 "C_InspectorOrnithodorosSonrai"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Data inspector: retrieves informations about ticks.
+@author M SALL 10.2019 "
+      classrelation 164482 // <generalisation>
+	relation 164482 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 164482 // <generalisation>
+	  b parent class_ref 135170 // A_Inspector
+      end
+
+      classrelation 164610 // <realization>
+	relation 164610 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 164610 // <realization>
+	  b parent class_ref 132098 // I_ConstantDodel2
+      end
+
+      classrelation 164738 // tickList (<unidirectional association>)
+	relation 164738 --->
+	  stereotype "TreeSet"
+	  a role_name "tickList" init_value " new TreeSet<C_OrnitodorosSonrai>()" private
+	    comment " FIELD
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 164738 // tickList (<unidirectional association>)
+	  b parent class_ref 140930 // C_OrnitodorosSonrai
+      end
+
+      classrelation 164866 // tickBirthList (<unidirectional association>)
+	relation 164866 --->
+	  stereotype "TreeSet"
+	  a role_name "tickBirthList" init_value " new TreeSet<C_OrnitodorosSonrai>()" class_relation private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 164866 // tickBirthList (<unidirectional association>)
+	  b parent class_ref 140930 // C_OrnitodorosSonrai
+      end
+
+      attribute 234626 "nbBirth"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 242946 "C_InspectorOrnithodorosSonrai"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 243074 "indicatorsCompute"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " METHODS
+"
+      end
+
+      operation 243202 "indicatorsStoreValues"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Store the current state of indicators in the field including the super ones
+@see A_Protocol#recordIndicatorsInFile
+@revision MS 2016, JLF&MS 05.2017 "
+      end
+
+      operation 243330 "addTickBirthList"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "oneTick" type class_ref 140930 // C_OrnitodorosSonrai
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 243458 "addTickToList"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "oneTick" type class_ref 140930 // C_OrnitodorosSonrai
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 243586 "getHibernationAverage"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SETTER & GETTERS
+"
+      end
+
+      operation 243714 "getTickList"
+	public return_type class_ref 140930 // C_OrnitodorosSonrai
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 243842 "getTicksNumber"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 243970 "getTickMaleNumber"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 244098 "getTickFemaleNumber"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 244226 "getBiteNumber"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 244354 "getBirthNumber"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 244482 "getInfectedNumber"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 244610 "getHealthyNumber"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 140418 "C_InspectorBorreliaCrocidurae"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Data inspector: retrieves informations about ticks.
+@author M SALL 04.2020 "
+      classrelation 161154 // <generalisation>
+	relation 161154 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 161154 // <generalisation>
+	  b parent class_ref 135170 // A_Inspector
+      end
+
+      classrelation 161282 // borreliaList (<unidirectional association>)
+	relation 161282 --->
+	  stereotype "TreeSet"
+	  a role_name "borreliaList" init_value " new TreeSet<C_BorreliaCrocidurae>()" private
+	    comment " FIELD
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 161282 // borreliaList (<unidirectional association>)
+	  b parent class_ref 141058 // C_BorreliaCrocidurae
+      end
+
+      operation 229762 "C_InspectorBorreliaCrocidurae"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 229890 "addBorreliaToList"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "oneBorrelia" type class_ref 141058 // C_BorreliaCrocidurae
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+"
+      end
+
+      operation 230018 "getBorreliaList"
+	public return_type class_ref 141058 // C_BorreliaCrocidurae
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SETTER & GETTERS
+"
+      end
+    end
+
+    class 141826 "C_InspectorVegetation"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Data inspector: retrieves informations e.g. la liste des v�g�tations.
+@author M SALL 02.2016 "
+      classrelation 166530 // <generalisation>
+	relation 166530 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 166530 // <generalisation>
+	  b parent class_ref 135170 // A_Inspector
+      end
+
+      classrelation 166658 // <realization>
+	relation 166658 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 166658 // <realization>
+	  b parent class_ref 129922 // I_ConstantGerbil
+      end
+
+      classrelation 166786 // vegetationList (<unidirectional association>)
+	relation 166786 --->
+	  stereotype "TreeSet"
+	  a role_name "vegetationList" init_value " new TreeSet<C_Vegetation>()" private
+	    comment " FIELD
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 166786 // vegetationList (<unidirectional association>)
+	  b parent class_ref 142338 // C_Vegetation
+      end
+
+      classrelation 166914 // landscapeMatrix_Ucell (<unidirectional association>)
+	relation 166914 --->
+	  a role_name "landscapeMatrix_Ucell" multiplicity "[][]" init_value " null" package
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}${multiplicity} ${name}${value};
+"
+	    classrelation_ref 166914 // landscapeMatrix_Ucell (<unidirectional association>)
+	  b parent class_ref 135810 // I_Container
+      end
+
+      operation 247810 "C_InspectorVegetation"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 247938 "C_InspectorVegetation"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "soilcellsMatrix_Ucell" type class_ref 135810 // I_Container
+	multiplicity "[][]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0}[][] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 248066 "indicatorsStoreValues"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " METHOD
+
+ Store the current state of indicators in the field including the super ones
+@see A_Protocol#recordIndicatorsInFile
+@revision MS 2016, JLF&MS 05.2017 "
+      end
+
+      operation 248194 "addVegetationToList"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "oneVegetation" type class_ref 142338 // C_Vegetation
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 248322 "getAveragePrecipitation_Umm"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 248450 "getTotalPrecipitation_Umm"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 248578 "getVegetationList"
+	public return_type class_ref 142338 // C_Vegetation
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " GETTERS
+"
+      end
+
+      operation 248706 "getShrubEnergy"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 248834 "getGrassEnergy"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 248962 "getCropEnergy"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 151426 "C_InspectorPopulationRodent"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Data inspector: retrieves informations e.g. population sizes and manages lists.
+@author A Realini 05.2011 / J.Le Fur 09.2011, 07.2012, 01.2013 "
+      classrelation 162562 // <generalisation>
+	relation 162562 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 162562 // <generalisation>
+	  b parent class_ref 134786 // C_InspectorPopulation
+      end
+
+      classrelation 162690 // rodentList (<unidirectional association>)
+	relation 162690 --->
+	  stereotype "TreeSet"
+	  a role_name "rodentList" init_value " new TreeSet<C_Rodent>()" class_relation public
+	    comment " FIELDS
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 162690 // rodentList (<unidirectional association>)
+	  b parent class_ref 137218 // C_Rodent
+      end
+
+      classrelation 162818 // rodentBirthList (<unidirectional association>)
+	relation 162818 --->
+	  stereotype "TreeSet"
+	  a role_name "rodentBirthList" init_value " new TreeSet<C_Rodent>()" class_relation protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 162818 // rodentBirthList (<unidirectional association>)
+	  b parent class_ref 137218 // C_Rodent
+      end
+
+      attribute 230274 "nbMales"
+	class_attribute protected explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 230402 "nbFemales"
+	class_attribute protected explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 230530 "nbDeath"
+	protected explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " nbDeath is retrieved from the A_Protocol removeDeadRodents() procedure / JLF 02.2013"
+      end
+
+      attribute 230658 "nbBirth"
+	protected explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 230786 "dispersedRodents"
+	protected explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 230914 "sexRatio"
+	protected explicit_type "double"
+	init_value " 0."
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 231042 "deathRatio"
+	protected explicit_type "double"
+	init_value " 0."
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 231170 "birthRatio"
+	protected explicit_type "double"
+	init_value " 0."
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 231298 "maxDispersal"
+	protected explicit_type "double"
+	init_value " 0."
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 231426 "maxFemaleDispersal"
+	protected explicit_type "double"
+	init_value " 0."
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 231554 "maxMaleDispersal"
+	protected explicit_type "double"
+	init_value " 0."
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 231682 "meanFemaleDispersal"
+	protected explicit_type "double"
+	init_value " 0."
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 231810 "meanMaleDispersal"
+	protected explicit_type "double"
+	init_value " 0."
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 162946 // SpatialDistributionFile (<unidirectional association>)
+	relation 162946 --->
+	  a role_name "SpatialDistributionFile" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 162946 // SpatialDistributionFile (<unidirectional association>)
+	  b parent class_ref 135298 // C_FileWriter
+      end
+
+      operation 233474 "C_InspectorPopulationRodent"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 233602 "indicatorsCompute"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " OVERRIDEN METHODS
+"
+      end
+
+      operation 233730 "indicatorsStoreValues"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " stores the current state of indicators in the field including the super ones / JLF 01.2013 "
+      end
+
+      operation 233858 "closeSimulation"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " close private files "
+      end
+
+      operation 233986 "recordSpatialDistributionInFile"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "grid" type class_ref 135810 // I_Container
+	multiplicity "[][]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[][] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHOD
+
+ Output data in genePop file "
+      end
+
+      operation 234114 "addRodentToList"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "rodent" type class_ref 137218 // C_Rodent
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SETTERS & GETTERS
+"
+      end
+
+      operation 234242 "addRodentToBirthList"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "rodent" type class_ref 137218 // C_Rodent
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 234370 "discardDeadThing"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "thing" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 234498 "setNbDeath_Urodent"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "nbDeath" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 234626 "getDeathRatio"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 234754 "getBirthRatio"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 234882 "getNbDeath"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 235010 "getNbBirth"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 235138 "getNbFemales"
+	class_operation public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 235266 "getNbMales"
+	class_operation public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 235394 "getNbRodents"
+	class_operation public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 235522 "getMaxFemaleDispersal"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 235650 "getMaxMaleDispersal"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 235778 "getMeanFemaleDispersal"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 235906 "getMeanMaleDispersal"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 236034 "getInfectedRodents"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " INFECTED RODENTS"
+      end
+
+      operation 236162 "getHealthyRodent"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 151810 "I_Inspector"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " inspectors are in charge of gathering and providing indicators value<br>
+each inspector may be specific of a component of the simulation (population, genetics, ...)<br>
+inspectors are unknown of the thing objects (epiphyte system approach) <br>
+within a given protocol, all inspectors are managed by the protocol class<br>
+most inspectors are bound to the A_Inspector abstract class which gather generic inspector function
+@author J.Le Fur, 2011, rev. 02.2013 "
+      operation 227714 "step_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " store indicators value "
+      end
+
+      operation 227842 "indicatorsCompute"
+	public explicit_return_type "void"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " for compatibility with step (used in daughter classes) "
+      end
+
+      operation 227970 "indicatorsStoreValues"
+	public explicit_return_type "String"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " store all values as a string in the corresponding field "
+      end
+
+      operation 228098 "indicatorsReset"
+	public explicit_return_type "void"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " patch under construction : reset indicators values in case restarting the GUI does not fully reset the system. implemented
+partially or not in some inspectors; Le Fur, 01.2014 "
+      end
+
+      operation 228226 "closeSimulation"
+	public explicit_return_type "void"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " close private files "
+      end
+
+      operation 228354 "discardDeadThing"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "deadThing" type class_ref 135682 // I_SituatedThing
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Remove dead things in corresponding inspectors' lists"
+      end
+    end
+
+    class 151938 "C_InspectorEnergyMarine"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Retrieves mean energy for marine cells in the context J.Le Fur 04.2025 "
+      classrelation 162306 // <generalisation>
+	relation 162306 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 162306 // <generalisation>
+	  b parent class_ref 134914 // C_InspectorEnergy
+      end
+
+      operation 233090 "indicatorsCompute"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " compute mean energy for each taxon within the context (compute somme and size then divide and replace EnergyBySpecies) "
+      end
+    end
+
+    class 152322 "C_InspectorPopulationMarine"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Data inspector: retrieves informations e.g. population sizes and manages lists.
+@author JLF 2024 "
+      classrelation 164994 // <generalisation>
+	relation 164994 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 164994 // <generalisation>
+	  b parent class_ref 134786 // C_InspectorPopulation
+      end
+
+      classrelation 165122 // planktonList (<unidirectional association>)
+	relation 165122 --->
+	  stereotype "TreeSet"
+	  a role_name "planktonList" init_value " new TreeSet<C_Plankton>()" class_relation public
+	    comment " FIELDS
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 165122 // planktonList (<unidirectional association>)
+	  b parent class_ref 136194 // C_Plankton
+      end
+
+      classrelation 165250 // nektonList (<unidirectional association>)
+	relation 165250 --->
+	  stereotype "TreeSet"
+	  a role_name "nektonList" init_value " new TreeSet<C_Nekton>()" class_relation public
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 165250 // nektonList (<unidirectional association>)
+	  b parent class_ref 136322 // C_Nekton
+      end
+
+      attribute 234754 "planktonExport"
+	class_attribute public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 234882 "nektonExport"
+	class_attribute public explicit_type "int"
+	init_value "0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 235010 "maxDispersalPlankton"
+	class_attribute public explicit_type "double"
+	init_value " 0."
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 235138 "meanDispersalPlankton"
+	class_attribute public explicit_type "double"
+	init_value " 0."
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 235266 "maxDispersalNekton"
+	class_attribute public explicit_type "double"
+	init_value " 0."
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 235394 "meanDispersalNekton"
+	class_attribute public explicit_type "double"
+	init_value " 0."
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 235522 "maxEnergy_Ukcal"
+	class_attribute public explicit_type "double"
+	init_value " 0."
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 235650 "meanEnergy_Ukcal"
+	class_attribute public explicit_type "double"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 244738 "C_InspectorPopulationMarine"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 244866 "indicatorsCompute"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " OVERRRIDEN METHOD
+
+ compute the number of agent within the context "
+      end
+
+      operation 244994 "indicatorsStoreValues"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " stores the current state of indicators in the field including the super ones / JLF 01.2013 "
+      end
+
+      operation 245122 "closeSimulation"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " close private files "
+      end
+    end
+  end
+
+  deploymentview 130050 "epiphyte"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 142978 "I_Inspector"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import thing.I_SituatedThing;
+${definition}"
+      associated_elems
+	class_ref 151810 // I_Inspector
+      end
+    end
+
+    artifact 143106 "A_Inspector"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import data.constants.rodents.I_ConstantStringRodents;
+import melanesim.C_ContextCreator;
+import melanesim.protocol.A_Protocol;
+import presentation.dataOutput.C_FileWriter;
+import repast.simphony.engine.environment.RunState;
+import repast.simphony.essentials.RepastEssentials;
+import thing.I_SituatedThing;
+${definition}"
+      associated_elems
+	class_ref 135170 // A_Inspector
+      end
+    end
+
+    artifact 143234 "C_InspectorBorreliaCrocidurae"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.TreeSet;
+import thing.rodents.C_BorreliaCrocidurae;
+${definition}"
+      associated_elems
+	class_ref 140418 // C_InspectorBorreliaCrocidurae
+      end
+    end
+
+    artifact 143362 "C_InspectorCMR"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Iterator;
+import java.util.TreeSet;
+import melanesim.protocol.A_Protocol;
+import presentation.dataOutput.C_FileWriter;
+import repast.simphony.essentials.RepastEssentials;
+import thing.I_SituatedThing;
+import thing.ground.C_Trap;
+import thing.ground.I_Container;
+import thing.rodents.C_RodentCmr;
+${definition}"
+      associated_elems
+	class_ref 138754 // C_InspectorCMR
+      end
+    end
+
+    artifact 143490 "C_InspectorEnergy"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.HashMap;
+import java.util.Map;
+import data.C_Parameters;
+import melanesim.util.C_VariousUtilities;
+import repast.simphony.engine.environment.RunState;
+import repast.simphony.essentials.RepastEssentials;
+import thing.A_NDS;
+import thing.C_Ship_cargo;
+import thing.C_StreamCurrent;
+import thing.I_MarineActor;
+import thing.ground.C_LandPlot;
+${definition}"
+      associated_elems
+	class_ref 134914 // C_InspectorEnergy
+      end
+    end
+
+    artifact 143618 "C_InspectorEnergyMarine"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import repast.simphony.engine.environment.RunState;
+import thing.ground.C_SoilCellMarine;
+import thing.ground.landscape.C_Landscape;
+${definition}"
+      associated_elems
+	class_ref 151938 // C_InspectorEnergyMarine
+      end
+    end
+
+    artifact 143746 "C_InspectorPopulation"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.HashMap;
+import java.util.Map;
+import melanesim.util.C_VariousUtilities;
+import repast.simphony.engine.environment.RunState;
+import thing.A_NDS;
+${definition}"
+      associated_elems
+	class_ref 134786 // C_InspectorPopulation
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file license "
+    end
+
+    artifact 143874 "C_InspectorPopulationRodent"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Iterator;
+import java.util.TreeSet;
+import repast.simphony.engine.environment.RunState;
+import presentation.dataOutput.C_FileWriter;
+import data.C_Parameters;
+import melanesim.protocol.A_Protocol;
+import repast.simphony.essentials.RepastEssentials;
+import thing.I_SituatedThing;
+import thing.ground.I_Container;
+import thing.rodents.C_Rodent;
+import thing.rodents.C_RodentDomestic2;
+${definition}"
+      associated_elems
+	class_ref 151426 // C_InspectorPopulationRodent
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 144002 "C_InspectorFossorialRodents"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Iterator;
+import java.util.TreeSet;
+import melanesim.protocol.A_Protocol;
+import repast.simphony.engine.environment.RunState;
+import repast.simphony.essentials.RepastEssentials;
+import thing.A_NDS;
+import thing.I_SituatedThing;
+import thing.ground.C_BurrowSystem;
+import thing.rodents.C_Rodent;
+${definition}"
+      associated_elems
+	class_ref 137346 // C_InspectorFossorialRodents
+      end
+    end
+
+    artifact 144130 "C_InspectorGenetic"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Iterator;
+import presentation.dataOutput.C_FileWriter;
+import repast.simphony.essentials.RepastEssentials;
+import thing.dna.C_ChromosomePair;
+import thing.dna.C_GenePair;
+import thing.dna.C_GenomeEucaryote;
+import thing.dna.C_XsomePairMicrosat;
+import thing.rodents.C_Rodent;
+import org.locationtech.jts.geom.Coordinate;
+import data.constants.I_ConstantNumeric;
+import melanesim.protocol.A_Protocol;
+${definition}"
+      associated_elems
+	class_ref 138626 // C_InspectorGenetic
+      end
+    end
+
+    artifact 144258 "C_InspectorHybrid"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Iterator;
+import java.util.TreeSet;
+import presentation.dataOutput.C_FileWriter;
+import repast.simphony.essentials.RepastEssentials;
+import thing.I_SituatedThing;
+import thing.dna.species.rodents.C_GenomeMastoErythroleucus;
+import thing.dna.species.rodents.C_GenomeMastoNatalensis;
+import thing.dna.species.rodents.C_GenomeMastomys;
+import thing.rodents.C_Rodent;
+import thing.rodents.C_RodentCaged;
+import data.C_Parameters;
+import melanesim.C_ContextCreator;
+import melanesim.protocol.rodents.C_ProtocolCage;
+${definition}"
+      associated_elems
+	class_ref 139266 // C_InspectorHybrid
+      end
+    end
+
+    artifact 144386 "C_InspectorOrnithodorosSonrai"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.TreeSet;
+import data.constants.rodents.I_ConstantDodel2;
+import repast.simphony.essentials.RepastEssentials;
+import thing.rodents.C_OrnitodorosSonrai;
+${definition}"
+      associated_elems
+	class_ref 140290 // C_InspectorOrnithodorosSonrai
+      end
+    end
+
+    artifact 144514 "C_InspectorPopulationMarine"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.TreeSet;
+import presentation.dataOutput.C_FileWriter;
+import repast.simphony.engine.environment.RunState;
+import thing.C_Nekton;
+import thing.C_Plankton;
+import thing.ground.C_SoilCellMarine;
+import thing.ground.landscape.C_Landscape;
+${definition}"
+      associated_elems
+	class_ref 152322 // C_InspectorPopulationMarine
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file license "
+    end
+
+    artifact 144642 "C_InspectorTransportation"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+import presentation.dataOutput.C_FileWriter;
+import repast.simphony.engine.environment.RunState;
+import repast.simphony.essentials.RepastEssentials;
+import thing.A_NDS;
+import thing.I_SituatedThing;
+import thing.ground.C_City;
+import thing.ground.C_LandPlot;
+import thing.rodents.C_HumanCarrier;
+import thing.rodents.C_Rodent;
+import data.C_Parameters;
+import data.constants.rodents.I_ConstantCentenal;
+import data.constants.rodents.I_ConstantStringRodents;
+import melanesim.protocol.A_Protocol;
+${definition}"
+      associated_elems
+	class_ref 137730 // C_InspectorTransportation
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 144770 "C_InspectorVegetation"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.TreeSet;
+import data.constants.rodents.I_ConstantGerbil;
+import melanesim.protocol.A_Protocol;
+import repast.simphony.essentials.RepastEssentials;
+import thing.dna.species.plants.C_GenomeBalanites;
+import thing.dna.species.plants.C_GenomeFabacea;
+import thing.dna.species.plants.C_GenomePoacea;
+import thing.ground.C_SoilCellSavanna;
+import thing.ground.I_Container;
+import thing.rodents.C_Vegetation;
+${definition}"
+      associated_elems
+	class_ref 141826 // C_InspectorVegetation
+      end
+    end
+  end
+end

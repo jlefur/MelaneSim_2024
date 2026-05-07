@@ -1,53 +1,70 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!-- fileName : parameters.xml -->
-<!-- protocolName : PNMC-ships -->
+<!-- protocolName : DODEL2 -->
 <parameters>
 
 	<!-- COMMON INTER-PROTOCOLS -->
+	<parameter name="PROTOCOL" displayName="1a/ _________ PROTOCOL SPECIFIC _________"
+		type="java.lang.String" defaultValue="rodents.DODEL2" isReadOnly="true"
+		converter="repast.simphony.parameter.StringConverterFactory$StringStringConverter" />
+
 	<!-- Time scale -->
-	<parameter name="TICK_UNIT_Ucalendar" displayName="0a/ Tick unit (ms,s,m,h,d,mon,y)"
-		type="java.lang.String" defaultValue="H" isReadOnly="false"
+	<parameter name="TICK_UNIT_Ucalendar" displayName="0a/ Tick unit (m,h,d)"
+		type="java.lang.String" defaultValue="s" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$StringStringConverter" />
 	<parameter name="TICK_LENGTH_Ucalendar" displayName="0b/ Tick length"
-		type="java.lang.Integer" defaultValue="24" isReadOnly="false"
+		type="java.lang.Integer" defaultValue="100" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
-	<parameter name="CELL_WIDTH_Ucm" displayName="0c/ nb centimeters in one pixel (default=exact scale)"
-		type="java.lang.Integer" defaultValue="480743" isReadOnly="false"
+	<parameter name="CELL_WIDTH_Ucm" displayName="0c/ nb centimeters in one pixel (100 = exact scale)"
+		type="java.lang.Integer" defaultValue="100" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
 
 	<!-- Switches -->
-	<parameter name="BLACK_MAP" displayName="0d/ BLACK map" type="boolean"
+	<parameter name="BLACK_MAP" displayName="0d/ green map" type="boolean"
 		defaultValue="false" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$BooleanConverter" />
-	<parameter name="VERBOSE" displayName="0e/ Display more EVENTS on map and console"
+	<parameter name="VERBOSE" displayName="0e/ more EVENTS on console and map"
 		type="boolean" defaultValue="false" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$BooleanConverter" />
-	<parameter name="DISPLAY_MAP" displayName="0f/ Display CAPTION above ground (tip: unzoom)"
+	<parameter name="DISPLAY_MAP" displayName="0f/ Display MAP over grounds (aroundmarket grid only)"
 		type="boolean" defaultValue="false" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$BooleanConverter" />
 	<parameter name="IMAGE" displayName="0g/ ICONS (display objects using icons)"
-		type="boolean" defaultValue="false" isReadOnly="false"
+		type="boolean" defaultValue="true" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$BooleanConverter" />
 		
 	<!-- PROTOCOL DEPENDENT -->
-	<parameter name="PROTOCOL" displayName="1a/ _________ PROTOCOL SPECIFIC _________"
-		type="java.lang.String" defaultValue="ocean.PNMC_ships" isReadOnly="true"
-		converter="repast.simphony.parameter.StringConverterFactory$StringStringConverter" />
-	<parameter name="EXCLOS" displayName="1c/ Metapopulation(exclos)"
-		type="boolean" defaultValue="true" isReadOnly="false"
+	<parameter name="INIT_POP_SIZE" displayName="1d/ Initialization: rodents' pop. size (indiv.)"
+		type="java.lang.Integer" defaultValue="1" isReadOnly="false"
+		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
+		<parameter name="PERSISTANCE_BURROW" displayName="1b/ Burrows persist"
+		type="boolean" defaultValue="false" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$BooleanConverter" />
-
-	<parameter name="RASTER_FILE" displayName="1h/grid filename"
-		type="java.lang.String" defaultValue="20231128-TOPEX-ZEE2_GRILLEV2.1.txt" isReadOnly="false"
+	<parameter name="EXCLOS" displayName="1c/ Metapopulation(exclos)"
+		type="boolean" defaultValue="false" isReadOnly="false"
+		converter="repast.simphony.parameter.StringConverterFactory$BooleanConverter" />
+	<parameter name="NUMBER_OF_BURROW_SYSTEM" displayName="1e/ Initialization: Nb burrow systems"
+		type="java.lang.Integer" defaultValue="22" isReadOnly="false"
+		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" />
+	<parameter name="RASTERLIST_FILE" displayName="2b/grid filename"
+		type="java.lang.String" isReadOnly="false"
+		defaultValue="20201027-ZoomHouseRasteDodel2.1a.txt,20201027-ZoomRoomRasteDodel2.1a.txt"
 		converter="repast.simphony.parameter.StringConverterFactory$StringStringConverter" />
-
+	
+	<parameter name="RASTER_FILE" displayName="1f/grid filename : aroundMarket, market"
+		type="java.lang.String" defaultValue="aroundmarket"
+		isReadOnly="false"
+		converter="repast.simphony.parameter.StringConverterFactory$StringStringConverter" />
+		
 	<!-- SIMULATION SETTING -->
-	<parameter name="TERMINATE" displayName="2a/ display most occupied cells"
+	<parameter name="TERMINATE" displayName="2a/ Terminate simulation"
 		type="boolean" defaultValue="false" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$BooleanConverter" />
 	<parameter name="randomSeed" displayName="2b/ Default Random Seed (unused)"
 		type="int" defaultValue="1122279370" isReadOnly="true"
 		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" /><!-- 
 		default value = "__NULL__" => graine aleatoire -->
-
+		
 </parameters>
+
+

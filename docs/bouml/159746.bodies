@@ -1,0 +1,17 @@
+class C_Market
+!!!309506.java!!!	C_Market(inout groundManager : C_LandscapeRodent)
+		super(groundManager);
+!!!309634.java!!!	setMarketDay_UCalendar(in marketDay_UCalendar : int) : void
+		this.marketDay_UCalendar = marketDay_UCalendar;
+!!!309762.java!!!	getMarketDay_UCalendar() : int
+		return marketDay_UCalendar;
+!!!309890.java!!!	isMarketDay() : boolean
+		if (marketDay_UCalendar == 0) return true; // permanent market = city
+		else if (A_Protocol.protocolCalendar.get(Calendar.DAY_OF_WEEK) == this.marketDay_UCalendar) return true;
+		else return false;
+!!!310018.java!!!	getSize() : double
+		if (this.isMarketDay()) return 100.;
+		else return 50.;
+!!!310146.java!!!	getRedColor() : double
+		if (this.isMarketDay()) return 1.;
+		else return 0.;

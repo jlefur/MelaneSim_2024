@@ -1,0 +1,7 @@
+class Channel
+!!!223106.java!!!	Channel(in id : String, in label : String, in icon : String, inout get : DoubleSupplier, inout set : DoubleConsumer)
+			this.id = id;
+			this.label = label;
+			this.icon = icon;
+			this.get = get;
+			this.set = set;

@@ -1,0 +1,3717 @@
+format 224
+"rodents" // src::melanesim::protocol::rodents
+  revision 1
+  modified_by 2 "lefur"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:\\Users\\lefur\\Documents\\GitHub\\MelaneSim_2024\\src/melanesim/protocol/rodents/"
+  java_package "melanesim.protocol.rodents"
+  classview 130178 "rodents"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 136962 "A_ProtocolFossorial"
+      abstract visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " author J.Le Fur, A.Comte 03.2012 / J.Le Fur 07.2012, 07.2013, 02.2014, 04.2020 "
+      classrelation 136962 // <generalisation>
+	relation 136962 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 136962 // <generalisation>
+	  b parent class_ref 137090 // A_ProtocolRodent
+      end
+
+      classrelation 137090 // burrowInspector (<unidirectional association>)
+	relation 137090 --->
+	  a role_name "burrowInspector" protected
+	    comment " FIELD
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 137090 // burrowInspector (<unidirectional association>)
+	  b parent class_ref 137346 // C_InspectorFossorialRodents
+      end
+
+      operation 151554 "A_ProtocolFossorial"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "ctxt" explicit_type "Context<Object>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+
+ declare the inspectors, add them to the inspector list, declare them to the panelInitializer for indicators graphs. Author J.Le Fur 02.2013 "
+      end
+
+      operation 151682 "initLandscape"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "context" explicit_type "Context<Object>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+ The contact structure (term coined from S.E.Page: Diversity and Complexity) "
+      end
+
+      operation 151810 "initPopulations"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Randomly add burrows and randomly put RodentAgents in them "
+      end
+
+      operation 151938 "initProtocol"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 152066 "contextualizeNewThingInContainer"
+	public explicit_return_type "void"
+	nparams 2
+	  param inout name "thing" type class_ref 135682 // I_SituatedThing
+	  param inout name "cell" type class_ref 135810 // I_Container
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Declares a new object in the context and positions it within the raster ground; if burrow system, declare it to the inspector "
+      end
+
+      operation 152194 "addBurrowSystems"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "nbBurrowSystem" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Initialize the first set of burrowSystem using one of three methods: pure random, repeatable random, centered.
+@param nbBurrowSystem Number of burrowSystem <br>
+           rev. jlf 01.2018 "
+      end
+
+      operation 152322 "randomlyAddRodents"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "nbRodents" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Fills the context with dynamics agent _within the burrows_ for the first step of a simulation.<br>
+Sex ratio is randomly generated "
+      end
+
+      operation 152450 "createRodent"
+	public return_type class_ref 137474 // C_RodentFossorial
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 152578 "readUserParameters"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 152706 "isSimulationEnd"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Close simulation if population is < 2 or if a precondition is verified. <br>
+This method may be redefined by daughter protocols "
+      end
+    end
+
+    class 137090 "A_ProtocolRodent"
+      abstract visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " author J.Le Fur, A.Comte 03.2012 / J.Le Fur 07.2012, 07.2013, 02.2014, 04.2020 "
+      classrelation 136834 // <generalisation>
+	relation 136834 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 136834 // <generalisation>
+	  b parent class_ref 134402 // A_Protocol
+      end
+
+      operation 150658 "A_ProtocolRodent"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "ctxt" explicit_type "Context<Object>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " FIELD
+
+	public static C_InspectorPopulationRodent inspector = null;
+
+ CONSTRUCTOR
+
+ declare the inspectors, add them to the inspector list, declare them to the panelInitializer for indicators graphs. Author
+J.Le Fur 02.2013 "
+      end
+
+      operation 150786 "removeDeadThings"
+	protected explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " OVERRIDEN METHODS
+"
+      end
+
+      operation 150914 "updateInspectors"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "thing" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 151042 "updateInspectors"
+	protected explicit_return_type "void"
+	nparams 1
+	  param in name "nbDeadRodents" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 151170 "checkRodentLists"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+ Check rodent list sizes "
+      end
+
+      operation 151298 "createRodent"
+	public return_type class_ref 137218 // C_Rodent
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 151426 "randomlyAddRodents"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "nbAgent" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Fills the context with simple _wandering_ C_Rodent agents (as opposed to C_RodentFossorial's that dig burrows) <br>
+The sex ratio is randomly generated , rev. JLF 07.2014 currently unused "
+      end
+    end
+
+    class 137602 "A_ProtocolTransportation"
+      abstract visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Initialize the simulation and manage the inputs coming from the events file.csv
+@author J.Le Fur, P.A.Mboup 07/2012, rev. PAM 08.2013, JLF 09.2014,10.2015 "
+      classrelation 137218 // <generalisation>
+	relation 137218 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 137218 // <generalisation>
+	  b parent class_ref 137090 // A_ProtocolRodent
+      end
+
+      classrelation 137346 // <realization>
+	relation 137346 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 137346 // <realization>
+	  b parent class_ref 131714 // I_ConstantTransportation
+      end
+
+      classrelation 137474 // inspectorTransportation (<unidirectional association>)
+	relation 137474 --->
+	  a role_name "inspectorTransportation" public
+	    comment " FIELD
+
+ initialized in daughter protocols"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 137474 // inspectorTransportation (<unidirectional association>)
+	  b parent class_ref 137730 // C_InspectorTransportation
+      end
+
+      operation 152834 "A_ProtocolTransportation"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "ctxt" explicit_type "Context<Object>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 152962 "checkBreedingSeason"
+	protected explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " METHODS
+
+ Breeding season last all year long for commensal rodents (tempered with bioclimates in centenal) "
+      end
+
+      operation 153090 "initLandscape"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "context" explicit_type "Context<Object>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 153218 "step_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Remove dead carriers and rat beyond cities carrying capacities, step the transportation inspector "
+      end
+
+      operation 153346 "removeRatSurplus"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " For each city: remove (kill) rodents until they do not exceed the urban population carryingCapacity <br>
+Version JLF 03,04.2015, PAM 02.2016, jlf 01.2018
+@see C_City#getCarryingCapacity_Urodent() "
+      end
+
+      operation 153474 "readUserParameters"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Do super, then check superAgents size,check loading probability, reset vehicles if time step has changed<br>
+rev. JLF 09.2017 "
+      end
+
+      operation 153602 "manageReadEventTypes"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "changedEventTypes" explicit_type "TreeSet<String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Update landplots and graphs if necessary after reading new events
+@see A_Protocol#updateUniverseFromChrono()
+@see manageEvent "
+      end
+
+      operation 153730 "manageOneEvent"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "event" type class_ref 130050 // C_Event
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Update universe according to oneEventLine from Events <br />
+@param event from dataChrono Version rev JLF 12.2015 "
+      end
+
+      operation 153858 "managePopulationEvent"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "event" type class_ref 130050 // C_Event
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 153986 "manageGroundEvent"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "event" type class_ref 130050 // C_Event
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " 1/add the ground type to the event soil cell, 2/sets the ground type value in valuelayer2 (the map of groundtypes)
+@see C_LandscapeNetwork#graphedValueLayer author PA Mboup 2014, rev. JLF 09.2014 "
+      end
+
+      operation 154114 "manageVehicleEvent"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "event" type class_ref 130050 // C_Event
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Create or remove a population of human carriers with a given vehicle
+@param event The event in this case is of the form: type of vehicle/number of human carriers to add/option: cities, area of
+           activity / author PA Mboup 2014, rev. JLF 09.2014, 10.2014 "
+      end
+
+      operation 154242 "getCitiesToTrade"
+	public return_type class_ref 137858 // C_City
+	nparams 3
+	  param in name "eventValue2" explicit_type "String"
+	  param inout name "eventSC" type class_ref 137986 // C_SoilCellGraphed
+	  param in name "graphType" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Determine the list of cities or markets to trade given the content of eventValue2<br>
+In the case where there is a specific list of cities to trade, event value2 contains a list of cities in the form tag
+'city' followed with ':city1:city2...' "
+      end
+
+      operation 154370 "createCarrier"
+	protected explicit_return_type "void"
+	nparams 5
+	  param inout name "cell" type class_ref 138114 // C_SoilCell
+	  param in name "vehicleType" explicit_type "String"
+	  param inout name "graph" type class_ref 138242 // C_Graph
+	  param inout name "citiesToTrade" explicit_type "TreeSet<C_City>"
+	  param in name "citiesToTrade_Ustring" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " create one humanCarrier of a vehicle type and positions it in a city "
+      end
+
+      operation 154498 "updateLandPlots"
+	protected explicit_return_type "void"
+	nparams 2
+	  param inout name "newLandPlots" explicit_type "TreeSet<C_LandPlot>"
+	  param in name "groundType" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Update the list of all landPlots in the groundType in parameter: the code compares the old landplot list and the new
+computed landplot list. Can update, shorten or extend landPlot and group several landPlots in one single; can update a
+landPlot divided into two or several (divide the road into several roads is to shorten it and add others); but can not yet
+destroy a road that does not exist anymore. <br />
+This method should only be called after building or rebuilding a groundType landPlots with identifyTypeLandPlots() method
+with new landPlots from identifyTypeLandPlots(), this method update the old one and add news. <br />
+An old landPlot and a new are the same if 2 conditions : 1- they get a same groundType; 2- they own a cell in common <br/>
+After this call we must call updateLandPlotCitiesList() to update for each updated LP the cities list associated
+@see thing.ground.landscape.C_LandscapeNetwork#identifyTypeLandPlots <br>
+@author P.A. Mboup, 2013, rev. JLF 09.2014 
+ TODO JLF 2014.09 should be placed in A_Protocol ?"
+      end
+
+      operation 154626 "createLandPlot"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "newLandPlot" type class_ref 138370 // C_LandPlot
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Name the landplot, position it in the context, inform the inspector "
+      end
+
+      operation 154754 "removeCarrierPop"
+	public explicit_return_type "int"
+	nparams 4
+	  param in name "nCarriers" explicit_type "int"
+	  param inout name "eventCell" type class_ref 137986 // C_SoilCellGraphed
+	  param in name "VehicleType" explicit_type "String"
+	  param inout name "citiesToTrade" explicit_type "Set<C_City>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SETTERS & GETTERS
+
+ Mark carriers to destroy in carriers with a specify citiesList or in a landPlot M
+@param nCarriers
+@param VehicleType
+@param citiesToTrade must be null if xy is given
+@return the number of carrier not marked mustDie "
+      end
+
+      operation 154882 "addRodentsInCity"
+	protected explicit_return_type "void"
+	nparams 2
+	  param in name "nbRodents" explicit_type "int"
+	  param inout name "city" type class_ref 137858 // C_City
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Create a set of rodents and place it in a city + distribute equally between city's soil cells
+@param nbRodents
+@param city "
+      end
+
+      operation 155010 "deleteRodents"
+	public explicit_return_type "int"
+	nparams 4
+	  param in name "x" explicit_type "int"
+	  param in name "y" explicit_type "int"
+	  param in name "nbOfRodentsToDelete" explicit_type "int"
+	  param inout name "" explicit_type "C_City...city"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Mark rodents to destroy in a soilcell or a city
+@param x soilcell line
+@param y soilcell colomne
+@param nbOfRodentsToDelete
+@param city optional
+@return the number of rodents not marked mustDie "
+      end
+
+      operation 155138 "getVehicleSpecs"
+	protected explicit_return_type "Map<String, String[]>"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " This method must be redefined in daughter protocols "
+      end
+    end
+
+    class 138498 "C_ProtocolBandia"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " initialize the simulation and manages the inputs coming from the csv events file
+@author Diakhate & Le Fur july 2013, 08.2014 "
+      classrelation 137602 // <generalisation>
+	relation 137602 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 137602 // <generalisation>
+	  b parent class_ref 136962 // A_ProtocolFossorial
+      end
+
+      classrelation 137730 // <realization>
+	relation 137730 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 137730 // <realization>
+	  b parent class_ref 131330 // I_ConstantBandia
+      end
+
+      classrelation 137858 // geneticInspector (<unidirectional association>)
+	relation 137858 --->
+	  a role_name "geneticInspector" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 137858 // geneticInspector (<unidirectional association>)
+	  b parent class_ref 138626 // C_InspectorGenetic
+      end
+
+      classrelation 137986 // C_InspectorCMR (<unidirectional association>)
+	relation 137986 --->
+	  a role_name "C_InspectorCMR" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 137986 // C_InspectorCMR (<unidirectional association>)
+	  b parent class_ref 138754 // C_InspectorCMR
+      end
+
+      attribute 205186 "numSession"
+	class_attribute public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " unique id number for each session"
+      end
+
+      attribute 205314 "dayChanged"
+	private explicit_type "boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 205442 "currentDay"
+	private explicit_type "int"
+	init_value " protocolCalendar.get(Calendar.DATE)"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 155266 "C_ProtocolBandia"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "ctxt" explicit_type "Context<Object>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 155394 "readUserParameters"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " METHODS
+"
+      end
+
+      operation 155522 "initProtocol"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Used to compute the population in the trap system area (to be comparable with MNA). "
+      end
+
+      operation 155650 "step_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Update the universe according to bandiaEvents (chrono) If the current simulation date is one date of bandiaEvents then
+account for the corresponding event then proceed to inspector's step "
+      end
+
+      operation 155778 "setTrapArea_Ucell"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Used to compute the population within the trap system area (provides a value comparable with MNA). <br>
+Has to be in protocol since the inspector does not know (correct ?) the raster JLF 08.2014 "
+      end
+
+      operation 155906 "createRodent"
+	public return_type class_ref 138882 // C_RodentCmr
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " created rodents are of the Mastomys erythroleucus genus "
+      end
+
+      operation 156034 "addOneTrap"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "x" explicit_type "int"
+	  param in name "y" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Create a trap and inform bandiaInspector "
+      end
+
+      operation 156162 "addTrapSystem"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " create a set of traps "
+      end
+
+      operation 156290 "checkTrap"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "oneTrap" type class_ref 139010 // C_Trap
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Check one trap, tag rodent, open trap and release rodent "
+      end
+
+      operation 156418 "checkTrapSystem"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Check a set of traps "
+      end
+
+      operation 156546 "tag"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "rodent" type class_ref 138882 // C_RodentCmr
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " add rodent tagged in bandiaInspector "
+      end
+
+      operation 156674 "removeTrapSystem"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " suppress traps and remove them in bandiaInspector "
+      end
+
+      operation 156802 "manageOneEvent"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "oneEvent" type class_ref 130050 // C_Event
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Update the universe according to oneEventLine from BandiaEvents
+@param oneEventLine from BandiaEvents(or dataChrono) "
+      end
+
+      operation 156930 "initCalendar"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 157058 "blackMap"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Color the map in black to see the overall distribution of burrows<br>
+Author J.Le Fur 10.2014 TODO JLF 2014.10 should be in presentation package ? "
+      end
+    end
+
+    class 139138 "C_ProtocolCage"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " first line: nat x nat and ery x ery second line: nat x ery and ery x nat third line : hybrid x hybrid fourth line : hybrid x
+nat(male) and hybrid x ery(male)
+@author J.Le Fur, A.Comte 03/2012, rev. JLF 09.2017 "
+      classrelation 138114 // <generalisation>
+	relation 138114 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 138114 // <generalisation>
+	  b parent class_ref 137090 // A_ProtocolRodent
+      end
+
+      classrelation 138242 // <realization>
+	relation 138242 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 138242 // <realization>
+	  b parent class_ref 129794 // I_ConstantNumeric
+      end
+
+      classrelation 138370 // <realization>
+	relation 138370 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 138370 // <realization>
+	  b parent class_ref 131458 // I_ConstantCage
+      end
+
+      classrelation 138498 // cagesMatrix (<unidirectional association>)
+	relation 138498 --->
+	  a role_name "cagesMatrix" multiplicity "[][]" private
+	    comment " FIELDS
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}${multiplicity} ${name}${value};
+"
+	    classrelation_ref 138498 // cagesMatrix (<unidirectional association>)
+	  b parent class_ref 138370 // C_LandPlot
+      end
+
+      classrelation 138626 // geneticInspector (<unidirectional association>)
+	relation 138626 --->
+	  a role_name "geneticInspector" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 138626 // geneticInspector (<unidirectional association>)
+	  b parent class_ref 138626 // C_InspectorGenetic
+      end
+
+      classrelation 138754 // hybridInspector (<unidirectional association>)
+	relation 138754 --->
+	  a role_name "hybridInspector" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 138754 // hybridInspector (<unidirectional association>)
+	  b parent class_ref 139266 // C_InspectorHybrid
+      end
+
+      operation 157186 "C_ProtocolCage"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "ctxt" explicit_type "Context<Object>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+
+ declare the inspectors, add them to the inspector list, declare them to the panelInitializer for indicators graphs. Author
+J. Le Fur 02.2013 "
+      end
+
+      operation 157314 "initProtocol"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " METHODS
+
+ Position the pure rodents Ery and Nat in the cages for the beginning of the protocol. <br>
+The first line: pures crosses nat x nat and ery x ery <br>
+The second line: crosses nat x ery and ery x nat <br>
+A-The third line: Hybrids from the second line are crossed with themselves <br>
+B-The fourth line: Hybrids from the second line are crossed with pure males <br>
+C-the fifth line: Hybrids from the second line are crossed with pure females <br>
+Then, A,B and C are repeated for hybrids from the fourth line.<br>
+Author J.Le Fur, A.Comte 03/2012 "
+      end
+
+      operation 157442 "contextualizeNewRodentInCage"
+	private explicit_return_type "void"
+	nparams 3
+	  param inout name "rodent" type class_ref 139394 // C_RodentCaged
+	  param in name "line" explicit_type "int"
+	  param in name "col" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 157570 "step_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " method must be called at each step "
+      end
+
+      operation 157698 "sameSex"
+	private explicit_return_type "boolean"
+	nparams 2
+	  param inout name "one" type class_ref 139394 // C_RodentCaged
+	  param inout name "two" type class_ref 139394 // C_RodentCaged
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 157826 "changeCage"
+	private explicit_return_type "void"
+	nparams 4
+	  param inout name "rodent" type class_ref 139394 // C_RodentCaged
+	  param in name "line" explicit_type "int"
+	  param in name "col" explicit_type "int"
+	  param in name "generation" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 157954 "getCagesMatrix"
+	public return_type class_ref 138370 // C_LandPlot
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type}[][] ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 158082 "getNB_CAGES_COLUMNS"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 158210 "getNB_CAGES_LINES"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 158338 "readUserParameters"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 139522 "C_ProtocolCentenal"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Initialize the simulation and manages the inputs coming from the csv events file / author J.Le Fur, Mboup 07/2012, rev. P.A.Mboup, 08.2013, JLF
+08.2014, 04.2015 "
+      classrelation 138882 // <generalisation>
+	relation 138882 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 138882 // <generalisation>
+	  b parent class_ref 137602 // A_ProtocolTransportation
+      end
+
+      classrelation 139010 // <realization>
+	relation 139010 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 139010 // <realization>
+	  b parent class_ref 131586 // I_ConstantCentenal
+      end
+
+      classrelation 139138 // geneticInspector (<unidirectional association>)
+	relation 139138 --->
+	  a role_name "geneticInspector" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 139138 // geneticInspector (<unidirectional association>)
+	  b parent class_ref 138626 // C_InspectorGenetic
+      end
+
+      operation 158466 "C_ProtocolCentenal"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "ctxt" explicit_type "Context<Object>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 158594 "step_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " METHODS
+"
+      end
+
+      operation 158722 "addRodentInTradingPost1"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Add rodents in France "
+      end
+
+      operation 158850 "addRodentInTradingPost0"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 158978 "addRodentInTradingPost"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 159106 "manageOneEvent"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "event" type class_ref 130050 // C_Event
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Specific preliminary management for ground nut trade and dirt tracks, then proceed to super.manageEvent()
+@see A.ProtocolTransportation.manageEvent(C_Event) <br>
+     Author J.Le Fur 09.2014 "
+      end
+
+      operation 159234 "createRodent"
+	public return_type class_ref 137218 // C_Rodent
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Create rodent of the Rattus rattus genus "
+      end
+
+      operation 159362 "initCalendar"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 159490 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 139650 "C_ProtocolChize"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Common voles' colonies within a dynamic agricultural landscape
+@author J.Le Fur, A.Comte 03.2012 / J.Le Fur 07.2012, 07.2014 "
+      classrelation 139266 // <generalisation>
+	relation 139266 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 139266 // <generalisation>
+	  b parent class_ref 136962 // A_ProtocolFossorial
+      end
+
+      classrelation 139394 // cropRotation (<unidirectional association>)
+	relation 139394 --->
+	  a role_name "cropRotation" init_value " null" private
+	    comment " FIELDS
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 139394 // cropRotation (<unidirectional association>)
+	  b parent class_ref 133378 // C_CropRotationChize
+      end
+
+      classrelation 139522 // geneticInspector (<unidirectional association>)
+	relation 139522 --->
+	  a role_name "geneticInspector" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 139522 // geneticInspector (<unidirectional association>)
+	  b parent class_ref 138626 // C_InspectorGenetic
+      end
+
+      operation 159618 "C_ProtocolChize"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "ctxt" explicit_type "Context<Object>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+
+ Declare the inspectors, add them to the inspector list, declare them to the panelInitializer for indicators graphs<br>
+Author J.Le Fur 02.2013 "
+      end
+
+      operation 159746 "readUserParameters"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " METHODS
+"
+      end
+
+      operation 159874 "initProtocol"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " randomly add burrows and randomly put fossorial rodent agents in them "
+      end
+
+      operation 160002 "createRodent"
+	public return_type class_ref 137474 // C_RodentFossorial
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 160130 "step_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 160258 "manageTimeLandmarks"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Manages agricultural changes Authors JEL2011, AR, rev. Le Fur 2011, 2012, 04.2014, 08,09.2014 "
+      end
+
+      operation 160386 "initCalendar"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 160514 "blackMap"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Color the map in black to see the overall distribution of burrows<br>
+Author J.Le Fur 10.2014 TODO JLF 2014.10 should be in presentation package ? "
+      end
+    end
+
+    class 139778 "C_ProtocolDecenal"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Protocol used in the south-east Senegal case study (grant ANR Chancira) Initialize the simulation and manage inputs coming from the csvevents file
+@author J.Le Fur, 10.2014, rev. 11.2015 "
+      classrelation 139650 // <generalisation>
+	relation 139650 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 139650 // <generalisation>
+	  b parent class_ref 137602 // A_ProtocolTransportation
+      end
+
+      classrelation 139778 // <realization>
+	relation 139778 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 139778 // <realization>
+	  b parent class_ref 131842 // I_ConstantDecenal
+      end
+
+      classrelation 139906 // geneticInspector (<unidirectional association>)
+	relation 139906 --->
+	  a role_name "geneticInspector" protected
+	    comment " FIELD
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 139906 // geneticInspector (<unidirectional association>)
+	  b parent class_ref 138626 // C_InspectorGenetic
+      end
+
+      operation 160642 "C_ProtocolDecenal"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "ctxt" explicit_type "Context<Object>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 160770 "step_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " METHODS
+"
+      end
+
+      operation 160898 "manageOneEvent"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "event" type class_ref 130050 // C_Event
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Specific preliminary management for ground nut trade and dirt tracks, then proceed to super.manageEvent()
+@see A.ProtocolTransportation.manageEvent(C_Event) <br>
+     Author J.Le Fur 09.2014 "
+      end
+
+      operation 161026 "initCalendar"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 161154 "createRodent"
+	public return_type class_ref 137218 // C_Rodent
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " created rodents are of the Rattus rattus genus "
+      end
+
+      operation 161282 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 139906 "C_ProtocolDodel"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " author J.Le Fur & M.Diakhate 07.2014, rev. JLF 10.2014, 03.2018 "
+      classrelation 140034 // <generalisation>
+	relation 140034 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 140034 // <generalisation>
+	  b parent class_ref 137090 // A_ProtocolRodent
+      end
+
+      classrelation 140162 // <realization>
+	relation 140162 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 140162 // <realization>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      classrelation 140290 // circadianAffinities (<unidirectional association>)
+	relation 140290 --->
+	  a role_name "circadianAffinities" init_value " null" private
+	    comment " FIELDS
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 140290 // circadianAffinities (<unidirectional association>)
+	  b parent class_ref 133122 // C_CircadianAffinitiesMus
+      end
+
+      classrelation 140418 // geneticInspector (<unidirectional association>)
+	relation 140418 --->
+	  a role_name "geneticInspector" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 140418 // geneticInspector (<unidirectional association>)
+	  b parent class_ref 138626 // C_InspectorGenetic
+      end
+
+      attribute 205570 "nbWeekCount"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 205698 "marketDay"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 205826 "currentDayOfWeek"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 161410 "C_ProtocolDodel"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "ctxt" explicit_type "Context<Object>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+
+ Declare the inspectors, add them to the inspector list, declares them to the panelInitializer for indicators graphs.<br>
+Author J.Le Fur 02.2013 "
+      end
+
+      operation 161538 "initLandscape"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "context" explicit_type "Context<Object>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+ The contact structure (term coined from S.E.Page: Diversity and Complexity) "
+      end
+
+      operation 161666 "readUserParameters"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 161794 "randomlyAddRodents"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "nbAgent" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Fills the context with simple _wandering_ C_Rodent agents (as opposed to C_RodentFossorial's that dig burrows) <br>
+The sex ratio is randomly generated , rev. JLF 07.2014 currently unused "
+      end
+
+      operation 161922 "initProtocol"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 162050 "createRodent"
+	public return_type class_ref 137218 // C_Rodent
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 162178 "step_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 162306 "createCarrier"
+	public return_type class_ref 140034 // C_TaxiManDodel
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 162434 "manageTimeLandmarks"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 162562 "blackMap"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Color the map in black to see the overall distribution of burrows<br>
+Author J.Le Fur 10.2014, rev.03.2018 TODO JLF 2014.10 should be in presentation package ? "
+      end
+    end
+
+    class 140162 "C_ProtocolDodel2"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " author J.Le Fur & M. Sall 03.2018 "
+      classrelation 140546 // <generalisation>
+	relation 140546 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 140546 // <generalisation>
+	  b parent class_ref 136962 // A_ProtocolFossorial
+      end
+
+      classrelation 140674 // <realization>
+	relation 140674 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 140674 // <realization>
+	  b parent class_ref 132098 // I_ConstantDodel2
+      end
+
+      classrelation 140802 // geographicCoordinateConverter (<unidirectional association>)
+	relation 140802 --->
+	  a role_name "geographicCoordinateConverter" private
+	    comment " FIELDS
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 140802 // geographicCoordinateConverter (<unidirectional association>)
+	  b parent class_ref 132610 // C_ConvertGeographicCoordinates
+      end
+
+      classrelation 140930 // geneticInspector (<unidirectional association>)
+	relation 140930 --->
+	  a role_name "geneticInspector" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 140930 // geneticInspector (<unidirectional association>)
+	  b parent class_ref 138626 // C_InspectorGenetic
+      end
+
+      classrelation 141058 // ornithodorosInspector (<unidirectional association>)
+	relation 141058 --->
+	  a role_name "ornithodorosInspector" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 141058 // ornithodorosInspector (<unidirectional association>)
+	  b parent class_ref 140290 // C_InspectorOrnithodorosSonrai
+      end
+
+      classrelation 141186 // borreliaInspector (<unidirectional association>)
+	relation 141186 --->
+	  a role_name "borreliaInspector" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 141186 // borreliaInspector (<unidirectional association>)
+	  b parent class_ref 140418 // C_InspectorBorreliaCrocidurae
+      end
+
+      attribute 205954 "INITIAL_AFFINITIES_MUS"
+	private explicit_type "Integer, String"
+	init_value " new HashMap<Integer, String>()"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 141314 // humanActivitiesChrono (<unidirectional association>)
+	relation 141314 --->
+	  a role_name "humanActivitiesChrono" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 141314 // humanActivitiesChrono (<unidirectional association>)
+	  b parent class_ref 129538 // C_Chronogram
+      end
+
+      attribute 206082 "oldZoomRaster"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 141442 // paths (<unidirectional association>)
+	relation 141442 --->
+	  stereotype "TreeMap"
+	  a role_name "paths" class_relation public
+	    comment " Stored list of paths already computed 
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<String, ${type}[]> ${name}${value};
+"
+	    classrelation_ref 141442 // paths (<unidirectional association>)
+	  b parent class_ref 140546 // C_SoilCellNode
+      end
+
+      attribute 206210 "nbPaths"
+	class_attribute public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 162690 "C_ProtocolDodel2"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "ctxt" explicit_type "Context<Object>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+
+ Declare the inspectors , add them to the inspector list, declares them to the panelInitializer for indicators graphs,
+retrieve stored paths. Author J.Le Fur 02.2013 rev. M.Sall 01.2018, Le Fur 05.2022 "
+      end
+
+      operation 162818 "blackMap"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " OVERRIDEN METHODS
+
+ Color the map in black to see the overall distribution of burrows<br>
+Author J.Le Fur 10.2014, rev.03.2018 TODO JLF 2014.10 should be in presentation package ? "
+      end
+
+      operation 162946 "initLandscape"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "context" explicit_type "Context<Object>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " The contact structure (term coined from S.E.Page: Diversity and Complexity) "
+      end
+
+      operation 163074 "initProtocol"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " @Override
+ public void initCalendar() {
+ protocolCalendar.set(2018, Calendar.NOVEMBER, 8, 9, 00);
+ }"
+      end
+
+      operation 163202 "initPopulations"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 163330 "createRodent"
+	public return_type class_ref 140674 // C_RodentDomestic2
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 163458 "readUserParameters"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 163586 "manageTimeLandmarks"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 163714 "contextualizeNewThingInGrid"
+	protected explicit_return_type "void"
+	nparams 3
+	  param inout name "thing" type class_ref 135682 // I_SituatedThing
+	  param in name "line_Ucell" explicit_type "int"
+	  param in name "col_Ucell" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 163842 "isSimulationEnd"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 163970 "manageOneEvent"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "event" type class_ref 130050 // C_Event
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " OTHERS METHODS
+
+ Initialize rodents, humans and ticks agents Author M.Sall 10.2015 rev. M.Sall 12.2020<br>
+@see A_Protocol#manageOneEvent "
+      end
+
+      operation 164098 "initPaths"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " OTHER METHODS
+
+ Load the stored paths within this.paths Le Fur 05.2022 "
+      end
+
+      operation 164226 "computeNewAffinity"
+	public explicit_return_type "int"
+	nparams 1
+	  param inout name "matrixRead" explicit_type "int"
+	multiplicity "[][]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type}[][] ${name}${(}${t0}[][] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Compute new value of the matrix in its parameter
+@author M.Sall 06.2019 "
+      end
+
+      operation 164354 "createHumanWalker"
+	public return_type class_ref 140802 // C_HumanWalker
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Create new human urban "
+      end
+
+      operation 164482 "createTick"
+	public return_type class_ref 140930 // C_OrnitodorosSonrai
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Create new tick "
+      end
+
+      operation 164610 "createBorrelia"
+	public return_type class_ref 141058 // C_BorreliaCrocidurae
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Create new borrelia "
+      end
+
+      operation 164738 "createCarrier"
+	public return_type class_ref 140034 // C_TaxiManDodel
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 164866 "createFood"
+	public return_type class_ref 141186 // C_Food
+	nparams 1
+	  param inout name "oneSoilCell" type class_ref 138114 // C_SoilCell
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Create new food
+@author M.Sall 09.2020 "
+      end
+
+      operation 164994 "createCat"
+	public return_type class_ref 141314 // C_Cat
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Create new human walker "
+      end
+
+      operation 165122 "addFoodInLandPlot"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Add foods in the interesting landplots.
+@author M.Sall 09.2020 "
+      end
+
+      operation 165250 "computeOthersLandPlot"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Use the others raster to compute rooms landplots
+@author M.Sall 10.2020 "
+      end
+
+      operation 165378 "initHumanActivity"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "oneHuman" type class_ref 141442 // A_HumanUrban
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Use the activity list to initialize human activities
+@author M.Sall 10.2020 "
+      end
+
+      operation 165506 "addBurrowSystems"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "nbBurrowSystem" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Initialize the first set of burrowSystem within walls.
+@param nbBurrowSystem Number of burrowSystem <br>
+           jlf 04.2020 "
+      end
+
+      operation 165634 "addRodentWithEvent"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "rodentEvent" type class_ref 130050 // C_Event
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 165762 "addTickWithEvent"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "tickEvent" type class_ref 130050 // C_Event
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 165890 "addHumanWithEvent"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "humanEvent" type class_ref 130050 // C_Event
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 166018 "randomlyAddTicks"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "nbTick" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 166146 "randomlyAddFoodInLandPlot"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "oneLandPlot" type class_ref 138370 // C_LandPlot
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 166274 "randomlyAddBorrelia"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "nbBorrelia" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 166402 "randomlyAddCat"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "nbCat" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 166530 "setInitialAffinities"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " initializing the land plot types "
+      end
+    end
+
+    class 141570 "C_ProtocolEnclosure"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " author J.Le Fur, A.Comte 03/2012 / rev. J.Le Fur feb.2013 "
+      classrelation 141570 // <generalisation>
+	relation 141570 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 141570 // <generalisation>
+	  b parent class_ref 137090 // A_ProtocolRodent
+      end
+
+      classrelation 141698 // <realization>
+	relation 141698 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 141698 // <realization>
+	  b parent class_ref 129794 // I_ConstantNumeric
+      end
+
+      classrelation 141826 // geneticInspector (<unidirectional association>)
+	relation 141826 --->
+	  a role_name "geneticInspector" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 141826 // geneticInspector (<unidirectional association>)
+	  b parent class_ref 138626 // C_InspectorGenetic
+      end
+
+      classrelation 141954 // burrowInspector (<unidirectional association>)
+	relation 141954 --->
+	  a role_name "burrowInspector" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 141954 // burrowInspector (<unidirectional association>)
+	  b parent class_ref 137346 // C_InspectorFossorialRodents
+      end
+
+      classrelation 142082 // hybridInspector (<unidirectional association>)
+	relation 142082 --->
+	  a role_name "hybridInspector" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 142082 // hybridInspector (<unidirectional association>)
+	  b parent class_ref 139266 // C_InspectorHybrid
+      end
+
+      operation 166658 "C_ProtocolEnclosure"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "ctxt" explicit_type "Context<Object>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 166786 "initProtocol"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 166914 "step_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 167042 "readUserParameters"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 167170 "initCalendar"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 141698 "C_ProtocolGerbil"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Initialize the simulation and manage inputs coming from the csv events file
+@author J.Le Fur, 10.2014, rev. M.Sall 12.2015, JLF 02.2021 "
+      classrelation 142210 // <generalisation>
+	relation 142210 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 142210 // <generalisation>
+	  b parent class_ref 136962 // A_ProtocolFossorial
+      end
+
+      classrelation 142338 // <realization>
+	relation 142338 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 142338 // <realization>
+	  b parent class_ref 129922 // I_ConstantGerbil
+      end
+
+      classrelation 142466 // geographicCoordinateConverter (<unidirectional association>)
+	relation 142466 --->
+	  a role_name "geographicCoordinateConverter" init_value " null" private
+	    comment " FIELDS
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 142466 // geographicCoordinateConverter (<unidirectional association>)
+	  b parent class_ref 132610 // C_ConvertGeographicCoordinates
+      end
+
+      classrelation 142594 // vegetationInspector (<unidirectional association>)
+	relation 142594 --->
+	  a role_name "vegetationInspector" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 142594 // vegetationInspector (<unidirectional association>)
+	  b parent class_ref 141826 // C_InspectorVegetation
+      end
+
+      operation 167298 "C_ProtocolGerbil"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "ctxt" explicit_type "Context<Object>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 167426 "initProtocol"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " METHODS
+
+ Initialize the protocol with the raster origin "
+      end
+
+      operation 167554 "initLandscape"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "context" explicit_type "Context<Object>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " In gerbil protocol, the landscape raster values (i.e., affinity) contain the landcover values<br>
+author M.Sall 2017, rev. jlf 01.2018 "
+      end
+
+      operation 167682 "initCalendar"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 167810 "createRodent"
+	public return_type class_ref 141954 // C_RodentGerbil
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Default rodents are of the Gerbillus nigeriae species "
+      end
+
+      operation 167938 "createBarnOwl"
+	public return_type class_ref 142082 // C_BarnOwl
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 168066 "contextualizeVegetationInSavannaCell"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "currentSoilCellSavanna" type class_ref 142210 // C_SoilCellSavanna
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Add vegetation in soil cell at the requested position from the value of land cover (i.e., cell affinity) which contains
+two types of vegetation per cell<br>
+rev. JLF 03.2021 "
+      end
+
+      operation 168194 "getVegetationCoordinate"
+	public explicit_return_type "Coordinate"
+	nparams 3
+	  param in name "distanceThresHold" explicit_type "double"
+	  param inout name "coordinateList" explicit_type "List<Coordinate>"
+	  param inout name "currentCell" type class_ref 142210 // C_SoilCellSavanna
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Compute one coordinate, compare its position with the other in the list and if it's correct return the position "
+      end
+
+      operation 168322 "createVegetation"
+	public return_type class_ref 142338 // C_Vegetation
+	nparams 1
+	  param in name "vegetationInLandcover" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Create vegetation with genome given in args "
+      end
+
+      operation 168450 "manageOneEvent"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "event" type class_ref 130050 // C_Event
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Author M.Sall 10.2015<br>
+@see A_Protocol#manageOneEvent "
+      end
+
+      operation 168578 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 168706 "readUserParameters"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " @Override
+ /** Display the map and dayNight icon if on, remove it if off. Only one map object. The switch can only go from on to off
+ and
+ * vice versa Version author J.Le Fur, 09.2014 rev: 01.2021 MS*/
+ protected void switchDisplayMap() {
+ if (C_Parameters.DISPLAY_MAP) this.facilityMap.contextualize(this.context, this.landscape);
+ super.initProtocol();// manage inspectors and files after everything
+ }"
+      end
+
+      operation 168834 "blackMap0"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " TODO JLF 2021.02 temporaire pour r�duire la population "
+      end
+
+      operation 168962 "blackMap"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Color the map in black to see the overall distribution of burrows<br>
+Author J.Le Fur 10.2014 TODO JLF 2014.10 should be in presentation package ? "
+      end
+    end
+
+    class 142466 "C_ProtocolHybridUniform"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " This is a test protocol for observing the various types of behaviours, including hybridization between species on a simple patchy environment<br>
+Can be run using different levels of the rodent's hierarchy (instantiable classes): for that purpose, switch the import and the lines concerned
+between C_Rodent, C_RodentFossorial, C_RodentFossorialColonial... then recompile the java class<br>
+@version J.Le Fur, A.Comte 03.2012 / J.Le Fur 07.2012, 02.2013, 07-09.2017 "
+      classrelation 142722 // <generalisation>
+	relation 142722 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 142722 // <generalisation>
+	  b parent class_ref 137090 // A_ProtocolRodent
+      end
+
+      classrelation 142850 // hybridInspector (<unidirectional association>)
+	relation 142850 --->
+	  a role_name "hybridInspector" protected
+	    comment " FIELDS
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 142850 // hybridInspector (<unidirectional association>)
+	  b parent class_ref 139266 // C_InspectorHybrid
+      end
+
+      classrelation 142978 // geneticInspector (<unidirectional association>)
+	relation 142978 --->
+	  a role_name "geneticInspector" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 142978 // geneticInspector (<unidirectional association>)
+	  b parent class_ref 138626 // C_InspectorGenetic
+      end
+
+      classrelation 143106 // burrowInspector (<unidirectional association>)
+	relation 143106 --->
+	  a role_name "burrowInspector" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 143106 // burrowInspector (<unidirectional association>)
+	  b parent class_ref 137346 // C_InspectorFossorialRodents
+      end
+
+      operation 169090 "C_ProtocolHybridUniform"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "ctxt" explicit_type "Context<Object>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 169218 "initProtocol"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+ Fills the context with dynamics agent for the first step of a simulation. The sex ratio is randomly generated, rev jlf 01.2018 "
+      end
+
+      operation 169346 "readUserParameters"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 169474 "isSimulationEnd"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Close simulation if population is < 2 or if a precondition is verified. <br>
+This method may be redefined by daughter protocols "
+      end
+
+      operation 169602 "blackMap"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Color the map in black to see the overall distribution of burrows<br>
+Copy from protocolChize<br>
+TODO JLF 2014.10 should be in presentation package ? "
+      end
+    end
+
+    class 142594 "C_ProtocolMusTransport"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " @author J.Le Fur, Mboup 07/2012, Version rev. P.A.Mboup, 08.2013, JLF 10.2015 "
+      classrelation 143234 // <generalisation>
+	relation 143234 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 143234 // <generalisation>
+	  b parent class_ref 137602 // A_ProtocolTransportation
+      end
+
+      classrelation 143362 // <realization>
+	relation 143362 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 143362 // <realization>
+	  b parent class_ref 132354 // I_ConstantMusTransport
+      end
+
+      classrelation 143490 // geographicCoordinateConverter (<unidirectional association>)
+	relation 143490 --->
+	  a role_name "geographicCoordinateConverter" init_value " null" private
+	    comment " FIELDS
+
+ protected C_InspectorGenetic geneticInspector;
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 143490 // geographicCoordinateConverter (<unidirectional association>)
+	  b parent class_ref 132610 // C_ConvertGeographicCoordinates
+      end
+
+      operation 169730 "C_ProtocolMusTransport"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "ctxt" explicit_type "Context<Object>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 169858 "step_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " METHODS
+"
+      end
+
+      operation 169986 "addRodentInTradingPost"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 170114 "initProtocol"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Initialize the protocol with the raster origin "
+      end
+
+      operation 170242 "manageOneEvent"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "event" type class_ref 130050 // C_Event
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Author MSall 10.2015, rev. JLF 01.2017<br>
+@see A_Protocol#manageOneEvent "
+      end
+
+      operation 170370 "findCity"
+	private explicit_return_type "void"
+	nparams 3
+	  param inout name "oneRodent" type class_ref 137218 // C_Rodent
+	  param in name "x" explicit_type "int"
+	  param in name "y" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 170498 "manageGroundEvent"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "event" type class_ref 130050 // C_Event
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " TODO JLF 2016.03 the marketDay value is temporary stored in the affinity field, before being passed to the the city
+landplot. "
+      end
+
+      operation 170626 "createRodent"
+	public return_type class_ref 137218 // C_Rodent
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Randomly create black rat or house mouse
+@see manageOneEvent "
+      end
+
+      operation 170754 "initCalendar"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 170882 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+  end
+
+  deploymentview 129026 "rodents"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 134274 "A_ProtocolRodent"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.Dimension;
+import java.util.TreeSet;
+import melanesim.C_ContextCreator;
+import melanesim.protocol.A_Protocol;
+import presentation.epiphyte.C_InspectorEnergy;
+import presentation.epiphyte.C_InspectorPopulationRodent;
+import repast.simphony.context.Context;
+import repast.simphony.engine.environment.RunState;
+import thing.I_SituatedThing;
+import thing.dna.C_GenomeAmniota;
+import thing.rodents.C_Rodent;
+${definition}"
+      associated_elems
+	class_ref 137090 // A_ProtocolRodent
+      end
+    end
+
+    artifact 134402 "A_ProtocolFossorial"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.Dimension;
+import java.util.ArrayList;
+import java.util.Collections;
+import data.C_Parameters;
+import melanesim.C_ContextCreator;
+import melanesim.protocol.A_Protocol;
+import presentation.display.C_CustomPanelSet_Rodent;
+import presentation.display.C_UserPanelRodent;
+import presentation.epiphyte.C_InspectorFossorialRodents;
+import presentation.epiphyte.C_InspectorPopulationRodent;
+import repast.simphony.context.Context;
+import thing.A_VisibleAgent;
+import thing.I_SituatedThing;
+import thing.dna.C_GenomeAmniota;
+import thing.ground.C_BurrowSystem;
+import thing.ground.I_Container;
+import thing.ground.landscape.C_LandscapeRodent;
+import thing.rodents.C_Rodent;
+import thing.rodents.C_RodentFossorial;
+${definition}"
+      associated_elems
+	class_ref 136962 // A_ProtocolFossorial
+      end
+    end
+
+    artifact 134530 "A_ProtocolTransportation"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+import presentation.display.C_Background;
+import presentation.display.C_CustomPanelSet_Rodent;
+import presentation.epiphyte.C_InspectorTransportation;
+import repast.simphony.context.Context;
+import repast.simphony.essentials.RepastEssentials;
+import thing.dna.C_GenomeAmniota;
+import thing.ground.C_City;
+import thing.ground.C_LandPlot;
+import thing.ground.C_Market;
+import thing.ground.C_Region;
+import thing.ground.C_SoilCell;
+import thing.ground.C_SoilCellGraphed;
+import thing.ground.landscape.C_LandscapeCountry;
+import thing.ground.landscape.C_LandscapeNetwork;
+import thing.rodents.C_HumanCarrier;
+import thing.rodents.C_Rodent;
+import thing.rodents.C_TaxiMan;
+import data.C_Event;
+import data.C_Parameters;
+import data.constants.rodents.I_ConstantTransportation;
+import melanesim.protocol.A_Protocol;
+import melanesim.util.C_Graph;
+${definition}"
+      associated_elems
+	class_ref 137602 // A_ProtocolTransportation
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 134658 "C_ProtocolBandia"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Calendar;
+import java.util.TreeSet;
+import data.C_Chronogram;
+import data.C_Event;
+import data.C_Parameters;
+import melanesim.protocol.A_Protocol;
+import presentation.display.C_Background;
+import presentation.display.C_CustomPanelSet_Rodent;
+import presentation.display.C_UserPanelRodent;
+import presentation.epiphyte.C_InspectorCMR;
+import presentation.epiphyte.C_InspectorGenetic;
+import repast.simphony.context.Context;
+import thing.C_Egg;
+import thing.I_SituatedThing;
+import thing.dna.species.rodents.C_GenomeMastoErythroleucus;
+import thing.ground.C_Trap;
+import thing.ground.I_Container;
+import thing.rodents.C_RodentCmr;
+${definition}"
+      associated_elems
+	class_ref 138498 // C_ProtocolBandia
+      end
+    end
+
+    artifact 134786 "C_ProtocolCage"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.TreeSet;
+import org.locationtech.jts.geom.Coordinate;
+import data.C_Parameters;
+import data.constants.I_ConstantNumeric;
+import data.constants.rodents.I_ConstantCage;
+import melanesim.C_ContextCreator;
+import presentation.display.C_Background;
+import presentation.display.C_CustomPanelSet_Rodent;
+import presentation.display.C_UserPanelRodent;
+import presentation.epiphyte.C_InspectorGenetic;
+import presentation.epiphyte.C_InspectorHybrid;
+import presentation.epiphyte.C_InspectorPopulationRodent;
+import repast.simphony.context.Context;
+import thing.A_Amniote;
+import thing.I_SituatedThing;
+import thing.dna.C_GenomeEucaryote;
+import thing.dna.species.rodents.C_GenomeMastoErythroleucus;
+import thing.dna.species.rodents.C_GenomeMastoNatalensis;
+import thing.dna.species.rodents.C_GenomeMastomys;
+import thing.ground.C_LandPlot;
+import thing.ground.C_SoilCell;
+import thing.rodents.C_Rodent;
+import thing.rodents.C_RodentCaged;
+${definition}"
+      associated_elems
+	class_ref 139138 // C_ProtocolCage
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 134914 "C_ProtocolCentenal"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Calendar;
+import data.C_Chronogram;
+import data.C_Event;
+import data.C_Parameters;
+import data.constants.rodents.I_ConstantCentenal;
+import data.converters.C_ConvertTimeAndSpace;
+import melanesim.C_ContextCreator;
+import melanesim.protocol.A_Protocol;
+import presentation.display.C_Background;
+import presentation.display.C_CustomPanelSet_Rodent;
+import presentation.display.C_UserPanelRodent;
+import presentation.epiphyte.C_InspectorGenetic;
+import repast.simphony.context.Context;
+import thing.dna.species.rodents.C_GenomeRattusRattus;
+import thing.ground.C_City;
+import thing.ground.C_SoilCellGraphed;
+import thing.rodents.C_Rodent;
+import thing.rodents.C_RodentBlackRat;
+${definition}"
+      associated_elems
+	class_ref 139522 // C_ProtocolCentenal
+      end
+    end
+
+    artifact 135042 "C_ProtocolChize"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Calendar;
+import org.locationtech.jts.geom.Coordinate;
+import data.C_Parameters;
+import data.rodents.C_CropRotationChize;
+import melanesim.protocol.A_Protocol;
+import presentation.display.C_Background;
+import presentation.display.C_CustomPanelSet_Rodent;
+import presentation.display.C_UserPanelRodent;
+import presentation.epiphyte.C_InspectorEnergy;
+import presentation.epiphyte.C_InspectorGenetic;
+import presentation.epiphyte.C_InspectorPopulationRodent;
+import repast.simphony.context.Context;
+import repast.simphony.essentials.RepastEssentials;
+import thing.dna.species.rodents.C_GenomeMicrotusArvalis;
+import thing.ground.C_LandPlot;
+import thing.ground.C_SoilCell;
+import thing.ground.landscape.C_LandscapeRodent;
+import thing.rodents.C_RodentFossorial;
+${definition}"
+      associated_elems
+	class_ref 139650 // C_ProtocolChize
+      end
+    end
+
+    artifact 135170 "C_ProtocolDecenal"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Calendar;
+import data.C_Chronogram;
+import data.C_Event;
+import data.C_Parameters;
+import data.constants.rodents.I_ConstantDecenal;
+import data.converters.C_ConvertTimeAndSpace;
+import presentation.display.C_Background;
+import presentation.display.C_CustomPanelSet_Rodent;
+import presentation.epiphyte.C_InspectorGenetic;
+import repast.simphony.context.Context;
+import thing.dna.species.rodents.C_GenomeRattusRattus;
+import thing.rodents.C_Rodent;
+import thing.rodents.C_RodentBlackRat;
+${definition}"
+      associated_elems
+	class_ref 139778 // C_ProtocolDecenal
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 135298 "C_ProtocolDodel"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Calendar;
+import data.C_Parameters;
+import data.constants.rodents.I_ConstantStringRodents;
+import data.rodents.C_CircadianAffinitiesMus;
+import melanesim.C_ContextCreator;
+import presentation.display.C_Background;
+import presentation.display.C_CustomPanelSet_Rodent;
+import presentation.epiphyte.C_InspectorGenetic;
+import repast.simphony.context.Context;
+import thing.dna.C_GenomeAmniota;
+import thing.dna.species.rodents.C_GenomeMusMusculus;
+import thing.ground.C_SoilCell;
+import thing.ground.I_Container;
+import thing.ground.landscape.C_LandscapeRodent;
+import thing.rodents.C_Rodent;
+import thing.rodents.C_RodentCircadian;
+import thing.rodents.C_TaxiManDodel;
+${definition}"
+      associated_elems
+	class_ref 139906 // C_ProtocolDodel
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 135426 "C_ProtocolDodel2"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.Dimension;
+import java.io.BufferedReader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.TreeSet;
+import org.locationtech.jts.geom.Coordinate;
+import data.C_Chronogram;
+import data.C_Event;
+import data.C_Parameters;
+import data.C_ReadRaster;
+import data.C_ReadWriteFile;
+import data.constants.rodents.I_ConstantDodel2;
+import data.converters.C_ConvertGeographicCoordinates;
+import melanesim.C_ContextCreator;
+import melanesim.protocol.A_Protocol;
+import melanesim.util.C_PathWandererAstar;
+import presentation.display.C_Background;
+import presentation.display.C_CustomPanelSet_Rodent;
+import presentation.display.C_UserPanelRodent;
+import presentation.epiphyte.C_InspectorBorreliaCrocidurae;
+import presentation.epiphyte.C_InspectorGenetic;
+import presentation.epiphyte.C_InspectorOrnithodorosSonrai;
+import presentation.epiphyte.C_InspectorPopulationRodent;
+import repast.simphony.context.Context;
+import thing.A_VisibleAgent;
+import thing.I_SituatedThing;
+import thing.dna.C_GenomeAmniota;
+import thing.dna.species.C_GenomeAcaria;
+import thing.dna.species.C_GenomeBorrelia;
+import thing.dna.species.C_GenomeFelisSilvestrisCatus;
+import thing.dna.species.C_GenomeHomoSapiens;
+import thing.dna.species.rodents.C_GenomeMusMusculus;
+import thing.ground.C_BurrowSystem;
+import thing.ground.C_LandPlot;
+import thing.ground.C_SoilCell;
+import thing.ground.C_SoilCellNode;
+import thing.ground.C_SoilCellUrban;
+import thing.ground.I_Container;
+import thing.ground.landscape.C_LandscapeUrban;
+import thing.rodents.A_HumanUrban;
+import thing.rodents.C_BorreliaCrocidurae;
+import thing.rodents.C_Cat;
+import thing.rodents.C_Food;
+import thing.rodents.C_HumanWalker;
+import thing.rodents.C_OrnitodorosSonrai;
+import thing.rodents.C_RodentDomestic2;
+import thing.rodents.C_TaxiManDodel;
+${definition}"
+      associated_elems
+	class_ref 140162 // C_ProtocolDodel2
+      end
+      comment " This source code is licensed under a BSD license as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 135554 "C_ProtocolEnclosure"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Calendar;
+import data.C_Parameters;
+import data.constants.I_ConstantNumeric;
+import presentation.display.C_CustomPanelSet_Rodent;
+import presentation.display.C_UserPanelRodent;
+import presentation.epiphyte.C_InspectorFossorialRodents;
+import presentation.epiphyte.C_InspectorGenetic;
+import presentation.epiphyte.C_InspectorHybrid;
+import repast.simphony.context.Context;
+import thing.dna.C_GenomeEucaryote;
+import thing.dna.species.rodents.C_GenomeMastoErythroleucus;
+import thing.dna.species.rodents.C_GenomeMastoNatalensis;
+import thing.rodents.C_Rodent;
+${definition}"
+      associated_elems
+	class_ref 141570 // C_ProtocolEnclosure
+      end
+    end
+
+    artifact 135682 "C_ProtocolGerbil"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.TimeZone;
+import java.util.TreeSet;
+import org.locationtech.jts.geom.Coordinate;
+import data.C_Chronogram;
+import data.C_Event;
+import data.C_Parameters;
+import data.C_ReadRaster;
+import data.constants.I_ConstantNumeric;
+import data.constants.rodents.I_ConstantDodel;
+import data.constants.rodents.I_ConstantGerbil;
+import data.converters.C_ConvertGeographicCoordinates;
+import melanesim.C_ContextCreator;
+import melanesim.protocol.A_Protocol;
+import presentation.display.C_Background;
+import presentation.display.C_CustomPanelSet_Rodent;
+import presentation.epiphyte.C_InspectorVegetation;
+import repast.simphony.context.Context;
+import repast.simphony.engine.environment.RunEnvironment;
+import repast.simphony.engine.environment.RunState;
+import repast.simphony.util.collections.IndexedIterable;
+import thing.A_NDS;
+import thing.I_SituatedThing;
+import thing.dna.species.C_GenomeTytoAlba;
+import thing.dna.species.plants.C_GenomeAcacia;
+import thing.dna.species.plants.C_GenomeBalanites;
+import thing.dna.species.plants.C_GenomeFabacea;
+import thing.dna.species.plants.C_GenomePoacea;
+import thing.dna.species.rodents.C_GenomeGerbillusNigeriae;
+import thing.ground.C_Nest;
+import thing.ground.C_SoilCellSavanna;
+import thing.rodents.C_BarnOwl;
+import thing.rodents.C_RodentGerbil;
+import thing.rodents.C_Vegetation;
+${definition}"
+      associated_elems
+	class_ref 141698 // C_ProtocolGerbil
+      end
+    end
+
+    artifact 135810 "C_ProtocolHybridUniform"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.Dimension;
+import data.C_Parameters;
+import melanesim.C_ContextCreator;
+import melanesim.protocol.A_Protocol;
+import presentation.display.C_Background;
+import presentation.display.C_CustomPanelSet_Rodent;
+import presentation.display.C_UserPanelRodent;
+import presentation.epiphyte.C_InspectorFossorialRodents;
+import presentation.epiphyte.C_InspectorGenetic;
+import presentation.epiphyte.C_InspectorHybrid;
+import presentation.epiphyte.C_InspectorPopulationRodent;
+import repast.simphony.context.Context;
+import thing.dna.C_GenomeEucaryote;
+import thing.dna.species.rodents.C_GenomeMastoErythroleucus;
+import thing.dna.species.rodents.C_GenomeMastoNatalensis;
+import thing.ground.C_BurrowSystem;
+import thing.rodents.C_RodentFossorial;
+${definition}"
+      associated_elems
+	class_ref 142466 // C_ProtocolHybridUniform
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 135938 "C_ProtocolMusTransport"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Calendar;
+import presentation.display.C_Background;
+import repast.simphony.context.Context;
+import thing.dna.C_GenomeAmniota;
+import thing.dna.species.rodents.C_GenomeMastoErythroleucus;
+import thing.dna.species.rodents.C_GenomeMusMusculus;
+import thing.dna.species.rodents.C_GenomeRattusRattus;
+import thing.ground.C_City;
+import thing.ground.C_SoilCell;
+import thing.rodents.C_Rodent;
+import thing.rodents.C_RodentBlackRat;
+import thing.rodents.C_RodentHouseMouse;
+import thing.rodents.C_RodentMastoErySimple;
+import org.locationtech.jts.geom.Coordinate;
+import data.C_Chronogram;
+import data.C_Event;
+import data.C_Parameters;
+import data.constants.rodents.I_ConstantMusTransport;
+import data.converters.C_ConvertGeographicCoordinates;
+import melanesim.C_ContextCreator;
+import melanesim.protocol.A_Protocol;
+${definition}"
+      associated_elems
+	class_ref 142594 // C_ProtocolMusTransport
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+  end
+end

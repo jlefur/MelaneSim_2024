@@ -1,0 +1,548 @@
+format 224
+"slider_material" // src::melanesim::util::slider_material
+  revision 1
+  modified_by 2 "lefur"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:\\Users\\lefur\\Documents\\GitHub\\MelaneSim_2024\\src/melanesim/util/slider_material/"
+  java_package "melanesim.util.slider_material"
+  classview 131074 "slider_material"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 146818 "JsliderCustom"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 148482 // <generalisation>
+	relation 148482 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 148482 // <generalisation>
+	  b parent class_ref 146178 // JSlider
+      end
+
+      attribute 212866 "serialVersionUID"
+	class_attribute const_attribute private explicit_type "long"
+	init_value " 1L"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 194690 "JsliderCustom"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 146946 "JSliderUI"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 148610 // <generalisation>
+	relation 148610 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 148610 // <generalisation>
+	  b parent class_ref 146434 // BasicSliderUI
+      end
+
+      attribute 212994 "window"
+	const_attribute private explicit_type "JWindow"
+	init_value " new JWindow()"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 213122 "animator"
+	const_attribute private explicit_type "Animator"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 213250 "show"
+	private explicit_type "boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 194818 "JSliderUI"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "slider" explicit_type "JSlider"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 194946 "getLocation"
+	private explicit_return_type "Point"
+	nparams 1
+	  param inout name "slider" explicit_type "JSlider"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 195074 "stopAnimation"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 195202 "paintFocus"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "grphcs" explicit_type "Graphics"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 195330 "getThumbSize"
+	protected explicit_return_type "Dimension"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 195458 "paintThumb"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "grphcs" explicit_type "Graphics"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 195586 "paintTrack"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "grphcs" explicit_type "Graphics"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      class 147074 "PanelSlider"
+	visibility private 
+	cpp_decl ""
+	java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	mysql_decl ""
+	
+	classrelation 148738 // <generalisation>
+	  relation 148738 ---|>
+	    a public
+	      java "${type}"
+	      classrelation_ref 148738 // <generalisation>
+	    b parent class_ref 147202 // JComponent
+	end
+
+	attribute 213378 "serialVersionUID"
+	  class_attribute const_attribute private explicit_type "long"
+	  init_value " 1L"
+	  cpp_decl ""
+	  java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+
+	attribute 213506 "label"
+	  private explicit_type "JLabel"
+	  cpp_decl ""
+	  java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+
+	attribute 213634 "slider"
+	  private explicit_type "JSlider"
+	  cpp_decl ""
+	  java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+
+	operation 195714 "PanelSlider"
+	  public explicit_return_type ""
+	  nparams 1
+	    param inout name "slider" explicit_type "JSlider"
+	  
+	  preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	  
+	  
+	  
+	end
+
+	operation 195842 "setValues"
+	  public explicit_return_type "void"
+	  nparams 1
+	    param in name "values" explicit_type "int"
+	  
+	  preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	  
+	  
+	  
+	end
+
+	operation 195970 "paintComponent"
+	  protected explicit_return_type "void"
+	  nparams 1
+	    param inout name "grphcs" explicit_type "Graphics"
+	  
+	  preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	  java_annotation "@Override
+"
+	  
+	  
+	  
+	end
+      end
+    end
+
+    class 147330 "Main"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "
+@author RAVEN
+"
+      classrelation 148866 // <generalisation>
+	relation 148866 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 148866 // <generalisation>
+	  b parent class_ref 146690 // JFrame
+      end
+
+      attribute 213762 "serialVersionUID"
+	class_attribute const_attribute private explicit_type "long"
+	init_value " 1L"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 196098 "Main"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Creates new form Main
+"
+      end
+
+      operation 196226 "initComponents"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "This method is called from within the constructor to initialize the form.
+WARNING: Do NOT modify this code. The content of this method is always
+regenerated by the Form Editor.
+
+@SuppressWarnings(\"unchecked\")
+ <editor-fold defaultstate=\"collapsed\" desc=\"Generated Code\">//GEN-BEGIN:initComponents"
+      end
+
+      operation 196354 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " </editor-fold>//GEN-END:initComponents
+
+@param args the command line arguments
+"
+      end
+
+      classrelation 148994 // jsliderCustom1 (<unidirectional association>)
+	relation 148994 --->
+	  a role_name "jsliderCustom1" private
+	    comment " Variables declaration - do not modify//GEN-BEGIN:variables
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 148994 // jsliderCustom1 (<unidirectional association>)
+	  b parent class_ref 146818 // JsliderCustom
+      end
+
+      classrelation 149122 // jsliderCustom2 (<unidirectional association>)
+	relation 149122 --->
+	  a role_name "jsliderCustom2" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 149122 // jsliderCustom2 (<unidirectional association>)
+	  b parent class_ref 146818 // JsliderCustom
+      end
+
+      classrelation 149250 // jsliderCustom3 (<unidirectional association>)
+	relation 149250 --->
+	  a role_name "jsliderCustom3" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 149250 // jsliderCustom3 (<unidirectional association>)
+	  b parent class_ref 146818 // JsliderCustom
+      end
+
+      classrelation 149378 // jsliderCustom4 (<unidirectional association>)
+	relation 149378 --->
+	  a role_name "jsliderCustom4" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 149378 // jsliderCustom4 (<unidirectional association>)
+	  b parent class_ref 146818 // JsliderCustom
+      end
+    end
+  end
+
+  deploymentview 129538 "slider_material"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 139010 "JsliderCustom"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.Color;
+import javax.swing.JSlider;
+${definition}"
+      associated_elems
+	class_ref 146818 // JsliderCustom
+      end
+    end
+
+    artifact 139138 "JSliderUI"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.RenderingHints;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.geom.Area;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Path2D;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JSlider;
+import javax.swing.JWindow;
+import javax.swing.SwingUtilities;
+import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.plaf.basic.BasicSliderUI;
+import org.jdesktop.animation.timing.Animator;
+import org.jdesktop.animation.timing.TimingTargetAdapter;
+${definition}"
+      associated_elems
+	class_ref 146946 // JSliderUI
+      end
+    end
+
+    artifact 139266 "Main"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.Color;
+${definition}"
+      associated_elems
+	class_ref 147330 // Main
+      end
+      comment "To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+"
+    end
+  end
+end

@@ -1,0 +1,5 @@
+class C_GenomeBalanites
+!!!297986.java!!!	C_GenomeBalanites()
+		super();
+		alleles.put(GROWTH_RATE_UkcalPerDay, 3.001); // TODO JLF&MS 04.2016 source: junk value, see T.Brevault for better values
+		makeSpermatophytaBivalent(this.alleles);

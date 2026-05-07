@@ -1,0 +1,30 @@
+class C_Parameters
+!!!131074.java!!!	getMultiplier(inout type : I_MarineActor::DriverType) : double
+ return multipliers.get(type);
+!!!131202.java!!!	setMultiplier(inout type : I_MarineActor::DriverType, in value : double) : void
+ multipliers.put(type,value);
+!!!131330.java!!!	resetMultipliers() : void
+		for(DriverType t:DriverType.values()){
+			multipliers.put(t,1.0);
+		}
+!!!131458.java!!!	C_Parameters()
+		parameters = RunEnvironment.getInstance().getParameters();
+		// Following lines are compulsory here for C_ContextCreator to build the calendar and the raster before defining
+		// the
+		// protocol.
+		PROTOCOL = (String)parameters.getValue("PROTOCOL");
+		if(C_Parameters.PROTOCOL.contains("rodents")) RASTER_PATH = RASTER_PATH_RODENTS;
+		else RASTER_PATH = RASTER_PATH_MELANESIA;
+
+		RASTER_URL = RASTER_PATH+parameters.getValue("RASTER_FILE");
+		/** Raster background conversion factors: the width (in meter)of one pixel (was formerly size_of_one_box Chize:
+		 * 747.8 cm.px^-1 */
+		{
+			CELL_WIDTH_Ucentimeter = ((Integer)parameters.getValue("CELL_WIDTH_Ucm")).intValue();
+			CELL_WIDTH_Umeter = (double)CELL_WIDTH_Ucentimeter/100.;
+			/** conversion factor (e.g., Chize: 7.478 m.cs^-1, continuous space unit -> meters */
+			UCS_WIDTH_Umeter = CELL_WIDTH_Umeter;
+		}
+		TICK_LENGTH_Ucalendar = ((Integer)parameters.getValue("TICK_LENGTH_Ucalendar")).intValue();
+		TICK_UNIT_Ucalendar = (String)parameters.getValue("TICK_UNIT_Ucalendar");
+		TERMINATE = ((Boolean)C_Parameters.parameters.getValue("TERMINATE")).booleanValue();

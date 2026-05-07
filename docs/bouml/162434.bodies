@@ -1,0 +1,20 @@
+class C_RodentHouseMouse
+!!!359554.java!!!	C_RodentHouseMouse(inout genome : I_DiploidGenome)
+		super(genome);
+!!!359682.java!!!	giveBirth(inout genome : I_DiploidGenome) : A_Animal
+		return new C_RodentHouseMouse(genome);
+!!!359810.java!!!	actionTryBoardingContainer(inout vehicle : C_Vehicle) : boolean
+		if (vehicle.getType().equals(TAXI_EVENT)) {
+			return super.actionTryBoardingContainer(vehicle);
+		}
+		else return false;
+!!!359938.java!!!	deliberation(inout perceivedThings : TreeSet<I_SituatedThing>) : I_SituatedThing
+		if (this.getDesire().equals(FEED)) {
+			TreeSet<I_SituatedThing> candidateTargets = new TreeSet<I_SituatedThing>();// There may be several equivalent targets
+			for (I_SituatedThing oneThingPerceived : perceivedThings)
+				if ((oneThingPerceived instanceof C_Vehicle) && (((C_Vehicle) oneThingPerceived).getType().equals(TAXI_EVENT))) {
+					candidateTargets.add(oneThingPerceived);
+				}
+			return candidateTargets;
+		}
+		else return super.deliberation(perceivedThings);

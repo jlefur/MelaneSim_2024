@@ -1,0 +1,111 @@
+class C_ConvertRainFiles
+!!!135042.java!!!	readRainRaster(in fileNameInRain : String) : int
+        int[][] rainMatrix = C_ReadRaster.imgRasterLoader(RASTER_PATH_RODENTS + fileNameInRain);
+        rainMatrix = rescaleColorValues(rainMatrix);
+        System.out.println(fileNameInRain + " bitmap read ");
+        return rainMatrix;
+!!!135170.java!!!	saveRainRasterFile(inout matriceLue : int [[][]], in fileNameInRain : String, in path : String) : void
+        int nbColumns;
+        int nbLines;
+        C_FileWriter rasterFile_Utxt;
+        // Create or recreate empty gerbilSavanna file
+        nbColumns = matriceLue.length;
+        nbLines = matriceLue[0].length;
+        rasterFile_Utxt = new C_FileWriter(RASTER_PATH_RODENTS + path + "/" + fileNameInRain + ".txt", false);
+        // Compute max and min values of the matrix
+        int maxValue = 0;
+        int minValue = Integer.MAX_VALUE;
+        for (int i = 0; i < nbColumns; i++) {
+            for (int j = 0; j < nbLines; j++) {
+                if (maxValue < matriceLue[i][j]) maxValue = matriceLue[i][j];
+                if (minValue > matriceLue[i][j]) minValue = matriceLue[i][j];
+            }
+        }
+        // Raster file add values
+        System.err.println("C_ConvertRainFiles.saveRainRasterFile(): Writing file");
+        rasterFile_Utxt.writeln("DSAA");
+        rasterFile_Utxt.writeln(nbColumns + "");
+        rasterFile_Utxt.writeln(nbLines + "");
+        rasterFile_Utxt.write(minValue + " " + maxValue);
+        for (int i = nbLines - 1; i >= 0; i--) {
+            rasterFile_Utxt.writeln("");
+            rasterFile_Utxt.write(matriceLue[0][i] + "");
+            for (int j = 1; j < nbColumns; j++)
+                rasterFile_Utxt.write(" " + matriceLue[j][i]);
+        }
+        rasterFile_Utxt.closeFile();
+        System.err.println("C_ConvertRainFiles.saveRainRasterFile(): " + fileNameInRain + ".txt conversion complete");
+!!!135298.java!!!	computeFileName(in fileNameInRain : String) : String
+        // ex: fileNameInRain = TRMM-3B42-19990101-19990131 to 19990101
+        return fileNameInRain.substring(10, 16) + "-ME-Rain";
+!!!135426.java!!!	buildFileNameList(in directoryPath : String) : TreeSet<String>
+        TreeSet<String> fileNameList = new TreeSet<String>();
+        // Find all of file name in the directory
+        File directory = new File(directoryPath);
+        if (!directory.exists()) System.err.println("C_ConvertRainFiles.buildFileNameList(); Folder " + directoryPath + " does not exist");
+        else {
+            File[] subfiles = directory.listFiles();
+            int length = subfiles.length;
+            for (int i = 0; i < length; i++)
+                fileNameList.add(subfiles[i].getName());
+        }
+        return fileNameList;
+!!!135554.java!!!	replaceValueInMatrix(in oldValue : int, in newValue : int, inout grid : int [[][]]) : int
+        if (checkOccurrenceInMatrix(newValue, grid)) {
+            System.err.println(newValue + " already exist, impossible to change with " + oldValue);
+            return null;
+        }
+        int oldValueSaved = 0, frontierValue = 0;
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                if (grid[i][j] == oldValue) {
+                    grid[i][j] = newValue;
+                    oldValueSaved = newValue;
+                }
+                // When frontierValue is encountered, replace with preceding cell value. Used only once
+                else {
+                    if (grid[i][j] == frontierValue) grid[i][j] = oldValueSaved;
+                    else oldValueSaved = grid[i][j];
+                }
+            }
+        }
+        return grid;
+!!!135682.java!!!	checkOccurrenceInMatrix(in value : int, inout matrix : int [[][]]) : boolean
+        for (int i = 0; i < matrix.length; i++)
+            for (int j = 0; j < matrix[0].length; j++)
+                if (matrix[i][j] == value) return true;
+        return false;
+!!!135810.java!!!	rescaleColorValues(inout matriceLue : int [[][]]) : int
+        int[][] newMatrix = matriceLue;
+        // Reorder bitmap values to conform to rain intensity scale
+        newMatrix = replaceValueInMatrix(8, 17, newMatrix);
+        newMatrix = replaceValueInMatrix(3, 16, newMatrix);
+        newMatrix = replaceValueInMatrix(4, 15, newMatrix);
+        newMatrix = replaceValueInMatrix(1, 14, newMatrix);
+        newMatrix = replaceValueInMatrix(2, 13, newMatrix);
+        newMatrix = replaceValueInMatrix(5, 12, newMatrix);
+        newMatrix = replaceValueInMatrix(6, 11, newMatrix);
+        newMatrix = replaceValueInMatrix(7, 10, newMatrix);
+        // Rescale values from 1 to 8
+        newMatrix = replaceValueInMatrix(10, 1, newMatrix);
+        newMatrix = replaceValueInMatrix(11, 2, newMatrix);
+        newMatrix = replaceValueInMatrix(12, 3, newMatrix);
+        newMatrix = replaceValueInMatrix(13, 4, newMatrix);
+        newMatrix = replaceValueInMatrix(14, 5, newMatrix);
+        newMatrix = replaceValueInMatrix(15, 6, newMatrix);
+        newMatrix = replaceValueInMatrix(16, 7, newMatrix);
+        newMatrix = replaceValueInMatrix(17, 8, newMatrix);
+        return newMatrix;
+!!!135938.java!!!	main(inout args : String [[]]) : void
+        int[][] matriceMELue;
+        String rainBitmapFolder = "gerbils/rain-bitmaps-ME/";
+        C_ConvertRainFiles converter = new C_ConvertRainFiles();
+        TreeSet<String> fileNameList = C_ConvertRainFiles.buildFileNameList(RASTER_PATH_RODENTS + rainBitmapFolder);
+        // build all ME matrix
+        for (String fileNameInRain : fileNameList) {
+            if (! fileNameInRain.contains("svn")) {
+                matriceMELue = converter.readRainRaster(rainBitmapFolder + fileNameInRain);
+                C_ConvertRainFiles.saveRainRasterFile(matriceMELue, converter.computeFileName(fileNameInRain), "gerbils/rain-ASCII-ME");
+            }
+        }
+        System.out.println("conversion complete!!!");

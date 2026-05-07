@@ -1,0 +1,21 @@
+class C_GenomeSpermatophyta
+!!!297474.java!!!	C_GenomeSpermatophyta()
+		super();
+		this.alleles.put(GROWTH_RATE_UkcalPerDay, DEFAULT_GROWTH_RATE_UgramPerDay);// source : junk value for the vegetation growth rate, need a real source!
+		makeSpermatophytaBivalent(this.alleles);// values inside the allele map are each time replaced by the daughter class and its
+		// intermediates JLF 08.2014
+!!!297602.java!!!	makeSpermatophytaBivalent(inout allelesMap : Map<String, Double>) : void
+		// remove obsolete xsomePairSpermatophyta constructed by mother classes
+		this.bivalents.remove(this.xsomePairSpermatophyta);
+		this.xsomePairSpermatophyta = new C_ChromosomePair(C_Chromosome.MAP_LENGTH, numGenesXsomeSpermatophyta,
+				recombinator);
+
+		this.xsomePairSpermatophyta.setGenePairAtLocus(GROWTH_RATE_LOCUS, //
+				new C_Gene(allelesMap.get(GROWTH_RATE_UkcalPerDay) + getTaxonSignature(), GROWTH_RATE_MAPLOCS.get(0),
+						mutator, this.xsomePairSpermatophyta.xsomeStrands[0].getMyId()), //
+				new C_Gene(allelesMap.get(GROWTH_RATE_UkcalPerDay) + getTaxonSignature(), GROWTH_RATE_MAPLOCS.get(0),
+						mutator, this.xsomePairSpermatophyta.xsomeStrands[1].getMyId()));
+		this.bivalents.add(bivalents.size(), this.xsomePairSpermatophyta);
+!!!297730.java!!!	getGrowthRateValue() : double
+		return ((double) expressor.evalTrait(getChromosomePairFromMaploc(GROWTH_RATE_MAPLOCS.get(0)),
+				GROWTH_RATE_MAPLOCS));

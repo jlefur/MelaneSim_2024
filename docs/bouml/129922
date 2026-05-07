@@ -1,0 +1,581 @@
+format 224
+"dataOutput" // src::presentation::dataOutput
+  revision 1
+  modified_by 2 "lefur"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:\\Users\\lefur\\Documents\\GitHub\\MelaneSim_2024\\src/presentation/dataOutput/"
+  java_package "presentation.dataOutput"
+  classview 129794 "dataOutput"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 135298 "C_FileWriter"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 149506 // <realization>
+	relation 149506 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 149506 // <realization>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      attribute 213890 "$DOSSIER"
+	private explicit_type "String"
+	init_value " \"\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " the directory within which output files are placed 
+"
+      end
+
+      attribute 214018 "fileName"
+	private explicit_type "String"
+	init_value " \"\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 214146 "printer"
+	private explicit_type "PrintWriter"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 214274 "numRun"
+	public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 196482 "C_FileWriter"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "fileNameOrUrlPlusFileName" explicit_type "String"
+	  param inout name "incrementNameOrNot" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+
+ Create a new output data file
+@param fileNameOrUrlPlusFileName with extension
+@param incrementNameOrNot boolean to inform if the name must be increment or not
+Version rev. PAMboup 25/06/2014 "
+      end
+
+      operation 196610 "buildFolders"
+	private explicit_return_type "void"
+	nparams 1
+	  param in name "url" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+ Build folders, for exemple : if url = \"folder1/forder2/ or url = \"folder1/forder2/file.extension, this method build the
+folder1 and inside it build the folder2 (and don't build file.extension)
+@param url
+@author pamboup 20/06/2014 "
+      end
+
+      operation 196738 "write"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "str" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " ECRITURE FICHIERS //
+ Ecrit le String en paramètre "
+      end
+
+      operation 196866 "writeln"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "str" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Ecrit le String en paramètre et saute une ligne "
+      end
+
+      operation 196994 "writeMultiLineAndClose"
+	class_operation public explicit_return_type "void"
+	nparams 2
+	  param in name "urlAndfileName" explicit_type "String"
+	  param inout name "multiLine" explicit_type "List<String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Constructs a FileWriter object given a file name and append the data written.
+@param urlAndfileName - String The filename.
+@param multiLine - ArrayList of String . author mboup 03/2014 "
+      end
+
+      operation 197122 "closeFile"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Ferme le fichier (à utiliser une fois que l'on a terminé d'écrire "
+      end
+
+      operation 197250 "getName"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 197378 "getNumRun"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 147458 "C_Information"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "  UNUSED: WORK IN PROGRESS
+Exploratory: Structure compatible with the Centre d'Informations (CI). Aims at receiving data to include in the CI <br>
+NB: lack keywords.
+@see C_Event
+Version 04/06/2014, rev. JLF 12.2014, 08.2018 
+@author Jean Le Fur (lefur@ird.fr) "
+      attribute 214402 "idInformation"
+	public explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 214530 "title"
+	public explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " message"
+      end
+
+      attribute 214658 "subTitle"
+	public explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " method concerned (i.e., A_Animal.step_Utick)"
+      end
+
+      attribute 214786 "shortDescription"
+	public explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 214914 "dimension"
+	public explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " \"simulation output\""
+      end
+
+      attribute 215042 "source"
+	public explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " protocol ?"
+      end
+
+      attribute 215170 "author"
+	public explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "i.e. this (?)"
+      end
+
+      attribute 215298 "entryDate"
+	public explicit_type "Date"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " simulation date or today date ?"
+      end
+
+      operation 197506 "C_Information"
+	public explicit_return_type ""
+	nparams 8
+	  param in name "idInformation" explicit_type "String"
+	  param in name "title" explicit_type "String"
+	  param in name "subTitle" explicit_type "String"
+	  param in name "shortDescription" explicit_type "String"
+	  param in name "dimension" explicit_type "String"
+	  param in name "source" explicit_type "String"
+	  param in name "author" explicit_type "String"
+	  param inout name "entryDate" explicit_type "Date"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}, ${t5} ${p5}, ${t6} ${p6}, ${t7} ${p7}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 147586 "C_OutputConsole"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " @author Audrey Realini - 2011 All that appears in the console is backed up in the file "
+      classrelation 149634 // <realization>
+	relation 149634 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 149634 // <realization>
+	  b parent class_ref 147714 // Runnable
+      end
+
+      classrelation 149762 // <realization>
+	relation 149762 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 149762 // <realization>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      attribute 215426 "file"
+	private explicit_type "File"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 215554 "area"
+	private explicit_type "JTextArea"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 215682 "reader"
+	private explicit_type "InputStreamReader"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 215810 "buff"
+	private explicit_type "BufferedReader"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 197634 "C_OutputConsole"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 197762 "C_OutputConsole"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "area" explicit_type "JTextArea"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 197890 "write"
+	public explicit_return_type "void"
+	nparams 0
+	nexceptions 1
+	  explicit_exception "IOException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 198018 "run"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+  end
+
+  deploymentview 129666 "dataOutput"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 139394 "C_FileWriter"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+import data.C_Parameters;
+import data.constants.rodents.I_ConstantStringRodents;
+${definition}"
+      associated_elems
+	class_ref 135298 // C_FileWriter
+      end
+    end
+
+    artifact 139522 "C_Information"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Date;
+import data.C_Event;
+${definition}"
+      associated_elems
+	class_ref 147458 // C_Information
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 139650 "C_OutputConsole"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+import javax.swing.JTextArea;
+import data.constants.rodents.I_ConstantStringRodents;
+${definition}"
+      associated_elems
+	class_ref 147586 // C_OutputConsole
+      end
+    end
+  end
+end

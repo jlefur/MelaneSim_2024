@@ -1,0 +1,3 @@
+class C_IconNightDay
+!!!210946.java!!!	C_IconNightDay(in scale : double, in x_Ucell : double, in y_Ucell : double)
+		super(scale, x_Ucell, y_Ucell);

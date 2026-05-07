@@ -1,0 +1,252 @@
+class C_VariousUtilities
+!!!178946.java!!!	main0(in string : String) : void
+		JFrame f = new JFrame("Label Demo");
+		f.setLayout(new FlowLayout());
+		f.setSize(300, 360);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		JLabel label = new JLabel("asdf");
+		Border border = BorderFactory.createLineBorder(Color.BLACK);
+		label.setBorder(border);
+		label.setPreferredSize(new Dimension(150, 100));
+		f.add(label);
+
+		f.setVisible(true);
+!!!179074.java!!!	BoxLayoutoo() : void
+		JFrame BoxLayoutFoo = new JFrame();
+		// swap the comments below
+		// BoxLayoutFoo.setLayout(new BoxLayout(BoxLayoutFoo, BoxLayout.LINE_AXIS)); // comment out this line
+		BoxLayoutFoo.setLayout(new BoxLayout(BoxLayoutFoo.getContentPane(), BoxLayout.LINE_AXIS)); // uncomment this line
+		BoxLayoutFoo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		BoxLayoutFoo.pack();
+		BoxLayoutFoo.setVisible(true);
+!!!179202.java!!!	compareDecimals(in n1 : double, in n2 : double) : boolean
+		return truncate(n1) == truncate(n2);
+!!!179330.java!!!	testCompareDecimals(inout args : String [[]]) : void
+		double x = 4.29, y = 4.3, z = 5.30, w = 4.31;
+		System.out.println(compareDecimals(x, y));
+		System.out.println(compareDecimals(x, z));
+		System.out.println(compareDecimals(x, w));
+		System.out.println(compareDecimals(y, z));
+		System.out.println(compareDecimals(y, w));
+!!!179458.java!!!	truncate(in x : double) : double
+		long y = (long) (x * 1000.);
+		y = y - ((int) x) * 1000;
+		return y;
+!!!179586.java!!!	testRegisterGenerator() : void
+		final int BINARY_RANDOM_SEED = 654879511;
+		RandomEngine randomGeneratorForBinarySelector;
+		randomGeneratorForBinarySelector = RandomHelper.registerGenerator("binary_seed", BINARY_RANDOM_SEED);
+		for (int i = 0; i < 30; i++) {
+			System.out.print((int) (randomGeneratorForBinarySelector.nextDouble() * 2));
+			System.out.print(" / nextdouble: ");
+			System.out.print(randomGeneratorForBinarySelector.nextDouble() * 2);
+			System.out.print(" / nextint: ");
+			System.out.println(randomGeneratorForBinarySelector.nextInt());
+		}
+!!!179714.java!!!	testChromosome(inout args : String [[]]) : void
+		System.out.println("Testing chromosome");
+		Random randGen = new Random();
+		C_Chromosome one_chromosome = new C_Chromosome(4, new C_RecombinatorOnePt());
+		// cr�e 4 g�nes avec des valeurs (g�ne <=> all�le) al�atoires aux loci 1 � 4.
+		for (int i = 1; i <= 4; i++) {
+			double mapLoc = i * 2.5;
+			C_Gene dblGene = new C_Gene(new Random().nextDouble(), mapLoc, new C_GeneMutatorDouble(), one_chromosome
+					.getMyId(), new C_GeneConstraint(-10, 10));
+			one_chromosome.setGeneAtLocus(i, dblGene);
+		}
+		System.out.println("chromosome:         " + one_chromosome);
+		testMapLocs(one_chromosome);
+		one_chromosome.mutate(0.5);
+		System.out.println("mutated chromosome: " + one_chromosome);
+		testMapLocs(one_chromosome);
+		for (int i = 0; i < 4; i++) {
+			System.out.println("getGene(" + i + "): " + one_chromosome.getGene(i));
+			System.out.println("  getLocusAllele(" + i + "): " + one_chromosome.getLocusAllele(i));
+		}
+		// Test randomize();
+		one_chromosome.randomize();
+		System.out.println("...randomize(): " + one_chromosome);
+		testMapLocs(one_chromosome);
+		System.out.println("getAlleles(): " + one_chromosome.getAlleles());
+		// Replicate w/o mutation
+		C_Chromosome gCopy = (C_Chromosome) one_chromosome.replicate(0.);
+		System.out.println("original: " + one_chromosome);
+		System.out.println("copy:     " + gCopy);
+		gCopy.mutate(1.);
+		System.out.println("original: " + one_chromosome);
+		System.out.println("mut copy: " + gCopy);
+		testMapLocs(gCopy);
+		// Test out crossover
+		I_Recombinator onePt = new C_RecombinatorOnePt();
+		System.out.println("\nOne Pt Crossover:");
+		testCrossover(onePt, one_chromosome, gCopy);
+		I_Recombinator multiPt = new C_RecombinatorOnePt();
+		System.out.println("\nMulti Pt Crossover:");
+		testCrossover(multiPt, one_chromosome, gCopy);
+		I_Recombinator mapXover = new C_RecombinatorMapGenome();
+		System.out.println("\nMap Genome Crossover:");
+		testCrossover(mapXover, one_chromosome, gCopy);
+		System.out.println("\nCrossover and Mating");
+		System.out.println("parent1: " + one_chromosome);
+		System.out.println("parent2: " + gCopy);
+		System.out.println("crossover(): " + one_chromosome.crossover(gCopy));
+		C_Chromosome mate = (C_Chromosome) one_chromosome.mate(0.75, gCopy);
+		System.out.println("mate(): " + mate);
+		testMapLocs(mate);
+		int numGenes = 20;
+		double mapLen = numGenes * 2.5;
+		List<Integer> intAlleles = new ArrayList<Integer>(10);
+		for (int i = 0; i < 10; i++)
+			intAlleles.add(i);
+		C_GeneMutatorSet setGeneMut = new C_GeneMutatorSet(intAlleles);
+		C_Chromosome genome3 = new C_Chromosome(mapLen, numGenes, mapXover);
+		double mapLoc = 0;
+		for (int i = 1; i <= numGenes; i++) {
+			mapLoc += randGen.nextDouble() * 2.5;
+			C_Gene dblGene = new C_Gene((int) randGen.nextDouble() * 10, mapLoc, setGeneMut, one_chromosome
+					.getMyId());
+			genome3.setGeneAtLocus(i, dblGene);
+		}
+		C_Chromosome genome3copy = (C_Chromosome) genome3.replicate(0.);
+		genome3copy.mutate(1.);
+		System.out.println("genome3:         " + genome3);
+		System.out.println("genome3copy:     " + genome3copy);
+		testMapLocs(genome3);
+		testCrossover(mapXover, genome3, genome3copy);
+		// Test copySegment()
+		I_MappedDna copiedSegment1 = (I_MappedDna) one_chromosome.copySegment(0, 1);
+		I_MappedDna copiedSegment2 = (I_MappedDna) one_chromosome.copySegment(1, 3);
+		I_MappedDna copiedSegment3 = (I_MappedDna) one_chromosome.copySegment(3, 4);
+		System.out.println("\ncopySegment()");
+		System.out.println("genome: " + one_chromosome);
+		System.out.println("genome.copySegment(0,1):" + copiedSegment1);
+		testMapLocs(copiedSegment1);
+		System.out.println("genome.copySegment(1,3):" + copiedSegment2);
+		testMapLocs(copiedSegment2);
+		System.out.println("genome.copySegment(3,4):" + copiedSegment3);
+		testMapLocs(copiedSegment3);
+!!!179842.java!!!	testMapLocs(inout genome : I_MappedDna) : void
+		double mapLoc = 5.0;
+		System.out.println("genome.getMapLength():         " + genome.getMapLength());
+		for (int i = 0; i < genome.getNumLoci(); i++) {
+			C_Gene gene = ((C_Chromosome) genome).getGene(i);
+			System.out.print("  getGene(" + i + "): " + gene);
+			System.out.println("  mapLoc: " + gene.getMapLoc());
+			System.out.println("  mapLoc(" + mapLoc + ") allele: " + genome.getLocusAllele(mapLoc));
+		}
+!!!179970.java!!!	testCrossover(inout r : I_Recombinator, inout parent1 : C_Chromosome, inout parent2 : C_Chromosome) : void
+		System.out.println("parent1:   " + parent1);
+		System.out.println("parent2:   " + parent2);
+		C_ChromosomePair child = (C_ChromosomePair) r.crossover(parent1, parent2);
+		System.out.println("offspring: " + child);
+		testMapLocs(child);
+
+		System.out.println("\nMutating child (100%), parents shouldn't change:");
+		child.mutate(1.);
+		System.out.println("parent1:   " + parent1);
+		System.out.println("parent2:   " + parent2);
+		System.out.println("offspring: " + child);
+!!!180098.java!!!	testClassNames() : void
+		System.out.println(getShortClassName(java.awt.Frame.class));
+		System.out.println(getFullClassName(java.awt.Frame.class));
+		System.out.println(getPackageName(java.awt.Frame.class));
+		System.out.println("----");
+		System.out.println(getShortClassName(C_VariousUtilities.class));
+		System.out.println(getFullClassName(C_VariousUtilities.class));
+		System.out.println(getPackageName(C_VariousUtilities.class));
+		System.out.println("----");
+		java.util.Calendar cal = java.util.Calendar.getInstance();
+		System.out.println(getShortClassName(cal.getClass()));
+		System.out.println(getFullClassName(cal.getClass()));
+		System.out.println(getPackageName(cal.getClass()));
+!!!180226.java!!!	getShortClassName(inout c : Class<?>) : String
+		String FQClassName = c.getName();
+		int firstChar;
+		firstChar = FQClassName.lastIndexOf('.') + 1;
+		if (firstChar > 0) {
+			FQClassName = FQClassName.substring(firstChar);
+		}
+		return FQClassName;
+!!!180354.java!!!	getFullClassName(inout c : Class<?>) : String
+		return c.getName();
+!!!180482.java!!!	getPackageName(inout c : Class<?>) : String
+		String fullyQualifiedName = c.getName();
+		int lastDot = fullyQualifiedName.lastIndexOf('.');
+		if (lastDot == -1) { return ""; }
+		return fullyQualifiedName.substring(0, lastDot);
+!!!180610.java!!!	distance_Umeter(inout firstPoint : Coordinate, inout secondPoint : Coordinate) : double
+		return Math.sqrt((firstPoint.x - secondPoint.x) * (firstPoint.x - secondPoint.x) + (firstPoint.y
+				- secondPoint.y) * (firstPoint.y - secondPoint.y));
+!!!180738.java!!!	distance_Umeter(inout first : I_SituatedThing, inout second : I_SituatedThing) : double
+		return distance_Umeter(first.getCoordinate_Umeter(), second.getCoordinate_Umeter());
+!!!180866.java!!!	computeVectorBetweenTwoPoints(inout A_Point : Coordinate, inout B_Point : Coordinate, in distanceToCover_Umeter : double) : Coordinate
+		double alpha, signeX;
+		double vectorAB_X = B_Point.x - A_Point.x;
+		double vectorAB_Y = B_Point.y - A_Point.y;
+		if (vectorAB_X == 0) {
+			signeX = 1.0; // positif
+			alpha = Math.signum(vectorAB_Y) * Math.PI / 2;
+		}
+		else {
+			signeX = Math.signum(vectorAB_X);
+			alpha = Math.atan(vectorAB_Y / vectorAB_X);
+		}
+		return new Coordinate(signeX * distanceToCover_Umeter * Math.cos(alpha), signeX * distanceToCover_Umeter * Math
+				.sin(alpha));
+!!!180994.java!!!	sum(inout vector1 : Coordinate, inout vector2 : Coordinate) : Coordinate
+		return new Coordinate((vector1.x + vector2.x), (vector1.y + vector2.y));
+!!!181122.java!!!	substract(inout vector1 : Coordinate, inout vector2 : Coordinate) : Coordinate
+		return new Coordinate((vector1.x - vector2.x), (vector1.y - vector2.y));
+!!!181250.java!!!	isCollinearVector(inout vector1 : Coordinate, inout vector2 : Coordinate) : Boolean
+		return (vector1.x * vector2.y == vector1.y * vector2.x);
+!!!181378.java!!!	checkObstacleBefore(inout animal : A_Animal, inout target : I_SituatedThing) : I_SituatedThing
+		Coordinate animalCoord = animal.getCoordinate_Umeter();
+		Coordinate targetCoord = target.getCoordinate_Umeter();
+		double signX = Math.signum(animalCoord.x - targetCoord.x);
+		double signY = Math.signum(animalCoord.y - targetCoord.y);
+		double gridWidth = A_Animal.myLandscape.getDimension_Ucell().getWidth();
+		double gridHeight = A_Animal.myLandscape.getDimension_Ucell().getHeight();
+		int ccCol = animal.getCurrentSoilCell().retrieveColNo();
+		int ccLine = animal.getCurrentSoilCell().retrieveLineNo();
+		C_SoilCell oldcc = null, cc = (C_SoilCell) animal.getCurrentSoilCell();// cc means containerToCheck
+		while (cc != target) {
+			if (ccCol != ((A_Container) target).retrieveColNo()) ccCol = (int) (cc.retrieveColNo() - signY);
+			if (ccLine != ((A_Container) target).retrieveLineNo()) ccLine = (int) (cc.retrieveLineNo() - signX);
+			if (ccLine < gridWidth && ccCol < gridHeight && ccLine >= 0 && ccCol >= 0) // inside the grid
+			{
+				oldcc = cc;
+				cc = (C_SoilCell) A_VisibleAgent.myLandscape.getGrid()[ccLine][ccCol];
+				if (animal.isSightObstacle(cc)) return cc;
+			}
+			else {
+				A_Protocol.event("C_VariousUtilities.checkObstacleBefore()", "Outside grid: " + animal + ", back to "
+						+ oldcc.toString(), isError);
+				return oldcc;
+			}
+		}
+		return null;
+!!!181506.java!!!	checkObstacleBefore0(inout animal : A_Animal, inout target : I_SituatedThing) : I_SituatedThing
+		I_SituatedThing cellToCheck = null;
+		Coordinate currentCheckPoint = animal.getCoordinate_Umeter();
+		double oneStep_Umeter = C_Parameters.CELL_WIDTH_Umeter;
+		double distanceToTarget_Umeter = 0.;
+		Coordinate moveVector = computeVectorBetweenTwoPoints(currentCheckPoint, target.getCoordinate_Umeter(),
+				oneStep_Umeter);
+		do {
+			distanceToTarget_Umeter = target.getCoordinate_Umeter().distance(currentCheckPoint);
+			currentCheckPoint.x += moveVector.x;
+			currentCheckPoint.y += moveVector.y;
+			if (A_VisibleAgent.myLandscape.isPointInGrid(currentCheckPoint))
+				cellToCheck = A_VisibleAgent.myLandscape
+						.getGrid()[(int) currentCheckPoint.x][(int) currentCheckPoint.y];
+		} while ((distanceToTarget_Umeter > oneStep_Umeter) && !animal.isSightObstacle(cellToCheck) //
+				&& (!target.equals(cellToCheck)));
+		if ((distanceToTarget_Umeter <= oneStep_Umeter) || target.equals(cellToCheck) //
+				|| (animal.equals(cellToCheck))) return null;
+		return cellToCheck;
+!!!181634.java!!!	main(inout args : String [[]]) : void
+		testClassNames();
+		BoxLayoutoo();
+		main0("goo");
+		testRegisterGenerator();

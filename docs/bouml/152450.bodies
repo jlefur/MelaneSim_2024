@@ -1,0 +1,177 @@
+class C_HumanCarrier
+!!!340610.java!!!	C_HumanCarrier(inout genome : I_DiploidGenome)
+		super(genome);
+		this.cityList = new TreeSet<C_City>();
+!!!340738.java!!!	setDead(inout dead : boolean) : void
+		this.dead = dead;
+!!!340866.java!!!	discardThis() : void
+		if ((this.vehicle != null) && (!this.vehicle.getFullRodentList().isEmpty())) {
+			this.actionReachPathEndNow();
+			this.vehicle.unloadRodents();
+		}
+		this.vehicle.setDead(true);
+		this.vehicle = null;
+		this.cityList = null;
+		this.citiesToTradeInfo_Ustring = null;
+		super.discardThis();
+!!!340994.java!!!	ownVehicle(in vehicleType : String) : C_Vehicle
+		this.vehicle = new C_Vehicle(vehicleType, this);
+		C_ContextCreator.protocol.contextualizeNewThingInContainer(vehicle, currentSoilCell);
+		this.pathWanderer = new C_PathWanderer((C_SoilCell) this.currentSoilCell);
+		this.vehicle.setParked(true);
+		this.setMyName("HC-" + this.vehicle.getType() + NAMES_SEPARATOR + this.myId);
+		this.vehicle.initParameters();
+		return this.vehicle;
+!!!341122.java!!!	step_Utick() : void
+		double distanceTravelled = 0;
+		this.pathWanderer.intermediateDistanceTravelled = 0;
+		while (this.pathWanderer.crossingIntermediateDistance(distanceTravelled, this.vehicle
+				.getSpeed_UmeterByTick())) {
+			distanceTravelled = 0; // it is because continue of the loop.
+			// 1) arrived in any path cell towards the targetCell
+			if (this.pathWanderer.hasToSetNextNode(this.currentSoilCell)) this.setNextNode();
+			// 2) reached a destination city (just before stopped)
+			else if (this.pathWanderer.getPathEnd() && !this.vehicle.isParked()) {
+				manageArrival();
+				break; // pour que parked reste plus de temps true (pendant un step)
+			}
+			// 3) just before leaving
+			else if (this.vehicle.isParked()) {
+				// clear animals targeting this's vehicle before leaving / jlf 10.2017
+				for (A_Animal oneAnimal : this.vehicle.getAnimalsTargetingMe())
+					oneAnimal.discardTarget();
+				this.vehicle.getAnimalsTargetingMe().clear();
+				// TODO JLF de MS 2019.07 error caused by HumanCarrier HC-truck_55780 when its current soil cell is
+				// road_46903(129,93)!!!
+				startTraveling();
+				continue;
+			}
+			if (!this.vehicle.isParked()) { // safety measure
+				double maxDistanceToMove_Umeter = (this.vehicle.getSpeed_UmeterByTick()
+						- this.pathWanderer.intermediateDistanceTravelled) / this.pathWanderer.track_slow_factor;
+				this.computeNextMoveToTarget(maxDistanceToMove_Umeter);
+				distanceTravelled = Math.sqrt(this.nextMove_Umeter.x * this.nextMove_Umeter.x + this.nextMove_Umeter.y
+						* this.nextMove_Umeter.y) * this.pathWanderer.track_slow_factor;
+				this.actionMoveToDestination();
+			}
+		}
+		// super.step_Utick(); // Has to be removed for proper function JLF 01.2017
+!!!341250.java!!!	retrieveLoad_Urodent() : int
+		if (this.isDead()) return 0;// to avoid probe crash (JLF 03.2021)
+		return this.vehicle.retrieveLoad_Urodent();
+!!!341378.java!!!	actionMoveToCell(inout cell : C_SoilCell) : void
+		myLandscape.moveToContainer(this, cell);
+		myLandscape.moveToContainer(this.vehicle, cell);
+		this.energy_Ukcal--;
+!!!341506.java!!!	setNextNode() : void
+		this.targetPoint_Umeter = this.pathWanderer.computeNextNodeAndGetTargetPoint_Umeter(this.targetPoint_Umeter);
+		if (this.vehicle.isAccountForTrackCondition()) {
+			C_SoilCell currentCell = (C_SoilCell) this.vehicle.getCurrentSoilCell();
+			if (currentCell.isOfGroundType(TRACK_EVENT))
+				this.pathWanderer.track_slow_factor = TRACK_SLOW_FACTOR.get(TRACK_EVENT);
+			else
+				if (currentCell.isOfGroundType(GOOD_TRACK_EVENT)) {
+					this.pathWanderer.track_slow_factor = TRACK_SLOW_FACTOR.get(GOOD_TRACK_EVENT);
+				}
+				else
+					if (currentCell.isOfGroundType(ROAD_EVENT))
+						this.pathWanderer.track_slow_factor = TRACK_SLOW_FACTOR.get(ROAD_EVENT);
+		}
+		else this.pathWanderer.track_slow_factor = 1.;// TODO number in source 2012 PAM ? pathWanderer.track_slow_factor
+!!!341634.java!!!	manageArrival() : void
+		C_SoilCellGraphed destination = pathWanderer.targetSoilCell;
+		this.actionMoveToCell(destination);
+		this.vehicle.unloadRodents();
+		this.vehicle.setParked(true); // To allow rodents to load within the vehicle<x
+		this.hasToSwitchFace = true;
+		this.energy_Ukcal = 0.;
+		this.vehicle.hasToSwitchFace = true;
+!!!341762.java!!!	startTraveling() : void
+ // just before leaving
+		C_SoilCellGraphed finalDestination = (C_SoilCellGraphed) setDestination(deliberation(perception()));
+		if (finalDestination != null) { // patch in cases (unexplained, #1/1000) where deliberation does not succeed, JLF 09.2014
+			this.targetPoint_Umeter = finalDestination.getCoordinate_Umeter();
+			this.setTarget(finalDestination);
+			this.pathWanderer.buildPath((C_SoilCell) this.currentSoilCell, finalDestination);
+		}
+		this.vehicle.setParked(false);
+		this.hasToSwitchFace = true;
+		this.vehicle.hasToSwitchFace = true;
+!!!341890.java!!!	actionMoveToDestination() : void
+		((C_Landscape) myLandscape).translate(this, this.nextMove_Umeter);
+		((C_Landscape) myLandscape).translate(this.vehicle, this.nextMove_Umeter);
+		this.vehicle.carryRodentsToMyLocation_Ucs();
+		this.energy_Ukcal--;
+!!!342018.java!!!	actionReachPathEndNow() : void
+		this.pathWanderer.prepareToReachPathEndNow();
+		C_ContextCreator.protocol.contextualizeOldThingInCell(this, pathWanderer.targetSoilCell);
+		C_ContextCreator.protocol.contextualizeOldThingInCell(this.vehicle, pathWanderer.targetSoilCell);
+		this.energy_Ukcal--;
+!!!342146.java!!!	perception() : I_SituatedThing
+		TreeSet<I_SituatedThing> convertedList = new TreeSet<I_SituatedThing>();
+		convertedList.addAll(this.cityList);
+		return convertedList;
+!!!342274.java!!!	deliberation(inout candidateCells : TreeSet<I_SituatedThing>) : I_SituatedThing
+		// double cumulatedPopulation_Uindividual = cityChoiceMap_Gravity(cityChoiceMap);
+		Map<C_City, Double> cityChoiceMap = new TreeMap<C_City, Double>();
+		double cumulatedPopulation_Uindividual = 0;
+		double distanceBetweenCities;
+		C_City currentCity = (C_City) ((C_SoilCellGraphed) this.currentSoilCell).getLandPlot(CITY_EVENT);
+		if (currentCity != null) // TODO Ms to JLF 01.2021 Correction Bug : j'ai ajout� une v�rification sur currentCity pour
+									// eviter les cas ou le currentSoilCell et un road!
+			for (I_SituatedThing oneCity : candidateCells) {
+
+				/*
+				 * // Alternative to select cities only with gravity if (oneCity != currentCity) {// Does not choose the city
+				 * where it stands cumulatedPopulation_Uindividual += oneCity.getHumanPopSize_Uindividual();
+				 * cityChoiceMap.put(oneCity, cumulatedPopulation_Uindividual);}
+				 */
+
+				// Alternative to select cities with gravity and distance
+				if (oneCity != currentCity) {// Do not choose the city where it stands
+					// Taking into account the duration of the journey (only the following line is touched here) PAM 2016.11
+					distanceBetweenCities = this.pathWanderer.getPathWeight(((C_City) currentCity).getCells().first(),
+							((C_City) oneCity).getCells().first());
+					cumulatedPopulation_Uindividual += ((C_City) oneCity).getHumanPopSize_Uindividual()
+							/ distanceBetweenCities;
+					cityChoiceMap.put((C_City) oneCity, cumulatedPopulation_Uindividual);
+				}
+			}
+
+		// Draw within the cumulated population distribution: the more interesting a city the more its contribution and chances to
+		// be drawn, adapt. Mboup 2014
+		TreeSet<I_SituatedThing> selectedCells = new TreeSet<I_SituatedThing>();// result of deliberation (the cells of the chosen
+																				// city)
+		double previousWeight = 0;
+		double randomWeight = (C_ContextCreator.randomGeneratorForDestination.nextDouble()
+				* cumulatedPopulation_Uindividual);
+
+		for (C_City oneCity : cityChoiceMap.keySet()) {
+			if ((previousWeight < randomWeight) && (randomWeight <= cityChoiceMap.get(oneCity))) {
+				for (C_SoilCell cell : oneCity.getCells())
+					// Add the cell of the chosen city to selectedCells (those of the correct graphType)
+					if (cell.isOfGroundType(this.vehicle.getGraphType())) selectedCells.add(cell);
+				return selectedCells;
+			}
+			else previousWeight = cityChoiceMap.get(oneCity);
+		}
+		return selectedCells; // if destination city not found, return the original treeSet
+!!!342402.java!!!	giveBirth(inout genome : I_DiploidGenome) : A_Animal
+		return new C_HumanCarrier(genome);
+!!!342530.java!!!	actionInteract(inout animal : A_Animal) : boolean
+		return false;
+!!!342658.java!!!	setCityList(inout newCityList : TreeSet<C_City>) : void
+		this.cityList = newCityList;
+!!!342786.java!!!	getTargetPoint_Umeter() : Coordinate
+		return this.targetPoint_Umeter;
+!!!342914.java!!!	getVehicle() : C_Vehicle
+		return this.vehicle;
+!!!343042.java!!!	getCityList() : C_City
+		return this.cityList;
+!!!343170.java!!!	getCitiesToTradeInfo_Ustring() : String
+		return citiesToTradeInfo_Ustring;
+!!!343298.java!!!	setCitiesToTradeInfo_Ustring(in citiesToTradeFromEvent : String) : void
+		this.citiesToTradeInfo_Ustring = citiesToTradeFromEvent;
+!!!343426.java!!!	isParked() : boolean
+		if (this.isDead()) return false;// to avoid probe crash (JLF 03.2021)
+		return this.vehicle.isParked();

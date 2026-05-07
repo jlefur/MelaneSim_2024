@@ -1,0 +1,140 @@
+class AStar0
+!!!187138.java!!!	AStar0(in rows : int, in cols : int, inout initialNode : Node, inout finalNode : Node, in hvCost : int, in diagonalCost : int)
+        this.hvCost = hvCost;
+        this.diagonalCost = diagonalCost;
+        setInitialNode(initialNode);
+        setFinalNode(finalNode);
+        this.searchArea = new Node[rows][cols];
+        this.openList = new PriorityQueue<Node>(new Comparator<Node>() {
+            @Override
+            public int compare(Node node0, Node node1) {
+                return Integer.compare(node0.getF(), node1.getF());
+            }
+        });
+        setNodes();
+        this.closedSet = new HashSet<>();
+!!!187266.java!!!	AStar0(in rows : int, in cols : int, inout initialNode : Node, inout finalNode : Node)
+        this(rows, cols, initialNode, finalNode, DEFAULT_HV_COST, DEFAULT_DIAGONAL_COST);
+!!!187394.java!!!	setNodes() : void
+        for (int i = 0; i < searchArea.length; i++) {
+            for (int j = 0; j < searchArea[0].length; j++) {
+                Node node = new Node(i, j);
+                node.calculateHeuristic(getFinalNode());
+                this.searchArea[i][j] = node;
+            }
+        }
+!!!187522.java!!!	setBlocks(inout blocksArray : int [[][]]) : void
+        for (int i = 0; i < blocksArray.length; i++) {
+            int row = blocksArray[i][0];
+            int col = blocksArray[i][1];
+            setBlock(row, col);
+        }
+!!!187650.java!!!	findPath() : Node
+        openList.add(initialNode);
+        while (!isEmpty(openList)) {
+            Node currentNode = openList.poll();
+            closedSet.add(currentNode);
+            if (isFinalNode(currentNode)) {
+                return getPath(currentNode);
+            } else {
+                addAdjacentNodes(currentNode);
+            }
+        }
+        return new ArrayList<Node>();
+!!!187778.java!!!	getPath(inout currentNode : Node) : Node
+        List<Node> path = new ArrayList<Node>();
+        path.add(currentNode);
+        Node parent;
+        while ((parent = currentNode.getParent()) != null) {
+            path.add(0, parent);
+            currentNode = parent;
+        }
+        return path;
+!!!187906.java!!!	addAdjacentNodes(inout currentNode : Node) : void
+        addAdjacentUpperRow(currentNode);
+        addAdjacentMiddleRow(currentNode);
+        addAdjacentLowerRow(currentNode);
+!!!188034.java!!!	addAdjacentLowerRow(inout currentNode : Node) : void
+        int row = currentNode.getRow();
+        int col = currentNode.getCol();
+        int lowerRow = row + 1;
+        if (lowerRow < getSearchArea().length) {
+            if (col - 1 >= 0) {
+                checkNode(currentNode, col - 1, lowerRow, getDiagonalCost()); // Comment this line if diagonal movements are not allowed
+            }
+            if (col + 1 < getSearchArea()[0].length) {
+                checkNode(currentNode, col + 1, lowerRow, getDiagonalCost()); // Comment this line if diagonal movements are not allowed
+            }
+            checkNode(currentNode, col, lowerRow, getHvCost());
+        }
+!!!188162.java!!!	addAdjacentMiddleRow(inout currentNode : Node) : void
+        int row = currentNode.getRow();
+        int col = currentNode.getCol();
+        int middleRow = row;
+        if (col - 1 >= 0) {
+            checkNode(currentNode, col - 1, middleRow, getHvCost());
+        }
+        if (col + 1 < getSearchArea()[0].length) {
+            checkNode(currentNode, col + 1, middleRow, getHvCost());
+        }
+!!!188290.java!!!	addAdjacentUpperRow(inout currentNode : Node) : void
+        int row = currentNode.getRow();
+        int col = currentNode.getCol();
+        int upperRow = row - 1;
+        if (upperRow >= 0) {
+            if (col - 1 >= 0) {
+                checkNode(currentNode, col - 1, upperRow, getDiagonalCost()); // Comment this if diagonal movements are not allowed
+            }
+            if (col + 1 < getSearchArea()[0].length) {
+                checkNode(currentNode, col + 1, upperRow, getDiagonalCost()); // Comment this if diagonal movements are not allowed
+            }
+            checkNode(currentNode, col, upperRow, getHvCost());
+        }
+!!!188418.java!!!	checkNode(inout currentNode : Node, in col : int, in row : int, in cost : int) : void
+        Node adjacentNode = getSearchArea()[row][col];
+        if (!adjacentNode.isBlock() && !getClosedSet().contains(adjacentNode)) {
+            if (!getOpenList().contains(adjacentNode)) {
+                adjacentNode.setNodeData(currentNode, cost);
+                getOpenList().add(adjacentNode);
+            } else {
+                boolean changed = adjacentNode.checkBetterPath(currentNode, cost);
+                if (changed) {
+                    // Remove and Add the changed node, so that the PriorityQueue can sort again its
+                    // contents with the modified "finalCost" value of the modified node
+                    getOpenList().remove(adjacentNode);
+                    getOpenList().add(adjacentNode);
+                }
+            }
+        }
+!!!188546.java!!!	isFinalNode(inout currentNode : Node) : boolean
+        return currentNode.equals(finalNode);
+!!!188674.java!!!	isEmpty(inout openList : PriorityQueue<Node>) : boolean
+        return openList.size() == 0;
+!!!188802.java!!!	setBlock(in row : int, in col : int) : void
+        this.searchArea[row][col].setBlock(true);
+!!!188930.java!!!	getInitialNode() : Node
+        return initialNode;
+!!!189058.java!!!	setInitialNode(inout initialNode : Node) : void
+        this.initialNode = initialNode;
+!!!189186.java!!!	getFinalNode() : Node
+        return finalNode;
+!!!189314.java!!!	setFinalNode(inout finalNode : Node) : void
+        this.finalNode = finalNode;
+!!!189442.java!!!	getSearchArea() : Node
+        return searchArea;
+!!!189570.java!!!	setSearchArea(inout searchArea : Node [[][]]) : void
+        this.searchArea = searchArea;
+!!!189698.java!!!	getOpenList() : Node
+        return openList;
+!!!189826.java!!!	setOpenList(inout openList : PriorityQueue<Node>) : void
+        this.openList = openList;
+!!!189954.java!!!	getClosedSet() : Node
+        return closedSet;
+!!!190082.java!!!	setClosedSet(inout closedSet : Set<Node>) : void
+        this.closedSet = closedSet;
+!!!190210.java!!!	getHvCost() : int
+        return hvCost;
+!!!190338.java!!!	setHvCost(in hvCost : int) : void
+        this.hvCost = hvCost;
+!!!190466.java!!!	getDiagonalCost() : int
+        return diagonalCost;

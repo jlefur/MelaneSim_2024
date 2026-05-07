@@ -1,0 +1,18 @@
+class C_GenomeFelisSilvestrisCatus
+!!!296322.java!!!	C_GenomeFelisSilvestrisCatus()
+		super();
+//		this.alleles.put(SENSING_UmeterByDay, 0.); // source: Taberlet 1983
+		makeAnimaliaBivalent(this.alleles);
+		this.alleles.put(LITTER_SIZE, 5.); // source:between 4 and 8 (https://en.wikipedia.org/wiki/Cat#cite_note-Jemmett1977-143), number of eggs
+		this.alleles.put(WEANING_AGE_Uday, 42.);// source : 42 days  (Ireland, T., & Neilan, R. M. (2016). A spatial agent-based model of feral cats and analysis of population and nuisance controls. Ecological Modelling, 337, 123-136.), period when chick are feeding by parents
+		this.alleles.put(MATING_LATENCY_Uday, 56.); // source:between 8 and 10 week (http://www.larousse.fr/encyclopedie/vie-sauvage/effraie_des_clochers/184042)
+		this.alleles.put(GESTATION_LENGTH_Uday, 65.); // source:between 64 and 67 day of oviposition (https://en.wikipedia.org/wiki/Cat#cite_note-Jemmett1977-143)
+		this.alleles.put(SEXUAL_MATURITY_Uday, 225.);// source :between 5 and 10 months (https://en.wikipedia.org/wiki/Cat#Reproduction)
+		this.alleles.put(SPEED_UmeterByDay,this.alleles.get(SENSING_UmeterByDay)*100.); // TODO JLF junk value 2023.04
+		this.alleles.put(MAX_AGE_Uday,3467.5);  // source: Life expectancy between 1 and 18 years in the wild (https://doi.org/10.1016/j.gecco.2020.e01198)
+		makeAnimaliaBivalent(this.alleles);
+		makeAmniotaBivalent(this.alleles);
+!!!296450.java!!!	C_GenomeFelisSilvestrisCatus(inout microsatXsome : C_XsomePairMicrosat, inout gonosome : C_XsomePairSexual, inout autosomes : ArrayList<C_ChromosomePair>)
+		super(microsatXsome, gonosome, autosomes);
+!!!296578.java!!!	getTaxonSignature() : Double
+		return .71;

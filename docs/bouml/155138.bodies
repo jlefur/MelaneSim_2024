@@ -1,0 +1,43 @@
+class C_GenomeAnimalia
+!!!290946.java!!!	C_GenomeAnimalia()
+		super();
+		this.alleles.put(SPEED_UmeterByDay, DEFAULT_SPEED_UmeterByDay);
+		this.alleles.put(SENSING_UmeterByDay, DEFAULT_SENSING_UmeterByDay);
+		this.alleles.put(MAX_AGE_Uday, DEFAULT_MAX_AGE_Uday);
+		makeAnimaliaBivalent(this.alleles);// values inside the allele map are each time replaced by the daughter class and its
+											// intermediates JLF 08.2014
+!!!291074.java!!!	C_GenomeAnimalia(inout microsatXsome : C_XsomePairMicrosat, inout gonosome : C_XsomePairSexual, inout autosomes : ArrayList<C_ChromosomePair>)
+		super(microsatXsome, gonosome, autosomes);
+		this.alleles.put(SPEED_UmeterByDay, this.getSpeed_UmeterByDay());
+		this.alleles.put(SENSING_UmeterByDay, this.getSensing_UmeterByDay());
+		this.alleles.put(MAX_AGE_Uday, this.getMaxAge_Uday());
+!!!291202.java!!!	makeAnimaliaBivalent(inout allelesMap : Map<String, Double>) : void
+		// Remove obsolete xsomePairAnimalia constructed by mother classes
+		this.bivalents.remove(this.xsomePairAnimalia);
+		this.xsomePairAnimalia = new C_ChromosomePair(C_Chromosome.MAP_LENGTH, numGenesXsomeAnimalia, recombinator);
+		this.xsomePairAnimalia.setGenePairAtLocus(SPEED_LOCUS, //
+				new C_Gene(allelesMap.get(SPEED_UmeterByDay) + getTaxonSignature(), SPEED_MAPLOCS.get(0), mutator,
+						this.xsomePairAnimalia.xsomeStrands[0].myId), //
+				new C_Gene(allelesMap.get(SPEED_UmeterByDay) + getTaxonSignature(), SPEED_MAPLOCS.get(0), mutator,
+						this.xsomePairAnimalia.xsomeStrands[1].myId));
+		this.xsomePairAnimalia.setGenePairAtLocus(SENSING_LOCUS, //
+				new C_Gene(allelesMap.get(SENSING_UmeterByDay) + getTaxonSignature(), SENSING_MAPLOCS.get(0), mutator,
+						this.xsomePairAnimalia.xsomeStrands[0].myId), //
+				new C_Gene(allelesMap.get(SENSING_UmeterByDay) + getTaxonSignature(), SENSING_MAPLOCS.get(0), mutator,
+						this.xsomePairAnimalia.xsomeStrands[1].myId));
+		this.xsomePairAnimalia.setGenePairAtLocus(MAX_AGE_LOCUS, //
+				new C_Gene(allelesMap.get(MAX_AGE_Uday) + getTaxonSignature(), MAX_AGE_MAPLOCS.get(0), mutator,
+						this.xsomePairAnimalia.xsomeStrands[0].myId), //
+				new C_Gene(allelesMap.get(MAX_AGE_Uday) + getTaxonSignature(), MAX_AGE_MAPLOCS.get(0), mutator,
+						this.xsomePairAnimalia.xsomeStrands[1].myId));
+		this.bivalents.add(bivalents.size(), this.xsomePairAnimalia);
+!!!291330.java!!!	getSpeed_UmeterByDay() : double
+		return ((double) expressor.evalTrait(getChromosomePairFromMaploc(SPEED_MAPLOCS.get(0)), SPEED_MAPLOCS) - getTaxonSignature());
+!!!291458.java!!!	getSensing_UmeterByDay() : double
+		return ((double) expressor.evalTrait(getChromosomePairFromMaploc(SENSING_MAPLOCS.get(0)), SENSING_MAPLOCS) - getTaxonSignature());
+!!!291586.java!!!	getSensingSurface_USquareMeterByDay() : double
+		return this.getSensing_UmeterByDay() * this.getSensing_UmeterByDay() * Math.PI;
+!!!291714.java!!!	getReachableSurface_USquareMeterByDay() : double
+		return this.getSpeed_UmeterByDay() * this.getSpeed_UmeterByDay() * Math.PI;
+!!!291842.java!!!	getMaxAge_Uday() : double
+		return ((double) expressor.evalTrait(getChromosomePairFromMaploc(MAX_AGE_MAPLOCS.get(0)), MAX_AGE_MAPLOCS) - getTaxonSignature());

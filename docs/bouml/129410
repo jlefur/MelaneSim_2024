@@ -1,0 +1,1652 @@
+format 224
+"protocol" // src::melanesim::protocol
+  revision 1
+  modified_by 2 "lefur"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:\\Users\\lefur\\Documents\\GitHub\\MelaneSim_2024\\src/melanesim/protocol/"
+  java_package "melanesim.protocol"
+  classview 129410 "protocol"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 134402 "A_Protocol"
+      abstract visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Master class for the various melanesim.protocol of the SimMasto platform
+@author Jean Le Fur & Pape Adama Mboup 07.2012, rev. JLF 02.2013, 08.2014, 10.2014, 03.2021 "
+      classrelation 134402 // <realization>
+	relation 134402 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 134402 // <realization>
+	  b parent class_ref 134658 // I_Protocol
+      end
+
+      classrelation 134530 // <realization>
+	relation 134530 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 134530 // <realization>
+	  b parent class_ref 129154 // I_ConstantString
+      end
+
+      classrelation 134658 // <realization>
+	relation 134658 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 134658 // <realization>
+	  b parent class_ref 129794 // I_ConstantNumeric
+      end
+
+      classrelation 134786 // inspectorPopulation (<unidirectional association>)
+	relation 134786 --->
+	  a role_name "inspectorPopulation" init_value " null" class_relation public
+	    comment " FIELDS
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 134786 // inspectorPopulation (<unidirectional association>)
+	  b parent class_ref 134786 // C_InspectorPopulation
+      end
+
+      classrelation 134914 // inspectorEnergy (<unidirectional association>)
+	relation 134914 --->
+	  a role_name "inspectorEnergy" init_value " null" class_relation public
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 134914 // inspectorEnergy (<unidirectional association>)
+	  b parent class_ref 134914 // C_InspectorEnergy
+      end
+
+      classrelation 135042 // protocolCalendar (<unidirectional association>)
+	relation 135042 --->
+	  a role_name "protocolCalendar" init_value " null" class_relation public
+	    comment " TODO JLF 2014.08, 2015.03 Multiscale contexts: several protocols with their own calendar should run concurrently.
+ The field should thus not be static
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 135042 // protocolCalendar (<unidirectional association>)
+	  b parent class_ref 133506 // C_Calendar
+      end
+
+      classrelation 135170 // landscape (<unidirectional association>)
+	relation 135170 --->
+	  a role_name "landscape" init_value " null" public
+	    comment " TODO JLF 2015.12 ->I_container landscape"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 135170 // landscape (<unidirectional association>)
+	  b parent class_ref 135042 // C_Landscape
+      end
+
+      attribute 204674 "context"
+	protected explicit_type "Object"
+	init_value " null"
+	stereotype "Context"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 135298 // inspectorList (<unidirectional association>)
+	relation 135298 --->
+	  stereotype "TreeSet"
+	  a role_name "inspectorList" init_value " null" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 135298 // inspectorList (<unidirectional association>)
+	  b parent class_ref 135170 // A_Inspector
+      end
+
+      classrelation 135426 // indicatorsFile (<unidirectional association>)
+	relation 135426 --->
+	  a role_name "indicatorsFile" init_value " null" protected
+	    comment " TODO JLF 2014.10 output file must be managed by inspectors (epiphyte system)"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 135426 // indicatorsFile (<unidirectional association>)
+	  b parent class_ref 135298 // C_FileWriter
+      end
+
+      attribute 204802 "breedingSeason"
+	class_attribute protected explicit_type "Boolean"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " TODO JLF 2014.10 put in other place ? (specific to species/environment)"
+      end
+
+      classrelation 135554 // chronogram (<unidirectional association>)
+	relation 135554 --->
+	  a role_name "chronogram" init_value " null" protected
+	    comment " Contains the whole chrono from the csv file"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 135554 // chronogram (<unidirectional association>)
+	  b parent class_ref 129538 // C_Chronogram
+      end
+
+      classrelation 135682 // facilityMap (<unidirectional association>)
+	relation 135682 --->
+	  a role_name "facilityMap" init_value " null" protected
+	    comment " used for displaying a bitmap over the grid"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 135682 // facilityMap (<unidirectional association>)
+	  b parent class_ref 135426 // C_Background
+      end
+
+      classrelation 135810 // styleAgent (<unidirectional association>)
+	relation 135810 --->
+	  a role_name "styleAgent" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 135810 // styleAgent (<unidirectional association>)
+	  b parent class_ref 135554 // C_StyleAgent
+      end
+
+      operation 142338 "A_Protocol"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "ctxt" explicit_type "Context<Object>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 142466 "initLandscape"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "context" explicit_type "Context<Object>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+ The contact structure (term coined from S.E.Page: Diversity and Complexity) "
+      end
+
+      operation 142594 "initProtocol"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " In short: make this method first inherit its daughters at startup, then proceed to super (which is not the case within the
+constructor (super must be first there)<br>
+Longer: Triggered by the context creator at the beginning of the simulation and after constructing the protocol<br>
+The procedure can be realized only after all the CASCADING INSPECTORS and headers have been defined in the subclass
+hierarchy i.e., contains procedure that cannot be put in the constructor to avoid the overload when subclasses use super in
+their constructor "
+      end
+
+      operation 142722 "step_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@ScheduledMethod(start = 0, interval = 1, shuffle = false)
+"
+	
+	
+	
+	comment " The clock of the simulation (live and let die): provide each A_NDS a tick<br>
+Check sizes of the rodents'list, manage time stuff, proceed to all NDSs' step, updates indicators, remove dead agents<br>
+Version Author J.Le Fur 2012, rev. 02.2013, 08.2014, 07.2015, 12.2015, 05.2016, 01.2018<br>
+Tip: Object[] contextContent = RunState.getInstance().getMasterContext().toArray(); "
+      end
+
+      operation 142850 "manageOneEvent"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "event" type class_ref 130050 // C_Event
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Update the universe according to oneEventLine from Events <br />
+@param event from dataChrono "
+      end
+
+      operation 142978 "manageTimeLandmarks"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Manage time, breeding season, agricultural changes <br>
+include read user parameters<br>
+Version Authors JEL2011, AR2011, rev. LeFur 2011,2012,04.2014,08.2014,09.2014 "
+      end
+
+      operation 143106 "updateUniverseFromChrono"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Update the environment with every events (chrono) occurred at the current date.<br>
+Triggers event management for each new event and all event types that occurred
+@see #manageOneEvent
+@see #manageReadEventTypes "
+      end
+
+      operation 143234 "manageReadEventTypes"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "eventTypes" explicit_type "TreeSet<String>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " This method must be redefined in daughter protocols "
+      end
+
+      operation 143362 "checkBreedingSeason"
+	protected explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Breeding season declaration : also manages situation where REPRO_START_Umonth > REPRO_END_Umonth "
+      end
+
+      operation 143490 "contextualizeNewThingInSpace"
+	public explicit_return_type "void"
+	nparams 3
+	  param inout name "thing" type class_ref 135682 // I_SituatedThing
+	  param in name "x" explicit_type "double"
+	  param in name "y" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Declare a new object in the context and positions it within the raster ground
+@see #contextualizeNewThingInContainer "
+      end
+
+      operation 143618 "contextualizeNewThingInGrid"
+	protected explicit_return_type "void"
+	nparams 3
+	  param inout name "thing" type class_ref 135682 // I_SituatedThing
+	  param in name "line_Ucell" explicit_type "int"
+	  param in name "col_Ucell" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Declare a new object in the context and positions it within the raster ground
+@see #contextualizeNewThingInContainer "
+      end
+
+      operation 143746 "contextualizeNewThingInContainer"
+	public explicit_return_type "void"
+	nparams 2
+	  param inout name "thing" type class_ref 135682 // I_SituatedThing
+	  param inout name "container" type class_ref 135810 // I_Container
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Declare a new object in the context and positions it within the raster ground "
+      end
+
+      operation 143874 "updateInspectors"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "thing" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " has to be overridden in daughter classes / JLF 2024 "
+      end
+
+      operation 144002 "updateInspectors"
+	protected explicit_return_type "void"
+	nparams 1
+	  param in name "value" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " has to be overridden in daughter classes / JLF 2024 "
+      end
+
+      operation 144130 "contextualizeOldThingInSpace"
+	public explicit_return_type "void"
+	nparams 3
+	  param inout name "thing" type class_ref 135682 // I_SituatedThing
+	  param in name "x" explicit_type "double"
+	  param in name "y" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @see contextualizeOldThingInCell with x and y as coordinates instead of cell reference<br>
+     M. Sall 11.2018 "
+      end
+
+      operation 144258 "contextualizeOldThingInCell"
+	public explicit_return_type "void"
+	nparams 2
+	  param inout name "thing" type class_ref 135682 // I_SituatedThing
+	  param inout name "cell" type class_ref 135810 // I_Container
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 144386 "removeDeadThings"
+	protected explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " LIVE AND LET DIE AGENTS 2/ RODENTS'DEATH PROCEDURE<br>
+To avoid concurrent modification exception as well as scrambling the order of rodents, all death procedure mark the rodent
+as having to die. The death and remove of dead rodents is then proceeded in one shot <br>
+@see A_Protocol#step_Utick
+@revision Author J.Le Fur 2012, rev. 02.2013, 12.2015, 04.2016 "
+      end
+
+      operation 144514 "wipeOffObject"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "deadThing" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Destroy a thing, remove it from context and remove its references to other object (lastContainerLeft, inspectors) so as to
+be garbage collected<br>
+Version Jean-Emmanuel Longueville 2011-01, rev. JLF 2014, 12.2015, 04.2016 "
+      end
+
+      operation 144642 "readUserParameters"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Read user parameters on the GUI, check if temporal scale and cell size has changed, reset timeConverter if needed<br>
+rev. jlf 09.2017 "
+      end
+
+      operation 144770 "initFixedParameters"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 144898 "recordIndicatorsInFile"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Recursively record the current state of every inspectors'indicators in one unique .csv indicatorsFile "
+      end
+
+      operation 145026 "recordHeadersInFile"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Record the current state of every inspectors'indicators in one unique .csv indicatorsFile "
+      end
+
+      operation 145154 "haltSimulation"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " record the current state of every inspectors'indicators in one unique .csv indicatorsFile,<br>
+count & display the simulation duration. JLF, 2014, 05.2016 "
+      end
+
+      operation 145282 "switchDisplayMap"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Display the map if on, remove it if off. Only one map object. The switch can only go from on to off and vice versa Version
+author J.Le Fur, 09.2014 "
+      end
+
+      operation 145410 "initCalendar"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Sets the initial time for simulation. Sets it to current time if not declared in daughter protocols. "
+      end
+
+      operation 145538 "event"
+	class_operation public explicit_return_type "String"
+	nparams 3
+	  param in name "source" explicit_type "String"
+	  param in name "message" explicit_type "String"
+	  param inout name "isError" explicit_type "Boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Exploratory, retrieve events and manage them appropriately. Here, tag and print them / author jlf 03.2015 "
+      end
+
+      operation 145666 "printContextFullContent"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Display the context on the output (for checking or debugging) "
+      end
+
+      operation 145794 "setLandscape"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "landscape" type class_ref 135042 // C_Landscape
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SETTER & GETTERS
+"
+      end
+
+      operation 145922 "getStringShortDate"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @return the current date of the protocol as a short string (jj/mm/aa) "
+      end
+
+      operation 146050 "getStringLongDate"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @return the current date of the protocol as a long string (day month year)) "
+      end
+
+      operation 146178 "getStringHourDate"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @return the current date of the protocol as a long string (day month year) + hour:min:sec "
+      end
+
+      operation 146306 "getStringFullDate"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @return the current date of the protocol as a long string (day month year) + hour:min:sec "
+      end
+
+      operation 146434 "isBreedingSeason"
+	class_operation public explicit_return_type "Boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @return the value of seasonToMate (Boolean) "
+      end
+
+      operation 146562 "isSimulationEnd"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Check if chronogram is exhausted or if a precondition is verified (e.g., population is < 2). <br>
+This method may be redefined by daughter protocols "
+      end
+
+      operation 146690 "blackMap"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Color the map in black to see the overall distribution of burrows<br>
+Author J.Le Fur 10.2014 TODO JLF 2014.10 should be in presentation package ? "
+      end
+
+      operation 146818 "setStyleAgent"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "styleAgent" type class_ref 135554 // C_StyleAgent
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Used for switching between IMAGE true or false - JLF 08.2018 "
+      end
+    end
+
+    class 134658 "I_Protocol"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Protocols define the specificity of the simulation<br>
+There have to be only one protocol in the simulation <br>
+Protocols define the agents currently simulated, the inspectors used, the parameters value<br>
+Protocols trigger most of the action within the simulation, they are constructed and initialized (initProtocol) by the context
+creator and triggered by the step_Utick procedure, the unique @ScheduledMethod of the simulator (+ one used for display)<br>
+Most protocols are bound to the A_Protocol abstract class which gather generic function of the simulation<br>
+Each protocol is associated with a corresponding parameters set defined as a corresponding xml/txt file in the .rs directory
+@author J.Le Fur 2012, rev. 02.2013, 07.2014, 08.2014 "
+      operation 141698 "initProtocol"
+	public explicit_return_type "void"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Triggered by the context creator at the beginning of the simulation <br>
+Specifically Initialize populations and inspectors "
+      end
+
+      operation 141826 "step_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " check the sizes of the rodents'list, proceed to agents' step, updates indicators Author J.Le Fur 2012 "
+      end
+
+      operation 141954 "readUserParameters"
+	public explicit_return_type "void"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " reads modifiable parameters value on the GUI and fixed parameters value with initFixedParameters "
+      end
+
+      operation 142082 "initCalendar"
+	public explicit_return_type "void"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " set the actual start date of the protocol "
+      end
+
+      operation 142210 "isSimulationEnd"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " It is important that \"each protocol\" defines it's condition of end simulation. This abstract requires them to do so"
+      end
+    end
+
+    class 135938 "A_Protocol_PNMC"
+      abstract visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 135938 // <generalisation>
+	relation 135938 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 135938 // <generalisation>
+	  b parent class_ref 134402 // A_Protocol
+      end
+
+      classrelation 136066 // <realization>
+	relation 136066 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 136066 // <realization>
+	  b parent class_ref 129026 // I_ConstantPNMC
+      end
+
+      classrelation 136194 // geographicCoordinateConverter (<unidirectional association>)
+	relation 136194 --->
+	  a role_name "geographicCoordinateConverter" init_value " null" protected
+	    comment " FIELDS
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 136194 // geographicCoordinateConverter (<unidirectional association>)
+	  b parent class_ref 132610 // C_ConvertGeographicCoordinates
+      end
+
+      attribute 204930 "DISPLAY_FACILITY_MAP"
+	class_attribute public explicit_type "boolean"
+	init_value " false"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " used to change plankton color if facility map is on"
+      end
+
+      operation 146946 "MinMax"
+	public explicit_return_type "record"
+	nparams 2
+	  param in name "min" explicit_type "double"
+	  param in name "max" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 147074 "A_Protocol_PNMC"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "ctxt" explicit_type "Context<Object>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 147202 "initCalendar"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " OVERRIDEN METHODS
+"
+      end
+
+      operation 147330 "manageTimeLandmarks"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Save screen each day<br>
+Version Authors JEL2011, AR2011, rev. LeFur 2011,2012,2014,2024 "
+      end
+
+      operation 147458 "initLandscape"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "context" explicit_type "Context<Object>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 147586 "saveScreen"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 147714 "switchDisplayMap"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Display the map if on, remove it if off. Only one map object. The switch can only go from on to off and vice
+versa Version author J.Le Fur, 09.2014 "
+      end
+
+      operation 147842 "blackMap"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Color the map in black to see the overall distribution of burrows<br>
+Author J.Le Fur 10.2014 TODO JLF 2014.10 should be in presentation package ? "
+      end
+
+      operation 147970 "readUserParameters"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 148098 "step_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 148226 "haltSimulation"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " _STREAM_: Un Stream est un “tuyau” dans lequel tu fais passer des éléments pour les transformer, filtrer, trier,
+collecter<br>
+Il ne stocke pas de données, il permet d’appliquer des opérations comme sur une chaîne de montage. <br>
+_FLATMAP_: Comme la grille est un tableau 2D, stream() donne un flux de lignes, pas de cellules; flatMap sert à
+aplatir un flux de flux en un seul flux (sans flatMap, tu aurais un Stream<C_SoilCellMarine[]>)<br>
+
+ JUNK replace terminate par afficher les cellules les plus occupées JLF 11.2025 "
+      end
+
+      operation 148354 "computeMinMaxIntegrals"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SPECIFIC METHODS
+
+ 1] compute the current max and min integral 'energy' value for each factor, <br>
+2] then normalize to [1..100], <br>
+3] then weight value with the weight attributed to this factor<br>
+@author JLF 2026 "
+      end
+
+      operation 148482 "convertTo100_old"
+	public explicit_return_type "double"
+	nparams 3
+	  param in name "x" explicit_type "double"
+	  param in name "xMin" explicit_type "double"
+	  param in name "xMax" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Convertit les valeurs d'entrée des paramètres en valeurs sur une échelle de 1 à 100 <br>
+@author chatGPT 10.2025 "
+      end
+
+      operation 148610 "convertTo100"
+	public explicit_return_type "double"
+	nparams 3
+	  param in name "x" explicit_type "double"
+	  param in name "xMin" explicit_type "double"
+	  param in name "xMax" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Convertit les valeurs d'entrée des paramètres en valeurs sur une échelle de 1 à 100 <br>
+@author chatGPT 02.2026 "
+      end
+
+      operation 148738 "convertFrom100"
+	public explicit_return_type "double"
+	nparams 3
+	  param in name "y" explicit_type "double"
+	  param in name "xMin" explicit_type "double"
+	  param in name "xMax" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Convertit les valeurs sur une échelle de 1 à 100 des paramètres en valeurs lues dans les fichiers<br>
+@author chatGPT 10.2025 "
+      end
+    end
+
+    class 136066 "C_Protocol_PNMC_drifters"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Particles drifted by surface currents
+@author J.Le Fur 06.2024 "
+      classrelation 136322 // <generalisation>
+	relation 136322 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 136322 // <generalisation>
+	  b parent class_ref 135938 // A_Protocol_PNMC
+      end
+
+      operation 148866 "C_Protocol_PNMC_drifters"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "ctxt" explicit_type "Context<Object>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+
+ Declare the inspectors, add them to the inspector list, declare them to the panelInitializer for indicators
+graphs<br>
+Author J.Le Fur 02.2013 "
+      end
+
+      operation 148994 "createPlankton"
+	public return_type class_ref 136194 // C_Plankton
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SPECIFIC METHODS
+"
+      end
+
+      operation 149122 "createNekton"
+	public return_type class_ref 136322 // C_Nekton
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 149250 "initPopulations"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Add plankton and micronekton particle in the center of each cell of the grid at a specified interval - JLF
+07.2024 "
+      end
+
+      operation 149378 "initProtocol"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " OVERRIDEN METHODS
+
+ Initialize the protocol with the raster origin "
+      end
+
+      operation 149506 "manageOneEvent"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "event" type class_ref 130050 // C_Event
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 136450 "C_Protocol_PNMC_nekton"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Chlorophyll loaded Plankton particles drifted by surface currents
+@author J.Le Fur 06.2024 "
+      classrelation 136578 // <generalisation>
+	relation 136578 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 136578 // <generalisation>
+	  b parent class_ref 136578 // C_Protocol_PNMC_plankton
+      end
+
+      attribute 205058 "nektonValueLayer"
+	protected explicit_type "GridValueLayer"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELD
+
+"
+      end
+
+      operation 149890 "C_Protocol_PNMC_nekton"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "ctxt" explicit_type "Context<Object>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+
+ Declare the inspectors, add them to the inspector list, declare them to the panelInitializer for indicators
+graphs<br>
+Author J.Le Fur 02.2013 "
+      end
+
+      operation 150018 "manageOneEvent"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "event" type class_ref 130050 // C_Event
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Read microNekton values "
+      end
+    end
+
+    class 136578 "C_Protocol_PNMC_plankton"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Chlorophyll loaded Plankton particles drifted by surface currents
+@author J.Le Fur 06.2024 "
+      classrelation 136450 // <generalisation>
+	relation 136450 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 136450 // <generalisation>
+	  b parent class_ref 136066 // C_Protocol_PNMC_drifters
+      end
+
+      operation 149634 "C_Protocol_PNMC_plankton"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "ctxt" explicit_type "Context<Object>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+
+ Declare the inspectors, add them to the inspector list, declare them to the panelInitializer for indicators
+graphs<br>
+Author J.Le Fur 02.2013 "
+      end
+
+      operation 149762 "manageOneEvent"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "event" type class_ref 130050 // C_Event
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " OVERRIDEN METHOD
+
+ read chlorophyll values "
+      end
+    end
+
+    class 136706 "C_Protocol_PNMC_ships"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Various types of ships navigating within the landscape
+@author J.Le Fur 10.2025 "
+      classrelation 136706 // <generalisation>
+	relation 136706 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 136706 // <generalisation>
+	  b parent class_ref 136450 // C_Protocol_PNMC_nekton
+      end
+
+      operation 150146 "C_Protocol_PNMC_ships"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "ctxt" explicit_type "Context<Object>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 150274 "createCargoShip"
+	public return_type class_ref 136834 // C_Ship_cargo
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SPECIFIC METHODS
+"
+      end
+
+      operation 150402 "step_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " OVERRIDEN METHOD
+
+ /**Affiche les icones au step 2 pour éviter le bug de démarrage @author jlf 10.2025*/"
+      end
+
+      operation 150530 "initPopulations"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " @Override
+ /**Affiche les icones au step 2 pour éviter le bug de démarrage @author jlf 10.2025*/
+ public void step_Utick() {
+ super.step_Utick();
+ if (RepastEssentials.GetTickCount() == 2) {
+ Parameters params = RunEnvironment.getInstance().getParameters();
+ params.setValue(\"IMAGE\", true);
+ C_Parameters.IMAGE = true;
+ }
+ }
+ Add cargo ship at any end of the main corridor - JLF 10.2025 "
+      end
+    end
+  end
+
+  deploymentview 128898 "protocol"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 133378 "I_Protocol"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 134658 // I_Protocol
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 133506 "A_Protocol"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.TimeZone;
+import java.util.TreeSet;
+import org.locationtech.jts.geom.Coordinate;
+import data.C_Chronogram;
+import data.C_Event;
+import data.C_Parameters;
+import data.constants.I_ConstantNumeric;
+import data.constants.I_ConstantString;
+import data.converters.C_ConvertTimeAndSpace;
+import melanesim.C_Calendar;
+import melanesim.C_ContextCreator;
+import melanesim.util.C_VariousUtilities;
+import melanesim.util.C_sound;
+import presentation.dataOutput.C_FileWriter;
+import presentation.display.C_Background;
+import presentation.display.C_StyleAgent;
+import presentation.epiphyte.A_Inspector;
+import presentation.epiphyte.C_InspectorEnergy;
+import presentation.epiphyte.C_InspectorPopulation;
+import presentation.epiphyte.I_Inspector;
+import repast.simphony.context.Context;
+import repast.simphony.engine.environment.RunState;
+import repast.simphony.engine.schedule.ScheduledMethod;
+import repast.simphony.essentials.RepastEssentials;
+import repast.simphony.util.collections.IndexedIterable;
+import thing.A_Animal;
+import thing.A_NDS;
+import thing.A_Organism;
+import thing.A_VisibleAgent;
+import thing.I_SituatedThing;
+import thing.ground.I_Container;
+import thing.ground.landscape.C_Landscape;
+${definition}"
+      associated_elems
+	class_ref 134402 // A_Protocol
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file license "
+    end
+
+    artifact 133634 "A_Protocol_PNMC"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Calendar;
+import java.util.Comparator;
+import java.util.EnumMap;
+import java.util.Locale;
+import org.locationtech.jts.geom.Coordinate;
+import data.C_Parameters;
+import data.constants.I_ConstantPNMC;
+import data.converters.C_ConvertGeographicCoordinates;
+import melanesim.util.CaptureEcranPeriodique;
+import presentation.epiphyte.C_InspectorEnergy;
+import presentation.epiphyte.C_InspectorPopulationMarine;
+import repast.simphony.context.Context;
+import repast.simphony.engine.environment.RunEnvironment;
+import repast.simphony.essentials.RepastEssentials;
+import thing.ground.C_LandPlot;
+import thing.ground.C_SoilCell;
+import thing.ground.C_SoilCellMarine;
+import thing.ground.C_SoilCellMarineEnergy.Champ;
+import thing.ground.I_Container;
+import thing.ground.landscape.C_LandscapeMarine;
+import thing.I_MarineActor.DriverType;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.EnumMap;
+${definition}"
+      associated_elems
+	class_ref 135938 // A_Protocol_PNMC
+      end
+    end
+
+    artifact 133762 "C_Protocol_PNMC_drifters"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.Toolkit;
+import java.util.Calendar;
+import java.util.TimeZone;
+import org.locationtech.jts.geom.Coordinate;
+import data.C_Chronogram;
+import data.C_Event;
+import data.C_Parameters;
+import data.C_ReadRasterDouble;
+import data.constants.I_ConstantPNMC;
+import data.converters.C_ConvertGeographicCoordinates;
+import presentation.display.C_Background;
+import repast.simphony.context.Context;
+import thing.C_Nekton;
+import thing.C_Plankton;
+import thing.C_StreamCurrent;
+import thing.dna.C_GenomeAnimalia;
+import thing.ground.C_SoilCellMarine;
+import thing.ground.landscape.C_LandscapeMarine;
+${definition}"
+      associated_elems
+	class_ref 136066 // C_Protocol_PNMC_drifters
+      end
+    end
+
+    artifact 133890 "C_Protocol_PNMC_plankton"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Calendar;
+import java.util.TimeZone;
+import data.C_Event;
+import data.C_ReadRasterDouble;
+import repast.simphony.context.Context;
+import thing.ground.C_SoilCellMarine;
+import thing.ground.C_SoilCellMarineEnergy.Champ;
+import thing.I_MarineActor.DriverType;
+${definition}"
+      associated_elems
+	class_ref 136578 // C_Protocol_PNMC_plankton
+      end
+    end
+
+    artifact 134018 "C_Protocol_PNMC_nekton"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Calendar;
+import java.util.TimeZone;
+import data.C_Event;
+import data.C_Parameters;
+import data.C_ReadRasterDouble;
+import repast.simphony.context.Context;
+import repast.simphony.valueLayer.GridValueLayer;
+import thing.I_MarineActor;
+import thing.ground.C_SoilCellMarine;
+import thing.I_MarineActor.DriverType;
+import thing.ground.C_SoilCellMarineEnergy.Champ;
+${definition}"
+      associated_elems
+	class_ref 136450 // C_Protocol_PNMC_nekton
+      end
+    end
+
+    artifact 134146 "C_Protocol_PNMC_ships"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import repast.simphony.context.Context;
+import repast.simphony.util.collections.IndexedIterable;
+import thing.A_NDS;
+import thing.A_VisibleAgent;
+import thing.C_Ship_cargo;
+import thing.dna.C_GenomeAnimalia;
+import thing.ground.C_SoilCellMarine;
+import thing.ground.I_Container;
+${definition}"
+      associated_elems
+	class_ref 136706 // C_Protocol_PNMC_ships
+      end
+    end
+  end
+
+  package_ref 130178 // rodents
+end

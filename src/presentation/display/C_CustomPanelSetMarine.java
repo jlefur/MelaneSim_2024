@@ -45,9 +45,13 @@ public class C_CustomPanelSetMarine extends C_CustomPanelSet {
 		
 		curveDispersal.getChart().addXYSerie("Plankton Mean Dispersal");
 		curveDispersal.getChart().addXYSerie("Plankton Max Dispersal");
+		curveDispersal.getChart().addXYSerie("Nekton Mean Dispersal");
+		curveDispersal.getChart().addXYSerie("Nekton Max Dispersal");
 		plot = curveDispersal.getChart().getChartPanel().getChart().getXYPlot();
-		plot.getRenderer().setSeriesPaint(0, Color.PINK);
-		plot.getRenderer().setSeriesPaint(1, Color.CYAN);
+		plot.getRenderer().setSeriesPaint(0, Color.BLUE);
+		plot.getRenderer().setSeriesPaint(1, Color.RED);
+		plot.getRenderer().setSeriesPaint(2, Color.GREEN);
+		plot.getRenderer().setSeriesPaint(3, Color.BLACK);
 	}
 	@Override
 	/** Use it for no graphs in the GUI */
@@ -63,5 +67,9 @@ public class C_CustomPanelSetMarine extends C_CustomPanelSet {
 				C_InspectorPopulationMarine.meanDispersalPlankton);
 		curveDispersal.getChart().setData("Plankton Max Dispersal", RepastEssentials.GetTickCount(),
 				C_InspectorPopulationMarine.maxDispersalPlankton);
+		curveDispersal.getChart().setData("Nekton Mean Dispersal", RepastEssentials.GetTickCount(),
+				C_InspectorPopulationMarine.meanDispersalNekton);
+		curveDispersal.getChart().setData("Nekton Max Dispersal", RepastEssentials.GetTickCount(),
+				C_InspectorPopulationMarine.maxDispersalNekton);
 	}
 }
