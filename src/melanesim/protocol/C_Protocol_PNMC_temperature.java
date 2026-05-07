@@ -9,10 +9,8 @@ import repast.simphony.context.Context;
 import repast.simphony.valueLayer.GridValueLayer;
 import thing.ground.C_SoilCellMarine;
 
-/**
- * à compléter
- * @author Quoc-Kim BUI & Dan Mouilinie 05.2026
- */
+/** Sea surface temperature displayed on top of nekton layers
+ * @author Quoc-Kim BUI & Dan Moulinie 05.2026 */
 public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_nekton {
 	//
 	// FIELD
@@ -21,9 +19,8 @@ public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_nekton {
 	//
 	// CONSTRUCTOR
 	//
-	/**
-	 * à compléter
-	 */
+	/** Initialize temperature value layer with random values<br>
+	 * Author Quoc-Kim BUI & Dan Moulinie 05.2026 */
 	public C_Protocol_PNMC_temperature(Context<Object> ctxt) {
 		super(ctxt);
 		int gridWidth = this.landscape.dimension_Ucell.width, gridHeight = this.landscape.dimension_Ucell.height;
@@ -40,7 +37,7 @@ public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_nekton {
 	// OVERRIDEN METHOD
 	//
 	@Override
-	/** Read temperature values */
+	/** Read monthly sea surface temperature raster, map values (19-30.5°C) to colormap indices 1-12, mask terrestrial cells */
 	public void manageOneEvent(C_Event event) {
 		switch (event.type) {
 		case TEMPERATURE_EVENT:
