@@ -23,6 +23,15 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 	private double speedEastward_UmeterPerSecond, speedNorthward_UmeterPerSecond;
 	private C_StreamCurrent myCurrent;
 	/** Sum of energies (situated things) passed through this cell since last resetColors */
+	private double integralEnergy_Ukcal = 0.;
+	private double chlorophyll_U100 = 0.;
+	private double totalChlorophyll_U100 = 0.;
+	private double totalNektonDensity = 0.;
+	/** microNekton is not moved by currents */
+	private double microNekton = 0.;
+	private double temperature = 0.;
+	public int totalOccupants = 0;
+
 	//
 	// CONSTRUCTOR
 	//
@@ -98,6 +107,25 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 		this.speedNorthward_UmeterPerSecond = currentSpeedNorthward_UmeterPerSecond;
 	}
 	public void setMyCurrent(C_StreamCurrent myCurrent) { this.myCurrent = myCurrent; myCurrent.setMyCell(this); }
+
+	public void setIntegralEnergy_Ukcal(double d) {
+		this.integralEnergy_Ukcal = d;
+	}
+	public void setChlorophyll_U100(double chlorophyll) {
+		this.chlorophyll_U100 = chlorophyll;
+	}
+	public void setMicroNekton(double microNekton) {
+		this.microNekton = microNekton;
+	}
+	public void setTemperature(double temperature) {
+		this.temperature = temperature;
+	}
+	public void setTotalChlorophyll_U100(double totalChlorophyll_U100) {
+		this.totalChlorophyll_U100 = totalChlorophyll_U100;
+	}
+	public void setTotalNektonDensity(double totalNektonDensity) {
+		this.totalNektonDensity = totalNektonDensity;
+	}
 	//
 	// GETTERS
 	//

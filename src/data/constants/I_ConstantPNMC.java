@@ -12,9 +12,11 @@ public interface I_ConstantPNMC extends I_ConstantString {
 	public static final String PNMC_DRIFTERS = "ocean.PNMC_drifters"; // MELANESIM PROTOCOL NAMES - used in context creator
 	public static final String PNMC_PLANKTON = "ocean.PNMC_plankton"; // MELANESIM PROTOCOL NAMES - used in context creator
 	public static final String PNMC_NEKTON = "ocean.PNMC_nekton"; // MELANESIM PROTOCOL NAMES - used in context creator
+	public static final String PNMC_TEMPERATURE = "ocean.PNMC_temperature"; // MELANESIM PROTOCOL NAMES - used in context creator
 	public static final String PNMC_SHIPS = "ocean.PNMC_ships"; // MELANESIM PROTOCOL NAMES - used in context creator
 	public final String energyGridvalues = "valueEnergyGrid";// used to display energy
 	public final String NEKTON_GRID = "nektonGrid";// used to display nekton abundance
+	public final String TEMPERATURE_GRID = "temperatureGrid";// used to display temperature
 
 	public static int CELL_SIZE = 245; // DEFAULT : 15 //Junk Value
 	public static final ArrayList<Double> rasterLongitudeWest_LatitudeSouth_Udegree = new ArrayList<Double>() {
@@ -36,6 +38,7 @@ public interface I_ConstantPNMC extends I_ConstantString {
 	public static final String CURRENT_EVENT = "current";
 	public static final String CHLOROPHYLL_EVENT = "chlorophyll";
 	public static final String NEKTON_EVENT = "microNekton";
+	public static final String TEMPERATURE_EVENT = "temperature";
 	public static final String COMPUTE_ENERGY = "compute_energy";
 	//
 	// OTHERS
@@ -70,5 +73,6 @@ public interface I_ConstantPNMC extends I_ConstantString {
 	public static final double NEKTON_MAX = 4.904100;
 	public static final double CARGO_POPULATION = 12.;
 	public static final double CARGO_ENERGY_Ukcal = 12.;
-
+	public static final double TEMPERATURE_MIN = 19;// for year 2021
+	public static final double TEMPERATURE_MAX = 30.5;
 }

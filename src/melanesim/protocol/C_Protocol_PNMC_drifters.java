@@ -36,8 +36,8 @@ public class C_Protocol_PNMC_drifters extends A_Protocol_PNMC {
 		// TODO number in source 2025.04 JLF CHRONOGRAM FILE NAME
 		// if (this.chronogram == null) chronogram = new
 		// C_Chronogram("/20240314_PNMC.drifters.csv");
-		this.chronogram = new C_Chronogram("/20250701_PNMC.microNekton.csv");
-		facilityMap = new C_Background(-2.35,206.,134.);
+		this.chronogram = new C_Chronogram("/20260423_PNMC.temperature.csv");
+		facilityMap = new C_Background(-2.35, 206., 134.);
 	}
 	//
 	// SPECIFIC METHODS
@@ -64,10 +64,10 @@ public class C_Protocol_PNMC_drifters extends A_Protocol_PNMC {
 						if(cell.getAffinity()<TERRESTRIAL_MIN_AFFINITY){
 							this.contextualizeNewThingInContainer(createPlankton(),cell);
 							// TODO 10.2025 patch pas très robuste
-							if(C_Parameters.PROTOCOL.equals(PNMC_NEKTON)||C_Parameters.PROTOCOL.equals(PNMC_SHIPS))
-								this.contextualizeNewThingInContainer(createNekton(),cell);
-							cell.setMyCurrent(new C_StreamCurrent(cell.getAffinity(),i-1,j-1));
-							contextualizeNewThingInSpace(cell.getMyCurrent(),i-1,j-1);
+							if (C_Parameters.PROTOCOL.equals(PNMC_NEKTON)  || C_Parameters.PROTOCOL.equals(PNMC_TEMPERATURE) || C_Parameters.PROTOCOL.equals(PNMC_SHIPS))
+								this.contextualizeNewThingInContainer(createNekton(), cell);
+							cell.setMyCurrent(new C_StreamCurrent(cell.getAffinity(), i - 1, j - 1));
+							contextualizeNewThingInSpace(cell.getMyCurrent(), i - 1, j - 1);
 							particleCount++;
 						}
 						countHeight = 1;

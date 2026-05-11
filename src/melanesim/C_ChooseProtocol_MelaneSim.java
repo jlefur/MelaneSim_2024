@@ -22,6 +22,7 @@ public class C_ChooseProtocol_MelaneSim extends C_ChooseProtocol_Rodents impleme
 	private JPanel pnmc_planktonBox = new JPanel();
 	private JPanel pnmc_driftersBox = new JPanel();
 	private JPanel pnmc_nektonBox = new JPanel();
+	private JPanel pnmc_temperatureBox = new JPanel();
 	private JPanel pnmc_shipBox = new JPanel();
 
 	public static void main(String[] args) {
@@ -50,6 +51,12 @@ public class C_ChooseProtocol_MelaneSim extends C_ChooseProtocol_Rodents impleme
 		pnmc_nektonBox.setBorder(BorderFactory.createTitledBorder("Currents, chlorophyll and microNekton stages"));
 		this.pnmc_nektonBox.add(addImageButton("icons/titleNecton.gif", "PNMC3-Nekton"));
 		this.panel.add(pnmc_nektonBox);
+		
+		
+		pnmc_temperatureBox.setLayout(new BoxLayout(pnmc_temperatureBox, BoxLayout.X_AXIS));
+		pnmc_temperatureBox.setBorder(BorderFactory.createTitledBorder("+Sea surface temperature"));
+		this.pnmc_temperatureBox.add(addImageButton("icons/titleTemperature.gif", "PNMC4-Temperature"));
+		this.panel.add(pnmc_temperatureBox);
 		
 		pnmc_shipBox.setLayout(new BoxLayout(pnmc_shipBox, BoxLayout.X_AXIS));
 		pnmc_shipBox.setBorder(BorderFactory.createTitledBorder("ships activities within the domain"));

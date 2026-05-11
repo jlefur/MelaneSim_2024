@@ -29,7 +29,7 @@ public class C_Style2dAffinityType implements ValueLayerStyleOGL, I_ConstantNume
 				this.colorMap = colorMapPNMC_drifters(this.colorMap);
 				System.out.print(PNMC_DRIFTERS);
 			}
-			else if ((C_Parameters.PROTOCOL.equals(PNMC_PLANKTON) || C_Parameters.PROTOCOL.equals(PNMC_NEKTON) || (C_Parameters.PROTOCOL.equals(PNMC_SHIPS)))) {
+			else if ((C_Parameters.PROTOCOL.equals(PNMC_PLANKTON) || C_Parameters.PROTOCOL.equals(PNMC_NEKTON) || (C_Parameters.PROTOCOL.equals(PNMC_SHIPS)) || C_Parameters.PROTOCOL.equals(PNMC_TEMPERATURE))) {
 				this.colorMap = colorMapPNMC_plankton(this.colorMap);
 				System.out.print(PNMC_PLANKTON);
 			}
