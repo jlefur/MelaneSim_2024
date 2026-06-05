@@ -1,5 +1,12 @@
 package melanesim.protocol;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.Calendar;
 import java.util.Comparator;
 import java.util.EnumMap;
@@ -15,23 +22,13 @@ import presentation.epiphyte.C_InspectorEnergy;
 import presentation.epiphyte.C_InspectorPopulationMarine;
 import repast.simphony.context.Context;
 import repast.simphony.engine.environment.RunEnvironment;
-import repast.simphony.essentials.RepastEssentials;
+import thing.I_MarineActor.DriverType;
 import thing.ground.C_LandPlot;
 import thing.ground.C_SoilCell;
 import thing.ground.C_SoilCellMarine;
 import thing.ground.C_SoilCellMarineEnergy.Champ;
 import thing.ground.I_Container;
 import thing.ground.landscape.C_LandscapeMarine;
-import thing.I_MarineActor.DriverType;
-
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.util.EnumMap;
 
 public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPNMC {
 	//
@@ -165,6 +162,7 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 	public void readUserParameters() {
 		/** Check black map and exclos (metapopulation) */
 		super.readUserParameters();
+		C_Parameters.ENERGY_MODE = ((Boolean)C_Parameters.parameters.getValue("ENERGY_MODE")).booleanValue();
 		boolean oldValueBlackMap = C_Parameters.BLACK_MAP;
 		C_Parameters.BLACK_MAP = ((Boolean)C_Parameters.parameters.getValue("BLACK_MAP")).booleanValue();
 		if(oldValueBlackMap!=C_Parameters.BLACK_MAP){
@@ -197,7 +195,6 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 	/** JUNK replace terminate par afficher les cellules les plus occupées JLF 11.2025 */
 	protected void haltSimulation() {
 		if(C_Parameters.TERMINATE){
-			final int[] rank = {1};
 			// convertit la grille de I_Container en grille de C_SoilCellMarine
 			I_Container[][] landscapeGrid = this.landscape.getGrid();
 			C_SoilCellMarine[][] grid = new C_SoilCellMarine[landscapeGrid.length][landscapeGrid[0].length];
@@ -214,14 +211,6 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 						// cell.setAffinity(11);
 						this.landscape.getValueLayer().set(11,ix,jy);
 					});
-			// transforme la grille 2D en flux de cellules
-			/*
-			 * java.util.Arrays.stream(grid).flatMap(java.util.Arrays::stream).sorted(Comparator.comparingDouble(
-			 * C_SoilCellMarine::getIntegralOccupants).reversed()).limit(5).forEach(cell->{ int ix =
-			 * (int)cell.getCoordinate_Ucs().x; int jy = (int)cell.getCoordinate_Ucs().y;
-			 * System.out.println(rank[0]+". Cell ("+ix+","+jy+") = "+cell.getIntegralOccupants()); rank[0]++; });
-			 */
-			C_Parameters.TERMINATE = false;
 			// super.haltSimulation();
 		}
 	}
@@ -240,7 +229,7 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 		final EnumMap<DriverType,MinMax> minMaxDrivers = new EnumMap<>(DriverType.class);
 		// init
 		for(DriverType type:DriverType.values()){
-			minMaxDrivers.put(type,new MinMax(Double.POSITIVE_INFINITY,Double.NEGATIVE_INFINITY));
+			minMaxDrivers.put(type,new MinMax(Double.POSITIVE_INFINITY,0.));
 		}
 		// 1) pass: compute global min/max
 		for(int i = 0;i<this.landscape.dimension_Ucell.width;i++){
@@ -251,8 +240,11 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 					value = cell.get(type,Champ.INTEGRAL_100);
 					if(!Double.isFinite(value)) continue; // ignore NaN/Inf
 					MinMax mm = minMaxDrivers.get(type);
-					// NB pas propre voir correctif dans chat "MinMax Calcul pour Acteurs"
-					minMaxDrivers.put(type,new MinMax(Math.min(mm.min(),value),Math.max(mm.max(),value)));
+					if(C_Parameters.ENERGY_MODE) // either compute 1.the max for a given cell  or 2.the overall values'sum
+						// NB pas propre voir correctif dans chat "MinMax Calcul pour Acteurs"
+						minMaxDrivers.put(type,new MinMax(Math.min(mm.min(),value),Math.max(mm.max(),value)));
+					else
+						minMaxDrivers.put(type,new MinMax(Math.min(mm.min(),value),mm.max()+value));
 				}
 			}
 		}

@@ -42,10 +42,13 @@
 		converter="repast.simphony.parameter.StringConverterFactory$StringStringConverter" />
 
 	<!-- SIMULATION SETTING -->
-	<parameter name="TERMINATE" displayName="2a/ display most occupied cells"
+	<parameter name="ENERGY_MODE" displayName="2a/ Compute normalized energy"
 		type="boolean" defaultValue="false" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$BooleanConverter" />
-	<parameter name="randomSeed" displayName="2b/ Default Random Seed (unused)"
+	<parameter name="TERMINATE" displayName="2b/ display most occupied cells"
+		type="boolean" defaultValue="false" isReadOnly="false"
+		converter="repast.simphony.parameter.StringConverterFactory$BooleanConverter" />
+	<parameter name="randomSeed" displayName="2c/ Default Random Seed (unused)"
 		type="int" defaultValue="1122279370" isReadOnly="true"
 		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" /><!-- 
 		default value = "__NULL__" => graine aleatoire -->

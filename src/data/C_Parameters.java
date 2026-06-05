@@ -19,6 +19,7 @@ public class C_Parameters implements I_ConstantStringRodents,I_ConstantPNMC {
 	public static boolean VERBOSE;
 	public static boolean TERMINATE = false;
 	public static boolean BLACK_MAP = false;
+	public static boolean ENERGY_MODE = false;
 
 	// SPACE //
 	/** EXCLOS: if yes, agents leave the domain when they reach bordure (+ replaced with a new one), if no, rebound and

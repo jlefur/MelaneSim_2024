@@ -10,7 +10,6 @@ import melanesim.protocol.A_Protocol;
 import presentation.display.C_Background;
 import presentation.display.C_CustomPanelSet_Rodent;
 import presentation.display.C_UserPanelRodent;
-import presentation.epiphyte.C_InspectorEnergy;
 import presentation.epiphyte.C_InspectorGenetic;
 import presentation.epiphyte.C_InspectorPopulationRodent;
 import repast.simphony.context.Context;

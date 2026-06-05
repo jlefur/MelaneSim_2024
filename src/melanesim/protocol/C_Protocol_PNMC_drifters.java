@@ -1,6 +1,5 @@
 package melanesim.protocol;
 
-import java.awt.Toolkit;
 import java.util.Calendar;
 import java.util.TimeZone;
 
@@ -19,7 +18,6 @@ import thing.C_Plankton;
 import thing.C_StreamCurrent;
 import thing.dna.C_GenomeAnimalia;
 import thing.ground.C_SoilCellMarine;
-import thing.ground.landscape.C_LandscapeMarine;
 
 /** Particles drifted by surface currents
  * @author J.Le Fur 06.2024 */

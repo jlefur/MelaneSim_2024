@@ -15,32 +15,23 @@ import thing.I_MarineActor.DriverType;
 import thing.I_SituatedThing;
 
 /** Ocean unit used in MelaneSim
- * @author JLF 2024 */
+ * @author JLF 2024, rev. 2025 2026 */
 public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_ConstantPNMC {
 	//
 	// FIELDS
 	//
-	private double speedEastward_UmeterPerSecond, speedNorthward_UmeterPerSecond;
+	private double speedEastward_UmeterPerSec, speedNorthward_UmeterPerSec;
 	private C_StreamCurrent myCurrent;
-	/** Sum of energies (situated things) passed through this cell since last resetColors */
-	private double integralEnergy_Ukcal = 0.;
-	private double chlorophyll_U100 = 0.;
-	private double totalChlorophyll_U100 = 0.;
-	private double totalNektonDensity = 0.;
-	/** microNekton is not moved by currents */
-	private double microNekton = 0.;
-	private double temperature = 0.;
+	private double myTemperature;
 	public int totalOccupants = 0;
-
 	//
 	// CONSTRUCTOR
 	//
 	public C_SoilCellMarine(int aff,int lineNo,int colNo) {
 		super(aff,lineNo,colNo);
-		// TODO number in source OK 2024 JLF speed has to be != from 0 before read from file in order to avoid plankton
-		// bordure
-		this.speedEastward_UmeterPerSecond = 1e-10;
-		this.speedNorthward_UmeterPerSecond = 1e-10;
+		// TODO number in source OK 2024 JLF speed has to be != from 0 before read from file in order to avoid bordure
+		this.speedEastward_UmeterPerSec = 1e-10;
+		this.speedNorthward_UmeterPerSec = 1e-10;
 		this.set(DriverType.SHIP,Champ.RAW_VAL,CARGO_ENERGY_Ukcal);// default value for ships
 		this.set(DriverType.SHIP,Champ._100,CARGO_ENERGY_Ukcal);
 		this.set(DriverType.PARTICLES,Champ.RAW_VAL,1.0);// default value for particles
@@ -84,9 +75,9 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 		TreeSet<I_SituatedThing> occupants = new TreeSet<>(this.getOccupantList());
 		for(I_SituatedThing agent:occupants){
 			speedEastward_UmeterPerTick = C_ConvertTimeAndSpace.convertSpeed_UspaceByTick(
-					this.speedEastward_UmeterPerSecond,"m","s")/PARTICLE_RESISTANCE_FACTOR;
+					this.speedEastward_UmeterPerSec,"m","s")/PARTICLE_RESISTANCE_FACTOR;
 			speedNorthward_UmeterPerTick = C_ConvertTimeAndSpace.convertSpeed_UspaceByTick(
-					this.speedNorthward_UmeterPerSecond,"m","s")/PARTICLE_RESISTANCE_FACTOR;
+					this.speedNorthward_UmeterPerSec,"m","s")/PARTICLE_RESISTANCE_FACTOR;
 			if(agent instanceof C_Nekton)// micronekton particle are not submitted to surface current half of day
 				A_VisibleAgent.myLandscape.translate((A_VisibleAgent)agent,new Coordinate(speedEastward_UmeterPerTick
 						/NEKTON_RESISTANCE_FACTOR,speedNorthward_UmeterPerTick/NEKTON_RESISTANCE_FACTOR));
@@ -100,40 +91,21 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 	//
 	// SETTERS
 	//
-	public void setSpeedEastward_UmeterPerSecond(double currentSpeedEastward_UmeterPerSecond) {
-		this.speedEastward_UmeterPerSecond = currentSpeedEastward_UmeterPerSecond;
+	public void setSpeedEastward_UmeterPerSecond(double currentSpeedEastward_UmeterPerSec) {
+		this.speedEastward_UmeterPerSec = currentSpeedEastward_UmeterPerSec;
 	}
-	public void setSpeedNorthward_UmeterPerSecond(double currentSpeedNorthward_UmeterPerSecond) {
-		this.speedNorthward_UmeterPerSecond = currentSpeedNorthward_UmeterPerSecond;
+	public void setSpeedNorthward_UmeterPerSecond(double currentSpeedNorthward_UmeterPerSec) {
+		this.speedNorthward_UmeterPerSec = currentSpeedNorthward_UmeterPerSec;
 	}
 	public void setMyCurrent(C_StreamCurrent myCurrent) { this.myCurrent = myCurrent; myCurrent.setMyCell(this); }
-
-	public void setIntegralEnergy_Ukcal(double d) {
-		this.integralEnergy_Ukcal = d;
-	}
-	public void setChlorophyll_U100(double chlorophyll) {
-		this.chlorophyll_U100 = chlorophyll;
-	}
-	public void setMicroNekton(double microNekton) {
-		this.microNekton = microNekton;
-	}
-	public void setTemperature(double temperature) {
-		this.temperature = temperature;
-	}
-	public void setTotalChlorophyll_U100(double totalChlorophyll_U100) {
-		this.totalChlorophyll_U100 = totalChlorophyll_U100;
-	}
-	public void setTotalNektonDensity(double totalNektonDensity) {
-		this.totalNektonDensity = totalNektonDensity;
-	}
+	public void setTemperature(double temperature) { this.myTemperature = temperature; }
 	//
 	// GETTERS
 	//
-	public double getSpeedEastward_UmeterPerSecond() { return speedEastward_UmeterPerSecond; }
-	public double getSpeedNorthward_UmeterPerSecond() { return speedNorthward_UmeterPerSecond; }
+	public double getSpeedEastward_UmeterPerSec() { return speedEastward_UmeterPerSec; }
+	public double getSpeedNorthward_UmeterPerSec() { return speedNorthward_UmeterPerSec; }
 	public boolean isTerrestrial() { return this.getAffinity()>=TERRESTRIAL_MIN_AFFINITY; }
 	public C_StreamCurrent getMyCurrent() { return myCurrent; }
-
 	public double getTotalChlorophyll_U100() {
 		return this.get(DriverType.PLANKTON,Champ.NB_VAL)*this.get(DriverType.PLANKTON,Champ._100);
 	}

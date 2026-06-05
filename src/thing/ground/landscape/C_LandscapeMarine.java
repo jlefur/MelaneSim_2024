@@ -55,7 +55,7 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC {
 	/** Remove plankton washed along the shores JLF 2024 */
 	public void translate(A_VisibleAgent thing,Coordinate moveDistance_Umeter) {
 		C_SoilCellMarine cell = (C_SoilCellMarine)thing.getCurrentSoilCell();
-		if(cell.getSpeedEastward_UmeterPerSecond()==0.0&&cell.getSpeedNorthward_UmeterPerSecond()==0.0){
+		if(cell.getSpeedEastward_UmeterPerSec()==0.0&&cell.getSpeedNorthward_UmeterPerSec()==0.0){
 			if(((C_SoilCellMarine)thing.getCurrentSoilCell()).isTerrestrial()) bordure((A_Organism)thing);
 			else{
 				boolean washedOnShore = false;

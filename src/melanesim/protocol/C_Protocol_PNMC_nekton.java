@@ -4,13 +4,11 @@ import java.util.Calendar;
 import java.util.TimeZone;
 
 import data.C_Event;
-import data.C_Parameters;
 import data.C_ReadRasterDouble;
 import repast.simphony.context.Context;
 import repast.simphony.valueLayer.GridValueLayer;
-import thing.I_MarineActor;
-import thing.ground.C_SoilCellMarine;
 import thing.I_MarineActor.DriverType;
+import thing.ground.C_SoilCellMarine;
 import thing.ground.C_SoilCellMarineEnergy.Champ;
 
 /** Chlorophyll loaded Plankton particles drifted by surface currents

@@ -5,10 +5,8 @@ import java.awt.Color;
 
 import org.jfree.chart.plot.XYPlot;
 
-import melanesim.protocol.A_Protocol;
 import presentation.epiphyte.C_InspectorBorreliaCrocidurae;
 import presentation.epiphyte.C_InspectorCMR;
-import presentation.epiphyte.C_InspectorEnergy;
 import presentation.epiphyte.C_InspectorFossorialRodents;
 import presentation.epiphyte.C_InspectorGenetic;
 import presentation.epiphyte.C_InspectorHybrid;

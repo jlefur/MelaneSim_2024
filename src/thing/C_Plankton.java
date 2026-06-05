@@ -28,13 +28,13 @@ public class C_Plankton extends A_Organism implements I_ConstantPNMC,I_MarineAct
 	/** for probe display purpose */
 	public double getSpeedEast() {
 		if(this.isDead()) return 0.0;
-		else return ((C_SoilCellMarine)this.getCurrentSoilCell()).getSpeedEastward_UmeterPerSecond();
+		else return ((C_SoilCellMarine)this.getCurrentSoilCell()).getSpeedEastward_UmeterPerSec();
 	}
 
 	/** for probe display purpose */
 	public double getSpeedNorth() {
 		if(this.isDead()) return 0.0;
-		else return ((C_SoilCellMarine)this.getCurrentSoilCell()).getSpeedNorthward_UmeterPerSecond();
+		else return ((C_SoilCellMarine)this.getCurrentSoilCell()).getSpeedNorthward_UmeterPerSec();
 	}
 
 	/** Maximum distance (straight line) from its birth location */

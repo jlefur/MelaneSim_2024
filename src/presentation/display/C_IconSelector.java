@@ -12,8 +12,6 @@ import data.constants.I_ConstantPNMC;
 import data.constants.rodents.I_ConstantImagesNames;
 import data.constants.rodents.I_ConstantStringRodents;
 import melanesim.protocol.A_Protocol;
-import melanesim.protocol.C_Protocol_PNMC_drifters;
-import repast.simphony.engine.environment.RunState;
 import thing.A_Amniote;
 import thing.A_Animal;
 import thing.A_NDS;
@@ -31,14 +29,12 @@ import thing.dna.species.rodents.C_GenomeMastoNatalensis;
 import thing.dna.species.rodents.C_GenomeMastomys;
 import thing.ground.A_SupportedContainer;
 import thing.ground.C_BurrowSystem;
-import thing.ground.C_SoilCellMarine;
-//import thing.ground.C_SoilCellMarine;
 import thing.ground.C_Market;
 import thing.ground.C_Nest;
+import thing.ground.C_SoilCellMarine;
 import thing.ground.C_SoilCellSavanna;
 import thing.ground.C_Trap;
 import thing.rodents.A_Human;
-import thing.rodents.A_HumanUrban;
 import thing.rodents.C_BarnOwl;
 import thing.rodents.C_Cat;
 import thing.rodents.C_Food;
@@ -94,8 +90,8 @@ public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC, 
 	public String getNameOfImagePNMC(I_SituatedThing agent) {
 		if (agent instanceof C_StreamCurrent) {
 			C_SoilCellMarine cell = ((C_StreamCurrent) agent).getMyCell();
-			double speedNorth = cell.getSpeedNorthward_UmeterPerSecond();
-			double speedEast = cell.getSpeedEastward_UmeterPerSecond();
+			double speedNorth = cell.getSpeedNorthward_UmeterPerSec();
+			double speedEast = cell.getSpeedEastward_UmeterPerSec();
 			if (speedNorth > 0.1) if (speedEast > 0.1) return NORTH_EAST_ICON;
 			else if (speedEast < -0.1) return NORTH_WEST_ICON;
 			else return NORTH_ICON;// speedEast == 0
