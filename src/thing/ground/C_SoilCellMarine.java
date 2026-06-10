@@ -33,9 +33,9 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 		this.speedEastward_UmeterPerSec = 1e-10;
 		this.speedNorthward_UmeterPerSec = 1e-10;
 		this.set(DriverType.SHIP,Champ.RAW_VAL,CARGO_ENERGY_Ukcal);// default value for ships
-		this.set(DriverType.SHIP,Champ._100,CARGO_ENERGY_Ukcal);
+		this.set(DriverType.SHIP,Champ._100,100./CARGO_POPULATION);
 		this.set(DriverType.PARTICLES,Champ.RAW_VAL,1.0);// default value for particles
-		this.set(DriverType.PARTICLES,Champ._100,1.0);
+		this.set(DriverType.PARTICLES,Champ._100,1.0E-5);// TODO number in source JLF 06.2026 24000 pk+nk 
 	}
 	//
 	// OVERRIDEN METHODS
@@ -75,16 +75,16 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 		TreeSet<I_SituatedThing> occupants = new TreeSet<>(this.getOccupantList());
 		for(I_SituatedThing agent:occupants){
 			speedEastward_UmeterPerTick = C_ConvertTimeAndSpace.convertSpeed_UspaceByTick(
-					this.speedEastward_UmeterPerSec,"m","s")/PARTICLE_RESISTANCE_FACTOR;
+			        this.speedEastward_UmeterPerSec,"m","s")/PARTICLE_RESISTANCE_FACTOR;
 			speedNorthward_UmeterPerTick = C_ConvertTimeAndSpace.convertSpeed_UspaceByTick(
-					this.speedNorthward_UmeterPerSec,"m","s")/PARTICLE_RESISTANCE_FACTOR;
+			        this.speedNorthward_UmeterPerSec,"m","s")/PARTICLE_RESISTANCE_FACTOR;
 			if(agent instanceof C_Nekton)// micronekton particle are not submitted to surface current half of day
-				A_VisibleAgent.myLandscape.translate((A_VisibleAgent)agent,new Coordinate(speedEastward_UmeterPerTick
-						/NEKTON_RESISTANCE_FACTOR,speedNorthward_UmeterPerTick/NEKTON_RESISTANCE_FACTOR));
+			    A_VisibleAgent.myLandscape.translate((A_VisibleAgent)agent,new Coordinate(speedEastward_UmeterPerTick
+			            /NEKTON_RESISTANCE_FACTOR,speedNorthward_UmeterPerTick/NEKTON_RESISTANCE_FACTOR));
 			else
-				if(agent instanceof C_Plankton)
-					A_VisibleAgent.myLandscape.translate((A_VisibleAgent)agent,new Coordinate(
-							speedEastward_UmeterPerTick,speedNorthward_UmeterPerTick));
+			    if(agent instanceof C_Plankton)
+			        A_VisibleAgent.myLandscape.translate((A_VisibleAgent)agent,new Coordinate(
+			                speedEastward_UmeterPerTick,speedNorthward_UmeterPerTick));
 		}
 		// if(get(TypeActeur.PARTICLES,Champ.NB_VAL)>90.)System.err.println(RepastEssentials.GetTickCount()+","+this.lineNo+","+this.colNo+","+this.toString());
 	}

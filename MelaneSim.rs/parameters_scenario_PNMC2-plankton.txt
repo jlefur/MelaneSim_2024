@@ -43,7 +43,7 @@
 
 	<!-- SIMULATION SETTING -->
 	<parameter name="ENERGY_MODE" displayName="2a/ Compute normalized energy"
-		type="boolean" defaultValue="false" isReadOnly="false"
+		type="boolean" defaultValue="true" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$BooleanConverter" />
 	<parameter name="TERMINATE" displayName="2b/ display most occupied cells"
 		type="boolean" defaultValue="false" isReadOnly="false"

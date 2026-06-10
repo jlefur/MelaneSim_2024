@@ -9,7 +9,7 @@ import thing.A_Animal;
 
 /** declare every parameters _for all protocols_ which may be modified within the GUI @see parameters.xml
  * @author Longueville, 2011, rev. jlefur 07.2012, rev.PAMBOUP 03.2014, JLF 07.2014 */
-public class C_Parameters implements I_ConstantStringRodents,I_ConstantPNMC {
+public class C_Parameters implements I_ConstantStringRodents, I_ConstantPNMC {
 	public static Parameters parameters;
 
 	// GENERAL //
@@ -19,6 +19,9 @@ public class C_Parameters implements I_ConstantStringRodents,I_ConstantPNMC {
 	public static boolean VERBOSE;
 	public static boolean TERMINATE = false;
 	public static boolean BLACK_MAP = false;
+	/** for each driver cell energy value = 100 for the cell with max value or value = 100 for the overall energy in the
+	 * domain<br>
+	 * @author JLF 06.2026 */
 	public static boolean ENERGY_MODE = false;
 
 	// SPACE //
@@ -70,8 +73,10 @@ public class C_Parameters implements I_ConstantStringRodents,I_ConstantPNMC {
 	//
 	private static final EnumMap<DriverType,Double> multipliers = new EnumMap<>(DriverType.class);
 	public static double getMultiplier(DriverType type) { return multipliers.get(type); }
-	public static void setMultiplier(DriverType type,double value) { multipliers.put(type,value); }
-	static{resetMultipliers();}
+	public static void setMultiplier(DriverType type, double value) { multipliers.put(type,value); }
+	static{
+		resetMultipliers();
+	}
 	public static void resetMultipliers() {
 		for(DriverType t:DriverType.values()){
 			multipliers.put(t,1.0);

@@ -63,9 +63,9 @@ public class C_CustomPanelFactory implements IDisplay {
 	public void deIconified() {}
 	public void closed() {}
 	public void addProbeListener(ProbeListener listener) {}
-	public void setLayout(Layout layout) {}
+	public void setLayout(Layout<?,?> layout) {}
 	public void setLayoutFrequency(LayoutFrequency frequency, int interval) {}
-	public Layout getLayout() {
+	public Layout<?,?> getLayout() {
 		return null;
 	}
 	public DisplayEditorLifecycle createEditor(JPanel panel) {

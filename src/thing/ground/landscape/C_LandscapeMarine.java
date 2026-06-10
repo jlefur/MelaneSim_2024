@@ -1,9 +1,8 @@
 /* This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt */
 package thing.ground.landscape;
 
-import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.TreeMap;
 
 import org.locationtech.jts.geom.Coordinate;
@@ -13,13 +12,13 @@ import data.C_ReadRasterOcean;
 import data.constants.I_ConstantPNMC;
 import melanesim.C_ContextCreator;
 import melanesim.protocol.A_Protocol;
-import melanesim.util.CaptureEcranPeriodique;
 import presentation.epiphyte.C_InspectorPopulationMarine;
 import repast.simphony.context.Context;
 import repast.simphony.valueLayer.GridValueLayer;
 import thing.A_Organism;
 import thing.A_VisibleAgent;
 import thing.ground.C_SoilCellMarine;
+import thing.ground.C_SoilCellMarineEnergy;
 import thing.ground.I_Container;
 
 /** The global container of MelaneSim's protocols<br>
@@ -37,8 +36,10 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC {
 
 	// energy values are 0-green, 1-orange, 2-red or 3-black forN/A ( viz. land)
 	protected int[] energyRanks = new int[3];
-	public static double overallEnergy_Ukcal = 0.0;
-	public static double overallEnergyMean_Ukcal = 0.0;
+	protected long[] energyRanks_long = new long[3];
+	int keys_precision = 1000000;// number of digits after the decimal point for key resolution
+	public  double overallEnergy_Ukcal = 0.0;
+	public  double overallEnergyMean_Ukcal = 0.0;
 
 	//
 	// CONSTRUCTOR
@@ -53,16 +54,16 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC {
 	//
 	@Override
 	/** Remove plankton washed along the shores JLF 2024 */
-	public void translate(A_VisibleAgent thing,Coordinate moveDistance_Umeter) {
+	public void translate(A_VisibleAgent thing, Coordinate moveDistance_Umeter) {
 		C_SoilCellMarine cell = (C_SoilCellMarine)thing.getCurrentSoilCell();
 		if(cell.getSpeedEastward_UmeterPerSec()==0.0&&cell.getSpeedNorthward_UmeterPerSec()==0.0){
 			if(((C_SoilCellMarine)thing.getCurrentSoilCell()).isTerrestrial()) bordure((A_Organism)thing);
 			else{
 				boolean washedOnShore = false;
 				for(I_Container oneNeighbour:this.getCellNeighbours(cell)) if(((C_SoilCellMarine)oneNeighbour)
-						.isTerrestrial()){
-							washedOnShore = true;
-						}
+				        .isTerrestrial()){
+					        washedOnShore = true;
+				        }
 				if(washedOnShore) bordure((A_Organism)thing);
 			}
 		}
@@ -85,7 +86,7 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC {
 	 *            rev. JLF 2015, 2024, 2025 */
 	public void createGround(int[][] matriceLue) {
 		this.energyValueLayer = new GridValueLayer(energyGridvalues,true,
-				new repast.simphony.space.grid.WrapAroundBorders(),dimension_Ucell.width,dimension_Ucell.height);
+		        new repast.simphony.space.grid.WrapAroundBorders(),dimension_Ucell.width,dimension_Ucell.height);
 		for(int i = this.dimension_Ucell.width-1;i>=0;i--){
 			for(int j = this.dimension_Ucell.height-1;j>=0;j--){
 				// TODO number in source Terrestrial in raster bathymetry JLF 04.2025;
@@ -100,7 +101,7 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC {
 
 	@Override
 	/** Inform inspector then super, JLF 2024 */
-	protected void replaceOutcomer(A_VisibleAgent animalLeavingLandscape,double[] newLocation,int x,int y) {
+	protected void replaceOutcomer(A_VisibleAgent animalLeavingLandscape, double[] newLocation, int x, int y) {
 		C_InspectorPopulationMarine.planktonExport++;
 		super.replaceOutcomer(animalLeavingLandscape,newLocation,x,y);
 	}
@@ -116,7 +117,7 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC {
 		int x = 0, y = 0;
 		do{
 			int randkey = (int)(C_ContextCreator.randomGeneratorForInitialisation.nextDouble()*4);// TODO number in
-																									// source
+			                                                                                      // source
 			x = (int)(C_ContextCreator.randomGeneratorForInitialisation.nextDouble()*this.dimension_Ucell.getWidth());
 			y = (int)(C_ContextCreator.randomGeneratorForInitialisation.nextDouble()*this.dimension_Ucell.getHeight());
 		}while(((C_SoilCellMarine)grid[x][y]).isTerrestrial());
@@ -127,58 +128,80 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC {
 
 	/** recompute marine cells energy as red, orange, green<br>
 	 * JLF 03.2025 */
-	public void assertCellsEnergy() {
+	public void assertCellsEnergy1() {
+		this.rankEnergy1();
+
 		double cellIntegralEnergy_Ukcal;
-		this.rankEnergy();
 		for(int i = 0;i<this.dimension_Ucell.getWidth();i++){
 			for(int j = 0;j<this.dimension_Ucell.getHeight();j++){
 				if(((C_SoilCellMarine)grid[i][j]).isTerrestrial()) this.energyValueLayer.set(ENERGY_LAND,i,j);
 				else{
 					this.energyValueLayer.set(ENERGY_RESET,i,j);// reset cell color
 					cellIntegralEnergy_Ukcal = ((C_SoilCellMarine)grid[i][j]).getIntegralEnergy_Ukcal();
-					if(cellIntegralEnergy_Ukcal>=energyRanks[ENERGY_GREEN]) this.energyValueLayer.set(ENERGY_GREEN,i,j);
+					if(cellIntegralEnergy_Ukcal>=this.energyRanks[ENERGY_GREEN])
+					    this.energyValueLayer.set(ENERGY_GREEN,i,j);
 					else
-						if(cellIntegralEnergy_Ukcal>=energyRanks[ENERGY_ORANGE])
-							this.energyValueLayer.set(ENERGY_ORANGE,i,j);
+					    if(cellIntegralEnergy_Ukcal>=this.energyRanks[ENERGY_ORANGE])
+					        this.energyValueLayer.set(ENERGY_ORANGE,i,j);
 						else
-							if(cellIntegralEnergy_Ukcal>=energyRanks[ENERGY_RED])
-								this.energyValueLayer.set(ENERGY_RED,i,j);
+					        if(cellIntegralEnergy_Ukcal>=this.energyRanks[ENERGY_RED])
+					            this.energyValueLayer.set(ENERGY_RED,i,j);
 					((C_SoilCellMarine)grid[i][j]).resetIntegralEnergy_Ukcal();
-					// ((C_SoilCellMarine) grid[i][j]).setEnergy_Ukcal(0.);
+				}
+			}
+		}
+	}
+	/** Recompute marine cells energy as red, orange, green<br>
+	 * JLF 03.2025 */
+	public void assertCellsEnergy2() {
+		this.rankEnergy2();
+
+		double cellIntegralEnergy_Ukcal;
+		for(int i = 0;i<this.dimension_Ucell.getWidth();i++){
+			for(int j = 0;j<this.dimension_Ucell.getHeight();j++){
+				if(((C_SoilCellMarine)grid[i][j]).isTerrestrial()) this.energyValueLayer.set(ENERGY_LAND,i,j);
+				else{
+					this.energyValueLayer.set(ENERGY_RESET,i,j);// reset cell color
+					cellIntegralEnergy_Ukcal = ((C_SoilCellMarine)grid[i][j]).getIntegralEnergy_Ukcal();
+					long energy_key = Math.round(cellIntegralEnergy_Ukcal*keys_precision);
+					if(energy_key>=this.energyRanks_long[ENERGY_GREEN]) this.energyValueLayer.set(ENERGY_GREEN,i,j);
+					else
+					    if(energy_key>=this.energyRanks_long[ENERGY_ORANGE])
+					        this.energyValueLayer.set(ENERGY_ORANGE,i,j);
+						else
+					        if(energy_key>=this.energyRanks_long[ENERGY_RED]) this.energyValueLayer.set(ENERGY_RED,i,j);
+					((C_SoilCellMarine)grid[i][j]).resetIntegralEnergy_Ukcal();
 				}
 			}
 		}
 	}
 
-	/** fill energyRanks map with the current thresholds<br>
+	/** Fill energyRanks map with the current thresholds<br>
 	 * The cells energies distribution is heavily asymmetrical (generalized Pareto distribution or truncated Zipf
 	 * distribution), hence the ranks are asymmetrical<br>
 	 * @author JLF 03.2025 */
-	protected void rankEnergy() {
-		C_LandscapeMarine.overallEnergy_Ukcal = 0.0;
-		// Put each energy rank in keys of a sorted map and fill values with the corresponding energy sum
+	protected void rankEnergy1() {
+		this.overallEnergy_Ukcal = this.dimension_Ucell.getWidth()*this.dimension_Ucell.getHeight();
+		// 1.- Put each energy rank in keys of a sorted map and fill values with the corresponding energy sum
 		TreeMap<Integer,Integer> energyByRank = new TreeMap<>();
 		for(int i = 0;i<this.dimension_Ucell.getWidth();i++){
 			for(int j = 0;j<this.dimension_Ucell.getHeight();j++){
 				Integer cellIntegralEnergy_Ukcal = (int)((C_SoilCellMarine)grid[i][j]).getIntegralEnergy_Ukcal();
 				if(energyByRank.get(cellIntegralEnergy_Ukcal)!=null)
-					energyByRank.put(cellIntegralEnergy_Ukcal,energyByRank.get(cellIntegralEnergy_Ukcal)+1);
+				    energyByRank.put(cellIntegralEnergy_Ukcal,energyByRank.get(cellIntegralEnergy_Ukcal)+1);
 				else// If energy key not found, create an entry and set values
-					energyByRank.put(cellIntegralEnergy_Ukcal,1);
-				// NB: chatGPT suggère de remplacer les 4 lignes ci-dessous par:
-				// EnergyByRank.compute(cellEnergy_Ukcal, (k, v) -> (v == null) ? cellEnergy_Ukcal : v +
-				// cellEnergy_Ukcal);
-
-				overallEnergy_Ukcal += 1;
+				    energyByRank.put(cellIntegralEnergy_Ukcal,1);
+				// NB: chatGPT suggère de remplacer les 4 lignes ci-dessus par: EnergyByRank.compute(cellEnergy_Ukcal,
+				// (k, v) -> (v == null) ? cellEnergy_Ukcal : v + cellEnergy_Ukcal);
 			}
 		}
-
-		// Définition des seuils d'énergie (Temporary stores the threshold to proceed to the coming loop)
+		System.out.println("C_LandscapeMarine.rankEnergy1 "+overallEnergy_Ukcal+", "+energyByRank.size()+" clés");
+		// 2.- Définition des seuils d'énergie (Temporary stores the threshold to proceed to the coming loop)
 		energyRanks[ENERGY_GREEN] = (int)(overallEnergy_Ukcal*GREEN_AREA_Upercent);
 		energyRanks[ENERGY_ORANGE] = (int)(overallEnergy_Ukcal*ORANGE_AREA_Upercent);
 		energyRanks[ENERGY_RED] = (int)(overallEnergy_Ukcal*RED_AREA_Upercent);
 
-		// Classement des valeurs pour atteindre les seuils
+		// 3.- Classement des valeurs pour atteindre les seuils
 		for(int i = 0;i<3;i++){
 			int targetSum = energyRanks[i];
 			// additionner les valeurs en partant de la clé la plus grande
@@ -194,8 +217,58 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC {
 		// System.out.println("C_LandscapeMarine.rankEnergy()"+energyByRank.toString());
 		// System.out.println(">>>> "+Arrays.toString(energyRanks));
 		// System.out.println();
-		C_LandscapeMarine.overallEnergyMean_Ukcal = C_LandscapeMarine.overallEnergy_Ukcal/(this.dimension_Ucell
-				.getWidth()*this.dimension_Ucell.getHeight());
+		this.overallEnergyMean_Ukcal = this.overallEnergy_Ukcal/(this.dimension_Ucell
+		        .getWidth()*this.dimension_Ucell.getHeight());
+	}
+	/** fill energyRanks map with the current thresholds<br>
+	 * The cells energies distribution is heavily asymmetrical (generalized Pareto distribution or truncated Zipf
+	 * distribution), hence the ranks are asymmetrical<br>
+	 * @author JLF 03.2025 */
+	protected void rankEnergy2() {
+		this.overallEnergy_Ukcal = 0.0;
+		// Put each energy rank in keys of a sorted map and fill values with the corresponding energy sum
+		TreeMap<Long,Double> energyByRank = new TreeMap<>();
+		for(int i = 0;i<this.dimension_Ucell.getWidth();i++){
+			for(int j = 0;j<this.dimension_Ucell.getHeight();j++){
+				double cellIntegralEnergy_Ukcal = ((C_SoilCellMarineEnergy)grid[i][j]).getIntegralEnergy_Ukcal();
+				long energy_key = Math.round(cellIntegralEnergy_Ukcal*this.keys_precision);
+
+				if(energyByRank.get(energy_key)!=null)
+				    energyByRank.put(energy_key,energyByRank.get(energy_key)+1.0);
+				else// If energy key not found, create an entry and set values
+				    energyByRank.put(energy_key,1.0);
+				// NB: chatGPT suggère de remplacer les 4 lignes ci-dessous par:
+				// EnergyByRank.compute(cellEnergy_Ukcal, (k, v) -> (v == null) ? cellEnergy_Ukcal : v +
+				// cellEnergy_Ukcal);
+
+				overallEnergy_Ukcal += 1;
+			}
+		}
+		System.out.println("C_LandscapeMarine.rankEnergy2 "+overallEnergy_Ukcal+", "+energyByRank.size()+" clés");
+
+		// Définition des seuils d'énergie (Temporary stores the threshold to proceed to the coming loop)
+		energyRanks_long[ENERGY_GREEN] = (long)(overallEnergy_Ukcal*GREEN_AREA_Upercent);
+		energyRanks_long[ENERGY_ORANGE] = (long)(overallEnergy_Ukcal*ORANGE_AREA_Upercent);
+		energyRanks_long[ENERGY_RED] = (long)(overallEnergy_Ukcal*RED_AREA_Upercent);
+
+		// Classement des valeurs pour atteindre les seuils
+		for(int i = 0;i<3;i++){
+			long targetSum = energyRanks_long[i];
+			// additionner les valeurs en partant de la clé la plus grande
+			double currentSum = 0.0;
+			for(Entry<Long,Double> entry:energyByRank.descendingMap().entrySet()){
+				if(currentSum>=targetSum){
+					energyRanks_long[i] = entry.getKey();// the threshold key
+					break;// Arrêter si la somme cible est atteinte
+				}
+				currentSum += entry.getValue();
+			}
+		}
+		// System.out.println("C_LandscapeMarine.rankEnergy()"+energyByRank.toString());
+		// System.out.println(">>>> "+Arrays.toString(energyRanks));
+		// System.out.println();
+		this.overallEnergyMean_Ukcal = this.overallEnergy_Ukcal/(this.dimension_Ucell
+		        .getWidth()*this.dimension_Ucell.getHeight());
 	}
 
 	/*

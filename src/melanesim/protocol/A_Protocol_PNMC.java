@@ -74,8 +74,10 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 	public void manageTimeLandmarks() {
 		// ((C_LandscapeMarine) this.landscape).assertCellsEnergy();
 		// saveScreen();
+		@SuppressWarnings("unused")
 		Integer currentYear = A_Protocol.protocolCalendar.get(Calendar.YEAR);
 		Integer currentMonth = A_Protocol.protocolCalendar.get(Calendar.MONTH);
+		@SuppressWarnings("unused")
 		Integer currentWeek = A_Protocol.protocolCalendar.get(Calendar.WEEK_OF_MONTH);
 		A_Protocol.protocolCalendar.incrementDate();
 
@@ -89,13 +91,18 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 			// if(currentYear!=A_Protocol.protocolCalendar.get(Calendar.YEAR)){
 			// if(currentMonth!=A_Protocol.protocolCalendar.get(Calendar.MONTH)){
 			this.computeMinMaxIntegrals();
-			((C_LandscapeMarine)this.landscape).assertCellsEnergy();
+			if(C_Parameters.ENERGY_MODE){
+				((C_LandscapeMarine)this.landscape).assertCellsEnergy1();
+			}
+			else{
+				((C_LandscapeMarine)this.landscape).assertCellsEnergy2();
+			}
 			// saveScreen();
 		}
 	}
 	protected void initLandscape(Context<Object> context) {
 		this.setLandscape(new C_LandscapeMarine(context,C_Parameters.RASTER_URL,VALUE_LAYER_NAME,
-				CONTINUOUS_SPACE_NAME));
+		        CONTINUOUS_SPACE_NAME));
 		for(int i = 0;i<this.landscape.dimension_Ucell.width;i++){
 			for(int j = 0;j<this.landscape.dimension_Ucell.height;j++){
 				C_SoilCellMarine cell = new C_SoilCellMarine(this.landscape.getGrid()[i][j].getAffinity(),i,j);
@@ -115,10 +122,10 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 		this.landscape.getValueLayer().set(11,62,112);
 	}
 	public void saveScreen() { /** // Uncomment lines below to slightly randomly move the mouse to avoid screen sleep
-								 * mode (for recording printscreen) try { Robot robot = new Robot(); // Get the current
-								 * mouse coordinates Point mouseLocation = MouseInfo.getPointerInfo().getLocation(); int
-								 * x = mouseLocation.x; int y = mouseLocation.y; robot.mouseMove(x + random.nextInt(3),
-								 * y + random.nextInt(3)); } catch (AWTException e) { e.printStackTrace(); } */
+	                            * mode (for recording printscreen) try { Robot robot = new Robot(); // Get the current
+	                            * mouse coordinates Point mouseLocation = MouseInfo.getPointerInfo().getLocation(); int
+	                            * x = mouseLocation.x; int y = mouseLocation.y; robot.mouseMove(x + random.nextInt(3), y
+	                            * + random.nextInt(3)); } catch (AWTException e) { e.printStackTrace(); } */
 
 		// uncomment lines below to save screen // save screen each new day
 		Integer currentYear = A_Protocol.protocolCalendar.get(Calendar.YEAR);
@@ -126,7 +133,7 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 		Integer currentDay = A_Protocol.protocolCalendar.get(Calendar.DAY_OF_YEAR);
 		Integer currentHour = A_Protocol.protocolCalendar.get(Calendar.HOUR_OF_DAY);
 		String currentDate = "Energy-"+currentYear+"."+String.format("%02d",currentMonth+1)+String.format("%03d",
-				currentDay)+"_"+String.format("%02d",currentHour);
+		        currentDay)+"_"+String.format("%02d",currentHour);
 		// or String currentDate = currentYear + "." + String.format("%03d", currentDay)
 		// + "_"+ String.format("%03d", currentHour);
 		CaptureEcranPeriodique.captureEcranPlankton(currentDate);
@@ -141,7 +148,7 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 			DISPLAY_FACILITY_MAP = false;
 		} // Wipe off map
 		else{// contextualizeNewThingInSpace(facilityMap, facilityMap.whereX,
-				// facilityMap.whereY);
+		     // facilityMap.whereY);
 			this.facilityMap.contextualize(this.context,this.landscape);
 			DISPLAY_FACILITY_MAP = true;
 		}
@@ -152,10 +159,10 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 	protected void blackMap() {
 		if(this.landscape!=null){
 			for(int i = 0;i<this.landscape.getDimension_Ucell().getWidth();i++) for(int j = 0;j<this.landscape
-					.getDimension_Ucell().getHeight();j++){
-						if(this.landscape.getValueLayer().get(i,j)<TERRESTRIAL_MIN_AFFINITY) // marine area
-							this.landscape.getValueLayer().set(BLACK_MAP_COLOR,i,j);
-					}
+			        .getDimension_Ucell().getHeight();j++){
+				        if(this.landscape.getValueLayer().get(i,j)<TERRESTRIAL_MIN_AFFINITY) // marine area
+				            this.landscape.getValueLayer().set(BLACK_MAP_COLOR,i,j);
+			        }
 		}
 	}
 	@Override
@@ -172,8 +179,8 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 		boolean oldValueExclos = C_Parameters.EXCLOS;
 		C_Parameters.EXCLOS = ((Boolean)C_Parameters.parameters.getValue("EXCLOS")).booleanValue();
 		if(oldValueExclos!=C_Parameters.EXCLOS)
-			A_Protocol.event("C_Protocol_PNMC_drifters.readUserParameters","meta-population set to "
-					+C_Parameters.EXCLOS,isNotError);
+		    A_Protocol.event("C_Protocol_PNMC_drifters.readUserParameters","meta-population set to "
+		            +C_Parameters.EXCLOS,isNotError);
 	}
 	@Override
 	public void step_Utick() {
@@ -205,12 +212,12 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 			}
 			// transforme la grille 2D en flux de cellules
 			java.util.Arrays.stream(grid).flatMap(java.util.Arrays::stream).sorted(Comparator.comparingDouble(
-					C_SoilCellMarine::getIntegralOccupants).reversed()).limit(2000).forEach(cell->{
-						int ix = (int)cell.getCoordinate_Ucs().x;
-						int jy = (int)cell.getCoordinate_Ucs().y;
-						// cell.setAffinity(11);
-						this.landscape.getValueLayer().set(11,ix,jy);
-					});
+			        C_SoilCellMarine::getIntegralOccupants).reversed()).limit(2000).forEach(cell->{
+				        int ix = (int)cell.getCoordinate_Ucs().x;
+				        int jy = (int)cell.getCoordinate_Ucs().y;
+				        // cell.setAffinity(11);
+				        this.landscape.getValueLayer().set(11,ix,jy);
+			        });
 			// super.haltSimulation();
 		}
 	}
@@ -240,19 +247,16 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 					value = cell.get(type,Champ.INTEGRAL_100);
 					if(!Double.isFinite(value)) continue; // ignore NaN/Inf
 					MinMax mm = minMaxDrivers.get(type);
-					if(C_Parameters.ENERGY_MODE) // either compute 1.the max for a given cell  or 2.the overall values'sum
-						// NB pas propre voir correctif dans chat "MinMax Calcul pour Acteurs"
-						minMaxDrivers.put(type,new MinMax(Math.min(mm.min(),value),Math.max(mm.max(),value)));
+					// Either compute 1) the max for a given cell or 2) the overall values'sum
+					if(C_Parameters.ENERGY_MODE)
+					    // NB pas propre voir correctif dans chat "MinMax Calcul pour Acteurs"
+					    minMaxDrivers.put(type,new MinMax(Math.min(mm.min(),value),Math.max(mm.max(),value)));
 					else
-						minMaxDrivers.put(type,new MinMax(Math.min(mm.min(),value),mm.max()+value));
+					    minMaxDrivers.put(type,new MinMax(Math.min(mm.min(),value),mm.max()+value));
 				}
 			}
 		}
-		// for debugging
-		if(C_Parameters.BLACK_MAP){
-			for(DriverType type:DriverType.values()) System.out.println(type+" thresholds: "+minMaxDrivers.get(type));
-		}
-
+		
 		try(BufferedWriter out1 = Files.newBufferedWriter(csvPath,StandardCharsets.UTF_8)){
 			StringBuilder sb = new StringBuilder(6400);
 			// 2) pass: normalize each cell value to [1..100] using global min/max per type
@@ -287,20 +291,20 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 	}
 
 	/** Convertit les valeurs d'entrée des paramètres en valeurs sur une échelle de 1 à 100 <br>
-	 * @author chatGPT 10.2025 */
+	 * @author JLF + chatGPT 10.2025 */
 	public double convertTo100_old(double x, double xMin, double xMax) {
 		return ((x-xMin)*99)/(xMax-xMin)+1;
 	}
-	/** Convertit les valeurs d'entrée des paramètres en valeurs sur une échelle de 1 à 100 <br>
-	 * @author chatGPT 02.2026 */
+	/** Convertit les valeurs d'entrée des paramètres en valeurs sur une échelle de 0 à 100 <br>
+	 * @author JLF + chatGPT 02.2026 */
 	public double convertTo100(double x, double xMin, double xMax) {
 		if(!Double.isFinite(x)||!Double.isFinite(xMin)||!Double.isFinite(xMax)) return Double.NaN;
 		if(xMax==xMin){
 			// A_Protocol.event("A_Protocol_PNMC: ","xmin = xmax: "+xMin,isError);
-			return 0.0;// ou 50.0, ou 100.0
+			return 0.0;// ou 50.0, ou 100.0 ?
 		}
-		// selon ton choix
-		return ((x-xMin)*99.0)/(xMax-xMin)+1.0;
+		// return ((x-xMin)*99.0)/(xMax-xMin)+1.0;// de 1 à 100
+		return ((x-xMin)*100.0)/(xMax-xMin);// de 0 à 100
 	}
 
 	/** Convertit les valeurs sur une échelle de 1 à 100 des paramètres en valeurs lues dans les fichiers<br>

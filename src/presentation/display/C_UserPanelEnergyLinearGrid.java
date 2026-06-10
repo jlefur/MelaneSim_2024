@@ -55,7 +55,7 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 
 	private final DecimalFormat df = new DecimalFormat("0.00");
 	private final Timer debounce = new Timer(200,e->applyToParametersAndSave());
-	private boolean live = false;
+	private boolean live = true;
 	private boolean syncing = false;
 	// Pour imprimer le changement de valeur
 	private final java.util.Map<String,Double> lastApplied = new java.util.HashMap<>();
@@ -151,6 +151,7 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 		// --- Barre d'actions ---
 		JPanel actions = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		JCheckBox cbLive = new JCheckBox("Appliquer en direct (Live)");
+		cbLive.setSelected(live);
 		cbLive.addActionListener(e->live = cbLive.isSelected());
 		JButton btnApply = new JButton("Appliquer maintenant");
 		btnApply.addActionListener(e->applyToParametersAndSave());

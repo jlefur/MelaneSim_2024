@@ -387,9 +387,6 @@ public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC, 
 	}
 
 	public static Color getColorMbour(I_SituatedThing agent) {
-		if (!(agent instanceof A_Animal)) {// TODO JLF 2019.02 remove (for debugging purpose)
-			System.out.println();
-		}
 		Color couleur = Color.white;
 		if (((A_Animal) agent).getGenome() instanceof C_GenomeMastoNatalensis) {
 			if (((C_Rodent) agent).testMale()) couleur = Color.red;
