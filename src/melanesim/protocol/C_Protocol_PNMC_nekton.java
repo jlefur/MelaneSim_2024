@@ -30,7 +30,7 @@ public class C_Protocol_PNMC_nekton extends C_Protocol_PNMC_plankton {
 		this.nektonValueLayer = new GridValueLayer(NEKTON_GRID,true,new repast.simphony.space.grid.WrapAroundBorders(),
 				gridWidth,gridHeight);
 		for(int i = gridWidth-1;i>=0;i--) for(int j = gridHeight-1;j>=0;j--) this.nektonValueLayer.set((int)(Math
-				.random()*7),i,j);
+				.random()*7),i,j);// TODO JLF 06.2026 GRAVE random generator not managed
 		context.addValueLayer(this.nektonValueLayer);
 	}
 

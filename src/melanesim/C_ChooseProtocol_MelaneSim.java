@@ -52,16 +52,15 @@ public class C_ChooseProtocol_MelaneSim extends C_ChooseProtocol_Rodents impleme
 		this.pnmc_nektonBox.add(addImageButton("icons/titleNecton.gif", "PNMC3-nekton"));
 		this.panel.add(pnmc_nektonBox);
 		
-		
-		pnmc_temperatureBox.setLayout(new BoxLayout(pnmc_temperatureBox, BoxLayout.X_AXIS));
-		pnmc_temperatureBox.setBorder(BorderFactory.createTitledBorder("+Sea surface temperature"));
-		this.pnmc_temperatureBox.add(addImageButton("icons/titleTemperature.gif", "PNMC4-temperature"));
-		this.panel.add(pnmc_temperatureBox);
-		
 		pnmc_shipBox.setLayout(new BoxLayout(pnmc_shipBox, BoxLayout.X_AXIS));
 		pnmc_shipBox.setBorder(BorderFactory.createTitledBorder("ships activities within the domain"));
 		this.pnmc_shipBox.add(addImageButton("icons/titleShips.gif", "PNMC4-ships"));
 		this.panel.add(pnmc_shipBox);
+		
+		pnmc_temperatureBox.setLayout(new BoxLayout(pnmc_temperatureBox, BoxLayout.X_AXIS));
+		pnmc_temperatureBox.setBorder(BorderFactory.createTitledBorder("+Sea surface temperature"));
+		this.pnmc_temperatureBox.add(addImageButton("icons/titleTemperature.gif", "PNMC5-temperature"));
+		this.panel.add(pnmc_temperatureBox);
 
 		this.pack();
 		this.setVisible(true);

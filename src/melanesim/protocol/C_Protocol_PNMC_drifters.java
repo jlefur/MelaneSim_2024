@@ -34,7 +34,7 @@ public class C_Protocol_PNMC_drifters extends A_Protocol_PNMC {
 		// TODO number in source 2025.04 JLF CHRONOGRAM FILE NAME
 		// if (this.chronogram == null) chronogram = new
 		// C_Chronogram("/20240314_PNMC.drifters.csv");
-		this.chronogram = new C_Chronogram("/20260423_PNMC.temperature.csv");
+		this.chronogram = new C_Chronogram("/20260603_PNMC.megaptera.csv");
 		facilityMap = new C_Background(-2.35, 206., 134.);
 	}
 	//
@@ -100,7 +100,7 @@ public class C_Protocol_PNMC_drifters extends A_Protocol_PNMC {
 	public void manageOneEvent(C_Event event) {
 		C_SoilCellMarine cell = null;
 		switch(event.type){
-			case COMPUTE_ENERGY:// Permet de suivre l'évolution saisonnière par exemple
+			case COMPUTE_ENERGY_EVENT:// Permet de suivre l'évolution saisonnière par exemple
 //				 this.computeMinMaxIntegrals();
 //				 ((C_LandscapeMarine) this.landscape).assertCellsEnergy();
 //				 Toolkit.getDefaultToolkit().beep();

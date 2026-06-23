@@ -3,7 +3,7 @@ package thing;
 /** ENUM OF CONSERVATION TARGETS */
 public interface I_MarineActor {
 	enum DriverType {
-		PARTICLES ("size"), PLANKTON("chlorophylle mg/m3"),NEKTON("densité g/m2"),SHIP("effectif");
+		PARTICLES ("size"), PLANKTON("chlorophylle mg/m3"),NEKTON("densité g/m2"),SHIP("effectif"), WHALE("effectif");
 		// FIELD
 		private final String unit;
 		// CONSTRUCTOR

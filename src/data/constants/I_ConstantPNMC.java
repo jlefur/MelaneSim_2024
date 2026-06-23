@@ -39,7 +39,8 @@ public interface I_ConstantPNMC extends I_ConstantString {
 	public static final String CHLOROPHYLL_EVENT = "chlorophyll";
 	public static final String NEKTON_EVENT = "microNekton";
 	public static final String TEMPERATURE_EVENT = "temperature";
-	public static final String COMPUTE_ENERGY = "compute_energy";
+	public static final String WHALE_EVENT = "Megaptera";
+	public static final String COMPUTE_ENERGY_EVENT = "compute_energy";
 	//
 	// OTHERS
 	//

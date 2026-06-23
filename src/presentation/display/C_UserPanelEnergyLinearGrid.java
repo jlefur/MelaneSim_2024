@@ -61,10 +61,11 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 	private final java.util.Map<String,Double> lastApplied = new java.util.HashMap<>();
 	private static final double EPS = 1e-6;
 
-	private static ImageIcon loadIconFromFile(String imageName,int size) {
+	private static ImageIcon loadIconFromFile(String imageName, int size) {
 		try{
 			// Répertoire racine de ton projet
-			String basePath = System.getProperty("user.dir")+File.separator+"icons"+File.separator+"sliders"+File.separator;
+			String basePath = System.getProperty("user.dir")+File.separator+"icons"+File.separator+"sliders"
+			        +File.separator;
 			File file = new File(basePath+imageName+".png");
 			if(!file.exists()){
 				System.err.println("⚠️  Icône non trouvée : "+file.getAbsolutePath());
@@ -102,14 +103,16 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 
 	// ---- Déclare ici tes 9 canaux (exemples) ----
 	private final List<Channel> channels = Arrays.asList(//
-			new Channel("par","particle",PARTICLE_ICON,()->C_Parameters.getMultiplier(DriverType.PARTICLES),v->C_Parameters
-					.setMultiplier(DriverType.PARTICLES,v)), //
-			new Channel("chl","chlorophyll",CHLOROPHYLL_ICON,()->C_Parameters.getMultiplier(DriverType.PLANKTON),
-					v->C_Parameters.setMultiplier(DriverType.PLANKTON,v)),//
-			new Channel("nec","necton",NEKTON_ICON,()->C_Parameters.getMultiplier(DriverType.NEKTON),v->C_Parameters
-					.setMultiplier(DriverType.NEKTON,v)),//
-			new Channel("shi","ship",SHIP_ICON,()->C_Parameters.getMultiplier(DriverType.SHIP),v->C_Parameters
-					.setMultiplier(DriverType.SHIP,v)));//
+	        new Channel("par","particle",PARTICLE_ICON,()->C_Parameters.getMultiplier(DriverType.PARTICLES),
+	                v->C_Parameters.setMultiplier(DriverType.PARTICLES,v)), //
+	        new Channel("chl","chlorophyll",CHLOROPHYLL_ICON,()->C_Parameters.getMultiplier(DriverType.PLANKTON),
+	                v->C_Parameters.setMultiplier(DriverType.PLANKTON,v)),//
+	        new Channel("nec","necton",NEKTON_ICON,()->C_Parameters.getMultiplier(DriverType.NEKTON),v->C_Parameters
+	                .setMultiplier(DriverType.NEKTON,v)),//
+	        new Channel("shi","ship",SHIP_ICON,()->C_Parameters.getMultiplier(DriverType.SHIP),v->C_Parameters
+	                .setMultiplier(DriverType.SHIP,v)),//
+	        new Channel("wha","whale",WHALE_ICON,()->C_Parameters.getMultiplier(DriverType.WHALE),v->C_Parameters
+	                .setMultiplier(DriverType.SHIP,v)));//
 	// new Channel("mou", "mount", MOUNT_ICON, () -> C_Parameters.MOUNT_MULTIPLIER,
 	// v -> C_Parameters.MOUNT_MULTIPLIER = v), //
 	// new Channel("tem", "temperature", TEMPERATURE_ICON, () -> C_Parameters.TEMPERATURE_MULTIPLIER,
@@ -146,7 +149,7 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 		JPanel grid = new JPanel(new GridLayout(ROWS,COLS,12,12));
 		for(Channel ch:channels) grid.add(buildColumn(ch));
 		add(new JScrollPane(grid,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
-				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER),BorderLayout.CENTER);
+		        ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER),BorderLayout.CENTER);
 
 		// --- Barre d'actions ---
 		JPanel actions = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -197,7 +200,7 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 
 		// label avec icône + texte centré
 		ImageIcon imageIcon = loadIconFromFile(ch.icon,92); // si ton nom d’image correspond à ch.id (ex. "wh", "mic",
-															// etc.)
+		                                                    // etc.)
 		JLabel lbl = new JLabel(ch.label,imageIcon,SwingConstants.CENTER);
 		lbl.setVerticalTextPosition(SwingConstants.BOTTOM); // texte sous l’image
 		lbl.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -274,7 +277,7 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 		return col;
 	}
 
-	private static JSlider vSlider(int min,int max,int val) {
+	private static JSlider vSlider(int min, int max, int val) {
 		JSlider s = new JSlider(JSlider.VERTICAL,min,max,val);
 		s.setPaintTicks(true);
 		s.setPaintLabels(true);
@@ -284,7 +287,7 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 		return s;
 	}
 
-	private static java.util.Dictionary<Integer,JLabel> createLinearLabelTable(int min,int max) {
+	private static java.util.Dictionary<Integer,JLabel> createLinearLabelTable(int min, int max) {
 		java.util.Hashtable<Integer,JLabel> table = new java.util.Hashtable<>();
 		double[] ticks = new double[]{0.,1.00,2.,3.,4.,5.,6.,7.,8.,9.,10.};
 		for(double v:ticks){
@@ -302,7 +305,7 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 	}
 
 	// ---------- Helpers de synchro UI ----------
-	private void setUI(Channel ch,double v) {
+	private void setUI(Channel ch, double v) {
 		v = safe(v);
 		syncing = true;
 		ch.spinner.setValue(v);
@@ -327,7 +330,8 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 			// si changement significatif, on applique ET on logue
 			if(prev==null||Math.abs(prev-v)>EPS){
 				ch.set.accept(v); // écrit dans C_Parameters
-				A_Protocol.event("C_UserPanelEnergyLinearGrid","!!!!!! PATRIMONIAL WEIGHT CHANGED: "+ch.label+"("+ch.id+") "+v,false);
+				A_Protocol.event("C_UserPanelEnergyLinearGrid","!!!!!! PATRIMONIAL WEIGHT CHANGED: "+ch.label+"("+ch.id
+				        +") "+v,false);
 				lastApplied.put(ch.id,v);
 			}
 			// sinon: rien (pas de log, pas de réécriture)
@@ -395,11 +399,11 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 		}catch(IOException ioe){
 			ioe.printStackTrace();
 			JOptionPane.showMessageDialog(this,"Erreur de sauvegarde CSV: "+ioe.getMessage(),"Erreur",
-					JOptionPane.ERROR_MESSAGE);
+			        JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
-	private static double parseSafe(String s,double def) {
+	private static double parseSafe(String s, double def) {
 		try{
 			return Double.parseDouble(s);
 		}catch(Exception e){

@@ -19,7 +19,7 @@ public abstract class A_NDS implements I_CyberneticThing,I_LivingThing,Comparabl
 	/** Used as a unique identifier & used also to compare objects within sorts and treeSets - LeFur 2011 */
 	protected String myId = "0";
 	public double energy_Ukcal;
-	private String myName;
+	protected String myName;
 	protected final double birthDate_Utick;
 	protected double age_Utick = DEFAULT_AGE0_Utick;
 	protected double age_Uday = age_Utick/C_ConvertTimeAndSpace.oneDay_Utick;

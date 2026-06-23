@@ -112,14 +112,6 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 				this.landscape.moveToLocation(cell,cell.getCoordinate_Ucs());
 			}
 		}
-		// most occupied cells in red - jlf 02.2026
-		this.landscape.getValueLayer().set(11,47,89);
-		this.landscape.getValueLayer().set(11,48,89);
-		this.landscape.getValueLayer().set(11,48,90);
-		this.landscape.getValueLayer().set(11,49,90);
-		this.landscape.getValueLayer().set(11,56,100);
-		this.landscape.getValueLayer().set(11,57,102);
-		this.landscape.getValueLayer().set(11,62,112);
 	}
 	public void saveScreen() { /** // Uncomment lines below to slightly randomly move the mouse to avoid screen sleep
 	                            * mode (for recording printscreen) try { Robot robot = new Robot(); // Get the current

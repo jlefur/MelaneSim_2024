@@ -7,10 +7,11 @@ import data.converters.C_ConvertTimeAndSpace;
 import melanesim.C_ContextCreator;
 import thing.dna.I_DiploidGenome;
 
-public class C_Ship_cargo extends A_Animal implements I_ConstantPNMC,I_MarineActor {
+public class C_Ship_cargo extends A_Animal implements I_ConstantPNMC, I_MarineActor {
 	//
 	// FIELD
 	//
+	// TODO JLF 06.2026 GRAVE random generator not managed
 	private String destination = new java.util.Random().nextBoolean()?"NORTH":"SOUTH"; // au choix à l'initialisation
 	//
 	// CONSTRUCTOR
@@ -47,18 +48,16 @@ public class C_Ship_cargo extends A_Animal implements I_ConstantPNMC,I_MarineAct
 				this.computeNextMoveToTarget();
 				// add a slight random to moves
 				this.nextMove_Umeter.x += ((C_ContextCreator.randomGeneratorForMovement.nextDouble()*speed_UmeterByTick)
-						-(C_ContextCreator.randomGeneratorForMovement.nextDouble()*speed_UmeterByTick))/10.;
+				        -(C_ContextCreator.randomGeneratorForMovement.nextDouble()*speed_UmeterByTick))/10.;
 				this.nextMove_Umeter.y += ((C_ContextCreator.randomGeneratorForMovement.nextDouble()*speed_UmeterByTick)
-						-(C_ContextCreator.randomGeneratorForMovement.nextDouble()*speed_UmeterByTick))/10.;
+				        -(C_ContextCreator.randomGeneratorForMovement.nextDouble()*speed_UmeterByTick))/10.;
 				this.actionMove();
 			}
 		}
 	}
 	/** patch - récupère l'énergie enlevée par l'actionMove de super 12.2025 */
 	@Override
-	public void actionMove() { 
-		this.energy_Ukcal++; 
-		super.actionMove(); }
+	public void actionMove() { this.energy_Ukcal++; super.actionMove(); }
 	/** Initialize speed and sensing using time and space conversion<br>
 	 * override retrieve speed from genome @see NB: can be used standalone if users parameters are changed during
 	 * simulation<br>
@@ -66,10 +65,10 @@ public class C_Ship_cargo extends A_Animal implements I_ConstantPNMC,I_MarineAct
 	 * @author lefur 2025.10 */
 	@Override
 	public void initParameters() {
-		Random rand = new Random();
+		Random rand = new Random();// TODO JLF 06.2026 GRAVE random generator not managed
 		double speed_UmeterByDay = 1852.*24.*rand.nextDouble(10.)+1.;// speed = 1-10 milles/heure (10 noeuds) TODO
-																		// number in
-																		// source 2025 speed = 10
+		                                                             // number in
+		                                                             // source 2025 speed = 10
 		// noeuds
 		this.speed_UmeterByTick = speed_UmeterByDay/C_ConvertTimeAndSpace.oneDay_Utick;
 	}
@@ -80,8 +79,8 @@ public class C_Ship_cargo extends A_Animal implements I_ConstantPNMC,I_MarineAct
 	// SOUTH: 225, 0 -> 272, 0
 	// NOUMEA: 231, 94 -> 272, 0
 	public void setNewTarget() {
-		int min,max,column;
-		Random rand = new Random();
+		int min, max, column;
+		Random rand = new Random();// TODO JLF 06.2026 GRAVE random generator not managed
 		if(this.destination.equals("NORTH")){
 			this.destination = "SOUTH";
 			min = 225;
