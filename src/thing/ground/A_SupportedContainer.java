@@ -55,7 +55,7 @@ public abstract class A_SupportedContainer extends C_SoilCell {
 	 * same as A_NDS since C_Soilcell do not check death
 	 * @see A_NDS#checkDeath */
 	public void checkDeath(double deathProbability) {
-		if (C_ContextCreator.randomGeneratorForDeathProb.nextDouble() <= deathProbability) this.dead = true;
+		if (C_ContextCreator.randomGeneratorForDeathProb.nextDouble() <= deathProbability) this.setDead(true);
 	}
 	//
 	// GETTER AND SETTER

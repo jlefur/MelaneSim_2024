@@ -66,10 +66,8 @@ public class C_Ship_cargo extends A_Animal implements I_ConstantPNMC, I_MarineAc
 	@Override
 	public void initParameters() {
 		Random rand = new Random();// TODO JLF 06.2026 GRAVE random generator not managed
-		double speed_UmeterByDay = 1852.*24.*rand.nextDouble(10.)+1.;// speed = 1-10 milles/heure (10 noeuds) TODO
-		                                                             // number in
-		                                                             // source 2025 speed = 10
-		// noeuds
+		double speed_UmeterByDay = 1852.*24.*rand.nextDouble(10.)+1.;// speed = 1-10 milles/heure (10 noeuds) 
+		//TODO JLF 06.2025 number in source ships speed = 10 noeuds
 		this.speed_UmeterByTick = speed_UmeterByDay/C_ConvertTimeAndSpace.oneDay_Utick;
 	}
 	//

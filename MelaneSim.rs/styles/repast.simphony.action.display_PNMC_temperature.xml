@@ -7,11 +7,19 @@
 			<string>repast.simphony.visualization.editedStyle.EditedStyle2D
 			</string>
 		</entry>
+		<entry>
+			<string>thing.C_Megaptera</string>
+			<string>presentation.display.C_StyleAgent</string>
+		</entry>
 	</styles>
 	<editedStyles>
 		<entry>
 			<string>presentation.display.C_Background</string>
 			<string>presentation.display.C_Background.style_PNMC.temperature.xml</string>
+		</entry>
+		<entry>
+			<string>thing.C_Megaptera</string>
+			<null />
 		</entry>
 	</editedStyles>
 	<netStyles />
@@ -31,6 +39,10 @@
 	<layoutProjection>space</layoutProjection>
 	<layoutInterval>0</layoutInterval>
 	<layerOrder>
+		<entry>
+			<string>presentation.display.C_Background</string>
+			<int>1</int>
+		</entry>
 		<entry>
 			<string>presentation.display.C_Background</string>
 			<int>0</int>

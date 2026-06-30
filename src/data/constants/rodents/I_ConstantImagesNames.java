@@ -12,6 +12,9 @@ public interface I_ConstantImagesNames {
 	public static final String MICRONEKTON_ICON = "../NEKTON";
 	public static final String SHIP_CARGO_NORTHWARD_ICON = "../SHIP_CARGO_NORTHWARD";
 	public static final String SHIP_CARGO_SOUTHWARD_ICON = "../SHIP_CARGO_SOUTHWARD";
+	public static final String WHALE_MALE_ICON = "../whaleMale";
+	public static final String WHALE_FEMALE_ICON = "../whaleFemale";
+	public static final String WHALE_CALF_ICON = "../whaleCalf";
 	// PNMC - surface current direction	
 	public static final String NORTH_ICON = "../arrows/NORTH";
 	public static final String NORTH_EAST_ICON = "../arrows/NORTH_EAST";
@@ -29,7 +32,7 @@ public interface I_ConstantImagesNames {
 	public static final String NEKTON_ICON = "../sliders/necton";
 	public static final String SHIP_ICON = "../sliders/ship";
 	public static final String FISHER_ICON = "../sliders/fisher";
-	public static final String WHALE_ICON = "../sliders/whale";
+	public static final String WHALE_ICON = "../sliders/whaleMale";
 	public static final String TUNA_ICON = "../sliders/tuna";
 	public static final String SMALL_PELAGIC_ICON = "../sliders/small_pelagic";
 	public static final String POLLUTION_ICON = "../sliders/sewage";

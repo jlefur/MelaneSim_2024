@@ -33,7 +33,7 @@ public abstract class A_NDS implements I_CyberneticThing,I_LivingThing,Comparabl
 		this.myId = String.valueOf(C_ContextCreator.AGENT_NUMBER);
 		this.setMyName(C_VariousUtilities.getShortClassName(this.getClass())+"_"+this.myId);
 		this.birthDate_Utick = RepastEssentials.GetTickCount();
-		this.dead = false;// used to avoid concurrent modification exception in inspector's rodent list
+		this.setDead(false);// used to avoid concurrent modification exception in inspector's rodent list
 		this.age_Utick = DEFAULT_AGE0_Utick;
 		this.age_Uday = age_Utick/C_ConvertTimeAndSpace.oneDay_Utick;
 		this.energy_Ukcal = INITIAL_ENERGY_Ukcal;
@@ -74,7 +74,7 @@ public abstract class A_NDS implements I_CyberneticThing,I_LivingThing,Comparabl
 	}
 	/** set Dead if random number is lower than death probability passed in arg */
 	public void checkDeath(double deathProbability) {
-		if(C_ContextCreator.randomGeneratorForDeathProb.nextDouble()<=deathProbability) this.dead = true;
+		if(C_ContextCreator.randomGeneratorForDeathProb.nextDouble()<=deathProbability) this.setDead(true);
 	}
 	@Override
 	public String toString() { return this.myName; }

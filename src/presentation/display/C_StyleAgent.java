@@ -19,6 +19,7 @@ import thing.A_Amniote;
 import thing.A_Animal;
 import thing.A_NDS;
 import thing.A_VisibleAgent;
+import thing.C_Megaptera;
 import thing.C_Nekton;
 import thing.C_Plankton;
 import thing.C_Ship_cargo;
@@ -68,6 +69,9 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 		factory.registerImage(MICRONEKTON_ICON, selectImg.loadImage(MICRONEKTON_ICON));
 		factory.registerImage(SHIP_CARGO_NORTHWARD_ICON, selectImg.loadImage(SHIP_CARGO_NORTHWARD_ICON));
 		factory.registerImage(SHIP_CARGO_SOUTHWARD_ICON, selectImg.loadImage(SHIP_CARGO_SOUTHWARD_ICON));
+		factory.registerImage(WHALE_MALE_ICON, selectImg.loadImage(WHALE_MALE_ICON));
+		factory.registerImage(WHALE_FEMALE_ICON, selectImg.loadImage(WHALE_FEMALE_ICON));
+		factory.registerImage(WHALE_CALF_ICON, selectImg.loadImage(WHALE_CALF_ICON));
 		factory.registerImage(NORTH_ICON, selectImg.loadImage(NORTH_ICON));
 		factory.registerImage(NORTH_EAST_ICON, selectImg.loadImage(NORTH_EAST_ICON));
 		factory.registerImage(EAST_ICON, selectImg.loadImage(EAST_ICON));
@@ -350,6 +354,10 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 			else if (object instanceof C_Ship_cargo) {
 				if (((A_SupportedContainer) object).isa_Tag()) sscale = sscale * 17;
 				else sscale = sscale * 7;
+			}
+			else if (object instanceof C_Megaptera) {
+				if (((A_SupportedContainer) object).isa_Tag()) sscale = sscale * 17;
+				else sscale = sscale * 6;
 			}
 			else if (object instanceof A_HumanUrban) {
 				if (((A_HumanUrban) object).isa_Tag()) sscale = sscale * 5;

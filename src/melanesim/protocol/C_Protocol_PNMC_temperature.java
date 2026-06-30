@@ -44,7 +44,7 @@ public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_ships {
 	 * cells DATE EVENT X Y EVENT VALUES_1 VALUES_2 VALUES_3 17/07/2021 168.063 -23.406 Megaptera 2018-34350 F:J 00:13
 	 * 09/11/2016 -14.431 16.4853 Human H0101_Ismaïla_S M:33:FALSE */
 	public void manageOneEvent(C_Event event) {
-		// convert coordinates from degree to cell if any
+		// Convert coordinates from degree to cell if any
 		Coordinate coordinateCell_Ucs = null;
 		if(event.whereX_Ucell==null){// then: 1) suppose that y is also null, 2) double are values in decimal degrees
 			coordinateCell_Ucs = this.geographicCoordinateConverter.convertCoordinate_Ucs(event.whereX_Udouble,
@@ -52,7 +52,7 @@ public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_ships {
 			event.whereX_Ucell = (int)coordinateCell_Ucs.x;
 			event.whereY_Ucell = (int)coordinateCell_Ucs.y;
 		}
-		// check if event withih the domain
+		// Check if event within the domain
 		if(coordinateCell_Ucs==null) coordinateCell_Ucs = new Coordinate(event.whereX_Ucell,event.whereY_Ucell);
 		Dimension dim = this.landscape.getDimension_Ucell();
 		if((coordinateCell_Ucs.x<dim.getWidth())&&(coordinateCell_Ucs.y<dim.getHeight())){
@@ -116,6 +116,23 @@ public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_ships {
 		// A female and calf in competitor group -> 1 female + 1 young (sex random) + 2 males
 		// I female and calf -> 1 female + 1 young (sex random)
 		// B escort of a female and calf -> 1 female + 2 males
-
+		String sex = oneWhale.testMale()?"M":"F";
+		String alterSex = sex.equals("M")?"F":"M";
+		C_Megaptera otherWhale;
+		C_SoilCellMarine homeCell;
+		switch(groupCode){
+			case "K":// K pair -> 1 male, 1 female
+				otherWhale = new C_Megaptera(oneWhale.retrieveMyName()+"bis",alterSex);
+				homeCell = (C_SoilCellMarine)oneWhale.getCurrentSoilCell();
+				otherWhale.setMyHome(oneWhale.getCurrentSoilCell());
+				contextualizeNewThingInContainer(oneWhale,homeCell);
+				break;
+			case "D":// D group of 4 -> 1 female + 3 males
+				otherWhale = new C_Megaptera(oneWhale.retrieveMyName()+"bis",alterSex);
+				homeCell = (C_SoilCellMarine)oneWhale.getCurrentSoilCell();
+				otherWhale.setMyHome(oneWhale.getCurrentSoilCell());
+				contextualizeNewThingInContainer(oneWhale,homeCell);
+				break;
+		}
 	}
 }

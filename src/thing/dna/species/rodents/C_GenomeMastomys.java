@@ -20,7 +20,11 @@ public class C_GenomeMastomys extends C_GenomeAmniota {
 	 * observed in the field and in captivity. Mammalia, 60(4): 629-638. */
 	public C_GenomeMastomys() {
 		super();
-		this.alleles.put(WEANING_AGE_Uday, 21.);// source:3 weeks for genus Mastomys [Duplantier et al. 1996]
+		alleles.put(SEXUAL_MATURITY_Uday, 84.); // source: 12 weeks 
+		alleles.put(LITTER_SIZE, 8.); // source: 12 embryos
+		alleles.put(MATING_LATENCY_Uday, 40.); // source: 
+		alleles.put(GESTATION_LENGTH_Uday, 21.);
+		this.alleles.put(WEANING_AGE_Uday, 21.);// source:
 		makeAmniotaBivalent(this.alleles);
 	}
 	/** Returns a new GenomeMNalatensis. This method is used for genome mate.
