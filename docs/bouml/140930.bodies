@@ -1,0 +1,219 @@
+class C_OrnitodorosSonrai
+!!!344962.java!!!	C_OrnitodorosSonrai(inout genome : I_DiploidGenome)
+        super(genome);
+        this.hibernationDuration_Uday = 0.;
+        this.curMealDuration_Umn = 0.;
+        this.hasEaten = false;
+        this.curGestationLength_Uday = 0.;
+        this.curMatingLatency_Uday = MATING_LATENCY_DURATION_Uday;
+        this.eggList = new TreeSet<C_Egg>();
+        this.setBiteNumber(0);
+!!!345090.java!!!	perception() : I_SituatedThing
+        if (this.getCurrentSoilCell() instanceof C_BurrowSystem) {
+            TreeSet<I_SituatedThing> burrowOccupants = (TreeSet<I_SituatedThing>) this.getCurrentSoilCell().getOccupantList().clone();
+            burrowOccupants.remove(this);
+            return burrowOccupants;
+        }
+        TreeSet<I_SituatedThing> perceivedThings = super.perception();
+        // TODO JLF&MS 2020.09 generalize obstacle perception ?
+        TreeSet<I_SituatedThing> reallyPerceivedThings = new TreeSet<I_SituatedThing>();
+        for (I_SituatedThing oneThing : perceivedThings) {
+            I_SituatedThing sightObstacle = C_VariousUtilities.checkObstacleBefore0(this, oneThing);
+            if (!(sightObstacle != null && sightObstacle != oneThing)) reallyPerceivedThings.add(oneThing);
+        }
+        return reallyPerceivedThings;
+!!!345218.java!!!	deliberation(inout perceivedThings : TreeSet<I_SituatedThing>) : I_SituatedThing
+        TreeSet<I_SituatedThing> selectedThings = new TreeSet<I_SituatedThing>();
+        if (!perceivedThings.isEmpty()) {
+            if (this.getDesire().equals(HIDE)) selectedThings = this.chooseShelter(perceivedThings);
+            else if (this.getDesire().equals(REPRODUCE)) {
+                selectedThings = this.choosePartner(perceivedThings);
+                if (selectedThings.isEmpty() && this.hibernationDuration_Uday >= STARVING_DURATION_Uday) this.setDesire(FEED);
+            }
+            else if (this.getDesire().equals(FEED)) selectedThings = super.deliberation(perceivedThings);
+        }
+        return selectedThings;
+!!!345346.java!!!	step_Utick() : void
+        this.updatePhysiologicStatus();
+        super.step_Utick();
+!!!345474.java!!!	chooseFood(inout perceivedThings : TreeSet<I_SituatedThing>) : I_SituatedThing
+        TreeSet<I_SituatedThing> perceivedRodents = new TreeSet<I_SituatedThing>();
+        for (I_SituatedThing oneThing : perceivedThings)
+            if (oneThing instanceof C_Rodent) perceivedRodents.add(oneThing);
+        return perceivedRodents;
+!!!345602.java!!!	chooseShelter(inout perceivedThings : TreeSet<I_SituatedThing>) : I_SituatedThing
+        TreeSet<I_SituatedThing> selectedShelters = new TreeSet<I_SituatedThing>();
+        for (I_SituatedThing oneShelter : perceivedThings)
+            if ((oneShelter instanceof C_BurrowSystem && (oneShelter.getCurrentSoilCell().getAffinity() != STREET_AFFINITY)) || this.isSightObstacle(oneShelter))
+                selectedShelters.add(oneShelter);
+        if (selectedShelters.size() != 0) return selectedShelters;
+        return super.chooseShelter(perceivedThings);
+!!!345730.java!!!	processTarget() : boolean
+        if (this.target instanceof C_Rodent && this.getDesire().equals(FEED) && !this.getStasis().equals(EGG))
+            // if (!A_Protocol.protocolCalendar.isDawn() && !A_Protocol.protocolCalendar.isDayTime())
+            return actionEat();
+        if (this.getDesire().equals(REPRODUCE) && this.target instanceof C_OrnitodorosSonrai) {
+            if (this.isreadyToMate() && this.canMateWith((A_Animal) this.target)) {
+                if (this.testFemale()) {
+                    this.curMatingLatency_Uday = 0.;
+                    return this.actionMateWithMale((I_ReproducingThing) this.target);
+                }
+                else {
+                    ((C_OrnitodorosSonrai) this.target).curMatingLatency_Uday = 0.;
+                    return ((C_OrnitodorosSonrai) this.target).actionMateWithMale(this);
+                }
+            }
+            else return true;
+        }
+        else if (this.getDesire().equals(HIDE)) return this.actionHide();
+        return super.processTarget();
+!!!345858.java!!!	actionMateWithMale(inout male : I_ReproducingThing) : boolean
+        I_DiploidGenome eggGenome;
+        C_GenomeAcaria maleParentGenome = (C_GenomeAcaria) ((A_Animal) male).getGenome();
+        C_GenomeAcaria FemaleParentGenome = (C_GenomeAcaria) this.genome;
+        // generate LITTER_SIZE zygotes (fusion, cross-over (& mutation)) from the mother and father
+        int litterSize = FemaleParentGenome.getLitterSizeValue();
+        for (int i = 0; i < litterSize; i++) {
+            eggGenome = this.genome.mateGenomes(0, maleParentGenome);
+            // If one of the microsatelite of the genome of the egg contains the Lethal_Allele (for a reason or an other). The egg
+            // is killed. Then, the size of the litter will be smaller.
+            if (((C_GenomeEucaryote) eggGenome).getMicrosatXsome().getAlleles().contains(C_GenomeEucaryote.LETHAL_ALLELE))
+                if (C_Parameters.VERBOSE) A_Protocol.event("A_Mammal.actionMateWithMale", "EGG NIPPED IN THE BUD :'(", isNotError);
+                else this.eggList.add(new C_Egg(eggGenome));
+        }
+        if (!this.eggList.isEmpty()) {
+            this.setDesire("");
+            return true;
+        }
+        return false;
+!!!345986.java!!!	actionNoChoice() : void
+        if (this.inDangerousArea()) this.actionDisperse();
+        // else super.actionNoChoice();
+!!!346114.java!!!	actionEat() : boolean
+        this.setBiteNumber(biteNumber + 1);
+        if (this.isInfected()) this.actionInfect(this.target);
+        if (this.target.isInfected()) this.target.actionInfect(this);
+        this.setTrappedOnBoard(true);
+        C_ContextCreator.protocol.contextualizeOldThingInCell(this, (I_Container) this.target);
+        resetCurMealDuration_Umn();
+        this.setDesire(NONE);
+        this.hasEaten = true;
+        return super.actionEat();
+!!!346242.java!!!	actionHide() : boolean
+        if (!(this.target instanceof C_BurrowSystem)) this.actionDisperse();
+        else {
+            this.actionEnterContainer((I_Container) this.target);
+            this.setDesire("");
+        }
+        return true;
+!!!346370.java!!!	giveBirth(inout genome : I_DiploidGenome) : A_Animal
+        return new C_OrnitodorosSonrai(genome);
+!!!346498.java!!!	isSightObstacle(inout thing : I_SituatedThing) : boolean
+        if (thing instanceof C_SoilCellUrban && ((C_SoilCellUrban) thing).isWall()) return true;
+        else return super.isSightObstacle(thing);
+!!!346626.java!!!	perceivedPrey(inout perceivedThings : TreeSet<I_SituatedThing>) : boolean
+        for (I_SituatedThing oneTick : perceivedThings)
+            if (oneTick instanceof C_RodentDomestic2) return true;
+        return false;
+!!!346754.java!!!	updatePhysiologicStatus() : void
+        this.updateStasis();
+        // this.setBiteNumber(0);// TODO MS 2020.09 H0 a tick cannot bite more than once during a time step
+        if (this.isTrappedOnBoard()) {
+            this.curMealDuration_Umn -= oneDay_Umn / C_ConvertTimeAndSpace.oneDay_Utick;
+            if (this.curMealDuration_Umn <= 0.) {
+                if ((this.getCurrentSoilCell() instanceof C_RodentDomestic2))
+                    C_ContextCreator.protocol.contextualizeOldThingInCell(this, this.getCurrentSoilCell().getCurrentSoilCell());
+                this.setTrappedOnBoard(false);
+                if (!(this.getCurrentSoilCell() instanceof C_BurrowSystem)) this.setDesire(HIDE);
+                this.hibernationDuration_Uday = 0.;
+            }
+        }
+        else {
+            if (this.canSpawn() && (this.currentSoilCell instanceof C_BurrowSystem)) this.actionSpawn();
+            if (this.isreadyToMate()) this.setDesire(REPRODUCE);
+            if (!this.getStasis().equals(EGG)) this.hibernationDuration_Uday += 1 / C_ConvertTimeAndSpace.oneDay_Utick;
+            if (this.hibernationDuration_Uday >= STARVING_DURATION_Uday) {
+                if (this.getDesire() != FEED) this.setDesire(FEED);
+                if (this.hasEaten) this.hasEaten = false;
+            }
+        }
+        if (this.isPregnant()) this.curGestationLength_Uday += 1 / C_ConvertTimeAndSpace.oneDay_Utick;
+        else if (this.getStasis().equals(ADULT) && !this.isreadyToMate()) this.curMatingLatency_Uday += 1 / C_ConvertTimeAndSpace.oneDay_Utick;
+        if (this.inDangerousArea()) this.setDesire(HIDE);
+!!!346882.java!!!	choosePartner(inout perceivedThings : TreeSet<I_SituatedThing>) : I_SituatedThing
+        TreeSet<I_SituatedThing> perceivedPartner = new TreeSet<I_SituatedThing>();
+        for (I_SituatedThing oneThing : perceivedThings)
+            if (oneThing instanceof C_OrnitodorosSonrai && ((C_OrnitodorosSonrai) oneThing).isreadyToMate()) perceivedPartner.add(oneThing);
+        return perceivedPartner;
+!!!347010.java!!!	updateStasis() : void
+        if (this.getStasis().equals(EGG)) {
+            if (this.getAge_Uday() >= EGG_STASIS_DURATION_Uday) {
+                this.setStasis(LARVAE);
+                this.setDesire(FEED);
+            }
+        }
+        else if (this.getStasis().equals(LARVAE)) {
+            if (this.getAge_Uday() >= LARVAE_STASIS_DURATION_Uday) this.setStasis(NYMPH);
+        }
+        else if (this.getStasis().equals(NYMPH)) {
+            if (this.getAge_Uday() >= NYMPH_STASIS_DURATION_Uday && this.hasEaten) this.setStasis(ADULT);//
+        }
+!!!347138.java!!!	actionSpawn() : void
+        for (C_Egg egg : this.eggList) {
+            A_Animal child = this.giveBirth(egg.getGenome());
+            myLandscape.addChildAgent(this, child);
+            child.setDesire(NONE);// used to bypass activity steps
+            child.setMyName(child.retrieveMyName());
+            child.setHasToSwitchFace(true);
+            child.setAge_Uday(0.);
+            ((C_OrnitodorosSonrai) child).setStasis(EGG);
+            this.energy_Ukcal--;
+        }
+        this.eggList.clear();
+        this.curGestationLength_Uday = 0.;
+!!!347266.java!!!	resetCurMealDuration_Umn() : void
+        this.curMealDuration_Umn = MEAL_DURATION_Umn;
+!!!347394.java!!!	inDangerousArea() : boolean
+        int affinity = 0;
+        if (this.getCurrentSoilCell() instanceof C_BurrowSystem) affinity = this.getCurrentSoilCell().getCurrentSoilCell().getAffinity();
+        else affinity = this.getCurrentSoilCell().getAffinity();
+        if (affinity == ROAD_AFFINITY || affinity == STREET_AFFINITY || affinity == TRACK_AFFINITY || affinity == MARKET_AFFINITY) return true;
+        return false;
+
+!!!347522.java!!!	setStasis(in stasis : String) : void
+        this.stasis = stasis;
+!!!347650.java!!!	setRandomAge() : void
+        long randAge_Uday = Math.round(((C_GenomeAcaria) this.genome).getMaxAge_Uday() / 2 * C_ContextCreator.randomGeneratorForInitialisation
+                .nextDouble());
+        this.setAge_Uday(randAge_Uday);
+        if (this.getAge_Uday() < EGG_STASIS_DURATION_Uday) {
+            this.setStasis(EGG);
+            this.setDesire(FEED);
+        }
+        else if (this.getAge_Uday() < LARVAE_STASIS_DURATION_Uday) this.setStasis(LARVAE);
+        else if (this.getAge_Uday() < NYMPH_STASIS_DURATION_Uday) this.setStasis(NYMPH);
+        else this.setStasis(ADULT);
+!!!347778.java!!!	setBiteNumber(in biteNumber : int) : void
+        this.biteNumber = biteNumber;
+!!!347906.java!!!	isreadyToMate() : boolean
+        return (!this.isPregnant() && (this.getStasis() == ADULT) && (this.curMatingLatency_Uday >= MATING_LATENCY_DURATION_Uday));
+!!!348034.java!!!	isPregnant() : boolean
+        return (this.eggList.size() != 0);
+!!!348162.java!!!	getStasis() : String
+        return this.stasis;
+!!!348290.java!!!	canSpawn() : boolean
+        if (isPregnant() && (this.curGestationLength_Uday > GESTATION_DURATION_Uday) && this.hasEaten) return true;
+        return false;
+!!!348418.java!!!	canMateWith(inout oneTick : A_Animal) : boolean
+        if (oneTick.getGenome().getClass() == this.genome.getClass())
+            if (!this.haveSameSex(oneTick) && ((C_OrnitodorosSonrai) oneTick).isreadyToMate()) return true;
+        return false;
+!!!348546.java!!!	haveSameSex(inout oneTick : A_Animal) : boolean
+        if ((this.testFemale() && oneTick.testFemale()) || (this.testMale() && oneTick.testMale())) return true;
+        return false;
+!!!348674.java!!!	getCurrentMealDuration() : double
+        return this.curMealDuration_Umn;
+!!!348802.java!!!	getHibernationDuration_Uday() : double
+        return this.hibernationDuration_Uday;
+!!!348930.java!!!	getBiteNumber() : int
+        return this.biteNumber;

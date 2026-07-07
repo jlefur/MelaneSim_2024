@@ -1,0 +1,7 @@
+class C_RodentMastoErySimple
+!!!360066.java!!!	C_RodentMastoErySimple(inout genome : I_DiploidGenome)
+		super(genome);
+!!!360194.java!!!	giveBirth(inout genome : I_DiploidGenome) : A_Animal
+		return new C_RodentMastoErySimple(genome);
+!!!360322.java!!!	actionTryBoardingContainer(inout vehicle : C_Vehicle) : boolean
+		return false;

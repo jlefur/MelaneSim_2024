@@ -1,0 +1,221 @@
+class A_Amniote
+!!!268802.java!!!	A_Amniote(inout genome : I_DiploidGenome)
+		super(genome);
+		preMature = false;
+		sexualMature = false;
+		readyToMate = false;
+		// if (this.testFemale()) {
+		curMatingLatency_Uday = -1; // TODO number in source OK 2017.09 JLF curMatingLatency_Uday = -1
+		curGestationLength_Uday = -1.; // TODO number in source OK 2015.08 JLF gestation length = -1
+		eggList = new TreeSet<C_Egg>();
+		numMatings = 0;// TODO number in source OK 2015.08 JLF
+!!!268930.java!!!	setRandomAge() : void
+		long randAge_Uday = Math.round(((C_GenomeAmniota) this.genome).getWeaningAge_Uday()
+				+ (C_ContextCreator.randomGeneratorForInitialisation.nextDouble() * ((C_GenomeAmniota) this.genome)
+						.getSexualMaturity_Uday()));
+		this.setAge_Uday(randAge_Uday);
+!!!269058.java!!!	discardThis() : void
+		for (C_Egg oneEgg : this.eggList) oneEgg.discardThis();
+		this.eggList = null;
+		if (!this.getChildren().isEmpty()) for (A_Animal child : this.getChildren()) child.discardTarget();
+		super.discardThis();
+!!!269186.java!!!	step_Utick() : void
+		if (!this.isDead()) {
+
+			this.updatePhysiologicStatus();
+
+			if (this.isSexualMature()) {
+				TreeSet<A_Amniote> children = this.getChildren();
+				// Suckle children if needed
+				if (!children.isEmpty()) {
+					// if foraging, and not targeting particular food..., return to sucklings' cell
+					I_Container nest = this.getChildren().first().getCurrentSoilCell();
+					if (this.currentSoilCell != nest) {
+						if (this.target == null) this.setTarget(nest);
+					}
+					else this.actionParentSuckle();
+				}
+				// else check REPRODUCTION desire
+				else if (this.getDesire().equals(FEED) || this.getDesire() == "") {
+					if (this.isReadyToMate() && A_Protocol.isBreedingSeason()) this.setDesire(REPRODUCE);
+					// End of reproduction season
+				}
+				if (!A_Protocol.isBreedingSeason() && this.getDesire().equals(REPRODUCE)) this.setDesire("");
+			}
+			super.step_Utick();
+		}
+!!!269314.java!!!	updatePhysiologicStatus() : void
+		double oneTick_Uday = 1. / C_ConvertTimeAndSpace.oneDay_Utick;
+		// Sexual mature
+		if (this.getAge_Uday() >= ((C_GenomeAmniota) this.genome).getSexualMaturity_Uday()) {
+			if (!this.isSexualMature()) {
+				this.sexualMature = true;
+				this.hasToSwitchFace = true;
+			}
+			this.curMatingLatency_Uday -= oneTick_Uday;
+			if (this.curMatingLatency_Uday <= 0) {
+				this.curMatingLatency_Uday = 0;
+				this.readyToMate = true;
+			}
+			// Premature -> sexualMature
+			if (this.preMature) {
+				this.preMature = false;
+				this.hasToSwitchFace = true;
+			}
+			if (this.isPregnant()) {
+				this.curGestationLength_Uday -= oneTick_Uday;
+				this.readyToMate = false;
+				// End of pregnancy
+				if ((this.curGestationLength_Uday <= 0.) && (this.canSpawn())) {
+					this.actionSpawn();
+					this.setTarget(this.currentSoilCell);// Remain in the place for suckling (children are trapped on board)
+					this.curMatingLatency_Uday = ((C_GenomeAmniota) this.genome).getMatingLatency_Uday();
+					this.hasToSwitchFace = true;
+				}
+			}
+		}
+		// Suckler -> premature
+		else if (this.getAge_Uday() >= ((C_GenomeAmniota) this.genome).getWeaningAge_Uday() && !this.preMature) {
+			this.preMature = true;
+			this.hasToLeaveFullContainer = true;
+			this.setDesire("");// Can now deliberate and move JLF 01.2017, 08.2017
+			if (this.target != null && this.target instanceof A_Amniote) this.discardTarget();// Do not target mother anymore
+		}
+!!!269442.java!!!	canSpawn() : boolean
+		return true;
+!!!269570.java!!!	deliberation(inout perceivedThings : TreeSet<I_SituatedThing>) : I_SituatedThing
+		if (this.getDesire().equals(REPRODUCE)) {
+			TreeSet<I_SituatedThing> candidateTargets = this.choosePartner(perceivedThings);
+			// If no partner, then forage
+			if (candidateTargets.isEmpty()) {
+				this.setDesire(FEED);
+				return super.deliberation(perceivedThings);
+			}
+			else return candidateTargets;
+		}
+		else return super.deliberation(perceivedThings);
+!!!269698.java!!!	choosePartner(inout perceivedThings : TreeSet<I_SituatedThing>) : I_SituatedThing
+		TreeSet<I_SituatedThing> candidateTargets = new TreeSet<I_SituatedThing>();// There may be several equivalent targets
+		for (I_SituatedThing oneThingPerceived : perceivedThings) {
+			// Compatible if same species,ready to mate, other sex (JLF 03.2018)
+			if (oneThingPerceived instanceof A_Amniote) {
+				A_Amniote other = (A_Amniote) oneThingPerceived;
+				if (other.getGenome().getClass() == this.genome.getClass())
+					if (!this.sameSex(other) && other.isReadyToMate()) candidateTargets.add(other);
+			}
+		}
+		return candidateTargets;
+!!!269826.java!!!	processTarget() : boolean
+		if (this.target instanceof A_Amniote) return this.actionInteract((A_Amniote) this.target);
+		else return super.processTarget();
+!!!269954.java!!!	actionParentSuckle() : boolean
+		for (A_Amniote child : this.getChildren()) {
+			child.energy_Ukcal++;
+			this.energy_Ukcal--;
+		}
+		if (!this.getDesire().equals(NONE)) {
+			this.setDesire(FEED);// desire = feed after suckling
+			this.actionDisperse();// could be actionWander() also
+		}
+		return true;
+!!!270082.java!!!	actionMateWithMale(inout male : I_ReproducingThing) : boolean
+		C_Egg oneEgg;
+		I_DiploidGenome eggGenome;
+		C_GenomeAmniota maleParentGenome = (C_GenomeAmniota) ((A_Animal) male).getGenome();
+		C_GenomeAmniota thisFemaleParentGenome = (C_GenomeAmniota) this.genome;
+		// generate LITTER_SIZE zygotes (fusion, cross-over (& mutation)) from the mother and father
+		int litterSize = thisFemaleParentGenome.getLitterSizeValue();
+		// Make litter size dependent on ground carrying capacity JLF 03.2019
+		litterSize = Math.min(this.getCurrentSoilCell().getCarryingCapacity_Urodent() - this.getCurrentSoilCell()
+				.retrieveFullLoad_Urodent(), litterSize);
+		litterSize = Math.max(litterSize, 1);
+		for (int i = 0; i < litterSize; i++) {
+			eggGenome = this.genome.mateGenomes(0, maleParentGenome);
+			// If one of the microsatelite of the genome of the egg contains the Lethal_Allele (for a reason or an other). The egg
+			// is killed. Then, the size of the litter will be smaller.
+			if (((C_GenomeEucaryote) eggGenome).getMicrosatXsome().getAlleles().contains(
+					C_GenomeEucaryote.LETHAL_ALLELE)) {
+				if (C_Parameters.VERBOSE)
+					A_Protocol.event("A_Mammal.actionMateWithMale", "EGG NIPPED IN THE BUD :'(", isNotError);
+				hybridInspector.incrPbNippedEgg();
+			}
+			else {
+				oneEgg = new C_Egg(eggGenome);
+				C_ContextCreator.protocol.contextualizeNewThingInContainer(oneEgg, this);
+				eggList.add(oneEgg);
+			}
+		}
+		this.setPregnant();
+		if (C_Parameters.VERBOSE)
+			A_Protocol.event("A_Amniote.actionMateWithMale()", "MATE event: " + this + " X " + male + " at "
+					+ this.currentSoilCell, isNotError);
+		this.energy_Ukcal--;
+		return true;
+!!!270210.java!!!	actionSpawn() : void
+		if (!testFemale()) A_Protocol.event("A_Amniote.spawn", this + "is not a female", isError);
+		for (C_Egg egg : this.eggList) {
+			A_Animal child = this.giveBirth(egg.genome);
+			// Remove useless egg
+			A_VisibleAgent.myLandscape.moveToContainer(egg, this.currentSoilCell);
+			egg.setDead(true);
+			// Configure child
+			child.trappedOnBoard = this.trappedOnBoard;// e.g., birth within a truck
+			if (C_Parameters.VERBOSE && child.trappedOnBoard) {
+				A_Protocol.event("A_Amniote.actionSpawn", child + ", is born trapped on board in: " + this
+						.getCurrentSoilCell(), isNotError);
+			}
+			A_Amniote.myLandscape.addChildAgent(this, child);
+			child.setDesire(NONE);// used to bypass activity steps
+			child.setTarget(this);// used to retrieve its children JLF 09.2017
+			child.setHasToSwitchFace(true);
+			this.energy_Ukcal--;
+		}
+		if (C_Parameters.VERBOSE)
+			A_Protocol.event("A_Amniote.actionSpawn()", "SPAWN event: " + this + " spawned " + this.eggList.size()
+					+ " children at " + this.getCurrentSoilCell(), isNotError);
+		this.eggList.clear();
+!!!270338.java!!!	setPregnant() : void
+		this.curGestationLength_Uday = ((C_GenomeAmniota) this.genome).getGestationLength_Uday();// start the countdown
+		this.readyToMate = false;
+		this.hasToSwitchFace = true;
+		// Remove possible suitors
+		for (A_Animal oneAnimal : this.animalsTargetingMe) if (oneAnimal.getClass() == this.getClass())
+			oneAnimal.target = null;
+		this.animalsTargetingMe.clear();
+		// Remove own target
+		if (this.target != null && this.target.getClass() == this.getClass()) this.discardTarget();
+		this.setDesire(FEED);// once pregnant, forages until spawning JLF 2017.08
+!!!270466.java!!!	sameSex(inout other : A_Amniote) : boolean
+		if (this.testMale()) {
+			if (other.testMale()) return true;
+			else return false;
+		}
+		else {// Female
+			if (other.testMale()) return false;
+			else return true;
+		}
+!!!270594.java!!!	getChildren() : A_Amniote
+		TreeSet<A_Amniote> children = new TreeSet<A_Amniote>();
+		for (A_Animal oneAnimal : this.animalsTargetingMe) if (oneAnimal instanceof A_Amniote)
+			if (((A_Amniote) oneAnimal).isSucklingChild()) {
+				children.add((A_Amniote) oneAnimal);
+			}
+		return children;
+!!!270722.java!!!	getCurGestationLength_Uday() : double
+		return curGestationLength_Uday;
+!!!270850.java!!!	getCurMatingLatency_Uday() : double
+		return curMatingLatency_Uday;
+!!!270978.java!!!	isSexualMature() : boolean
+		return this.sexualMature;
+!!!271106.java!!!	isPregnant() : boolean
+		if (this.eggList != null)// to avoid probe crash (JLF 03.2021)
+			return (eggList.size() != 0);
+		else
+			return false;
+!!!271234.java!!!	isSucklingChild() : boolean
+		if (this.genome != null) return (this.getAge_Uday() < ((C_GenomeAmniota) this.genome).getWeaningAge_Uday());
+		else return false;// in case of probing a dead agent on GUI
+!!!271362.java!!!	init(inout inspector : C_InspectorHybrid) : void
+		hybridInspector = inspector;
+!!!271490.java!!!	isReadyToMate() : boolean
+		return readyToMate;

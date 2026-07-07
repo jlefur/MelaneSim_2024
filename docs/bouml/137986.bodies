@@ -1,0 +1,29 @@
+class C_SoilCellGraphed
+!!!311426.java!!!	C_SoilCellGraphed(in affinity : int, in i : int, in j : int)
+		super(affinity, i, j);
+		graphListAndPosition = new HashMap<C_Graph, Integer>();
+		landPlotByGroundType = new HashMap<String, C_LandPlot>();
+!!!311554.java!!!	setLandPlotByGroundType(in groundType : String, inout landPlot : C_LandPlot) : void
+		landPlotByGroundType.put(groundType, landPlot);
+		landPlot.addCell(this);
+!!!311682.java!!!	getLandPlot(in groundType : String) : C_LandPlot
+		return landPlotByGroundType.get(groundType);
+!!!311810.java!!!	removeLandPlotByGroundType(in groundType : String) : void
+		landPlotByGroundType.remove(groundType);
+!!!311938.java!!!	getNumberInGraph(inout graph : C_Graph) : int
+		if (graph == null) A_Protocol.event("C_SoilCellGraphed.getNumberInGraph", this.toString(), isError);
+		return graphListAndPosition.get(graph);
+!!!312066.java!!!	getGraph(in groundType : String) : C_Graph
+		for (C_Graph graph : graphListAndPosition.keySet())
+			// TODO PAM 2015.10 review double groundtypes (graphtype)
+			if (graph.getGroundType().equals(groundType) && graph.getGraphType().equals(groundType)) return graph;
+		return null;
+!!!312194.java!!!	setNumberInGraph(inout graph : C_Graph, in nodeNumber : int) : void
+		graphListAndPosition.put(graph, nodeNumber);
+!!!312322.java!!!	removeNumberInGraph(inout graph : C_Graph) : void
+		graphListAndPosition.remove(graph);
+!!!312450.java!!!	getCarrierList() : C_HumanCarrier
+		TreeSet<C_HumanCarrier> carrierList = new TreeSet<C_HumanCarrier>();
+		for (I_SituatedThing thing : this.getFullOccupantList())
+			if (thing instanceof C_HumanCarrier) carrierList.add((C_HumanCarrier) thing);
+		return carrierList;

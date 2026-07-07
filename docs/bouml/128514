@@ -1,0 +1,5740 @@
+format 224
+"rodents" // src::data::constants::rodents
+  revision 1
+  modified_by 2 "lefur"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:\\Users\\lefur\\Documents\\GitHub\\MelaneSim_2024\\src/data/constants/rodents/"
+  java_package "data.constants.rodents"
+  classview 128642 "rodents"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 129666 "I_ConstantStringRodents"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " - Constant names concerning types names shared within all protocols<br>
+- Strings as well as unnecessary numbers are meant to disappear from the source code (see also I_numeric_constants and other
+data/I_???_constants.java) <br>
+- The correspondence is centralized here for string parameters.<br>
+- Almost all packages implement this interface.
+@see I_ConstantNumeric
+@author J.Le Fur 08.2014, rev. JLF 11.2014, 02.2021 "
+      classrelation 128514 // <generalisation>
+	relation 128514 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 128514 // <generalisation>
+	  b parent class_ref 129154 // I_ConstantString
+      end
+
+      attribute 136706 "RASTER_PATH_RODENTS"
+	const_attribute public explicit_type "String"
+	init_value " \"data_raster/rodents/\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 136834 "FEED"
+	const_attribute public explicit_type "String"
+	init_value " \"FEED\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " DESIRES
+"
+      end
+
+      attribute 136962 "FLEE"
+	const_attribute public explicit_type "String"
+	init_value " \"FLEE\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 137090 "REPRODUCE"
+	const_attribute public explicit_type "String"
+	init_value " \"REPRODUCE\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 137218 "SUCKLE"
+	const_attribute public explicit_type "String"
+	init_value " \"SUCKLE\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 137346 "HIDE"
+	const_attribute public explicit_type "String"
+	init_value " \"HIDE\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 137474 "NONE"
+	const_attribute public explicit_type "String"
+	init_value " \"NONE\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 137602 "REST"
+	const_attribute public explicit_type "String"
+	init_value " \"REST\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 137730 "STANDBY"
+	const_attribute public explicit_type "String"
+	init_value " \"STILL\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 137858 "TRAVEL"
+	const_attribute public explicit_type "String"
+	init_value " \"TRAVEL\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 137986 "WANDER"
+	const_attribute public explicit_type "String"
+	init_value " \"WANDER\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 138114 "BANDIA"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"rodents.BANDIA\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " RODENTS PROTOCOL NAMES - used in context creator
+"
+      end
+
+      attribute 138242 "CAGES"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"rodents.CAGES\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 138370 "CENTENAL"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"rodents.CENTENAL\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 138498 "DECENAL"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"rodents.DECENAL\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 138626 "CHIZE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"rodents.CHIZE\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 138754 "CHIZE2"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"rodents.CHIZE2\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 138882 "ENCLOSURE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"rodents.ENCLOSURE\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 139010 "HYBRID_UNIFORM"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"rodents.HYBRID_UNIFORM\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 139138 "MUS_TRANSPORT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"rodents.MUS_TRANSPORT\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 139266 "DODEL"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"rodents.DODEL\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 139394 "DODEL2"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"rodents.DODEL2\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 139522 "VILLAGE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"rodents.VILLAGE\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 139650 "GERBIL"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"rodents.GERBIL\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 139778 "GERBIL_EVENT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"Gerbillus_nigeriae\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " EVENT TYPES CONSTANTS - used in chrono events
+"
+      end
+
+      attribute 139906 "OWL_EVENT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"owl\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 140034 "RAT_EVENT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"Rattus rattus\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 140162 "MUS_EVENT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"Mus musculus\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 140290 "MASTO_ERY_EVENT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"Mastomys erythroleucus\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 140418 "CITY_EVENT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"city\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 140546 "MARKET_EVENT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"market\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 140674 "TOWN_EVENT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"town\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 140802 "RAIL_EVENT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"rail\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 140930 "RIVER_EVENT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"river\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 141058 "ROAD_EVENT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"road\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 141186 "GOOD_TRACK_EVENT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"track2\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 141314 "TRACK_EVENT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"track\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 141442 "GNT_WEAK_EVENT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"GNT-WEAK\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " GNT for GroundNut Trade"
+      end
+
+      attribute 141570 "GNT_MEDIUM_EVENT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"GNT-MEDIUM\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 141698 "GNT_HEAVY_EVENT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"GNT-HEAVY\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 141826 "BORDER_EVENT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"border\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 141954 "SENEGAL_EVENT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"Senegal\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " ! not implemented JLF 09.2014"
+      end
+
+      attribute 142082 "POPULATION_EVENT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"population\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 142210 "TRUCK_EVENT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"truck\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " a truck event generates (a) human carrier(s) with truck"
+      end
+
+      attribute 142338 "TAXI_EVENT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"taxi\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " a taxi event generates (a) human carrier(s) with bush taxi"
+      end
+
+      attribute 142466 "TAXI_DODEL_EVENT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"taxiDodel\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " a taxi event generates (a) human carrier(s) with bush taxi"
+      end
+
+      attribute 142594 "TRAIN_EVENT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"train\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " a train event generates (a) human carrier(s) with train"
+      end
+
+      attribute 142722 "BOAT_EVENT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"boat\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " a boat event generates (a) human carrier(s) with boat"
+      end
+
+      attribute 142850 "RAIN_EVENT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"rain\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " triggers a rain event"
+      end
+
+      attribute 142978 "TICK_EVENT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"Tick\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " triggers a tick event"
+      end
+
+      attribute 143106 "HUMAN_EVENT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"Human\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " triggers a human event"
+      end
+
+      attribute 143234 "HUMAN_ACTIVITY_EVENT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"Human activity\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " triggers a human activity event"
+      end
+
+      attribute 143362 "ADD_TRAP"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"addTrap\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " TRAP CONSTANTS - used in CMR
+"
+      end
+
+      attribute 143490 "CHECK_TRAP"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"checkTrap\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 143618 "REMOVE_TRAP"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"removeTrap\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 143746 "GRAPH_TYPES"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " new TreeSet<String>() {
+		{
+			// add(xxx);
+		}
+		private static final long serialVersionUID = 1L;
+	}"
+	stereotype "Set"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " GRAPH CONSTANTS
+"
+      end
+
+      attribute 143874 "AREA_TYPES"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " new TreeSet<String>() {
+		{
+			// add(xxx);
+		}
+		private static final long serialVersionUID = 1L;
+	}"
+	stereotype "Set"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " @see #GROUND_TYPE_CODES 
+"
+      end
+    end
+
+    class 129922 "I_ConstantGerbil"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Gathers all variables since software specifications requires no numbers in the java sources <br>
+PE: Petite Emprise, ME, Moyenne Emprise, TPE: Très Petite Emprise
+@author Le Fur & Sall 09.2015, rev. JLF 02.2021 "
+      classrelation 128898 // <generalisation>
+	relation 128898 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 128898 // <generalisation>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      attribute 151042 "CHRONO_FILENAME"
+	class_attribute public explicit_type "String"
+	init_value " \"/rodents/20170517_GerbilEventsJunk.3a.jlf.csv\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " CHRONOGRAM FILE NAME
+ public static final String CHRONO_FILENAME = \"20151029_GerbilEventsOfficiel.2a.jlf.csv\";
+ public static final String CHRONO_FILENAME = \"20160719_GerbilEventsOfficiel.2b.jlf.csv\";
+ public static String CHRONO_FILENAME = \"20151029_GerbilEventsOfficielJunk.2a.jlf.csv\";
+"
+      end
+
+      attribute 151170 "CELL_SIZE"
+	class_attribute public explicit_type "int"
+	init_value " 245"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " public static String CHRONO_FILENAME = \"20180516_GerbilEventsJunk.4a.ms.csv\";
+ public static String CHRONO_FILENAME = \"20180320_GerbilEventsCerise2015.1b.jlf.csv\";
+ public static String CHRONO_FILENAME = \"20180321_GerbilEventsCerise2015EtPelotes.2c.jlf.csv\";
+ public static String CHRONO_FILENAME = \"20180412_GerbilEventsCerise2015.1c.ms.csv\";
+ DEFAULT : 15 //Junk Value add to resize the display in gerbil case"
+      end
+
+      attribute 151298 "width_heightRaster_Ukilometer"
+	class_attribute const_attribute public explicit_type "Integer"
+	init_value " new ArrayList<Integer>() {
+		{
+			add(0);
+			add(0);
+		}
+		private static final long serialVersionUID = 1L;
+	}"
+	stereotype "ArrayList"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " INITIALISE SIMULATION also modify Raster_File once parameters_scenario_GERBIL
+"
+      end
+
+      attribute 151426 "rasterLongitudeWest_LatitudeSouth_Udegree"
+	class_attribute const_attribute public explicit_type "Double"
+	init_value " new ArrayList<Double>() {
+		{
+			add(0.0);
+			add(0.0);
+		}
+		private static final long serialVersionUID = 1L;
+	}"
+	stereotype "ArrayList"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 151554 "rainUrl_suffixRainFile"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " new ArrayList<String>() {
+		{
+			add(\"\");
+			add(\"\");
+		}
+		private static final long serialVersionUID = 1L;
+	}"
+	stereotype "ArrayList"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 151682 "distancePELatitudeToOriginME_Ukilometer"
+	class_attribute public explicit_type "int"
+	init_value " 217"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 151810 "distancePELongitudeToOriginME_Ukilometer"
+	class_attribute public explicit_type "int"
+	init_value " 247"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 151938 "rasterLatitudeNorth_Udegree"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 16.75"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 152066 "rasterLongitudeEast_Udegree"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " -14."
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 152194 "widthME_Ukilometer"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 976"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " ME
+"
+      end
+
+      attribute 152322 "heightME_Ukilometer"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 606"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 152450 "gerbilMELatitudeNorth_Udegree"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 18.97833333"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 152578 "gerbilMELatitudeSouth_Udegree"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 13.511944"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 152706 "gerbilMELongitudeWest_Udegree"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " -18."
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 152834 "gerbilMELongitudeEast_Udegree"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " -9."
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 152962 "str_CROP"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"crops\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Fixed Values of Gerbillus Nigeriae 
+ Vegetation names
+"
+      end
+
+      attribute 153090 "str_GRASS"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"grasses\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 153218 "str_SHRUB"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"shrubs\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 153346 "str_WATER"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"water\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 153474 "str_BARREN"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"barren\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 153602 "str_TREE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"tree\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 153730 "LANDCOVER_TO_VEGETATION"
+	class_attribute const_attribute public explicit_type "Integer, String[]"
+	init_value " new HashMap<Integer, String[]>() {
+		{
+			put(18, new String[]{str_TREE, str_SHRUB});
+			put(36, new String[]{str_TREE, str_CROP});
+			put(37, new String[]{str_SHRUB, str_SHRUB});
+			put(38, new String[]{str_GRASS, str_SHRUB});
+			put(39, new String[]{str_CROP, str_SHRUB});
+			put(40, new String[]{str_BARREN, str_SHRUB});
+			put(41, new String[]{str_GRASS, str_GRASS});
+			put(42, new String[]{str_GRASS, str_CROP});
+			put(43, new String[]{str_GRASS, str_BARREN});
+			put(44, new String[]{str_CROP, str_CROP});
+			put(45, new String[]{str_BARREN, str_BARREN});
+		}
+		private static final long serialVersionUID = 1L;
+	}"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Each landcover data integer value correspond to a couple of vegetation types here defined 
+"
+      end
+
+      attribute 153858 "DISTANCE_THRESHOLD"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 0.1"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Constant of distance between two vegetation 
+ Junk value"
+      end
+
+      attribute 153986 "nbVegetationInCell"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 8"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Simulation choice"
+      end
+
+      attribute 154114 "initialCropBiomass_UgramPerSquareMeter"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 80. / nbVegetationInCell"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Ref : (Ngom et al, 2012)"
+      end
+
+      attribute 154242 "initialGrassBiomass_UgramPerSquareMeter"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 99. / nbVegetationInCell"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Qualite pastorale des
+ ressources herbageres de
+ Ref : (Ngom et al, 2012)"
+      end
+
+      attribute 154370 "VegetationCarryingCapacity_UgramPerSquareMeter"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 73.183 / nbVegetationInCell"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Ref : (Ngom et al,"
+      end
+
+      attribute 154498 "initialVegetationBiomass_Ugram"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 1E4"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " 2012)
+ Junk Values"
+      end
+
+      attribute 154626 "DAILY_CONSUMPTION_NEED_UkcalPerDay"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 25.001"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Daily consumption of Gerbillus Nigeriae
+ souris 4-6g/j. Dr Vet Laurence Yaguiyan-Colliard, UMES-Nutrition Clinique, Ecole Nationale Vétérinaire d’Alfort
+ Dans les aliments, l'énergie peut venir de 4 sources : glucides (4 cal/g.); lipides (9 cal/g.); protéines (4 cal/g.); alcool (7 cal/g.)
+"
+      end
+
+      attribute 154754 "BACKGROUND_COLOR"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 38"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "public static final int AVERAGE_DISTANCE_HUNTING_OWL_Umeter = 2500;// Source : P.TABERLET, 1983
+"
+      end
+
+      attribute 154882 "RAIN_VALUE_MULTIPLIER"
+	public explicit_type "double"
+	init_value " 1.E8"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Convert rain class value (1 to 8) to carrying capacity"
+      end
+
+      attribute 155010 "repeatEating"
+	public explicit_type "int"
+	init_value " 50"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " JLF 02.2021 repeatEating gerbils"
+      end
+
+      attribute 155138 "SENSITIVITY_TO_RAIN"
+	public explicit_type "double"
+	init_value " 5."
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Sensitivity to rain"
+      end
+
+      attribute 155266 "CARRYING_CAPACITY_SAVANNA_UrodentPerSquareMeter"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 0.03"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Unique carrying capacity for any savanna cell (as the different zooms use the same size for one cell)
+ 0.03 ref. LG comm perso, it's possible to"
+      end
+
+      attribute 155394 "UCS_WIDTH_Umeter"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 1000"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " have 300 gerbils in 1 Ha
+"
+      end
+
+      attribute 155522 "INIT_BURROW_POP_SIZE"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 100"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 155650 "INIT_RODENT_POP_SIZE"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 50"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 155778 "PATH_GERBIL"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "\"gerbils/\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 155906 "RASTER_PARAMETERS"
+	class_attribute const_attribute public explicit_type "String, String[]"
+	init_value " new HashMap<String, String[]>() {
+		{
+			// Key Value: data_raster/name of raster, String list : landcover path, rain path, rain suffix, width raster, height
+			// raster, origin
+			// longitude,origin latitude
+			put(RASTER_PATH_RODENTS + \"zoom1\", new String[]{RASTER_PATH_RODENTS + PATH_GERBIL+\"Zoom_001_12.2015/landcover.txt\", PATH_GERBIL+\"Zoom_001_12.2015/\",
+					\"-Zoom-Rain.txt\", \"30\", \"30\", \"-16.\", \"16.2\"});
+			put(RASTER_PATH_RODENTS + \"zoom2\", new String[]{RASTER_PATH_RODENTS +PATH_GERBIL+ \"Zoom_002_12.2015/landcover.txt\", PATH_GERBIL+\"Zoom_002_12.2015/\",
+					\"-Zoom-Rain.txt\", \"75\", \"45\", \"-15.45\", \"15.76\"});
+			put(RASTER_PATH_RODENTS + \"zoom3\", new String[]{RASTER_PATH_RODENTS + PATH_GERBIL+\"Zoom_003_09.2016/landcover.txt\", PATH_GERBIL+\"Zoom_003_09.2016/\",
+					\"-Zoom-Rain.txt\", \"3\", \"3\", \"-16.\", \"15.758572\"});
+			put(RASTER_PATH_RODENTS + \"zoom4\", new String[]{RASTER_PATH_RODENTS + PATH_GERBIL+\"Zoom_004_01.2018/landcover.txt\",PATH_GERBIL+ \"Zoom_004_01.2018/\",
+					\"-Zoom-Rain.txt\", \"5\", \"5\", \"-15.713078\", \" 16.421078\"});
+			put(RASTER_PATH_RODENTS + \"pe\", new String[]{RASTER_PATH_RODENTS +PATH_GERBIL+ \"Zoom_PE_12.2015/landcover.txt\", PATH_GERBIL+\"Zoom_PE_12.2015/\",
+					\"-Zoom-Rain.txt\", \"214\", \"110\", \"-16.\", \"15.758572\"});
+			put(RASTER_PATH_RODENTS + \"me\", new String[]{RASTER_PATH_RODENTS +PATH_GERBIL+ \"Zoom_ME_03.2018/landcover.txt\", PATH_GERBIL+\"Zoom_ME_03.2018/\",
+					\"-Zoom-Rain.txt\", \"700\", \"400\", \"-17.899695\", \" 13.616352\"});
+			put(RASTER_PATH_RODENTS + \"fd\", new String[]{RASTER_PATH_RODENTS + PATH_GERBIL+\"Zoom_FD_2019.03/landcover.txt\",PATH_GERBIL+ \"Zoom_FD_2019.03/\",
+					\"-Zoom-Rain.txt\", \"700\", \"400\", \"-17.899695\", \" 13.616352\"});
+		}
+		private static final long serialVersionUID = 1L;
+	}"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 156034 "vegetationCoverageRadius_Umeter"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 25.001"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " MS 2016.10 Junk value"
+      end
+
+      attribute 156162 "initialGerbilVitalEnergy_Ukcal"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 38.3"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " UNUSED
+
+ source : http://theses.vet-alfort.fr/telecharger.php?id=1335 source
+ http://lvts.fr/download/other_universities/formation_expérimentation_animale_lvl_1_paris_6_university/La physiologie
+ digestive etl'alimentation des Rongeurs.pdf
+"
+      end
+
+      attribute 156290 "eatRodentGainedEnergy_UKcal"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 37.5"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " source : barn owl eats between 70 and 105 gram per day(Mikkola, H. (1983).- Owls of Europe. T et A.D. Poyrer, Calton. 397
+ p.), and gerbil weights between 25 and 26 gram (Thomas and Hinton, 1920) on average 3.5
+"
+      end
+
+      attribute 156418 "eatGainedEnergy_UKcal"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 8.6"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 156546 "INITIAL_VEGET_ENERGY"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 10"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Ajouts JLF 02.2021
+"
+      end
+
+      attribute 156674 "PREDATION_SUCCESS"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 5."
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+    end
+
+    class 131330 "I_ConstantBandia"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 130434 // <generalisation>
+	relation 130434 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 130434 // <generalisation>
+	  b parent class_ref 129794 // I_ConstantNumeric
+      end
+
+      classrelation 130562 // <generalisation>
+	relation 130562 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 130562 // <generalisation>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      attribute 162434 "TRAP_LINES"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 19"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " la taille de la grille n'est pas conforme, il y a à peu près 130 mètres de chaque côté. J'ai joué sur la taille d'une
+ cellule et les intervalles entre pièges (sachant que c'est transformé en int pour la grille et donc on a peu de marge de
+ manoeuvre pour régler finement. Il faut modifier la taille du domaine et refaire la digitalisation. Jean Le Fur 09.08.2013
+"
+      end
+
+      attribute 162562 "TRAP_COLS"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 15"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 162690 "TRAP_INTERVALx_Umeter"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 8."
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 162818 "TRAP_INTERVALy_Umeter"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 7"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 162946 "TRAP0_x_Ucell"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 67"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 163074 "TRAP0_y_Ucell"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 63"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 163202 "TRAP_MAX_LOAD"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 3"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 163330 "TRAP_AFFINITY"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 10"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 163458 "TRAP_LOADING_PROBA"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 0.9"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 163586 "CHRONO_FILENAME"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"/rodents/20131209_BandiaEvents.2a.csv\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " For BandiaEvents.csv : The chrono
+"
+      end
+    end
+
+    class 131458 "I_ConstantCage"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Numbered variables bound to ProtocolCage since SimMasto specification requires no numbers in the java sources
+@author Le Fur 09.2017 "
+      attribute 163714 "FORBID_ZONE"
+	public explicit_type "int"
+	init_value " 2"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "  minimum affinity of plots outside the cages"
+      end
+
+      attribute 163842 "NB_CAGES_COLUMNS"
+	public explicit_type "int"
+	init_value " 20"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 163970 "NB_CAGES_LINES"
+	public explicit_type "int"
+	init_value " 22"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 164098 "IN_CAGE_SPEED_REDUCER"
+	public explicit_type "double"
+	init_value " 100"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Reduce speed within cages"
+      end
+    end
+
+    class 131586 "I_ConstantCentenal"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Gather all numbered variables since software specifications requires no numbers in the java sources
+@author P.A.Mboup, 2013, rev. JLF 09.2014 "
+      classrelation 130818 // <generalisation>
+	relation 130818 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 130818 // <generalisation>
+	  b parent class_ref 131714 // I_ConstantTransportation
+      end
+
+      attribute 166786 "EVENT_CHRONO_NAME"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"/rodents/20161011_CentenalEvents.officiel.14c.csv\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FILE NAMES //
+"
+      end
+
+      attribute 166914 "nbShipWreckedRats_UperMonth"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 1"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "	public static final String EVENT_CHRONO_NAME = \"20161016_CentenalEvents.officiel.14c_noVehicle.csv\";
+"
+      end
+
+      attribute 167042 "BIOCLIMATE_TO_AFFINITIES"
+	class_attribute const_attribute public explicit_type "Integer, Integer"
+	init_value " new HashMap<Integer, Integer>() {
+		{
+			put(0, 0);
+			put(1, 10);
+			put(2, 11);
+			put(3, 5);
+			put(4, 3);
+			put(5, 2);
+			put(6, 4);
+			put(7, 6);
+			put(8, 12);
+			put(9, 9);
+		}
+		private static final long serialVersionUID = 1L;
+	}"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "TODO JLF 2016.06 BIOCLIMATE_TO_AFFINITIES à revoir
+"
+      end
+
+      attribute 167170 "OUTPUT_BUFFER_SIZE"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 3"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " @see C_InspectorTransportation#addOutputDataLineForRodent 
+"
+      end
+    end
+
+    class 131714 "I_ConstantTransportation"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Gather all variables since software specifications require no numbers in the java sources
+@author P.A.Mboup, 2013, rev. JLF 09.2014 "
+      classrelation 130690 // <generalisation>
+	relation 130690 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 130690 // <generalisation>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      attribute 164226 "VEHICLE_SPECS"
+	class_attribute const_attribute public explicit_type "String, String[]"
+	init_value " new HashMap<String, String[]>() {
+		{
+			put(\"truck\", new String[]{\"50\", \"km/h\", \"5\", \"100\", \"road\", \"true\"});
+			put(\"taxi\", new String[]{\"90\", \"km/h\", \"5\", \"100\", \"road\", \"true\"});// bush transport; used first for mus transport
+																				// protocol JLF 12.2015
+			put(\"train\", new String[]{\"20\", \"km/h\", \"5\", \"100\", \"rail\", \"false\"});
+			put(\"boat\", new String[]{\"10\", \"km/h\", \"5\", \"100\", \"river\", \"false\"});
+		}
+		private static final long serialVersionUID = 1L;
+	}"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Vehicle specifications by type; we have [speed, speedUnit, rodentMaxLoad, loadingProba, graphType, account for track
+condition] Speed in km/h unit is converted to the simulation space unit/tick 
+"
+      end
+
+      attribute 164354 "REAL_SPEED_COL"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Column numbers for VEHICLE_SPECS
+"
+      end
+
+      attribute 164482 "REAL_SPEED_UNIT_COL"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 1"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 164610 "RODENT_MAX_LOAD_PERCENT_COL"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 2"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 164738 "LOADING_PROBA_COL"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 3"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 164866 "GRAPH_TYPE_COL"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 4"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 164994 "ACCOUNT_FOR_TRACK_CONDITION"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 5"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 165122 "OUTPUT_BUFFER_SIZE"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 100"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " @see C_InspectorTransportation#addOutputDataLineForRodent 
+"
+      end
+
+      attribute 165250 "GRAPH_TYPES"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " new TreeSet<String>() {
+		{
+			add(ROAD_EVENT);
+			add(RAIL_EVENT);
+			add(RIVER_EVENT);
+		}
+		private static final long serialVersionUID = 1L;
+	}"
+	stereotype "Set"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 165378 "AREA_TYPES"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " new TreeSet<String>() {
+		{
+			add(GNT_WEAK_EVENT);
+			add(GNT_MEDIUM_EVENT);
+			add(GNT_HEAVY_EVENT);
+		}
+		private static final long serialVersionUID = 1L;
+	}"
+	stereotype "Set"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " @see #GROUND_TYPE_CODES 
+"
+      end
+
+      attribute 165506 "GROUND_TYPE_CODES"
+	class_attribute public explicit_type "String, Integer"
+	init_value " new HashMap<String, Integer>() {
+		{
+			put(CITY_EVENT, 5);
+			put(RIVER_EVENT, 0);
+			put(RAIL_EVENT, 2);
+			put(ROAD_EVENT, 1);
+			put(GOOD_TRACK_EVENT, 3);
+			put(TRACK_EVENT, 4);
+			put(TOWN_EVENT, 6);
+			put(GNT_HEAVY_EVENT, 7);
+			put(GNT_MEDIUM_EVENT, 8);
+			put(GNT_WEAK_EVENT, 9);
+			put(SENEGAL_EVENT, 10);
+			put(BORDER_EVENT, 11);
+		}
+		private static final long serialVersionUID = 1L;
+	}"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Used to convert groundType events from the csv file from String to int. <br />
+&nbsp;&nbsp;&nbsp Used to build valueLayer2 (the ground types' display) 
+"
+      end
+
+      attribute 165634 "DEFAULT_HAMLET_SIZE_Uindividual"
+	class_attribute public explicit_type "int"
+	init_value " 500"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Used to convert affinity events from the csv file from string to int. <br />
+&nbsp;&nbsp;&nbsp Used to build valueLayer (the affinity's display) and the soilCellMatrix 
+
+//comment 10.2016 JLF public static final Map<String, Integer> EVENT_AFFINITY_CODES = new HashMap<String, Integer>() { {
+put(BORDER, -1); put(RIVER, 0); put(ROAD, 1); put(TOWN, 10); put(CITY, 13); // put(MARKET, 13); PAM 2015.12 n'est
+plus utile MARKET est considï¿½rï¿½ comme un city 08/12/15 } private static final long serialVersionUID = 1L; };
+
+ Population sizes of hamlets"
+      end
+
+      attribute 165762 "CITY_AFFINITY"
+	class_attribute public explicit_type "int"
+	init_value " 4"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " accounted for in calculating effect of bioclimate
+@see A_RodentCommensalSimplified#updatePhysiologicStatus 
+ Population sizes of hamlets"
+      end
+
+      attribute 165890 "GROUNDTYPE_INSIDE_DOMAIN"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " GROUND_TYPE_CODES.get(SENEGAL_EVENT)"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Correspondence in Senegal:0, 1: out of Senegal
+"
+      end
+
+      attribute 166018 "GROUNDTYPE_OUTSIDE_DOMAIN"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " GROUND_TYPE_CODES.get(BORDER_EVENT)"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 166146 "AFFINITY_OUTSIDE_DOMAIN"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 166274 "CITY_EVENT_CODE"
+	class_attribute public explicit_type "Integer"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Retrieve the city code (used for valueLayer2) since cities are contiguous cells in decenal map
+@see I_ConstantDecenal#GROUND_TYPE_CODES 
+"
+      end
+
+      attribute 166402 "CITY_RODENT_SCALING"
+	class_attribute public explicit_type "Integer"
+	init_value " 1000"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Used to compare cities population sizes and remove surplus : rodent agents simulated are 1/1E3 of the supposed real number
+of rodents CAUTION: account for this coefficient for loading probabilities
+@see A_ProtocolTransportation#step_Utick / author jlefur 04.2015 
+"
+      end
+
+      attribute 166530 "GRAPH_TYPES_MAP"
+	class_attribute const_attribute public explicit_type "String, String[]"
+	init_value " new HashMap<String, String[]>() {
+		{
+			put(ROAD_EVENT, new String[]{TRACK_EVENT, GOOD_TRACK_EVENT, ROAD_EVENT});// une cellule contenant track et road est rï¿½ellement track
+			put(RAIL_EVENT, new String[]{RAIL_EVENT});
+			put(RIVER_EVENT, new String[]{RIVER_EVENT});
+		}
+		private static final long serialVersionUID = 1L;
+	}"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Used for weighted/unweighted graphs, PAM, 10.2015
+"
+      end
+
+      attribute 166658 "TRACK_SLOW_FACTOR"
+	class_attribute const_attribute public explicit_type "String, Double"
+	init_value " new HashMap<String, Double>() {
+		{
+			put(ROAD_EVENT, 1.0);
+			put(GOOD_TRACK_EVENT, 2.0);
+			put(TRACK_EVENT, 3.0);
+			put(RAIL_EVENT, 1.0);
+			put(RIVER_EVENT, 1.0);
+		}
+		private static final long serialVersionUID = 1L;
+	}"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Used for weighted/unweighted graphs, PAM, 10.2015
+"
+      end
+    end
+
+    class 131842 "I_ConstantDecenal"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Gathers all numbered variables since software specifications requires no numbers in the java sources
+@author Le Fur 10.2014 "
+      classrelation 130946 // <generalisation>
+	relation 130946 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 130946 // <generalisation>
+	  b parent class_ref 131714 // I_ConstantTransportation
+      end
+
+      attribute 167298 "CHRONO_FILENAME"
+	class_attribute public explicit_type "String"
+	init_value " \"/rodents/20151217_DecenalEventsOfficiel.8f.jlf.csv\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FILE NAMES //
+	public static String CHRONO_FILENAME = \"20160112_DecenalEventsOfficiel.8f-KidiraKayes.jlf.csv\";
+"
+      end
+    end
+
+    class 131970 "I_ConstantDodel"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 131074 // <generalisation>
+	relation 131074 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 131074 // <generalisation>
+	  b parent class_ref 129794 // I_ConstantNumeric
+      end
+
+      attribute 167426 "DAWN_START_Uhour"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 5"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "	public static final int DAWN_START_Uhour = 6;
+public static final int DAWN_END_Uhour = 8;
+public static final int DAY_START_Uhour = 9;
+public static final int DAY_END_Uhour = 18;
+public static final int TWILIGHT_START_Uhour = 19;
+public static final int TWILIGHT_END_Uhour = 20;
+public static final int RODENT_PERCEPTION_MAX_Umeter = 10;
+public static final int RODENT_PERCEPTION_MIN_Umeter = 5;
+public static final int SPEED_SMALL_ACTIVITIES = 2;
+"
+      end
+
+      attribute 167554 "DAWN_END_Uhour"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 9"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 167682 "DAY_START_Uhour"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 10"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 167810 "DAY_END_Uhour"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 18"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 167938 "TWILIGHT_START_Uhour"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 19"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 168066 "TWILIGHT_END_Uhour"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 21"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 168194 "RODENT_DECREASE_PERCEPTION"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 3"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 168322 "RODENT_INCREASE_PERCEPTION"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 3"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 168450 "SPEED_SMALL_ACTIVITIES"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 2"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+    end
+
+    class 132098 "I_ConstantDodel2"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Gathers all numbered variables since software specifications requires no numbers in the java sources
+@author M. Sall 10.2018 "
+      classrelation 131202 // <generalisation>
+	relation 131202 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 131202 // <generalisation>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      attribute 168578 "CHRONO_FILENAME"
+	class_attribute public explicit_type "String"
+	init_value " \"/rodents/20211120_Dodel2Events.2a.csv\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " public static String CHRONO_FILENAME = \"20201110_Dodel2Events.2d.ms.csv\";
+ public static String CHRONO_FILENAME = \"20201209_Dodel2Events.2d.ms.csv\"; // Chrono whitout humans
+ public static String CHRONO_FILENAME = \"20210518_Dodel2Events.2d.ms.jlf.mg.csv\";
+ public static String CHRONO_FILENAME = \"20211110_Dodel2Events.1f.csv\"; // Chrono before JLF clean
+ public static String CHRONO_FILENAME = \"20211120_Dodel2Events.2a.testWalker.csv\"; // newest chrono clean
+"
+      end
+
+      attribute 168706 "PATHS_FILENAME"
+	class_attribute public explicit_type "String"
+	init_value " \"/rodents/20220517-path100s.csv\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "	public static String CHRONO_FILENAME = \"20220520_Dodel2Events.Mice.csv\";
+ public static String CHRONO_FILENAME = \"20210804_Dodel2_1HumanEvent.1a.ms.csv\"; // For one human
+ public static String CHRONO_FILENAME = \"20210831_Dodel2Events.1e.ms.csv\"; // For one rodent
+"
+      end
+
+      attribute 168834 "STREET"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 168962 "WORKSHOP"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 1"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 169090 "BAKERY"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 2"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 169218 "SHOP"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 3"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 169346 "OFFICE"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 4"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 169474 "HUT"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 5"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 169602 "ROOM"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 6"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 169730 "HAIRDRESSER"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 7"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 169858 "KITCHEN"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 8"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 169986 "DIBITERIE"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 9"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 170114 "LIVESTOCK_PARK"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 10"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 170242 "GARAGE"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 11"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 170370 "GARDEN"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 12"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 170498 "LABORATORY"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 13"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 170626 "MAGASIN"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 14"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 170754 "MOSQUE"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 15"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 170882 "MILL"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 16"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 171010 "HARDWARE_STORE"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 17"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 171138 "RESTAURANT"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 18"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 171266 "RUINED"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 19"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 171394 "CLASS"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 20"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 171522 "LIVING_ROOM"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 21"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 171650 "TANGANA"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 22"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 171778 "BUILDING"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 23"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 171906 "WALL"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 24"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 172034 "HOUSE"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 25"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 172162 "MARKET"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 26"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 172290 "NATIONAL_ROAD"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 27"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 172418 "TRACK"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 28"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 172546 "HOUSE_DOOR"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 29"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 172674 "ROOM_DOOR"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 30"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 172802 "THIALAGA"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 31"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 172930 "DIERY_DIOUGA"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 32"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 173058 "DIOMANDOU"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 33"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 173186 "SCHOOL_DESTINATION"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 34"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 173314 "MEDINA_DODEL_DESTINATION"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 35"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 173442 "KOGGA_WALO_DESTINATION"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 36"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 173570 "DODEL_INTERIOR_DESTINATION"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 37"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 173698 "FIELD_DESTINATION"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 38"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 173826 "GATE"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 8"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Junk number will we changed after test!"
+      end
+
+      attribute 173954 "MIN_VALUE_OF_REBOUNDZONE_Umeter"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " .2"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 174082 "PERCEPT_RIGHT_DISTANCE_VALUE"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 0.9"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " public static final double MIN_SENSING_VALUE_Umeter = 15;// Ref : see Jean doc file in mice.
+ Junk value."
+      end
+
+      attribute 174210 "ROAD_AFFINITY"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Value of category converter
+"
+      end
+
+      attribute 174338 "TRACK_AFFINITY"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 1"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Value of category converter
+"
+      end
+
+      attribute 174466 "STREET_AFFINITY"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 2"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Value of category converter
+"
+      end
+
+      attribute 174594 "WALL_AFFINITY"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 3"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Value of category converter
+"
+      end
+
+      attribute 174722 "CONCESSION_AFFINITY"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 4"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Value of category converter
+"
+      end
+
+      attribute 174850 "CORRIDOR_AFFINITY"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 5"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Value of category converter
+"
+      end
+
+      attribute 174978 "MARKET_AFFINITY"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 6"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Value of category converter
+"
+      end
+
+      attribute 175106 "ROOM_AFFINITY"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 7"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Value of category converter
+"
+      end
+
+      attribute 175234 "WORKSHOP_AFFINITY"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 8"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Value of category converter
+"
+      end
+
+      attribute 175362 "ROOMFOOD_AFFINITY"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 9"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Value of category converter
+"
+      end
+
+      attribute 175490 "SHOPFOOD_AFFINITY"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 10"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Value of category converter
+"
+      end
+
+      attribute 175618 "HOUSEDOOR_AFFINITY"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 11"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Value of category converter
+"
+      end
+
+      attribute 175746 "ROOMDOOR_AFFINITY"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 12"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Value of category converter
+"
+      end
+
+      attribute 175874 "ENCLOSURE_AFFINITY"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 13"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Value of category converter
+"
+      end
+
+      attribute 176002 "THIALAGA_AFFINITY"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 14"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Value of category converter
+"
+      end
+
+      attribute 176130 "DIOMANDOU_AFFINITY"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 15"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Value of category converter
+"
+      end
+
+      attribute 176258 "DIERY_DIOUGA_AFFINITY"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 16"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Value of category converter
+"
+      end
+
+      attribute 176386 "KOGGA_WALO_AFFINITY"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 17"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Value of category converter
+"
+      end
+
+      attribute 176514 "SCHOOL_AFFINITY"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 18"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Value of category converter
+"
+      end
+
+      attribute 176642 "DODEL_INTERIOR_AFFINITY"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 19"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Value of category converter
+"
+      end
+
+      attribute 176770 "MEDINA_DODEL_AFFINITY"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 20"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Value of category converter
+"
+      end
+
+      attribute 176898 "FIELD_AFFINITY"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 21"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Value of category converter
+"
+      end
+
+      attribute 177026 "MOSQUE_AFFINITY"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 22"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Value of category converter
+"
+      end
+
+      attribute 177154 "BAKERY_AFFINITY"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 23"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Value of category converter
+"
+      end
+
+      attribute 177282 "FORWARD_TO_AGENT"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 1"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Different wall position to agent
+"
+      end
+
+      attribute 177410 "RIGHT_TO_AGENT"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 2"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Different wall position to agent
+"
+      end
+
+      attribute 177538 "LEFT_TO_AGENT"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 3"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Different wall position to agent
+"
+      end
+
+      attribute 177666 "NO_WALL"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Different wall position to agent
+"
+      end
+
+      attribute 177794 "MATING_LATENCY_DURATION_Uday"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 15.001"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Tick constant values
+ Source : junk!"
+      end
+
+      attribute 177922 "GESTATION_DURATION_Uday"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 5."
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Source : Gondard, M. (2017). A la découverte des agents pathogènes et microorganismes des tiques par séquençage de nouvelle
+ génération et QPCR microfluidique à haut débit (Doctoral dissertation, Paris Est).
+"
+      end
+
+      attribute 178050 "MEAL_DURATION_Umn"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 30"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 178178 "oneDay_Umn"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 1440"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 178306 "oneYear_Uday"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 365"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 178434 "ADULT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"adult\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 178562 "NYMPH"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"nymph\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 178690 "LARVAE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"larvae\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 178818 "EGG"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"egg\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 178946 "STARVING_DURATION_Uday"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 5.001"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Source : junk value time waiting without meal"
+      end
+
+      attribute 179074 "EGG_STASIS_DURATION_Uday"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 10.5"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Embryogenesis on the ground (8-13 days)"
+      end
+
+      attribute 179202 "LARVAE_STASIS_DURATION_Uday"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 15.5"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Egg Statis duration + Larval moulting 5 days"
+      end
+
+      attribute 179330 "NYMPH_STASIS_DURATION_Uday"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 26.5"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Larval stasis duration + nymphal moulting"
+      end
+
+      attribute 179458 "HUNT_MIN_AGE_Uday"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 70."
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Cat constant values
+ between 8 and 12 weeks source:"
+      end
+
+      attribute 179586 "JUVENILE_MIN_AGE_Uday"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 210."
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " (https://en.wikipedia.org/wiki/Cat#Reproduction)
+ between 6 and 8 months source:"
+      end
+
+      attribute 179714 "PREDATION_SUCCESS"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 5."
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " (https://en.wikipedia.org/wiki/Cat#Reproduction)
+"
+      end
+
+      attribute 179842 "RASTER_PARAMETERS"
+	class_attribute const_attribute public explicit_type "String, String[]"
+	init_value " new HashMap<String, String[]>() {
+		{
+			// Key Value: data_raster/name of house raster, name of room raster, origin longitude,origin latitude
+			// 20201027-ZoomHouseRasteDodel2.1a.txt,20201027-ZoomRoomRasteDodel2.1a.txt
+			put(RASTER_PATH_RODENTS + \"market\", new String[]{
+					\"20201027-ZoomHouseRasteDodel2.1a.txt,20201027-ZoomRoomRasteDodel2.1a.txt\",
+					\"-14.433808462406692,16.48482308819331\"});
+			put(RASTER_PATH_RODENTS + \"aroundmarket\", new String[]{
+					\"20220515-ZoomHouseSpecialRasteDodel2.2a.txt,20220515-ZoomRoomSpecialRasteDodel2.2a.txt\",
+					// \"20210527-ZoomHouseSpecialRasteDodel2.1a.txt,20210527-ZoomRoomSpecialRasteDodel2.1a.txt\",
+					\"-14.434423819127202,16.48454321296872\"});
+		}
+		private static final long serialVersionUID = 1L;
+	}"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 179970 "HUMANACTIVITY_FILES"
+	class_attribute const_attribute public explicit_type "String, String[]"
+	init_value " new HashMap<String, String[]>() {
+		{
+			// Key Value: data_raster/name of zoom, name of zoom activity chrono,
+			// put(RASTER_PATH_RODENTS + \"market\", new String[]{\"20210825-ChronoActivityMarket.temp.1a.csv\"});
+			put(RASTER_PATH_RODENTS + \"market\", new String[]{\"/rodents/20211120-ChronoActivityMarket.2a.csv\"});
+			put(RASTER_PATH_RODENTS + \"aroundmarket\", new String[]{
+					// \"20210825-ChronoActivityAroundMarket.temp.1a.csv\"});
+					// \"20220119-ChronoActivityAroundMarket.2b.csv\"});
+					// \"20211120-ChronoActivityAroundMarket.2a.csv\"});
+					\"/rodents/20220119-ChronoActivityAroundMarket.3a.csv\"});
+			// \"20220501-ChronoActivityJunk.csv\"});
+			// put(RASTER_PATH_RODENTS + \"market\", new String[]{
+			// \"20210804-1PersonActivityChrono.csv\"});
+			// put(RASTER_PATH_RODENTS + \"aroundmarket\", new String[]{
+			// \"20210804-1PersonActivityChrono.csv\"});
+		}
+		private static final long serialVersionUID = 1L;
+	}"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 180098 "SLOW_FACTOR"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 6."
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Slow motion when human urban standby, JLF 01,05.2022"
+      end
+
+      attribute 180226 "ONE_DOOR_EACH_N_STEP"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 15"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Add one door to walls each n cells? JLF 05.2022"
+      end
+    end
+
+    class 132226 "I_ConstantImagesNames"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Gather icons gif filenames for every protocol.
+@author JLF 05.2018 "
+      attribute 180354 "$PATH"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"icons/rodents/\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " path to images"
+      end
+
+      attribute 180482 "ext"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \".gif\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " file type extension for images"
+      end
+
+      attribute 180610 "PLANKTON_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../PLANKTON\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " PNMC
+"
+      end
+
+      attribute 180738 "MICRONEKTON_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../NEKTON\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 180866 "SHIP_CARGO_NORTHWARD_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../SHIP_CARGO_NORTHWARD\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 180994 "SHIP_CARGO_SOUTHWARD_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../SHIP_CARGO_SOUTHWARD\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 181122 "NORTH_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../arrows/NORTH\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " PNMC - surface current direction	
+"
+      end
+
+      attribute 181250 "NORTH_EAST_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../arrows/NORTH_EAST\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 181378 "EAST_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../arrows/EAST\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 181506 "SOUTH_EAST_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../arrows/SOUTH_EAST\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 181634 "SOUTH_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../arrows/SOUTH\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 181762 "SOUTH_WEST_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../arrows/SOUTH_WEST\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 181890 "WEST_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../arrows/WEST\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 182018 "NORTH_WEST_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../arrows/NORTH_WEST\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 182146 "PARTICLE_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../sliders/particle\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " PNMC - conservation weight icons
+"
+      end
+
+      attribute 182274 "CHLOROPHYLL_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../sliders/chlorophyll\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 182402 "GROUND_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../sliders/ground\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 182530 "MOUNT_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../sliders/mount\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 182658 "NEKTON_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../sliders/necton\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 182786 "SHIP_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../sliders/ship\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 182914 "FISHER_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../sliders/fisher\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 183042 "WHALE_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../sliders/whale\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 183170 "TUNA_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../sliders/tuna\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 183298 "SMALL_PELAGIC_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../sliders/small_pelagic\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 183426 "POLLUTION_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../sliders/sewage\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 183554 "SHARK_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../sliders/shark\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 183682 "TURTLE_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../sliders/turtle\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 183810 "MEADOW_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../sliders/meadow\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 183938 "BIRD_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../sliders/bird\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 184066 "MEGAFAUNA_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../sliders/megafauna\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 184194 "BENTHOS_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../sliders/benthos\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 184322 "CORAL_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../sliders/coral\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 184450 "ONG_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../sliders/ong\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 184578 "POLICE_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../sliders/policeControl\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 184706 "TOURISM_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../sliders/tourism\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 184834 "TEMPERATURE_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"../sliders/temperature\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 184962 "MOUSE_FEMALE_CHILD"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"MOUSE_FEMALE_CHILD\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " DODEL
+"
+      end
+
+      attribute 185090 "MOUSE_FEMALE_ADULT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"MOUSE_FEMALE_ADULT\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 185218 "MOUSE_MALE_CHILD"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"MOUSE_MALE_CHILD\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 185346 "MOUSE_MALE_ADULT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"MOUSE_MALE_ADULT\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 185474 "MOUSE_PREGNANT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"MOUSE_PREGNANT\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 185602 "MOUSE_DISPERSE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"MOUSE_DISPERSE\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 185730 "DAY"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"TIME_DAY\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 185858 "NIGHT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"TIME_NIGHT\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 185986 "DAWN"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"TIME_DAWN\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 186114 "TWILIGHT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"TIME_TWILIGHT\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 186242 "VOLE_FEMALE_CHILD"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"VOLE_FEMALE_CHILD\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " CHIZE
+"
+      end
+
+      attribute 186370 "VOLE_FEMALE_ADULT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"VOLE_FEMALE_ADULT\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 186498 "VOLE_MALE_CHILD"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"VOLE_MALE_CHILD\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 186626 "VOLE_MALE_ADULT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"VOLE_MALE_ADULT\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 186754 "VOLE_PREGNANT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"VOLE_PREGNANT\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 186882 "MASTO_NATALENSIS"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"MASTO_NATALENSIS\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " CAGES
+"
+      end
+
+      attribute 187010 "MASTO_ERYTHROLEUCUS"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"MASTO_ERYTHROLEUCUS\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 187138 "MASTO_HYBRID"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"MASTO_HYBRID\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 187266 "MASTO_LAZARUS"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"MASTO_LAZARUS\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 187394 "MASTO_PREGNANT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"MASTO_PREGNANT\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 187522 "UNKNOWN"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"UNKNOWN\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 187650 "LOADED_TRAP"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"trapLoaded\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " BANDIA
+"
+      end
+
+      attribute 187778 "EMPTY_TRAP"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"trapEmpty\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 187906 "MASTO_MALE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"MASTO_MALE\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 188034 "MASTO_FEMALE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"MASTO_FEMALE\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 188162 "MASTO_JUVENILE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"MASTO_JUVENILE\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 188290 "MASTO_DISPERSE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"MASTO_DISPERSE\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 188418 "MASTO_UNDERGROUND"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"MASTO_UNDERGROUND\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 188546 "VEHICLE_BOAT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"VEHICLE_BOAT\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " CENTENAL & MUS_TRANSPORT//
+"
+      end
+
+      attribute 188674 "VEHICLE_TRAIN"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"VEHICLE_TRAIN\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 188802 "VEHICLE_TRUCK"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"VEHICLE_TRUCK\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 188930 "VEHICLE_CAR"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"VEHICLE_CAR\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 189058 "VEHICLE_TAXI"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"VEHICLE_TAXI\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " a taxi event generates (a) human carrier(s) with bush taxi"
+      end
+
+      attribute 189186 "VEHICLE_TAXI_DODEL"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"VEHICLE_TAXI_DODEL\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " a taxi event generates (a) human carrier(s) with bush"
+      end
+
+      attribute 189314 "VEHICLE_LOADED"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"VEHICLE_LOADED\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " taxi
+"
+      end
+
+      attribute 189442 "VEHICLE_PARKED"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"VEHICLE_PARKED\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 189570 "RATTUS_MATURE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"rattusMature\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 189698 "RATTUS_PREGNANT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"rattusPregnant\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 189826 "MASTO_ERY_IMAGE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"MastoErythroleucus\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 189954 "MUS_PREGNANT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"musPregnant\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 190082 "MUS_IMAGE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"mus1\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 190210 "NEWBORN"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"newBorn\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 190338 "MUSTDIE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"rattusMustDie\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 190466 "GERBIL_MALE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"20180207-gerbilMale\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " GERBIL
+"
+      end
+
+      attribute 190594 "GERBIL_FEMALE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"20180207-gerbilFemale\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 190722 "GERBIL_PREGNANT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"20180207-gerbilPregnant\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 190850 "GERBIL_IMMATURE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"20180302-gerbilImmature\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 190978 "GERBIL_DISPERSE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"20180207-gerbilDisperse\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 191106 "GERBIL_HIDE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"20180207-gerbilHide\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 191234 "GERBIL_UNDERGROUND"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"20210314-gerbilUnderground\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "	public static final String GERBIL_UNDERGROUND = \"20180207-gerbilUnderground\";
+"
+      end
+
+      attribute 191362 "BARNOWL_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"20161020-barnOwl\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 191490 "NESTLE_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"20180425-nestle\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 191618 "SHRUBS_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"20151112-shrub\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Vegetation icons
+"
+      end
+
+      attribute 191746 "CROPS_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"20151112-crop\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 191874 "GRASSES_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"20151112-grass\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 192002 "BARREN_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"20151112-barren\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 192130 "TREES_ICON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"20151112-tree\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 192258 "CROPS"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"crops\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Vegetation names for landcover Gerbil
+"
+      end
+
+      attribute 192386 "GRASSES"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"grasses\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 192514 "SHRUBS"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"shrubs\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 192642 "BARREN"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"barren\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 192770 "TREES"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"tree\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 192898 "TAGGED"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"tagged\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "DODEL 2
+"
+      end
+
+      attribute 193026 "MAN"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"man\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 193154 "WOMAN"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"woman\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 193282 "BOY"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"boy\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 193410 "GIRL"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"girl\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 193538 "CHILD"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"child\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 193666 "BURROW"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"MOUSE_HOLE\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 193794 "ORNITHODOROS_ADULT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"20211223-TickAdult\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 193922 "ORNITHODOROS_NYMPH"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"20211223-TickNymph\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 194050 "ORNITHODOROS_LARVAE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"20211223-TickLarvae\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 194178 "ORNITHODOROS_EGG"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"20211223-TickEgg\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 194306 "ORNITHODOROS_INFECTED"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"20211223-TickInfected\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 194434 "EGG"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"egg\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 194562 "NYMPH"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"nymph\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 194690 "LARVAE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"larvae\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 194818 "ADULT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"adult\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 194946 "INFECTED"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"infected\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 195074 "INFECTED_MOUSE_FEMALE_ADULT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"20200921-infectedMouseFemaleAdult\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 195202 "INFECTED_YOUNG_MOUSE_FEMALE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"20200921-infectedYoungMouseFemale\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 195330 "INFECTED_MOUSE_MALE_ADULT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"20200921-infectedMouseMaleAdult\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 195458 "INFECTED_YOUNG_MOUSE_MALE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"20200921-infectedYoungMouseMale\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 195586 "MOUSE_HIDE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"20210301-MouseHide\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 195714 "DODEL2_FOOD"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"20201019-corn\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 195842 "CAT_JUVENILE_MALE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"20210525-FelisSilvestrisCatus_Juvenile_Male\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 195970 "CAT_JUVENILE_FEMALE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"20210525-FelisSilvestrisCatus_Juvenile_Female\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 196098 "CAT_ADULT_MALE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"20210525-FelisSilvestrisCatus_Male\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 196226 "CAT_ADULT_FEMALE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"20210525-FelisSilvestrisCatus_Female\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 196354 "CAT_YOUNG_MALE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"20210525-FelisSilvestrisCatus_Young_Male\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 196482 "CAT_YOUNG_FEMALE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"20210525-FelisSilvestrisCatus_Young_Female\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+    end
+
+    class 132354 "I_ConstantMusTransport"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Gathers all numbered variables since software specifications requires no numbers in the java sources
+@author Le Fur 10.2014 "
+      classrelation 131330 // <generalisation>
+	relation 131330 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 131330 // <generalisation>
+	  b parent class_ref 131714 // I_ConstantTransportation
+      end
+
+      attribute 196610 "CHRONO_FILENAME"
+	class_attribute public explicit_type "String"
+	init_value " \"/rodents/20220414-MusTransportJunkSourisSeulement.csv\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FILE NAMES //
+
+ public static String CHRONO_FILENAME =\"20140723-SenegalMaille2km.2b.REFERENCE.jlf.csv\";
+ public static String CHRONO_FILENAME = \"20171212-MusTransportEventsOfficiel.9d.jlf.csv\";
+"
+      end
+
+      attribute 196738 "marketCrowdingFactor"
+	class_attribute public explicit_type "int"
+	init_value " 10"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "	public static String CHRONO_FILENAME = \"20180322-MusTransportEventsOfficielDalecky.Ba.jlf.csv\";
+	public static String CHRONO_FILENAME = \"20180323-MusTransportSansRongeurs.1a.jlf.csv\";
+	public static String CHRONO_FILENAME = \"20180323-MusTransportSansRongeursRoadMatamJunk.1b.jlf.csv\";
+"
+      end
+
+      attribute 196866 "rasterLongitudeWest_LatitudeSouth_Udegree"
+	class_attribute const_attribute public explicit_type "Double"
+	init_value " new ArrayList<Double>() {
+		// stands for 12°18'28.3\"N 17°31'48.5\"W
+		{
+			add(-17.530148);
+			add(12.307859);
+		}
+		private static final long serialVersionUID = 1L;
+	}"
+	stereotype "ArrayList"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+    end
+  end
+
+  deploymentview 128258 "rodents"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 129410 "I_ConstantStringRodents"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Set;
+import java.util.TreeSet;
+import data.constants.I_ConstantNumeric;
+import data.constants.I_ConstantString;
+${definition}"
+      associated_elems
+	class_ref 129666 // I_ConstantStringRodents
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 129666 "I_ConstantGerbil"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+${definition}"
+      associated_elems
+	class_ref 129922 // I_ConstantGerbil
+      end
+    end
+
+    artifact 130818 "I_ConstantBandia"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import data.constants.I_ConstantNumeric;
+${definition}"
+      associated_elems
+	class_ref 131330 // I_ConstantBandia
+      end
+    end
+
+    artifact 130946 "I_ConstantCage"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 131458 // I_ConstantCage
+      end
+    end
+
+    artifact 131074 "I_ConstantTransportation"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+import melanesim.protocol.rodents.A_ProtocolTransportation;
+${definition}"
+      associated_elems
+	class_ref 131714 // I_ConstantTransportation
+      end
+    end
+
+    artifact 131202 "I_ConstantCentenal"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.HashMap;
+import java.util.Map;
+${definition}"
+      associated_elems
+	class_ref 131586 // I_ConstantCentenal
+      end
+    end
+
+    artifact 131330 "I_ConstantDecenal"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 131842 // I_ConstantDecenal
+      end
+    end
+
+    artifact 131458 "I_ConstantDodel"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import data.constants.I_ConstantNumeric;
+${definition}"
+      associated_elems
+	class_ref 131970 // I_ConstantDodel
+      end
+    end
+
+    artifact 131586 "I_ConstantDodel2"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.HashMap;
+import java.util.Map;
+${definition}"
+      associated_elems
+	class_ref 132098 // I_ConstantDodel2
+      end
+    end
+
+    artifact 131714 "I_ConstantImagesNames"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 132226 // I_ConstantImagesNames
+      end
+    end
+
+    artifact 131842 "I_ConstantMusTransport"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+${definition}"
+      associated_elems
+	class_ref 132354 // I_ConstantMusTransport
+      end
+    end
+  end
+end

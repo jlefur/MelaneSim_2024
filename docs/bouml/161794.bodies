@@ -1,0 +1,17 @@
+class A_RodentCommensalSimplified
+!!!336258.java!!!	A_RodentCommensalSimplified(inout genome : I_DiploidGenome)
+		super(genome);
+!!!336514.java!!!	isArrived(in speed : double) : boolean
+		if (this.target instanceof C_Vehicle) return true;
+		else return super.isArrived(speed);
+!!!336642.java!!!	perception() : I_SituatedThing
+		return this.currentSoilCell.getOccupantList();
+!!!337026.java!!!	deliberation(inout perceivedThings : TreeSet<I_SituatedThing>) : I_SituatedThing
+		if (this.getDesire().equals(FEED)) {
+			TreeSet<I_SituatedThing> candidateTargets = new TreeSet<I_SituatedThing>();// There may be several equivalent targets
+			for (I_SituatedThing oneThingPerceived : perceivedThings) if (oneThingPerceived instanceof C_Vehicle) {
+				candidateTargets.add(oneThingPerceived);
+			}
+			return candidateTargets;
+		}
+		else return super.deliberation(perceivedThings);

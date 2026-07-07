@@ -334,7 +334,7 @@ public class C_ChromosomePair implements I_MappedDna, I_ConstantNumeric {
 			double mapLoc = i * 4.3;
 			// xsome1.setGenePairAtLocus(i, new C_Gene(new Random().nextDouble() * 2, mapLoc, gMut,
 			bivalent_1.setGenePairAtLocus(i, new C_Gene("stringAllele", mapLoc, gMut, bivalent_1.xsomeStrands[PARENT_1].myId),
-					new C_Gene(new Random().nextDouble() * 2, mapLoc, gMut, bivalent_1.xsomeStrands[PARENT_2].myId));
+					new C_Gene(new Random().nextDouble() * 2, mapLoc, gMut, bivalent_1.xsomeStrands[PARENT_2].myId));// TODO JLF 06.2026 GRAVE random generator not managed
 		}
 		System.out.println("bivalent_1: " + bivalent_1);
 		testMapLocs(bivalent_1);

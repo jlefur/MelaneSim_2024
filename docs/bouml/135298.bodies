@@ -1,0 +1,71 @@
+class C_FileWriter
+!!!196482.java!!!	C_FileWriter(in fileNameOrUrlPlusFileName : String, inout incrementNameOrNot : boolean)
+		// Création du dossier (s'il n'existe pas encore)
+		if (fileNameOrUrlPlusFileName.contains("/")) // if the complete url is given
+		buildFolders(fileNameOrUrlPlusFileName);
+		else {
+			if (fileNameOrUrlPlusFileName == "HybGeneralIndicators.csv" || fileNameOrUrlPlusFileName == "MbourCages.csv"
+					|| fileNameOrUrlPlusFileName == "DiploidNumber.csv") buildFolders(OUTPUT_PATH + "HYBRIDS/");
+			else buildFolders(OUTPUT_PATH + C_Parameters.PROTOCOL + "/");
+		}
+		// Création du fichier, récupération de la dernière partie de l'URL Ex: titre.extension dans rep1/rep1.1/titre.extension
+		fileNameOrUrlPlusFileName = fileNameOrUrlPlusFileName.split("/")[fileNameOrUrlPlusFileName.split("/").length - 1];
+		File file = new File(this.$DOSSIER + this.numRun + fileNameOrUrlPlusFileName);
+		if (incrementNameOrNot) { // En incrémentant le nom
+			while (file.exists()) {
+			    this.numRun++;
+				file = new File(this.$DOSSIER + this.numRun + fileNameOrUrlPlusFileName + "");
+			}
+		}
+		else // En écrasant l'ancien de meme nom : PAMboup 27/12/2012
+		file = new File(this.$DOSSIER + fileNameOrUrlPlusFileName);
+		this.fileName = this.$DOSSIER + file.getName();
+		// Ouverture d'un flux d'écriture du fichier créé (écriture en écrasant, pr ecire en ajout: new FileWriter(file, true))
+		try {
+			printer = new PrintWriter(new BufferedWriter(new FileWriter(file)));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+!!!196610.java!!!	buildFolders(in url : String) : void
+		String folders[] = url.split("/");
+		this.$DOSSIER = "";
+		int n;
+		if (url.charAt(url.length() - 1) == '/') n = folders.length;// if l'url is finished by "/" (just folders and not file name)
+		else n = folders.length - 1;// else the url contains folders name and file name
+		for (int i = 0; i < n; i++) {
+		    this.$DOSSIER += folders[i] + "/";
+			new File(this.$DOSSIER).mkdir();
+		}
+!!!196738.java!!!	write(in str : String) : void
+	    this.printer.print(str);
+	    this.printer.flush();
+!!!196866.java!!!	writeln(in str : String) : void
+	    this.printer.println(str);
+	    this.printer.flush();
+!!!196994.java!!!	writeMultiLineAndClose(in urlAndfileName : String, inout multiLine : List<String>) : void
+		PrintWriter buffer = null;
+		try {
+			buffer = new PrintWriter(new BufferedWriter(new FileWriter(urlAndfileName, true)));
+		} catch (IOException e) {
+			System.err.println("C_OutputData.writeMultiLineAndClose() : Error openning " + urlAndfileName + "in writing");
+			e.printStackTrace();
+		}
+		try {
+			for (String line : multiLine)
+				buffer.println(line);
+		} catch (Exception e) {
+			System.err.println("C_OutputData.writeMultiLineAndClose() : Erreur d'écriture sur le fichier " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			try {
+				buffer.close();
+			} catch (Exception e) {
+				System.err.println("C_OutputData.writeMultiLineAndClose() : buffer closing error" + e.getMessage());
+			}
+		}
+!!!197122.java!!!	closeFile() : void
+	    this.printer.close();
+!!!197250.java!!!	getName() : String
+		return this.fileName;
+!!!197378.java!!!	getNumRun() : int
+		return this.numRun;

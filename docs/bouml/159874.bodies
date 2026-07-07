@@ -1,0 +1,5 @@
+class C_Nest
+!!!310274.java!!!	C_Nest(in affinity : int, in lineNo : int, in colNo : int)
+		super(affinity, lineNo, colNo);
+!!!310402.java!!!	isDead() : boolean
+		return false;

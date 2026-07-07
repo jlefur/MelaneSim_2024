@@ -6,7 +6,6 @@ import javax.swing.JPanel;
 
 import data.C_Parameters;
 import melanesim.protocol.A_Protocol;
-import melanesim.protocol.rodents.A_ProtocolRodent;
 import presentation.epiphyte.C_InspectorFossorialRodents;
 import presentation.epiphyte.C_InspectorGenetic;
 import presentation.epiphyte.C_InspectorHybrid;
@@ -131,7 +130,7 @@ public class C_UserPanelRodent extends C_UserPanel {
 	/** Met à jour les données des compteurs */
 	protected void update_Meters() {
 		super.update_Meters();
-		C_UserPanelRodent.populationInspector = (C_InspectorPopulationRodent) A_Protocol.inspector;
+		C_UserPanelRodent.populationInspector = (C_InspectorPopulationRodent) A_Protocol.inspectorPopulation;
 		int popSize = C_InspectorPopulationRodent.rodentList.size();
 		this.meterPopSize.setData(popSize);
 		if (!this.hasToShowDayMoments())

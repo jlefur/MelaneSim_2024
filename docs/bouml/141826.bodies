@@ -1,0 +1,79 @@
+class C_InspectorVegetation
+!!!247810.java!!!	C_InspectorVegetation()
+		super();
+		vegetationList.clear();
+		// add to the super class header, this proper header
+		indicatorsHeader = "tick;Shrubs Biomass;Crops Biomass;Grasses Biomass;Average Precipitation";
+!!!247938.java!!!	C_InspectorVegetation(inout soilcellsMatrix_Ucell : I_Container [[][]])
+		super();
+		this.landscapeMatrix_Ucell = soilcellsMatrix_Ucell;
+		vegetationList.clear();
+		// add to the super class header, this proper header
+		indicatorsHeader = "tick;Shrubs Biomass;Crops Biomass;Grasses Biomass;Average Precipitation";
+!!!248066.java!!!	indicatorsStoreValues() : String
+		indicatorsValues = RepastEssentials.GetTickCount() + CSV_FIELD_SEPARATOR + this.getShrubEnergy()
+				+ CSV_FIELD_SEPARATOR + this.getCropEnergy() + CSV_FIELD_SEPARATOR + this.getGrassEnergy()
+				+ CSV_FIELD_SEPARATOR + getAveragePrecipitation_Umm();
+		return indicatorsValues;
+!!!248194.java!!!	addVegetationToList(inout oneVegetation : C_Vegetation) : void
+		if (!this.vegetationList.add(oneVegetation))
+			A_Protocol.event("C_InspectorVegetation.addVegetationToList()", "could not add " + oneVegetation,
+					isNotError);
+!!!248322.java!!!	getAveragePrecipitation_Umm() : double
+		int nrow = this.landscapeMatrix_Ucell.length;
+		int ncol = this.landscapeMatrix_Ucell[0].length;
+		return this.getTotalPrecipitation_Umm() / (nrow * ncol);
+!!!248450.java!!!	getTotalPrecipitation_Umm() : double
+		double precipitationValue_Umm = .0;
+		int nrow = this.landscapeMatrix_Ucell.length;
+		int ncol = this.landscapeMatrix_Ucell[0].length;
+		for (int i = 0; i < nrow; i++) {
+			for (int j = 0; j < ncol; j++) {
+				int value = ((C_SoilCellSavanna) this.landscapeMatrix_Ucell[i][j]).getRainLevel();
+				switch (value) {
+					case 2 :
+						precipitationValue_Umm += 10;
+						break;
+					case 3 :
+						precipitationValue_Umm += 25;
+						break;
+					case 4 :
+						precipitationValue_Umm += 60;
+						break;
+					case 5 :
+						precipitationValue_Umm += 115;
+						break;
+					case 6 :
+						precipitationValue_Umm += 175;
+						break;
+					case 7 :
+						precipitationValue_Umm += 235;
+						break;
+					case 8 :
+						precipitationValue_Umm += 270;
+						break;
+				}
+			}
+		}
+		return precipitationValue_Umm;
+!!!248578.java!!!	getVegetationList() : C_Vegetation
+		return this.vegetationList;
+!!!248706.java!!!	getShrubEnergy() : double
+		double shrubEnergy = .0;
+		for (C_Vegetation one_Vegetation : this.vegetationList) {
+			if (one_Vegetation.getGenome() instanceof C_GenomeBalanites)
+				shrubEnergy += one_Vegetation.getEnergy_Ukcal();
+		}
+		return shrubEnergy;
+!!!248834.java!!!	getGrassEnergy() : double
+		double grassEnergy = .0;
+		for (C_Vegetation one_Vegetation : this.vegetationList) {
+			if (one_Vegetation.getGenome() instanceof C_GenomePoacea) grassEnergy += one_Vegetation.getEnergy_Ukcal();
+		}
+		return grassEnergy;
+!!!248962.java!!!	getCropEnergy() : double
+		double cropEnergy = .0;
+		for (C_Vegetation one_Vegetation : this.vegetationList) {
+			if (one_Vegetation.getGenome() instanceof C_GenomeFabacea) cropEnergy += one_Vegetation.getEnergy_Ukcal();
+		}
+		return cropEnergy;

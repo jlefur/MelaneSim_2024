@@ -1,0 +1,64 @@
+class C_InspectorCMR
+!!!230146.java!!!	C_InspectorCMR()
+		super();
+		this.dataSaverCMR = new C_FileWriter("CMR.csv", true);
+		this.dataSaverCMR.writeln("tick;date;popSize;CMR popSize;NbTaggedRodents;DRS;DMR;MNA");
+!!!230274.java!!!	closeSimulation() : void
+	    this.dataSaverCMR.closeFile();
+!!!230402.java!!!	storeCMRIndicators(in date : String) : void
+	    this.dataSaverCMR.writeln(RepastEssentials.GetTickCount() + CSV_FIELD_SEPARATOR + date + CSV_FIELD_SEPARATOR + C_InspectorPopulationRodent.rodentList
+				.size() + CSV_FIELD_SEPARATOR + getTrapAreaPopulation_Urodent() + CSV_FIELD_SEPARATOR + taggedRodentList.size() + CSV_FIELD_SEPARATOR
+				+ getCurrentDRS() + CSV_FIELD_SEPARATOR + getCurrentDMR() + CSV_FIELD_SEPARATOR + getCurrentMNA());
+!!!230530.java!!!	discardDeadThing(inout thing : I_SituatedThing) : void
+		boolean test = true;
+		if ((thing instanceof C_RodentCmr) && (((C_RodentCmr) thing).getTag() > 0) && !taggedRodentList.remove(thing)) test = false;
+		else if ((thing instanceof C_Trap) && !trapList.remove(thing)) test = false;
+		if (!test) A_Protocol.event("C_InspectorCMR.discardDeadThing", "Could not remove " + thing + " from list", isError);
+!!!230658.java!!!	indicatorsReset() : void
+	    this.currentDRS = 0.;
+	    this.currentDMR = 0.;
+	    this.currentMNA = 0;
+!!!230786.java!!!	computeDRS(in session : int) : void
+		double sumDRS = 0., rodentDRS = 0.;
+		int nbTaggedRodents = taggedRodentList.size();
+		for (C_RodentCmr rodent : taggedRodentList) {
+			rodentDRS = rodent.computeDRS(session);
+			if (rodentDRS == 0.) nbTaggedRodents--;// DRS = 0 when rodent has not been recaptured
+			else sumDRS += rodentDRS;
+		}
+		this.currentDRS = sumDRS / nbTaggedRodents;
+!!!230914.java!!!	computeDMR(in session : int) : void
+		double dmr = 0., rodentDMR = 0.;
+		for (C_RodentCmr rodent : taggedRodentList) {// taggedRodentList have been catched at least 1 time
+			rodentDMR = rodent.computeDMR(session);
+			if (dmr < rodentDMR) dmr = rodentDMR;
+		}
+		this.currentDMR = dmr;
+!!!231042.java!!!	computeMNA(in session : int) : void
+		int mna = 0;
+		for (C_RodentCmr rodent : taggedRodentList) {
+			if (rodent.aliveInSession(session)) mna++;
+		}
+		this.currentMNA = mna;
+!!!231170.java!!!	tag(inout rodent : C_RodentCmr) : void
+		if (taggedRodentList.add(rodent)) {
+		    this.taggedRodentsNumber++;
+			rodent.setTag(this.taggedRodentsNumber);
+		}
+!!!231298.java!!!	addTrap(inout oneTrap : C_Trap) : void
+	    this.trapList.add(oneTrap);
+!!!231426.java!!!	setTrapArea(inout trapArea : TreeSet<I_Container>) : void
+		this.trapArea = trapArea;
+!!!231554.java!!!	getTrapList() : C_Trap
+		return this.trapList;
+!!!231682.java!!!	getCurrentDRS() : double
+		return this.currentDRS;
+!!!231810.java!!!	getCurrentDMR() : double
+		return this.currentDMR;
+!!!231938.java!!!	getCurrentMNA() : double
+		return this.currentMNA;
+!!!232066.java!!!	getTrapAreaPopulation_Urodent() : double
+		double trapSystemPopulation = 0;
+		for (Iterator<I_Container> iterator = this.trapArea.iterator(); iterator.hasNext();)
+			trapSystemPopulation += iterator.next().getFullRodentList().size();
+		return trapSystemPopulation;

@@ -1,0 +1,19 @@
+class C_CustomPanelFactory
+!!!205826.java!!!	C_CustomPanelFactory(in title : String, in type : int)
+	    this.support = new RendererListenerSupport();
+	    this.chart = new C_Chart(title, type);
+!!!205954.java!!!	C_CustomPanelFactory(in title : String, in type : int, in XLabel : String, in YLabel : String)
+	    this.support = new RendererListenerSupport();
+	    this.chart = new C_Chart(title, type, XLabel, YLabel);
+!!!206082.java!!!	getPanel() : JPanel
+		return this.chart.getChartPanel();
+!!!206210.java!!!	addRenderListener(inout listener : RenderListener) : void
+	    this.support.addListener(listener);
+!!!206338.java!!!	render() : void
+	    this.support.fireRenderFinished(this);
+!!!206466.java!!!	getChart() : C_Chart
+		return this.chart;
+!!!208258.java!!!	getLayout() : Layout
+		return null;
+!!!208386.java!!!	createEditor(inout panel : JPanel) : DisplayEditorLifecycle
+		return null;

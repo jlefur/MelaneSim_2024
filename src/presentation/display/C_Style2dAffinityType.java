@@ -4,13 +4,13 @@ import java.awt.Color;
 import java.util.HashMap;
 import java.util.Map;
 
-import repast.simphony.valueLayer.ValueLayer;
-import repast.simphony.visualizationOGL2D.ValueLayerStyleOGL;
-import thing.ground.landscape.C_Landscape;
 import data.C_Parameters;
 import data.constants.I_ConstantNumeric;
 import data.constants.I_ConstantPNMC;
 import data.constants.rodents.I_ConstantStringRodents;
+import repast.simphony.valueLayer.ValueLayer;
+import repast.simphony.visualizationOGL2D.ValueLayerStyleOGL;
+import thing.ground.landscape.C_Landscape;
 
 public class C_Style2dAffinityType implements ValueLayerStyleOGL, I_ConstantNumeric, I_ConstantStringRodents,
 		I_ConstantPNMC {
@@ -29,13 +29,9 @@ public class C_Style2dAffinityType implements ValueLayerStyleOGL, I_ConstantNume
 				this.colorMap = colorMapPNMC_drifters(this.colorMap);
 				System.out.print(PNMC_DRIFTERS);
 			}
-			else if (C_Parameters.PROTOCOL.equals(PNMC_PLANKTON)) {
+			else if ((C_Parameters.PROTOCOL.equals(PNMC_PLANKTON) || C_Parameters.PROTOCOL.equals(PNMC_NEKTON) || (C_Parameters.PROTOCOL.equals(PNMC_SHIPS)) || C_Parameters.PROTOCOL.equals(PNMC_TEMPERATURE))) {
 				this.colorMap = colorMapPNMC_plankton(this.colorMap);
 				System.out.print(PNMC_PLANKTON);
-			}
-			else if (C_Parameters.PROTOCOL.equals(PNMC_NEKTON)) {
-				this.colorMap = colorMapPNMC_plankton(this.colorMap);
-				System.out.print(PNMC_NEKTON);
 			}
 			else if (C_Parameters.PROTOCOL.equals(CHIZE)) {
 				this.colorMap = colorMapChizeGrid(this.colorMap);
@@ -102,22 +98,24 @@ public class C_Style2dAffinityType implements ValueLayerStyleOGL, I_ConstantNume
 		colorMap.put(7, new Color(241, 229, 213));// lagon
 		colorMap.put(TERRESTRIAL_MIN_AFFINITY, new Color(58, 124, 76));// terre
 		colorMap.put(BLACK_MAP_COLOR, new Color(0, 0, 0));
+		colorMap.put(11, Color.red);// spot most occupied cells, @see A_Protocol_PNMC#haltSimulation()
 		return colorMap;
 	}
 	public Map<Integer, Color> colorMapPNMC_plankton(Map<Integer, Color> colorMap) {
 		colorMap = new HashMap<Integer, Color>();
-		colorMap.put(0, new Color(193,254,0));
-		colorMap.put(1, new Color(168,255,2));
-		colorMap.put(2, new Color(127,247,0));
-		colorMap.put(3, new Color(87,238,2));
-		colorMap.put(4, new Color(52,227,2));
-		colorMap.put(5, new Color(3,217,11));
-		colorMap.put(6, new Color(0,204,31));
-		colorMap.put(7, new Color(0,184,49));
-		colorMap.put(8, new Color(6,168,59));
-		colorMap.put(9, new Color(1,160,60));
+		colorMap.put(0, new Color(193, 254, 0));
+		colorMap.put(1, new Color(168, 255, 2));
+		colorMap.put(2, new Color(127, 247, 0));
+		colorMap.put(3, new Color(87, 238, 2));
+		colorMap.put(4, new Color(52, 227, 2));
+		colorMap.put(5, new Color(3, 217, 11));
+		colorMap.put(6, new Color(0, 204, 31));
+		colorMap.put(7, new Color(0, 184, 49));
+		colorMap.put(8, new Color(6, 168, 59));
+		colorMap.put(9, new Color(1, 160, 60));
 		colorMap.put(TERRESTRIAL_MIN_AFFINITY, new Color(58, 124, 76));// terre
 		colorMap.put(BLACK_MAP_COLOR, new Color(0, 0, 0));
+		colorMap.put(11, Color.red);// spot most occupied cells, @see A_Protocol_PNMC#haltSimulation()
 		return colorMap;
 	}
 	public Map<Integer, Color> colorMapDodel2(Map<Integer, Color> colorMap) {

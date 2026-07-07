@@ -1,0 +1,9 @@
+class C_CropLandPlot
+!!!309250.java!!!	C_CropLandPlot(inout groundManager : C_LandscapeRodent)
+		super(groundManager);
+!!!309378.java!!!	ploughing() : void
+		for (C_SoilCell oneSoilCell : this.cells) {
+			for (I_SituatedThing inhabitant : oneSoilCell.getFullRodentList()) {
+				if (inhabitant instanceof A_Animal) ((A_Animal) inhabitant).checkDeath(PLOUGHING_MORTALITY_RATE);
+			}
+		}

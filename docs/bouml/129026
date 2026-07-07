@@ -1,0 +1,4145 @@
+format 224
+"ground" // src::thing::ground
+  revision 1
+  modified_by 2 "lefur"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:\\Users\\lefur\\Documents\\GitHub\\MelaneSim_2024\\src/thing/ground/"
+  java_package "thing.ground"
+  package_ref 129154 // landscape
+
+  classview 130050 "ground"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 135810 "I_Container"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 168450 // <generalisation>
+	relation 168450 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 168450 // <generalisation>
+	  b parent class_ref 135682 // I_SituatedThing
+      end
+
+      operation 253570 "agentIncoming"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "a_thing" type class_ref 135682 // I_SituatedThing
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 253698 "agentLeaving"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "agent" type class_ref 135682 // I_SituatedThing
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 253826 "getOccupantList"
+	public return_type class_ref 135682 // I_SituatedThing
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 253954 "getFullOccupantList"
+	public return_type class_ref 135682 // I_SituatedThing
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 254082 "getContainerList"
+	public return_type class_ref 135810 // I_Container
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 254210 "isFull"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 254338 "setAffinity"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "a" explicit_type "int"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 254466 "getAffinity"
+	public explicit_return_type "int"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 254594 "getCarryingCapacity_Urodent"
+	public explicit_return_type "int"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 254722 "getRodentList"
+	public return_type class_ref 137218 // C_Rodent
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 254850 "getFullRodentList"
+	public return_type class_ref 137218 // C_Rodent
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 254978 "retrieveLoad_Urodent"
+	public explicit_return_type "int"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 255106 "retrieveFullLoad_Urodent"
+	public explicit_return_type "int"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 137858 "C_City"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " a city owns a population size, it also take part of several graphs?
+@author jlefur 2014 "
+      classrelation 182402 // <generalisation>
+	relation 182402 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 182402 // <generalisation>
+	  b parent class_ref 138370 // C_LandPlot
+      end
+
+      classrelation 182530 // <realization>
+	relation 182530 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 182530 // <realization>
+	  b parent class_ref 131714 // I_ConstantTransportation
+      end
+
+      attribute 250882 "humanPopSize_Uindividual"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+"
+      end
+
+      operation 308098 "C_City"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "groundManager" type class_ref 133250 // C_LandscapeRodent
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 308226 "setThisName"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "nullString" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " SETTERS & GETTERS
+
+ Cities are unique, hence remove the id tag to name the city
+@see C_LandPlot#setThisName
+@args nullString arg kept for compatibility with NDS args / author J.Le Fur 10.2015 "
+      end
+
+      operation 308354 "setHumanPopSize_Uindividual"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "popSize_Uindividual" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Set the field and modify city plot and cells affinities accordingly<br>
+rev. JLF 10.2018 "
+      end
+
+      operation 308482 "getGraphCells"
+	public return_type class_ref 137986 // C_SoilCellGraphed
+	nparams 1
+	  param in name "graphType" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " get cells of the city that belong to a graph of the given type.
+@param graphType the requested graph (for a given vehicle) : road,rail,river
+@return a the set of cells of the graph type / author PAM, rev. JLF 09.2014 "
+      end
+
+      operation 308610 "getFullLoad_Ucarrier"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Recursively return a treeset of all carriers including those in the contained containers/ Author Le Fur 08.2015
+@return carriers.size(): the number of carriers agent (not accounting for superAgent size) in the container
+@see A_Container#getFullRodentList() from where is has been copied "
+      end
+
+      operation 308738 "getHumanPopSize_Uthousand"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 308866 "getHumanPopSize_Uindividual"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 308994 "getCarryingCapacity_Urodent"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " log base b of x = logk(x)/logk(b) Where logk is the function that returns the base-k logarithm of a number, and it can be any real number If
+humanPopSize>1E5 -> /1000, if > 1E4 -> /10, if > 1E3 return /1, else return humanPopSize<br>
+@version jlf 2015, rev. jlf 09.2017, 01.2018 "
+      end
+    end
+
+    class 137986 "C_SoilCellGraphed"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " a soil cell involved in any type of graph
+@see C_Graph
+@author P.A. Mboup 06.2013 "
+      classrelation 183810 // <generalisation>
+	relation 183810 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 183810 // <generalisation>
+	  b parent class_ref 138114 // C_SoilCell
+      end
+
+      classrelation 183938 // graphListAndPosition (<unidirectional association>)
+	relation 183938 --->
+	  stereotype "Map"
+	  a role_name "graphListAndPosition" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}, Integer> ${name}${value};
+"
+	    classrelation_ref 183938 // graphListAndPosition (<unidirectional association>)
+	  b parent class_ref 138242 // C_Graph
+      end
+
+      classrelation 184066 // landPlotByGroundType (<unidirectional association>)
+	relation 184066 --->
+	  stereotype "Map"
+	  a role_name "landPlotByGroundType" private
+	    comment " The corresponding landplot of each groundtype key 
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<String, ${type}> ${name}${value};
+"
+	    classrelation_ref 184066 // landPlotByGroundType (<unidirectional association>)
+	  b parent class_ref 138370 // C_LandPlot
+      end
+
+      operation 311426 "C_SoilCellGraphed"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "affinity" explicit_type "int"
+	  param in name "i" explicit_type "int"
+	  param in name "j" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 311554 "setLandPlotByGroundType"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "groundType" explicit_type "String"
+	  param inout name "landPlot" type class_ref 138370 // C_LandPlot
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Add this landPlot at the list of landPlots where this soilCell is in and add also this soilCell to the landPlot.
+@param groundType
+@param landPlot "
+      end
+
+      operation 311682 "getLandPlot"
+	public return_type class_ref 138370 // C_LandPlot
+	nparams 1
+	  param in name "groundType" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 311810 "removeLandPlotByGroundType"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "groundType" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 311938 "getNumberInGraph"
+	public explicit_return_type "int"
+	nparams 1
+	  param inout name "graph" type class_ref 138242 // C_Graph
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Get the number of this soilCell in the graph in parameter
+@param graph
+@return the number of this soilCell in the graph "
+      end
+
+      operation 312066 "getGraph"
+	public return_type class_ref 138242 // C_Graph
+	nparams 1
+	  param in name "groundType" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " TODO PAM de JLF 10.2015 A graph has a groundType and a graphType ?
+ Get in this soil cell the graph with the groundType and the graphType. A graph has a groundType and a graphType. <br />
+In one SC we can have several graphs in the same graphType and several graphs in the same groundType. <br />
+And in one landPlot we can have several graphs (with different graphType OR NOT (no problem because we access to a graph
+from one of its soilCells. And a soilCell can never belong to two different graphs or to different landPlot)). So we must
+get a graph with both its groundType and graphType. eg: a portion of a road in a GNT ...<br />
+groundType has to correspond to an existing graphType
+@param groundType
+@return graph "
+      end
+
+      operation 312194 "setNumberInGraph"
+	public explicit_return_type "void"
+	nparams 2
+	  param inout name "graph" type class_ref 138242 // C_Graph
+	  param in name "nodeNumber" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SETTERS & GETTERS
+
+ Set the number of this soilCell in the graph in parameter
+@param graph
+@param nodeNumber "
+      end
+
+      operation 312322 "removeNumberInGraph"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "graph" type class_ref 138242 // C_Graph
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 312450 "getCarrierList"
+	public return_type class_ref 152450 // C_HumanCarrier
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " TODO PAM de JLF 10.2015 put in other place: epiphyte"
+      end
+    end
+
+    class 138114 "C_SoilCell"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " a soil unit, cell, pixel, ... (initially stood for land parcel)
+@author Q.Baduel - 2009, JLF 2011, PAM 2013 "
+      classrelation 168834 // <generalisation>
+	relation 168834 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 168834 // <generalisation>
+	  b parent class_ref 152962 // A_Container
+      end
+
+      attribute 238338 "groundTypeList"
+	protected explicit_type "String"
+	init_value " new TreeSet<String>()"
+	stereotype "TreeSet"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+"
+      end
+
+      classrelation 168962 // affinityLandPlot (<unidirectional association>)
+	relation 168962 --->
+	  a role_name "affinityLandPlot" public
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 168962 // affinityLandPlot (<unidirectional association>)
+	  b parent class_ref 138370 // C_LandPlot
+      end
+
+      operation 257922 "C_SoilCell"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTORS
+
+ A simple do nothing constructor necessary for daughter classes "
+      end
+
+      operation 258050 "C_SoilCell"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "aff" explicit_type "int"
+	  param in name "lineNo" explicit_type "int"
+	  param in name "colNo" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 258178 "discardThis"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " OVERRIDEN METHOD
+
+ Remove references to groundTypeList "
+      end
+
+      operation 258306 "checkDeath"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "deathProbability" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Do not check death "
+      end
+
+      operation 258434 "getCarryingCapacity_Urodent"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+"
+      end
+
+      operation 258562 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 258690 "addGroundType"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "groundType" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " To make this soil cell to be one of the ground types
+@param groundType : one ground type "
+      end
+
+      operation 258818 "removeGroundType"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "groundType" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 258946 "getMyLandPlot"
+	public return_type class_ref 138370 // C_LandPlot
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 259074 "setAffinityLandPlot"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "plot" type class_ref 138370 // C_LandPlot
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Inform the landPlot of this soilCell and add this soilcell to the landPlot.
+@param plot "
+      end
+
+      operation 259202 "isOfGroundType"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param in name "groundType" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Search in this.groundTypeList "
+      end
+
+      operation 259330 "getGroundTypes"
+	public explicit_return_type "TreeSet<String>"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 259458 "getCoordinate_Ucs"
+	public explicit_return_type "Coordinate"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Account for things not contextualized (e.g.,soilCell)<br>
+Version PAMboup 04/2014, rev. jlf 01,02.2018
+@return Location of the soil cell's center in the continuous space if cell is within the context, else recompute from the
+        grid position "
+      end
+    end
+
+    class 138370 "C_LandPlot"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Landplots are sets of identical joint C_SoilCells
+@see C_SoilCell
+@author jlefur 2012, rev 10.2015 "
+      classrelation 182018 // <generalisation>
+	relation 182018 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 182018 // <generalisation>
+	  b parent class_ref 152962 // A_Container
+      end
+
+      classrelation 182146 // <realization>
+	relation 182146 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 182146 // <realization>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      classrelation 182274 // cells (<unidirectional association>)
+	relation 182274 --->
+	  stereotype "TreeSet"
+	  a role_name "cells" init_value " new TreeSet<C_SoilCell>()" protected
+	    comment " FIELDS
+
+ One landplot is only composed of cells, that is, its agents are all cells. The occupantList field is a copy of the field
+cells. the Cells treeSet permit to ensure the C_SoilCell nature of cells but keeping the I_container nature and heritage
+@see A_Container#occupantList 
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 182274 // cells (<unidirectional association>)
+	  b parent class_ref 138114 // C_SoilCell
+      end
+
+      attribute 250754 "plotType"
+	protected explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " e.g., road, house, crop, trap, ... 
+"
+      end
+
+      operation 306434 "C_LandPlot"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "groundManager" type class_ref 135042 // C_Landscape
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 306562 "agentIncoming"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "a_thing" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+"
+      end
+
+      operation 306690 "ploughing"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Induce a mortality when a landPlot is ploughed (value = .8 expertise from B.Gauffre, 01.2012) "
+      end
+
+      operation 306818 "setThisName"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "nullString" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " SETTERS & GETTERS
+
+ Use the first part of the name of the first cell to set the landPlot name. Useful to identify cities
+@see C_InspectorTransportation#getCityByName(String)
+@args nullString arg kept for compatibility with NDS args / author J.Le Fur 09.2014 "
+      end
+
+      operation 306946 "addCell"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "cell" type class_ref 138114 // C_SoilCell
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 307074 "retrieveOneCell"
+	public return_type class_ref 138114 // C_SoilCell
+	nparams 1
+	  param in name "i" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 307202 "setPlotType"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "plotType" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 307330 "getCells"
+	public return_type class_ref 138114 // C_SoilCell
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 307458 "getPlotType"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 307586 "isFull"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " if rodent load of the land plot is > carrying capacity then land plot is full "
+      end
+
+      operation 307714 "getCarryingCapacity_Urodent"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " @Override
+ /** if any cell of the land plot is not full then land plot is not full*/
+ public boolean isFull() {
+ Iterator<C_SoilCell> it = this.cells.iterator();
+ while (it.hasNext())
+ if (!it.next().isFull()) return false;
+ return true;
+ }"
+      end
+
+      operation 307842 "getCoordinate_Ucs"
+	public explicit_return_type "Coordinate"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Unused, needed by the container interface <br>
+author JLF 10.2015, rev. 09.2016 "
+      end
+
+      operation 307970 "getMyLandPlot"
+	public return_type class_ref 138370 // C_LandPlot
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " author JLF 01.2022 "
+      end
+    end
+
+    class 139010 "C_Trap"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " A trap may be opened, closed, full; it can catch rodent
+@author J.Le Fur and M.Diakhate, july 2013, rev. 27.09.13 "
+      classrelation 185730 // <generalisation>
+	relation 185730 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 185730 // <generalisation>
+	  b parent class_ref 152066 // C_BurrowSystem
+      end
+
+      classrelation 185858 // <realization>
+	relation 185858 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 185858 // <realization>
+	  b parent class_ref 131330 // I_ConstantBandia
+      end
+
+      attribute 252930 "open"
+	private explicit_type "boolean"
+	init_value " true"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELD
+
+"
+      end
+
+      operation 319106 "C_Trap"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "affinity" explicit_type "int"
+	  param in name "lineNo" explicit_type "int"
+	  param in name "colNo" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 319234 "trapRodent"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "rodentBandia" type class_ref 138882 // C_RodentCmr
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+ Add rodent in trap's occupantList if : 1� Trap is open, 2� Rodent is not already trapped (check), 3� Trap is not full of rodents, 4�
+TRAP_LOADING_PROBA >= randomProbability "
+      end
+
+      operation 319362 "openTrap"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 319490 "closeTrap"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 319618 "agentLeaving"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "thing" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " One agent from the list is leaving the area of this container agent. Version author Q.Baduel 2008, rev. JLF 12.2015,01.2016 "
+      end
+
+      operation 319746 "isOpen"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " GETTERS
+"
+      end
+
+      operation 319874 "getCarryingCapacity_Urodent"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 320002 "computeDeathProbability_Uday"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " If burrow is empty then do not exceed EMPTY_BURROW_LIFESPAN_Uday before beeing removed, reset age when occupied<br>
+JLF 03.2018 "
+      end
+    end
+
+    class 140546 "C_SoilCellNode"
+      abstract visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Node Class from A* algorithm
+@author Marcelo Surriabre 2018, adapted J. Le Fur, april 2022 "
+      classrelation 184834 // <generalisation>
+	relation 184834 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 184834 // <generalisation>
+	  b parent class_ref 137986 // C_SoilCellGraphed
+      end
+
+      attribute 252162 "g"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 252290 "f"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 252418 "h"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 252546 "isBlock"
+	private explicit_type "boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 184962 // parent (<unidirectional association>)
+	relation 184962 --->
+	  a role_name "parent" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 184962 // parent (<unidirectional association>)
+	  b parent class_ref 140546 // C_SoilCellNode
+      end
+
+      operation 316162 "C_SoilCellNode"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "aff" explicit_type "int"
+	  param in name "lineNo" explicit_type "int"
+	  param in name "colNo" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 316290 "calculateHeuristic"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "finalNode" type class_ref 140546 // C_SoilCellNode
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 316418 "setNodeData"
+	public explicit_return_type "void"
+	nparams 2
+	  param inout name "currentNode" type class_ref 140546 // C_SoilCellNode
+	  param in name "cost" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 316546 "checkBetterPath"
+	public explicit_return_type "boolean"
+	nparams 2
+	  param inout name "currentNode" type class_ref 140546 // C_SoilCellNode
+	  param in name "cost" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 316674 "calculateFinalCost"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 316802 "equals"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "arg0" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 316930 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 317058 "getF"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 317186 "getParent"
+	public return_type class_ref 140546 // C_SoilCellNode
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 317314 "isBlock"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 142210 "C_SoilCellSavanna"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Soil unit able to support rain
+@author JLF MS 10-2015 "
+      classrelation 185090 // <generalisation>
+	relation 185090 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 185090 // <generalisation>
+	  b parent class_ref 138114 // C_SoilCell
+      end
+
+      classrelation 185218 // <realization>
+	relation 185218 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 185218 // <realization>
+	  b parent class_ref 129922 // I_ConstantGerbil
+      end
+
+      attribute 252674 "rainLevel"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELD
+
+"
+      end
+
+      operation 317442 "C_SoilCellSavanna"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "aff" explicit_type "int"
+	  param in name "lineNo" explicit_type "int"
+	  param in name "colNo" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 317570 "setRainLevel"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "rainLevel" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "	@Override
+	public int getAffinity() {
+		double usefullBiomass = 0.;
+		int cropNumber = 0, grassNumber = 0;
+		for (I_SituatedThing oneThing : this.getOccupantList()) {
+			if (oneThing instanceof C_Vegetation) {
+				if (((C_Vegetation) oneThing).getGenome() instanceof C_GenomeFabacea) {
+					cropNumber++;
+					usefullBiomass += ((C_Vegetation) oneThing).getBiomass_Ugram();
+				}
+				if (((C_Vegetation) oneThing).getGenome() instanceof C_GenomePoacea) {
+					grassNumber++;
+					usefullBiomass += ((C_Vegetation) oneThing).getBiomass_Ugram();
+				}
+			}
+		}
+		return  (this.getCarryingCapacity_Urodent() + (int)Math.round((usefullBiomass / (grassNumber * maxGrassBiomassCarryingCapacityInCell_UgramPerSquareMeter
+				+ cropNumber * maxCropBiomassCarryingCapacityInCell_UgramPerSquareMeter) * C_Parameters.CELL_WIDTH_Umeter * C_Parameters.CELL_WIDTH_Umeter)));
+	}
+
+ SETTER & GETTER
+"
+      end
+
+      operation 317698 "getRainLevel"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 317826 "getCarryingCapacity_Urodent"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 143874 "C_SoilCellUrban"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Soil unit able to support wall obstacle * @author JLF MS 09-2019, full rev. JLF 01,05.2022 "
+      classrelation 185346 // <generalisation>
+	relation 185346 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 185346 // <generalisation>
+	  b parent class_ref 140546 // C_SoilCellNode
+      end
+
+      classrelation 185474 // <realization>
+	relation 185474 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 185474 // <realization>
+	  b parent class_ref 132098 // I_ConstantDodel2
+      end
+
+      classrelation 185602 // concession (<unidirectional association>)
+	relation 185602 --->
+	  a role_name "concession" private
+	    comment " FIELDS
+
+ concession is necessary to distinguish movements within a dwelling (standard movement) and out of dwelling (with
+PathWandererAstar).<br>
+The field is identified on the first pass of identifyLandPlot with an override here of setAffinityLandPlot 
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 185602 // concession (<unidirectional association>)
+	  b parent class_ref 138370 // C_LandPlot
+      end
+
+      attribute 252802 "street"
+	private explicit_type "Integer"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " isStreet field tested at this level following pb of multiple identifications on initialization. IsStreet is used to
+provide isBlock used by Astar 
+"
+      end
+
+      operation 317954 "C_SoilCellUrban"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "aff" explicit_type "int"
+	  param in name "lineNo" explicit_type "int"
+	  param in name "colNo" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 318082 "isBlock"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " OVERRIDEN METHODS
+"
+      end
+
+      operation 318210 "isStreet"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 318338 "setAffinityLandPlot"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "plot" type class_ref 138370 // C_LandPlot
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Determine on the first pass the concession to which oneSoilCell belongs - JLF 05.2022 <br>
+Inform the landPlot of this soilCell and add this soilcell to the landPlot. "
+      end
+
+      operation 318466 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 318594 "isDangerousArea"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " GETTERS
+"
+      end
+
+      operation 318722 "isWall"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 318850 "getConcession"
+	public return_type class_ref 138370 // C_LandPlot
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 318978 "setConcession"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "concession" type class_ref 138370 // C_LandPlot
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 152066 "C_BurrowSystem"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 181890 // <generalisation>
+	relation 181890 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 181890 // <generalisation>
+	  b parent class_ref 152834 // A_SupportedContainer
+      end
+
+      operation 305922 "C_BurrowSystem"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "affinity" explicit_type "int"
+	  param in name "lineNo" explicit_type "int"
+	  param in name "colNo" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+
+ Constructor sets the affinity to 10 "
+      end
+
+      operation 306050 "computeDeathProbability_Uday"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " METHOD
+
+ If burrow is empty then do not exceed EMPTY_BURROW_LIFESPAN_Uday before being removed, reset age when occupied<br>
+JLF 03.2018 "
+      end
+
+      operation 306178 "agentIncoming"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "thing" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " If currently vanishing and incomer arrive, reactivate JLF 2018 "
+      end
+
+      operation 306306 "getRed"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " GETTER
+
+ Display/Enlight saturated burrows (= N/K) in other color JLF 2016 "
+      end
+    end
+
+    class 152834 "A_SupportedContainer"
+      abstract visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Container that can be put within a C_SoilCell
+@author J.Le Fur, 03.2015, rev. 09.2015 "
+      classrelation 169090 // <generalisation>
+	relation 169090 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 169090 // <generalisation>
+	  b parent class_ref 138114 // C_SoilCell
+      end
+
+      attribute 238466 "a_tag"
+	protected explicit_type "boolean"
+	init_value " false"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELD
+
+"
+      end
+
+      operation 259586 "A_SupportedContainer"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTORS
+"
+      end
+
+      operation 259714 "A_SupportedContainer"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "affinity" explicit_type "int"
+	  param in name "lineNo" explicit_type "int"
+	  param in name "colNo" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 259842 "agentIncoming"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "thing" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " METHODS
+
+ Disperse animal if container is full TODO JLF 2016.01 should be valid for any I_container ? <br>
+rev M.S 2017.02, JLF 03.2021 remove target container of thing after remove it in animalsTargetingMe "
+      end
+
+      operation 259970 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 260098 "getCoordinate_Ucs"
+	public explicit_return_type "Coordinate"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 260226 "getMyLandPlot"
+	public return_type class_ref 138370 // C_LandPlot
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " JLF 03.2021 "
+      end
+
+      operation 260354 "checkDeath"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "deathProbability" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " set Dead if random number is lower than death probability passed in arg <br>
+same as A_NDS since C_Soilcell do not check death
+@see A_NDS#checkDeath "
+      end
+
+      operation 260482 "isa_Tag"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " GETTER AND SETTER
+"
+      end
+
+      operation 260610 "seta_Tag"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "tagged" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 152962 "A_Container"
+      abstract visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Any container able to contain I_situated thing. Provide the mean to manage any I_container thing; that is containers of
+containers. Basic fields and commands only.
+@author J. Le Fur, nov.2014, mar.2015, sep.2020 "
+      classrelation 168322 // <generalisation>
+	relation 168322 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 168322 // <generalisation>
+	  b parent class_ref 153090 // A_VisibleAgent
+      end
+
+      classrelation 168578 // <realization>
+	relation 168578 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 168578 // <realization>
+	  b parent class_ref 135810 // I_Container
+      end
+
+      attribute 237698 "lineNo"
+	protected explicit_type "int"
+	init_value " -1"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+ Coordinate i or x in the grid or soilCellMatrix 
+"
+      end
+
+      attribute 237826 "colNo"
+	protected explicit_type "int"
+	init_value " -1"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Coordinate j or y in the grid or soilCellMatrix 
+"
+      end
+
+      classrelation 168706 // occupantList (<unidirectional association>)
+	relation 168706 --->
+	  stereotype "TreeSet"
+	  a role_name "occupantList" init_value " new TreeSet<I_SituatedThing>()" protected
+	    comment " The agents that have entered the container 
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 168706 // occupantList (<unidirectional association>)
+	  b parent class_ref 135682 // I_SituatedThing
+      end
+
+      attribute 237954 "affinity"
+	protected explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " The more the affinity is high, the more the dynamics agents are attracted affinity is also used as a proxy for carrying
+capacity (the less affinity, the less K) 
+"
+      end
+
+      attribute 238082 "rodentLoad"
+	protected explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 238210 "agentLoad"
+	protected explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 255234 "actionInfect"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "thing" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+ Transmit infection to thing (a container may transmit its infection to its content)<br>
+Has to be overridden in daughter classes MS 2020 "
+      end
+
+      operation 255362 "getInfection"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "pathogen" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 255490 "discardThis"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Remove agents from occupants list "
+      end
+
+      operation 255618 "agentIncoming"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "thing" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " A thing comes inside the area of this container agent, we register it in the occupant list <br>
+NB: use it each time you manually manipulate a thing on space. Version author: Q.Baduel 2008, rev JLF 11.2014, 02.2020
+@param thing : the dynamic agent
+@return incoming success "
+      end
+
+      operation 255746 "agentLeaving"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "thing" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " One agent from the list is leaving the area of this container agent. Version author Q.Baduel 2008, rev. JLF
+12.2015,01.2016 "
+      end
+
+      operation 255874 "setAffinity"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "a" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SETTERS AND GETTERS
+
+ Recursively set the value passed to self and contained containers affinity / Author Le Fur 03.2015 "
+      end
+
+      operation 256002 "assertLineNo"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "lineNo" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 256130 "assertColNo"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "colNo" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 256258 "isInfected"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 256386 "isFull"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 256514 "retrieveLineNo"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @return the i or x coord in the grid (ex-SoilCell) matrix "
+      end
+
+      operation 256642 "retrieveColNo"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @return the j or y coord in the grid (ex-SoilCell) matrix "
+      end
+
+      operation 256770 "getAffinity"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 256898 "getOccupantList"
+	public return_type class_ref 135682 // I_SituatedThing
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @return agent_list, the list not including agents within lower level containers "
+      end
+
+      operation 257026 "getFullOccupantList"
+	public return_type class_ref 135682 // I_SituatedThing
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Recursively return a treeset of all agents including those in the contained containers/ Author Le Fur 03.2012, rev.
+11.2014
+@return agents: a treeset of agents in the container "
+      end
+
+      operation 257154 "getContainerList"
+	public return_type class_ref 135810 // I_Container
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @return containerList: the list of I_containers in this container; do not recurse "
+      end
+
+      operation 257282 "getRodentList"
+	public return_type class_ref 137218 // C_Rodent
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @return rodent_list: the list of rodents in this container; do not recurse "
+      end
+
+      operation 257410 "getFullRodentList"
+	public return_type class_ref 137218 // C_Rodent
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Recursively return a treeset of all rodents including those in the contained containers/ Author Le Fur 03.2012, rev.
+11.2014
+@return rodents: a treeset of rodents in the container "
+      end
+
+      operation 257538 "retrieveFullLoad_Urodent"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Author Le Fur 03.2015
+@return the number of rodents in the container and into its parts
+@see getFullRodentList "
+      end
+
+      operation 257666 "retrieveLoad_Urodent"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Author Le Fur 03.2015
+@return the number of rodents in the container only
+@see getRodentList "
+      end
+
+      operation 257794 "getFullLoad_Uagent"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @return the number of agents in the container and into its parts
+@see getFullAgentList "
+      end
+    end
+
+    class 153986 "C_SoilCellMarine"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Ocean unit used in MelaneSim
+@author JLF 2024 "
+      classrelation 184450 // <generalisation>
+	relation 184450 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 184450 // <generalisation>
+	  b parent class_ref 160258 // C_SoilCellMarineEnergy
+      end
+
+      classrelation 184578 // <realization>
+	relation 184578 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 184578 // <realization>
+	  b parent class_ref 129026 // I_ConstantPNMC
+      end
+
+      attribute 251906 "speedEastward_UmeterPerSecond"
+	private explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+"
+      end
+
+      attribute 252034 "speedNorthward_UmeterPerSecond"
+	private explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+"
+      end
+
+      classrelation 184706 // myCurrent (<unidirectional association>)
+	relation 184706 --->
+	  a role_name "myCurrent" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 184706 // myCurrent (<unidirectional association>)
+	  b parent class_ref 153858 // C_StreamCurrent
+      end
+
+      operation 314370 "C_SoilCellMarine"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "aff" explicit_type "int"
+	  param in name "lineNo" explicit_type "int"
+	  param in name "colNo" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Sum of energies (situated things) passed through this cell since last resetColors 
+
+ CONSTRUCTOR
+"
+      end
+
+      operation 314498 "agentIncoming"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "thing" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " OVERRIDEN METHODS
+
+ Incoming plankton gets the cell's chlorophyll value as energy value, update cell's meanEnergy_Ukcal
+@author JLF 04.2025 "
+      end
+
+      operation 314626 "agentLeaving"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "thing" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Leaving nekton decreases nektonDensity, leaving plankton decrease cell's total chlorophyll, all particle
+decrease cell's energy
+@author JLF 04,10.2025 "
+      end
+
+      operation 314754 "step_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Move planktonic occupants with the surface current speed - JLF 07.2024<br>
+Compute the marineCell's integral energy -JLF 03,10 2025 "
+      end
+
+      operation 314882 "setSpeedEastward_UmeterPerSecond"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "currentSpeedEastward_UmeterPerSecond" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SETTERS
+"
+      end
+
+      operation 315010 "setSpeedNorthward_UmeterPerSecond"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "currentSpeedNorthward_UmeterPerSecond" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 315138 "setMyCurrent"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "myCurrent" type class_ref 153858 // C_StreamCurrent
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 315266 "getSpeedEastward_UmeterPerSecond"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " GETTERS
+"
+      end
+
+      operation 315394 "getSpeedNorthward_UmeterPerSecond"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 315522 "isTerrestrial"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 315650 "getMyCurrent"
+	public return_type class_ref 153858 // C_StreamCurrent
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 315778 "getTotalChlorophyll_U100"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 315906 "getTotalNektonDensity_U100"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 316034 "getIntegralOccupants"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 159362 "C_Concession"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Soil unit able to support rooms and wall obstacle * @author JLF MS 09-2019, full rev. JLF 05.2022 "
+      classrelation 182658 // <generalisation>
+	relation 182658 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 182658 // <generalisation>
+	  b parent class_ref 138370 // C_LandPlot
+      end
+
+      operation 309122 "C_Concession"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "groundManager" type class_ref 159490 // C_LandscapeUrban
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+    end
+
+    class 159618 "C_CropLandPlot"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Crops are specific landplots that can be ploughed
+@see C_LandPlot
+@author jlefur 08.2015 "
+      classrelation 182786 // <generalisation>
+	relation 182786 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 182786 // <generalisation>
+	  b parent class_ref 138370 // C_LandPlot
+      end
+
+      attribute 251010 "PLOUGHING_MORTALITY_RATE"
+	const_attribute private explicit_type "double"
+	init_value " .8"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " CONSTANT
+
+ induce a mortality when ploughed (=.8 expertise from B.Gauffre, 01.2012)"
+      end
+
+      operation 309250 "C_CropLandPlot"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "groundManager" type class_ref 133250 // C_LandscapeRodent
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 309378 "ploughing"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHOD
+
+ Induce a mortality when a landPlot is ploughed (value = .8 expertise from B.Gauffre, 01.2012) "
+      end
+    end
+
+    class 159746 "C_Market"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " A market get its population grow the market day. Implemented for Mus transport protocol "
+      classrelation 182914 // <generalisation>
+	relation 182914 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 182914 // <generalisation>
+	  b parent class_ref 137858 // C_City
+      end
+
+      classrelation 183042 // <realization>
+	relation 183042 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 183042 // <realization>
+	  b parent class_ref 132354 // I_ConstantMusTransport
+      end
+
+      attribute 251138 "marketDay_UCalendar"
+	private explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELD
+
+"
+      end
+
+      operation 309506 "C_Market"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "groundManager" type class_ref 133250 // C_LandscapeRodent
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 309634 "setMarketDay_UCalendar"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "marketDay_UCalendar" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SETTER AND GETTERS
+"
+      end
+
+      operation 309762 "getMarketDay_UCalendar"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 309890 "isMarketDay"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 310018 "getSize"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " GUI STUFF
+ Change size of the market icon when market day "
+      end
+
+      operation 310146 "getRedColor"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Change color of the market icon when market day "
+      end
+    end
+
+    class 159874 "C_Nest"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " This class accounts for Tick .
+@author M. Sall 03.2017 "
+      classrelation 183170 // <generalisation>
+	relation 183170 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 183170 // <generalisation>
+	  b parent class_ref 152066 // C_BurrowSystem
+      end
+
+      operation 310274 "C_Nest"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "affinity" explicit_type "int"
+	  param in name "lineNo" explicit_type "int"
+	  param in name "colNo" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+
+ Constructor sets the affinity to 10 "
+      end
+
+      operation 310402 "isDead"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 160002 "C_Region"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " A region stands for a landplot (sufficiently large area) that can encompass(contain) at least one C_City
+@author Jean Le Fur 08.09.2014 "
+      classrelation 183298 // <generalisation>
+	relation 183298 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 183298 // <generalisation>
+	  b parent class_ref 138370 // C_LandPlot
+      end
+
+      classrelation 183426 // <realization>
+	relation 183426 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 183426 // <realization>
+	  b parent class_ref 131714 // I_ConstantTransportation
+      end
+
+      classrelation 183554 // cityList (<unidirectional association>)
+	relation 183554 --->
+	  stereotype "TreeSet"
+	  a role_name "cityList" protected
+	    comment " FIELD
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 183554 // cityList (<unidirectional association>)
+	  b parent class_ref 137858 // C_City
+      end
+
+      operation 310530 "C_Region"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "groundManager" type class_ref 135042 // C_Landscape
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 310658 "computeCityList"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHOD
+
+ Use the groundPlotsByGroundType to fetch the cities of each soil cell of the region Version JLF 09.2014 "
+      end
+
+      operation 310786 "getCityList"
+	public return_type class_ref 137858 // C_City
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " GETTERS
+
+ Fetch the soil cells of the Region and retrieve the cities (treeSet avoids duplicates) "
+      end
+
+      operation 310914 "getMarkets"
+	public return_type class_ref 159746 // C_Market
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Extract the list of markets from the list of cities / rev. JLF 03.2016 "
+      end
+
+      operation 311042 "getNoMarkets"
+	public return_type class_ref 137858 // C_City
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Extract the list of cities which are not markets from the list of cities / JLF 01.2017 "
+      end
+
+      operation 311170 "getCarriers"
+	public return_type class_ref 152450 // C_HumanCarrier
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 160130 "C_Room"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 183682 // <generalisation>
+	relation 183682 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 183682 // <generalisation>
+	  b parent class_ref 138370 // C_LandPlot
+      end
+
+      operation 311298 "C_Room"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "groundManager" type class_ref 159490 // C_LandscapeUrban
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 160258 "C_SoilCellMarineEnergy"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 184194 // <generalisation>
+	relation 184194 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 184194 // <generalisation>
+	  b parent class_ref 138114 // C_SoilCell
+      end
+
+      class 160386 "Champ"
+	visibility public stereotype "enum"
+	cpp_decl ""
+	java_decl "${comment}${@}${visibility}${static}${final}${abstract}enum ${name}${implements} {
+${items};
+${members}}
+"
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	mysql_decl ""
+	
+	attribute 251266 "RAW_VAL"
+	  public type class_ref 160386 // Champ
+	  cpp_decl ""
+	  java_decl "  ${@}${name}${value},${comment}"
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+
+	attribute 251394 "NB_VAL"
+	  public type class_ref 160386 // Champ
+	  cpp_decl ""
+	  java_decl "  ${@}${name}${value},${comment}"
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+
+	attribute 251522 "INTEGRAL_100"
+	  public type class_ref 160386 // Champ
+	  cpp_decl ""
+	  java_decl "  ${@}${name}${value},${comment}"
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+
+	attribute 251650 "_100"
+	  public type class_ref 160386 // Champ
+	  cpp_decl ""
+	  java_decl "  ${@}${name}${value},${comment}"
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+      end
+
+      class 160514 "Valeurs"
+	visibility private 
+	cpp_decl ""
+	final static java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	mysql_decl ""
+	
+	attribute 251778 "champs"
+	  const_attribute private explicit_type "double"
+	  multiplicity "[]"
+	  init_value " new double[Champ.values().length]"
+	  cpp_decl ""
+	  java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}${multiplicity} ${name}${value};
+"
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	  comment " OBJET VALEUR GÉNÉRIQUE
+ FIELD
+"
+	end
+
+	operation 312578 "add"
+	  public explicit_return_type "void"
+	  nparams 2
+	    param inout name "champ" type class_ref 160386 // Champ
+	    param in name "delta" explicit_type "double"
+	  
+	  preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	  
+	  
+	  
+	  comment " SETTER and GETTER"
+	end
+
+	operation 312706 "set"
+	  public explicit_return_type "void"
+	  nparams 2
+	    param inout name "champ" type class_ref 160386 // Champ
+	    param in name "value" explicit_type "double"
+	  
+	  preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	  
+	  
+	  
+	end
+
+	operation 312834 "get"
+	  public explicit_return_type "double"
+	  nparams 1
+	    param inout name "champ" type class_ref 160386 // Champ
+	  
+	  preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	  
+	  
+	  
+	end
+
+	operation 312962 "toString"
+	  public explicit_return_type "String"
+	  nparams 0
+	  
+	  preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	  java_annotation "@Override
+"
+	  
+	  
+	  
+	  comment " OVERRIDEN METHOD"
+	end
+      end
+
+      classrelation 184322 // valeurs (<unidirectional association>)
+	relation 184322 --->
+	  a role_name "valeurs" multiplicity "[]" const_relation private
+	    comment " ENUM DES CHAMPS (multi-valeurs par type)
+ STOCKAGE INTERNE : enum + tableau"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}${multiplicity} ${name}${value};
+"
+	    classrelation_ref 184322 // valeurs (<unidirectional association>)
+	  b parent class_ref 160514 // Valeurs
+      end
+
+      operation 313090 "C_SoilCellMarineEnergy"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "aff" explicit_type "int"
+	  param in name "lineNo" explicit_type "int"
+	  param in name "colNo" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 313218 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " OVERRIDEN METHOD
+"
+      end
+
+      operation 313346 "toString0"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 313474 "valeurs"
+	private return_type class_ref 160514 // Valeurs
+	nparams 1
+	  param inout name "type" type class_ref 130562 // DriverType
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+"
+      end
+
+      operation 313602 "add"
+	public explicit_return_type "void"
+	nparams 3
+	  param inout name "type" type class_ref 130562 // DriverType
+	  param inout name "champ" type class_ref 160386 // Champ
+	  param in name "delta" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " API GÉNÉRIQUE (Type + Champ)"
+      end
+
+      operation 313730 "set"
+	public explicit_return_type "void"
+	nparams 3
+	  param inout name "type" type class_ref 130562 // DriverType
+	  param inout name "champ" type class_ref 160386 // Champ
+	  param in name "value" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 313858 "get"
+	public explicit_return_type "double"
+	nparams 2
+	  param inout name "type" type class_ref 130562 // DriverType
+	  param inout name "champ" type class_ref 160386 // Champ
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 313986 "getEnergy_Ukcal"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 314114 "getIntegralEnergy_Ukcal"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " sum INTEGRAL_100_overAllTypes()
+@see A_Protocol_PNMC#computeMinMaxIntegrals "
+      end
+
+      operation 314242 "resetIntegralEnergy_Ukcal"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Reset all values of INTEGRAL_100 for every driver to value corresponding to the actors still in the cell "
+      end
+    end
+
+    class 160642 "C_Vehicle"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " A vehicle is an object owned by a human carrier. its coordinates are those of its owner. author J.Le Fur, Mboup 07/2012, rev jlf 03.2015 "
+      classrelation 185986 // <generalisation>
+	relation 185986 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 185986 // <generalisation>
+	  b parent class_ref 152834 // A_SupportedContainer
+      end
+
+      classrelation 186114 // <realization>
+	relation 186114 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 186114 // <realization>
+	  b parent class_ref 131714 // I_ConstantTransportation
+      end
+
+      classrelation 186242 // owner (<unidirectional association>)
+	relation 186242 --->
+	  a role_name "owner" protected
+	    comment " FIELDS
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 186242 // owner (<unidirectional association>)
+	  b parent class_ref 152450 // C_HumanCarrier
+      end
+
+      attribute 253058 "speed_UmeterByTick"
+	protected explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 253186 "type"
+	protected explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 253314 "loadingProba"
+	protected explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 253442 "graphType"
+	protected explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 253570 "accountForTrackCondition"
+	private explicit_type "boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " PAM 08/12/15"
+      end
+
+      attribute 253698 "parked"
+	protected explicit_type "boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 320130 "C_Vehicle"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTORS
+"
+      end
+
+      operation 320258 "C_Vehicle"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "type" explicit_type "String"
+	  param inout name "happyOwner" type class_ref 152450 // C_HumanCarrier
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 320386 "initParameters"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+ Parameters override constants "
+      end
+
+      operation 320514 "carryRodentsToMyLocation_Ucs"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Move physically rodents but do not make change currentSoilCell (vehicle is a mobile SoilCell) "
+      end
+
+      operation 320642 "unloadRodents"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 320770 "setSpeed_UmeterByTick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SETTERS & GETTERS
+
+ Re-compute vehicle speed when tick definition has changed "
+      end
+
+      operation 320898 "getCarryingCapacity_Urodent"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 321026 "getType"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 321154 "getGraphType"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 321282 "getSpeed_UmeterByTick"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 321410 "getLoadingProba"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 321538 "isAccountForTrackCondition"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 321666 "isParked"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 321794 "setParked"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "parked" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 160770 "RandomExample"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+  end
+
+  deploymentview 130178 "ground"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 145282 "I_Container"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.TreeSet;
+import thing.I_SituatedThing;
+import thing.rodents.C_Rodent;
+${definition}"
+      associated_elems
+	class_ref 135810 // I_Container
+      end
+      comment " This source code is licensed under a Creative Commons-BY licence
+ J.Le Fur 03.2014, rev. 2014-2017, 2021 "
+    end
+
+    artifact 145410 "A_Container"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.TreeSet;
+import data.C_Parameters;
+import melanesim.protocol.A_Protocol;
+import melanesim.util.C_VariousUtilities;
+import thing.A_Animal;
+import thing.A_NDS;
+import thing.A_VisibleAgent;
+import thing.I_SituatedThing;
+import thing.rodents.C_Rodent;
+${definition}"
+      associated_elems
+	class_ref 152962 // A_Container
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 145538 "C_SoilCell"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.TreeSet;
+import org.locationtech.jts.geom.Coordinate;
+import data.C_Parameters;
+import data.constants.rodents.I_ConstantStringRodents;
+${definition}"
+      associated_elems
+	class_ref 138114 // C_SoilCell
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 145666 "A_SupportedContainer"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import org.locationtech.jts.geom.Coordinate;
+import melanesim.C_ContextCreator;
+import thing.A_Animal;
+import thing.A_VisibleAgent;
+import thing.I_SituatedThing;
+${definition}"
+      associated_elems
+	class_ref 152834 // A_SupportedContainer
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 152962 "C_BurrowSystem"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import data.C_Parameters;
+import thing.I_SituatedThing;
+${definition}"
+      associated_elems
+	class_ref 152066 // C_BurrowSystem
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt  "
+    end
+
+    artifact 153090 "C_LandPlot"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Iterator;
+import java.util.TreeSet;
+import org.locationtech.jts.geom.Coordinate;
+import data.constants.rodents.I_ConstantStringRodents;
+import melanesim.protocol.A_Protocol;
+import thing.A_Animal;
+import thing.I_SituatedThing;
+import thing.ground.landscape.C_Landscape;
+${definition}"
+      associated_elems
+	class_ref 138370 // C_LandPlot
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 153218 "C_City"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.TreeSet;
+import data.constants.rodents.I_ConstantTransportation;
+import thing.I_SituatedThing;
+import thing.ground.landscape.C_LandscapeRodent;
+import thing.rodents.C_HumanCarrier;
+import melanesim.protocol.A_Protocol;
+${definition}"
+      associated_elems
+	class_ref 137858 // C_City
+      end
+    end
+
+    artifact 153346 "C_Concession"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import thing.ground.landscape.C_LandscapeUrban;
+${definition}"
+      associated_elems
+	class_ref 159362 // C_Concession
+      end
+    end
+
+    artifact 153474 "C_CropLandPlot"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import thing.A_Animal;
+import thing.I_SituatedThing;
+import thing.ground.landscape.C_LandscapeRodent;
+${definition}"
+      associated_elems
+	class_ref 159618 // C_CropLandPlot
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 153602 "C_Market"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Calendar;
+import data.constants.rodents.I_ConstantMusTransport;
+import melanesim.protocol.A_Protocol;
+import thing.ground.landscape.C_LandscapeRodent;
+${definition}"
+      associated_elems
+	class_ref 159746 // C_Market
+      end
+    end
+
+    artifact 153730 "C_Nest"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 159874 // C_Nest
+      end
+    end
+
+    artifact 153858 "C_Region"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.TreeSet;
+import data.constants.rodents.I_ConstantTransportation;
+import thing.ground.landscape.C_Landscape;
+import thing.rodents.C_HumanCarrier;
+${definition}"
+      associated_elems
+	class_ref 160002 // C_Region
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 153986 "C_Room"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import thing.ground.landscape.C_LandscapeUrban;
+${definition}"
+      associated_elems
+	class_ref 160130 // C_Room
+      end
+    end
+
+    artifact 154114 "C_SoilCellGraphed"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Map;
+import java.util.TreeSet;
+import melanesim.protocol.A_Protocol;
+import melanesim.util.C_Graph;
+import thing.I_SituatedThing;
+import thing.rodents.C_HumanCarrier;
+import java.util.HashMap;
+${definition}"
+      associated_elems
+	class_ref 137986 // C_SoilCellGraphed
+      end
+    end
+
+    artifact 154242 "C_SoilCellMarineEnergy"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
+import thing.I_MarineActor.DriverType;
+${definition}"
+      associated_elems
+	class_ref 160258 // C_SoilCellMarineEnergy
+      end
+    end
+
+    artifact 154370 "C_SoilCellMarine"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.TreeSet;
+import org.locationtech.jts.geom.Coordinate;
+import data.constants.I_ConstantPNMC;
+import data.converters.C_ConvertTimeAndSpace;
+import thing.A_VisibleAgent;
+import thing.C_Nekton;
+import thing.C_Plankton;
+import thing.C_StreamCurrent;
+import thing.I_MarineActor;
+import thing.I_MarineActor.DriverType;
+import thing.I_SituatedThing;
+${definition}"
+      associated_elems
+	class_ref 153986 // C_SoilCellMarine
+      end
+    end
+
+    artifact 154498 "C_SoilCellNode"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 140546 // C_SoilCellNode
+      end
+    end
+
+    artifact 154626 "C_SoilCellSavanna"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import data.C_Parameters;
+import data.constants.rodents.I_ConstantGerbil;
+${definition}"
+      associated_elems
+	class_ref 142210 // C_SoilCellSavanna
+      end
+    end
+
+    artifact 154754 "C_SoilCellUrban"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import data.constants.rodents.I_ConstantDodel2;
+${definition}"
+      associated_elems
+	class_ref 143874 // C_SoilCellUrban
+      end
+    end
+
+    artifact 154882 "C_Trap"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import melanesim.C_ContextCreator;
+import melanesim.protocol.A_Protocol;
+import thing.I_SituatedThing;
+import thing.rodents.C_RodentCmr;
+${definition}"
+      associated_elems
+	class_ref 139010 // C_Trap
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 155010 "C_Vehicle"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import thing.rodents.C_HumanCarrier;
+import thing.rodents.C_Rodent;
+import data.C_Parameters;
+import data.constants.rodents.I_ConstantTransportation;
+import data.converters.C_ConvertTimeAndSpace;
+import melanesim.C_ContextCreator;
+${definition}"
+      associated_elems
+	class_ref 160642 // C_Vehicle
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 155138 "RandomExample"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 160770 // RandomExample
+      end
+    end
+  end
+end

@@ -1,0 +1,3832 @@
+format 224
+"dna" // src::thing::dna
+  revision 1
+  modified_by 2 "lefur"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:\\Users\\lefur\\Documents\\GitHub\\MelaneSim_2024\\src/thing/dna/"
+  java_package "thing.dna"
+  classview 130562 "dna"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 144386 "I_MappedDna"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "All Genetic objects have a length in the number of loci they've got, but they also can have a
+\"virtual length\", as if Genes are located at various points along the genome. For example, a HaploidGenome
+might have 3 genes, whose loci are 1, 2, 3. However, locus1 may be at 1.4, locus2 at 1.43 and locus3 at
+35.1. This is used to help model linkage. Loci 1 and 2 are closely linked, while 3 is far from either.
+
+
+was formerly interface MapGenome then I_map_Genome, JLF 01-2011
+@author kyle wagner, elyk@acm.org
+Version 1.0, Thu Apr 25 13:17:41 2002
+"
+      classrelation 172546 // <generalisation>
+	relation 172546 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 172546 // <generalisation>
+	  b parent class_ref 154498 // I_DnaThing
+      end
+
+      operation 276610 "getMapLength"
+	public explicit_return_type "double"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the length of this genome in map units
+"
+      end
+
+      operation 276738 "getGeneMapLoc"
+	public explicit_return_type "double"
+	nparams 1
+	  param in name "locus" explicit_type "int"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param locus
+           the index into the genome where the gene is
+@return the map location of a particular gene in map units
+"
+      end
+
+      operation 276866 "getLocusAllele"
+	public explicit_return_type "Object"
+	nparams 1
+	  param in name "mapLoc" explicit_type "double"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the Gene or GenePair that's stored at the given map location
+"
+      end
+    end
+
+    class 144642 "C_Chromosome"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " A single \"strand\" of genes, capable of being mutated and crossed over with another single strand (another chromosome)<br>
+NOTE: map locations are currently not checked for sequential ordering, so each new Gene that is added must be at a higher map location than all of
+the previously added Genes.<br>
+@author kyle wagner, elyk@acm.org
+Version 1.1, aug 28, 2002, jan 2012 J. Le Fur "
+      classrelation 172674 // <realization>
+	relation 172674 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 172674 // <realization>
+	  b parent class_ref 144386 // I_MappedDna
+      end
+
+      classrelation 172802 // <realization>
+	relation 172802 -_-|>
+	  a public
+	    java "${type}<C_Chromosome>"
+	    classrelation_ref 172802 // <realization>
+	  b parent class_ref 130178 // Comparable
+      end
+
+      attribute 241154 "MAP_LENGTH"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 100.0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " CONSTANT
+
+ TODO number in source OK xsome map length"
+      end
+
+      attribute 241282 "myId"
+	protected explicit_type "Integer"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+"
+      end
+
+      classrelation 172930 // genes (<unidirectional association>)
+	relation 172930 --->
+	  stereotype "List"
+	  a role_name "genes" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 172930 // genes (<unidirectional association>)
+	  b parent class_ref 154626 // C_Gene
+      end
+
+      classrelation 173058 // recombinator (<unidirectional association>)
+	relation 173058 --->
+	  a role_name "recombinator" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 173058 // recombinator (<unidirectional association>)
+	  b parent class_ref 144514 // I_Recombinator
+      end
+
+      attribute 241410 "mapLength"
+	protected explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 241538 "mergedXsome"
+	private explicit_type "boolean"
+	init_value " false"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " when an homologous chromosome is composed of several smaller chromosomes, they are merged into a single"
+      end
+
+      operation 276994 "C_Chromosome"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "numGenes" explicit_type "int"
+	  param inout name "recombinator" type class_ref 144514 // I_Recombinator
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " equivalent homologous chromosome and tagged as a mergedXsome. 03.2012
+
+ CONSTRUCTORS
+
+ Make a chromosome of a specific size (it's more efficient if this size is known since an ArrayList is holding the Genes).
+@param numGenes how many genes will be in the final chromosome (only for efficiency - if count is incorrect, chromosome will still function
+           properly, it will simply take a longer time to construct).
+@param recombinator provides a crossover method Author Kyle Wagner 2002 "
+      end
+
+      operation 277122 "C_Chromosome"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "mapLength" explicit_type "double"
+	  param in name "numGenes" explicit_type "int"
+	  param inout name "recombinator" type class_ref 144514 // I_Recombinator
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Make a chromosome of a specific size (it's more efficient if this size is known since an ArrayList is holding the Genes).
+@param mapLength the length of this chromosome in map units
+@param numGenes how many genes will be in the final chromosome (only for efficiency - if count is incorrect, chromosome will still function
+           properly, it will simply take a longer time to construct).
+@param recombinator provides a crossover method "
+      end
+
+      operation 277250 "mutate"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "info" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+ Potentially modify all of the Genes (or components) of this Genetic object. Variation may be constrained by a rate (a mutation rate), or other
+information provided in the argument, info.
+@param info An optional argument (can be null). Often this will be a Double representing a mutation rate. "
+      end
+
+      operation 277378 "copySegment"
+	public return_type class_ref 154498 // I_DnaThing
+	nparams 2
+	  param in name "startLocus" explicit_type "int"
+	  param in name "endLocus" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Creates a new chromosome which is copied from startLocus (inclusive) to endLocus (exclusive) in chromosome.
+@param startLocus the locus where the duplication of chromosome will begin
+@param endLocus the locus where duplication ends (exclusive) "
+      end
+
+      operation 277506 "replicate"
+	public return_type class_ref 144642 // C_Chromosome
+	nparams 1
+	  param inout name "info" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " The replicated individual does not have to be asexual, but is most likely to have this property.
+@param info Possibly a mutation rate, or other information needed in order to perform the replication.
+@return a new Genetic object, a duplicate of this one. Mutations might have occured, however. "
+      end
+
+      operation 277634 "mate"
+	public return_type class_ref 154498 // I_DnaThing
+	nparams 2
+	  param inout name "info" explicit_type "Object"
+	  param inout name "parent2" type class_ref 154498 // I_DnaThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " The replicated individual does not have to be bisexual, but is most likely to have this property. N.B. JLF: could be used for procaryotes ?
+@param info Possibly a mutation rate, or other information needed in order to perform the mating.
+@param parent2 the other individual involved in this mating.
+@return a new Genetic object, a combination of the two parents.. Mutations might have occured, however. Author Kyle Wagner "
+      end
+
+      operation 277762 "randomize"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 277890 "crossover"
+	public return_type class_ref 154498 // I_DnaThing
+	nparams 1
+	  param inout name "parent2" type class_ref 154498 // I_DnaThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 278018 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 278146 "compareTo"
+	public explicit_return_type "int"
+	nparams 1
+	  param inout name "other" type class_ref 144642 // C_Chromosome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 278274 "getMapLength"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SETTERS & GETTERS
+
+ @return the length of this chromosome in map units "
+      end
+
+      operation 278402 "getGeneMapLoc"
+	public explicit_return_type "double"
+	nparams 1
+	  param in name "locus" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @param locus the index into the chromosome where the gene is
+@return the map location of a particular gene in map units "
+      end
+
+      operation 278530 "setRecombinator"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "recombinator" type class_ref 144514 // I_Recombinator
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Change the recombinator that this chromosome uses.
+@param recombinator provides a crossover method "
+      end
+
+      operation 278658 "getNumGenes"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 278786 "getNumLoci"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " How many loci are in this Genetic object - how many genes (for haploids) or gene pairs (for diploids). "
+      end
+
+      operation 278914 "addAllGenes"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "genes2" explicit_type "List<C_Gene>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Add a gene on this chromosome. "
+      end
+
+      operation 279042 "addGene"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "g" type class_ref 154626 // C_Gene
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Add a gene on this chromosome. "
+      end
+
+      operation 279170 "setGeneAtLocus"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "locus" explicit_type "int"
+	  param inout name "g" type class_ref 154626 // C_Gene
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Add a gene at a particular locus on this chromosome. If a gene is already on this locus it will be replace by the new one.
+@param locus the index into the chromosome where the gene is "
+      end
+
+      operation 279298 "getGene"
+	public return_type class_ref 154626 // C_Gene
+	nparams 1
+	  param in name "locus" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " All genes are located by indices called \"loci\".
+@param locus the index of the Gene that is to be retrieved. "
+      end
+
+      operation 279426 "getGeneIterator"
+	public return_type class_ref 154626 // C_Gene
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}Iterator<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Give back an iterator that produces the genes in locus order, 0..n-1 "
+      end
+
+      operation 279554 "getLocusAllele"
+	public explicit_return_type "Object"
+	nparams 1
+	  param in name "locus" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @param locus the location of the allele in question
+@return the allele found at specified locus in this Genetic object "
+      end
+
+      operation 279682 "getLocusAllele"
+	public explicit_return_type "Object"
+	nparams 1
+	  param in name "mapLoc" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @return the Gene that's stored at the given map location (\"empty\" if nothing is there) "
+      end
+
+      operation 279810 "getAlleles"
+	public explicit_return_type "List<Object>"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @return a List of all alleles in this chromosome, in order. "
+      end
+
+      operation 279938 "getGenes"
+	public return_type class_ref 154626 // C_Gene
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}List<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @return a List of all genes in this chromosome. "
+      end
+
+      operation 280066 "getRecombinator"
+	public return_type class_ref 144514 // I_Recombinator
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @return the recombinator of this chromosome. "
+      end
+
+      operation 280194 "getGeneWithMaploc"
+	public explicit_return_type "Object"
+	nparams 1
+	  param in name "mapLoc" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 280322 "setMergedXsome"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "mergedXsome" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 280450 "isMergedXsome"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 280578 "getMyId"
+	public explicit_return_type "Integer"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 152194 "C_GenePair"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "A gene pair is a couple of gene on homologous chromosomes. One is on the chromosome from the mother, 
+and the other on the chromosome from the father. Both are on the same position on the two chromosomes.
+This position is a \"locus\". However, their values of alleles are not necessarily the same.
+@author kyle wagner, elyk@acm.org
+Version 1.0, Fri Dec 15 11:16:26 2000
+"
+      attribute 243074 "LEFT"
+	class_attribute public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " CONSTANTS
+
+"
+      end
+
+      attribute 243202 "RIGHT"
+	class_attribute public explicit_type "int"
+	init_value " 1"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 174594 // leftGene (<unidirectional association>)
+	relation 174594 --->
+	  a role_name "leftGene" private
+	    comment " FIELDS
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 174594 // leftGene (<unidirectional association>)
+	  b parent class_ref 154626 // C_Gene
+      end
+
+      classrelation 174722 // rightGene (<unidirectional association>)
+	relation 174722 --->
+	  a role_name "rightGene" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 174722 // rightGene (<unidirectional association>)
+	  b parent class_ref 154626 // C_Gene
+      end
+
+      operation 286466 "C_GenePair"
+	public explicit_return_type ""
+	nparams 2
+	  param inout name "leftGene" type class_ref 154626 // C_Gene
+	  param inout name "rightGene" type class_ref 154626 // C_Gene
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+
+Returns a new gene pair
+@param leftGene is the gene on the mother's chromosome and rightGene the gene on the father's chromosome.
+"
+      end
+
+      operation 286594 "getMapLoc"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the position of the gene pair on the chromosome pair
+"
+      end
+
+      operation 286722 "getGene"
+	public return_type class_ref 154626 // C_Gene
+	nparams 1
+	  param in name "position" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return One of the two genes of the gene pair.
+"
+      end
+
+      operation 286850 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 286978 "toString2"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 287106 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " ////////////////////////////////////////////////////////////////////////
+ PROTECTED/PRIVATE METHODS
+ ////////////////////////////////////////////////////////////////////////
+
+ MAIN
+"
+      end
+    end
+
+    class 153474 "I_DiploidGenome"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      operation 287234 "mateGenomes"
+	public return_type class_ref 153474 // I_DiploidGenome
+	nparams 2
+	  param inout name "mutRate" explicit_type "Object"
+	  param inout name "parent2" type class_ref 153474 // I_DiploidGenome
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Successively mates (with the corresponding cross-over) all chromosome pairs of the genome used to specify any kind of
+genome in things (e.g., Mastomys genome in C_Rodent)
+@param mutRate
+@param parent2 "
+      end
+
+      operation 287362 "makeGametes"
+	public return_type class_ref 144642 // C_Chromosome
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}ArrayList<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 287490 "getDiploidNumber"
+	public explicit_return_type "int"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 287618 "isHybrid"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 287746 "getAlleles"
+	public explicit_return_type "Map<String, Double>"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 154114 "A_GenomeLuca"
+      abstract visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Luca: the Last Universal Common Ancestor Genome mother class of the phylogenetic (C_Genomexxx) tree
+@author jlefur / lefur@ird.fr
+Version 02.2011/09.2011/01.2012/02.2012/06.2014 "
+      classrelation 172162 // expressor (<unidirectional association>)
+	relation 172162 --->
+	  a role_name "expressor" init_value " new C_TraitExpressorAvgMapLoc()" protected
+	    comment " FIELDS
+
+ the following three are always the same, need not to be unique for each gene
+ used to express all traits requests"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 172162 // expressor (<unidirectional association>)
+	  b parent class_ref 154242 // I_MapLocTraitExpressor
+      end
+
+      classrelation 172290 // mutator (<unidirectional association>)
+	relation 172290 --->
+	  a role_name "mutator" init_value " new C_GeneMutatorDouble()" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 172290 // mutator (<unidirectional association>)
+	  b parent class_ref 154370 // I_GeneMutator
+      end
+
+      classrelation 172418 // recombinator (<unidirectional association>)
+	relation 172418 --->
+	  a role_name "recombinator" init_value " new C_RecombinatorMapGenome()" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 172418 // recombinator (<unidirectional association>)
+	  b parent class_ref 144514 // I_Recombinator
+      end
+
+      operation 275330 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " METHOD
+"
+      end
+
+      operation 275458 "getDiploidNumber"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " GETTER
+
+ @return number of chromosome pairs = 0, has to be specified in daughter classes "
+      end
+    end
+
+    class 154498 "I_DnaThing"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "Any object that can be subjected to a GA needs to implement these methods.
+Genes are not included in this interface since it is conceivable that a GA
+might operate on non-genomic structures (phenomes, for instance). In
+addition, gene accessors and setters will be different for haploids
+(single-strand genomes) than for diploids (double-stranded genomes). Specific
+implementors of I_dna_thing will undoubtedly provide their own accessors, and
+they may possibly only allow certain implementors of I_dna_thing to crossover
+with themselves (e.g., Haploids might handle only other Haploids, or might
+also handle Diploids for haplodiploid organisms, but they may throw a runtime
+exception for other potential I_genetic_things such as LISP code and neural
+nets). JLF 2011: was formerly: interface Genetic
+
+@see C_Chromosome
+@see C_ChromosomePair
+
+@author kyle wagner, elyk@acm.org
+Version 1.0, Thu Dec 14 00:07:01 2000
+"
+      operation 275586 "getNumLoci"
+	public explicit_return_type "int"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "How many loci are in this Genetic object - how many genes (for haploids)
+or gene pairs (for diploids).
+"
+      end
+
+      operation 275714 "replicate"
+	public return_type class_ref 154498 // I_DnaThing
+	nparams 1
+	  param inout name "info" explicit_type "Object"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "A dna_thing object can replicate itself. The copy may be mutated, or
+it may be an exact copy. The replicated individual does not have to be
+asexual
+
+@param info
+           Possibly a mutation rate, or other information needed in order
+           to perform the replication.
+@return a new Genetic object, a duplicate of this one. Mutations might
+        have occurred, however.
+
+Authors kyle wagner, elyk@acm.org, was formerly in interface I_asexual -
+        JLF 02/2011
+Version 1.0, Thu Dec 14 00:07:12 2000
+"
+      end
+
+      operation 275842 "mutate"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "info" explicit_type "Object"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Potentially modify all of the Genes (or components) of this Genetic
+object. Variation may be constrained by a rate (a mutation rate), or
+other information provided in the argument, info.
+
+@param info An optional argument (can be null). Often this will be a Double
+           representing a mutation rate.
+"
+      end
+
+      operation 275970 "crossover"
+	public return_type class_ref 154498 // I_DnaThing
+	nparams 1
+	  param inout name "parent2" type class_ref 154498 // I_DnaThing
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Takes this Genetic object and mixes it up with another genetic object,
+producing a third Genetic object. The usual case is to take 2 haploid
+genomes and create a third haploid consisting of various genes taken from
+each of the parents. Neither parent is modified in the process.
+
+@param parent2
+           Another Genetic object with which to mix components (genes or
+           other parts).
+"
+      end
+
+      operation 276098 "copySegment"
+	public return_type class_ref 154498 // I_DnaThing
+	nparams 2
+	  param in name "startLocus" explicit_type "int"
+	  param in name "endLocus" explicit_type "int"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Creates a new Genetic object which is copied from startLocus (inclusive)
+to endLocus (exclusive) in genome.
+
+@param startLocus
+           the locus where the duplication of genome will begin
+@param endLocus
+           the locus where duplication ends (exlcusive)
+"
+      end
+
+      operation 276226 "getLocusAllele"
+	public explicit_return_type "Object"
+	nparams 1
+	  param in name "locus" explicit_type "int"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@param locus
+           the location of the allele in question
+@return the allele found at specified locus in this Genetic object
+"
+      end
+
+      operation 276354 "getAlleles"
+	public explicit_return_type "List<Object>"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return a List of all alleles in this genome, in order.
+"
+      end
+
+      operation 276482 "randomize"
+	public explicit_return_type "void"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Mutates all genes in this genome.
+"
+      end
+    end
+
+    class 154626 "C_Gene"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " A Gene that is part of some chromosome pair. This is the basic component of a HaploidGenome or a DiploidGenome. It has an allele and can mutate
+itself. Its allele can be anything - character, string, integer, double, whatever. The mutate() method provides an abstract way to change it so
+that Genomes don't have to know how to mutate - they just tell the Gene to do so. Mutation is done by a Mutator, passed in upon construction. This
+is a simple interface, providing a way to mutate a gene's allele that is specific to the allele's type (e.g., integer, double, or character).
+<P>
+Gene alleles can have constraints. If a GeneConstraint is provided, then the Gene's allele upon construction and after mutation will not violate
+these constraints. If no constraints are given, the Gene can have any allele (of its type, according to its mutator).
+<P>
+@author kyle wagner, elyk@acm.org
+Version 1.0, Mon Dec 11 23:06:08 2000 "
+      classrelation 174210 // <realization>
+	relation 174210 -_-|>
+	  a public
+	    java "${type}<C_Gene>"
+	    classrelation_ref 174210 // <realization>
+	  b parent class_ref 130178 // Comparable
+      end
+
+      attribute 242562 "decFormat"
+	class_attribute const_attribute private explicit_type "DecimalFormat"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " CONSTANTS
+
+"
+      end
+
+      extra_member 128386 "initialization"
+	
+	cpp "" ""
+	java "  static {
+		decFormat = new DecimalFormat();
+		decFormat.applyPattern(\"0.000\");
+	}"
+	php ""
+	python ""
+	idl ""
+	mysql ""
+      end
+
+      attribute 242690 "allele"
+	protected explicit_type "Object"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+"
+      end
+
+      attribute 242818 "mapLoc"
+	protected explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 174338 // mutator (<unidirectional association>)
+	relation 174338 --->
+	  a role_name "mutator" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 174338 // mutator (<unidirectional association>)
+	  b parent class_ref 154370 // I_GeneMutator
+      end
+
+      classrelation 174466 // geneConstraint (<unidirectional association>)
+	relation 174466 --->
+	  a role_name "geneConstraint" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 174466 // geneConstraint (<unidirectional association>)
+	  b parent class_ref 154882 // C_GeneConstraint
+      end
+
+      attribute 242946 "ownerXsomeNumber"
+	protected explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 284162 "C_Gene"
+	public explicit_return_type ""
+	nparams 5
+	  param inout name "allele" explicit_type "Object"
+	  param in name "mapLoc" explicit_type "double"
+	  param inout name "mutator" type class_ref 154370 // I_GeneMutator
+	  param in name "ownerXsomeId" explicit_type "int"
+	  param inout name "geneConstraint" type class_ref 154882 // C_GeneConstraint
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTORS
+
+ @param mapLoc the location along the chromosome pair (in map units) of this Gene "
+      end
+
+      operation 284290 "C_Gene"
+	public explicit_return_type ""
+	nparams 4
+	  param inout name "allele" explicit_type "Object"
+	  param inout name "mutator" type class_ref 154370 // I_GeneMutator
+	  param in name "ownerXsomeId" explicit_type "int"
+	  param inout name "geneConstraint" type class_ref 154882 // C_GeneConstraint
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 284418 "C_Gene"
+	public explicit_return_type ""
+	nparams 4
+	  param inout name "allele" explicit_type "Object"
+	  param in name "mapLoc" explicit_type "double"
+	  param inout name "mutator" type class_ref 154370 // I_GeneMutator
+	  param in name "ownerXsomeId" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 284546 "C_Gene"
+	public explicit_return_type ""
+	nparams 3
+	  param inout name "allele" explicit_type "Object"
+	  param inout name "mutator" type class_ref 154370 // I_GeneMutator
+	  param in name "ownerXsomeId" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 284674 "mutate"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "info" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+
+ @param info could be the mutation rate or even more info required by the mutator to do its job. "
+      end
+
+      operation 284802 "copy"
+	public return_type class_ref 154626 // C_Gene
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Return a copy of this gene. Its allele will be a reference (shallow) copy, since java doesn't provide an adequate clone() interface. "
+      end
+
+      operation 284930 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 285058 "toString2"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 285186 "compareTo"
+	public explicit_return_type "int"
+	nparams 1
+	  param inout name "other" type class_ref 154626 // C_Gene
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 285314 "getTaxonSignature"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SETTERS & GETTERS
+
+ @return the taxonSignature (integer number) of the gene. author: Aurore Comte 2012 "
+      end
+
+      operation 285442 "getAllele"
+	public explicit_return_type "Object"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @return the value of the allele carried by the gene. "
+      end
+
+      operation 285570 "setAllele"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "allele" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 285698 "getOwnerXsomeNumber"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 285826 "setOwnerXsomeNumber"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "ownerXsomeNumber" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 285954 "getMapLoc"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @return the position of the gene on the chromosome "
+      end
+
+      operation 286082 "getConstraint"
+	public return_type class_ref 154882 // C_GeneConstraint
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @return the GeneConstraint of the gene. "
+      end
+
+      operation 286210 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " MAIN
+"
+      end
+
+      operation 286338 "testGene"
+	class_operation private explicit_return_type "void"
+	nparams 1
+	  param inout name "gene" type class_ref 154626 // C_Gene
+	
+	preserve_java_body_indent final java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 154754 "C_ChromosomePair"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " A Chromosome pair is just two chromosomes of a diploid genome.
+<P>
+NOTE: map locations are currently not checked for sequential ordering, so each new Gene that is added must be at a higher map
+location than all of the previously added Genes.
+<P>
+@author kyle wagner, elyk@acm.org / JLF 2010 - was formerly class diploidGenome
+Version 1.1, Aug 28, 2002 / 01.2012 "
+      classrelation 173186 // <realization>
+	relation 173186 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 173186 // <realization>
+	  b parent class_ref 144386 // I_MappedDna
+      end
+
+      classrelation 173314 // <realization>
+	relation 173314 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 173314 // <realization>
+	  b parent class_ref 129794 // I_ConstantNumeric
+      end
+
+      attribute 241666 "PARENT_1"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " CONSTANTS
+
+ LEFT and RIGHT strand for the chromosome of the mother and the chromosome of the father. The terms are maintained from the
+cricketSim version 
+"
+      end
+
+      attribute 241794 "PARENT_2"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 1"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 241922 "DEFAULT_CROSSOVER_PROB"
+	class_attribute const_attribute protected explicit_type "double"
+	init_value " .5"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Default values for any type of gene creation 
+"
+      end
+
+      attribute 242050 "DEFAULT_ALLELE_MIN"
+	class_attribute const_attribute protected explicit_type "double"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 242178 "DEFAULT_ALLELE_MAX"
+	class_attribute const_attribute protected explicit_type "double"
+	init_value " Double.MAX_VALUE"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 242306 "DEFAULT_ALLELE_VAL"
+	class_attribute const_attribute protected explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 173442 // DEFAULT_GENE_CONSTRAINT (<unidirectional association>)
+	relation 173442 --->
+	  a role_name "DEFAULT_GENE_CONSTRAINT" class_relation const_relation protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 173442 // DEFAULT_GENE_CONSTRAINT (<unidirectional association>)
+	  b parent class_ref 154882 // C_GeneConstraint
+      end
+
+      classrelation 173570 // DEFAULT_GENE_MUTATOR (<unidirectional association>)
+	relation 173570 --->
+	  a role_name "DEFAULT_GENE_MUTATOR" class_relation const_relation protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 173570 // DEFAULT_GENE_MUTATOR (<unidirectional association>)
+	  b parent class_ref 154370 // I_GeneMutator
+      end
+
+      extra_member 128258 "initialization"
+	
+	cpp "" ""
+	java "  static {
+		DEFAULT_GENE_CONSTRAINT = new C_GeneConstraint(DEFAULT_ALLELE_MIN, DEFAULT_ALLELE_MAX);
+		DEFAULT_GENE_MUTATOR = new C_GeneMutatorDouble();
+	}"
+	php ""
+	python ""
+	idl ""
+	mysql ""
+      end
+
+      classrelation 173698 // xsomeStrands (<unidirectional association>)
+	relation 173698 --->
+	  a role_name "xsomeStrands" multiplicity "[]" public
+	    comment " FIELDS
+
+ xsomeStrands stands for the chromosome of the father and the chromosome of the mother. The names strands, LEFT, RIGHT are
+maintained from the cricketSim version 
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}${multiplicity} ${name}${value};
+"
+	    classrelation_ref 173698 // xsomeStrands (<unidirectional association>)
+	  b parent class_ref 144642 // C_Chromosome
+      end
+
+      classrelation 173826 // recombinator (<unidirectional association>)
+	relation 173826 --->
+	  a role_name "recombinator" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 173826 // recombinator (<unidirectional association>)
+	  b parent class_ref 144514 // I_Recombinator
+      end
+
+      attribute 242434 "mapLength"
+	protected explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 173954 // mappedGeneConstraint (<unidirectional association>)
+	relation 173954 --->
+	  a role_name "mappedGeneConstraint" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 173954 // mappedGeneConstraint (<unidirectional association>)
+	  b parent class_ref 154882 // C_GeneConstraint
+      end
+
+      classrelation 174082 // mappedGeneMutator (<unidirectional association>)
+	relation 174082 --->
+	  a role_name "mappedGeneMutator" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 174082 // mappedGeneMutator (<unidirectional association>)
+	  b parent class_ref 154370 // I_GeneMutator
+      end
+
+      operation 280706 "C_ChromosomePair"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "numGenes" explicit_type "int"
+	  param inout name "recombinator" type class_ref 144514 // I_Recombinator
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTORS
+
+ @param recombinator the Recombinator works for HaploidGenomes only, but since the DiploidGenome is just 2 haploids, the
+           recombinator is appropriate - it operates on the 2 haploid strands. "
+      end
+
+      operation 280834 "C_ChromosomePair"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "mapLength" explicit_type "double"
+	  param in name "numGenes" explicit_type "int"
+	  param inout name "recombinator" type class_ref 144514 // I_Recombinator
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @param mapLength the length of this chromosome pair in map units
+@param numGenes how many genes will be in ont strand of the final chromosome pair (only for efficiency - if count is
+           incorrect, genome will still function properly, it will simply take a longer time to construct).
+@param recombinator the Recombinator works for HaploidGenomes only, but since the DiploidGenome is just 2 haploids, the
+           recombinator is appropriate - it operates on the 2 haploid strands. "
+      end
+
+      operation 280962 "C_ChromosomePair"
+	public explicit_return_type ""
+	nparams 2
+	  param inout name "leftXtid" type class_ref 144642 // C_Chromosome
+	  param inout name "rightXtid" type class_ref 144642 // C_Chromosome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Used for replication, etc. "
+      end
+
+      operation 281090 "numGenes"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+"
+      end
+
+      operation 281218 "mutate"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "info" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Potentially modify all of the Genes (or components) of this Genetic object. Mutate both strands according to how
+HaploidGenome's mutate() works. Variation may be constrained by a rate (a mutation rate), or other information provided in
+the argument, info.
+@param info An optional argument (can be null). Often this will be a Double representing a mutation rate. "
+      end
+
+      operation 281346 "copySegment"
+	public return_type class_ref 154498 // I_DnaThing
+	nparams 2
+	  param in name "startLocus" explicit_type "int"
+	  param in name "endLocus" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 281474 "replicate"
+	public return_type class_ref 154498 // I_DnaThing
+	nparams 1
+	  param inout name "info" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " The replicated individual does not have to be asexual, but is most likely to have this property.
+@param info Possibly a mutation rate, or other information needed in order to perform the replication.
+@return a new Genetic object, a duplicate of this one. Mutations might have occured, however. "
+      end
+
+      operation 281602 "mate"
+	public return_type class_ref 154498 // I_DnaThing
+	nparams 2
+	  param inout name "info" explicit_type "Object"
+	  param inout name "parent2" type class_ref 154498 // I_DnaThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " The replicated individual does not have to be bisexual, but is most likely to have this property.
+@param info Possibly a mutation rate, or other information needed in order to perform the mating.
+@param parent2 the other individual involved in this mating.
+@return a new Genetic object, a combination of the two parents.. Mutations might have occurred, however. "
+      end
+
+      operation 281730 "randomize"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Mutates all genes in both strands of this genome. "
+      end
+
+      operation 281858 "crossover"
+	public return_type class_ref 144386 // I_MappedDna
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 281986 "crossover"
+	public return_type class_ref 154498 // I_DnaThing
+	nparams 1
+	  param inout name "parent2" type class_ref 154498 // I_DnaThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 282114 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 282242 "toString2"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " A simpler, slightly more compact String form of the genome "
+      end
+
+      operation 282370 "setGenePairAtLocus"
+	public explicit_return_type "void"
+	nparams 3
+	  param in name "locus" explicit_type "int"
+	  param inout name "leftGene" type class_ref 154626 // C_Gene
+	  param inout name "rightGene" type class_ref 154626 // C_Gene
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SETTERS & GETTERS
+
+
+public void addGenePair(C_Gene leftGene, C_Gene rightGene) { xsomeStrands[PARENT_1].addGene(leftGene);
+xsomeStrands[PARENT_2].addGene(rightGene); } public void addGenePair(C_GenePair genePair) {
+xsomeStrands[PARENT_1].addGene(genePair.getGene(PARENT_1)); xsomeStrands[PARENT_2].addGene(genePair.getGene(PARENT_2)); }
+
+ Add a single gene pair to the chromosome pair, making each gene pair homozygous for the allele provided 
+
+private void addMappedGene(int locus, Object allele, double mappedGeneMapLoc) { setGenePairAtLocus(locus, new
+C_Gene(allele, mappedGeneMapLoc, mappedGeneMutator, this.xsomeStrands[PARENT_1].myId, mappedGeneConstraint), new
+C_Gene(allele, mappedGeneMapLoc, mappedGeneMutator, this.xsomeStrands[PARENT_2].myId, mappedGeneConstraint)); }
+
+ Add a single gene pair to the chromosome pair, alleles having values from a normal distribution as specified by the given
+mean and stdDev. 
+
+private void addRandomNormalDistributionGene(int locus, double alleleMean, double alleleStdDev, double mapLoc) { // Add
+genes in pairs (\"left\" and \"right\" alleles) double alleleL; double alleleR; { // Generate values for genes using a normal
+(gaussian) distribution of mean, alleleMean, and standard deviation, // alleleStandDev. Convert any tiny values into the
+mini allele value, after taking the absolute value of the random # alleleL =
+Math.abs(C_ContextCreator.randomGaussianGenerator.nextGaussian(alleleMean, alleleStdDev)); alleleL =
+Math.max(DEFAULT_ALLELE_MIN, alleleL); alleleR = Math.abs(C_ContextCreator.randomGaussianGenerator.nextGaussian(alleleMean,
+alleleStdDev)); alleleR = Math.max(DEFAULT_ALLELE_MIN, alleleR); // Add gene pairs to genome. Constrain future mutations to
+the specified min/max values. setGenePairAtLocus(locus, new C_Gene(alleleL, mapLoc, DEFAULT_GENE_MUTATOR,
+this.xsomeStrands[PARENT_1].myId, DEFAULT_GENE_CONSTRAINT), new C_Gene(alleleR, mapLoc, DEFAULT_GENE_MUTATOR,
+this.xsomeStrands[PARENT_2].myId, DEFAULT_GENE_CONSTRAINT)); } }
+
+ Add a gene pair at a particular locus on this chromosome pair. If a gene pair is already on this locus it will be replace by
+the new one. "
+      end
+
+      operation 282498 "setGenePairAtLocus"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "locus" explicit_type "int"
+	  param inout name "genePair" type class_ref 152194 // C_GenePair
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Add a gene pair at a particular locus on this chromosome pair. If a gene pair is already on this locus it will be replace by
+the new one. "
+      end
+
+      operation 282626 "getNumLoci"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " How many loci (gene pair) are on this chromosome pair. "
+      end
+
+      operation 282754 "getGene"
+	public return_type class_ref 154626 // C_Gene
+	nparams 2
+	  param in name "locus" explicit_type "int"
+	  param in name "strand" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " All genes are located by indices called \"loci\".
+@param locus the index of the Gene that is to be retrieved. "
+      end
+
+      operation 282882 "getGenePair"
+	public return_type class_ref 152194 // C_GenePair
+	nparams 1
+	  param in name "locus" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " All genes are located by indices called \"loci\".
+@param locus the index of the Gene Pair that is to be retrieved. "
+      end
+
+      operation 283010 "getXsomeStrand"
+	public return_type class_ref 144642 // C_Chromosome
+	nparams 1
+	  param in name "strand" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @param strand Has to be 0 or 1
+@return one chromosome among the two chromosomes of the chromosome Pair "
+      end
+
+      operation 283138 "getGeneIterator"
+	public return_type class_ref 154626 // C_Gene
+	nparams 1
+	  param in name "strand" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}Iterator<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Give back an iterator that produces the genes in locus order, 0..n-1 "
+      end
+
+      operation 283266 "getLocusAllele"
+	public explicit_return_type "Object"
+	nparams 1
+	  param in name "locus" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " In this case, a special valuation of the GenePair at this locus must be performed. KLUDGE: For now, just returning the
+GenePair here. Later - either associate GenePairEvaluator with each gene pair (during construction) or pass back an
+AllelePair.
+@param locus the location of the allele in question
+@return the allele found at specified locus in this Genetic object "
+      end
+
+      operation 283394 "getLocusAllele"
+	public explicit_return_type "Object"
+	nparams 1
+	  param in name "mapLoc" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @return the GenePair that's stored at the given map location (\"empty\" if nothing is there) "
+      end
+
+      operation 283522 "getAlleles"
+	public explicit_return_type "List<Object>"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @return a List of all alleles in this genome, in order. "
+      end
+
+      operation 283650 "getMapLength"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @return the length of this genome in map units "
+      end
+
+      operation 283778 "getGeneMapLoc"
+	public explicit_return_type "double"
+	nparams 1
+	  param in name "locus" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @param locus the index into the genome where the gene is
+@return the map location of a particular gene in map units "
+      end
+
+      operation 283906 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " MAIN
+"
+      end
+
+      operation 284034 "testMapLocs"
+	class_operation private explicit_return_type "void"
+	nparams 1
+	  param inout name "genome" type class_ref 144386 // I_MappedDna
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 155010 "C_GenomeAmniota"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " The amniotes are a group of tetrapods that have an adaptation to lay eggs
+@author J.Le Fur 2012 (source code origin: Kyle Wagner), rev. JLF 08.2014 "
+      classrelation 176258 // <generalisation>
+	relation 176258 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 176258 // <generalisation>
+	  b parent class_ref 155138 // C_GenomeAnimalia
+      end
+
+      classrelation 176386 // <realization>
+	relation 176386 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 176386 // <realization>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      attribute 244994 "SEXUAL_MATURITY_MAPLOCS"
+	class_attribute const_attribute protected explicit_type "Double"
+	init_value " new ArrayList<Double>(Arrays.asList(11.))"
+	stereotype "ArrayList"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Maplocs and locus of the chromosome Pair:
+"
+      end
+
+      attribute 245122 "LITTER_SIZE_MAPLOCS"
+	class_attribute const_attribute protected explicit_type "Double"
+	init_value " new ArrayList<Double>(Arrays.asList(12.))"
+	stereotype "ArrayList"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 245250 "WEANING_AGE_MAPLOCS"
+	class_attribute const_attribute protected explicit_type "Double"
+	init_value " new ArrayList<Double>(Arrays.asList(13.))"
+	stereotype "ArrayList"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 245378 "MATING_LATENCY_MAPLOCS"
+	class_attribute const_attribute protected explicit_type "Double"
+	init_value " new ArrayList<Double>(Arrays.asList(14.))"
+	stereotype "ArrayList"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 245506 "GESTATION_LENGTH_MAPLOCS"
+	class_attribute const_attribute protected explicit_type "Double"
+	init_value " new ArrayList<Double>(Arrays.asList(15.))"
+	stereotype "ArrayList"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 245634 "SEXUAL_MATURITY_LOCUS"
+	class_attribute const_attribute protected explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 245762 "LITTER_SIZE_LOCUS"
+	class_attribute const_attribute protected explicit_type "int"
+	init_value " 1"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 245890 "WEANING_AGE_LOCUS"
+	class_attribute const_attribute protected explicit_type "int"
+	init_value " 2"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 246018 "MATING_LATENCY_LOCUS"
+	class_attribute const_attribute protected explicit_type "int"
+	init_value " 3"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 246146 "GESTATION_LENGTH_LOCUS"
+	class_attribute const_attribute protected explicit_type "int"
+	init_value " 4"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 246274 "numGenesXsomeAmniota"
+	class_attribute const_attribute protected explicit_type "int"
+	init_value " 5"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 176514 // xsomePairAmniota (<unidirectional association>)
+	relation 176514 --->
+	  a role_name "xsomePairAmniota" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 176514 // xsomePairAmniota (<unidirectional association>)
+	  b parent class_ref 154754 // C_ChromosomePair
+      end
+
+      operation 291970 "C_GenomeAmniota"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTORS
+
+ Return a new GenomeAmniota, adds an autosome bearing the reproductive traits of the (daughters) species.<br>
+In the case of an agent with C_GenomeAmniota (used when life traits are not important, e.g., human carrier), the agent is provided with
+junk(viz. standard) values<br>
+"
+      end
+
+      operation 292098 "C_GenomeAmniota"
+	public explicit_return_type ""
+	nparams 3
+	  param inout name "microsatXsome" type class_ref 155394 // C_XsomePairMicrosat
+	  param inout name "gonosome" type class_ref 155522 // C_XsomePairSexual
+	  param inout name "autosomes" explicit_type "ArrayList<C_ChromosomePair>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Return a new GenomeAmniota. This method is used for genome mate. <br>
+args: the three different types of chromosomes : microsatXsome, gonosome, autosomes Adds a bivalent bearing the reproductive traits of the
+(daughters) species
+@see C_GenomeEucaryote#mateGenomes(Object, I_diploid_genome) "
+      end
+
+      operation 292226 "makeAmniotaBivalent"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "allelesMap" explicit_type "Map<String, Double>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+ @param allelesMap the specific allele value from the appropriate daughter genome /author J. Le Fur 08.2014 "
+      end
+
+      operation 292354 "getLitterSizeValue"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " GETTERS
+
+ Public direct access to the genes value <br>
+ Reminder: the expressor is an expressor of type average // SUPPOSES ALL MAPLOCS ARE ON THE SAME CHROMOSOME.
+ To account for maplocs on several xsomes: for each map loc find the chromosome, apply the expressor each time, process the
+ list of results (one value per chromosome).<br>
+ author Kyle Wagner 2002, rev.JLF 05.2012, 07.2014, 08.2014 */
+"
+      end
+
+      operation 292482 "getSexualMaturity_Uday"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 292610 "getWeaningAge_Uday"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 292738 "getMatingLatency_Uday"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 292866 "getGestationLength_Uday"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 155138 "C_GenomeAnimalia"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Animals are mobile and speed is their life trait
+@author J.Le Fur 2017 "
+      classrelation 175874 // <generalisation>
+	relation 175874 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 175874 // <generalisation>
+	  b parent class_ref 155266 // C_GenomeEucaryote
+      end
+
+      classrelation 176002 // <realization>
+	relation 176002 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 176002 // <realization>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      attribute 244098 "SPEED_MAPLOCS"
+	class_attribute const_attribute protected explicit_type "Double"
+	init_value " new ArrayList<Double>(Arrays.asList(17.))"
+	stereotype "ArrayList"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 244226 "SENSING_MAPLOCS"
+	class_attribute const_attribute protected explicit_type "Double"
+	init_value " new ArrayList<Double>(Arrays.asList(18.))"
+	stereotype "ArrayList"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 244354 "MAX_AGE_MAPLOCS"
+	class_attribute const_attribute protected explicit_type "Double"
+	init_value " new ArrayList<Double>(Arrays.asList(19.))"
+	stereotype "ArrayList"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 244482 "SPEED_LOCUS"
+	class_attribute const_attribute protected explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 244610 "SENSING_LOCUS"
+	class_attribute const_attribute protected explicit_type "int"
+	init_value " 1"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 244738 "MAX_AGE_LOCUS"
+	class_attribute const_attribute protected explicit_type "int"
+	init_value " 2"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 244866 "numGenesXsomeAnimalia"
+	class_attribute const_attribute protected explicit_type "int"
+	init_value " 3"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 176130 // xsomePairAnimalia (<unidirectional association>)
+	relation 176130 --->
+	  a role_name "xsomePairAnimalia" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 176130 // xsomePairAnimalia (<unidirectional association>)
+	  b parent class_ref 154754 // C_ChromosomePair
+      end
+
+      operation 290946 "C_GenomeAnimalia"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTORS
+
+ Return a new GenomeAnimalia, adds an autosome bearing the speed traits of the (daughters) species. TODO JLF 2017.08 change to
+this.alleles.put(SPEED_UmeterByDay, randomizeTrait(DEFAULT_SPEED_UmeterByDay); "
+      end
+
+      operation 291074 "C_GenomeAnimalia"
+	public explicit_return_type ""
+	nparams 3
+	  param inout name "microsatXsome" type class_ref 155394 // C_XsomePairMicrosat
+	  param inout name "gonosome" type class_ref 155522 // C_XsomePairSexual
+	  param inout name "autosomes" explicit_type "ArrayList<C_ChromosomePair>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Return a new GenomeAnimalia. This method is used for genome mate. <br>
+args: the three different types of chromosomes : microsatXsome, gonosome, autosomes Adds a bivalent bearing the reproductive traits of the
+(daughters) species
+@see C_GenomeEucaryote#mateGenomes(Object, I_diploid_genome) "
+      end
+
+      operation 291202 "makeAnimaliaBivalent"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "allelesMap" explicit_type "Map<String, Double>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+ @param allelesMap the specific allele value from the appropriate daughter genome /author J. Le Fur 08.2014 "
+      end
+
+      operation 291330 "getSpeed_UmeterByDay"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " GETTERS
+
+ Public direct access to the genes value <br>
+ Reminder: the expressor is an expressor of type average // SUPPOSES ALL MAPLOCS ARE ON THE SAME CHROMOSOME.
+ To account for maplocs on several xsomes: for each map loc find the chromosome, apply the expressor each time, process the
+ list of results (one value per chromosome).<br>
+ author Kyle Wagner 2002, rev.JLF 05.2012, 07.2014, 08.2014, 03.2019 */
+"
+      end
+
+      operation 291458 "getSensing_UmeterByDay"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 291586 "getSensingSurface_USquareMeterByDay"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 291714 "getReachableSurface_USquareMeterByDay"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Deprecated
+"
+	
+	
+	
+      end
+
+      operation 291842 "getMaxAge_Uday"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " used only for the computation of the mortality table
+@see C_Rodent#getDeathProbabilityMicrotusArvalis_Uday "
+      end
+    end
+
+    class 155266 "C_GenomeEucaryote"
+      abstract visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Defines a diploid and sexed genome. It owns a sexual chromosome pair with a sex locus (and possibly room for sexual behaviour
+coding). <br>
+A genome should be able to own several C_ChromosomePairs. A genome may be assimilated to an egg.
+@see thing.C_Egg
+@author Jean Le Fur, lefur@ird.fr 2011 adapted from PulseRateGenome kyle wagner, elyk@acm.org; Aurore Comte 2012 Version 2,
+        01.2011/09.2011/01.2012/03.2012 "
+      classrelation 174850 // <generalisation>
+	relation 174850 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 174850 // <generalisation>
+	  b parent class_ref 154114 // A_GenomeLuca
+      end
+
+      classrelation 174978 // <realization>
+	relation 174978 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 174978 // <realization>
+	  b parent class_ref 153474 // I_DiploidGenome
+      end
+
+      classrelation 175106 // <realization>
+	relation 175106 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 175106 // <realization>
+	  b parent class_ref 129794 // I_ConstantNumeric
+      end
+
+      classrelation 175234 // <realization>
+	relation 175234 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 175234 // <realization>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      attribute 243330 "MICROSAT_INDEX"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+ check the (past)use of this :
+ public static final I_gene_pair_evaluator ALLELE_EVALUATOR = new C_GenePairEvaluatorSum();
+ position of chromosomes in the genome.
+"
+      end
+
+      attribute 243458 "GONOSOME_INDEX"
+	class_attribute const_attribute private explicit_type "int"
+	init_value " 1"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 243586 "BIVALENTS_INDEX"
+	class_attribute const_attribute private explicit_type "int"
+	init_value " 2"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 243714 "LETHAL_ALLELE"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 3697"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " TODO number in source OK, lethal allele"
+      end
+
+      classrelation 175362 // microsatXsomesPair (<unidirectional association>)
+	relation 175362 --->
+	  a role_name "microsatXsomesPair" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 175362 // microsatXsomesPair (<unidirectional association>)
+	  b parent class_ref 155394 // C_XsomePairMicrosat
+      end
+
+      classrelation 175490 // gonosome (<unidirectional association>)
+	relation 175490 --->
+	  a role_name "gonosome" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 175490 // gonosome (<unidirectional association>)
+	  b parent class_ref 155522 // C_XsomePairSexual
+      end
+
+      classrelation 175618 // bivalents (<unidirectional association>)
+	relation 175618 --->
+	  stereotype "ArrayList"
+	  a role_name "bivalents" protected
+	    comment " i.e., autosomes pairs"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 175618 // bivalents (<unidirectional association>)
+	  b parent class_ref 154754 // C_ChromosomePair
+      end
+
+      classrelation 175746 // hybridInspector (<unidirectional association>)
+	relation 175746 --->
+	  a role_name "hybridInspector" init_value " null" class_relation protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 175746 // hybridInspector (<unidirectional association>)
+	  b parent class_ref 139266 // C_InspectorHybrid
+      end
+
+      attribute 243842 "isHybrid"
+	protected explicit_type "boolean"
+	init_value " false"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 243970 "alleles"
+	protected explicit_type "String, Double"
+	init_value " new HashMap<String, Double>()"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 287874 "C_GenomeEucaryote"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTORS
+
+ creates a genome randomly male or female "
+      end
+
+      operation 288002 "C_GenomeEucaryote"
+	public explicit_return_type ""
+	nparams 3
+	  param inout name "microsatXsomes" type class_ref 155394 // C_XsomePairMicrosat
+	  param inout name "sexualXsomes" type class_ref 155522 // C_XsomePairSexual
+	  param inout name "otherXsomePairs" explicit_type "ArrayList<C_ChromosomePair>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Returns a new GenomeEucaryote. This method is used for mate.
+@param microsatXsomes
+@param sexualXsomes
+@param otherXsomePairs "
+      end
+
+      operation 288130 "makeGametes"
+	public return_type class_ref 144642 // C_Chromosome
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}ArrayList<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+ Simulates meiosis with crossing over. Meiosis 2 is not formalized. It would necessitate to duplicate (using the java
+clone()) the chromosomes pairs Authors J.Le Fur, A. Comte - 01.2012 "
+      end
+
+      operation 288258 "segregation"
+	protected explicit_return_type "ArrayList<ArrayList<C_Chromosome>>"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " The first chromosome of a multivalent are put randomly into one of two gametes. The other chromosomes of the multivalent
+have a biggest probability of being put in the other gamete. Author A. Comte and J.Le Fur 03/2012
+@return the list of possible gametes (containing multivalents) made by this this genome (even non-viable gametes). "
+      end
+
+      operation 288386 "xsomeFission"
+	protected explicit_return_type "ArrayList<ArrayList<C_Chromosome>>"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Chromosomes pairs of hybrid autosomes are separated and strands that are constituted of several chromosomes (e.g., M.
+erythroleucus) are broken into these several original chromosomes. Author J.Le Fur and A. Comte 03/2012
+@return the list of autosomal multivalents. That is to say, a list of lists of chromosomes. "
+      end
+
+      operation 288514 "searchAGene"
+	private explicit_return_type "boolean"
+	nparams 2
+	  param inout name "gene" type class_ref 154626 // C_Gene
+	  param inout name "gamete" explicit_type "ArrayList<C_Chromosome>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " To know if a particular gene is present on a chromosome in a list of chromosomes (ie: a gamete) / Author J.Le Fur and A.
+Comte
+@return true (if the gene is in the list) or false (if the gene isn't) "
+      end
+
+      operation 288642 "makeZygoteXsomes"
+	protected return_type class_ref 154754 // C_ChromosomePair
+	nparams 2
+	  param inout name "mutRate" explicit_type "Object"
+	  param inout name "partnerGenome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}ArrayList<${type}> ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Fusion of the gametes of the mother and the father / Author J.Le Fur, A. Comte - 21.02.2012 mate has been split into mate
+and makeZygoteXsomes since, initially, only (e.g.) a mastomys genome can make a mastomys genome.
+@param mutRate
+@param partnerGenome
+@return the list of ChromosomePair of the genome of the future offspring. "
+      end
+
+      operation 288770 "xsomesMatch"
+	protected explicit_return_type "ArrayList<ArrayList<C_Chromosome>>"
+	nparams 2
+	  param inout name "gametesThis" explicit_type "ArrayList<C_Chromosome>"
+	  param inout name "gametesPartner" explicit_type "ArrayList<C_Chromosome>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " If we are in the case of an hybrid with gametes of different sizes, we transform the gamete with the largest number of
+chromosomes into a list that matches the number of chromosomes of the smallest gametes (with the corresponding genes)in
+order to make pairs compatible with the chromosome pairs factory (cricketsim) CAUTION : every chromosomes are split into
+single genes. Author J.Le Fur and A. Comte 03/2012
+@param gametesThis , gametesPartner two gametes of different sizes
+@return the two gametes with the same size "
+      end
+
+      operation 288898 "mateGenomes"
+	public return_type class_ref 153474 // I_DiploidGenome
+	nparams 2
+	  param inout name "mutRate" explicit_type "Object"
+	  param inout name "partnerGenome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Chooses the appropriate genome class for the zygote depending on the genome classes of its parents. upper class if hybrid,
+same class if pure. Transforms the list of chromosomes Pair of the offspring into a new genome which can be any type of
+genome, depending on the genomes of the parents. Author J.Le Fur, A. Comte 01/03/2012
+@param mutRate
+@param partnerGenome
+@return the zygote's diploid Genome "
+      end
+
+      operation 289026 "getDiploidNumber"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Count the number of genes coming from different chromosomes for each chromosome. If the count is done on the whole genome
+and not chromosome by chromosome, the count is going to be underestimated. Indeed, the offsprings of an inbreeding may have
+two chromosomes identical.
+@return The diploid number (2n): number of chromosome pairs, including gonosomes and microsatellites. "
+      end
+
+      operation 289154 "isHybrid"
+	protected explicit_return_type "boolean"
+	nparams 1
+	  param inout name "xsomes" explicit_type "ArrayList<C_ChromosomePair>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Deprecated
+"
+	
+	
+	
+	comment " Compute if the xsomes in the arguments are hybrid or not. original taxon is expressed as two decimals after the gene
+value. These decimal values are compared. Author J.Le Fur and A. Comte. March 2012 "
+      end
+
+      operation 289282 "isHybrid"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " getter of the hybrid field, used for protocols beyond Masto ery. and Masto nat. "
+      end
+
+      operation 289410 "isHybrid0"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " getter of the hybrid field "
+      end
+
+      operation 289538 "getChromosomePairFromMaploc"
+	public return_type class_ref 154754 // C_ChromosomePair
+	nparams 1
+	  param in name "maploc" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " returns the pair of chromosome among the genome, containing a gene at the given maploc "
+      end
+
+      operation 289666 "hybridRatio"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @return the ratio (number of genes natalensis)/(number of genes) Author A.Comte 11/05/2012 "
+      end
+
+      operation 289794 "getAutosomes"
+	public return_type class_ref 154754 // C_ChromosomePair
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}ArrayList<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 289922 "getTaxonSignature"
+	protected explicit_return_type "Double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " taxonSignature is arbitrary, it is specific of the corresponding group. it corresponds to the decimal part of the alleles
+value Author J. Le Fur & A. Comte 03/2012, rev. JLF 08.2014 "
+      end
+
+      operation 290050 "init"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "inspector" type class_ref 139266 // C_InspectorHybrid
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 290178 "compareDecimals"
+	class_operation public explicit_return_type "boolean"
+	nparams 2
+	  param in name "n1" explicit_type "double"
+	  param in name "n2" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " utility to perform the comparison of decimals values Author J.Le Fur august 2012 "
+      end
+
+      operation 290306 "truncate"
+	class_operation private explicit_return_type "double"
+	nparams 1
+	  param in name "x" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " utility to extract the decimals values Author J.Le Fur august 2012 x is supposed to have a maximum of two decimal
+digits "
+      end
+
+      operation 290434 "getMicrosatXsome"
+	public return_type class_ref 155394 // C_XsomePairMicrosat
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Returns the pair of chromosomes microsatellite of the Genome Eucaryote. "
+      end
+
+      operation 290562 "getGonosome"
+	public return_type class_ref 155522 // C_XsomePairSexual
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Returns the pair of gonosome of the Genome Eucaryote. "
+      end
+
+      operation 290690 "setGonosome"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "gonosome" type class_ref 155522 // C_XsomePairSexual
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 290818 "getAlleles"
+	public explicit_return_type "Map<String, Double>"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 155394 "C_XsomePairMicrosat"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Class of one type of chromosome pairs to keep safe the Chromosomes class.
+@author J-E Longueville, LeFur 09-2011 "
+      classrelation 176770 // <generalisation>
+	relation 176770 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 176770 // <generalisation>
+	  b parent class_ref 154754 // C_ChromosomePair
+      end
+
+      classrelation 176898 // <realization>
+	relation 176898 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 176898 // <realization>
+	  b parent class_ref 129794 // I_ConstantNumeric
+      end
+
+      operation 293378 "C_XsomePairMicrosat"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "numLociMicrosat" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Its the constructor of the first generation.
+@param numLociMicrosat "
+      end
+
+      operation 293506 "C_XsomePairMicrosat"
+	protected explicit_return_type ""
+	nparams 2
+	  param inout name "p1Gamete" type class_ref 144642 // C_Chromosome
+	  param inout name "p2Gamete" type class_ref 144642 // C_Chromosome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Used for replication, etc. "
+      end
+    end
+
+    class 155522 "C_XsomePairSexual"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " chromosome pair in charge of sex affairs
+@author J.LeFur (hybrid from JE.Longueville and K.Wagner versions) - jan. 2012 "
+      classrelation 177026 // <generalisation>
+	relation 177026 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 177026 // <generalisation>
+	  b parent class_ref 154754 // C_ChromosomePair
+      end
+
+      classrelation 177154 // <realization>
+	relation 177154 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 177154 // <realization>
+	  b parent class_ref 129794 // I_ConstantNumeric
+      end
+
+      attribute 246402 "SEX_GENE_SET"
+	class_attribute const_attribute public explicit_type "Integer"
+	init_value " new HashSet<Integer>()"
+	stereotype "Set"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 177282 // SEX_GENE_CONSTR (<unidirectional association>)
+	relation 177282 --->
+	  a role_name "SEX_GENE_CONSTR" init_value " new C_GeneConstraint(SEX_GENE_SET, SEX_GENE_X)" class_relation const_relation public
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 177282 // SEX_GENE_CONSTR (<unidirectional association>)
+	  b parent class_ref 154882 // C_GeneConstraint
+      end
+
+      classrelation 177410 // SEX_GENE_MUT (<unidirectional association>)
+	relation 177410 --->
+	  a role_name "SEX_GENE_MUT" init_value " new C_GeneMutatorSet(new ArrayList<Integer>(
+			SEX_GENE_SET))" class_relation const_relation public
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 177410 // SEX_GENE_MUT (<unidirectional association>)
+	  b parent class_ref 154370 // I_GeneMutator
+      end
+
+      attribute 246530 "DEFAULT_GENDER"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " SEX_GENE_X"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 246658 "DEFAULT_GONOSOME_MAPLOC"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 4.3"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " TODO number in source 2013.12 JLF put in I_numeric_constants"
+      end
+
+      extra_member 128514 "initialization"
+	
+	cpp "" ""
+	java "  static {
+		SEX_GENE_SET.add(SEX_GENE_X);
+		SEX_GENE_SET.add(SEX_GENE_Y);
+	}"
+	php ""
+	python ""
+	idl ""
+	mysql ""
+      end
+
+      operation 293634 "C_XsomePairSexual"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "gender" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @param gender "
+      end
+
+      operation 293762 "C_XsomePairSexual"
+	protected explicit_return_type ""
+	nparams 2
+	  param inout name "p1Gamete" type class_ref 144642 // C_Chromosome
+	  param inout name "p2Gamete" type class_ref 144642 // C_Chromosome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Used for replication, etc. "
+      end
+
+      operation 293890 "isMale"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 294018 "isFemale"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 294146 "crossover"
+	public return_type class_ref 154754 // C_ChromosomePair
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " crosses the two strands of the gonosome / 01.2012 uses a nullRecombinator, that is do not recombine "
+      end
+    end
+
+    class 155650 "C_GenomeMusMusculus"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " @author JLF 07.2014, rev. JLF & L.Granjon 08.2014 "
+      classrelation 176642 // <generalisation>
+	relation 176642 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 176642 // <generalisation>
+	  b parent class_ref 155010 // C_GenomeAmniota
+      end
+
+      operation 292994 "C_GenomeMusMusculus"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTORS
+
+ Returns a new C_GenomeMusMusculus. <br>
+Trait values references (see comments in source code):<br>
+- Doumerc, S. (2004) Elevage et reproduction des rongeurs myomorphes domestiques en France. Veterinary Ph. D. thesis, 286p. <br>
+Baker, J. (2004) National Gerbil Society Website http://www.gerbils.co.uk/gerbils/genetics.html] <br>
+Maeda, Ki, Ohkura, S., Tsukamura, H. (2000) Physiology of Reproduction. In : Krinke, GJ, editor. The Laboratory Rat. 1 st ed. London : Academic
+Press, 2000, 145-174. <br>
+- AnAge database (2014) http://genomics.senescence.info/species/entry.php?species=Mus_musculus<br>
+- Encyclopedia of Life database (2014) http://eol.org/pages/328450/hierarchy_entries/55937675/details#reproduction "
+      end
+
+      operation 293122 "C_GenomeMusMusculus"
+	public explicit_return_type ""
+	nparams 3
+	  param inout name "microsatXsome" type class_ref 155394 // C_XsomePairMicrosat
+	  param inout name "gonosome" type class_ref 155522 // C_XsomePairSexual
+	  param inout name "autosomes" explicit_type "ArrayList<C_ChromosomePair>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Returns a new GenomeMusMusculus. This method is used for genome mate.
+@param microsatXsome
+@param gonosome
+@param autosomes
+@see C_GenomeEucaryote#mate "
+      end
+
+      operation 293250 "getTaxonSignature"
+	protected explicit_return_type "Double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " GETTER
+"
+      end
+    end
+  end
+
+  package_ref 130690 // variator
+
+  package_ref 131330 // phenotyper
+
+  deploymentview 130306 "dna"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 147074 "A_GenomeLuca"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import melanesim.util.C_VariousUtilities;
+import thing.dna.phenotyper.C_TraitExpressorAvgMapLoc;
+import thing.dna.phenotyper.I_MapLocTraitExpressor;
+import thing.dna.variator.C_GeneMutatorDouble;
+import thing.dna.variator.C_RecombinatorMapGenome;
+import thing.dna.variator.I_GeneMutator;
+import thing.dna.variator.I_Recombinator;
+${definition}"
+      associated_elems
+	class_ref 154114 // A_GenomeLuca
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 147202 "I_DnaThing"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.List;
+${definition}"
+      associated_elems
+	class_ref 154498 // I_DnaThing
+      end
+    end
+
+    artifact 147330 "I_MappedDna"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 144386 // I_MappedDna
+      end
+    end
+
+    artifact 147458 "C_Chromosome"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import melanesim.C_ContextCreator;
+import thing.dna.variator.C_GeneMutatorDouble;
+import thing.dna.variator.I_Recombinator;
+${definition}"
+      associated_elems
+	class_ref 144642 // C_Chromosome
+      end
+    end
+
+    artifact 147586 "C_ChromosomePair"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
+import data.constants.I_ConstantNumeric;
+import thing.dna.variator.C_GeneConstraint;
+import thing.dna.variator.C_GeneMutatorDouble;
+import thing.dna.variator.C_RecombinatorMapGenome;
+import thing.dna.variator.I_GeneMutator;
+import thing.dna.variator.I_Recombinator;
+${definition}"
+      associated_elems
+	class_ref 154754 // C_ChromosomePair
+      end
+    end
+
+    artifact 147714 "C_Gene"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.text.DecimalFormat;
+import java.util.Iterator;
+import java.util.Random;
+import thing.dna.variator.C_GeneConstraint;
+import thing.dna.variator.C_GeneMutatorDouble;
+import thing.dna.variator.I_GeneMutator;
+${definition}"
+      associated_elems
+	class_ref 154626 // C_Gene
+      end
+    end
+
+    artifact 147842 "C_GenePair"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import thing.dna.variator.C_GeneMutatorDouble;
+${definition}"
+      associated_elems
+	class_ref 152194 // C_GenePair
+      end
+    end
+
+    artifact 147970 "I_DiploidGenome"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import java.util.Map;
+${definition}"
+      associated_elems
+	class_ref 153474 // I_DiploidGenome
+      end
+    end
+
+    artifact 148098 "C_GenomeEucaryote"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import data.constants.I_ConstantNumeric;
+import data.constants.rodents.I_ConstantStringRodents;
+import melanesim.C_ContextCreator;
+import melanesim.protocol.A_Protocol;
+import presentation.epiphyte.C_InspectorHybrid;
+${definition}"
+      associated_elems
+	class_ref 155266 // C_GenomeEucaryote
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 148226 "C_GenomeAnimalia"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Map;
+${definition}"
+      associated_elems
+	class_ref 155138 // C_GenomeAnimalia
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 148354 "C_GenomeAmniota"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Map;
+${definition}"
+      associated_elems
+	class_ref 155010 // C_GenomeAmniota
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 148482 "C_GenomeMusMusculus"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+${definition}"
+      associated_elems
+	class_ref 155650 // C_GenomeMusMusculus
+      end
+      comment "This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt"
+    end
+
+    artifact 148610 "C_XsomePairMicrosat"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import data.constants.I_ConstantNumeric;
+import melanesim.C_ContextCreator;
+import thing.dna.variator.C_GeneMutatorInteger;
+import thing.dna.variator.C_RecombinatorMicrosat;
+import thing.dna.variator.I_GeneMutator;
+${definition}"
+      associated_elems
+	class_ref 155394 // C_XsomePairMicrosat
+      end
+    end
+
+    artifact 148738 "C_XsomePairSexual"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+import data.constants.I_ConstantNumeric;
+import melanesim.C_ContextCreator;
+import thing.dna.variator.C_GeneConstraint;
+import thing.dna.variator.C_GeneMutatorSet;
+import thing.dna.variator.C_RecombinatorNull;
+import thing.dna.variator.I_GeneMutator;
+${definition}"
+      associated_elems
+	class_ref 155522 // C_XsomePairSexual
+      end
+    end
+  end
+
+  package_ref 131458 // species
+end

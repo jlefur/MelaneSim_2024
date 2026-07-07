@@ -1,8 +1,8 @@
 data_output/
 bin/
 Repast.settings
-Repast.settings
-debug.log.1
-debug.log
-Repast.settings
 .classpath
+debug.log
+MelaneSim.rs/parameters.xml
+MelaneSim.rs/scenario.xml
+energy_scales.csv

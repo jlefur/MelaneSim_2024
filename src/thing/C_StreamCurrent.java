@@ -28,9 +28,9 @@ public class C_StreamCurrent extends A_SupportedContainer {
 		this.myCell = myCell;
 	}
 	public double getSpeedEast() {
-		return myCell.getSpeedEastward_UmeterPerSecond();
+		return myCell.getSpeedEastward_UmeterPerSec();
 	}
 	public double getSpeedNorth() {
-		return myCell.getSpeedNorthward_UmeterPerSecond();
+		return myCell.getSpeedNorthward_UmeterPerSec();
 	}
 }

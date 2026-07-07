@@ -1,0 +1,121 @@
+class C_UserPanelRodent
+!!!226178.java!!!	C_UserPanelRodent()
+		super();
+!!!226306.java!!!	addBurrowInspector(inout inspector : C_InspectorFossorialRodents) : void
+		burrowInspector = inspector;
+!!!226434.java!!!	addTransportationInspector(inout inspector : C_InspectorTransportation) : void
+		transportationInspector = inspector;
+!!!226562.java!!!	addGeneticInspector(inout inspector : C_InspectorGenetic) : void
+		geneticInspector = inspector;
+!!!226690.java!!!	addHybridInspector(inout inspector : C_InspectorHybrid) : void
+		hybridInspector = inspector;
+!!!226818.java!!!	initTop() : void
+		super.initTop();
+		// this.metersPopulation = initBoxLayout("Population (every rodents)");
+		// if (this.hasToShowDayMoments()) this.createDayMomentsJanel();
+		if (C_UserPanelRodent.hybridInspector == null)
+			this.metersDispersal = initBoxLayout("Dispersal (every rodents)");
+		if (C_UserPanelRodent.hybridInspector != null) this.metersHybrid = initBoxLayout("Hybridization (Mastomys)");
+		// General layout for the panel
+		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		this.setAutoscrolls(false);
+
+		// C. BOXES METERS //
+		// 1.BOX POPULATION
+		this.meterPopSize = new C_Meter(METER_POPSIZE_TITLE, true, 100);
+		if (!this.hasToShowDayMoments()) {
+			this.meterSexRatio = new C_Meter(METER_SEXRATIO_TITLE, false, 0, 2);
+			this.metersPopulation.add(this.meterSexRatio.getPan());
+		}
+		this.metersPopulation.add(this.meterPopSize.getPan());
+		this.meterWanderers = new C_Meter(METER_WANDERERS_TITLE, false, 100);
+		this.metersPopulation.add(this.meterWanderers.getPan());
+		// 2.BOX DISPERSAL
+		if (C_UserPanelRodent.hybridInspector == null) {// TODO JLF 2018.05 Temporary for cages, but cannot not be applied for
+			// hybridUniform
+			this.meterMeanDispersal = new C_Meter(METER_MEANDISP_TITLE, true, 100);
+			this.meterMaxDispersal = new C_Meter(METER_MAXDISP_TITLE, true, 100);
+			this.metersDispersal.add(this.meterMeanDispersal.getPan());
+			this.metersDispersal.add(this.meterMaxDispersal.getPan());
+			if (C_UserPanelRodent.geneticInspector != null) {
+				this.meterFIS = new C_Meter(METER_FIS_TITLE, true, -5, 5);
+				this.metersDispersal.add(this.meterFIS.getPan());
+			}
+		}
+		// 3. BOX HYBRIDIZATION
+		if (C_UserPanelRodent.hybridInspector != null) {
+			this.meterNippedEggs = new C_Meter(METER_NIPPED_EGG_TITLE, true, 1000);
+			this.metersHybrid.add(this.meterNippedEggs.getPan());
+			this.meterHybrids = new C_Meter(METER_HYBRIDS_TITLE, true, 100);
+			this.metersHybrid.add(this.meterHybrids.getPan());
+			this.meterIntrogressed = new C_Meter(METER_LAZARUS_TITLE, true, 100);
+			this.metersHybrid.add(this.meterIntrogressed.getPan());
+		}
+!!!226946.java!!!	update_Meters() : void
+		super.update_Meters();
+		C_UserPanelRodent.populationInspector = (C_InspectorPopulationRodent) A_Protocol.inspectorPopulation;
+		int popSize = C_InspectorPopulationRodent.rodentList.size();
+		this.meterPopSize.setData(popSize);
+		if (!this.hasToShowDayMoments())
+			this.meterSexRatio.setData((double) C_InspectorPopulationRodent.getNbFemales()
+					/ (double) C_InspectorPopulationRodent.getNbMales());
+		if (C_UserPanelRodent.hybridInspector == null) {// TODO JLF 2018.05 Temporary for cages, but cannot not be applied for
+			// hybridUniform
+			this.meterMeanDispersal.setData((populationInspector.getMeanFemaleDispersal() + populationInspector
+					.getMeanMaleDispersal()) * .5);
+			this.meterMaxDispersal.setData(Math.max(populationInspector.getMaxFemaleDispersal(), populationInspector
+					.getMaxMaleDispersal()));
+			if (geneticInspector != null) this.meterFIS.setData(100 * geneticInspector.getFixationIndex());
+		}
+		if (burrowInspector != null) this.meterWanderers.setData(burrowInspector.getWanderingRodents_Upercent() * 100);
+		if (hybridInspector != null) {
+			this.meterNippedEggs.setData(hybridInspector.getPbNippedEgg());
+			hybridInspector.resetPbNippedEggs();
+			this.meterHybrids.setData(hybridInspector.getNbHybrids());
+			this.meterIntrogressed.setData(hybridInspector.getNbLazarus());
+		}
+		if (transportationInspector != null) {
+			this.meterCities.setData(transportationInspector.getCityList().size());
+			this.meterLoads.setData(transportationInspector.getCarriersLoad_Urodent());
+		}
+		// meterObjects.setData(RunState.getInstance().getMasterContext().size());
+!!!227074.java!!!	createTitleBlock(in FileName : String) : JLabel
+		String fileName = "";
+		switch (C_Parameters.PROTOCOL) {
+			case CHIZE :
+				fileName = "icons/rodents/titleChize.jpg";
+				break;
+			case CHIZE2 :
+				fileName = "icons/rodents/titleChize2.gif";
+				break;
+			case CENTENAL :
+				fileName = "icons/rodents/titleCentenal.gif";
+				break;
+			case DECENAL :
+				fileName = "icons/rodents/titleDecenal.gif";
+				break;
+			case CAGES :
+				fileName = "icons/rodents/titleCages.gif";
+				break;
+			case DODEL :
+				fileName = "icons/rodents/titleDodel1.gif";
+				break;
+			case DODEL2 :
+				fileName = "icons/rodents/titleDodel2.gif";
+				break;
+			case MUS_TRANSPORT :
+				fileName = "icons/rodents/titleMusTransport.gif";
+				break;
+			case BANDIA :
+				fileName = "icons/rodents/titleBandia.gif";
+				break;
+			case GERBIL :
+				fileName = "icons/rodents/titleGerbil.gif";
+				break;
+			case HYBRID_UNIFORM :
+				fileName = "icons/rodents/titleUniform.gif";
+				break;
+		}
+		return super.createTitleBlock(fileName);
+!!!227202.java!!!	toString() : String
+		return "SimMasto panel";

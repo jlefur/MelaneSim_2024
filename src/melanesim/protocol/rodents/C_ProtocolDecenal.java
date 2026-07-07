@@ -7,7 +7,6 @@ import data.C_Event;
 import data.C_Parameters;
 import data.constants.rodents.I_ConstantDecenal;
 import data.converters.C_ConvertTimeAndSpace;
-import melanesim.protocol.A_ProtocolTransportation;
 import presentation.display.C_Background;
 import presentation.display.C_CustomPanelSet_Rodent;
 import presentation.epiphyte.C_InspectorGenetic;

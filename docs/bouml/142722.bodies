@@ -1,0 +1,45 @@
+class BarChartDemo1
+!!!171010.java!!!	BarChartDemo1(in title : String)
+super(title);
+CategoryDataset dataset = createDataset();
+JFreeChart chart = createChart(dataset);
+ChartPanel chartPanel = new ChartPanel(chart);
+chartPanel.setFillZoomRectangle(true);
+chartPanel.setMouseWheelEnabled(true);
+chartPanel.setPreferredSize(new Dimension(500, 270));
+setContentPane(chartPanel);
+!!!171138.java!!!	createDataset() : CategoryDataset
+DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+dataset.addValue(7445, "JFreeSVG", "Warm-up");
+dataset.addValue(24448, "Batik", "Warm-up");
+dataset.addValue(4297, "JFreeSVG", "Test");
+dataset.addValue(21022, "Batik", "Test");
+return dataset;
+!!!171266.java!!!	createChart(inout dataset : CategoryDataset) : JFreeChart
+JFreeChart chart = ChartFactory.createBarChart(
+"Performance: JFreeSVG vs Batik", "null /* x-axis label*/",
+"Milliseconds /* y-axis label */", dataset, PlotOrientation.VERTICAL,true,true,true);
+chart.addSubtitle(new TextTitle("Time to generate 1000 charts in SVG "
++ "format (lower bars = better performance)"));
+chart.setBackgroundPaint(Color.white);
+CategoryPlot plot = (CategoryPlot) chart.getPlot();
+
+// ******************************************************************
+//  More than 150 demo applications are included with the JFreeChart
+//  Developer Guide...for more information, see:
+//
+//  >   http://www.object-refinery.com/jfreechart/guide.html
+//
+// ******************************************************************
+
+NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
+rangeAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+BarRenderer renderer = (BarRenderer) plot.getRenderer();
+renderer.setDrawBarOutline(false);
+chart.getLegend().setFrame(BlockBorder.NONE);
+return chart;
+!!!171394.java!!!	main(inout args : String [[]]) : void
+BarChartDemo1 demo = new BarChartDemo1("JFreeChart: BarChartDemo1.java");
+demo.pack();
+RefineryUtilities.centerFrameOnScreen(demo);
+demo.setVisible(true);

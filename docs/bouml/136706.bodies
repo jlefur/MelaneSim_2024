@@ -1,0 +1,30 @@
+class C_Protocol_PNMC_ships
+!!!150146.java!!!	C_Protocol_PNMC_ships(inout ctxt : Context<Object>)
+ super(ctxt);
+!!!150274.java!!!	createCargoShip() : C_Ship_cargo
+ return new C_Ship_cargo(new C_GenomeAnimalia());
+!!!150402.java!!!	step_Utick() : void
+		A_NDS oneAgent;
+		IndexedIterable<Object> it = this.context.getObjects(A_NDS.class);
+		for(int i = 0;i<it.size();i++){
+			oneAgent = (A_NDS)it.get(i);
+			if(oneAgent instanceof C_Ship_cargo){
+				C_SoilCellMarine currentCell = (C_SoilCellMarine)((A_VisibleAgent)oneAgent).getCurrentSoilCell();
+				if(currentCell.isTerrestrial()){
+					oneAgent.setDead(true);
+					C_Ship_cargo newCargo = createCargoShip();
+					this.contextualizeNewThingInContainer(newCargo,(I_Container)newCargo.getTarget());
+					newCargo.setNewTarget();
+				}
+			}
+		}
+		super.step_Utick();
+!!!150530.java!!!	initPopulations() : void
+		super.initPopulations();
+		for(int i = 1;i<=CARGO_POPULATION;i++){
+			C_Ship_cargo cargo = createCargoShip();
+			this.contextualizeNewThingInContainer(cargo,(I_Container)cargo.getTarget());
+			cargo.setNewTarget();
+		}
+		System.out.println("C_Protocol_PNMC_ships.init: Population of "+CARGO_POPULATION
+				+" cargo ship(s) created and positioned");

@@ -1,0 +1,38 @@
+class C_GenomeAcaria
+!!!295298.java!!!	C_GenomeAcaria()
+		super();
+		this.alleles.put(SEXUAL_MATURITY_Uday, 26.5);// source : R.Tiwari_2017 TODO MS 2020.09 référence complète
+		this.alleles.put(LITTER_SIZE, 2.);//TODO MS 2020.09 référence
+		this.alleles.put(MAX_AGE_Uday, 1825.);// ~20 years; Source : Gondard, M. (2017). A la découverte des agents pathogènes et
+												// microorganismes des tiques par séquençage de nouvelle génération et QPCR
+												// microfluidique à haut débit (Doctoral dissertation, Paris Est).
+		this.alleles.put(SENSING_UmeterByDay, 1.001);
+		makeAcariaBivalent(this.alleles);
+!!!295426.java!!!	C_GenomeAcaria(inout microsatXsome : C_XsomePairMicrosat, inout gonosome : C_XsomePairSexual, inout autosomes : ArrayList<C_ChromosomePair>)
+		super(microsatXsome, gonosome, autosomes);
+		this.alleles.put(SEXUAL_MATURITY_Uday, (double) this.getSexualMaturity_Uday());
+		this.alleles.put(LITTER_SIZE, (double) this.getLitterSizeValue());
+!!!295554.java!!!	makeAcariaBivalent(inout allelesMap : Map<String, Double>) : void
+		// remove obsolete xsomePairAmniota constructed by mother classes
+		this.bivalents.remove(this.xsomePairAmniota);
+		this.xsomePairAmniota = new C_ChromosomePair(C_Chromosome.MAP_LENGTH, numGenesXsomeAmniota, recombinator);
+
+		this.xsomePairAmniota.setGenePairAtLocus(SEXUAL_MATURITY_LOCUS, //
+				new C_Gene(allelesMap.get(SEXUAL_MATURITY_Uday) + getTaxonSignature(), SEXUAL_MATURITY_MAPLOCS.get(0),
+						mutator, this.xsomePairAmniota.xsomeStrands[0].getMyId()), //
+				new C_Gene(allelesMap.get(SEXUAL_MATURITY_Uday) + getTaxonSignature(), SEXUAL_MATURITY_MAPLOCS.get(0),
+						mutator, this.xsomePairAmniota.xsomeStrands[1].getMyId()));
+
+		this.xsomePairAmniota.setGenePairAtLocus(LITTER_SIZE_LOCUS, //
+				new C_Gene(allelesMap.get(LITTER_SIZE) + getTaxonSignature(), LITTER_SIZE_MAPLOCS.get(0), mutator,
+						this.xsomePairAmniota.xsomeStrands[0].getMyId()), //
+				new C_Gene(allelesMap.get(LITTER_SIZE) + getTaxonSignature(), LITTER_SIZE_MAPLOCS.get(0), mutator,
+						this.xsomePairAmniota.xsomeStrands[1].getMyId()));
+
+		this.bivalents.add(bivalents.size(), this.xsomePairAmniota);
+!!!295682.java!!!	getLitterSizeValue() : int
+		return (int) ((double) expressor.evalTrait(getChromosomePairFromMaploc(LITTER_SIZE_MAPLOCS.get(0)),
+				LITTER_SIZE_MAPLOCS) - getTaxonSignature());
+!!!295810.java!!!	getSexualMaturity_Uday() : int
+		return (int) ((double) expressor.evalTrait(getChromosomePairFromMaploc(SEXUAL_MATURITY_MAPLOCS.get(0)),
+				SEXUAL_MATURITY_MAPLOCS) - getTaxonSignature());

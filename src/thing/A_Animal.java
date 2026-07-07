@@ -510,6 +510,9 @@ public abstract class A_Animal extends A_Organism implements I_ConstantNumeric {
 			return false;
 		}
 	}
+	public boolean isArrived() {
+		return this.isArrived(this.speed_UmeterByTick);
+	}
 	public boolean isHasToLeaveFullContainer() {
 		return this.hasToLeaveFullContainer;
 	}

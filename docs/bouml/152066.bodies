@@ -1,0 +1,19 @@
+class C_BurrowSystem
+!!!305922.java!!!	C_BurrowSystem(in affinity : int, in lineNo : int, in colNo : int)
+		super(affinity, lineNo, colNo);
+!!!306050.java!!!	computeDeathProbability_Uday() : double
+		// TODO JLF 2020.04 create getLoad_Uagent, better than getFullLoad_Uagent
+		if (!C_Parameters.PERSISTANCE_BURROW && (this.getFullLoad_Uagent() == 0) && this.getAnimalsTargetingMe()
+				.isEmpty()) return this.getAge_Uday() / EMPTY_BURROW_LIFESPAN_Uday;
+		else {
+			this.setAge_Uday(0.);
+			return 0.;
+		}
+!!!306178.java!!!	agentIncoming(inout thing : I_SituatedThing) : boolean
+		if (!C_Parameters.PERSISTANCE_BURROW && this.isDead()) this.setDead(false);
+		return super.agentIncoming(thing);
+!!!306306.java!!!	getRed() : double
+		if (this.isDead()) return 0;// to avoid probe crash (JLF 03.2021)
+		double x = this.getCarryingCapacity_Urodent();
+		double y = this.getRodentList().size();
+		return y / x;

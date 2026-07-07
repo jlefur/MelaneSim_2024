@@ -10,7 +10,6 @@ import melanesim.protocol.A_Protocol;
 import presentation.display.C_Background;
 import presentation.display.C_CustomPanelSet_Rodent;
 import presentation.display.C_UserPanelRodent;
-import presentation.epiphyte.C_InspectorEnergy;
 import presentation.epiphyte.C_InspectorGenetic;
 import presentation.epiphyte.C_InspectorPopulationRodent;
 import repast.simphony.context.Context;
@@ -30,7 +29,6 @@ public class C_ProtocolChize extends A_ProtocolFossorial {
 	//
 	private C_CropRotationChize cropRotation = null;
 	protected C_InspectorGenetic geneticInspector;
-	protected C_InspectorEnergy energyInspector;
 	//
 	// CONSTRUCTOR
 	//
@@ -88,13 +86,13 @@ public class C_ProtocolChize extends A_ProtocolFossorial {
 	@Override
 	/** Manages agricultural changes Authors JEL2011, AR, rev. Le Fur 2011, 2012, 04.2014, 08,09.2014 */
 	public void manageTimeLandmarks() {
-		if (RepastEssentials.GetTickCount() == 1.) ((C_InspectorPopulationRodent) inspector).recordSpatialDistributionInFile(this.landscape.getGrid());
+		if (RepastEssentials.GetTickCount() == 1.) ((C_InspectorPopulationRodent) inspectorPopulation).recordSpatialDistributionInFile(this.landscape.getGrid());
 		int currentYear = protocolCalendar.get(Calendar.YEAR);
 		int currentMonth = protocolCalendar.get(Calendar.MONTH);
 		super.manageTimeLandmarks();
 		if (currentYear != protocolCalendar.get(Calendar.YEAR)) {
 			A_Protocol.event("C_ProtocolChize.manageTimeLandmarks", "Crop Transition", isNotError);
-			((C_InspectorPopulationRodent) inspector).recordSpatialDistributionInFile(this.landscape.getGrid());
+			((C_InspectorPopulationRodent) inspectorPopulation).recordSpatialDistributionInFile(this.landscape.getGrid());
 			cropRotation.cropTransition(protocolCalendar.get(Calendar.MONTH));
 		}
 		if (currentMonth != protocolCalendar.get(Calendar.MONTH)) {

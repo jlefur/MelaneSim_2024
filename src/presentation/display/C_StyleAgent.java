@@ -19,7 +19,10 @@ import thing.A_Amniote;
 import thing.A_Animal;
 import thing.A_NDS;
 import thing.A_VisibleAgent;
+import thing.C_Megaptera;
+import thing.C_Nekton;
 import thing.C_Plankton;
+import thing.C_Ship_cargo;
 import thing.C_StreamCurrent;
 import thing.I_SituatedThing;
 import thing.ground.A_SupportedContainer;
@@ -32,8 +35,7 @@ import thing.rodents.C_Vegetation;
  * @author A Realini 2011 */
 public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStringRodents, I_ConstantPNMC,
 		I_ConstantNumeric, I_ConstantImagesNames {
-	private float imageScale = IMAGE_SCALE;
-	private float ellipseScale = ELLIPSE_SCALE;
+	private float imageScale, ellipseScale;
 	private final float CIRCLE_RADIUS = 5; // Rayon de l'ellipse
 	private final int CIRCLE_SLICES = 10; // Nombres d'arêtes de l'ellipse (joue sur le rendu : sera plus ou moins rond)
 	private C_IconSelector selectImg;
@@ -64,6 +66,12 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 		this.ellipseScale = 2.f;
 		this.imageScale = .07f;
 		factory.registerImage(PLANKTON_ICON, selectImg.loadImage(PLANKTON_ICON));
+		factory.registerImage(MICRONEKTON_ICON, selectImg.loadImage(MICRONEKTON_ICON));
+		factory.registerImage(SHIP_CARGO_NORTHWARD_ICON, selectImg.loadImage(SHIP_CARGO_NORTHWARD_ICON));
+		factory.registerImage(SHIP_CARGO_SOUTHWARD_ICON, selectImg.loadImage(SHIP_CARGO_SOUTHWARD_ICON));
+		factory.registerImage(WHALE_MALE_ICON, selectImg.loadImage(WHALE_MALE_ICON));
+		factory.registerImage(WHALE_FEMALE_ICON, selectImg.loadImage(WHALE_FEMALE_ICON));
+		factory.registerImage(WHALE_CALF_ICON, selectImg.loadImage(WHALE_CALF_ICON));
 		factory.registerImage(NORTH_ICON, selectImg.loadImage(NORTH_ICON));
 		factory.registerImage(NORTH_EAST_ICON, selectImg.loadImage(NORTH_EAST_ICON));
 		factory.registerImage(EAST_ICON, selectImg.loadImage(EAST_ICON));
@@ -76,6 +84,7 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 
 	public void initChize() {
 		this.ellipseScale = .6f;
+		this.imageScale = .2f;
 		factory.registerImage(VOLE_FEMALE_CHILD, selectImg.loadImage(VOLE_FEMALE_CHILD));
 		factory.registerImage(VOLE_FEMALE_ADULT, selectImg.loadImage(VOLE_FEMALE_ADULT));
 		factory.registerImage(VOLE_MALE_CHILD, selectImg.loadImage(VOLE_MALE_CHILD));
@@ -207,7 +216,7 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 
 	public void initDecenal() {
 		this.ellipseScale = 2.6f;
-		imageScale = 0.4f;
+		this.imageScale = 0.4f;
 		factory.registerImage(VEHICLE_BOAT, selectImg.loadImage(VEHICLE_BOAT));
 		factory.registerImage(VEHICLE_TRAIN, selectImg.loadImage(VEHICLE_TRAIN));
 		factory.registerImage(VEHICLE_TRUCK, selectImg.loadImage(VEHICLE_TRUCK));
@@ -273,6 +282,7 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 				if (agent instanceof C_Vegetation) {
 					spatial = factory.createCircle(CIRCLE_RADIUS * 0.5f, 3);// triangle shape
 				} // mature=circle, immature=square
+				else if (agent instanceof C_Ship_cargo) return factory.createCircle(CIRCLE_RADIUS * 2.5f, 3);
 				else
 					if (agent instanceof A_Amniote && !((A_Amniote) agent).isSexualMature())
 						spatial = factory.createRectangle((int) CIRCLE_RADIUS, (int) CIRCLE_RADIUS);
@@ -318,18 +328,38 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 		if (C_Parameters.IMAGE) {
 			if (object instanceof C_StreamCurrent) {
 				sscale = (float) (((C_StreamCurrent) object).getSpeedEast() * ((C_StreamCurrent) object).getSpeedEast()
-						* sscale * STREAM_DISPLAY_SIZE*1.5);
+						* sscale * STREAM_DISPLAY_SIZE * 1.5);
 			}
-			// plankton image reflects the number of plankton agent within their cell
-			if (object instanceof C_Plankton) {
+			// nekton image reflects the number of nekton agent within their cell
+			else if (object instanceof C_Nekton) {
 				if (((A_SupportedContainer) object).isa_Tag()) sscale = sscale * 17;
 				else {
 					C_SoilCellMarine cell = (C_SoilCellMarine) object.getCurrentSoilCell();
-					sscale = (float) (.04 + cell.getEnergy_Ukcal() * .00008);
+					// sscale = (float) Math.max(Math.pow(cell.getNektonTotalDensity(), 2.5) / 450000, .1);
+					sscale = (float) (cell.getTotalNektonDensity_U100()/200.);
 					// float size = (float) (this.imageScale * 10.);
 				}
 			}
-			if (object instanceof A_HumanUrban) {
+			// plankton image reflects the number of plankton agent within their cell
+			else if (object instanceof C_Plankton) {
+				if (((A_SupportedContainer) object).isa_Tag()) sscale = sscale * 17;
+				else {
+					C_SoilCellMarine cell = (C_SoilCellMarine) object.getCurrentSoilCell();
+					sscale = (float) (cell.getTotalChlorophyll_U100()/200.);
+//					sscale = (float) Math.max(Math.pow(cell.getPlanktonTotalChlorophyll(), 2.5) / 450000, .1);
+					// float size = (float) (this.imageScale * 10.);
+					if (C_Parameters.PROTOCOL.equals(PNMC_DRIFTERS))sscale=this.imageScale; }
+			}
+			// plankton image reflects the number of plankton agent within their cell
+			else if (object instanceof C_Ship_cargo) {
+				if (((A_SupportedContainer) object).isa_Tag()) sscale = sscale * 17;
+				else sscale = sscale * 7;
+			}
+			else if (object instanceof C_Megaptera) {
+				if (((A_SupportedContainer) object).isa_Tag()) sscale = sscale * 17;
+				else sscale = sscale * 6;
+			}
+			else if (object instanceof A_HumanUrban) {
 				if (((A_HumanUrban) object).isa_Tag()) sscale = sscale * 5;
 				if (!((A_Animal) object).getDesire().equals(REST)) sscale = sscale * 2;
 				else sscale = sscale / 2;// taille humains

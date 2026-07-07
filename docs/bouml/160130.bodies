@@ -1,0 +1,3 @@
+class C_Room
+!!!311298.java!!!	C_Room(inout groundManager : C_LandscapeUrban)
+        super(groundManager);

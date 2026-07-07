@@ -1,0 +1,32 @@
+class LevyDistribution
+!!!184194.java!!!	bounded_uniform(in low : double, in high : double) : double
+		// returns a double in inverval (0,1). IE, neither zero nor one will be returned.
+		double x = randomGeneratorForLevyFlight.nextDouble();
+
+		double range = high - low;
+		x *= range; // scale onto the required range of values
+		x += low; // translate x onto the values requested
+
+		return x;
+!!!184322.java!!!	sample(in mu : double) : double
+		double X = bounded_uniform(-Math.PI / 2.0, Math.PI / 2.0);
+		// Retrieve a value between (0,1) (does not include 0 or 1 themselves)
+		double Y = -Math.log(randomGeneratorForLevyFlight.nextDouble());
+		double alpha = mu - 1.0;
+		// there's a lot going on here, written over several lines to aid clarity.
+		/*
+		 * a = math.sin( (mu - 1.0) * x ) / (math.pow(math.cos(x), (1.0 / (mu - 1.0)))) b = math.pow( (math.cos((2.0 - mu) * x) /
+		 * y), ((2.0 - mu) / (mu - 1.0)) ) z = a * b
+		 */
+		double a = Math.sin(alpha * X) / Math.pow(Math.cos(X), 1.0 / alpha);
+		double b = Math.pow(Math.cos((2.0 - mu) * X) / Y, (2.0 - mu) / alpha);
+		// double b = Math.pow(Math.cos((1.0 - alpha) * X) / Y, (1.0 - alpha) / alpha);
+		return a * b;
+!!!184450.java!!!	sample_positive(in mu : double, in scale : double) : double
+		double l = sample(mu) * scale;
+		if (l < 0.0) { return -1.0 * l; }
+		return l;
+!!!184578.java!!!	sample_positive(in mu : double) : double
+		return sample_positive(mu, 1.0);
+!!!184706.java!!!	main(inout args : String [[]]) : void
+		System.out.println(sample_positive(5.));

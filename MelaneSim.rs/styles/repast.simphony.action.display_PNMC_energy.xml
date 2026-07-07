@@ -3,17 +3,16 @@
 	<type>TWO_D</type>
 	<styles>
 		<entry>
-			<string>thing.ground.C_LandPlot</string>
+			<string>presentation.display.C_Background</string>
 			<string>repast.simphony.visualization.editedStyle.EditedStyle2D
 			</string>
 		</entry>
 	</styles>
 	<editedStyles>
 		<entry>
-			<string>thing.ground.C_LandPlot</string>
-			<string>thing.ground.C_LandPlot.style_PNMC.01.xml</string>
+			<string>presentation.display.C_Background</string>
+			<string>presentation.display.C_Background.style_PNMC.energy.xml</string>
 		</entry>
-
 	</editedStyles>
 	<netStyles />
 	<editedNetStyles />
@@ -33,7 +32,7 @@
 	<layoutInterval>0</layoutInterval>
 	<layerOrder>
 		<entry>
-			<string>thing.ground.C_LandPlot</string>
+			<string>thing.ground.C_Background</string>
 			<int>0</int>
 		</entry>
 	</layerOrder>

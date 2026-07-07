@@ -1,0 +1,11 @@
+class C_GenomeBorrelia
+!!!295938.java!!!	C_GenomeBorrelia()
+		super();
+		makeAcariaBivalent(this.alleles);
+!!!296066.java!!!	C_GenomeBorrelia(inout microsatXsome : C_XsomePairMicrosat, inout gonosome : C_XsomePairSexual, inout autosomes : ArrayList<C_ChromosomePair>)
+		super(microsatXsome, gonosome, autosomes);
+!!!296194.java!!!	makeAcariaBivalent(inout allelesMap : Map<String, Double>) : void
+		// remove obsolete xsomePairAmniota constructed by mother classes
+		this.bivalents.remove(this.xsomePairAmniota);
+		this.xsomePairAmniota = new C_ChromosomePair(C_Chromosome.MAP_LENGTH, numGenesXsomeAmniota, recombinator);
+		this.bivalents.add(bivalents.size(), this.xsomePairAmniota);

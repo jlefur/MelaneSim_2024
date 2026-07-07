@@ -1,0 +1,12 @@
+class Valeurs
+!!!312578.java!!!	add(inout champ : C_SoilCellMarineEnergy::Champ, in delta : double) : void
+ champs[champ.ordinal()] += delta;
+!!!312706.java!!!	set(inout champ : C_SoilCellMarineEnergy::Champ, in value : double) : void
+ champs[champ.ordinal()] = value;
+!!!312834.java!!!	get(inout champ : C_SoilCellMarineEnergy::Champ) : double
+ return champs[champ.ordinal()];
+!!!312962.java!!!	toString() : String
+			DecimalFormat df = new DecimalFormat("0.00",DecimalFormatSymbols.getInstance(Locale.US));
+			return "RAW_VAL="+df.format(champs[Champ.RAW_VAL.ordinal()])+", NB_VAL="+champs[Champ.NB_VAL.ordinal()]
+					+", INTEGRAL_100="+df.format(champs[Champ.INTEGRAL_100.ordinal()])+", _100="+df.format(
+							champs[Champ._100.ordinal()]);

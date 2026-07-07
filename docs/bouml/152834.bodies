@@ -1,0 +1,24 @@
+class A_SupportedContainer
+!!!259714.java!!!	A_SupportedContainer(in affinity : int, in lineNo : int, in colNo : int)
+		super(affinity, lineNo, colNo);
+!!!259842.java!!!	agentIncoming(inout thing : I_SituatedThing) : boolean
+		boolean test = super.agentIncoming(thing);
+		if (test && (thing instanceof A_Animal)) {
+			A_Animal oneAnimal = (A_Animal) thing;
+			if (oneAnimal.getTarget() == this) oneAnimal.discardTarget();
+			if (!oneAnimal.getDesire().equals(NONE)) oneAnimal.setHasToLeaveFullContainer(this.isFull());
+		}
+		return test;
+!!!259970.java!!!	toString() : String
+		return this.retrieveMyName();// + "(" + this.currentSoilCell.getLineNo() + "," + this.currentSoilCell.getColNo() + ")";
+!!!260098.java!!!	getCoordinate_Ucs() : Coordinate
+		return A_VisibleAgent.myLandscape.getThingCoord_Ucs(this);
+!!!260226.java!!!	getMyLandPlot() : C_LandPlot
+		return ((C_SoilCell) this.currentSoilCell).getMyLandPlot();
+!!!260354.java!!!	checkDeath(in deathProbability : double) : void
+		if (C_ContextCreator.randomGeneratorForDeathProb.nextDouble() <= deathProbability) this.dead = true;
+!!!260482.java!!!	isa_Tag() : boolean
+		return a_tag;
+!!!260610.java!!!	seta_Tag(inout tagged : boolean) : void
+		this.a_tag = tagged;
+		this.setHasToSwitchFace(true);

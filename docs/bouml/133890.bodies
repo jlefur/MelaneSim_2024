@@ -1,0 +1,108 @@
+class C_ChooseProtocol_Rodents
+!!!140290.java!!!	main(inout args : String [[]]) : void
+		new C_ChooseProtocol_Rodents();
+!!!140418.java!!!	C_ChooseProtocol_Rodents()
+		super("- Choose one simulation protocol (SimMasto project - IRD/CBGP)");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // imp�ratif cette ligne
+		this.setLocation(560, 10);
+		this.setContentPane(panel);
+		this.panel.setLayout(new BoxLayout(this.panel, BoxLayout.PAGE_AXIS));
+		
+		gerbilBox.setLayout(new BoxLayout(gerbilBox, BoxLayout.X_AXIS));
+		gerbilBox.setBorder(BorderFactory.createTitledBorder("Sahelian landscape (circadian rythms)"));
+		this.gerbilBox.add(addImageButton("icons/rodents/titleGerbil.gif", "GERBILS"));
+		this.gerbilBox.add(addImageButton("icons/rodents/titleEmpty.gif", ""));
+		this.panel.add(gerbilBox);
+
+		DodelBox.setLayout(new BoxLayout(DodelBox, BoxLayout.X_AXIS));
+		DodelBox.setBorder(BorderFactory.createTitledBorder("Urban ecology (circadian rythms)"));
+		this.DodelBox.add(addImageButton("icons/rodents/titleDodel1.gif", "DODEL1"));
+		this.DodelBox.add(addImageButton("icons/rodents/titleDodel2.gif", "DODEL2"));
+		this.panel.add(DodelBox);
+
+		transportationBox2.setLayout(new BoxLayout(transportationBox2, BoxLayout.X_AXIS));
+		transportationBox2.setBorder(BorderFactory.createTitledBorder("Transportation in Senegal (2)"));
+		this.transportationBox2.add(addImageButton("icons/rodents/titleMusTransport.gif", "MUS_TRANSPORT"));
+		this.transportationBox2.add(addImageButton("icons/rodents/titleEmpty.gif", ""));
+		this.panel.add(transportationBox2);
+		transportationBox1.setLayout(new BoxLayout(transportationBox1, BoxLayout.X_AXIS));
+		transportationBox1.setBorder(BorderFactory.createTitledBorder("Transportation in Senegal (1)"));
+		this.transportationBox1.add(addImageButton("icons/rodents/titleCentenal.gif", "CENTENAL"));
+		this.transportationBox1.add(addImageButton("icons/rodents/titleDecenal.gif", "DECENAL"));
+		this.panel.add(transportationBox1);
+
+		CMRBox.setLayout(new BoxLayout(CMRBox, BoxLayout.X_AXIS));
+		CMRBox.setBorder(BorderFactory.createTitledBorder("Catch-Mark-Recatch apparatus"));
+		this.CMRBox.add(addImageButton("icons/rodents/titleBandia.gif", "BANDIA"));
+		this.CMRBox.add(addImageButton("icons/rodents/titleEmpty.gif", ""));
+		this.panel.add(CMRBox);
+
+		hybridizationBox.setLayout(new BoxLayout(hybridizationBox, BoxLayout.X_AXIS));
+		hybridizationBox.setBorder(BorderFactory.createTitledBorder("Hybridization"));
+		this.hybridizationBox.add(addImageButton("icons/rodents/titleCages.gif", "CAGES"));
+		this.hybridizationBox.add(addImageButton("icons/rodents/titleUniform.gif", "HYBRID_UNIFORM"));
+		this.panel.add(hybridizationBox);
+
+		chizeBox.setLayout(new BoxLayout(chizeBox, BoxLayout.X_AXIS));
+		chizeBox.setBorder(BorderFactory.createTitledBorder("Changing agricultural landscape"));
+		this.chizeBox.add(addImageButton("icons/rodents/titleChize1.gif", "CHIZE1"));
+		this.chizeBox.add(addImageButton("icons/rodents/titleChize2.gif", "CHIZE2"));
+		this.panel.add(chizeBox);
+
+		this.pack();
+		this.setVisible(true);
+!!!140546.java!!!	addImageButton(in iconFilename : String, in protocolName : String) : JButton
+		try {
+			buttonIcon = ImageIO.read(new File(iconFilename));
+		} catch (IOException e) {}
+		JButton protocolButton = new JButton();
+		protocolButton.addActionListener(this);
+		protocolButton.setIcon(new ImageIcon(buttonIcon));
+		protocolButton.setToolTipText(protocolName);
+		protocolButton.setActionCommand(protocolName);
+		protocolButton.setAlignmentX(Component.LEFT_ALIGNMENT); 
+		return protocolButton;
+
+!!!140674.java!!!	actionPerformed(inout e : ActionEvent) : void
+		String xmlFileName = "rodents/parameters_scenario_" + e.getActionCommand() + ".txt";
+		splitRepastXmlConfigFiles(xmlFileName);
+		System.out.println(e.getActionCommand() + " Protocol choosed");
+//		String[] args = new String[]{"C:\\Users\\sallmous\\Documents\\Workspace_Moussa\\SIMmasto_0\\SIMmasto_0.rs"};
+//		 repast.simphony.runtime.RepastMain.main(args);
+		System.exit(0);
+!!!140802.java!!!	splitRepastXmlConfigFiles(in xmlFileName : String) : void
+		BufferedReader buffer = C_ReadWriteFile.openBufferReader(REPAST_PATH, xmlFileName);
+		C_FileWriter writingXmlFile = null;
+		String readLine;
+		try {
+			// Write the next lines in a matrix before going on with the raterFile
+			readLine = buffer.readLine();
+			while (readLine != null) {
+				if (readLine.contains("<?xml") && !readLine.trim().startsWith("<!--")) {
+					String fistReadLine = readLine; // on sauvegarde la premi�re ligne
+					readLine = buffer.readLine(); // on passe � la deuxi�me pr r�cup�rer le nom
+					// R�cup�ration du nom. example: parameters.xml ou scenario.xml d'une ligne comme
+					// <!--fileName:parameters.xml-->
+					// ou
+					// <!--fileName:scenario.xml-->
+					String xmlConfigFileName = readLine.replace(" ", "").split(":")[1].split(".xml")[0] + ".xml";
+					// Cr�ation du fichier .xml en construction
+					writingXmlFile = new C_FileWriter(REPAST_PATH + xmlConfigFileName, false);
+					// Ecriture de la premi�re ligne (<?xml version="1.0" encoding="UTF-8" ?>)
+					writingXmlFile.writeln(fistReadLine);
+				} // Ecriture du reste du fichier
+				writingXmlFile.writeln(readLine);
+				readLine = buffer.readLine();
+			}
+		} catch (Exception e) {
+			System.err.println("C_ChooseProtocol_Rodents.splitRepastXmlConfigFiles : Error  reading or writing xml file " + e.getMessage());
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				buffer.close();
+				writingXmlFile.closeFile();
+			} catch (Exception e) {
+				System.err.println("C_ChooseProtocol_Rodents.splitRepastXmlConfigFiles : buffer or writingXmlFile closing error" + e.getMessage());
+			}
+		}

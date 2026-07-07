@@ -1,0 +1,120 @@
+class A_Container
+!!!255234.java!!!	actionInfect(inout thing : I_SituatedThing) : void
+		this.energy_Ukcal--;
+!!!255490.java!!!	discardThis() : void
+		if (this.getOccupantList() == null) {
+			A_Protocol.event("A_Container.discardThis()", this + " (" + C_VariousUtilities.getShortClassName(this
+					.getClass()).substring(2) + ")", isError);
+		}
+		else {
+			Object[] occupants = this.getOccupantList().toArray();
+			for (Object occupant : occupants) {
+				if (occupant instanceof I_SituatedThing) {
+					this.agentLeaving((I_SituatedThing) occupant);
+					if (C_Parameters.VERBOSE)
+						A_Protocol.event("A_Container.discardThis", occupant + " was discarded from " + this + " (dead "
+								+ this.isDead() + ")", isNotError);
+				}
+			}
+			occupants = null;
+			this.occupantList = null;
+			super.discardThis();
+		}
+!!!255618.java!!!	agentIncoming(inout thing : I_SituatedThing) : boolean
+		thing.assertColNo(this.colNo);
+		thing.assertLineNo(this.lineNo);
+		boolean entryOK = false;
+		if (this.occupantList == null) {
+			A_Protocol.event("AgentIncoming: ", this + " is null to be occupied by " + thing, true);
+			return false;
+		}
+		if (this.occupantList.add(thing)) entryOK = true;
+		else {
+			A_Protocol.event("A_Container.agentIncoming", "Cannot add " + thing + " to " + this, isError);
+			return false;
+		}
+		if (entryOK) {
+			thing.setCurrentSoilCell(this);
+			if (thing instanceof A_NDS) this.agentLoad++;
+			if (thing instanceof C_Rodent) this.rodentLoad++;
+		}
+		else A_Protocol.event("A_Container.agentIncoming", "Cannot set " + this + " container to " + thing, isError);
+		return entryOK;
+!!!255746.java!!!	agentLeaving(inout thing : I_SituatedThing) : boolean
+		if (thing instanceof A_Animal) ((A_Animal) thing).setLastContainerLeft(this);
+		boolean exitOK = this.occupantList.remove(thing);
+		if (exitOK) {
+			thing.setCurrentSoilCell(null);
+			if (thing instanceof A_NDS) this.agentLoad--;
+			if (thing instanceof C_Rodent) this.rodentLoad--;
+		}
+		else {
+			A_Protocol.event("A_Container.agentLeaving", "Could not find " + thing + " in occupantList of " + this,
+					isError);
+		}
+		return exitOK;
+!!!255874.java!!!	setAffinity(in a : int) : void
+		this.affinity = a;// TODO JLF 2015.08 probably not generic and functional; has to be checked everywhere for cleaning
+		for (I_Container oneContainer : this.getContainerList()) {
+			oneContainer.setAffinity(a);
+			// 2016.12 JLF affinity to show full cells on GUI
+			// if ((oneContainer.getAffinity() > DANGEROUS_AREA_AFFINITY) && oneContainer.isFull())
+			// oneContainer.setAffinity(DANGEROUS_AREA_AFFINITY +
+			// 1);
+		}
+!!!256002.java!!!	assertLineNo(in lineNo : int) : void
+		this.lineNo = lineNo;
+!!!256130.java!!!	assertColNo(in colNo : int) : void
+		this.colNo = colNo;
+!!!256258.java!!!	isInfected() : boolean
+		return false;
+!!!256386.java!!!	isFull() : boolean
+		if (this.dead) return true;
+		else return this.getCarryingCapacity_Urodent() < this.retrieveLoad_Urodent();
+!!!256514.java!!!	retrieveLineNo() : int
+		return this.lineNo;
+!!!256642.java!!!	retrieveColNo() : int
+		return this.colNo;
+!!!256770.java!!!	getAffinity() : int
+		return this.affinity;
+!!!256898.java!!!	getOccupantList() : I_SituatedThing
+		return this.occupantList;
+!!!257026.java!!!	getFullOccupantList() : I_SituatedThing
+		TreeSet<I_SituatedThing> agents = new TreeSet<I_SituatedThing>();
+		TreeSet<I_Container> containers = new TreeSet<I_Container>();
+		if (this.isDead() // to avoid probe crash (JLF 03.2021)
+				|| this.occupantList.isEmpty()) return agents;// stop condition
+		else {
+			containers = this.getContainerList();
+			agents.addAll(this.occupantList);
+			// System.out.println("A_Container.getFullOccupantList()"+this);
+			for (I_Container mineContainer : containers) {
+				// System.out.println("A_Container.getFullOccupantList()"+" -> "+ mineContainer);
+				// A priori, no infinite loops in case of mutual referencing
+				agents.addAll(mineContainer.getFullOccupantList());
+			}
+			return agents;
+		}
+!!!257154.java!!!	getContainerList() : I_Container
+		TreeSet<I_Container> containerList = new TreeSet<I_Container>();
+		for (I_SituatedThing thing : this.occupantList)
+			if (thing instanceof I_Container) containerList.add((I_Container) thing);
+		return containerList;
+!!!257282.java!!!	getRodentList() : C_Rodent
+		TreeSet<C_Rodent> rodents = new TreeSet<C_Rodent>();
+		for (I_SituatedThing thing : this.occupantList)
+			if (thing instanceof C_Rodent) rodents.add((C_Rodent) thing);
+		return rodents;
+!!!257410.java!!!	getFullRodentList() : C_Rodent
+		TreeSet<C_Rodent> rodents = new TreeSet<C_Rodent>();
+		for (I_SituatedThing agent : getFullOccupantList())
+			if (agent instanceof C_Rodent) {
+				rodents.add((C_Rodent) agent);
+			}
+		return rodents;
+!!!257538.java!!!	retrieveFullLoad_Urodent() : int
+		return getFullRodentList().size();
+!!!257666.java!!!	retrieveLoad_Urodent() : int
+		return rodentLoad;
+!!!257794.java!!!	getFullLoad_Uagent() : int
+		return getFullOccupantList().size();

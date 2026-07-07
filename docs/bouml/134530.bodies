@@ -1,0 +1,45 @@
+class C_RandomInNormalDistrib
+!!!177538.java!!!	C_RandomInNormalDistrib()
+		super(GAUSSIAN_RANDOM_SEED);
+!!!177666.java!!!	C_RandomInNormalDistrib(in seed : long)
+		super(seed);
+!!!177794.java!!!	nextGaussian(in mean : double) : double
+		return mean + nextGaussian();
+!!!177922.java!!!	nextGaussian(in mean : double, in standDev : double) : double
+		return mean + (standDev * nextGaussian());
+!!!178050.java!!!	main(inout args : String [[]]) : void
+		System.out.println("Testing MyRandom");
+
+		long GAUSSIAN_RANDOM_SEED = 321657567;
+		C_RandomInNormalDistrib myRandom = new C_RandomInNormalDistrib(GAUSSIAN_RANDOM_SEED);
+		double mean = 10;
+		double standDev = 2;
+
+		if (args.length > 1) {
+			mean = Double.parseDouble(args[0]);
+			standDev = Double.parseDouble(args[1]);
+		}
+
+		System.out.println("rand #s, mean = " + mean);
+		double accum = 0;
+		double r = 0;
+		final int numSamples = 21;
+		for (int i = 1; i <= numSamples; i++) {
+			r = myRandom.nextGaussian(mean);
+			accum += r;
+			System.out.print(r);
+			System.out.print("\t");
+			if (i % 3 == 0) System.out.println();
+		}
+		System.out.println("Actual mean: " + (accum / numSamples));
+
+		System.out.println("\nrand #s, mean = " + mean + " stand dev=" + standDev);
+		accum = 0;
+		for (int i = 1; i <= numSamples; i++) {
+			r = myRandom.nextGaussian(mean, standDev);
+			accum += r;
+			System.out.print(r);
+			System.out.print("\t");
+			if (i % 3 == 0) System.out.println();
+		}
+		System.out.println("Actual mean: " + (accum / numSamples));

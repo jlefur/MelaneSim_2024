@@ -1,0 +1,144 @@
+class C_RodentGerbil
+!!!357506.java!!!	isMethoxybenzoxazolinone() : boolean
+		return methoxybenzoxazolinone;
+!!!357634.java!!!	C_RodentGerbil(inout genome : I_DiploidGenome)
+		super(genome);
+		energy_Ukcal = INITIAL_ENERGY_Ukcal;
+!!!357762.java!!!	step_Utick() : void
+		if (!this.isTrappedOnBoard()) {
+			// REMAIN OR SEARCH SHELTER
+			if (A_Protocol.protocolCalendar.isDawn() || A_Protocol.protocolCalendar.isDayTime()) {
+				if (this.currentSoilCell instanceof C_BurrowSystem) this.setDesire(NONE); // keep quiet
+				else this.setDesire(HIDE); // search shelter
+			}
+			// WAKE UP : exit from burrow when twilight comes (sucklings do not act)
+			else if (A_Protocol.protocolCalendar.isTwilight() && this.getCurrentSoilCell() instanceof C_BurrowSystem) {
+				if (!this.isSucklingChild()) {
+					this.actionRandomExitOfContainer();
+					if (this.getDesire().equals(NONE) || this.getDesire().equals(HIDE)) this.setDesire("");
+				}
+			}
+			super.step_Utick();
+			// If did not found or do not target shelter, then dig burrow
+			if (this.getDesire().equals(HIDE) && !(this.currentSoilCell instanceof C_BurrowSystem) && this.target == null) {
+				if (A_Protocol.protocolCalendar.isDayTime()) {
+					this.actionEnterContainer(this.actionDig());
+					this.setDesire(NONE);
+				}
+			}
+		}
+!!!357890.java!!!	perception() : I_SituatedThing
+		if (this.currentSoilCell instanceof C_BurrowSystem) return this.currentSoilCell.getOccupantList();
+		else return super.perception();
+!!!358018.java!!!	checkDanger() : void
+		TreeSet<I_SituatedThing> perceivedThings = this.perception();
+		for (I_SituatedThing oneThing : perceivedThings) {
+			if (oneThing instanceof C_BarnOwl) {
+				this.setDesire(HIDE);
+				break;
+			}
+		}
+		super.checkDanger();
+!!!358146.java!!!	deliberation(inout perceivedThings : TreeSet<I_SituatedThing>) : I_SituatedThing
+		if (this.getDesire().equals(HIDE)) return this.chooseShelter(perceivedThings);
+		return super.deliberation(perceivedThings);
+!!!358274.java!!!	chooseShelter(inout perceivedThings : TreeSet<I_SituatedThing>) : I_SituatedThing
+		//TreeSet<I_SituatedThing> shrubShelters = new TreeSet<I_SituatedThing>();
+		TreeSet<I_SituatedThing> shelters = new TreeSet<I_SituatedThing>();
+		for (I_SituatedThing onePerceivedThing : perceivedThings) {
+			if ((onePerceivedThing instanceof C_BurrowSystem) && !(onePerceivedThing instanceof C_Nest)) {// Choose burrow and
+				shelters.add(onePerceivedThing);
+			}
+			else if (onePerceivedThing instanceof C_Vegetation) {
+				C_Vegetation oneVegetation = (C_Vegetation) onePerceivedThing;
+				if ((oneVegetation.getGenome() instanceof C_GenomeBalanites) && this.canInteractWith(oneVegetation)) shelters.add(onePerceivedThing);
+			}
+		}
+		if (shelters.size() != 0) return shelters;
+//		if (shrubShelters.size() != 0) return shrubShelters;
+		return super.chooseShelter(perceivedThings);
+!!!358402.java!!!	chooseFood(inout perceivedThings : TreeSet<I_SituatedThing>) : I_SituatedThing
+		TreeSet<I_SituatedThing> vegetationSelected = new TreeSet<I_SituatedThing>();
+		for (I_SituatedThing onePerceivedThing : perceivedThings) {
+			if ((onePerceivedThing instanceof C_Vegetation) && canInteractWith((C_Vegetation) onePerceivedThing)//
+					&& (//
+					(((C_Vegetation) onePerceivedThing).getGenome() instanceof C_GenomePoacea) || (((C_Vegetation) onePerceivedThing)
+							.getGenome() instanceof C_GenomeFabacea) || (((C_Vegetation) onePerceivedThing).getGenome() instanceof C_GenomeBalanites)) //
+			) {
+				vegetationSelected.add(onePerceivedThing);
+			}
+		}
+		return vegetationSelected;
+!!!358530.java!!!	canInteractWith(inout oneOccupant : I_SituatedThing) : boolean
+		if (oneOccupant instanceof C_Vegetation) {
+			double distanceToVegetation_Umeter = this.getDistance_Umeter(oneOccupant);
+			if ((vegetationCoverageRadius_Umeter + this.sensing_UmeterByTick) > distanceToVegetation_Umeter) return true;
+		}
+		return super.canInteractWith(oneOccupant);
+!!!358658.java!!!	processTarget() : boolean
+		if (this.getDesire().equals(HIDE)) {
+			if (this.target instanceof C_BurrowSystem) {
+				this.actionEnterContainer((C_BurrowSystem) this.target);
+				if (this.currentSoilCell.isFull() && !this.getDesire().equals(NONE)) {
+					actionDisperse();
+				}
+				return true;
+			}
+			// case of SHRUB
+			else if (this.target instanceof C_Vegetation && ((C_Vegetation) this.target).getGenome() instanceof C_GenomeBalanites)
+				this.actionEnterContainer((I_Container) this.target);// schrubs (vegetation) are I_Containers - jlf 07.2018
+			// Case rodent does not get target
+			else {
+				this.setNewRandomMove();
+				this.actionMove();
+			}
+			this.setDesire("");
+			return true;
+		}
+		return super.processTarget();
+!!!358786.java!!!	actionDig() : C_BurrowSystem
+		C_BurrowSystem newBurrow = super.actionDig();
+		int affinity = 0;
+		for (I_SituatedThing thing : newBurrow.getCurrentSoilCell().getOccupantList())
+			if (thing instanceof C_Vegetation) affinity++;
+		newBurrow.setAffinity(affinity);
+		return newBurrow;
+!!!358914.java!!!	actionEat() : boolean
+		for (int i = 0; i < repeatEating; i++)
+			this.energy_Ukcal++;
+		if (this.currentSoilCell instanceof C_Vegetation) {
+			this.methoxybenzoxazolinone = ((C_Vegetation) this.currentSoilCell).getMethoxybenzoxazolinone();
+			((C_Vegetation) this.currentSoilCell).energy_Ukcal--;
+		}
+		this.actionDisperse();
+		return true;
+!!!359042.java!!!	actionEat0() : boolean
+		if (this.currentSoilCell instanceof C_Vegetation) {
+			C_Vegetation oneVegetation = (C_Vegetation) this.currentSoilCell;
+			I_DiploidGenome genome = oneVegetation.getGenome();
+			if ((genome instanceof C_GenomeFabacea) || (genome instanceof C_GenomePoacea) || (genome instanceof C_GenomeBalanites)) {
+				double foodIntake_UkcalByTick = Math.min(oneVegetation.getEnergy_Ukcal(), DAILY_CONSUMPTION_NEED_UkcalPerDay
+						/ C_ConvertTimeAndSpace.oneDay_Utick);
+				// oneVegetation.setEaten(foodIntake_UkcalByTick);
+				this.methoxybenzoxazolinone = oneVegetation.getMethoxybenzoxazolinone();
+				this.energy_Ukcal += foodIntake_UkcalByTick * 1000;// TODO number in source JLF 2021.02 temporary shortcut: 1 gram
+																	// vegetation = 1kcal
+				/*
+				 * A_Protocol.event("C_RodentGerbil.actionEat", this + " eats " + Math.round(foodIntake_UgramByTick 1000.) + " cal. on " +
+				 * oneVegetation, isNotError);
+				 */
+				return true;
+			}
+			else A_Protocol.event("C_RodentGerbil.actionEat", this + " do not target crop or grass (" + this.getCurrentSoilCell() + ")", isError);
+		}
+		else if (C_Parameters.VERBOSE)
+			A_Protocol.event("C_RodentGerbil.actionEat", this + " do not forage on vegetation (" + this.target + ")", isError);
+		return false;
+!!!359170.java!!!	actionNoChoice() : void
+		this.actionDisperse();
+!!!359298.java!!!	updatePhysiologicStatus() : void
+		super.updatePhysiologicStatus();
+		if (this.isSexualMature() && !this.isPregnant() && this.methoxybenzoxazolinone) this.readyToMate = true;
+		else this.readyToMate = false;
+!!!359426.java!!!	giveBirth(inout genome : I_DiploidGenome) : A_Animal
+		return new C_RodentGerbil(genome);

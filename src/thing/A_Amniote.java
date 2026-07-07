@@ -202,7 +202,7 @@ public abstract class A_Amniote extends A_Animal implements I_ReproducingThing {
 		int litterSize = thisFemaleParentGenome.getLitterSizeValue();
 		// Make litter size dependent on ground carrying capacity JLF 03.2019
 		litterSize = Math.min(this.getCurrentSoilCell().getCarryingCapacity_Urodent() - this.getCurrentSoilCell()
-				.getFullLoad_Urodent(), litterSize);
+				.retrieveFullLoad_Urodent(), litterSize);
 		litterSize = Math.max(litterSize, 1);
 		for (int i = 0; i < litterSize; i++) {
 			eggGenome = this.genome.mateGenomes(0, maleParentGenome);

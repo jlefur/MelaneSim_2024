@@ -1,0 +1,63 @@
+class C_InspectorOrnithodorosSonrai
+!!!242946.java!!!	C_InspectorOrnithodorosSonrai()
+		super();
+		this.tickList.clear();
+		tickBirthList.clear();
+		this.nbBirth = 0;
+		// add to the super class header, this proper header
+		indicatorsHeader = "Tick;Bite Number;Hibernation Average;Birth Number;Population";
+!!!243074.java!!!	indicatorsCompute() : void
+	    this.nbBirth = tickBirthList.size();
+		for (C_OrnitodorosSonrai newBorn : tickBirthList) {
+		    this.tickList.add(newBorn);
+		}
+		tickBirthList.clear();
+!!!243202.java!!!	indicatorsStoreValues() : String
+	    this.indicatorsValues = RepastEssentials.GetTickCount() + CSV_FIELD_SEPARATOR + this.getBiteNumber()
+				+ CSV_FIELD_SEPARATOR + this.getInfectedNumber() + CSV_FIELD_SEPARATOR + this.getHibernationAverage()
+				+ CSV_FIELD_SEPARATOR + this.getBirthNumber() + CSV_FIELD_SEPARATOR + this.getTicksNumber()
+				+ CSV_FIELD_SEPARATOR + this.getTickFemaleNumber() + CSV_FIELD_SEPARATOR + this.getTickMaleNumber();
+		return this.indicatorsValues;
+!!!243330.java!!!	addTickBirthList(inout oneTick : C_OrnitodorosSonrai) : void
+		if (!tickBirthList.add(oneTick))
+			System.out.println("C_InspectorOrnithodorosSonrai.addTickBirthList() : : could not add" + oneTick);
+!!!243458.java!!!	addTickToList(inout oneTick : C_OrnitodorosSonrai) : void
+		if (!this.tickList.add(oneTick))
+			System.out.println("C_InspectorOrnithodorosSonrai.addTickToList() : : could not add" + oneTick);
+!!!243586.java!!!	getHibernationAverage() : double
+		double hibernationAverage = 0.;
+		for (C_OrnitodorosSonrai oneTick : this.tickList) {
+			hibernationAverage += oneTick.getHibernationDuration_Uday();
+		}
+		return (hibernationAverage / (this.tickList.size()));
+!!!243714.java!!!	getTickList() : C_OrnitodorosSonrai
+		return this.tickList;
+!!!243842.java!!!	getTicksNumber() : int
+		return this.tickList.size();
+!!!243970.java!!!	getTickMaleNumber() : int
+		int maleNumber = 0;
+		for (C_OrnitodorosSonrai oneTick : this.tickList) {
+			if (oneTick.testMale()) maleNumber++;
+		}
+		return maleNumber;
+!!!244098.java!!!	getTickFemaleNumber() : int
+		int femaleNumber = 0;
+		for (C_OrnitodorosSonrai oneTick : this.tickList) {
+			if (oneTick.testFemale()) femaleNumber++;
+		}
+		return femaleNumber;
+!!!244226.java!!!	getBiteNumber() : double
+		int biteNumber = 0;
+		for (C_OrnitodorosSonrai oneTick : this.tickList) {
+			biteNumber += oneTick.getBiteNumber();
+		}
+		return biteNumber;
+!!!244354.java!!!	getBirthNumber() : double
+		return this.nbBirth;
+!!!244482.java!!!	getInfectedNumber() : int
+		int infectedNumber = 0;
+		for (C_OrnitodorosSonrai oneTick : this.tickList)
+			if (oneTick.isInfected()) infectedNumber += 1;
+		return infectedNumber;
+!!!244610.java!!!	getHealthyNumber() : int
+		return (this.tickList.size() - getInfectedNumber());

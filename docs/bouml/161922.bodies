@@ -1,0 +1,47 @@
+class C_RodentCommensal
+!!!335490.java!!!	C_RodentCommensal(inout genome : I_DiploidGenome)
+		super(genome);
+		everTransported = false;
+!!!335618.java!!!	giveBirth(inout genome : I_DiploidGenome) : A_Animal
+		return new C_RodentCommensal(genome);
+!!!335746.java!!!	isEverTransported() : boolean
+		return everTransported;
+!!!335874.java!!!	actionInteract(inout rodent : C_Rodent) : boolean
+		if (this.genome.getClass().equals(rodent.getGenome().getClass()) && (this.isReadyToMate() && rodent.isReadyToMate() && recognized(rodent))) {
+			if (this.testFemale() && rodent.testMale()) {
+				this.actionMateWithMale(rodent);
+				return true;
+			}
+			else if (this.testMale() && rodent.testFemale()) {
+				rodent.actionMateWithMale(this);
+				return true;
+			}
+		}
+		return false;// TODO JLF 2017.01 place for future agonistic behaviours
+!!!336002.java!!!	processTarget() : boolean
+		// Sucked up by the container target, when arrived at proximity.
+		if (this.target instanceof C_Vehicle) {
+			if (this.actionTryBoardingContainer((C_Vehicle) this.target)) return true;
+			else {
+				this.discardTarget();
+				return false;
+			}
+		}
+		else return super.processTarget();
+!!!336130.java!!!	actionTryBoardingContainer(inout vehicle : C_Vehicle) : boolean
+		// JLF everTransported below accounts for possible previous successful boarding
+		if (vehicle.isParked() && !this.trappedOnBoard){// && !this.everTransported) {
+			// TODO number in source NOT OK (%) JLF 2015
+			double x = C_ContextCreator.randomGeneratorForBoarding.nextDouble() * 100;
+			if (!vehicle.isFull() && x < vehicle.getLoadingProba()) {
+				C_ContextCreator.protocol.contextualizeOldThingInCell(this, vehicle);
+				this.discardTarget();
+				for (A_Animal oneAnimal : this.animalsTargetingMe)
+					oneAnimal.setTarget(null);// cannot use discardTarget due to concurrent modification exception / jlf 12.2017
+				this.animalsTargetingMe.clear();
+				this.energy_Ukcal--;
+				this.everTransported = true;
+				return (this.trappedOnBoard = true);
+			}
+		}
+		return (this.trappedOnBoard = false);

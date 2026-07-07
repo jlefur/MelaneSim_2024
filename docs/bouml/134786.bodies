@@ -1,0 +1,21 @@
+class C_InspectorPopulation
+!!!233218.java!!!	indicatorsCompute() : void
+		super.indicatorsCompute();
+		Object[] contextContent = RunState.getInstance().getMasterContext().toArray();
+		String speciesName = "";
+		C_InspectorPopulation.populationBySpecies.clear();
+		for (int i = 0; i < contextContent.length; i++) {
+			Object item = contextContent[i];
+			if (item instanceof A_NDS) {
+				speciesName = C_VariousUtilities.getShortClassName(item.getClass()).substring(2);
+				// If key exist, add values
+				if (C_InspectorPopulation.populationBySpecies.get(speciesName) != null) {
+					C_InspectorPopulation.populationBySpecies.put(speciesName, C_InspectorPopulation.populationBySpecies
+							.get(speciesName) + 1);
+				}
+				// If not, create an entry and set values
+				else C_InspectorPopulation.populationBySpecies.put(speciesName, 1.);
+			}
+		}
+!!!233346.java!!!	getPopulationBySpecies() : Map<String, Double>
+		return populationBySpecies;

@@ -1,0 +1,7 @@
+class A_Human
+!!!330498.java!!!	A_Human(inout genome : I_DiploidGenome)
+		super(genome);
+!!!330626.java!!!	actionInteract(inout animal : A_Animal) : boolean
+		return false;
+!!!330754.java!!!	checkDeath(in deathProbability : double) : void
+		this.dead = false;

@@ -1,0 +1,2976 @@
+format 224
+"util" // src::melanesim::util
+  revision 1
+  modified_by 2 "lefur"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:\\Users\\lefur\\Documents\\GitHub\\MelaneSim_2024\\src/melanesim/util/"
+  java_package "melanesim.util"
+  classview 129538 "util"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 134530 "C_RandomInNormalDistrib"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " An extension of java.util.Random, which adds methods to generate random numbers in normal distribution given a specific mean
+or both a mean and a standard deviation.
+@author kyle wagner, elyk@acm.org Version 1.0, Sat Feb 3 18:38:23 2001 "
+      classrelation 145410 // <generalisation>
+	relation 145410 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 145410 // <generalisation>
+	  b parent class_ref 144002 // Random
+      end
+
+      classrelation 145538 // <realization>
+	relation 145538 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 145538 // <realization>
+	  b parent class_ref 129794 // I_ConstantNumeric
+      end
+
+      attribute 209666 "serialVersionUID"
+	class_attribute const_attribute private explicit_type "long"
+	init_value " 5152073868989964053L"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 177538 "C_RandomInNormalDistrib"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 177666 "C_RandomInNormalDistrib"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "seed" explicit_type "long"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 177794 "nextGaussian"
+	public explicit_return_type "double"
+	nparams 1
+	  param in name "mean" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Simply relies on Random's nextGaussian(), but adds mean to it. Standard deviation of the result is 1.0.
+@param mean the mean of the normal distribution
+@return any legal double, but values will be generated under a normal (gaussian) distribution. "
+      end
+
+      operation 177922 "nextGaussian"
+	public explicit_return_type "double"
+	nparams 2
+	  param in name "mean" explicit_type "double"
+	  param in name "standDev" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Simply relies on Random's nextGaussian(), but multiplies by standDev and adds mean to it. Standard deviation of the result
+is given by standDev.
+@param mean the mean of the normal distribution
+@param standDev the standard deviation of the normal distribution
+@return any legal double, but values will be generated under a normal (gaussian) distribution. "
+      end
+
+      operation 178050 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "////////////////////////////////////////////////////////////////////////
+ PROTECTED/PRIVATE METHODS
+////////////////////////////////////////////////////////////////////////
+
+ MAIN
+"
+      end
+    end
+
+    class 138242 "C_Graph"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " ground structure with the properties of an unweighted (non étiqueté) graph.
+@see melanesim#C_LandscapeNetwork()
+@author P.A. Mboup 08.2012, rev. pam 11.2013, JLF 09.2014, rev. pam 11.2015 "
+      classrelation 144386 // <realization>
+	relation 144386 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 144386 // <realization>
+	  b parent class_ref 131714 // I_ConstantTransportation
+      end
+
+      attribute 207106 "graphType"
+	protected explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " The type of this graph like road, rail, river ... 
+"
+      end
+
+      attribute 207234 "groundType"
+	protected explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " The ground type of this graph like road, rail, river, GNT ... 
+ ex graph dans un GNT
+"
+      end
+
+      attribute 207362 "nodesNumber"
+	protected explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Nombre de sommets du graphe 
+"
+      end
+
+      classrelation 144514 // nodesList (<unidirectional association>)
+	relation 144514 --->
+	  a role_name "nodesList" multiplicity "[]" protected
+	    comment " Tableau stockant l'ensemble des sommets du graphe (must be initially null) 
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}${multiplicity} ${name}${value};
+"
+	    classrelation_ref 144514 // nodesList (<unidirectional association>)
+	  b parent class_ref 137986 // C_SoilCellGraphed
+      end
+
+      attribute 207490 "weightListByNodeNumber"
+	protected explicit_type "Integer, Double"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 207618 "edgesMatrix"
+	protected explicit_type "Integer, List<Integer>"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Tableau stockant l'ensemble des edgesList du graphe (matrice d'adjacence). <br />
+Ce tableau est une matrice triangulaire pour gagner de l'espace 
+ protected ArrayList<boolean[]> edgesMatrix;
+"
+      end
+
+      attribute 207746 "precedentsMatrix"
+	protected explicit_type "Integer, Integer[]"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 207874 "pathTab"
+	protected explicit_type "Integer, Map<Integer, ArrayList<Integer>>"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 208002 "pathWeightTab"
+	protected explicit_type "Integer, Map<Integer, Double>"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " PAM 04/11/2016 champ pour stocker le poids global des chemins
+"
+      end
+
+      operation 173314 "C_Graph"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "graphType" explicit_type "String"
+	  param in name "groundType" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 173442 "discardThis"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Remove references to last container left, targeted container and eggs "
+      end
+
+      operation 173570 "Init"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "nbs" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Création du graphe avec en paramètre son nombre de sommets. ie initialisation du nombre de sommet, du tableau des sommets
+et de la matrice d'adjacence à false. Tout le reste de la construction sera fait dans C_LandscapeNetwork.
+@param nbs : NombreDeSommetDuGraphe "
+      end
+
+      operation 173698 "dijkstraForWeightedGraph"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "entree" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Pour les graphes pondérés, cette méthode construit pour un sommet d'entrée Se, le tableau des sommets précédents de chaque
+sommet de sortie jusqu'à Se, Et ajoute ce tableau dans la matrice des sommets précédents<br>
+Cette méthode ne sera appelée qu'une seule fois avec Se. Cette méthode marche pour les graphes non pondérés aussi, mais
+dans cette situation, utiliser dijkstraForUnWeightedGraph() qui est plus rapide.
+@see #dijkstraForUnWeightedGraph(int)
+@param entree "
+      end
+
+      operation 173826 "dijkstraForUnWeightedGraph"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "entree" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Pour les graphes non pondérés (poid = 1), cette méthode construit pour un sommet d'entrée Se, le tableau des sommets
+précédents de chaque sommet de sortie jusqu'à Se, Et ajoute ce tableau dans la la matrice des sommets précédents comme ça
+cette méthode ne sera appelée qu'une seule fois avec Se
+@param entree
+@see #dijkstraForWeightedGraph(int) "
+      end
+
+      operation 173954 "buildPath"
+	public explicit_return_type "ArrayList<Integer>"
+	nparams 2
+	  param in name "entree" explicit_type "int"
+	  param in name "sortie" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Construit le plus court chemin à partir de precedentsMatrix <br />
+Si precedentsMatrix n'est pas encore renseignée pour ce chemin, alors on appele dijkstra avant de construire le chemin
+@param entree : soilCell de départ
+@param sortie : soilCell d'arrivée
+@return longeur du chemin "
+      end
+
+      operation 174082 "getNextNode"
+	public return_type class_ref 137986 // C_SoilCellGraphed
+	nparams 1
+	  param in name "nodeNumber" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Selects the next node in the path to inform the targetPoint_Umeter
+@param nodeNumber "
+      end
+
+      operation 174210 "setNodesList"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "nodesList" explicit_type "ArrayList<C_SoilCellGraphed>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " for weighted graphs (PAM) "
+      end
+
+      operation 174338 "setNodesListSimple"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "nodesList" explicit_type "ArrayList<C_SoilCellGraphed>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " For untypes and unweighted graphs (JLF 2022.01 for Dodel2) "
+      end
+
+      operation 174466 "getEdgesMatrix"
+	public explicit_return_type "Map<Integer, List<Integer>>"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @return the edgesMatrix "
+      end
+
+      operation 174594 "getGraphType"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 174722 "getGroundType"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 174850 "getNode"
+	public return_type class_ref 137986 // C_SoilCellGraphed
+	nparams 1
+	  param in name "i" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 174978 "getNodesList"
+	public return_type class_ref 137986 // C_SoilCellGraphed
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type}[] ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 142722 "BarChartDemo1"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "A simple demonstration application showing how to create a bar chart.
+"
+      classrelation 143618 // <generalisation>
+	relation 143618 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 143618 // <generalisation>
+	  b parent class_ref 142850 // ApplicationFrame
+      end
+
+      attribute 206338 "serialVersionUID"
+	class_attribute const_attribute private explicit_type "long"
+	init_value " 1L"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      extra_member 128130 "initialization"
+	
+	cpp "" ""
+	java "  static {
+// set a theme using the new shadow generator feature available in
+// 1.0.14 - for backwards compatibility it is not enabled by default
+ChartFactory.setChartTheme(new StandardChartTheme(\"JFree/Shadow\",
+true));
+}"
+	php ""
+	python ""
+	idl ""
+	mysql ""
+      end
+
+      operation 171010 "BarChartDemo1"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "title" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Creates a new demo instance.
+
+@param title  the frame title.
+"
+      end
+
+      operation 171138 "createDataset"
+	class_operation private explicit_return_type "CategoryDataset"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Returns a sample dataset.
+
+@return The dataset.
+"
+      end
+
+      operation 171266 "createChart"
+	class_operation private explicit_return_type "JFreeChart"
+	nparams 1
+	  param inout name "dataset" explicit_type "CategoryDataset"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Creates a sample chart.
+
+@param dataset  the dataset.
+
+@return The chart.
+"
+      end
+
+      operation 171394 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "Starting point for the demonstration application.
+
+@param args  ignored.
+"
+      end
+    end
+
+    class 142978 "bougeSouris"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      operation 171522 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 143106 "C_batchParamsBuilder"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "@author Pape Adama MBOUP 2014 revu 28/06/2015
+"
+      classrelation 143746 // <generalisation>
+	relation 143746 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 143746 // <generalisation>
+	  b parent class_ref 128642 // JFrame
+      end
+
+      classrelation 143874 // <realization>
+	relation 143874 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 143874 // <realization>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      classrelation 144002 // <realization>
+	relation 144002 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 144002 // <realization>
+	  b parent class_ref 134018 // ActionListener
+      end
+
+      classrelation 144130 // <realization>
+	relation 144130 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 144130 // <realization>
+	  b parent class_ref 143234 // MouseListener
+      end
+
+      attribute 206466 "serialVersionUID"
+	class_attribute const_attribute private explicit_type "long"
+	init_value " 1L"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 206594 "params"
+	private explicit_type "JTextField"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 206722 "initXmlFileName"
+	private explicit_type "JTextField"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 206850 "bouton"
+	package explicit_type "JButton"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 171650 "C_batchParamsBuilder"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 171778 "Build"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 171906 "buildContentPane"
+	private explicit_return_type "JPanel"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 172034 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "	public static void main(String[] args) {
+		C_batchParamsBuilder fenetre = new C_batchParamsBuilder();
+		fenetre.setVisible(true);
+	}
+	public static void main(String[] args) {
+		String initParameterName = \"20160908-batch_params_CENTENAL.xml\";
+		String newParamsDatas = \"VEHICLE_LOADING_PROBA_DIVIDER:1 10 100 500 1000 5000 10000 20000 50000 100000 500000 1000000\";
+		buildBatchParametersFiles(initParameterName, newParamsDatas);
+	}"
+      end
+
+      operation 172162 "actionPerformed"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "e" explicit_type "ActionEvent"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 172290 "buildBatchParametersFiles"
+	class_operation public explicit_return_type "void"
+	nparams 2
+	  param in name "initParameterName" explicit_type "String"
+	  param in name "newParamsDatas" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 172418 "mouseClicked"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "e" explicit_type "MouseEvent"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 172546 "mouseReleased"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "e" explicit_type "MouseEvent"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 172674 "mouseEntered"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "e" explicit_type "MouseEvent"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 172802 "mouseExited"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "e" explicit_type "MouseEvent"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 172930 "mousePressed"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "e" explicit_type "MouseEvent"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 143362 "C_ComputeRasterWithList"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " This class allow us to compute a raster with a list of txt file  .
+@author M. Sall 06.2018 "
+      classrelation 144258 // <realization>
+	relation 144258 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 144258 // <realization>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      attribute 206978 "format"
+	private explicit_type "String"
+	init_value " \"txt\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 173058 "C_ComputeRasterWithList"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "pathFolder" explicit_type "String"
+	  param in name "fileName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 173186 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@SuppressWarnings(\"unused\")
+"
+	
+	
+	
+      end
+    end
+
+    class 143490 "C_PathWanderer"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " @author P.A. Mboup & J. Le Fur 2014, rev. Mboup 04.2016 "
+      classrelation 144642 // myGraph (<unidirectional association>)
+	relation 144642 --->
+	  a role_name "myGraph" public
+	    comment " FIELDS
+
+ Graph in which the agent moves about 
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 144642 // myGraph (<unidirectional association>)
+	  b parent class_ref 138242 // C_Graph
+      end
+
+      attribute 208130 "path"
+	public explicit_type "Integer"
+	stereotype "ArrayList"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " All node of a graph has a number; path is an array which contains successively the number of nodes of the shortest path
+between the current soil cell and the destination soil cell(last target) (when a agent leave a node of the path, the next
+node is what I call next target or targetPoint_Umeter ) 
+"
+      end
+
+      classrelation 144770 // targetSoilCell (<unidirectional association>)
+	relation 144770 --->
+	  a role_name "targetSoilCell" public
+	    comment " After building the path, targetSoilCell is successively the next node of the path. <br />
+Agent is arrived at the next node if currentSoilCell == targetSoilCell. <br />
+Agent is arrived at it's final destination when index Of path == length of path <br />
+targetSoilCell is initialize by agent currentSoilCell 
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 144770 // targetSoilCell (<unidirectional association>)
+	  b parent class_ref 137986 // C_SoilCellGraphed
+      end
+
+      attribute 208258 "indexPath"
+	public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " index to go through the path and get the following node 
+"
+      end
+
+      attribute 208386 "lengthOfPath"
+	public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " number of nodes of each path 
+"
+      end
+
+      attribute 208514 "intermediateDistanceTravelled"
+	public explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Counter of speed_UcellByTick 
+"
+      end
+
+      attribute 208642 "track_slow_factor"
+	public explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 208770 "pathEnd"
+	public explicit_type "boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 175106 "C_PathWanderer"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "currentSoilCell" type class_ref 138114 // C_SoilCell
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 175234 "discardThis"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+ Remove references to object fields, discards the associated graph "
+      end
+
+      operation 175362 "crossingIntermediateDistance"
+	public explicit_return_type "boolean"
+	nparams 2
+	  param in name "distanceTravelled" explicit_type "double"
+	  param in name "speed_UmeterByTick" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Plus juste pour les calculs et permet aussi au HC de rester sur les routes mï¿½me si leur vitesse est trï¿½s grande "
+      end
+
+      operation 175490 "prepareToReachPathEndNow"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Force agent to reach destination (useful just before updating the ground) "
+      end
+
+      operation 175618 "computeNextNodeAndGetTargetPoint_Umeter"
+	public explicit_return_type "Coordinate"
+	nparams 1
+	  param inout name "targetPoint_Umeter" explicit_type "Coordinate"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " When arrived in any path cell towards the targetCell "
+      end
+
+      operation 175746 "builgPath0"
+	public explicit_return_type "ArrayList<Integer>"
+	nparams 2
+	  param inout name "currentSoilCell" type class_ref 138114 // C_SoilCell
+	  param inout name "targetSoilCell" type class_ref 138114 // C_SoilCell
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " TODO PAM 2016.11 prise en compte la durï¿½e du trajet (encapsulation de cette mï¿½thode. Elle ï¿½tait dans la mï¿½thode buildPath
+ suivante)
+ Build the best path between two cells and inform the pathWeightTab "
+      end
+
+      operation 175874 "buildPath"
+	public explicit_return_type "void"
+	nparams 2
+	  param inout name "currentSoilCell" type class_ref 138114 // C_SoilCell
+	  param inout name "targetSoilCell" type class_ref 138114 // C_SoilCell
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " TODO PAM 2016.11 prise en compte la durï¿½e du trajet (voir todo prï¿½cï¿½dent)
+ Build the best path between two cells "
+      end
+
+      operation 176002 "getPathWeight"
+	public explicit_return_type "double"
+	nparams 2
+	  param inout name "currentSoilCell" type class_ref 138114 // C_SoilCell
+	  param inout name "targetSoilCell" type class_ref 138114 // C_SoilCell
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Account for duration of path - PAM 2016.11 "
+      end
+
+      operation 176130 "getPathEnd"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " GETTERS
+"
+      end
+
+      operation 176258 "hasToSetNextNode"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "currentSC" type class_ref 135810 // I_Container
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 143618 "C_PathWandererAstar"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " @author P.A. Mboup & J. Le Fur 2014, rev. Mboup 04.2016, added Astar, Le Fur 04.2022 "
+      classrelation 144898 // <realization>
+	relation 144898 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 144898 // <realization>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      classrelation 145026 // astar (<unidirectional association>)
+	relation 145026 --->
+	  a role_name "astar" init_value " new AStar()" private
+	    comment " FIELDS
+
+ The Astar algorithm 
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 145026 // astar (<unidirectional association>)
+	  b parent class_ref 143746 // AStar
+      end
+
+      classrelation 145154 // nodesList (<unidirectional association>)
+	relation 145154 --->
+	  a role_name "nodesList" multiplicity "[]" public
+	    comment " Tableau stockant l'ensemble des sommets du graphe (must be initially null) 
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}${multiplicity} ${name}${value};
+"
+	    classrelation_ref 145154 // nodesList (<unidirectional association>)
+	  b parent class_ref 140546 // C_SoilCellNode
+      end
+
+      attribute 208898 "nodesNumber"
+	protected explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Nombre de sommets du graphe 
+"
+      end
+
+      classrelation 145282 // targetCell (<unidirectional association>)
+	relation 145282 --->
+	  a role_name "targetCell" public
+	    comment " After building the path, targetSoilCell is successively the next node of the path. <br />
+Agent is arrived at the next node if currentSoilCell == targetSoilCell. <br />
+Agent is arrived at it's final destination when index Of path == length of path <br />
+targetSoilCell is initialize by agent currentSoilCell 
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 145282 // targetCell (<unidirectional association>)
+	  b parent class_ref 140546 // C_SoilCellNode
+      end
+
+      attribute 209026 "indexPath"
+	public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " index to go through the path and get the following node 
+"
+      end
+
+      attribute 209154 "lengthOfPath"
+	public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " number of nodes of each path 
+"
+      end
+
+      attribute 209282 "intermediateDistanceTravelled"
+	public explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Counter of speed_UcellByTick 
+"
+      end
+
+      attribute 209410 "isPathEnd"
+	public explicit_type "boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 209538 "pathKey"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " key (start-end cells coordinates) used in the C_ProtocolDodel2.paths treemap 
+"
+      end
+
+      operation 176386 "C_PathWandererAstar"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 176514 "getPath"
+	public explicit_return_type "void"
+	nparams 2
+	  param inout name "currentCell" type class_ref 143874 // C_SoilCellUrban
+	  param inout name "targetCell" type class_ref 143874 // C_SoilCellUrban
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+ Search the correct path within the paths already computed and stored, else build new path - Le Fur 05.2022 "
+      end
+
+      operation 176642 "buildBestPath"
+	public explicit_return_type "void"
+	nparams 2
+	  param inout name "currentCell" type class_ref 143874 // C_SoilCellUrban
+	  param inout name "targetCell" type class_ref 143874 // C_SoilCellUrban
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Build the best path between two cells "
+      end
+
+      operation 176770 "initPath"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Use either in collecting stored path or when building a new one "
+      end
+
+      operation 176898 "closestStreet"
+	public return_type class_ref 143874 // C_SoilCellUrban
+	nparams 1
+	  param inout name "currentCell" type class_ref 143874 // C_SoilCellUrban
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Determine the closest street from the current position: used to get out of concession since Astar algorithm is only
+computed with street cells / Le Fur 05.2022
+@see C_SoilCellUrban#isBlock() "
+      end
+
+      operation 177026 "crossingIntermediateDistance"
+	public explicit_return_type "boolean"
+	nparams 2
+	  param in name "distanceTravelled" explicit_type "double"
+	  param in name "speed_UmeterByTick" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Plus juste pour les calculs et permet aussi au HC de rester sur les routes mï¿½me si leur vitesse est trï¿½s grande "
+      end
+
+      operation 177154 "computeNextNodeAndGetTargetPoint_Umeter"
+	public explicit_return_type "Coordinate"
+	nparams 1
+	  param inout name "targetPoint_Umeter" explicit_type "Coordinate"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " When arrived in any path cell towards the targetCell "
+      end
+
+      operation 177282 "discardThis"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Remove references to object fields, discards the associated graph "
+      end
+
+      operation 177410 "hasToSetNextNode"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "currentSC" type class_ref 135810 // I_Container
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " GETTERS
+"
+      end
+    end
+
+    class 144130 "C_sound"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "J Le Fur - 09.2011 from: http://www.javafr.com/codes/JOUER-SON-WAV-JAVA_29515.aspx
+"
+      attribute 209794 "format"
+	private explicit_type "AudioFormat"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 209922 "samples"
+	private explicit_type "byte"
+	multiplicity "[]"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}${multiplicity} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 178178 "C_sound"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "filename" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 178306 "getSamples"
+	public explicit_return_type "byte"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type}[] ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 178434 "getSamples"
+	public explicit_return_type "byte"
+	nparams 1
+	  param inout name "stream" explicit_type "AudioInputStream"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type}[] ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 178562 "play"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "source" explicit_type "InputStream"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 178690 "sound"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param in name "args" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 144258 "C_VariousUtilities"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 145666 // <realization>
+	relation 145666 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 145666 // <realization>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      operation 178818 "C_VariousUtilities"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 178946 "main0"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param in name "string" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+ Test preferredSize (swing) "
+      end
+
+      operation 179074 "BoxLayoutoo"
+	class_operation public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Example on how to use swing boxlayout "
+      end
+
+      operation 179202 "compareDecimals"
+	class_operation public explicit_return_type "boolean"
+	nparams 2
+	  param in name "n1" explicit_type "double"
+	  param in name "n2" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " utility to perform the comparison of decimals values Author J.Le Fur august 2012 "
+      end
+
+      operation 179330 "testCompareDecimals"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Test of the method used in C_GenomeEucaryote
+@see I_DiploidGenome#isHybrid "
+      end
+
+      operation 179458 "truncate"
+	class_operation private explicit_return_type "double"
+	nparams 1
+	  param in name "x" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " utility to extract the decimals values Author J.Le Fur august 2012 x is supposed to have a maximum of two decimal
+digits "
+      end
+
+      operation 179586 "testRegisterGenerator"
+	class_operation public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 179714 "testChromosome"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Test the chromosome function (was formerly the main of C_Chromosome) author Kyle Wagner circa 2002, rev. JLF 2012
+@see C_Chromosome "
+      end
+
+      operation 179842 "testMapLocs"
+	class_operation private explicit_return_type "void"
+	nparams 1
+	  param inout name "genome" type class_ref 144386 // I_MappedDna
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 179970 "testCrossover"
+	class_operation private explicit_return_type "void"
+	nparams 3
+	  param inout name "r" type class_ref 144514 // I_Recombinator
+	  param inout name "parent1" type class_ref 144642 // C_Chromosome
+	  param inout name "parent2" type class_ref 144642 // C_Chromosome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 180098 "testClassNames"
+	class_operation public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " return classes names with or without packages Author http://www.rgagnon.com/javadetails/java-0389.html, ver. 09.2011 "
+      end
+
+      operation 180226 "getShortClassName"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "c" explicit_type "Class<?>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " returns the class (without the package if any) "
+      end
+
+      operation 180354 "getFullClassName"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "c" explicit_type "Class<?>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " returns package and class name "
+      end
+
+      operation 180482 "getPackageName"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param inout name "c" explicit_type "Class<?>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " returns the package without the classname, empty string if there is no package "
+      end
+
+      operation 180610 "distance_Umeter"
+	class_operation public explicit_return_type "double"
+	nparams 2
+	  param inout name "firstPoint" explicit_type "Coordinate"
+	  param inout name "secondPoint" explicit_type "Coordinate"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Compute distance to targeting thing "
+      end
+
+      operation 180738 "distance_Umeter"
+	class_operation public explicit_return_type "double"
+	nparams 2
+	  param inout name "first" type class_ref 135682 // I_SituatedThing
+	  param inout name "second" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Compute distance to targeting thing "
+      end
+
+      operation 180866 "computeVectorBetweenTwoPoints"
+	class_operation public explicit_return_type "Coordinate"
+	nparams 3
+	  param inout name "A_Point" explicit_type "Coordinate"
+	  param inout name "B_Point" explicit_type "Coordinate"
+	  param in name "distanceToCover_Umeter" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Compute and return a movement vector between two point according to a verification distance Le dï¿½placement est suivant un
+vecteur de coordonnï¿½es (vectCoordX, vectCoordY) ie fisrtPoint - secondPoint (sens), de longeur vectNorm =
+racine(vectCoordXï¿½, vectCoordYï¿½) (norme) et faisant un angle alpha par rapport ï¿½ l'abscisse (direction) si vectCoordX == 0,
+alpha = +PI/2 ou -PI/2 ï¿½a dï¿½pend du signe de vectCoordY sinon alpha = atan(vectCoordY/vectCoordX) Ainsi nous avons la
+direction et le sens du dï¿½placement. Et donc ï¿½ partir de la distance ï¿½ parcourir, on peut calculer exactement le vecteur de
+dï¿½placement "
+      end
+
+      operation 180994 "sum"
+	class_operation public explicit_return_type "Coordinate"
+	nparams 2
+	  param inout name "vector1" explicit_type "Coordinate"
+	  param inout name "vector2" explicit_type "Coordinate"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Compute sum of two vectors "
+      end
+
+      operation 181122 "substract"
+	class_operation public explicit_return_type "Coordinate"
+	nparams 2
+	  param inout name "vector1" explicit_type "Coordinate"
+	  param inout name "vector2" explicit_type "Coordinate"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Compute the subtraction of two vectors "
+      end
+
+      operation 181250 "isCollinearVector"
+	class_operation public explicit_return_type "Boolean"
+	nparams 2
+	  param inout name "vector1" explicit_type "Coordinate"
+	  param inout name "vector2" explicit_type "Coordinate"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Verify if two vectors are collinear "
+      end
+
+      operation 181378 "checkObstacleBefore"
+	class_operation public return_type class_ref 135682 // I_SituatedThing
+	nparams 2
+	  param inout name "animal" type class_ref 144770 // A_Animal
+	  param inout name "target" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Use perceived things and select destinations to verify if obstacle exist between agent position and the target
+@version JLF 02.2020 "
+      end
+
+      operation 181506 "checkObstacleBefore0"
+	class_operation public return_type class_ref 135682 // I_SituatedThing
+	nparams 2
+	  param inout name "animal" type class_ref 144770 // A_Animal
+	  param inout name "target" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " TODO MS&JLF 2020.04 refactor the procedure name
+ Use perceived things and select destinations to verify if obstacle exist between agent position and the target
+@version MS 2019.03, rev JLF 02.2020 "
+      end
+
+      operation 181634 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 144898 "C_WallFollower"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " This allow a agent to follow an direction with obstacle avoidance .
+@author M. Sall 11.2019, rev. JLF 03.2021 "
+      classrelation 145794 // <realization>
+	relation 145794 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 145794 // <realization>
+	  b parent class_ref 132098 // I_ConstantDodel2
+      end
+
+      classrelation 145922 // myBackCell (<unidirectional association>)
+	relation 145922 --->
+	  a role_name "myBackCell" private
+	    comment " FIELDS
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 145922 // myBackCell (<unidirectional association>)
+	  b parent class_ref 135682 // I_SituatedThing
+      end
+
+      classrelation 146050 // myRightCell (<unidirectional association>)
+	relation 146050 --->
+	  a role_name "myRightCell" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 146050 // myRightCell (<unidirectional association>)
+	  b parent class_ref 135682 // I_SituatedThing
+      end
+
+      classrelation 146178 // myLeftCell (<unidirectional association>)
+	relation 146178 --->
+	  a role_name "myLeftCell" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 146178 // myLeftCell (<unidirectional association>)
+	  b parent class_ref 135682 // I_SituatedThing
+      end
+
+      classrelation 146306 // myFrontCell (<unidirectional association>)
+	relation 146306 --->
+	  a role_name "myFrontCell" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 146306 // myFrontCell (<unidirectional association>)
+	  b parent class_ref 135682 // I_SituatedThing
+      end
+
+      attribute 210050 "nearestWallPosition"
+	private explicit_type "int"
+	init_value " NO_WALL"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 210178 "orientationPoint_Umeter"
+	private explicit_type "Coordinate"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 181762 "C_WallFollower"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 181890 "discardThis"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " OVERRIDDEN METHOD
+
+ Remove references "
+      end
+
+      operation 182018 "guiding"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "oneThing" type class_ref 144770 // A_Animal
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+ Verify the next possible displacement and return the selected thing "
+      end
+
+      operation 182146 "computeOrientations"
+	public explicit_return_type "void"
+	nparams 2
+	  param inout name "oneThing" type class_ref 144770 // A_Animal
+	  param inout name "selectedThing" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Use the selected destination to compute the right, left, forward and backward direction of agent "
+      end
+
+      operation 182274 "selectRightAim"
+	public return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "oneThing" type class_ref 144770 // A_Animal
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Allow agent to go right and compute the next displacement sense "
+      end
+
+      operation 182402 "selectLeftAim"
+	public return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "oneThing" type class_ref 144770 // A_Animal
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Allow agent to go left and compute the next displacement sense "
+      end
+
+      operation 182530 "selectBackAim"
+	public return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "oneThing" type class_ref 144770 // A_Animal
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Allow agent to go back and compute the next displacement sense "
+      end
+
+      operation 182658 "selectFrontAim"
+	public return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "oneThing" type class_ref 144770 // A_Animal
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Allow agent to go forward and compute the next displacement sense "
+      end
+
+      operation 182786 "computeNewPositionWithTarget_Umeter"
+	public explicit_return_type "Coordinate"
+	nparams 2
+	  param inout name "oneAnimal" type class_ref 144770 // A_Animal
+	  param inout name "targetingThing" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Verify if selected point keep the same sense of last agent movement and if it is the best distance 
+ Compute the new agent position near the wall "
+      end
+
+      operation 182914 "setOrientationPoint"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "orientationPoint_Umeter" explicit_type "Coordinate"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SETTERS & GETTERS
+"
+      end
+
+      operation 183042 "setNearestWallPosition"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "nearestWallPosition" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 183170 "getOrientationPoint"
+	public explicit_return_type "Coordinate"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 183298 "getNearestWallPosition"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 145026 "CaptureEcranPeriodique"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      operation 183426 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 183554 "captureEcran"
+	class_operation public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 183682 "captureEcranPlankton"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param in name "dateStamp" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 183810 "listerEcrans"
+	class_operation public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 183938 "captureEcran"
+	class_operation public explicit_return_type "BufferedImage"
+	nparams 1
+	  param in name "indexEcran" explicit_type "int"
+	nexceptions 1
+	  explicit_exception "AWTException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 184066 "captureEcran2"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param in name "dateStamp" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 145154 "LevyDistribution"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as
+published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. This program
+is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have
+received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>. Mark N.
+Read, 2016. Represents a Levy distributed random variable. This is calculated using the method outlined in Jacobs's \"Stochastic
+Processes for Physicists\". 2010, Cambridge University Press. Makes use of MASON's MersenneTwisterFast random number generator.
+The MASon simulation framework can be obtained for free from http://cs.gmu.edu/~eclab/projects/mason/
+@see http://markread.info/2016/08/code-to-generate-a-levy-distribution/
+@author Mark N. Read, adapted J.Le Fur 04.2018 "
+      attribute 210306 "randomGeneratorForLevyFlight"
+	class_attribute public explicit_type "RandomEngine"
+	init_value " RandomHelper.registerGenerator(\"\", 254983425)"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 184194 "bounded_uniform"
+	class_operation private explicit_return_type "double"
+	nparams 2
+	  param in name "low" explicit_type "double"
+	  param in name "high" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 184322 "sample"
+	class_operation public explicit_return_type "double"
+	nparams 1
+	  param in name "mu" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Samples a Levy distribution wherein the power law decay can be adjusted between 1/x and 1/x^3. This method is based on
+that found in section 9.2.2 of Jacobs's \"Stochastic Processes for Physicists\". 2010, Cambridge University Press. Note that
+this sampling method can return negative values. Values are symmetrical around zero.
+@param mu must lie between 1 and 3. Correspods to 1/x and 1/x^3
+@return "
+      end
+
+      operation 184450 "sample_positive"
+	class_operation public explicit_return_type "double"
+	nparams 2
+	  param in name "mu" explicit_type "double"
+	  param in name "scale" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Same as above, but ensures all values are positive. Negative values are simply negated, as the Levy distribution
+represented is symmetrical around zero.
+@param mu
+@return "
+      end
+
+      operation 184578 "sample_positive"
+	class_operation public explicit_return_type "double"
+	nparams 1
+	  param in name "mu" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Default value case, scale=1 "
+      end
+
+      operation 184706 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 145282 "Stack"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 210434 "SIZE"
+	class_attribute const_attribute package explicit_type "int"
+	init_value " 10"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " assez grand ?"
+      end
+
+      attribute 210562 "sp"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 210690 "t"
+	private explicit_type "int"
+	multiplicity "[]"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}${multiplicity} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 184834 "Stack"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 184962 "isEmpty"
+	package explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 185090 "push"
+	package explicit_return_type "void"
+	nparams 1
+	  param in name "x" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 185218 "pop"
+	package explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 145410 "testReflection"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      operation 185346 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+  end
+
+  deploymentview 129154 "util"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 136066 "BarChartDemo1"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.Color;
+import java.awt.Dimension;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.StandardChartTheme;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.block.BlockBorder;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.chart.title.TextTitle;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.ui.ApplicationFrame;
+import org.jfree.ui.RefineryUtilities;
+${definition}"
+      associated_elems
+	class_ref 142722 // BarChartDemo1
+      end
+      comment " ==================
+BarChartDemo1.java
+==================
+
+Copyright (c) 2005-2014, Object Refinery Limited.
+All rights reserved.
+
+http://www.jfree.org/jfreechart/index.html
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+  - Neither the name of the Object Refinery Limited nor the
+    names of its contributors may be used to endorse or promote products
+    derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL OBJECT REFINERY LIMITED BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+Original Author:  David Gilbert (for Object Refinery Limited);
+Contributor(s):   -;
+
+Changes
+-------
+09-Mar-2005 : Version 1 (DG);
+11-Mar-2014 : Use new ChartFactory method (DG);
+25-Jun-2014 : Update to use real data (DG);
+
+"
+    end
+
+    artifact 136194 "bougeSouris"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.Robot;
+import java.util.Random;
+${definition}"
+      associated_elems
+	class_ref 142978 // bougeSouris
+      end
+    end
+
+    artifact 136322 "C_batchParamsBuilder"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.BufferedReader;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import presentation.dataOutput.C_FileWriter;
+import data.C_ReadWriteFile;
+import data.constants.rodents.I_ConstantStringRodents;
+${definition}"
+      associated_elems
+	class_ref 143106 // C_batchParamsBuilder
+      end
+    end
+
+    artifact 136450 "C_ComputeRasterWithList"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.TreeSet;
+import data.C_Parameters;
+import data.C_ReadRaster;
+import data.constants.rodents.I_ConstantStringRodents;
+import data.converters.C_ConvertRainFiles;
+import presentation.dataOutput.C_FileWriter;
+${definition}"
+      associated_elems
+	class_ref 143362 // C_ComputeRasterWithList
+      end
+    end
+
+    artifact 136578 "C_Graph"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import data.constants.rodents.I_ConstantTransportation;
+import thing.ground.C_SoilCellGraphed;
+${definition}"
+      associated_elems
+	class_ref 138242 // C_Graph
+      end
+    end
+
+    artifact 136706 "C_PathWanderer"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import thing.ground.C_SoilCell;
+import thing.ground.C_SoilCellGraphed;
+import thing.ground.I_Container;
+import org.locationtech.jts.geom.Coordinate;
+${definition}"
+      associated_elems
+	class_ref 143490 // C_PathWanderer
+      end
+    end
+
+    artifact 136834 "C_PathWandererAstar"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import org.locationtech.jts.geom.Coordinate;
+import data.C_Parameters;
+import data.constants.rodents.I_ConstantStringRodents;
+import melanesim.protocol.rodents.C_ProtocolDodel2;
+import melanesim.util.astar.AStar;
+import thing.A_VisibleAgent;
+import thing.ground.C_SoilCellNode;
+import thing.ground.C_SoilCellUrban;
+import thing.ground.I_Container;
+${definition}"
+      associated_elems
+	class_ref 143618 // C_PathWandererAstar
+      end
+    end
+
+    artifact 136962 "C_RandomInNormalDistrib"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Random;
+import data.constants.I_ConstantNumeric;
+${definition}"
+      associated_elems
+	class_ref 134530 // C_RandomInNormalDistrib
+      end
+    end
+
+    artifact 137090 "C_sound"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.io.*;
+import javax.sound.sampled.*;
+${definition}"
+      associated_elems
+	class_ref 144130 // C_sound
+      end
+    end
+
+    artifact 137218 "C_VariousUtilities"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.border.Border;
+import org.locationtech.jts.geom.Coordinate;
+import cern.jet.random.engine.RandomEngine;
+import data.C_Parameters;
+import data.constants.rodents.I_ConstantStringRodents;
+import melanesim.protocol.A_Protocol;
+import repast.simphony.random.RandomHelper;
+import thing.A_Animal;
+import thing.A_VisibleAgent;
+import thing.I_SituatedThing;
+import thing.dna.C_Chromosome;
+import thing.dna.C_ChromosomePair;
+import thing.dna.C_Gene;
+import thing.dna.I_DiploidGenome;
+import thing.dna.I_MappedDna;
+import thing.dna.variator.C_GeneConstraint;
+import thing.dna.variator.C_GeneMutatorDouble;
+import thing.dna.variator.C_GeneMutatorSet;
+import thing.dna.variator.C_RecombinatorMapGenome;
+import thing.dna.variator.C_RecombinatorOnePt;
+import thing.dna.variator.I_Recombinator;
+import thing.ground.A_Container;
+import thing.ground.C_SoilCell;
+${definition}"
+      associated_elems
+	class_ref 144258 // C_VariousUtilities
+      end
+    end
+
+    artifact 137346 "C_WallFollower"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import org.locationtech.jts.geom.Coordinate;
+import data.C_Parameters;
+import data.constants.rodents.I_ConstantDodel2;
+import thing.A_Animal;
+import thing.A_VisibleAgent;
+import thing.I_SituatedThing;
+${definition}"
+      associated_elems
+	class_ref 144898 // C_WallFollower
+      end
+    end
+
+    artifact 137474 "CaptureEcranPeriodique"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Timer;
+import java.util.TimerTask;
+${definition}"
+      associated_elems
+	class_ref 145026 // CaptureEcranPeriodique
+      end
+    end
+
+    artifact 137602 "LevyDistribution"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import cern.jet.random.engine.RandomEngine;
+import repast.simphony.random.RandomHelper;
+${definition}"
+      associated_elems
+	class_ref 145154 // LevyDistribution
+      end
+    end
+
+    artifact 137730 "Stack"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 145282 // Stack
+      end
+    end
+
+    artifact 137858 "testReflection"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.lang.reflect.*;
+${definition}"
+      associated_elems
+	class_ref 145410 // testReflection
+      end
+    end
+  end
+
+  package_ref 130434 // astar
+
+  package_ref 130818 // slider
+
+  package_ref 131202 // slider_material
+end

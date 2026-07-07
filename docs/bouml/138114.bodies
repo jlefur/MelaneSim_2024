@@ -1,0 +1,41 @@
+class C_SoilCell
+!!!258050.java!!!	C_SoilCell(in aff : int, in lineNo : int, in colNo : int)
+// added PAMboup 21/12/2012, rev. JLF 07.2015
+		this.affinity = aff;
+		this.lineNo = lineNo;
+		this.colNo = colNo;
+!!!258178.java!!!	discardThis() : void
+		this.groundTypeList = null;
+		this.affinityLandPlot = null;
+		super.discardThis();
+!!!258306.java!!!	checkDeath(in deathProbability : double) : void
+		this.dead = false;
+!!!258434.java!!!	getCarryingCapacity_Urodent() : int
+		if (!this.isDead()) {// TODO JLF 2021.03 patch bound to agents'probes crash with new drastic wipeOffObjects
+			if (this.getMyLandPlot() instanceof C_City) {
+				C_City city = (C_City) this.getMyLandPlot();
+				return city.getHumanPopSize_Uindividual() / city.getCells().size();
+			}
+			// TODO JLF 2015.03 reminder soil cells K = affinity; i.e., better habitat have higher carrying capacity
+			else return affinity;
+		}
+		else return 0;
+!!!258562.java!!!	toString() : String
+		return this.retrieveMyName() + "(" + this.lineNo + "," + this.colNo + ")";
+!!!258690.java!!!	addGroundType(in groundType : String) : void
+		this.groundTypeList.add(groundType);
+!!!258818.java!!!	removeGroundType(in groundType : String) : void
+		this.groundTypeList.remove(groundType);
+!!!258946.java!!!	getMyLandPlot() : C_LandPlot
+		return affinityLandPlot;
+!!!259074.java!!!	setAffinityLandPlot(inout plot : C_LandPlot) : void
+		this.affinityLandPlot = plot;
+		plot.addCell(this);
+!!!259202.java!!!	isOfGroundType(in groundType : String) : boolean
+		return groundTypeList.contains(groundType);
+!!!259330.java!!!	getGroundTypes() : TreeSet<String>
+		return groundTypeList;
+!!!259458.java!!!	getCoordinate_Ucs() : Coordinate
+		double cellSize_Ucs = C_Parameters.CELL_SIZE_UcontinuousSpace;
+		return new Coordinate((lineNo * cellSize_Ucs) + cellSize_Ucs / 2.0, (colNo * cellSize_Ucs) + cellSize_Ucs
+				/ 2.0);

@@ -1,0 +1,19 @@
+class A_Organism
+!!!260738.java!!!	A_Organism(inout genome : I_DiploidGenome)
+		this.genome = genome;
+		this.setMyName(genome + NAMES_SEPARATOR + myId);
+!!!260866.java!!!	discardThis() : void
+		this.genome = null;
+		super.discardThis();
+!!!260994.java!!!	setMyHome(inout myHome : I_Container) : void
+		this.myHome = myHome;
+!!!261122.java!!!	getMyHome() : String
+		if (this.myHome != null) return this.myHome.toString();
+		else return "no Home";
+!!!261250.java!!!	retrieveMyHome() : I_Container
+		return this.myHome;
+!!!261378.java!!!	getGenome() : I_DiploidGenome
+		return this.genome;
+!!!261506.java!!!	getAlleles() : String
+		if (this.genome == null || this.genome.getAlleles().isEmpty()) return "Dead organism";
+		else return this.genome.getAlleles().toString();

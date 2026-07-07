@@ -1,0 +1,5 @@
+class DriverType
+!!!271746.java!!!	DriverType(in unite : String)
+ this.unit = unite;
+!!!271874.java!!!	getUnit() : String
+ return unit;

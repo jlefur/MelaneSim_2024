@@ -1,0 +1,1188 @@
+format 224
+"melanesim" // src::melanesim
+  revision 1
+  modified_by 2 "lefur"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:\\Users\\lefur\\Documents\\GitHub\\MelaneSim_2024\\src/melanesim/"
+  java_package "melanesim"
+  classview 129282 "melanesim"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 133506 "C_Calendar"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Time manager: in multiscale contexts, several protocols with their own calendar may run concurrently<br>
+The Gregorian calendar is overloaded with an ability to convert between the protocol <br>
+WARNING: to access the value of a specific x calendar do not use the static Calendar.MONTH but x.get(MONTH)<br>
+@see melanesim.protocol.A_Protocol
+@author A Realini, rev. Mboup 2013, JLF 01.2014, 07.2014, 08.2014 "
+      classrelation 132738 // <generalisation>
+	relation 132738 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 132738 // <generalisation>
+	  b parent class_ref 133634 // GregorianCalendar
+      end
+
+      attribute 199554 "serialVersionUID"
+	class_attribute const_attribute private explicit_type "long"
+	init_value " 1L"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 199682 "shortDatePattern"
+	class_attribute public explicit_type "DateFormat"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 199810 "longDatePattern"
+	class_attribute public explicit_type "DateFormat"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 199938 "hourPattern"
+	class_attribute public explicit_type "DateFormat"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 200066 "fullPattern"
+	class_attribute public explicit_type "DateFormat"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 200194 "tick_Ucalendar"
+	public explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " the time unit (day, month...) within which a simulation tick is expressed"
+      end
+
+      attribute 200322 "tickAmount_Ucalendar"
+	public explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " the amount of this time unit within one tick"
+      end
+
+      attribute 200450 "TICK_MAX"
+	public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " TODO PAM de JLF 2018.06 Redundant with C_Parameters, used only in protocolTransportation"
+      end
+
+      operation 138882 "C_Calendar"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 139010 "stringShortDate"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+
+public void dayOfWeek() { switch (this.get(Calendar.DAY_OF_WEEK)) { case Calendar.MONDAY : ; case Calendar.TUESDAY : ; } }
+
+ @return string such as 22/08/2014 "
+      end
+
+      operation 139138 "stringLongDate"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @return string such as 22 août 2014 "
+      end
+
+      operation 139266 "stringHourDate"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @return string such as 22 août 2014 00:00:00 "
+      end
+
+      operation 139394 "stringFullDate"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @return string such as tuesday 22 août 2014 00:00:00 "
+      end
+
+      operation 139522 "incrementDate"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SETTERS & GETTERS
+
+ increment the current with the time corresponding to one tick "
+      end
+
+      operation 139650 "isDawn"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 139778 "isDayTime"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 139906 "isTwilight"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 140034 "isNightTime"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 140162 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Check the possible use of multiple calendars :<br>
+WARNING: to access the value of a specific x calendar do not use the static Calendar.MONTH but x.get(MONTH)<br>
+author J. Le Fur, 08.2014 "
+      end
+    end
+
+    class 133762 "C_ChooseProtocol_MelaneSim"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Display buttons to select one of SimMasto protocols, then split xml file to set the protocol<br>
+Mboup, 2014, rev. Le Fur, 2018, 2024<br>
+<br>
+1.-PNMC_drifters: particles moved by surface currents<br>
+2.-PNMC_plancton: particles moved by surface currents<br>
+"
+      classrelation 133250 // <generalisation>
+	relation 133250 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 133250 // <generalisation>
+	  b parent class_ref 133890 // C_ChooseProtocol_Rodents
+      end
+
+      classrelation 133378 // <realization>
+	relation 133378 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 133378 // <realization>
+	  b parent class_ref 134018 // ActionListener
+      end
+
+      classrelation 133506 // <realization>
+	relation 133506 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 133506 // <realization>
+	  b parent class_ref 129026 // I_ConstantPNMC
+      end
+
+      attribute 201858 "serialVersionUID"
+	class_attribute const_attribute private explicit_type "long"
+	init_value " 1L"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 201986 "panel"
+	private explicit_type "JPanel"
+	init_value " new JPanel()"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 202114 "pnmc_planktonBox"
+	private explicit_type "JPanel"
+	init_value " new JPanel()"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 202242 "pnmc_driftersBox"
+	private explicit_type "JPanel"
+	init_value " new JPanel()"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 202370 "pnmc_nektonBox"
+	private explicit_type "JPanel"
+	init_value " new JPanel()"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 202498 "pnmc_shipBox"
+	private explicit_type "JPanel"
+	init_value " new JPanel()"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 140930 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 141058 "C_ChooseProtocol_MelaneSim"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 141186 "actionPerformed"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "e" explicit_type "ActionEvent"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 133890 "C_ChooseProtocol_Rodents"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Display buttons to select one of SimMasto protocols, then split xml file to set the protocol<br>
+Mboup, 2014, rev. Le Fur, 2018 may-july<br>
+<br>
+1.-CHIZE1: field vole population in a dynamic agricultural landscape<br>
+1.-CHIZE2: field vole population in a dynamic agricultural landscape + MAP<br>
+2.-CAGES: laboratory experiment on hybridization<br>
+3.-ENCLOSURE: enclosure experiment on hybridization<br>
+3bis.-HYBRID_UNIFORM: hybridization simulation in an uniform plane<br>
+4.-CENTENAL: colonization of the black rat in Senegal<br>
+4bis.deprecated -DECENAL: colonization of the black rat in south-east Senegal<br>
+5.-BANDIA: CMR simulation in an african reserve<br>
+6.-MUS_TRANSPORT: colonization of North Senegal by the house mouse<br>
+7.-DODEL: commensal rodent dynamics in urban landscape<br>
+8.-GERBILS: Gerbillus nigeriae in North Senegal (CERISE project)<br>
+"
+      classrelation 132866 // <generalisation>
+	relation 132866 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 132866 // <generalisation>
+	  b parent class_ref 128642 // JFrame
+      end
+
+      classrelation 132994 // <realization>
+	relation 132994 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 132994 // <realization>
+	  b parent class_ref 134018 // ActionListener
+      end
+
+      classrelation 133122 // <realization>
+	relation 133122 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 133122 // <realization>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      attribute 200578 "serialVersionUID"
+	class_attribute const_attribute private explicit_type "long"
+	init_value " 1L"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 200706 "panel"
+	private explicit_type "JPanel"
+	init_value " new JPanel()"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 200834 "buttonIcon"
+	private explicit_type "BufferedImage"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 200962 "chizeBox"
+	private explicit_type "JPanel"
+	init_value " new JPanel()"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 201090 "transportationBox1"
+	private explicit_type "JPanel"
+	init_value " new JPanel()"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 201218 "transportationBox2"
+	private explicit_type "JPanel"
+	init_value " new JPanel()"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 201346 "hybridizationBox"
+	private explicit_type "JPanel"
+	init_value " new JPanel()"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 201474 "CMRBox"
+	private explicit_type "JPanel"
+	init_value " new JPanel()"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 201602 "DodelBox"
+	private explicit_type "JPanel"
+	init_value " new JPanel()"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 201730 "gerbilBox"
+	private explicit_type "JPanel"
+	init_value " new JPanel()"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 140290 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 140418 "C_ChooseProtocol_Rodents"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 140546 "addImageButton"
+	protected explicit_return_type "JButton"
+	nparams 2
+	  param in name "iconFilename" explicit_type "String"
+	  param in name "protocolName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 140674 "actionPerformed"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "e" explicit_type "ActionEvent"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 140802 "splitRepastXmlConfigFiles"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "xmlFileName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Build parameters.xml and scenario.xml files from the merged file : parameter_scenario_protocolName.xml file The merged
+file must be in SIMmasto_0.rs/, and files built will be in the same folder.
+@param xmlFileName "
+      end
+    end
+
+    class 134146 "C_ContextCreator"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " @author Baduel Quentin - 2009 multiple rev. Le Fur 2009-2012, 02.2013, 11.2015 "
+      classrelation 133634 // <realization>
+	relation 133634 -_-|>
+	  a public
+	    java "${type}<Object>"
+	    classrelation_ref 133634 // <realization>
+	  b parent class_ref 134274 // ContextBuilder
+      end
+
+      classrelation 133762 // <realization>
+	relation 133762 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 133762 // <realization>
+	  b parent class_ref 129794 // I_ConstantNumeric
+      end
+
+      classrelation 133890 // <realization>
+	relation 133890 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 133890 // <realization>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      classrelation 134018 // <realization>
+	relation 134018 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 134018 // <realization>
+	  b parent class_ref 129026 // I_ConstantPNMC
+      end
+
+      classrelation 134146 // protocol (<unidirectional association>)
+	relation 134146 --->
+	  a role_name "protocol" init_value " null" class_relation public
+	    comment " FIELDS
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 134146 // protocol (<unidirectional association>)
+	  b parent class_ref 134402 // A_Protocol
+      end
+
+      classrelation 134274 // randomGaussianGenerator (<unidirectional association>)
+	relation 134274 --->
+	  a role_name "randomGaussianGenerator" init_value " null" class_relation public
+	    comment " TODO JLF 2015.10 comment each generator"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 134274 // randomGaussianGenerator (<unidirectional association>)
+	  b parent class_ref 134530 // C_RandomInNormalDistrib
+      end
+
+      attribute 202626 "randomGeneratorForInitialisation"
+	class_attribute public explicit_type "RandomEngine"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 202754 "randomGeneratorForDestination"
+	class_attribute public explicit_type "RandomEngine"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 202882 "randomGeneratorForDeathProb"
+	class_attribute public explicit_type "RandomEngine"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 203010 "randomGeneratorForDNA"
+	class_attribute public explicit_type "RandomEngine"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 203138 "randomGeneratorForMovement"
+	class_attribute public explicit_type "RandomEngine"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 203266 "randomGeneratorForDisplay"
+	class_attribute public explicit_type "RandomEngine"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 203394 "randomGeneratorForCulturalPractice"
+	class_attribute public explicit_type "RandomEngine"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 203522 "randomGeneratorForGameteAndSexSelection"
+	class_attribute public explicit_type "RandomEngine"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 203650 "randomGeneratorForEpistasis"
+	class_attribute public explicit_type "RandomEngine"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 203778 "randomGeneratorForOlfactionRecognition"
+	class_attribute public explicit_type "RandomEngine"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 203906 "randomGeneratorForBoarding"
+	class_attribute public explicit_type "RandomEngine"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 204034 "AGENT_NUMBER"
+	class_attribute public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Incremental parameters for the corresponding number of objects :
+"
+      end
+
+      attribute 204162 "XSOME_NUMBER"
+	class_attribute public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 204290 "INSPECTOR_NUMBER"
+	class_attribute public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 204418 "EVENT_NUMBER"
+	class_attribute public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " used only to provide unique identifiers to events / JLF 08.2014"
+      end
+
+      attribute 204546 "simulationStartTime_Ums"
+	class_attribute public explicit_type "long"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 141314 "build"
+	public explicit_return_type "Context<Object>"
+	nparams 1
+	  param inout name "context" explicit_type "Context<Object>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+ Build and return the context: protocol, ground manager, random generators, calendar, time and space converter.
+@return the built context. "
+      end
+
+      operation 141442 "initializeRandomGenerators"
+	private explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Several random generators are used in the model. Each is controlled by a seed and provides variability for specific
+features or processes in the model. <br>
+Each random generator is controlled by a specific seed that can be fixed or changed. When fixed, the random generator
+always provides the same pseudorandom series of numbers. <br>
+This makes it possible to carry out simulations in which only selected sources of variation change. author: J. Le Fur 2012,
+rev. 08.2014
+@return nbGen the number of random generators initialized at that time "
+      end
+
+      operation 141570 "selectProtocol"
+	private explicit_return_type "void"
+	nparams 1
+	  param inout name "context" explicit_type "Context<Object>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Initialization of the protocol declared in sim_constants author: J.LeFur 07.2012 "
+      end
+    end
+  end
+
+  deploymentview 128770 "melanesim"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 132866 "C_Calendar"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Locale;
+import data.constants.rodents.I_ConstantDodel;
+import data.converters.C_ConvertTimeAndSpace;
+${definition}"
+      associated_elems
+	class_ref 133506 // C_Calendar
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 132994 "C_ChooseProtocol_Rodents"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import data.C_ReadWriteFile;
+import data.constants.rodents.I_ConstantStringRodents;
+import presentation.dataOutput.C_FileWriter;
+${definition}"
+      associated_elems
+	class_ref 133890 // C_ChooseProtocol_Rodents
+      end
+    end
+
+    artifact 133122 "C_ChooseProtocol_MelaneSim"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import data.constants.I_ConstantPNMC;
+${definition}"
+      associated_elems
+	class_ref 133762 // C_ChooseProtocol_MelaneSim
+      end
+    end
+
+    artifact 133250 "C_ContextCreator"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import cern.jet.random.engine.RandomEngine;
+import data.C_Parameters;
+import data.constants.I_ConstantNumeric;
+import data.constants.I_ConstantPNMC;
+import data.constants.rodents.I_ConstantStringRodents;
+import data.converters.C_ConvertTimeAndSpace;
+import melanesim.protocol.A_Protocol;
+import melanesim.protocol.C_Protocol_PNMC_drifters;
+import melanesim.protocol.C_Protocol_PNMC_nekton;
+import melanesim.protocol.C_Protocol_PNMC_plankton;
+import melanesim.protocol.C_Protocol_PNMC_ships;
+import melanesim.protocol.rodents.C_ProtocolBandia;
+import melanesim.protocol.rodents.C_ProtocolCage;
+import melanesim.protocol.rodents.C_ProtocolCentenal;
+import melanesim.protocol.rodents.C_ProtocolChize;
+import melanesim.protocol.rodents.C_ProtocolDecenal;
+import melanesim.protocol.rodents.C_ProtocolDodel;
+import melanesim.protocol.rodents.C_ProtocolDodel2;
+import melanesim.protocol.rodents.C_ProtocolEnclosure;
+import melanesim.protocol.rodents.C_ProtocolGerbil;
+import melanesim.protocol.rodents.C_ProtocolHybridUniform;
+import melanesim.protocol.rodents.C_ProtocolMusTransport;
+import melanesim.util.C_RandomInNormalDistrib;
+import presentation.dataOutput.C_OutputConsole;
+import repast.simphony.context.Context;
+import repast.simphony.dataLoader.ContextBuilder;
+import repast.simphony.random.RandomHelper;
+${definition}"
+      associated_elems
+	class_ref 134146 // C_ContextCreator
+      end
+    end
+  end
+
+  package_ref 129410 // protocol
+
+  package_ref 129538 // util
+end

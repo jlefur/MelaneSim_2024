@@ -1,0 +1,35 @@
+class bougeSouris
+!!!128130.java!!!	saveScreen() : void
+        try {
+            Robot robot = new Robot();
+            // Coordonnées actuelles de la souris
+            Point mouseLocation = MouseInfo.getPointerInfo().getLocation();
+            int x = mouseLocation.x;
+            int y = mouseLocation.y;
+
+            // Déplacement de la souris avec un léger offset aléatoire (0..2)
+            robot.mouseMove(x + r.nextInt(3), y + r.nextInt(3));
+        } catch (AWTException e) {
+            e.printStackTrace();
+        }
+!!!128258.java!!!	main(inout args : String [[]]) : void
+        long intervalMs = 5000; // 5 secondes par défaut
+        long totalSeconds = 60; // 1 minute par défaut
+        if (args.length > 0) {
+            try { intervalMs = Long.parseLong(args[0]); } catch (NumberFormatException ignored) {}
+        }
+        if (args.length > 1) {
+            try { totalSeconds = Long.parseLong(args[1]); } catch (NumberFormatException ignored) {}
+        }
+
+        bougeSouris app = new bougeSouris();
+        long start = System.currentTimeMillis();
+        System.out.println("bougeSouris démarre. Intervalle=" + intervalMs + " ms, durée=" + (totalSeconds==0?"∞":totalSeconds + " s"));
+        while (true) {
+            app.saveScreen();
+            try { Thread.sleep(intervalMs); } catch (InterruptedException ignored) {}
+            if (totalSeconds > 0 && (System.currentTimeMillis() - start) / 1000 >= totalSeconds) {
+                break;
+            }
+        }
+        System.out.println("bougeSouris terminé.");

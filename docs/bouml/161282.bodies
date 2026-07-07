@@ -1,0 +1,13 @@
+class C_LandscapeMarineNekton
+!!!328706.java!!!	C_LandscapeMarineNekton(inout context : Context<Object>, in url : String, in gridValueName : String, in continuousSpaceName : String)
+		super(context, url, gridValueName, continuousSpaceName);
+		context.addValueLayer(this.nektonValueLayer);
+!!!328834.java!!!	createGround(inout matriceLue : int [[][]]) : void
+		super.createGround(matriceLue);
+		this.nektonValueLayer = new GridValueLayer(NEKTON_GRID, true, new repast.simphony.space.grid.WrapAroundBorders(),
+				dimension_Ucell.width, dimension_Ucell.height);
+		for (int i = this.dimension_Ucell.width - 1; i >= 0; i--)
+			for (int j = this.dimension_Ucell.height - 1; j >= 0; j--)
+				this.nektonValueLayer.set((int) (Math.random() * 7), i, j);
+!!!328962.java!!!	getNektonValueLayer() : GridValueLayer
+		return nektonValueLayer;

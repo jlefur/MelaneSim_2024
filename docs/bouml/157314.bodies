@@ -1,0 +1,5 @@
+class C_GenomePoacea
+!!!298242.java!!!	C_GenomePoacea()
+		super();
+		alleles.put(GROWTH_RATE_UkcalPerDay, 4.001); // TODO JLF&MS 04.2016 source: junk value, see T.Brevault for better values
+		makeSpermatophytaBivalent(this.alleles);

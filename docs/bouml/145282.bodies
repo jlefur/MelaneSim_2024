@@ -1,0 +1,13 @@
+class Stack
+!!!184834.java!!!	Stack()
+ // Construire une pile vide
+		t = new int[SIZE];
+		sp = 0;
+!!!184962.java!!!	isEmpty() : boolean
+		return sp == 0;
+!!!185090.java!!!	push(in x : int) : void
+		if (sp >= SIZE) throw new Error("Push : pile pleine");
+		t[sp++] = x; // Ou bien : t[sp] = x ; sp = sp+1 ;
+!!!185218.java!!!	pop() : int
+		if (isEmpty()) throw new Error("Pop : pile vide");
+		return t[--sp]; // Ou bien : sp = sp-1 ; return t[sp] ;

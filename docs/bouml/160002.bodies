@@ -1,0 +1,32 @@
+class C_Region
+!!!310530.java!!!	C_Region(inout groundManager : C_Landscape)
+		super(groundManager);
+		cityList = new TreeSet<C_City>();
+!!!310658.java!!!	computeCityList() : void
+		C_SoilCellGraphed graphedCell;
+		this.cityList.clear();
+		for (C_SoilCell soilCell : this.cells) {
+			graphedCell = (C_SoilCellGraphed) soilCell;
+			if (graphedCell.getLandPlot(CITY_EVENT) != null) {
+				this.cityList.add((C_City) graphedCell.getLandPlot(CITY_EVENT));
+			}
+		}
+!!!310786.java!!!	getCityList() : C_City
+		return this.cityList;
+!!!310914.java!!!	getMarkets() : C_Market
+		TreeSet<C_Market> markets = new TreeSet<C_Market>();
+		for (C_City oneCity : this.cityList) {
+			if (oneCity instanceof C_Market) markets.add((C_Market) oneCity);
+		}
+		return markets;
+!!!311042.java!!!	getNoMarkets() : C_City
+		TreeSet<C_City> noMarkets = new TreeSet<C_City>();
+		for (C_City oneCity : this.cityList) {
+			if (!(oneCity instanceof C_Market)) noMarkets.add(oneCity);
+		}
+		return noMarkets;
+!!!311170.java!!!	getCarriers() : C_HumanCarrier
+		TreeSet<C_HumanCarrier> carrierList = new TreeSet<C_HumanCarrier>();
+		for (C_SoilCell cell : this.cells)
+			carrierList.addAll(((C_SoilCellGraphed) cell).getCarrierList());
+		return carrierList;

@@ -10,6 +10,8 @@ import melanesim.protocol.A_Protocol;
 import melanesim.protocol.C_Protocol_PNMC_drifters;
 import melanesim.protocol.C_Protocol_PNMC_nekton;
 import melanesim.protocol.C_Protocol_PNMC_plankton;
+import melanesim.protocol.C_Protocol_PNMC_ships;
+import melanesim.protocol.C_Protocol_PNMC_temperature;
 import melanesim.protocol.rodents.C_ProtocolBandia;
 import melanesim.protocol.rodents.C_ProtocolCage;
 import melanesim.protocol.rodents.C_ProtocolCentenal;
@@ -22,6 +24,7 @@ import melanesim.protocol.rodents.C_ProtocolGerbil;
 import melanesim.protocol.rodents.C_ProtocolHybridUniform;
 import melanesim.protocol.rodents.C_ProtocolMusTransport;
 import melanesim.util.C_RandomInNormalDistrib;
+import presentation.dataOutput.C_OutputConsole;
 import repast.simphony.context.Context;
 import repast.simphony.dataLoader.ContextBuilder;
 import repast.simphony.random.RandomHelper;
@@ -122,6 +125,8 @@ public class C_ContextCreator implements ContextBuilder<Object>, I_ConstantNumer
 		if (C_Parameters.PROTOCOL.equals(PNMC_DRIFTERS)) protocol = new C_Protocol_PNMC_drifters(context);
 		else if (C_Parameters.PROTOCOL.equals(PNMC_PLANKTON)) protocol = new C_Protocol_PNMC_plankton(context);
 		else if (C_Parameters.PROTOCOL.equals(PNMC_NEKTON)) protocol = new C_Protocol_PNMC_nekton(context);
+		else if (C_Parameters.PROTOCOL.equals(PNMC_TEMPERATURE)) protocol = new C_Protocol_PNMC_temperature(context);
+		else if (C_Parameters.PROTOCOL.equals(PNMC_SHIPS)) protocol = new C_Protocol_PNMC_ships(context);
 		// RODENT BOUND PROTOCOLS
 		else if (C_Parameters.PROTOCOL.contains(CHIZE)) protocol = new C_ProtocolChize(context);
 		else if (C_Parameters.PROTOCOL.equals(HYBRID_UNIFORM)) protocol = new C_ProtocolHybridUniform(context);

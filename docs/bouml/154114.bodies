@@ -1,0 +1,5 @@
+class A_GenomeLuca
+!!!275330.java!!!	toString() : String
+		return (C_VariousUtilities.getShortClassName(getClass()).substring(8));
+!!!275458.java!!!	getDiploidNumber() : int
+		return 0;// TODO number in source OK JLF

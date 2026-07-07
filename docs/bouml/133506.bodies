@@ -1,0 +1,46 @@
+class C_Calendar
+!!!138882.java!!!	C_Calendar()
+		tick_Ucalendar = C_ConvertTimeAndSpace.getTickUnit_Ucalendar();
+		tickAmount_Ucalendar = C_ConvertTimeAndSpace.tick_Ucalendar;
+		// Display the date in two possible pattern
+		longDatePattern = new SimpleDateFormat("dd MMMM yyyy");
+		shortDatePattern = new SimpleDateFormat("dd/MM/yyyy");
+		hourPattern = new SimpleDateFormat("dd MMM yyyy - HH:mm:ss");
+//		fullPattern = new SimpleDateFormat("HH:mm:ss", Locale.ENGLISH);
+		fullPattern = new SimpleDateFormat("dd MMM yyyy (EE) - HH:mm:ss", Locale.ENGLISH);
+!!!139010.java!!!	stringShortDate() : String
+		return C_Calendar.shortDatePattern.format(getTime());
+!!!139138.java!!!	stringLongDate() : String
+		return C_Calendar.longDatePattern.format(getTime());
+!!!139266.java!!!	stringHourDate() : String
+		return C_Calendar.hourPattern.format(getTime());
+!!!139394.java!!!	stringFullDate() : String
+		return C_Calendar.fullPattern.format(getTime());
+!!!139522.java!!!	incrementDate() : void
+		this.add(tick_Ucalendar, tickAmount_Ucalendar);
+!!!139650.java!!!	isDawn() : boolean
+		if ((this.get(Calendar.HOUR_OF_DAY) >= I_ConstantDodel.DAWN_START_Uhour) && (this.get(Calendar.HOUR_OF_DAY) <= I_ConstantDodel.DAWN_END_Uhour))
+			return true;
+		else return false;
+!!!139778.java!!!	isDayTime() : boolean
+		if ((this.get(Calendar.HOUR_OF_DAY) > I_ConstantDodel.DAWN_END_Uhour) && (this.get(
+				Calendar.HOUR_OF_DAY) <= I_ConstantDodel.TWILIGHT_START_Uhour)) return true;
+		else return false;
+!!!139906.java!!!	isTwilight() : boolean
+		if ((this.get(Calendar.HOUR_OF_DAY) > I_ConstantDodel.TWILIGHT_START_Uhour) && (this.get(
+				Calendar.HOUR_OF_DAY) <= I_ConstantDodel.TWILIGHT_END_Uhour)) return true;
+		else return false;
+!!!140034.java!!!	isNightTime() : boolean
+		if ((this.get(Calendar.HOUR_OF_DAY) > I_ConstantDodel.TWILIGHT_END_Uhour) || (this.get(
+				Calendar.HOUR_OF_DAY) < I_ConstantDodel.DAWN_START_Uhour)) return true;
+		else return false;
+!!!140162.java!!!	main(inout args : String [[]]) : void
+		C_Calendar x = new C_Calendar();
+		x.set(2011, Calendar.JANUARY, 11);
+		C_Calendar y = new C_Calendar();
+		y.set(2016, Calendar.SEPTEMBER, 12);
+		System.out.println(C_Calendar.longDatePattern.format(x.getTime()));
+		System.out.println(C_Calendar.longDatePattern.format(y.getTime()));
+		System.out.println(x.get(YEAR));
+		System.out.println(y.get(YEAR));
+

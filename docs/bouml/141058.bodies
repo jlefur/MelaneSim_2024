@@ -1,0 +1,12 @@
+class C_BorreliaCrocidurae
+!!!338562.java!!!	C_BorreliaCrocidurae(inout genome : I_DiploidGenome)
+		super(genome);
+!!!338690.java!!!	giveBirth(inout genome : I_DiploidGenome) : A_Animal
+		C_BorreliaCrocidurae oneBorrelia = new C_BorreliaCrocidurae(genome);
+		oneBorrelia.setTrappedOnBoard(true);
+		return oneBorrelia;
+!!!338818.java!!!	step_Utick() : void
+	    super.step_Utick();
+!!!338946.java!!!	getEnergy_Ukcal() : double
+// for GUI display
+		return energy_Ukcal;

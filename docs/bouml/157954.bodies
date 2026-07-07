@@ -1,0 +1,16 @@
+class C_GenomeMicrotusArvalis
+!!!300418.java!!!	C_GenomeMicrotusArvalis()
+		super();
+		if( this.getGonosome().isFemale())
+			alleles.put(SEXUAL_MATURITY_Uday, 39.); 
+		else
+			alleles.put(SEXUAL_MATURITY_Uday, 45.); 
+		alleles.put(LITTER_SIZE, 4.); // source: 3 to 9 [Quéré and Le Louarn, 2011]
+		alleles.put(WEANING_AGE_Uday, 18.);// source: Quere comm. Pers. / 20: AnAge database (2014)
+		alleles.put(MATING_LATENCY_Uday, 13.); // source: Le Louarn and Quéré, 2003 / (20-21) -1 ! AnAge database (2014)
+		alleles.put(GESTATION_LENGTH_Uday, 21.); // source: Quéré and Le Louarn, 2011 / AnAge database (2014)
+		makeAmniotaBivalent(this.alleles);
+!!!300546.java!!!	C_GenomeMicrotusArvalis(inout microsatXsome : C_XsomePairMicrosat, inout gonosome : C_XsomePairSexual, inout autosomes : ArrayList<C_ChromosomePair>)
+		super(microsatXsome, gonosome, autosomes);
+!!!300674.java!!!	getTaxonSignature() : Double
+		return .30;

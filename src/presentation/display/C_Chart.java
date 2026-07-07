@@ -35,14 +35,14 @@ public class C_Chart {
 	public static final int RING = 3;
 	public static final int BAR = 4;
 
-	private DefaultPieDataset dataPie; // Pour la représentation Pie2D, Pie3D et Ring
-	private XYSeriesCollection dataLine; // Pour la représentation Line
-	private CategoryDataset dataBar; // Pour la représentation Bar JLF 08.2015
+	private DefaultPieDataset dataPie; // Pour la reprÃ©sentation Pie2D, Pie3D et Ring
+	private XYSeriesCollection dataLine; // Pour la reprÃ©sentation Line
+	private CategoryDataset dataBar; // Pour la reprÃ©sentation Bar JLF 08.2015
 	private ChartPanel chartPanel;
 	private JFreeChart chart;
 	private int type;
 
-	/** Constructeur des Pie charts. Peut aussi être utilisé pour les Line charts mais les noms des axes seront par défault "X" et
+	/** Constructeur des Pie charts. Peut aussi Ãªtre utilisÃ© pour les Line charts mais les noms des axes seront par dÃ©fault "X" et
 	 * "Y".
 	 * @param title : le titre du graphique
 	 * @param type : le type de graphique */
@@ -54,16 +54,16 @@ public class C_Chart {
 	 * @param title : le titre du graphique
 	 * @param type : le type de graphique
 	 * @param XLabel : le nom de l'axe des abscisses
-	 * @param YLabel : le nom de l'axe des ordonnées */
+	 * @param YLabel : le nom de l'axe des ordonnÃ©es */
 	public C_Chart(String title, int type, String XLabel, String YLabel) {
 		init(title, type, XLabel, YLabel);
 	}
 
-	/** Crée un nouvel ensemble de données et un graphique
+	/** CrÃ©e un nouvel ensemble de donnÃ©es et un graphique
 	 * @param title : le titre du graphique
 	 * @param type : le type de graphique
-	 * @param XLabel : le nom de l'axe des abscisses (utilisé uniquement avec les Line charts)
-	 * @param YLabel : le nom de l'axe des ordonnées (utilisé uniquement avec les Line charts) */
+	 * @param XLabel : le nom de l'axe des abscisses (utilisÃ© uniquement avec les Line charts)
+	 * @param YLabel : le nom de l'axe des ordonnÃ©es (utilisÃ© uniquement avec les Line charts) */
 	private void init(String title, int type, String XLabel, String YLabel) {
 		this.type = type;
 
@@ -111,7 +111,7 @@ public class C_Chart {
 		return this.chart;
 	}
 
-	/** Crée un chart de type Pie, Pie3D ou Ring */
+	/** CrÃ©e un chart de type Pie, Pie3D ou Ring */
 	private JFreeChart createPieChart(String title) {
 	    this.chart = null;
 
@@ -127,15 +127,15 @@ public class C_Chart {
 		PiePlot plot = (PiePlot) this.chart.getPlot();
 		plot.setBackgroundPaint(Color.getColor("#F0F0F0")); // Couleur de fond du pie
 		if (this.type == PIE3D) plot.setForegroundAlpha(0.5f); // Pour la transparence
-		plot.setOutlineVisible(false); // Définit si l'encadré autour du chart est visible ou non
+		plot.setOutlineVisible(false); // DÃ©finit si l'encadrÃ© autour du chart est visible ou non
 
 		plot.setLabelFont(new Font("SansSerif", Font.PLAIN, 12));
 		plot.setLabelBackgroundPaint(Color.white);
-		plot.setNoDataMessage("No data available"); // Message à afficher quand il n'y a pas de données disponibles
+		plot.setNoDataMessage("No data available"); // Message Ã  afficher quand il n'y a pas de donnÃ©es disponibles
 
 		return this.chart;
 	}
-	/** Crée un line chart */
+	/** CrÃ©e un line chart */
 	private JFreeChart createLineChart(String title, String XLabel, String YLabel) {
 
 		JFreeChart chart = ChartFactory.createXYLineChart(title, XLabel, YLabel, this.dataLine, PlotOrientation.VERTICAL, true, true,
@@ -149,7 +149,7 @@ public class C_Chart {
 		// plot.setDomainCrosshairVisible(false);
 		// plot.setRangeCrosshairVisible(false);
 
-		// Gestion légende //
+		// Gestion lÃ©gende //
 		// LegendTitle lt = new LegendTitle(plot);
 		// lt.setItemFont(new Font("Dialog", Font.PLAIN, 9));
 		// lt.setFrame(new BlockBorder(Color.white));
@@ -160,7 +160,7 @@ public class C_Chart {
 
 		XYLineAndShapeRenderer renderer = (XYLineAndShapeRenderer) plot.getRenderer();
 		renderer.setSeriesLinesVisible(0, true); // Affichage lignes
-		renderer.setSeriesShapesVisible(0, false); // Affichage carrés
+		renderer.setSeriesShapesVisible(0, false); // Affichage carrÃ©s
 
 		// Gestion valeurs sur les axes //
 		// ValueAxis xAxis = plot.getDomainAxis();
@@ -171,8 +171,8 @@ public class C_Chart {
 		return chart;
 	}
 
-	/** Ajoute une donnée à la série en paramètre.
-	 * @param title : le titre de la série utilisé lors de sa création
+	/** Ajoute une donnÃ©e Ã  la sÃ©rie en paramÃ¨tre.
+	 * @param title : le titre de la sÃ©rie utilisÃ© lors de sa crÃ©ation
 	 * @param Xvalue : la valeur en X
 	 * @param Yvalue : la valeur en Y (null pour PIE2D, PIE3D, RING); */
 	public void addData(String title, Number Xvalue, Number Yvalue) {
@@ -188,23 +188,23 @@ public class C_Chart {
 		}
 	}
 
-	/** Ajoute une série (courbe) au chart (à utiliser avec les lines charts).
-	 * @param title : le titre de la série */
+	/** Ajoute une sÃ©rie (courbe) au chart (Ã  utiliser avec les lines charts).
+	 * @param title : le titre de la sÃ©rie */
 	public void addXYSerie(String title) {
 		if (type == LINE) this.dataLine.addSeries(new XYSeries(title));
 	}
-	/** Met à jour les données d'un chart
-	 * @param serie : le nom de la série à mettre à jour
+	/** Met Ã  jour les donnÃ©es d'un chart
+	 * @param serie : le nom de la sÃ©rie Ã  mettre Ã  jour
 	 * @param Xvalue : la valeur en X
 	 * @param Yvalue : la valeur en Y (null pour PIE2D, PIE3D, RING); */
 	public void setData(String serie, Number Xvalue, Number Yvalue) {
 		if (type == LINE) this.dataLine.getSeries(serie).add(Xvalue, Yvalue);
 		else this.dataPie.setValue(serie, Xvalue);
 	}
-	/** Met à jour les données d'un bar chart, JLF 08.2015
+	/** Met Ã  jour les donnÃ©es d'un bar chart, JLF 08.2015
 	 * @param value : la valeur de la barre
-	 * @param serie : le nom de la barre à mettre à jour
-	 * @param category : la série de données globale */
+	 * @param serie : le nom de la barre Ã  mettre Ã  jour
+	 * @param category : la sÃ©rie de donnÃ©es globale */
 	public void setBarData(int value, String serie, String category) {
 		((DefaultCategoryDataset) this.dataBar).setValue(value, serie, category);
 	}

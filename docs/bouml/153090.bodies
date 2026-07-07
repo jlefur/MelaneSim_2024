@@ -1,0 +1,50 @@
+class A_VisibleAgent
+!!!251778.java!!!	A_VisibleAgent()
+		super();
+		this.hasLeftDomain = false;
+		this.hasEnteredDomain = false;
+!!!251906.java!!!	canInteractWith(inout oneOccupant : I_SituatedThing) : boolean
+		if (oneOccupant.getCoordinate_Umeter().distance(this.getCoordinate_Umeter()) <= this.sensing_UmeterByTick)
+			return true;
+		return false;
+!!!252034.java!!!	init(inout m : C_Landscape) : void
+		myLandscape = m;// first, we give the agent a reference to the ground_manager it can use
+!!!252162.java!!!	discardThis() : void
+		for (A_Animal oneAnimal : this.animalsTargetingMe) {
+			if (oneAnimal.target == this) oneAnimal.target= null;// cannot use discardTarget due to concurrent modification exception / jlf 12.2017
+			if (oneAnimal.myHome == this) oneAnimal.myHome= null;// jlf 04.2021
+		}
+		this.animalsTargetingMe = null;
+		while (this.getCurrentSoilCell() != null) {
+			if (!this.getCurrentSoilCell().agentLeaving(this)) // leave the supporting soil cell.
+				A_Protocol.event("A_VisibleAgent:discardThis", this + " cannot leave " + this.getCurrentSoilCell(),
+						isError);
+		}
+		if (this instanceof A_Animal) ((A_Animal) this).lastContainerLeft = null;
+		this.bornCoord_Umeter = null;
+		super.discardThis();
+!!!252290.java!!!	perception() : I_SituatedThing
+		return myLandscape.findObjectsOncontinuousSpace(this, this.sensing_UmeterByTick);
+!!!252418.java!!!	setCurrentSoilCell(inout currentSoilCell : I_Container) : void
+		this.currentSoilCell = currentSoilCell;
+!!!252546.java!!!	setHasToSwitchFace(inout hasToSwitchFace : boolean) : void
+		this.hasToSwitchFace = hasToSwitchFace;
+!!!252674.java!!!	getAnimalsTargetingMe() : A_Animal
+		return animalsTargetingMe;
+!!!252802.java!!!	getCoordinate_Umeter() : Coordinate
+		return A_VisibleAgent.myLandscape.getThingCoord_Umeter(this);
+!!!252930.java!!!	getCoordinate_Ucs() : Coordinate
+		return A_VisibleAgent.myLandscape.getThingCoord_Ucs(this);
+!!!253058.java!!!	getCurrentSoilCell() : I_Container
+		return currentSoilCell;
+!!!253186.java!!!	getSensing_UmeterByTick() : double
+		return sensing_UmeterByTick;
+!!!253314.java!!!	getDistance_Umeter(inout oneCoordinate : Coordinate) : double
+		// // Old procedure
+		// Coordinate current = this.getCoords_Umeter();
+		// We use * and not Math.pow to improve computing time
+		// return Math.sqrt((current.x - relative.x) * (current.x - relative.x) + (current.y - relative.y) * (current.y -
+		// relative.y));
+		return this.getCoordinate_Umeter().distance(oneCoordinate);
+!!!253442.java!!!	getDistance_Umeter(inout agent : I_SituatedThing) : double
+		return this.getCoordinate_Umeter().distance(agent.getCoordinate_Umeter());

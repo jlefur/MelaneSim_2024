@@ -1,0 +1,32 @@
+class C_RodentCircadian
+!!!352002.java!!!	C_RodentCircadian(inout genome : I_DiploidGenome)
+		super(genome);
+		speed_Origin = speed_UmeterByTick;
+!!!352130.java!!!	giveBirth(inout genome : I_DiploidGenome) : A_Animal
+		return new C_RodentCircadian(genome);
+!!!352386.java!!!	perception() : I_SituatedThing
+		double sensing = this.sensing_UmeterByTick;
+		int hourOfDay = A_Protocol.protocolCalendar.get(Calendar.HOUR_OF_DAY);
+		// Low perception during daylight (hidden)
+		if ((hourOfDay >= I_ConstantDodel.DAY_START_Uhour) && (hourOfDay <= I_ConstantDodel.DAY_END_Uhour)) {
+			sensing = (double) sensing_UmeterByTick / I_ConstantDodel.RODENT_DECREASE_PERCEPTION;
+		}
+		// greater perception of rodent at dawn and twilight
+		else if ((I_ConstantDodel.TWILIGHT_START_Uhour <= hourOfDay && hourOfDay <= I_ConstantDodel.TWILIGHT_END_Uhour)
+				|| (I_ConstantDodel.DAWN_START_Uhour <= hourOfDay && hourOfDay <= I_ConstantDodel.DAWN_END_Uhour)) {
+			sensing = (double) sensing_UmeterByTick * I_ConstantDodel.RODENT_INCREASE_PERCEPTION;
+		}
+		return myLandscape.findObjectsOncontinuousSpace(this, sensing);
+!!!352514.java!!!	computeNextMoveToTarget() : void
+		this.speed_UmeterByTick = speed_Origin;
+		int hourOfDay = A_Protocol.protocolCalendar.get(Calendar.HOUR_OF_DAY);
+		// No activities between 9 and 18h
+		if (I_ConstantDodel.DAY_START_Uhour <= hourOfDay && hourOfDay <= I_ConstantDodel.DAY_END_Uhour) {
+			this.speed_UmeterByTick = this.speed_Origin / I_ConstantDodel.SPEED_SMALL_ACTIVITIES;
+		}
+		// More activities of rodent between these moments
+		else if ((I_ConstantDodel.TWILIGHT_START_Uhour <= hourOfDay && hourOfDay <= I_ConstantDodel.TWILIGHT_END_Uhour)
+				|| (I_ConstantDodel.DAWN_START_Uhour <= hourOfDay && hourOfDay <= I_ConstantDodel.DAWN_END_Uhour)) {
+			this.speed_UmeterByTick = this.speed_Origin * I_ConstantDodel.SPEED_SMALL_ACTIVITIES;
+		}
+		super.computeNextMoveToTarget(speed_UmeterByTick);

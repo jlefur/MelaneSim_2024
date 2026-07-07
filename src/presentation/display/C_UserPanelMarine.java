@@ -14,12 +14,6 @@ public class C_UserPanelMarine extends C_UserPanel implements I_ConstantPNMC {
 	protected static final long serialVersionUID = 1L;
 	private C_Meter meterPlankton, meterEnergy;
 	//
-	// CONSTRUCTOR
-	//
-	public C_UserPanelMarine() {
-		super();
-	}
-	//
 	// OVERRIDEN METHODS
 	//
 	@Override
@@ -54,6 +48,12 @@ public class C_UserPanelMarine extends C_UserPanel implements I_ConstantPNMC {
 				break;
 			case PNMC_NEKTON :
 				fileName = "icons/titleNecton.gif";
+				break;
+			case PNMC_SHIPS :
+				fileName = "icons/titleShips.gif";
+				break;
+			case PNMC_TEMPERATURE :
+				fileName = "icons/titleTemperature.gif";
 				break;
 		}
 		return super.createTitleBlock(fileName);

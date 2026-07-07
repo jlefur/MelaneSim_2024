@@ -1,0 +1,5 @@
+class C_GenomeFabacea
+!!!298114.java!!!	C_GenomeFabacea()
+		super();
+		alleles.put(GROWTH_RATE_UkcalPerDay, 5.001); // TODO JLF&MS 04.2016 source: junk value  see T.Brevault for better values
+		makeSpermatophytaBivalent(this.alleles);

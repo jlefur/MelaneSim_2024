@@ -1,0 +1,57 @@
+class C_GeneMutatorSet
+!!!304386.java!!!	C_GeneMutatorSet(inout alleleList : List<?>)
+		this.alleleList = alleleList;
+!!!304514.java!!!	mutate(inout info : Object, inout value : Object) : Object
+		Double mutRate = (Double) info;
+
+		// If randomly chosen number is below mutation rate, mutate the gene,
+		// otherwise leave it alone (return its original value).
+		if (C_ContextCreator.randomGeneratorForDNA.nextDouble() < mutRate.doubleValue()) {
+			// Generate random index into the set, then get the member at that index.
+			int alleleIndex = (int) C_ContextCreator.randomGeneratorForDNA.nextDouble() * alleleList.size();
+			System.out.println("Mutation");
+			return alleleList.get(alleleIndex);
+		}
+		else {
+			return value;
+		}
+!!!304642.java!!!	toString() : String
+		return "<set mutator:" + alleleList + ">";
+!!!304770.java!!!	main(inout args : String [[]]) : void
+		System.out.println("Testing SetGeneMutator");
+
+		List<String> alleles = new ArrayList<String>(3);
+		alleles.add("A");
+		alleles.add("B");
+		alleles.add("C");
+		C_GeneMutatorSet setMut = new C_GeneMutatorSet(alleles);
+		String val = "A";
+		Double mutRate = 0.5;
+
+		System.out.println("val = " + val);
+		System.out.println("Mutating at this rate: " + mutRate);
+		for (int i = 1; i <= 10; i++) {
+			System.out.println("mutated val = " + setMut.mutate(mutRate, val));
+		}
+
+		List<Integer> bits = new ArrayList<Integer>(2);
+		bits.add(0);
+		bits.add(1);
+		C_GeneMutatorSet bitMut = new C_GeneMutatorSet(bits);
+
+		int numGenes = 4;
+		C_Chromosome bitGenome = new C_Chromosome(numGenes, new C_RecombinatorOnePt());
+		Integer bitGenomeId = 0;
+		for (int i = 0; i < numGenes; i++)
+
+		{
+			C_Gene bitGene = new C_Gene(0, bitMut, bitGenomeId);
+			bitGenome.setGeneAtLocus(i, bitGene);
+		}
+
+		System.out.println("bitGenome = " + bitGenome);
+		System.out.println("Mutating at this rate: " + mutRate);
+		for (int i = 1; i <= 10; i++) {
+			bitGenome.mutate(mutRate);
+			System.out.println("mutated genome = " + bitGenome);
+		}

@@ -1,0 +1,3655 @@
+format 224
+"thing" // src::thing
+  revision 1
+  modified_by 2 "lefur"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:\\Users\\lefur\\Documents\\GitHub\\MelaneSim_2024\\src/thing/"
+  java_package "thing"
+  classview 128770 "thing"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 130434 "I_MarineActor"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " ENUM OF CONSERVATION TARGETS "
+      class 130562 "DriverType"
+	visibility public stereotype "enum"
+	cpp_decl ""
+	java_decl "${comment}${@}${visibility}${static}${final}${abstract}enum ${name}${implements} {
+${items};
+${members}}
+"
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	mysql_decl ""
+	
+	attribute 240258 "PARTICLES"
+	  public type class_ref 130562 // DriverType
+	  cpp_decl ""
+	  java_decl "  ${@}${name} (\"size\"),${comment}"
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+
+	attribute 240386 "PLANKTON"
+	  public type class_ref 130562 // DriverType
+	  cpp_decl ""
+	  java_decl "  ${@}${name}(\"chlorophylle mg/m3\"),${comment}"
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+
+	attribute 240514 "NEKTON"
+	  public type class_ref 130562 // DriverType
+	  cpp_decl ""
+	  java_decl "  ${@}${name}(\"densité g/m2\"),${comment}"
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+
+	attribute 240642 "SHIP"
+	  public type class_ref 130562 // DriverType
+	  cpp_decl ""
+	  java_decl "  ${@}${name}(\"effectif\"),${comment}"
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+
+	attribute 240770 "unit"
+	  const_attribute private explicit_type "String"
+	  stereotype "attribute"
+	  cpp_decl ""
+	  java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	  comment " FIELD
+"
+	end
+
+	operation 271746 "DriverType"
+	  package explicit_return_type ""
+	  nparams 1
+	    param in name "unite" explicit_type "String"
+	  
+	  preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	  
+	  
+	  
+	  comment " CONSTRUCTOR"
+	end
+
+	operation 271874 "getUnit"
+	  public explicit_return_type "String"
+	  nparams 0
+	  
+	  preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	  
+	  
+	  
+	  comment " GETTER"
+	end
+      end
+
+      operation 272002 "getTypeActeur"
+	public return_type class_ref 130562 // DriverType
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 135682 "I_SituatedThing"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Any object or agent in a World is a Thing. They all share some basic properties, so these are implemented as an interface.
+@author Jean Le Fur 2007 (from Kyle Wagner-cricketSim, elyk@acm.org 2000) Version 1.0, Sun Nov 12 00:56:39 2000, rev jlf
+        03.2015, 02.2017, 09.2020
+@see A_NDS
+@see A_VisibleAgent "
+      classrelation 149890 // <generalisation>
+	relation 149890 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 149890 // <generalisation>
+	  b parent class_ref 147842 // I_LivingThing
+      end
+
+      operation 198914 "getCoordinate_Umeter"
+	public explicit_return_type "Coordinate"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 199042 "getCoordinate_Ucs"
+	public explicit_return_type "Coordinate"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 199170 "setCurrentSoilCell"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "cell" type class_ref 135810 // I_Container
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 199298 "getCurrentSoilCell"
+	public return_type class_ref 135810 // I_Container
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 199426 "discardThis"
+	public explicit_return_type "void"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 199554 "getDistance_Umeter"
+	public explicit_return_type "double"
+	nparams 1
+	  param inout name "oneCoordinate" explicit_type "Coordinate"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 199682 "getDistance_Umeter"
+	public explicit_return_type "double"
+	nparams 1
+	  param inout name "agent" type class_ref 135682 // I_SituatedThing
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 199810 "assertColNo"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "colNo" explicit_type "int"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 199938 "assertLineNo"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "lineNo" explicit_type "int"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 200066 "retrieveLineNo"
+	public explicit_return_type "int"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 200194 "retrieveColNo"
+	public explicit_return_type "int"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 200322 "actionInfect"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "thing" type class_ref 135682 // I_SituatedThing
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Transmit infection to thing, has to be overridden in daughter classes 
+ TODO MS de JLF: ne concerne pas tous les
+ sc�narios"
+      end
+
+      operation 200450 "isInfected"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 200578 "canInteractWith"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "oneOccupant" type class_ref 135682 // I_SituatedThing
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 200706 "getMyLandPlot"
+	public return_type class_ref 138370 // C_LandPlot
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " JLF 03.2021"
+      end
+    end
+
+    class 136194 "C_Plankton"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " A simple structure containing a diploid genome, owns all properties of A_Organism
+@author J.LeFur 2024 "
+      classrelation 170754 // <generalisation>
+	relation 170754 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 170754 // <generalisation>
+	  b parent class_ref 152706 // A_Organism
+      end
+
+      classrelation 170882 // <realization>
+	relation 170882 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 170882 // <realization>
+	  b parent class_ref 129026 // I_ConstantPNMC
+      end
+
+      classrelation 171010 // <realization>
+	relation 171010 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 171010 // <realization>
+	  b parent class_ref 130434 // I_MarineActor
+      end
+
+      attribute 240898 "maxDispersalDistance_Umeter"
+	private explicit_type "double"
+	init_value " 0.0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELD
+
+"
+      end
+
+      operation 272130 "C_Plankton"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 272258 "step_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " OVERRIDEN METHOD
+"
+      end
+
+      operation 272386 "getTypeActeur"
+	public return_type class_ref 130562 // DriverType
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " GETTERS
+"
+      end
+
+      operation 272514 "getSpeedEast"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " for probe display purpose "
+      end
+
+      operation 272642 "getSpeedNorth"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " for probe display purpose "
+      end
+
+      operation 272770 "computeMaxDispersalDistance_Umeter"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Maximum distance (straight line) from its birth location "
+      end
+
+      operation 272898 "getMaxDispersalDistance_Umeter"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 136322 "C_Nekton"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " micronekton particle are not submitted to surface current half of day "
+      classrelation 171138 // <generalisation>
+	relation 171138 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 171138 // <generalisation>
+	  b parent class_ref 136194 // C_Plankton
+      end
+
+      classrelation 171266 // <realization>
+	relation 171266 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 171266 // <realization>
+	  b parent class_ref 129026 // I_ConstantPNMC
+      end
+
+      classrelation 171394 // <realization>
+	relation 171394 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 171394 // <realization>
+	  b parent class_ref 130434 // I_MarineActor
+      end
+
+      operation 273026 "C_Nekton"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 273154 "getSpeedEast"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " OVERRIDEN METHOD
+
+ for probe display purpose "
+      end
+
+      operation 273282 "getSpeedNorth"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " for probe display purpose "
+      end
+
+      operation 273410 "getSize"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SPECIFIC METHOD
+
+ to display on GUI @see thing.C_Nekton.style.xml "
+      end
+
+      operation 273538 "getTypeActeur"
+	public return_type class_ref 130562 // DriverType
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " GETTER
+"
+      end
+    end
+
+    class 136834 "C_Ship_cargo"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 171522 // <generalisation>
+	relation 171522 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 171522 // <generalisation>
+	  b parent class_ref 144770 // A_Animal
+      end
+
+      classrelation 171650 // <realization>
+	relation 171650 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 171650 // <realization>
+	  b parent class_ref 129026 // I_ConstantPNMC
+      end
+
+      classrelation 171778 // <realization>
+	relation 171778 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 171778 // <realization>
+	  b parent class_ref 130434 // I_MarineActor
+      end
+
+      attribute 241026 "destination"
+	private explicit_type "String"
+	init_value " new java.util.Random().nextBoolean()?\"NORTH\":\"SOUTH\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELD
+
+ au choix à l'initialisation"
+      end
+
+      operation 273666 "C_Ship_cargo"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 273794 "isArrived"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " OVERRIDEN METHOD
+
+ Do not account for ships arrived at boundaries "
+      end
+
+      operation 273922 "step_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 274050 "actionMove"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " patch - récupère l'énergie enlevée par l'actionMove de super 12.2025 "
+      end
+
+      operation 274178 "initParameters"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Initialize speed and sensing using time and space conversion<br>
+override retrieve speed from genome @see NB: can be used standalone if users parameters are changed during
+simulation<br>
+sensing conversion is bypassed<br>
+@author lefur 2025.10 "
+      end
+
+      operation 274306 "setNewTarget"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SPECIFIC METHOD
+
+ NORTH: 53,267 -> 96, 267
+ SOUTH: 225, 0 -> 272, 0
+ NOUMEA: 231, 94 -> 272, 0"
+      end
+
+      operation 274434 "getTypeActeur"
+	public return_type class_ref 130562 // DriverType
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " GETTERS
+"
+      end
+
+      operation 274562 "getDestination"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 144770 "A_Animal"
+      abstract visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " This class accounts for animals as moving agents.
+@author Q.Baduel, J-E Longueville, J. Le Fur 2011-02, 2013.01, 04.2015, 09.2020 "
+      classrelation 169602 // <generalisation>
+	relation 169602 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 169602 // <generalisation>
+	  b parent class_ref 152706 // A_Organism
+      end
+
+      classrelation 169730 // <realization>
+	relation 169730 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 169730 // <realization>
+	  b parent class_ref 129794 // I_ConstantNumeric
+      end
+
+      attribute 238594 "maxDispersalDistance_Umeter"
+	private explicit_type "double"
+	init_value " 0.0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+"
+      end
+
+      attribute 238722 "desire"
+	protected explicit_type "String"
+	init_value " \"\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Should never be null or else desire.equals will not work JLF 01.2018"
+      end
+
+      attribute 238850 "trappedOnBoard"
+	protected explicit_type "boolean"
+	init_value " false"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 169858 // target (<unidirectional association>)
+	relation 169858 --->
+	  a role_name "target" init_value " null" protected
+	    comment " store the container or agent selected as a destination"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 169858 // target (<unidirectional association>)
+	  b parent class_ref 135682 // I_SituatedThing
+      end
+
+      attribute 238978 "speed_UmeterByTick"
+	protected explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 239106 "nextMove_Umeter"
+	protected explicit_type "Coordinate"
+	init_value " new Coordinate()"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 239234 "hasToLeaveFullContainer"
+	protected explicit_type "boolean"
+	init_value " false"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " used to avoid return to containers left for fullness"
+      end
+
+      classrelation 169986 // lastContainerLeft (<unidirectional association>)
+	relation 169986 --->
+	  a role_name "lastContainerLeft" protected
+	    comment " Used to compute dispersal"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 169986 // lastContainerLeft (<unidirectional association>)
+	  b parent class_ref 135810 // I_Container
+      end
+
+      attribute 239362 "male"
+	protected explicit_type "boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " shortcut to avoid fetching each time into gonosomes and so on (see constructor)"
+      end
+
+      operation 261634 "A_Animal"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 261762 "step_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " OVERRIDEN METHOD
+
+ The heart of SimMasto agents<br>
+Realize actions bound to foraging desire, then super<br>
+@version jlf 2017.08 2017.12 2018.01 "
+      end
+
+      operation 261890 "discardThis"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Remove references to last container left, targeted container and eggs "
+      end
+
+      operation 262018 "actionInfect"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "thing" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " If infected, virus or bacteria agent reproduces and its offspring invades the contacting object <br/>
+If content more than one virus or bacteria, a randomly chosen bacteria or virus agent has to reproduces! "
+      end
+
+      operation 262146 "getInfection"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "pathogen" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 262274 "isInfected"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Test if agent content bacteria or virus "
+      end
+
+      operation 262402 "initParameters"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+ Initialize speed and sensing using time and space conversion<br>
+NB: can be used standalone if users parameters are changed during simulation, JLF 2017.08 "
+      end
+
+      operation 262530 "manageArrival"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Manage the position if thing is arrived "
+      end
+
+      operation 262658 "actionNoChoice"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " choose an action (wander, disperse) if no target found.<br>
+May be overridden in daughter classes<br>
+J.Le Fur, 07.2018 "
+      end
+
+      operation 262786 "actionForage"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " set new random move then move "
+      end
+
+      operation 262914 "processTarget"
+	protected explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Sucked up by the container "
+      end
+
+      operation 263042 "actionEnterContainer"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "oneContainer" type class_ref 135810 // I_Container
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Put animal in container and place it in the right location <br>
+was formerly actionEnterBurrow<br>
+Rev. jlf 11.2017 "
+      end
+
+      operation 263170 "actionRandomExitOfContainer"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Quit current burrow system and enter in support soil cell of burrow. Get a newRandom displacement and move "
+      end
+
+      operation 263298 "checkDanger"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " If not dead and within a dangerous area, test death, get back two steps. Can be overridden by daughter classes<br>
+agent'probe on the GUI Version JLF&MS 01.2017, jlf 08.2017 "
+      end
+
+      operation 263426 "actionFlee"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " invert direction of move and move REPEAT_DISPERSAL times<br>
+JLF&MS 08.2021 "
+      end
+
+      operation 263554 "canPerceiveThing"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "oneThing" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Check if can perceive thing "
+      end
+
+      operation 263682 "actionInteract"
+	protected explicit_return_type "boolean"
+	nparams 1
+	  param inout name "animal" type class_ref 144770 // A_Animal
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Interact with an animal - Method refined in daughters classes.
+@param animal any daughter class of A_Animal / JLF 02.2014
+@return true if success "
+      end
+
+      operation 263810 "actionEat"
+	protected explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Method refined in daughters classes. Consume the cell and gain the affinity amount of energy.
+@version JLF 09.2017
+@return true if success "
+      end
+
+      operation 263938 "actionDisperse"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " If no next move, get a random one; then (TODO number in source 2017.09 JLF ) actionMove REPEAT_DISPERSAL times to
+accentuate dispersal <br>
+revision JLF 12.2016, 05,09.2017 "
+      end
+
+      operation 264066 "actionWander"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Get a random one; then actionMove, then reset nextMove <br>
+JLF 02.2018 "
+      end
+
+      operation 264194 "actionHide"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 264322 "deliberation"
+	protected return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "perceivedThings" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " If desire=FORAGE select the cell set with the best affinity<br>
+NB:second stage of the perception-deliberation-action scheme of Ferber 1999 :<br>
+@param perceivedThings TreeSet <I_situated_thing> listeVisibleObjects from perception method
+@return candidate targets : selected things with best affinities<br>
+@version J.E.Longueville & J.Le Fur 2011 / jlefur 03.2012 / Complete rev. JLF 08,10.2017 "
+      end
+
+      operation 264450 "chooseShelter"
+	public return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "perceivedThings" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 264578 "chooseFood"
+	public return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "perceivedThings" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Use list of perceived things and choose any container except A_Organism (eggs, relatives, ...) as a forage source<br>
+rev.JLF 02.2017, 01.2020 "
+      end
+
+      operation 264706 "actionMoveToDestination"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Compute next move to target, move on the GUI "
+      end
+
+      operation 264834 "actionMoveToDestination"
+	protected explicit_return_type "void"
+	nparams 1
+	  param in name "speed" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Compute next move to target with a given speed, move on the GUI "
+      end
+
+      operation 264962 "actionMove"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Move on the landscape (continuous space, grid and GUI) and moves occupants accordingly<br>
+rev. JLF 08.2017, 03.2021
+@see C_Landscape#translate "
+      end
+
+      operation 265090 "setDestination"
+	protected return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "alternatives" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Random selection of the target from undecidable alternatives / rev. JLF 04.2017
+@param alternatives : the possible alternatives set (any situated thing) "
+      end
+
+      operation 265218 "chooseClosest"
+	protected return_type class_ref 135682 // I_SituatedThing
+	nparams 2
+	  param inout name "focus" type class_ref 135682 // I_SituatedThing
+	  param inout name "alternatives" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Select among alternatives the nearest from focus<br>
+@author MS 2019.03, rev. jlf 10.2019 "
+      end
+
+      operation 265346 "setNewRandomMove"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Dismiss targetPoint and provide two random coordinates in meters. This redefines the nextMove_Umeter field. "
+      end
+
+      operation 265474 "computeNextMoveToTarget"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Provide an aim to move toward specific coordinates. We watch if the agent is (or isn't) close to its goal, we have to do
+several tests because if the agent is near in the x variable but not in the y, the next step it may be too far on the x
+abscissa and near to the y abscissa, we have to make sure that the agent won't go on a perpetual move. author QBaduel "
+      end
+
+      operation 265602 "computeNextMoveToTarget"
+	protected explicit_return_type "void"
+	nparams 1
+	  param in name "agentSpeed_UmeterByTick" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " The same function as computeNextMoveToTarget but with a given speed. <br>
+@param agentSpeed_UmeterByTick is the max distance of the agent or agent's vehicle to go over (speed_UmeterBy...). if
+           speed_Umeter exceeds the targetPoint then the distance to target is just the distance between
+           currentPoint_Umeter and targetPoint_Umeter. <br>
+           Le d�placement est suivant un vecteur de coordonn�es (vectCoordX, vectCoordY) ie targetPoint_Umeter -
+           currentPoint_Umeter (sens), de longeur vectNorm = racine(vectCoordX�, vectCoordY�) (norme) et faisant un angle
+           alpha par rapport � l'abscisse (direction) si vectCoordX == 0, alpha = +PI/2 ou -PI/2 �a d�pend du signe de
+           vectCoordY sinon alpha = atan(vectCoordY/vectCoordX) Ainsi nous avons la direction et le sens du d�placement. Et
+           donc � partir de la distance � parcourir, on peut calculer exactement nextMove_Umeter.x et nextMove_Umeter.y
+@see #computeNextMoveToTarget()
+@author LeFur 08.2012 rev. Mboup 10.2014, JLF 04.2017 "
+      end
+
+      operation 265730 "computeNextMoveToTarget0"
+	protected explicit_return_type "void"
+	nparams 1
+	  param in name "agentSpeed_UmeterByTick" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " The same function as computeNext_move but with a given speed. <br>
+@param agentSpeed_UmeterByTick is the max distance of the agent or agent's vehicle to go over (speed_UmeterBy...). if
+           speed_Umeter exceeds the targetPoint then the distance to target is just the distance between
+           currentPoint_Umeter and targetPoint_Umeter.
+@see #computeNextMoveToTarget()
+@author LeFur 08.2012 rev. Mboup 10.2014, JLF 04.2017, MS 08.2019 "
+      end
+
+      operation 265858 "computeMaxDispersalDistance_Umeter"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Maximum distance (straight line) from its birth location "
+      end
+
+      operation 265986 "discardTarget"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Remove reference to this in target.animalsTargettingMe<br>
+rev. jlf 12.2017, 03.2021 "
+      end
+
+      operation 266114 "setTrappedOnBoard"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "status" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SETTERS AND GETTERS
+
+ Restore the speed life trait if false(animal is outside), reduces it by a number if true (animal is inside)<br>
+@version J.LeFur&M.Sall, 05.2017, JLF 09,12.2017 "
+      end
+
+      operation 266242 "setLastContainerLeft"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "lastContainerLeft" type class_ref 135810 // I_Container
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Tag animal last container when it leaves
+@see A_SupportedContainer#agentLeaving "
+      end
+
+      operation 266370 "setHasToLeaveFullContainer"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "dispersal" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 266498 "setMale"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "male" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 266626 "setTarget"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "target" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Remove and dereference preceding target if needed, reference this in target.animalsTargettingMe<br>
+rev. jlf 12.2017, 03.2021, 01.2022 "
+      end
+
+      operation 266754 "isArrived"
+	protected explicit_return_type "boolean"
+	nparams 1
+	  param in name "speed" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Test if agent arrives to destination within one tick. If yes next move = (0,0)
+@param speed agent or agent's vehicle speed
+@author LeFur 08.2012, 08.2017 "
+      end
+
+      operation 266882 "isArrived"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 267010 "isHasToLeaveFullContainer"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 267138 "isTrappedOnBoard"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 267266 "isSightObstacle"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "currentSoilCell" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Tag cell outside the grid as obstacle @author JLF 2019.08 "
+      end
+
+      operation 267394 "getDesire"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 267522 "getCell1Target"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " For display purposes - JLF 02.2017 "
+      end
+
+      operation 267650 "getCell0Location"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 267778 "getMaxDispersalDistance_Umeter"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 267906 "getTargetPoint_Umeter"
+	public explicit_return_type "Coordinate"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 268034 "getTarget"
+	public return_type class_ref 135682 // I_SituatedThing
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 268162 "testMale"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " NB: should be isMale() but renamed so as not to be display in agent'probe on the GUI "
+      end
+
+      operation 268290 "testFemale"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " NB: should be isFemale() but renamed so as not to be display in agent'probe on the GUI "
+      end
+
+      operation 268418 "setDesire"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "desire" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 147842 "I_LivingThing"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " @author Jean Le Fur, 2010-2018, rev. JE.Longueville 2011-01 "
+      operation 198146 "retrieveMyName"
+	public explicit_return_type "String"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " get existence
+@return the identification "
+      end
+
+      operation 198274 "getBirthDate_Utick"
+	public explicit_return_type "double"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @return the birth time step. "
+      end
+
+      operation 198402 "getAge_Uday"
+	public explicit_return_type "double"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @return the age in time step. "
+      end
+
+      operation 198530 "actionGrowOlder_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " increment time step "
+      end
+
+      operation 198658 "getEnergy_Ukcal"
+	public explicit_return_type "double"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " linked to its environment<br>
+public void interact() ? 
+ Get energy (pseudo-energy) JLF 2025 "
+      end
+
+      operation 198786 "setEnergy_Ukcal"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "d" explicit_type "double"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 152578 "A_Amniote"
+      abstract visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " TODO JLF 2018.02 javadoc "
+      classrelation 170114 // <generalisation>
+	relation 170114 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 170114 // <generalisation>
+	  b parent class_ref 144770 // A_Animal
+      end
+
+      classrelation 170242 // <realization>
+	relation 170242 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 170242 // <realization>
+	  b parent class_ref 153602 // I_ReproducingThing
+      end
+
+      attribute 239490 "preMature"
+	public explicit_type "boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+ Reproductive status 
+"
+      end
+
+      attribute 239618 "sexualMature"
+	protected explicit_type "boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " i.e., is this gonade able to make gamete"
+      end
+
+      attribute 239746 "readyToMate"
+	protected explicit_type "boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " agent physiologic ability to mate"
+      end
+
+      attribute 239874 "curMatingLatency_Uday"
+	protected explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 240002 "curGestationLength_Uday"
+	protected explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 170370 // eggList (<unidirectional association>)
+	relation 170370 --->
+	  stereotype "TreeSet"
+	  a role_name "eggList" protected
+	    comment " Simple data structure to hold zygote information during matingLatency"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 170370 // eggList (<unidirectional association>)
+	  b parent class_ref 153730 // C_Egg
+      end
+
+      attribute 240130 "numMatings"
+	protected explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 170498 // hybridInspector (<unidirectional association>)
+	relation 170498 --->
+	  a role_name "hybridInspector" init_value " null" class_relation protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 170498 // hybridInspector (<unidirectional association>)
+	  b parent class_ref 139266 // C_InspectorHybrid
+      end
+
+      operation 268802 "A_Amniote"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 268930 "setRandomAge"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Provide a random age to agents at initialization = sexualMaturityAge +/- weaningAge Can be overridden JLF 01.2018 "
+      end
+
+      operation 269058 "discardThis"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " METHODS
+
+ Remove references to last container left, targeted container children and eggs "
+      end
+
+      operation 269186 "step_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Activity within one tick (inherit animal's activity also)All methods must be called at each step Special case for adult
+female suckling Activity: If foraging, return to sucklings' nest<br>
+@version JLF 03/07.2014, rev 2017.09, 2018.03
+@see updatePhysiologicStatus "
+      end
+
+      operation 269314 "updatePhysiologicStatus"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Manage sexual immaturity, gestation. NB: account for tick length <br>
+manage {@link #actionSpawn()} when pregnant<br>
+Set desire to SUCKLE for newborns<br>
+rev.Le Fur 08.2015, 11.2015, 09.2017 "
+      end
+
+      operation 269442 "canSpawn"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Verify if Amniota can spawn in the currentSoilCell. This method must be redefined in daughter protocols "
+      end
+
+      operation 269570 "deliberation"
+	protected return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "perceivedThings" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " if desire = reproduction, choosePartners, else return super.deliberation() <br>
+@param perceivedThings TreeSet <I_situated_thing> listeVisibleObjects from perception method
+@return candidate targets<br>
+        Version J.E.Longueville & J.Le Fur 2011 / jlefur 03.2012 / Complete rev. JLF 08.2017 "
+      end
+
+      operation 269698 "choosePartner"
+	protected return_type class_ref 135682 // I_SituatedThing
+	nparams 1
+	  param inout name "perceivedThings" explicit_type "TreeSet<I_SituatedThing>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " JLF 03.2021 was formerly included in {@link A_Amniote#deliberation(TreeSet)} "
+      end
+
+      operation 269826 "processTarget"
+	protected explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Try to mate with partner, then super "
+      end
+
+      operation 269954 "actionParentSuckle"
+	protected explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 270082 "actionMateWithMale"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "male" type class_ref 153602 // I_ReproducingThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Only female proceed to mate. This may be triggered by the male<br>
+the femaleFertilisation method accounts for copulation it produces eggs (litter size) with the new genome (Eucaryotes: 2
+gonosomes and microsatXsome)
+@see C_Rodent#actionInteract(C_Rodent)
+@param male the father with wich to mate "
+      end
+
+      operation 270210 "actionSpawn"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Create eggs number of children; use giveBirth() for each egg's genome. Rev. Pape 2015 "
+      end
+
+      operation 270338 "setPregnant"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SETTER AND GETTERS
+
+ Switch the correct counters and tags desire, readyToMate, switchFace, start gestationLength countdown, remove previous
+suitors<br>
+@version JLF 2017.08 "
+      end
+
+      operation 270466 "sameSex"
+	protected explicit_return_type "boolean"
+	nparams 1
+	  param inout name "other" type class_ref 152578 // A_Amniote
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 270594 "getChildren"
+	protected return_type class_ref 152578 // A_Amniote
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Search for children (viz. targeting this) "
+      end
+
+      operation 270722 "getCurGestationLength_Uday"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 270850 "getCurMatingLatency_Uday"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 270978 "isSexualMature"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 271106 "isPregnant"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " used also to color the icon when pregnant "
+      end
+
+      operation 271234 "isSucklingChild"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Check if age lower than genomes' weaning age<br>
+@author lefurj 2017 "
+      end
+
+      operation 271362 "init"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "inspector" type class_ref 139266 // C_InspectorHybrid
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Declare the hybrid inspector that catches the lethal allele in various situations
+@author JLF 02.2013 "
+      end
+
+      operation 271490 "isReadyToMate"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 152706 "A_Organism"
+      abstract visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " This class accounts for organisms with a genome
+@see C_GenomeEucaryote
+@author J. Le Fur 2016-03, 2021-04 "
+      classrelation 169218 // <generalisation>
+	relation 169218 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 169218 // <generalisation>
+	  b parent class_ref 152834 // A_SupportedContainer
+      end
+
+      classrelation 169346 // genome (<unidirectional association>)
+	relation 169346 --->
+	  a role_name "genome" protected
+	    comment " FIELDS
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 169346 // genome (<unidirectional association>)
+	  b parent class_ref 153474 // I_DiploidGenome
+      end
+
+      classrelation 169474 // myHome (<unidirectional association>)
+	relation 169474 --->
+	  a role_name "myHome" protected
+	    comment " JLF 03.2021"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 169474 // myHome (<unidirectional association>)
+	  b parent class_ref 135810 // I_Container
+      end
+
+      operation 260738 "A_Organism"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 260866 "discardThis"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " OVERRIDEN METHOD
+
+ Remove references to genome "
+      end
+
+      operation 260994 "setMyHome"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "myHome" type class_ref 135810 // I_Container
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SETTER and GETTERS
+"
+      end
+
+      operation 261122 "getMyHome"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 261250 "retrieveMyHome"
+	public return_type class_ref 135810 // I_Container
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 261378 "getGenome"
+	public return_type class_ref 153474 // I_DiploidGenome
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 261506 "getAlleles"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " For display purpose (organism' probe) / JLF 03.2018 "
+      end
+    end
+
+    class 153090 "A_VisibleAgent"
+      abstract visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Extend A_NDS, implements basic procedures from I_SituatedThing,<br>
+Get sensing ability and perception, i.e., sensing for animals, area of influence for things
+@author jlefur 2010, rev 12.2013, 05.2018 "
+      classrelation 167682 // <generalisation>
+	relation 167682 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 167682 // <generalisation>
+	  b parent class_ref 153218 // A_NDS
+      end
+
+      classrelation 167810 // <realization>
+	relation 167810 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 167810 // <realization>
+	  b parent class_ref 135682 // I_SituatedThing
+      end
+
+      attribute 237058 "hasToSwitchFace"
+	public explicit_type "boolean"
+	init_value " false"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+"
+      end
+
+      classrelation 167938 // myLandscape (<unidirectional association>)
+	relation 167938 --->
+	  a role_name "myLandscape" init_value " null" class_relation public
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 167938 // myLandscape (<unidirectional association>)
+	  b parent class_ref 135042 // C_Landscape
+      end
+
+      classrelation 168066 // currentSoilCell (<unidirectional association>)
+	relation 168066 --->
+	  a role_name "currentSoilCell" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 168066 // currentSoilCell (<unidirectional association>)
+	  b parent class_ref 135810 // I_Container
+      end
+
+      attribute 237186 "hasLeftDomain"
+	public explicit_type "boolean"
+	init_value " false"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " if the agent reaches an edge, it leaves the simulation"
+      end
+
+      attribute 237314 "hasEnteredDomain"
+	public explicit_type "boolean"
+	init_value " false"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " a new agent comes at an edge from outside the exclos"
+      end
+
+      attribute 237442 "bornCoord_Umeter"
+	public explicit_type "Coordinate"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 237570 "sensing_UmeterByTick"
+	protected explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 168194 // animalsTargetingMe (<unidirectional association>)
+	relation 168194 --->
+	  stereotype "TreeSet"
+	  a role_name "animalsTargetingMe" init_value " new TreeSet<A_Animal>()" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 168194 // animalsTargetingMe (<unidirectional association>)
+	  b parent class_ref 144770 // A_Animal
+      end
+
+      operation 251778 "A_VisibleAgent"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 251906 "canInteractWith"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "oneOccupant" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+ Test if oneOccupant is closer than sensing. Can be specified in daughter classes / JLF 03.2021 "
+      end
+
+      operation 252034 "init"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "m" type class_ref 135042 // C_Landscape
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @param m : the ground manager which will look after the Agent action (if the field is concerned) "
+      end
+
+      operation 252162 "discardThis"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " Remove references to pathwanderer and leave all containers, @rev jlf 2017.12, 2021.02 "
+      end
+
+      operation 252290 "perception"
+	protected return_type class_ref 135682 // I_SituatedThing
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " First stage of the scheme perception, deliberation, decision, action of Jacques Ferber
+<p>
+Ferber, J., 1995. Les syst�mes multi-agents: vers une intelligence collective, InterEditions Paris.</Br>
+Available at: http://www.citeulike.org/user/Bc91/article/1464256 [Accessed February 28, 2011].
+</p>
+Can be used as an indicator of interaction
+@author J.E. Longueville 2011 - J.Le Fur 03.2012
+@return TreeSet<I_situated_thing> listeVisibleObject<br>
+"
+      end
+
+      operation 252418 "setCurrentSoilCell"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "currentSoilCell" type class_ref 135810 // I_Container
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SETTERS AND GETTERS
+"
+      end
+
+      operation 252546 "setHasToSwitchFace"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "hasToSwitchFace" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 252674 "getAnimalsTargetingMe"
+	public return_type class_ref 144770 // A_Animal
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}TreeSet<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 252802 "getCoordinate_Umeter"
+	public explicit_return_type "Coordinate"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 252930 "getCoordinate_Ucs"
+	public explicit_return_type "Coordinate"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 253058 "getCurrentSoilCell"
+	public return_type class_ref 135810 // I_Container
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 253186 "getSensing_UmeterByTick"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 253314 "getDistance_Umeter"
+	public explicit_return_type "double"
+	nparams 1
+	  param inout name "oneCoordinate" explicit_type "Coordinate"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Length (straight line) between this and coordinate / JLF 03.2021 "
+      end
+
+      operation 253442 "getDistance_Umeter"
+	public explicit_return_type "double"
+	nparams 1
+	  param inout name "agent" type class_ref 135682 // I_SituatedThing
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Length (straight line) between this and visible agent / JLF 03.2021 "
+      end
+    end
+
+    class 153218 "A_NDS"
+      abstract visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " The root class of most business objects \"A_\" means abstract & \"NDS\" means Nearly Decomposable System (See Simon,
+1962)
+@author Jean Le Fur, kyle wagner, Quentin Baduel, Jean-Emmanuel Longueville Version 2.1, 17.feb.2011, rev. JLF
+        09-10.2014 "
+      classrelation 167042 // <realization>
+	relation 167042 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 167042 // <realization>
+	  b parent class_ref 153346 // I_CyberneticThing
+      end
+
+      classrelation 167170 // <realization>
+	relation 167170 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 167170 // <realization>
+	  b parent class_ref 147842 // I_LivingThing
+      end
+
+      classrelation 167298 // <realization>
+	relation 167298 -_-|>
+	  a public
+	    java "${type}<A_NDS>"
+	    classrelation_ref 167298 // <realization>
+	  b parent class_ref 130178 // Comparable
+      end
+
+      classrelation 167426 // <realization>
+	relation 167426 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 167426 // <realization>
+	  b parent class_ref 129794 // I_ConstantNumeric
+      end
+
+      classrelation 167554 // <realization>
+	relation 167554 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 167554 // <realization>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      attribute 236162 "myId"
+	protected explicit_type "String"
+	init_value " \"0\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+ Used as a unique identifier & used also to compare objects within sorts and treeSets - LeFur 2011 
+"
+      end
+
+      attribute 236290 "energy_Ukcal"
+	public explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 236418 "myName"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 236546 "birthDate_Utick"
+	const_attribute protected explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 236674 "age_Utick"
+	protected explicit_type "double"
+	init_value " DEFAULT_AGE0_Utick"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 236802 "age_Uday"
+	protected explicit_type "double"
+	init_value " age_Utick/C_ConvertTimeAndSpace.oneDay_Utick"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 236930 "dead"
+	protected explicit_type "boolean"
+	init_value " false"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Used to avoid concurrent modification exception in inspector's rodent list 
+"
+      end
+
+      operation 249090 "A_NDS"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+
+ Has to be initialized by a ground manager @see A_VisibleAgent#init(landscape) "
+      end
+
+      operation 249218 "discardThis"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+ Remove references to other objects. Overriden in daughter classes
+@revision JLF 2016.05 "
+      end
+
+      operation 249346 "actionGrowOlder_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Increases age.Ensures the validity of the time scales (+ exploratory research on time scales: ticks vs
+calendars).<br>
+Tested with several times scales : System.out.println(\"A_NDS.getAge_Uday()\" + age_Utick + \"/\" + age_Utick /
+oneDay_Utick + \"days (1day:\" + oneDay_Utick + \"ticks)\");<br>
+Version J.Le Fur 08.2014, rev. 11.2015 "
+      end
+
+      operation 249474 "step_Utick"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Computing time allocated to the agentActivity<br>
+Called at each time tick; overriden in successive daughter classes "
+      end
+
+      operation 249602 "compareTo"
+	public explicit_return_type "int"
+	nparams 1
+	  param inout name "other" type class_ref 153218 // A_NDS
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 249730 "checkDeath"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "deathProbability" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " set Dead if random number is lower than death probability passed in arg "
+      end
+
+      operation 249858 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 249986 "setAge_Uday"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "age_Uday" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SETTERS & GETTERS
+"
+      end
+
+      operation 250114 "setDead"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "dead" explicit_type "boolean"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Used to toggle death on the GUI, JLF 09.2012 "
+      end
+
+      operation 250242 "setThisName"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "oneName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 250370 "isDead"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 250498 "getDeathProbability_Utick"
+	protected explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 250626 "computeDeathProbability_Uday"
+	protected explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Retrieve death probability
+@return double value "
+      end
+
+      operation 250754 "retrieveId"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 250882 "getAge_Uday"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Ensures the validity of the time scales (+ exploratory research on time scales: ticks vs calendars).<br>
+Tested with several times scales : System.out.println(\"A_NDS.getAge_Uday()\" + age_Utick + \"/\" + age_Utick /
+oneDay_Utick + \"days (1day:\" + oneDay_Utick + \"ticks)\");<br>
+J.Le Fur 08.2014 "
+      end
+
+      operation 251010 "getBirthDate_Utick"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 251138 "getAge_Utick"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 251266 "retrieveMyName"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 251394 "getEnergy_Ukcal"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 251522 "setEnergy_Ukcal"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "d" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 251650 "setMyName"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "myName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 153346 "I_CyberneticThing"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Any thing that takes input and produces actions is an Agent. Agents usually map input to output, but they may just produce
+outputs and ignore their inputs.
+@author kyle wagner, elyk@acm.org / rev. Quentin Baduel, 2009 / Jean Le Fur, 2009, 2014, 2015
+Version 1.0, Mon Nov 20 14:25:04 2000 "
+    end
+
+    class 153602 "I_ReproducingThing"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Interface for all agents/things that can mate with one another.
+@author kyle wagner, elyk@acm.org / Jean Le Fur rev. 04.03.2014 Version 1.0, dec 23, 2000 "
+      operation 268546 "actionMateWithMale"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "parent2" type class_ref 153602 // I_ReproducingThing
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @param parent2 an agent/thing capable of mating provides a new agent/thing, created sexually by this agent/thing and parent2 (the offspring
+           need not be capable of mating, however it is likely to have this ability, and it will have the Sexual interface).
+@return true if success "
+      end
+
+      operation 268674 "giveBirth"
+	public return_type class_ref 144770 // A_Animal
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @param genome the DNA of the egg generate a new animal compulsory for each C_Rodent daughter class "
+      end
+    end
+
+    class 153730 "C_Egg"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " a simple structure containing a diploid genome, gets all the properties of NDS
+@author J.LeFur 2011 "
+      classrelation 170626 // <generalisation>
+	relation 170626 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 170626 // <generalisation>
+	  b parent class_ref 152706 // A_Organism
+      end
+
+      operation 271618 "C_Egg"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "genome" type class_ref 153474 // I_DiploidGenome
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 153858 "C_StreamCurrent"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Structure associated with marine cells for current speed to be displayed on GUI<br>
+Could be included in C_SoilCellMarine, however used to lighten the GUI calculations
+@author JLF 2024
+@see C_SoilCellMarine
+@see I_ConstantPNMC#PARTICLE_CELLS_SPACING "
+      classrelation 171906 // <generalisation>
+	relation 171906 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 171906 // <generalisation>
+	  b parent class_ref 152834 // A_SupportedContainer
+      end
+
+      classrelation 172034 // myCell (<unidirectional association>)
+	relation 172034 --->
+	  a role_name "myCell" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 172034 // myCell (<unidirectional association>)
+	  b parent class_ref 153986 // C_SoilCellMarine
+      end
+
+      operation 274690 "C_StreamCurrent"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "affinity" explicit_type "int"
+	  param in name "lineNo" explicit_type "int"
+	  param in name "colNo" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+
+ Constructor sets the affinity to 10 "
+      end
+
+      operation 274818 "getMyCell"
+	public return_type class_ref 153986 // C_SoilCellMarine
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SETTER and GETTER
+"
+      end
+
+      operation 274946 "setMyCell"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "myCell" type class_ref 153986 // C_SoilCellMarine
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 275074 "getSpeedEast"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 275202 "getSpeedNorth"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+  end
+
+  package_ref 129026 // ground
+
+  package_ref 130306 // rodents
+
+  package_ref 130562 // dna
+
+  deploymentview 129794 "thing"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 139778 "I_LivingThing"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 147842 // I_LivingThing
+      end
+    end
+
+    artifact 139906 "I_SituatedThing"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import thing.ground.C_LandPlot;
+import thing.ground.I_Container;
+import org.locationtech.jts.geom.Coordinate;
+${definition}"
+      associated_elems
+	class_ref 135682 // I_SituatedThing
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 144898 "I_CyberneticThing"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 153346 // I_CyberneticThing
+      end
+    end
+
+    artifact 145026 "A_NDS"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import data.constants.I_ConstantNumeric;
+import data.constants.rodents.I_ConstantStringRodents;
+import data.converters.C_ConvertTimeAndSpace;
+import melanesim.C_ContextCreator;
+import melanesim.util.C_VariousUtilities;
+import repast.simphony.essentials.RepastEssentials;
+${definition}"
+      associated_elems
+	class_ref 153218 // A_NDS
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 145154 "A_VisibleAgent"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.TreeSet;
+import thing.ground.I_Container;
+import thing.ground.landscape.C_Landscape;
+import org.locationtech.jts.geom.Coordinate;
+import melanesim.protocol.A_Protocol;
+${definition}"
+      associated_elems
+	class_ref 153090 // A_VisibleAgent
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 145794 "A_Organism"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import thing.dna.C_GenomeEucaryote;
+import thing.dna.I_DiploidGenome;
+import thing.ground.A_SupportedContainer;
+import thing.ground.I_Container;
+${definition}"
+      associated_elems
+	class_ref 152706 // A_Organism
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file license "
+    end
+
+    artifact 145922 "A_Animal"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import java.util.TreeSet;
+import org.locationtech.jts.geom.Coordinate;
+import data.C_Parameters;
+import data.constants.I_ConstantNumeric;
+import data.converters.C_ConvertTimeAndSpace;
+import melanesim.C_ContextCreator;
+import melanesim.protocol.A_Protocol;
+import melanesim.util.C_VariousUtilities;
+import thing.dna.C_GenomeAnimalia;
+import thing.dna.C_GenomeEucaryote;
+import thing.dna.I_DiploidGenome;
+import thing.dna.species.C_GenomeBorrelia;
+import thing.ground.A_Container;
+import thing.ground.A_SupportedContainer;
+import thing.ground.I_Container;
+import thing.ground.landscape.C_Landscape;
+import thing.rodents.C_BorreliaCrocidurae;
+${definition}"
+      associated_elems
+	class_ref 144770 // A_Animal
+      end
+      comment " This source code is licensed under a BSD license as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 146050 "I_ReproducingThing"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import thing.dna.I_DiploidGenome;
+${definition}"
+      associated_elems
+	class_ref 153602 // I_ReproducingThing
+      end
+    end
+
+    artifact 146178 "A_Amniote"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.TreeSet;
+import presentation.epiphyte.C_InspectorHybrid;
+import thing.dna.C_GenomeAmniota;
+import thing.dna.C_GenomeEucaryote;
+import thing.dna.I_DiploidGenome;
+import thing.ground.I_Container;
+import thing.rodents.C_Rodent;
+import data.C_Parameters;
+import data.converters.C_ConvertTimeAndSpace;
+import melanesim.C_ContextCreator;
+import melanesim.protocol.A_Protocol;
+${definition}"
+      associated_elems
+	class_ref 152578 // A_Amniote
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 146306 "C_Egg"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import thing.dna.I_DiploidGenome;
+${definition}"
+      associated_elems
+	class_ref 153730 // C_Egg
+      end
+    end
+
+    artifact 146434 "I_MarineActor"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 130434 // I_MarineActor
+      end
+    end
+
+    artifact 146562 "C_Plankton"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import data.constants.I_ConstantPNMC;
+import thing.dna.I_DiploidGenome;
+import thing.ground.C_SoilCellMarine;
+${definition}"
+      associated_elems
+	class_ref 136194 // C_Plankton
+      end
+    end
+
+    artifact 146690 "C_Nekton"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import data.constants.I_ConstantPNMC;
+import thing.dna.I_DiploidGenome;
+import thing.ground.C_SoilCellMarine;
+${definition}"
+      associated_elems
+	class_ref 136322 // C_Nekton
+      end
+    end
+
+    artifact 146818 "C_Ship_cargo"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Random;
+import data.constants.I_ConstantPNMC;
+import data.converters.C_ConvertTimeAndSpace;
+import melanesim.C_ContextCreator;
+import thing.dna.I_DiploidGenome;
+${definition}"
+      associated_elems
+	class_ref 136834 // C_Ship_cargo
+      end
+    end
+
+    artifact 146946 "C_StreamCurrent"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import thing.ground.A_SupportedContainer;
+import thing.ground.C_SoilCellMarine;
+${definition}"
+      associated_elems
+	class_ref 153858 // C_StreamCurrent
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt  "
+    end
+  end
+end

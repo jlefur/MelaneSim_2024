@@ -1,0 +1,409 @@
+format 224
+"plants" // src::thing::dna::species::plants
+  revision 1
+  modified_by 2 "lefur"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:\\Users\\lefur\\Documents\\GitHub\\MelaneSim_2024\\src/thing/dna/species/plants/"
+  java_package "thing.dna.species.plants"
+  classview 131458 "plants"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 156802 "C_GenomeAcacia"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " @author JLF and MS 04.2016 "
+      classrelation 179330 // <generalisation>
+	relation 179330 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 179330 // <generalisation>
+	  b parent class_ref 156930 // C_GenomeSpermatophyta
+      end
+
+      operation 297858 "C_GenomeAcacia"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+
+ Returns a new C_GenomeAcacia- genome for trees <br>
+Trait values references (see comments in source code):<br>
+- Ndiaye O., Diallo A., Sagna M.B. et Guissé A. (2013) Diversité floristique des peuplements ligneux du Ferlo, Sénégal. Vertigo, 13(3), DOI :
+10.4000/vertigo.14352 "
+      end
+    end
+
+    class 156930 "C_GenomeSpermatophyta"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " The spermatophyts are a group plants that produce seeds
+@author J.Le Fur 2012 (source code origin: Kyle Wagner), rev. JLF&MS 04.2016 "
+      classrelation 179074 // <generalisation>
+	relation 179074 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 179074 // <generalisation>
+	  b parent class_ref 155266 // C_GenomeEucaryote
+      end
+
+      attribute 247554 "GROWTH_RATE_MAPLOCS"
+	class_attribute const_attribute protected explicit_type "Double"
+	init_value " new ArrayList<Double>(Arrays.asList(16.))"
+	stereotype "ArrayList"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " TODO JLF 2015.11 following lines should be put in one map mapPosition and one map mapLoci Maplocs and locus of the
+ chromosome Pair, ex:
+ private TreeMap<String, Double[]> mapPosition = new TreeMap<String, Double[]>;
+ this.mapPosition.put(LITTER_SIZE,12.);
+"
+      end
+
+      attribute 247682 "GROWTH_RATE_LOCUS"
+	class_attribute const_attribute protected explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 247810 "numGenesXsomeSpermatophyta"
+	class_attribute const_attribute protected explicit_type "int"
+	init_value " 1"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 179202 // xsomePairSpermatophyta (<unidirectional association>)
+	relation 179202 --->
+	  a role_name "xsomePairSpermatophyta" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 179202 // xsomePairSpermatophyta (<unidirectional association>)
+	  b parent class_ref 154754 // C_ChromosomePair
+      end
+
+      operation 297474 "C_GenomeSpermatophyta"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+
+ Return a new GenomeSpermatophyta, adds an autosome bearing the reproductive traits of the (daughters) species.<br>
+"
+      end
+
+      operation 297602 "makeSpermatophytaBivalent"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "allelesMap" explicit_type "Map<String, Double>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHOD
+
+ @param allelesMap the specific allele value from the appropriate daughter genome /author J. Le Fur 08.2014 "
+      end
+
+      operation 297730 "getGrowthRateValue"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " GETTER
+
+ Public direct access to the genes value <br>
+ Reminder: the expressor is an expressor of type average // SUPPOSES ALL MAPLOCS ARE ON THE SAME CHROMOSOME.
+ To account for maplocs on several xsomes: for each map loc find the chromosome, apply the expressor each time, process the
+ list of results (one value per chromosome).<br>
+ author Kyle Wagner 2002, rev.JLF 05.2012, 07.2014, 08.2014, JLF&MS 04.2016 */
+"
+      end
+    end
+
+    class 157058 "C_GenomeBalanites"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " @author JLF and MS 04.2016 "
+      classrelation 179458 // <generalisation>
+	relation 179458 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 179458 // <generalisation>
+	  b parent class_ref 156930 // C_GenomeSpermatophyta
+      end
+
+      operation 297986 "C_GenomeBalanites"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+
+ Returns a new C_GenomeBalanites (Balanites aegyptiaca)- genome for shrub <br>
+Trait values references (see comments in source code):<br>
+- Ndiaye O., Diallo A., Sagna M.B. et Guissé A. (2013) Diversité floristique des peuplements ligneux du Ferlo, Sénégal. Vertigo, 13(3), DOI :
+10.4000/vertigo.14352 "
+      end
+    end
+
+    class 157186 "C_GenomeFabacea"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " @author JLF and MS 04.2016 "
+      classrelation 179586 // <generalisation>
+	relation 179586 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 179586 // <generalisation>
+	  b parent class_ref 156930 // C_GenomeSpermatophyta
+      end
+
+      operation 298114 "C_GenomeFabacea"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+
+ Returns a new C_GenomeFabacea (e.g., groundnut) - genome for sahelian crops <br>
+  Trait values references (see comments in source code):<br>
+   - xxx (2014)  "
+      end
+    end
+
+    class 157314 "C_GenomePoacea"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " @author JLF and MS 04.2016 "
+      classrelation 179714 // <generalisation>
+	relation 179714 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 179714 // <generalisation>
+	  b parent class_ref 156930 // C_GenomeSpermatophyta
+      end
+
+      operation 298242 "C_GenomePoacea"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+
+ Returns a new C_GenomePoacea - genome for wild grass <br>
+  Trait values references (see comments in source code):<br>
+   - xxx (2014)  "
+      end
+    end
+  end
+
+  deploymentview 130690 "plants"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 150018 "C_GenomeSpermatophyta"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Map;
+import thing.dna.C_Chromosome;
+import thing.dna.C_ChromosomePair;
+import thing.dna.C_Gene;
+import thing.dna.C_GenomeEucaryote;
+${definition}"
+      associated_elems
+	class_ref 156930 // C_GenomeSpermatophyta
+      end
+    end
+
+    artifact 150146 "C_GenomeAcacia"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 156802 // C_GenomeAcacia
+      end
+    end
+
+    artifact 150274 "C_GenomeBalanites"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 157058 // C_GenomeBalanites
+      end
+    end
+
+    artifact 150402 "C_GenomeFabacea"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 157186 // C_GenomeFabacea
+      end
+    end
+
+    artifact 150530 "C_GenomePoacea"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 157314 // C_GenomePoacea
+      end
+    end
+  end
+end

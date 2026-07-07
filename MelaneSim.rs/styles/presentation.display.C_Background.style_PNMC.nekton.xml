@@ -3,7 +3,7 @@
   <size>-1.0</size>
   <sizeMax>2.0</sizeMax>
   <sizeMin>1.0</sizeMin>
-  <sizeScale>2.0</sizeScale>
+  <sizeScale>2.37</sizeScale>
   <sizeMethodName>getScale</sizeMethodName>
   <label></label>
   <labelPosition>bottom</labelPosition>

@@ -42,10 +42,13 @@
 		converter="repast.simphony.parameter.StringConverterFactory$StringStringConverter" />
 
 	<!-- SIMULATION SETTING -->
-	<parameter name="TERMINATE" displayName="2a/ Terminate simulation"
+	<parameter name="ENERGY_MODE" displayName="2a/ Compute normalized energy"
+		type="boolean" defaultValue="true" isReadOnly="false"
+		converter="repast.simphony.parameter.StringConverterFactory$BooleanConverter" />
+	<parameter name="TERMINATE" displayName="2b/ display most occupied cells"
 		type="boolean" defaultValue="false" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$BooleanConverter" />
-	<parameter name="randomSeed" displayName="2b/ Default Random Seed (unused)"
+	<parameter name="randomSeed" displayName="2c/ Default Random Seed (unused)"
 		type="int" defaultValue="1122279370" isReadOnly="true"
 		converter="repast.simphony.parameter.StringConverterFactory$IntConverter" /><!-- 
 		default value = "__NULL__" => graine aleatoire -->
@@ -55,9 +58,9 @@
 <!-- fileName : scenario.xml -->
 <!-- protocolName : PNMC_plancton -->
 <Scenario>
-	<repast.simphony.dataLoader.engine.ClassNameDataLoaderAction context="SIMmasto0" file="repast.simphony.dataLoader.engine.ClassNameDataLoaderAction_0.xml" />
-	<repast.simphony.action.display context="SIMmasto0" file="styles\repast.simphony.action.display_PNMC_drifters.xml" />
-	<repast.simphony.action.display context="SIMmasto0" file="styles\repast.simphony.action.display_PNMC_energy.xml" />
-	<repast.simphony.userpanel.ui.DefaultUserPanelDescriptorAction context="SIMmasto0" file="repast.simphony.userpanel.ui.DefaultUserPanelDescriptorAction_marine.xml" />
+	<repast.simphony.dataLoader.engine.ClassNameDataLoaderAction context="Map2D" file="repast.simphony.dataLoader.engine.ClassNameDataLoaderAction_0.xml" />
+	<repast.simphony.action.display context="Map2D" file="styles\repast.simphony.action.display_PNMC_drifters.xml" />
+	<repast.simphony.action.display context="Map2D" file="styles\repast.simphony.action.display_PNMC_energy.xml" />
+	<repast.simphony.userpanel.ui.DefaultUserPanelDescriptorAction context="Map2D" file="repast.simphony.userpanel.ui.DefaultUserPanelDescriptorAction_marine.xml" />
 	<model.initializer class="presentation.display.C_CustomPanelSetMarine" />
 </Scenario>

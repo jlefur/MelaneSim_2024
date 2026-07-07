@@ -1,0 +1,3 @@
+class C_UserPanelMasterButtonsCreator
+!!!225794.java!!!	createPanel() : JPanel
+    return new C_UserPanelMasterButtons();

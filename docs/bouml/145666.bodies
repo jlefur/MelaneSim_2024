@@ -1,0 +1,55 @@
+class Node
+!!!190850.java!!!	Node(in row : int, in col : int)
+        super();
+        this.row = row;
+        this.col = col;
+!!!190978.java!!!	calculateHeuristic(inout finalNode : Node) : void
+        this.h = Math.abs(finalNode.getRow() - getRow()) + Math.abs(finalNode.getCol() - getCol());
+!!!191106.java!!!	setNodeData(inout currentNode : Node, in cost : int) : void
+        int gCost = currentNode.getG() + cost;
+        setParent(currentNode);
+        setG(gCost);
+        calculateFinalCost();
+!!!191234.java!!!	checkBetterPath(inout currentNode : Node, in cost : int) : boolean
+        int gCost = currentNode.getG() + cost;
+        if (gCost < getG()) {
+            setNodeData(currentNode, cost);
+            return true;
+        }
+        return false;
+!!!191362.java!!!	calculateFinalCost() : void
+        int finalCost = getG() + getH();
+        setF(finalCost);
+!!!191490.java!!!	equals(inout arg0 : Object) : boolean
+        Node other = (Node) arg0;
+        return this.getRow() == other.getRow() && this.getCol() == other.getCol();
+!!!191618.java!!!	toString() : String
+        return "Node [row=" + row + ", col=" + col + "]";
+!!!191746.java!!!	getH() : int
+        return h;
+!!!191874.java!!!	setH(in h : int) : void
+        this.h = h;
+!!!192002.java!!!	getG() : int
+        return g;
+!!!192130.java!!!	setG(in g : int) : void
+        this.g = g;
+!!!192258.java!!!	getF() : int
+        return f;
+!!!192386.java!!!	setF(in f : int) : void
+        this.f = f;
+!!!192514.java!!!	getParent() : Node
+        return parent;
+!!!192642.java!!!	setParent(inout parent : Node) : void
+        this.parent = parent;
+!!!192770.java!!!	isBlock() : boolean
+        return isBlock;
+!!!192898.java!!!	setBlock(inout isBlock : boolean) : void
+        this.isBlock = isBlock;
+!!!193026.java!!!	getRow() : int
+        return row;
+!!!193154.java!!!	setRow(in row : int) : void
+        this.row = row;
+!!!193282.java!!!	getCol() : int
+        return col;
+!!!193410.java!!!	setCol(in col : int) : void
+        this.col = col;

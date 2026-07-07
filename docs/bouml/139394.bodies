@@ -1,0 +1,76 @@
+class C_RodentCaged
+!!!349698.java!!!	C_RodentCaged(inout genome : I_DiploidGenome)
+		super(genome);
+!!!349826.java!!!	giveBirth(inout genome : I_DiploidGenome) : A_Animal
+		C_RodentCaged rodentChild;
+		if (genome instanceof C_GenomeMastoNatalensis) rodentChild = new C_RodentCaged(new C_GenomeMastoNatalensis());
+		else if (genome instanceof C_GenomeMastoErythroleucus) rodentChild = new C_RodentCaged(new C_GenomeMastoErythroleucus());
+		else {
+			rodentChild = new C_RodentCaged(new C_GenomeMastomys());
+		}
+		rodentChild.birthCage = this.currentCage;
+		rodentChild.currentCage = this.currentCage;
+		rodentChild.currentLine = this.currentLine;
+		rodentChild.initParameters();
+		return rodentChild;
+!!!349954.java!!!	initParameters() : void
+		super.initParameters();
+		this.speed_UmeterByTick = this.speed_UmeterByTick / IN_CAGE_SPEED_REDUCER;
+!!!350082.java!!!	setDestination(inout alternatives : TreeSet<I_SituatedThing>) : I_SituatedThing
+		if (!alternatives.isEmpty()) {
+			int noTarget = (int) (C_ContextCreator.randomGeneratorForMovement.nextDouble() * alternatives.size());
+			I_SituatedThing target = null;
+			java.util.Iterator<I_SituatedThing> iterator = alternatives.iterator();
+			for (int i = 0; i < alternatives.size(); i++) {
+				target = iterator.next();
+				if (i == noTarget) this.setTarget(target);
+			}
+			return this.target;
+		}
+		else return null;
+!!!350210.java!!!	discardThis() : void
+		this.birthCage = null;
+		this.currentCage = null;
+		super.discardThis();
+!!!350338.java!!!	getChildren() : A_Amniote
+		TreeSet<A_Amniote> children = new TreeSet<A_Amniote>();
+		return children;
+!!!350466.java!!!	deliberation(inout perceivedThings : TreeSet<I_SituatedThing>) : I_SituatedThing
+		TreeSet<I_SituatedThing> visibleSoilCells = new TreeSet<I_SituatedThing>();
+		for (Object oneObject : perceivedThings)
+			if (!oneObject.equals(this)) {
+				if (oneObject instanceof C_RodentCaged) this.actionInteract((C_RodentCaged) oneObject);
+				else if ((oneObject instanceof C_SoilCell) && (oneObject != this.currentSoilCell)) visibleSoilCells.add((C_SoilCell) oneObject);
+			}
+		return visibleSoilCells;
+!!!350594.java!!!	perception() : I_SituatedThing
+		return this.currentCage.getOccupantList();
+!!!350722.java!!!	actionSpawn() : void
+		super.actionSpawn();
+		TreeSet<A_Animal> children = new TreeSet<>(this.animalsTargetingMe);
+		for (A_Animal child : children)
+			if (child.getTarget() == this) {
+				child.setTarget(null);
+				child.setDesire(FEED);
+			}
+!!!350850.java!!!	setBirthCage(inout birthLandPlot : C_LandPlot) : void
+		this.birthCage = birthLandPlot;
+!!!350978.java!!!	setCurrentCage(inout currentCage : C_LandPlot) : void
+		this.currentCage = currentCage;
+!!!351106.java!!!	setCurrentLine(in currentLine : int) : void
+		this.currentLine = currentLine;
+!!!351234.java!!!	getGeneration() : String
+		return generation;
+!!!351362.java!!!	computeDeathProbability_Uday() : double
+		// return super.getDeathProbability_Uday()/10.;
+		return 0.; // (for unbiased outputs)
+!!!351490.java!!!	getBirthCage() : C_LandPlot
+		return birthCage;
+!!!351618.java!!!	getCurrentCage() : C_LandPlot
+		return currentCage;
+!!!351746.java!!!	getCurrentLine() : int
+		return currentLine;
+!!!351874.java!!!	getDiploidNumber() : int
+		if (this.genome == null) return -99999999;// in case GUI display a dead rodent
+		else return this.genome.getDiploidNumber();
+

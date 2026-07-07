@@ -1,0 +1,33 @@
+class C_InspectorFossorialRodents
+!!!236290.java!!!	C_InspectorFossorialRodents()
+		super();
+		this.nbWanderingRodents = 0.; // double to allow the wanderingRodents_Upercent computation - LeFur 2011;
+		this.wanderingRodents_Upercent = 0.;
+		this.burrowList = new TreeSet<C_BurrowSystem>();
+		// add to the super class header, this proper header
+		this.indicatorsHeader = "tick;NbBurrows;wanderers(%)";
+!!!236418.java!!!	indicatorsCompute() : void
+		TreeSet<C_Rodent> listRodents = C_InspectorPopulationRodent.rodentList;
+		Iterator<C_Rodent> rodents = listRodents.iterator();
+		this.nbWanderingRodents = 0.; // double to allow the wanderingRodents_Upercent computation - LeFur 2011;
+		while (rodents.hasNext())
+			if (!(rodents.next().getCurrentSoilCell() instanceof C_BurrowSystem)) this.nbWanderingRodents++;
+		this.wanderingRodents_Upercent = this.nbWanderingRodents / listRodents.size();
+		this.burrowList.clear();
+		Object[] liste = RunState.getInstance().getMasterContext().toArray();
+		for (int i = 0; i < liste.length; i++)
+			if (liste[i] instanceof C_BurrowSystem) this.burrowList.add((C_BurrowSystem) liste[i]);
+!!!236546.java!!!	discardDeadThing(inout thing : I_SituatedThing) : void
+		if ((thing instanceof C_BurrowSystem) && !this.burrowList.remove(thing))
+			A_Protocol.event("C_InspectorFossorialRodents.discardDeadThing", "Could not remove " + ((A_NDS) thing).retrieveMyName(), isError);
+!!!236674.java!!!	indicatorsStoreValues() : String
+	    this.indicatorsValues = RepastEssentials.GetTickCount() + CSV_FIELD_SEPARATOR + getNbBurrows() + CSV_FIELD_SEPARATOR + wanderingRodents_Upercent;
+		return (this.indicatorsValues);
+!!!236802.java!!!	addBurrowToList(inout burrow : C_BurrowSystem) : void
+		if (!this.burrowList.add(burrow)) A_Protocol.event("C_InspectorPopulation.addBurrowToList", "Could not add " + burrow, isError);
+!!!236930.java!!!	getNbBurrows() : int
+		return this.burrowList.size();
+!!!237058.java!!!	getWanderingRodents_Upercent() : double
+		return this.wanderingRodents_Upercent;
+!!!237186.java!!!	getBurrowList() : C_BurrowSystem
+		return this.burrowList;

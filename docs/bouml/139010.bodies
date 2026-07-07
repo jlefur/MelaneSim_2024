@@ -1,0 +1,30 @@
+class C_Trap
+!!!319106.java!!!	C_Trap(in affinity : int, in lineNo : int, in colNo : int)
+		super(affinity, lineNo, colNo);
+!!!319234.java!!!	trapRodent(inout rodentBandia : C_RodentCmr) : void
+		// control
+		if (rodentBandia.isTrappedOnBoard()) A_Protocol.event("C_Trap.trapRodent", rodentBandia + " is already trapped", isError);
+		if (this.open && !rodentBandia.isTrappedOnBoard() && !this.isFull()
+				&& (C_ContextCreator.randomGeneratorForDeathProb.nextDouble() <= TRAP_LOADING_PROBA)) {
+			rodentBandia.setTrappedOnBoard(true);
+			closeTrap();
+		}
+		else rodentBandia.actionRandomExitOfContainer();// put rodent besides the trap.
+!!!319362.java!!!	openTrap() : void
+		this.open = true;
+		this.hasToSwitchFace = true;
+!!!319490.java!!!	closeTrap() : void
+		this.open = false;
+		this.hasToSwitchFace = true;
+!!!319618.java!!!	agentLeaving(inout thing : I_SituatedThing) : boolean
+		if (super.agentLeaving(thing)) {
+			this.setDead(false);// TODO JLF 2017.03 ajout de setDead
+			return true;
+		}
+		else return false;
+!!!319746.java!!!	isOpen() : boolean
+		return this.open;
+!!!319874.java!!!	getCarryingCapacity_Urodent() : int
+		return TRAP_MAX_LOAD;
+!!!320002.java!!!	computeDeathProbability_Uday() : double
+		return 0.;

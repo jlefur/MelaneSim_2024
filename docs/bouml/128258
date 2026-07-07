@@ -1,0 +1,1459 @@
+format 224
+"data" // src::data
+  revision 1
+  modified_by 2 "lefur"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:\\Users\\lefur\\Documents\\GitHub\\MelaneSim_2024\\src/data/"
+  java_package "data"
+  package_ref 128386 // constants
+
+  classview 128514 "data"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 129538 "C_Chronogram"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Builds a data chrono from a CSV events file
+@author pamboup 21/06/2013, rev JLF 08.2014 "
+      classrelation 128642 // <realization>
+	relation 128642 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 128642 // <realization>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      classrelation 128770 // <realization>
+	relation 128770 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 128770 // <realization>
+	  b parent class_ref 129794 // I_ConstantNumeric
+      end
+
+      classrelation 129026 // <realization>
+	relation 129026 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 129026 // <realization>
+	  b parent class_ref 129922 // I_ConstantGerbil
+      end
+
+      attribute 156802 "fullEvents_Ustring"
+	private explicit_type "String"
+	init_value " new ArrayList<String>()"
+	stereotype "ArrayList"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+ Contains the data from the chrono 
+"
+      end
+
+      attribute 156930 "chronoCurrentIndex"
+	private explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " current index within the chrono 
+"
+      end
+
+      attribute 157058 "chronoLength"
+	private explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " number of lines of the chrono 
+"
+      end
+
+      attribute 157186 "chronoCurrentDate"
+	private explicit_type "Date"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " The current date from the chrono, Different from current date of the simulation<br>
+If dataChronoCurrentDate == current date of simulation then we have to manage the simulation from the chrono 
+"
+      end
+
+      attribute 157314 "isEndOfChrono"
+	public explicit_type "boolean"
+	init_value " false"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 129666 "C_Chronogram"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "csvChronoName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+
+ Retrieve data from a chronogram, put the events of dataChrono array field to allow a direct access and to close the buffer
+<br>
+The internal chronogram date is in format : dd/mm/yyyy.<br>
+Chronogram format : DATE_COL, X_COL, Y_COL, VALUE1_COL, VALUE2_COL ...<br>
+CSV semicolon separator (;) The csv chronogram file must be in data_csv directory/
+@see I_ConstantNumeric author pamboup 21/06/2013, rev. JLF 08.2014 "
+      end
+
+      operation 129794 "retrieveCurrentEvents"
+	public return_type class_ref 130050 // C_Event
+	nparams 1
+	  param inout name "simulationCurrentDate" explicit_type "Date"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}List<${type}> ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+ Compare dates, retrieve genuine events, process the string stuff, fill in a treeSet of C_Event.
+@return a tree set with the current events to process "
+      end
+
+      operation 129922 "setCurrentIndex"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "dataChronoCurrentIndex" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " SETTERS & GETTERS
+"
+      end
+
+      operation 130050 "setChronoCurrentDate"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "currentDate" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 130178 "getChronoLength"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 130306 "getFullEvents_Ustring"
+	public explicit_return_type "ArrayList<String>"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 130434 "getCurrentIndex"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 130562 "getChronoCurrentDate"
+	public explicit_return_type "Date"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 130050 "C_Event"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " WORK IN PROGRESS Basic structure to communicate between worlds (aims to be related with C_Information ?)
+@see C_Information
+@author Jean Le Fur (lefur@ird.fr) Version 04/06/2014, rev.09.2014, JLF & M.Sall 11.2015 "
+      classrelation 129154 // <realization>
+	relation 129154 -_-|>
+	  a public
+	    java "${type}<C_Event>"
+	    classrelation_ref 129154 // <realization>
+	  b parent class_ref 130178 // Comparable
+      end
+
+      classrelation 129282 // <realization>
+	relation 129282 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 129282 // <realization>
+	  b parent class_ref 129794 // I_ConstantNumeric
+      end
+
+      classrelation 129410 // <realization>
+	relation 129410 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 129410 // <realization>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      attribute 157442 "when_Ucalendar"
+	public explicit_type "Date"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+"
+      end
+
+      attribute 157570 "whereX_Ucell"
+	public explicit_type "Integer"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 157698 "whereY_Ucell"
+	public explicit_type "Integer"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 157826 "whereX_Udouble"
+	public explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 157954 "whereY_Udouble"
+	public explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 158082 "type"
+	public explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 158210 "value1"
+	public explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " can be parsed to a number by the user protocol"
+      end
+
+      attribute 158338 "value2"
+	public explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " can be parsed to a list by the user protocol (the first value is a tag: \"city\" or one of GROUND_TYPE_AREA"
+      end
+
+      attribute 158466 "otherValues"
+	public explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " TODO MS 2020.10 add to retrieve the others values of the event"
+      end
+
+      attribute 158594 "myId"
+	private explicit_type "String"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " unique identifiers in the project must be strings (event if they represent numbers, cf. CI)"
+      end
+
+      operation 130690 "C_Event"
+	protected explicit_return_type ""
+	nparams 1
+	  param in name "readLine" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+
+ instantiate an event with geographic coordinates or cell coordinate "
+      end
+
+      operation 130818 "compareTo"
+	public explicit_return_type "int"
+	nparams 1
+	  param inout name "other" type class_ref 130050 // C_Event
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+"
+      end
+
+      operation 130946 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 130306 "C_Parameters"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " declare every parameters _for all protocols_ which may be modified within the GUI @see parameters.xml
+@author Longueville, 2011, rev. jlefur 07.2012, rev.PAMBOUP 03.2014, JLF 07.2014 "
+      classrelation 129538 // <realization>
+	relation 129538 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 129538 // <realization>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      classrelation 129666 // <realization>
+	relation 129666 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 129666 // <realization>
+	  b parent class_ref 129026 // I_ConstantPNMC
+      end
+
+      attribute 158722 "parameters"
+	class_attribute public explicit_type "Parameters"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 158850 "RASTER_PATH"
+	class_attribute public explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " GENERAL //
+ rodents (SimMasto) or ocean (MelaneSim)"
+      end
+
+      attribute 158978 "PROTOCOL"
+	class_attribute public explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 159106 "VERBOSE"
+	class_attribute public explicit_type "boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " if true relative System.out.println() statements are displayed on the console 
+"
+      end
+
+      attribute 159234 "TERMINATE"
+	class_attribute public explicit_type "boolean"
+	init_value " false"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 159362 "BLACK_MAP"
+	class_attribute public explicit_type "boolean"
+	init_value " false"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 159490 "EXCLOS"
+	class_attribute public explicit_type "boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " SPACE //
+ EXCLOS: if yes, agents leave the domain when they reach bordure (+ replaced with a new one), if no, rebound and
+stay within the domain<br>
+@see thing.ground.landscape.C_Landscape#bordure(A_Animal) 
+"
+      end
+
+      attribute 159618 "IMAGE"
+	class_attribute public explicit_type "boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " IMAGE: if yes, display objects as icons, else display dots 
+"
+      end
+
+      attribute 159746 "RASTER_URL"
+	class_attribute public explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 159874 "RASTERLIST_URL"
+	class_attribute public explicit_type "String"
+	multiplicity "[]"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}${multiplicity} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 160002 "CELL_WIDTH_Ucentimeter"
+	class_attribute public explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Raster background conversion factors: the width (in meter)of one pixel (was formerly size_of_one_box Chize:
+747.8 cm.px^-1 
+"
+      end
+
+      attribute 160130 "CELL_WIDTH_Umeter"
+	class_attribute public explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 160258 "UCS_WIDTH_Umeter"
+	class_attribute public explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " conversion factor (e.g., Chize: 7.478 m.cs^-1, continuous space unit -> meters 
+"
+      end
+
+      attribute 160386 "CELL_SIZE_UcontinuousSpace"
+	class_attribute const_attribute public explicit_type "double"
+	init_value " 1"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " _Ucs <-> continuous space"
+      end
+
+      attribute 160514 "TICK_LENGTH_Ucalendar"
+	class_attribute public explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " TIME //
+"
+      end
+
+      attribute 160642 "TICK_UNIT_Ucalendar"
+	class_attribute public explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 160770 "TICK_MAX"
+	class_attribute public explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " if 0 <-> infinity"
+      end
+
+      attribute 160898 "INIT_POP_SIZE"
+	class_attribute public explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Protocol Fossorial
+"
+      end
+
+      attribute 161026 "MAX_POP"
+	class_attribute public explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " used to stop the simulation when population 'pullulate'; if 0 <-> infinity"
+      end
+
+      attribute 161154 "REPRO_START_Umonth"
+	class_attribute public explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " REPRODUCTION ATTRIBUTES //
+"
+      end
+
+      attribute 161282 "REPRO_END_Umonth"
+	class_attribute public explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 161410 "PERSISTANCE_BURROW"
+	class_attribute public explicit_type "boolean"
+	init_value " false"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " C_ParametersFossorial
+ When true empty burrow systems are not destroyed 
+"
+      end
+
+      attribute 161538 "INIT_BURROW_POP_SIZE"
+	class_attribute public explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 161666 "UNLOAD_FREQUENCY_Uweek"
+	class_attribute public explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " C_ParametersDodel
+"
+      end
+
+      attribute 161794 "VEHICLE_LOADING_PROBA_DIVIDER"
+	class_attribute public explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " C_ParametersTransportation
+"
+      end
+
+      attribute 161922 "RODENT_SUPER_AGENT_SIZE"
+	class_attribute public explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 162050 "HUMAN_SUPER_AGENT_SIZE"
+	class_attribute public explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 162178 "DISPLAY_MAP"
+	class_attribute public explicit_type "boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 162306 "ENERGY_SCALE"
+	class_attribute public explicit_type "boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " 05.10.2025"
+      end
+
+      classrelation 129794 // multipliers (<unidirectional association>)
+	relation 129794 --->
+	  stereotype "EnumMap"
+	  a role_name "multipliers" init_value " new EnumMap<>(DriverType.class)" class_relation const_relation private
+	    comment " Weight conservation priority
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type},Double> ${name}${value};
+"
+	    classrelation_ref 129794 // multipliers (<unidirectional association>)
+	  b parent class_ref 130562 // DriverType
+      end
+
+      operation 131074 "getMultiplier"
+	class_operation public explicit_return_type "double"
+	nparams 1
+	  param inout name "type" type class_ref 130562 // DriverType
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 131202 "setMultiplier"
+	class_operation public explicit_return_type "void"
+	nparams 2
+	  param inout name "type" type class_ref 130562 // DriverType
+	  param in name "value" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      extra_member 128002 "initialization"
+	
+	cpp "" ""
+	java "  static {resetMultipliers();}"
+	php ""
+	python ""
+	idl ""
+	mysql ""
+      end
+
+      operation 131330 "resetMultipliers"
+	class_operation public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 131458 "C_Parameters"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "public static double CHLOROPHYLL_MULTIPLIER = 1.; public static double NEKTON_MULTIPLIER = 1.; public static
+double PARTICLE_MULTIPLIER = 1.; public static double MOUNT_MULTIPLIER = 1.; public static double
+TEMPERATURE_MULTIPLIER = 1.; public static double TUNA_MULTIPLIER = 1.; public static double WHALE_MULTIPLIER =
+1.; public static double SHARK_MULTIPLIER = 1.; public static double BIRD_MULTIPLIER = 1.; public static double
+TURTLE_MULTIPLIER = 1.; public static double FISHER_MULTIPLIER = 1.; public static double SHIP_MULTIPLIER = 1.;
+public static double TOURISM_MULTIPLIER = 1.; public static double POLICE_MULTIPLIER = 1.; public static double
+POLLUTION_MULTIPLIER = 1.; public static double ONG_MULTIPLIER = 1.; public static double CORAL_MULTIPLIER = 1.;
+public static double SMALL_PELAGIC_MULTIPLIER = 1.; public static double BENTHOS_MULTIPLIER = 1.; public static
+double GROUND_MULTIPLIER = 1.; public static double MEADOW_MULTIPLIER = 1.; public static double
+MEGAFAUNA_MULTIPLIER = 1.;
+
+ Instantiate the parameters object and retrieve the shared parameters. NB It is compulsory to make it followed
+with C_ContextCreator.protocol.readUserParameters() "
+      end
+    end
+
+    class 130690 "C_ReadRaster"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Two utilities to read either an ASCII or bitmap raster and return a grid in SimMasto format (the image must be in grey levels
+or in 256 or less)
+@see C_Landscape
+@author Quentin Baduel, 2008, rev. JLF 10.2015 "
+      operation 131586 "txtRasterLoader"
+	class_operation public explicit_return_type "int"
+	nparams 1
+	  param in name "url" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type}[][] ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Download grid in ASCII text format : 1st line \"DSAA\" <br>
+FOR RODENTS RASTERS: 2nd line number of rows 3rd line number of columns 4th line min and max values remaining: line 0:
+column 0 to j-1 (delimiter blank space) line i line i-1 <br>
+@param url
+@return matrix of affinities (or whatever) "
+      end
+
+      operation 131714 "imgRasterLoader"
+	class_operation public explicit_return_type "int"
+	nparams 1
+	  param in name "url" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type}[][] ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Downloads grid in raster image with its related colormodel this function should be modified in order to read the data type
+contained in the raster. For now, we read a png image which contain int value in a byte array for each pixel "
+      end
+    end
+
+    class 130818 "C_ReadRasterDouble"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Extension of C_ReadRaster to read surfer compatible matrix of double values (e.g., ocean environment)
+@see C_ReadRaster
+@author JLF 2024 "
+      classrelation 129922 // <realization>
+	relation 129922 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 129922 // <realization>
+	  b parent class_ref 129026 // I_ConstantPNMC
+      end
+
+      operation 131842 "doubleRasterLoader"
+	class_operation public explicit_return_type "double"
+	nparams 1
+	  param in name "url" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type}[][] ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Download grid in ASCII text format : 1st line \"DSAA\" / 2nd line number of columns number of rows / 3rd line min and max x
+/ 4th line min and max y / 5th line: min and max of values / remaining: line 0: column 0 to j-1 (delimiter blank space) to
+line i-1
+@param url
+@return matrix of affinities (or whatever) "
+      end
+    end
+
+    class 130946 "C_ReadRasterOcean"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " read an ASCII raster (compatible surfer) from MelaneSim and return a grid in SimMasto format
+@see C_Landscape
+@author Quentin Baduel, 2008, rev. JLF 2015, 2024 "
+      operation 131970 "txtRasterLoader"
+	class_operation public explicit_return_type "int"
+	nparams 1
+	  param in name "url" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type}[][] ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Download grid in ASCII text format : 1st line \"DSAA\" <br>
+FOR OCEAN RASTERS (compatible surfer): 2nd line number of columns number of rows / 3rd line min and max x / 4th line min
+and max y / 5th line: min and max of values / remaining: line 0: column 0 to j-1 (delimiter blank space) line i line i-1
+@param url
+@return matrix of affinities (or whatever) "
+      end
+    end
+
+    class 131074 "C_ReadWriteFile"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 130050 // <realization>
+	relation 130050 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 130050 // <realization>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      operation 132098 "openBufferReader"
+	class_operation public explicit_return_type "BufferedReader"
+	nparams 2
+	  param in name "url" explicit_type "String"
+	  param in name "fileName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Open a buffer reader for a file
+@param url
+@param fileName (with extension) "
+      end
+    end
+
+    class 131202 "C_ZoomExtractor"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Extract the input raster files (rain series or landcover) of a zoom or TPE ('tr�s petite emprise') landscape at the desired size
+from the reference grid of ME ('moyenne emprise') and save the resulting files / Used in Gerbil protocol only
+@author M.Sall & J.Le Fur 12.2015, rev. JLF&MS 03.2016 "
+      classrelation 130178 // <realization>
+	relation 130178 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 130178 // <realization>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      classrelation 130306 // <realization>
+	relation 130306 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 130306 // <realization>
+	  b parent class_ref 129922 // I_ConstantGerbil
+      end
+
+      operation 132226 "createZoomFiles"
+	private explicit_return_type "void"
+	nparams 5
+	  param inout name "zoomOrigin_Udegree" explicit_type "Coordinate"
+	  param in name "zoomWidth_Ucell" explicit_type "int"
+	  param in name "zoomHeight_Ucell" explicit_type "int"
+	  param in name "pathRecording" explicit_type "String"
+	  param in name "pathFolder" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+ Extract the zoom matrix from the reference grid (ME) "
+      end
+
+      operation 132354 "extractZoomFromGrid"
+	public explicit_return_type "int"
+	nparams 5
+	  param inout name "referenceMatrix" explicit_type "int"
+	multiplicity "[][]"
+	  param inout name "zoomOrigin_Ucell" explicit_type "Point"
+	  param in name "zoomWidth_Ucell" explicit_type "int"
+	  param in name "zoomHeight_Ucell" explicit_type "int"
+	  param in name "format" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type}[][] ${name}${(}${t0}[][] ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Extract zoom matrix from ME reference matrix; all units are cell units<br>
+Version MS&JLF 03.2016 "
+      end
+
+      operation 132482 "computeZoomOrigin_Ucell"
+	public explicit_return_type "Point"
+	nparams 1
+	  param inout name "zoomOrigin_Udegree" explicit_type "Coordinate"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Convert zoom origin in degrees into continuous space then into cell coordinates of the ME reference grid "
+      end
+
+      operation 132610 "getExtension"
+	public explicit_return_type "String"
+	nparams 1
+	  param in name "fileName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " GETTER
+
+ Retrieve the extension of the input file "
+      end
+
+      operation 132738 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " MAIN
+"
+      end
+    end
+  end
+
+  deploymentview 128386 "data"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 129794 "C_Chronogram"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.io.BufferedReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import data.constants.I_ConstantNumeric;
+import data.constants.rodents.I_ConstantGerbil;
+import data.constants.rodents.I_ConstantStringRodents;
+import melanesim.C_Calendar;
+import melanesim.protocol.A_Protocol;
+${definition}"
+      associated_elems
+	class_ref 129538 // C_Chronogram
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 129922 "C_Event"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.text.ParseException;
+import java.util.Date;
+import presentation.dataOutput.C_Information;
+import data.constants.I_ConstantNumeric;
+import data.constants.rodents.I_ConstantStringRodents;
+import melanesim.C_Calendar;
+import melanesim.C_ContextCreator;
+import melanesim.protocol.A_Protocol;
+${definition}"
+      associated_elems
+	class_ref 130050 // C_Event
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 130050 "C_Parameters"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.EnumMap;
+import thing.I_MarineActor.DriverType;
+import data.constants.I_ConstantPNMC;
+import data.constants.rodents.I_ConstantStringRodents;
+import repast.simphony.engine.environment.RunEnvironment;
+import repast.simphony.parameter.Parameters;
+import thing.A_Animal;
+${definition}"
+      associated_elems
+	class_ref 130306 // C_Parameters
+      end
+    end
+
+    artifact 130178 "C_ReadRaster"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.awt.image.IndexColorModel;
+import java.awt.image.Raster;
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.StringTokenizer;
+import javax.imageio.ImageIO;
+import thing.ground.landscape.C_Landscape;
+${definition}"
+      associated_elems
+	class_ref 130690 // C_ReadRaster
+      end
+    end
+
+    artifact 130306 "C_ReadRasterDouble"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+import data.constants.I_ConstantPNMC;
+import melanesim.protocol.A_Protocol;
+${definition}"
+      associated_elems
+	class_ref 130818 // C_ReadRasterDouble
+      end
+    end
+
+    artifact 130434 "C_ReadRasterOcean"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+import thing.ground.landscape.C_Landscape;
+${definition}"
+      associated_elems
+	class_ref 130946 // C_ReadRasterOcean
+      end
+    end
+
+    artifact 130562 "C_ReadWriteFile"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import melanesim.protocol.A_Protocol;
+${definition}"
+      associated_elems
+	class_ref 131074 // C_ReadWriteFile
+      end
+    end
+
+    artifact 130690 "C_ZoomExtractor"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.Point;
+import java.util.TreeSet;
+import org.locationtech.jts.geom.Coordinate;
+import data.constants.rodents.I_ConstantGerbil;
+import data.constants.rodents.I_ConstantStringRodents;
+import data.converters.C_ConvertGeographicCoordinates;
+import data.converters.C_ConvertRainFiles;
+${definition}"
+      associated_elems
+	class_ref 131202 // C_ZoomExtractor
+      end
+    end
+  end
+
+  package_ref 128770 // converters
+
+  package_ref 128898 // rodents
+end

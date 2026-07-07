@@ -1,0 +1,35 @@
+class C_ProtocolDecenal
+!!!160642.java!!!	C_ProtocolDecenal(inout ctxt : Context<Object>)
+		super(ctxt);
+		geneticInspector = new C_InspectorGenetic();
+		inspectorList.add(geneticInspector);
+		C_CustomPanelSet_Rodent.addGeneticInspector(geneticInspector);
+		facilityMap = new C_Background(-.45, 83, 75);
+		// Create and build the dataFromChrono from the csv file
+		chronogram = new C_Chronogram(I_ConstantDecenal.CHRONO_FILENAME);
+!!!160770.java!!!	step_Utick() : void
+		// Add rodents in Tambacounda
+		if ((protocolCalendar.get(Calendar.DAY_OF_MONTH) == 01) && (protocolCalendar.get(Calendar.YEAR) > 1909))
+			addRodentsInCity(10, this.inspectorTransportation.getCityByName("Tambacounda"));
+		super.step_Utick();
+!!!160898.java!!!	manageOneEvent(inout event : C_Event) : void
+		int x = event.whereX_Ucell, y = event.whereY_Ucell;
+		switch (event.type) {
+			case RAT_EVENT :
+				int nbRodents = Integer.parseInt(event.value1);
+				if (nbRodents > C_Parameters.RODENT_SUPER_AGENT_SIZE) nbRodents = nbRodents / C_Parameters.RODENT_SUPER_AGENT_SIZE;
+				for (int i = 0; i < nbRodents; i++) {
+					C_Rodent one_rodent = createRodent();
+					contextualizeNewThingInGrid(one_rodent, x, y);
+				}
+				break;
+		}
+		super.manageOneEvent(event);
+!!!161026.java!!!	initCalendar() : void
+		protocolCalendar.set(1983, Calendar.NOVEMBER, 25);
+		protocolCalendar.TICK_MAX = (int) C_ConvertTimeAndSpace.getTimeBetweenDates_Ums("01/01/1910", "01/01/2013",
+				C_ConvertTimeAndSpace.tick_UcalendarUnit);
+!!!161154.java!!!	createRodent() : C_Rodent
+		return new C_RodentBlackRat(new C_GenomeRattusRattus());
+!!!161282.java!!!	toString() : String
+		return "protocolDecenal";

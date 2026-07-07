@@ -1,0 +1,33 @@
+class C_RodentFossorialColonial
+!!!356994.java!!!	C_RodentFossorialColonial(inout genome : I_DiploidGenome)
+		super(genome);
+!!!357122.java!!!	giveBirth(inout genome : I_DiploidGenome) : A_Animal
+		return new C_RodentFossorialColonial(genome);
+!!!357250.java!!!	step_Utick() : void
+		// Mature male inside burrow within breeding season
+		if (this.getDesire().equals(REPRODUCE) && (this.getCurrentSoilCell() instanceof C_BurrowSystem)) {
+			if (this.testMale()) {
+				for (C_Rodent acquaintance : this.getCurrentSoilCell().getRodentList())
+					this.actionInteract(acquaintance);
+				actionRandomExitOfContainer();
+			}
+			if (this.testFemale()) this.setDesire(NONE);
+		}
+		super.step_Utick();
+!!!357378.java!!!	deliberation(inout perceivedThings : TreeSet<I_SituatedThing>) : I_SituatedThing
+		if (this.getDesire().equals(REPRODUCE) && !(this.currentSoilCell instanceof C_BurrowSystem)) {
+			// Extract only burrow systems from the list of perceived things JLF 09.2017 */
+			TreeSet<I_SituatedThing> candidateBurrows = new TreeSet<I_SituatedThing>();
+			if (this.currentSoilCell instanceof C_BurrowSystem) candidateBurrows.add(currentSoilCell);
+			else {
+				for (I_SituatedThing oneThingPerceived : perceivedThings) {
+					if (oneThingPerceived instanceof C_BurrowSystem) {
+						candidateBurrows.add((C_BurrowSystem) oneThingPerceived);
+					}
+				}
+				if (this.lastContainerLeft instanceof C_BurrowSystem) candidateBurrows.remove(this.lastContainerLeft);
+				if (candidateBurrows.isEmpty() && this.testFemale()) candidateBurrows.add(this.actionDig());
+			}
+			return candidateBurrows;
+		}
+		else return super.deliberation(perceivedThings);

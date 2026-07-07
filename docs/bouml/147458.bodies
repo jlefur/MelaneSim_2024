@@ -1,0 +1,11 @@
+class C_Information
+!!!197506.java!!!	C_Information(in idInformation : String, in title : String, in subTitle : String, in shortDescription : String, in dimension : String, in source : String, in author : String, inout entryDate : Date)
+		super();
+		this.idInformation = idInformation;
+		this.title = title;
+		this.subTitle = subTitle;
+		this.shortDescription = shortDescription;
+		this.dimension = dimension;
+		this.source = source;
+		this.author = author;
+		this.entryDate = entryDate;

@@ -1,0 +1,349 @@
+format 224
+"phenotyper" // src::thing::dna::phenotyper
+  revision 1
+  modified_by 2 "lefur"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:\\Users\\lefur\\Documents\\GitHub\\MelaneSim_2024\\src/thing/dna/phenotyper/"
+  java_package "thing.dna.phenotyper"
+  classview 131202 "phenotyper"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 154242 "I_MapLocTraitExpressor"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}interface ${name}${extends} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Provides a callback method used by MapLocPhenotyper to express a trait. A simple TraitExpressor might add up all real-valued
+alleles among the trait's loci, returning the sum. However, many expressors are likely to take dominance and epistasis into
+account.
+@author kyle wagner, elyk@acm.org, modified J.Le Fur, 02.2011, 08.2014
+Version 1.0, aug 28, 2002 "
+      operation 294274 "evalTrait"
+	public explicit_return_type "Object"
+	nparams 2
+	  param inout name "mappedDNA" type class_ref 144386 // I_MappedDna
+	  param inout name "traitMapLocs" explicit_type "ArrayList<Double>"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @param mappedDNA the DNA which will express this trait
+@param traitMapLocs the map locations of the loci in the DNA which code for this trait
+@return an Object representing the value of the trait (could be a Double or Integer, a String, or maybe a complex, custom
+        object). "
+      end
+    end
+
+    class 155778 "C_TraitExpressorAllelesMismatches"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 177538 // <realization>
+	relation 177538 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 177538 // <realization>
+	  b parent class_ref 154242 // I_MapLocTraitExpressor
+      end
+
+      operation 294402 "evalTrait"
+	public explicit_return_type "Object"
+	nparams 2
+	  param inout name "mappedDNA" type class_ref 144386 // I_MappedDna
+	  param inout name "traitMapLocs" explicit_type "ArrayList<Double>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@return the number of allele mismatches within diploid pairs.
+"
+      end
+    end
+
+    class 155906 "C_TraitExpressorAvgMapLoc"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Provides a simple expressor: adds up all real-valued alleles among the trait's loci, returning the average. Does not use dominance or epistasis.
+Assumes all alleles are Numbers.
+<P>
+@author kyle wagner, elyk@acm.org
+Version 1.0, Mon Dec 3 14:17:22 2001, rev. JLF 08.2014 "
+      classrelation 177666 // <realization>
+	relation 177666 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 177666 // <realization>
+	  b parent class_ref 154242 // I_MapLocTraitExpressor
+      end
+
+      operation 294530 "evalTrait"
+	public explicit_return_type "Object"
+	nparams 2
+	  param inout name "dna" type class_ref 144386 // I_MappedDna
+	  param inout name "traitMapLocs" explicit_type "ArrayList<Double>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " @param dna the genome which will express this trait (the object holding info about the genetic structure of this trait ?)
+@param traitMapLocs the map locations of the loci in the genome which code for this trait
+@return a Double representing the value of the trait "
+      end
+
+      operation 294658 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 294786 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 156034 "C_TraitExpressorSumMapLoc"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Provides a simple expressor: adds up all real-valued alleles among the trait's loci, returning this sum. Does not use dominance or epistasis.
+Assumes all alleles are Numbers.
+@author kyle wagner, elyk@acm.org Version 1.0, Mon Dec 3 14:17:22 2001 "
+      classrelation 177794 // <realization>
+	relation 177794 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 177794 // <realization>
+	  b parent class_ref 154242 // I_MapLocTraitExpressor
+      end
+
+      operation 294914 "evalTrait"
+	public explicit_return_type "Object"
+	nparams 2
+	  param inout name "mappedDNA" type class_ref 144386 // I_MappedDna
+	  param inout name "traitMapLocs" explicit_type "ArrayList<Double>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @param mappedDNA the genome which will express this trait (the object holding info about the genetic structure of this trait ?)
+@param traitMapLocs the map locations of the loci in the genome which code for this trait
+@return a Double representing the value of the trait "
+      end
+
+      operation 295042 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 295170 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+  end
+
+  deploymentview 130434 "phenotyper"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 148866 "I_MapLocTraitExpressor"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import thing.dna.I_MappedDna;
+${definition}"
+      associated_elems
+	class_ref 154242 // I_MapLocTraitExpressor
+      end
+    end
+
+    artifact 148994 "C_TraitExpressorAllelesMismatches"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import melanesim.C_ContextCreator;
+import thing.dna.C_GenePair;
+import thing.dna.I_MappedDna;
+${definition}"
+      associated_elems
+	class_ref 155778 // C_TraitExpressorAllelesMismatches
+      end
+    end
+
+    artifact 149122 "C_TraitExpressorAvgMapLoc"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import java.util.Iterator;
+import melanesim.C_ContextCreator;
+import thing.dna.C_Chromosome;
+import thing.dna.C_ChromosomePair;
+import thing.dna.C_Gene;
+import thing.dna.C_GenePair;
+import thing.dna.I_MappedDna;
+import thing.dna.variator.C_GeneConstraint;
+import thing.dna.variator.C_GeneMutatorDouble;
+import thing.dna.variator.C_RecombinatorOnePt;
+import thing.dna.variator.I_GeneMutator;
+${definition}"
+      associated_elems
+	class_ref 155906 // C_TraitExpressorAvgMapLoc
+      end
+    end
+
+    artifact 149250 "C_TraitExpressorSumMapLoc"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import java.util.Iterator;
+import melanesim.C_ContextCreator;
+import thing.dna.C_Chromosome;
+import thing.dna.C_ChromosomePair;
+import thing.dna.C_Gene;
+import thing.dna.C_GenePair;
+import thing.dna.I_MappedDna;
+import thing.dna.variator.C_GeneConstraint;
+import thing.dna.variator.C_GeneMutatorDouble;
+import thing.dna.variator.C_RecombinatorOnePt;
+import thing.dna.variator.I_GeneMutator;
+${definition}"
+      associated_elems
+	class_ref 156034 // C_TraitExpressorSumMapLoc
+      end
+    end
+  end
+end

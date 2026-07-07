@@ -1,0 +1,31 @@
+class C_SoilCellNode
+!!!316162.java!!!	C_SoilCellNode(in aff : int, in lineNo : int, in colNo : int)
+		super(aff, lineNo, colNo);
+!!!316290.java!!!	calculateHeuristic(inout finalNode : C_SoilCellNode) : void
+		this.h = Math.abs(finalNode.retrieveLineNo() - this.lineNo) + Math.abs(finalNode.retrieveColNo() - this.colNo);
+!!!316418.java!!!	setNodeData(inout currentNode : C_SoilCellNode, in cost : int) : void
+		int gCost = currentNode.g + cost;
+		this.parent = currentNode;
+		this.g = gCost;
+		calculateFinalCost();
+!!!316546.java!!!	checkBetterPath(inout currentNode : C_SoilCellNode, in cost : int) : boolean
+		int gCost = currentNode.g + cost;
+		if (gCost < this.g) {
+			setNodeData(currentNode, cost);
+			return true;
+		}
+		return false;
+!!!316674.java!!!	calculateFinalCost() : void
+		int finalCost = this.g + this.h;
+		this.f = finalCost;
+!!!316802.java!!!	equals(inout arg0 : Object) : boolean
+		C_SoilCellNode other = (C_SoilCellNode) arg0;
+		return this.retrieveLineNo() == other.retrieveLineNo() && this.retrieveColNo() == other.retrieveColNo();
+!!!316930.java!!!	toString() : String
+		return "Node [row=" + this.lineNo + ", col=" + this.colNo + "]";
+!!!317058.java!!!	getF() : int
+		return f;
+!!!317186.java!!!	getParent() : C_SoilCellNode
+		return parent;
+!!!317314.java!!!	isBlock() : boolean
+		return this.isBlock;

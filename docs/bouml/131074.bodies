@@ -1,0 +1,10 @@
+class C_ReadWriteFile
+!!!132098.java!!!	openBufferReader(in url : String, in fileName : String) : BufferedReader
+		System.out.println("C_ReadWriteFile.openBufferReader(): reading file " + url + fileName);
+		try {
+			return new BufferedReader(new FileReader(url + fileName));
+		} catch (IOException ioe) {
+			A_Protocol.event("C_ReadWriteFile.openBufferReader","File read error, please verify file :" + url + fileName + ". "
+					+ ioe.getMessage(), isError);
+		}
+		return null;

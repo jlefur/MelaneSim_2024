@@ -17,7 +17,6 @@ import thing.ground.C_City;
 import thing.ground.C_SoilCell;
 import thing.ground.C_SoilCellGraphed;
 import thing.ground.C_Vehicle;
-import thing.ground.I_Container;
 import thing.ground.landscape.C_Landscape;
 
 /** A human carrier owns a C_Vehicle and go from one city to the other.
@@ -113,9 +112,9 @@ public class C_HumanCarrier extends A_Human implements I_ConstantStringRodents, 
 		// super.step_Utick(); // Has to be removed for proper function JLF 01.2017
 	}
 
-	public int getLoad_Urodent() {
+	public int retrieveLoad_Urodent() {
 		if (this.isDead()) return 0;// to avoid probe crash (JLF 03.2021)
-		return this.vehicle.getLoad_Urodent();
+		return this.vehicle.retrieveLoad_Urodent();
 	}
 
 	protected void actionMoveToCell(C_SoilCell cell) {

@@ -1,0 +1,467 @@
+class C_GenomeEucaryote
+!!!287874.java!!!	C_GenomeEucaryote()
+		super();
+		microsatXsomesPair = new C_XsomePairMicrosat(NB_MICROSAT_GENES);
+		int gender = (int) (C_ContextCreator.randomGeneratorForGameteAndSexSelection.nextDouble() * 2);
+		gonosome = new C_XsomePairSexual(gender);
+		bivalents = new ArrayList<C_ChromosomePair>();
+!!!288002.java!!!	C_GenomeEucaryote(inout microsatXsomes : C_XsomePairMicrosat, inout sexualXsomes : C_XsomePairSexual, inout otherXsomePairs : ArrayList<C_ChromosomePair>)
+		super();
+		this.microsatXsomesPair = microsatXsomes;
+		this.gonosome = sexualXsomes;
+		this.bivalents = otherXsomePairs;
+		this.isHybrid = isHybrid(bivalents);
+!!!288130.java!!!	makeGametes() : C_Chromosome
+		// Initialization of a new gamete
+		ArrayList<C_Chromosome> gametes = new ArrayList<C_Chromosome>();
+		// Cross the two chromosomes of the microsat pair. Then put randomly one of the two newly crossed microsatXsome into the
+		// gamete.
+		// This is also done for the gonosome.
+		int i = (int) (C_ContextCreator.randomGeneratorForGameteAndSexSelection.nextDouble() * 2);
+		gametes.add(((C_ChromosomePair) microsatXsomesPair.crossover()).xsomeStrands[i]);
+		i = (int) (C_ContextCreator.randomGeneratorForGameteAndSexSelection.nextDouble() * 2);
+		gametes.add(gonosome.crossover().xsomeStrands[i]);
+		if (!this.isHybrid()) { // Cross the two chromosomes of each autosome pairs. Then put randomly one of the two newly
+								// crossed
+								// chromosome into the gamete. This is done for each autosome pairs.
+			for (Iterator<C_ChromosomePair> iterator = this.bivalents.iterator(); iterator.hasNext();) {
+				C_ChromosomePair autosomePair = (C_ChromosomePair) iterator.next();
+				i = (int) (C_ContextCreator.randomGeneratorForGameteAndSexSelection.nextDouble() * 2);
+				gametes.add(((C_ChromosomePair) autosomePair.crossover()).xsomeStrands[i]);
+			}
+		}
+		else {// if the genome is hybrid, autosomes are segregated.
+			i = (int) (C_ContextCreator.randomGeneratorForGameteAndSexSelection.nextDouble() * 2);
+			gametes.addAll(this.segregation().get(i));
+		}
+		return gametes; // List of chromosomes (One for each pair).
+!!!288258.java!!!	segregation() : ArrayList<ArrayList<C_Chromosome>>
+		ArrayList<ArrayList<C_Chromosome>> xsomeMultivalList = this.xsomeFission();
+		// Initialization of a list of gametes.
+		ArrayList<ArrayList<C_Chromosome>> gametesLeftAndRight = new ArrayList<ArrayList<C_Chromosome>>();
+		ArrayList<C_Chromosome> gameteLeft = new ArrayList<C_Chromosome>();
+		ArrayList<C_Chromosome> gameteRight = new ArrayList<C_Chromosome>();
+		// for each each multivalent
+		for (ArrayList<C_Chromosome> multivalList : xsomeMultivalList) {
+			Collections.sort(multivalList); // in order to classify first the biggest xsomes.
+			// for each each chromosome of the multivalent.
+			for (C_Chromosome xsome : multivalList) {
+				// If the gene has a version in gameteLeft, we put the chromosome in gameteRight
+				for (C_Gene gene : xsome.getGenes()) {
+					if (searchAGene(gene, gameteLeft)) {
+						gameteRight.add(xsome);
+						break; // break to add every chromosome only once.
+					}
+					// If the gene has a version in gameteRight, we put the chromosome in gameteLeft
+					else if (searchAGene(gene, gameteRight)) {
+						gameteLeft.add(xsome);
+						break;// break to add every chromosome only once.
+					}
+					else {
+						// If the gene has nor a version in gameteLeft nor in gameteRight, we put
+						// the chromosome randomly in gameteRight or in gameteLeft.
+						int i = (int) (C_ContextCreator.randomGeneratorForGameteAndSexSelection.nextDouble() * 2);
+						if (i == 0) gameteLeft.add(xsome);
+						else gameteRight.add(xsome);
+						break;// break to add every chromosome only once.
+					}
+				}
+			}
+		}
+		gametesLeftAndRight.add(gameteLeft);
+		gametesLeftAndRight.add(gameteRight);
+		return gametesLeftAndRight; // contains two complementary gametes (of autosome): gameteRight
+									// and gameteLeft
+!!!288386.java!!!	xsomeFission() : ArrayList<ArrayList<C_Chromosome>>
+		// System.out.println(this + "C_GenomeEucaryote.xsomeFission(1)" + autosomes);
+		// Initialization of a multivalent list (multivalent = a list of chromosomes with genes in
+		// common and which gather during meiosis.
+		boolean found = false;
+		ArrayList<ArrayList<C_Chromosome>> xsomeMultivalList = new ArrayList<ArrayList<C_Chromosome>>();
+
+		for (C_ChromosomePair oneAutosomePair : this.bivalents) { // For each chromosome pairs
+			oneAutosomePair = (C_ChromosomePair) oneAutosomePair.crossover();
+			// bearingXsomeList bears the split xsomes for one autosome pair
+			ArrayList<C_Chromosome> bearingXsomeList = new ArrayList<C_Chromosome>();
+			for (C_Chromosome oneStrandXsome : oneAutosomePair.xsomeStrands) {
+				// If one strand is a merged xsome, position each of its genes in separate chromosomes.
+				if (oneStrandXsome.isMergedXsome()) {
+					for (int idxOneGeneMerged = 0; idxOneGeneMerged < oneStrandXsome
+							.getNumGenes(); idxOneGeneMerged++) {
+						C_Gene oneGeneToMerge = oneStrandXsome.getGene(idxOneGeneMerged);
+						found = false;
+						// Search if genes with the same initial ownerXsome were already positioned
+
+						searchSignature :
+
+						for (int idxBearingXsome = 0; idxBearingXsome < bearingXsomeList.size(); idxBearingXsome++) {
+							C_Chromosome oneBearingXsome = bearingXsomeList.get(idxBearingXsome);
+							for (C_Gene onePositionedGene : oneBearingXsome.getGenes()) {
+								// if found, join the gene to the same xsome.
+								if ((onePositionedGene.ownerXsomeNumber == oneGeneToMerge.ownerXsomeNumber)
+										&& (onePositionedGene != oneGeneToMerge)) {
+									oneBearingXsome.addGene(oneGeneToMerge);
+									found = true;
+									break searchSignature;
+								}
+							}
+						}
+						if (!found) {// initialization of a new chromosome for each gene and copy the gene on the new chromosome.
+							C_Chromosome chromosome = new C_Chromosome(oneStrandXsome.mapLength, 0,
+									oneStrandXsome.recombinator);
+							chromosome.addGene(oneGeneToMerge);
+							if (chromosome.getNumGenes() != 0) bearingXsomeList.add(chromosome);
+						}
+					}
+				}
+				// If the chromosome is an original(i.e., has not been merged).
+				else {
+					if (!bearingXsomeList.contains(oneStrandXsome)) bearingXsomeList.add(oneStrandXsome);
+				}
+			}
+			xsomeMultivalList.add(bearingXsomeList);
+		}
+		// System.out.println(this + "C_GenomeEucaryote.xsomeFission(2)" + xsomeMultivalList);
+		return xsomeMultivalList;
+!!!288514.java!!!	searchAGene(inout gene : C_Gene, inout gamete : ArrayList<C_Chromosome>) : boolean
+		double mapLocation = gene.mapLoc;
+		for (C_Chromosome xsome : gamete) {
+			for (C_Gene gene2 : xsome.getGenes()) {
+				if (gene2.mapLoc == mapLocation) return true;
+			}
+		}
+		return false;
+!!!288642.java!!!	makeZygoteXsomes(inout mutRate : Object, inout partnerGenome : I_DiploidGenome) : C_ChromosomePair
+		// zygoteXsomes is going to be the list of the chromosomePairs of the future genome.
+		ArrayList<C_ChromosomePair> zygoteXsomes = new ArrayList<C_ChromosomePair>();
+		if (this.gonosome.isFemale() && ((C_GenomeEucaryote) partnerGenome).gonosome.isFemale())
+			System.err.println("C_GenomeEucaryote.makeZygoteXsomes(): bad female couple");
+		else if (this.gonosome.isMale() && ((C_GenomeEucaryote) partnerGenome).gonosome.isMale())
+			System.err.println("C_GenomeEucaryote.makeZygoteXsomes(): bad male couple");
+		else {
+			ArrayList<C_Chromosome> gametesThis = this.makeGametes();
+			ArrayList<C_Chromosome> gametesPartner = ((C_GenomeEucaryote) partnerGenome).makeGametes();
+			// xsomeMatch performs the compatibility check of the unbalanced caryotypes.
+			if (gametesThis.size() != gametesPartner.size()) {
+				ArrayList<ArrayList<C_Chromosome>> temp = xsomesMatch(gametesThis, gametesPartner);
+				gametesThis = temp.get(0);
+				gametesPartner = temp.get(1);
+			}
+			zygoteXsomes.add(new C_XsomePairMicrosat(gametesThis.get(MICROSAT_INDEX), gametesPartner.get(
+					MICROSAT_INDEX)));
+			zygoteXsomes.add(new C_XsomePairSexual(gametesThis.get(GONOSOME_INDEX), gametesPartner.get(
+					GONOSOME_INDEX)));
+			// in any autosomes case
+
+			// THE HEART OF GENOMES CROSSING
+			for (int i = BIVALENTS_INDEX; i < gametesThis.size(); i++) {
+				C_Chromosome gameteThis = gametesThis.get(i);
+				double gene1ThisMaploc = gametesThis.get(i).getGene(0).getMapLoc();
+				// find the first common gene (genes have unique maplocs in the genome)
+				for (int j = BIVALENTS_INDEX; j < gametesPartner.size(); j++) {
+					C_Chromosome gametePartner = gametesPartner.get(j);
+					double gene1PartnerMaploc = gametesPartner.get(j).getGene(0).getMapLoc();
+					if (gene1PartnerMaploc == gene1ThisMaploc) {
+						zygoteXsomes.add(new C_ChromosomePair(gameteThis, gametePartner));
+						break;
+					}
+				}
+			}
+			// As it happens that some chromosomes are empty after the xsomeMatch procedure, this
+			// final check removes the corresponding zygote.
+			for (int i = BIVALENTS_INDEX; i < zygoteXsomes.size(); i++) {
+				if (zygoteXsomes.get(i).getXsomeStrand(C_ChromosomePair.PARENT_1).getNumGenes() != zygoteXsomes.get(i)
+						.getXsomeStrand(C_ChromosomePair.PARENT_2).getNumGenes()) {
+					zygoteXsomes.get(MICROSAT_INDEX).getGene(LOCUS_LETHAL_ALLELE, STRAND_LETHAL_ALLELE).setAllele(
+							LETHAL_ALLELE);
+					hybridInspector.incrPbUnbalancedGene();
+				}
+			}
+		}
+		return zygoteXsomes;
+!!!288770.java!!!	xsomesMatch(inout gametesThis : ArrayList<C_Chromosome>, inout gametesPartner : ArrayList<C_Chromosome>) : ArrayList<ArrayList<C_Chromosome>>
+		boolean geneAlreadyIncluded = false, geneFoundInLargest = false;
+		boolean syntenieGeneFound = false;
+		// identify the gamete with the largest number of xsomes.
+		ArrayList<C_Chromosome> smallestGamete, largestGamete;
+		ArrayList<C_Chromosome> returnSmallest = new ArrayList<C_Chromosome>();
+		ArrayList<C_Chromosome> returnLargest = new ArrayList<C_Chromosome>();
+		ArrayList<C_Gene> genesNotToTreatAnymore = new ArrayList<C_Gene>();
+		ArrayList<ArrayList<C_Chromosome>> returnList = new ArrayList<ArrayList<C_Chromosome>>();
+		if (gametesThis.size() < gametesPartner.size()) {
+			smallestGamete = new ArrayList<C_Chromosome>(gametesThis);
+			largestGamete = new ArrayList<C_Chromosome>(gametesPartner);
+		}
+		else {
+			smallestGamete = new ArrayList<C_Chromosome>(gametesPartner);
+			largestGamete = new ArrayList<C_Chromosome>(gametesThis);
+		}
+		C_Chromosome smallestGonosome = smallestGamete.get(GONOSOME_INDEX);
+		C_Chromosome smallestMicrosat = smallestGamete.get(MICROSAT_INDEX);
+		C_Chromosome largestGonosome = largestGamete.get(GONOSOME_INDEX);
+		C_Chromosome largestMicrosat = largestGamete.get(MICROSAT_INDEX);
+		smallestGamete.remove(smallestGonosome);
+		smallestGamete.remove(smallestMicrosat);
+		largestGamete.remove(largestGonosome);
+		largestGamete.remove(largestMicrosat);
+		// transformation of the genome of largestGamete to match the genome of smallestGamete in pairs.
+		Collections.sort(smallestGamete);// sort in descending order
+		for (int i = 0; i < smallestGamete.size(); i++) {
+			C_Chromosome xsomeSource = smallestGamete.get(i);
+			// we remove genes already added to others chromosomes ('syntenic' genes from largest)
+			for (C_Gene geneSource : genesNotToTreatAnymore) {
+				if (xsomeSource.genes.contains(geneSource)) xsomeSource.genes.remove(geneSource);
+			}
+			// xsomeTarget will be the result of the smallest xsomes fusion
+			C_Chromosome xsomeTarget = new C_Chromosome(0, xsomeSource.recombinator);
+			// Research of each genes of each autosome of the smallestGamete in the largestGamete.
+			// temporary list to add at the end
+			ArrayList<C_Gene> genesToAddToXsomeSource = new ArrayList<C_Gene>();
+			for (int j = 0; j < xsomeSource.genes.size(); j++) {
+				C_Gene oneGeneSource = xsomeSource.getGene(j);
+				// we process only genes which were not already processed (included).
+				if (!genesNotToTreatAnymore.contains(oneGeneSource)) {
+					// scan if the gene were already included within an unmerged xsome
+					geneAlreadyIncluded = false;
+					for (C_Chromosome x : returnSmallest) {
+						for (C_Gene y : x.genes) {
+							if (y == oneGeneSource) geneAlreadyIncluded = true;
+						}
+					}
+					if (!geneAlreadyIncluded) {
+						geneFoundInLargest = false;
+						double oneGeneSourceMapLoc = oneGeneSource.getMapLoc();
+						Collections.sort(largestGamete);// sort in descending order
+						for (int k = 0; k < largestGamete.size(); k++) {
+							C_Chromosome oneXsomeFromLargestGamete = largestGamete.get(k);
+							// if oneGeneSource is found in source gamete, proceed to adding this
+							// gene from largestGamete
+							if (oneXsomeFromLargestGamete.getLocusAllele(oneGeneSourceMapLoc) != "empty") {
+								geneFoundInLargest = true;
+								if (!oneXsomeFromLargestGamete.isMergedXsome()) {
+									// check if the genes of oneXsomeLargest were not already added.
+									// If the first gene (index 0) is contained then all other genes
+									// are
+									if (!xsomeTarget.genes.contains(oneXsomeFromLargestGamete.getGene(0))) {
+										xsomeTarget.addAllGenes(oneXsomeFromLargestGamete.genes);
+										// if the new chromosome is bigger than the original, then,
+										// it is because it is composed of several merged
+										// chromosomes coming from the largest gamete.
+										if (xsomeTarget.genes.size() != oneXsomeFromLargestGamete.genes.size())
+											xsomeTarget.setMergedXsome(true);
+									}
+									// Then, add in xsomeSource all genes of the original
+									// xsomeTarget that has just been stuck.
+									for (C_Gene gene : oneXsomeFromLargestGamete.genes) {
+										syntenieGeneFound = false;
+										if (xsomeSource.getGeneWithMaploc(gene.mapLoc) == "empty") {
+											for (C_Chromosome xsomeSmallest : smallestGamete) {
+												if (xsomeSmallest.getGeneWithMaploc(gene.mapLoc) != "empty") {
+													syntenieGeneFound = true;
+													if (xsomeSmallest.getNumGenes() != 0) {
+														if (xsomeSmallest.isMergedXsome()) {
+															genesToAddToXsomeSource.add((C_Gene) xsomeSmallest
+																	.getGeneWithMaploc(gene.mapLoc));
+															genesNotToTreatAnymore.add((C_Gene) xsomeSmallest
+																	.getGeneWithMaploc(gene.mapLoc));
+														}
+														else {
+															genesToAddToXsomeSource.addAll(xsomeSmallest.genes);
+															genesNotToTreatAnymore.addAll(xsomeSmallest.genes);
+														}
+													}
+													// to preserve the loop the genes will be added at the end of the process
+													xsomeSource.setMergedXsome(true);
+												}
+											}
+										}
+										else syntenieGeneFound = true;
+										if (!syntenieGeneFound) {
+											smallestMicrosat.getGene(0).setAllele(LETHAL_ALLELE);
+											System.err.println(
+													"C_GenomeEucaryote.xsomesMatch(): autostop gene not found in smallest gamete");
+											hybridInspector.incrPbSynteny();
+											break;
+										}
+									}
+								}
+								else {
+									xsomeTarget.addGene((C_Gene) oneXsomeFromLargestGamete.getGeneWithMaploc(
+											oneGeneSourceMapLoc));
+									if (xsomeTarget.genes.size() != oneXsomeFromLargestGamete.genes.size())
+										xsomeTarget.setMergedXsome(true);
+								}
+								break;
+							} // The loop did not break (gene not found in Largest)
+						}
+						if (!geneFoundInLargest) {
+							smallestMicrosat.getGene(0).setAllele(LETHAL_ALLELE);
+							System.err.println(this + " gene " + oneGeneSource + " not found in gamete");
+							hybridInspector.incrPbGeneNotFound();
+							break;
+						}
+					} // end of search for one gene in all chromosomes of the largest gamete.
+				}
+			} // end of scan for the genes of one chromosome of smallest gamete
+			xsomeSource.addAllGenes(genesToAddToXsomeSource);
+			// if xsomes are homologous it's ok, else the zygote is not viable.
+			if (xsomeSource.getNumGenes() != 0) returnSmallest.add(xsomeSource);
+			if (xsomeTarget.getNumGenes() != 0) returnLargest.add(xsomeTarget);
+			if (returnSmallest.size() != returnLargest.size()) {
+				System.err.println("Not the same size!");
+			}
+			// Chromosomes from the same pair should have the same number of genes in order to match
+			// during mating. Else, the zygote die.
+			else {
+				for (int xsomes = 0; xsomes < returnSmallest.size(); xsomes++) {
+					C_Chromosome xsomesSources = returnSmallest.get(xsomes);
+					C_Chromosome xsomesTargets = returnLargest.get(xsomes);
+					if ((xsomesSources.getNumGenes() != xsomesTargets.getNumGenes()) || ((xsomesSources
+							.getNumGenes() == 0) || (xsomesTargets.getNumGenes() == 0))) {
+						smallestMicrosat.getGene(0).setAllele(LETHAL_ALLELE);
+						System.err.println(this + ": chromosomes finally do not match gene sizes");
+						hybridInspector.incrPbMatching();
+					}
+				}
+			}
+		} // end of scan for the chromosomes of smallest gamete
+		Collections.sort(returnLargest);
+		Collections.sort(returnSmallest);
+		returnSmallest.add(MICROSAT_INDEX, smallestMicrosat);
+		returnSmallest.add(GONOSOME_INDEX, smallestGonosome);
+		returnLargest.add(MICROSAT_INDEX, largestMicrosat);
+		returnLargest.add(GONOSOME_INDEX, largestGonosome);
+		returnList.add(returnSmallest);
+		returnList.add(returnLargest);
+		return (returnList);
+!!!288898.java!!!	mateGenomes(inout mutRate : Object, inout partnerGenome : I_DiploidGenome) : I_DiploidGenome
+		I_DiploidGenome zygoteGenome = null;
+		ArrayList<C_ChromosomePair> zygoteXsomes = makeZygoteXsomes(mutRate, partnerGenome);
+		C_XsomePairMicrosat microsat = (C_XsomePairMicrosat) zygoteXsomes.get(MICROSAT_INDEX);
+		C_XsomePairSexual gonosome = (thing.dna.C_XsomePairSexual) zygoteXsomes.get(GONOSOME_INDEX);
+		zygoteXsomes.remove(microsat);
+		zygoteXsomes.remove(gonosome);
+		try {
+			Constructor<?> constructor = null;
+			// if the cross is nat x ery, the new genome is neither nat nor ery, it's a Mastomys genome. But, if the cross is
+			// Mastomys x nat/ery or
+			// Mastomys x Mastomys the hybrid from this cross will be a GenomeMastomys too.
+
+			if (isHybrid(zygoteXsomes) && (this.getClass() != partnerGenome.getClass().getSuperclass()) && (this
+					.getClass().getSuperclass() != partnerGenome.getClass()) && (this.getClass() != partnerGenome
+							.getClass())) {
+				constructor = this.getClass().getSuperclass().getDeclaredConstructor(C_XsomePairMicrosat.class,
+						C_XsomePairSexual.class, ArrayList.class);
+			}
+			else constructor = this.getClass().getDeclaredConstructor(C_XsomePairMicrosat.class,
+					C_XsomePairSexual.class, ArrayList.class);
+			constructor.setAccessible(true);
+			zygoteGenome = (I_DiploidGenome) constructor.newInstance(microsat, gonosome, zygoteXsomes);
+			// production code should handle these exceptions more gracefully
+		} catch (InstantiationException x) {
+			x.printStackTrace();
+		} catch (IllegalAccessException x) {
+			x.printStackTrace();
+		} catch (InvocationTargetException x) {
+			x.printStackTrace();
+		} catch (NoSuchMethodException x) {
+			x.printStackTrace();
+		}
+		// the function of survival of the zygote is a sinusoid. It's value is the highest (=1) at an hybridRatio of 1, 0 and 0,5
+		// according to the theory of the hybrid breakdown. PbEpistasie is due to positive interactions between genes of the same
+		// species that do not occur in some hybrids.
+		// COMMENT HERE TO STOP THE HYBRID BREAKDOWN BARRIER
+		double survival = 0.5 * (java.lang.Math.sin(4 * java.lang.Math.PI * ((C_GenomeEucaryote) zygoteGenome)
+				.hybridRatio() + 0.5 * java.lang.Math.PI) + 1);
+
+		if (!microsat.getAlleles().contains(C_GenomeEucaryote.LETHAL_ALLELE)) {
+			if (C_ContextCreator.randomGeneratorForEpistasis.nextDouble() > survival) {
+				microsat.getGene(LOCUS_LETHAL_ALLELE, STRAND_LETHAL_ALLELE).setAllele(LETHAL_ALLELE);
+				hybridInspector.incrPbEpistasie();
+			}
+		}
+		// The Haldane theory says that the heterogametic sex (here the males) of hybrids, is
+		// sterile. Then, every male which is also an hybrid has no viable child.
+		// COMMENT HERE TO STOP THE HALDANE BARRIER
+		if ((((C_GenomeEucaryote) partnerGenome).gonosome.isMale() && ((C_GenomeEucaryote) partnerGenome).isHybrid())
+				|| ((this.gonosome.isMale()) && (this.isHybrid()))) {
+			microsat.getGene(LOCUS_LETHAL_ALLELE, STRAND_LETHAL_ALLELE).setAllele(LETHAL_ALLELE);
+			hybridInspector.incrPbHaldane();
+		}
+		return zygoteGenome;
+!!!289026.java!!!	getDiploidNumber() : int
+		Integer realDiploidNumber = super.getDiploidNumber() + (2 * 2); // 2 for the microsat and the gonosomes (x2 because they
+																		// are
+																		// pairs)
+		for (C_ChromosomePair xsomesPair : bivalents) {
+			for (C_Chromosome xsome : xsomesPair.xsomeStrands) {
+				Set<Integer> totalAutosomes = new HashSet<Integer>();
+				for (int i = 0; i < xsome.getNumGenes(); i++) {
+					totalAutosomes.add(xsome.getGene(i).ownerXsomeNumber);
+				}
+				realDiploidNumber += totalAutosomes.size();
+			}
+		}
+		return realDiploidNumber;
+!!!289154.java!!!	isHybrid(inout xsomes : ArrayList<C_ChromosomePair>) : boolean
+		for (C_ChromosomePair xsomePair : xsomes) {
+			int numGenePairs = xsomePair.numGenes();
+			if (numGenePairs == 0)
+				A_Protocol.event("C_GenomeEucaryote.isHybrid()", "no gene in genomeEucaryote IsHybrid()", isError);
+			for (int locus = 0; locus < numGenePairs; locus++) {
+				C_Gene gL = (C_Gene) xsomePair.xsomeStrands[C_ChromosomePair.PARENT_1].getGene(locus);
+				C_Gene gR = (C_Gene) xsomePair.xsomeStrands[C_ChromosomePair.PARENT_2].getGene(locus);
+				if (compareDecimals((Double) gL.getAllele(), (Double) gR.getAllele())) {}
+				else return (true);
+			}
+		}
+		return (false);
+!!!289282.java!!!	isHybrid() : boolean
+		return false;
+!!!289410.java!!!	isHybrid0() : boolean
+		return isHybrid;
+!!!289538.java!!!	getChromosomePairFromMaploc(in maploc : double) : C_ChromosomePair
+		C_ChromosomePair xsomePair = null;
+		for (C_ChromosomePair chromosomePair : this.bivalents) {
+			List<C_Gene> genesLeft = chromosomePair.getXsomeStrand(C_ChromosomePair.PARENT_1).getGenes();
+			// assume that geneRight and geneLeft maploc are identical and unique for the genome.
+			for (C_Gene gene : genesLeft) {
+				if (gene.mapLoc == maploc) xsomePair = chromosomePair;
+			}
+		}
+		return xsomePair;
+!!!289666.java!!!	hybridRatio() : double
+// TODO JLF 2017.08 should be placed within hybridInspector
+		double total = 0.;
+		double totalNat = 0.;
+		for (C_ChromosomePair xsomePair : this.getAutosomes()) {
+			for (C_Chromosome xsome : xsomePair.xsomeStrands) {
+				for (C_Gene gene : xsome.getGenes()) {
+					total++;
+					double alleleTaxon = (Double) gene.getTaxonSignature();
+					if (alleleTaxon == 11.) totalNat++; // TODO number in source DNA; taxon signature of natalensis is 0.11
+				}
+			}
+		}
+		return totalNat / total;
+!!!289794.java!!!	getAutosomes() : C_ChromosomePair
+		return bivalents;
+!!!289922.java!!!	getTaxonSignature() : Double
+		return 0.00;
+!!!290050.java!!!	init(inout inspector : C_InspectorHybrid) : void
+		hybridInspector = inspector;// we declare the hybrid inspector that catches the lethal allele in various situations JLF
+									// 02.2013
+!!!290178.java!!!	compareDecimals(in n1 : double, in n2 : double) : boolean
+		return truncate(n1) == truncate(n2);
+!!!290306.java!!!	truncate(in x : double) : double
+		long y = (long) (x * 1000.);
+		y = y - ((int) x) * 1000;
+		return y;
+!!!290434.java!!!	getMicrosatXsome() : C_XsomePairMicrosat
+		return microsatXsomesPair;
+!!!290562.java!!!	getGonosome() : C_XsomePairSexual
+		return gonosome;
+!!!290690.java!!!	setGonosome(inout gonosome : C_XsomePairSexual) : void
+		this.gonosome = gonosome;
+!!!290818.java!!!	getAlleles() : Map<String, Double>
+		return alleles;

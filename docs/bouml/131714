@@ -1,0 +1,803 @@
+format 224
+"rodents" // src::thing::dna::species::rodents
+  revision 1
+  modified_by 2 "lefur"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:\\Users\\lefur\\Documents\\GitHub\\MelaneSim_2024\\src/thing/dna/species/rodents/"
+  java_package "thing.dna.species.rodents"
+  classview 131586 "rodents"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 157442 "C_GenomeGerbillusNigeriae"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " @author JLF 07.2014, rev. JLF & L.Granjon 08.2014, M.Sall 10.2016 "
+      classrelation 179842 // <generalisation>
+	relation 179842 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 179842 // <generalisation>
+	  b parent class_ref 155010 // C_GenomeAmniota
+      end
+
+      operation 298370 "C_GenomeGerbillusNigeriae"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTORS
+
+ Returns a new Gerbillus nigeriae genome. <br>
+Trait values references (see comments in source code):<br>
+- Sicard and Fuminier 1996// TODO JLF 2015.10 to complete - Nomao, 2001 // TODO JLF ref. Nomao 2001 - Granjon, 2014 comm.
+pers. "
+      end
+
+      operation 298498 "C_GenomeGerbillusNigeriae"
+	public explicit_return_type ""
+	nparams 3
+	  param inout name "microsatXsome" type class_ref 155394 // C_XsomePairMicrosat
+	  param inout name "gonosome" type class_ref 155522 // C_XsomePairSexual
+	  param inout name "autosomes" explicit_type "ArrayList<C_ChromosomePair>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Returns a new Gerbillus nigeriae genome. This method is used for genome mate.
+@param microsatXsome
+@param gonosome
+@param autosomes
+@see C_GenomeEucaryote#mate "
+      end
+
+      operation 298626 "getTaxonSignature"
+	protected explicit_return_type "Double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " GETTER
+"
+      end
+    end
+
+    class 157570 "C_GenomeMastoErythroleucus"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " @author Le Fur J. & A.Comte 07.2012, rev. JLF & L.Granjon 08.2014 "
+      classrelation 180098 // <generalisation>
+	relation 180098 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 180098 // <generalisation>
+	  b parent class_ref 157698 // C_GenomeMastomys
+      end
+
+      operation 299138 "C_GenomeMastoErythroleucus"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTORS
+
+ Returns a new C_GenomeMastoErythroleucus. <br>
+Trait values references (see comments in source code):<br>
+- Granjon, L. (1987) Evolution allopatrique chez les Muridés : mécanismes éco-éthologiques liés au syndrome d'insularité
+chez Mastomys et Rattus.Montpellier : USTL, 172 p. multigr. Th. : Biol. des Populations et des Ecosystèmes, USTL :
+Montpellier. 1987/11/13.<br>
+- Granjon, L. and J.M. Duplantier (2009)Les rongeurs de l'Afrique sahélo-soudanienne. IRD Editions, Publications<br>
+Scientifiques du Muséum - Collection Faune et Flore tropicales 43 / / ISBN IRD : 978-2-7099-1675-2<br>
+- Hubert, B. ; F. Adam, (1975) Reproduction et croissance en élevage de quatre espèces de rongeurs sénégalais.<br>
+Mammalia, t. 39(1) : 1-15 - <br>
+- Duplantier, J.M., Granjon, L. and Bouganaly, H. (1996) Reproductive characteristics of three sympatric species<br>
+of Mastomys in Senegal, as observed in the field and in captivity. Mammalia, 60(4): 629-638.<br>
+- Hubert, B. 1982 Dynamique des populations de deux espèces de rongeurs du Sénégal, Mastomys erythroleucus et<br>
+Taterillus gracilis (Rodentia, Muridae et Gerbillidae) : l. Etude démographique. Mammalia, t. 46(2) : 37-166<br>
+- Poulet A.R. (1972) Recherches écologiques sur une savane sahélienne du Ferlo septentrional, Sénégal : les mammifères.<br>
+Terre et Vie-Rev. Ecol. A., 26 : 440-472. "
+      end
+
+      operation 299266 "C_GenomeMastoErythroleucus"
+	public explicit_return_type ""
+	nparams 3
+	  param inout name "microsatXsome" type class_ref 155394 // C_XsomePairMicrosat
+	  param inout name "gonosome" type class_ref 155522 // C_XsomePairSexual
+	  param inout name "autosomes" explicit_type "ArrayList<C_ChromosomePair>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " returns a new GenomeMErythroleucus. This method is used for genome mate.
+@param microsatXsome
+@param gonosome
+@param autosomes
+@see C_GenomeEucaryote#mate "
+      end
+
+      operation 299394 "C_GenomeMastoErythroleucus"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "gender" explicit_type "Integer"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 299522 "addHybridTestAutosomes"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHOD
+
+ For Mastomys Erythroleucus, we consider that the caryotype is 2n = 14
+@author A.Comte and JLF 02.2012, rev. JLF 08.2014 "
+      end
+
+      operation 299650 "getTaxonSignature"
+	protected explicit_return_type "Double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " GETTER
+"
+      end
+    end
+
+    class 157698 "C_GenomeMastomys"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " @author JLF and AC 02.2012, rev. JL 08.2017 "
+      classrelation 179970 // <generalisation>
+	relation 179970 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 179970 // <generalisation>
+	  b parent class_ref 155010 // C_GenomeAmniota
+      end
+
+      operation 298754 "C_GenomeMastomys"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTORS
+
+ Returns a new C_GenomeMastomys. <br>
+Trait values references (see comments in source code):<br>
+- Duplantier, J.M., Granjon, L. and Bouganaly, H. (1996) Reproductive characteristics of three sympatric species of Mastomys in Senegal, as
+observed in the field and in captivity. Mammalia, 60(4): 629-638. "
+      end
+
+      operation 298882 "C_GenomeMastomys"
+	public explicit_return_type ""
+	nparams 3
+	  param inout name "microsatXsome" type class_ref 155394 // C_XsomePairMicrosat
+	  param inout name "gonosome" type class_ref 155522 // C_XsomePairSexual
+	  param inout name "autosomes" explicit_type "ArrayList<C_ChromosomePair>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Returns a new GenomeMNalatensis. This method is used for genome mate.
+@param microsatXsome
+@param gonosome
+@param autosomes
+@see C_GenomeEucaryote#mate "
+      end
+
+      operation 299010 "getTaxonSignature"
+	protected explicit_return_type "Double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " GETTER
+
+ this taxonSignature is specific of the Mastomys group and used for individuals which are not specified. "
+      end
+    end
+
+    class 157826 "C_GenomeMastoNatalensis"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " @author Le Fur J. & A.Comte 07.2012, rev. JLF & L.Granjon 08.2014 "
+      classrelation 180226 // <generalisation>
+	relation 180226 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 180226 // <generalisation>
+	  b parent class_ref 157698 // C_GenomeMastomys
+      end
+
+      operation 299778 "C_GenomeMastoNatalensis"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTORS
+
+ Returns a new C_GenomeMastoNatalensis. <br>
+Trait values references (see comments in source code):<br>
+- Granjon, L. and J.M. Duplantier (2009)Les rongeurs de l'Afrique sahélo-soudanienne. IRD Editions, Publications Scientifiques du Muséum -
+Collection Faune et Flore tropicales 43 / / ISBN IRD : 978-2-7099-1675-2 - <br>
+- Duplantier, J.M., Granjon, L. and Bouganaly, H. (1996) Reproductive characteristics of three sympatric species of Mastomys in Senegal, as
+observed in the field and in captivity. Mammalia, 60(4): 629-638. "
+      end
+
+      operation 299906 "C_GenomeMastoNatalensis"
+	public explicit_return_type ""
+	nparams 3
+	  param inout name "microsatXsome" type class_ref 155394 // C_XsomePairMicrosat
+	  param inout name "gonosome" type class_ref 155522 // C_XsomePairSexual
+	  param inout name "autosomes" explicit_type "ArrayList<C_ChromosomePair>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Returns a new GenomeMNalatensis. This method is used for genome mate.
+@param microsatXsome
+@param gonosome
+@param autosomes
+@see C_GenomeEucaryote#mate "
+      end
+
+      operation 300034 "C_GenomeMastoNatalensis"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "gender" explicit_type "Integer"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 300162 "addHybridTestAutosomes"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHOD
+
+ For Mastomys Natalensis, we consider that the caryotype is 2n = 8
+@author A.Comte & JLF 02.2012, rev. JLF 08.2014 "
+      end
+
+      operation 300290 "getTaxonSignature"
+	protected explicit_return_type "Double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " GETTER
+"
+      end
+    end
+
+    class 157954 "C_GenomeMicrotusArvalis"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " @author Le Fur J. 07.2012, rev. JLF 08.2014 "
+      classrelation 180354 // <generalisation>
+	relation 180354 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 180354 // <generalisation>
+	  b parent class_ref 155010 // C_GenomeAmniota
+      end
+
+      operation 300418 "C_GenomeMicrotusArvalis"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTORS
+
+ Returns a new GenomeMicrotusArvalis. This method is used for mate. <br>
+References (see comments in source code):<br>
+- AnAge database (2014) http://genomics.senescence.info/species/entry.php?species=Microtus_arvalis<br>
+- Le Louarn, H. and J.P. Quéré (2003) Les rongeurs de France: faunistique et biologie. INRA ed., Paris, ISBN: 2-7380-1091-1,
+256p.<br>
+- Quéré, J.P. and H. Le Louarn (2011) Les rongeurs de France: faunistique et biologie. Quae ed., Paris, ISBN:
+978-2-7592-1033-6, 312p. "
+      end
+
+      operation 300546 "C_GenomeMicrotusArvalis"
+	public explicit_return_type ""
+	nparams 3
+	  param inout name "microsatXsome" type class_ref 155394 // C_XsomePairMicrosat
+	  param inout name "gonosome" type class_ref 155522 // C_XsomePairSexual
+	  param inout name "autosomes" explicit_type "ArrayList<C_ChromosomePair>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Returns a new GenomeMicrotusArvalis. This method is used for genome mate. <br>
+Args: the three different types of chromosomes : microsatXsome, gonosome, autosomes
+@see C_GenomeEucaryote#mateGenomes(Object, I_diploid_genome) "
+      end
+
+      operation 300674 "getTaxonSignature"
+	protected explicit_return_type "Double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " GETTER
+
+ this arbitrary taxon signature is specific of the Microtus arvalis species "
+      end
+    end
+
+    class 158082 "C_GenomeMusMusculus"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " @author JLF 07.2014, rev. JLF & L.Granjon 08.2014 "
+      classrelation 180482 // <generalisation>
+	relation 180482 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 180482 // <generalisation>
+	  b parent class_ref 155010 // C_GenomeAmniota
+      end
+
+      operation 300802 "C_GenomeMusMusculus"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTORS
+
+ Returns a new C_GenomeMusMusculus. <br>
+Trait values references (see comments in source code):<br>
+- Doumerc, S. (2004) Elevage et reproduction des rongeurs myomorphes domestiques en France. Veterinary Ph. D. thesis, 286p. <br>
+Baker, J. (2004) National Gerbil Society Website http://www.gerbils.co.uk/gerbils/genetics.html] <br>
+Maeda, Ki, Ohkura, S., Tsukamura, H. (2000) Physiology of Reproduction. In : Krinke, GJ, editor. The Laboratory Rat. 1 st ed. London : Academic
+Press, 2000, 145-174. <br>
+- AnAge database (2014) http://genomics.senescence.info/species/entry.php?species=Mus_musculus<br>
+- Encyclopedia of Life database (2014) http://eol.org/pages/328450/hierarchy_entries/55937675/details#reproduction "
+      end
+
+      operation 300930 "C_GenomeMusMusculus"
+	public explicit_return_type ""
+	nparams 3
+	  param inout name "microsatXsome" type class_ref 155394 // C_XsomePairMicrosat
+	  param inout name "gonosome" type class_ref 155522 // C_XsomePairSexual
+	  param inout name "autosomes" explicit_type "ArrayList<C_ChromosomePair>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Returns a new GenomeMusMusculus. This method is used for genome mate.
+@param microsatXsome
+@param gonosome
+@param autosomes
+@see C_GenomeEucaryote#mate "
+      end
+
+      operation 301058 "getTaxonSignature"
+	protected explicit_return_type "Double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " GETTER
+"
+      end
+    end
+
+    class 158210 "C_GenomeRattusRattus"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " @author JLF and MBOUP 07.2012, rev. JLF & L.Granjon 08.2014 "
+      classrelation 180610 // <generalisation>
+	relation 180610 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 180610 // <generalisation>
+	  b parent class_ref 155010 // C_GenomeAmniota
+      end
+
+      operation 301186 "C_GenomeRattusRattus"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTORS
+
+ Returns a new C_GenomeRattusRattus. <br>
+  Trait values references (see comments in source code):<br>
+   - Kingdon, J. (1974) East African Mammals. An Atlas of Evolution in Africa. 2B (Hares and Rodents). Academic Press. London. 578-581<br>
+   - Rosevear, D.R. (1969) Rodents of west Africa: 267-276<br>
+   - AnAge database (2014) http://genomics.senescence.info/species/entry.php?species=Rattus_rattus "
+      end
+
+      operation 301314 "C_GenomeRattusRattus"
+	public explicit_return_type ""
+	nparams 3
+	  param inout name "microsatXsome" type class_ref 155394 // C_XsomePairMicrosat
+	  param inout name "gonosome" type class_ref 155522 // C_XsomePairSexual
+	  param inout name "autosomes" explicit_type "ArrayList<C_ChromosomePair>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Returns a new GenomeRattusRattus. This method is used for genome mate.
+@param microsatXsome
+@param gonosome
+@param autosomes
+@see C_GenomeEucaryote#mate "
+      end
+
+      operation 301442 "getTaxonSignature"
+	protected explicit_return_type "Double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment " SETTERS & GETTERS
+
+ this taxonSignature is specific of the Rattus group and used for individuals which are not
+specified. "
+      end
+    end
+  end
+
+  deploymentview 130818 "rodents"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 150658 "C_GenomeGerbillusNigeriae"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import thing.dna.C_ChromosomePair;
+import thing.dna.C_GenomeAmniota;
+import thing.dna.C_GenomeEucaryote;
+import thing.dna.C_XsomePairMicrosat;
+import thing.dna.C_XsomePairSexual;
+${definition}"
+      associated_elems
+	class_ref 157442 // C_GenomeGerbillusNigeriae
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 150786 "C_GenomeMastomys"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import thing.dna.C_ChromosomePair;
+import thing.dna.C_GenomeAmniota;
+import thing.dna.C_GenomeEucaryote;
+import thing.dna.C_XsomePairMicrosat;
+import thing.dna.C_XsomePairSexual;
+${definition}"
+      associated_elems
+	class_ref 157698 // C_GenomeMastomys
+      end
+      comment "This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt"
+    end
+
+    artifact 150914 "C_GenomeMastoErythroleucus"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import thing.dna.C_Chromosome;
+import thing.dna.C_ChromosomePair;
+import thing.dna.C_Gene;
+import thing.dna.C_GenePair;
+import thing.dna.C_GenomeEucaryote;
+import thing.dna.C_XsomePairMicrosat;
+import thing.dna.C_XsomePairSexual;
+${definition}"
+      associated_elems
+	class_ref 157570 // C_GenomeMastoErythroleucus
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 151042 "C_GenomeMastoNatalensis"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import thing.dna.C_Chromosome;
+import thing.dna.C_ChromosomePair;
+import thing.dna.C_Gene;
+import thing.dna.C_GenePair;
+import thing.dna.C_GenomeEucaryote;
+import thing.dna.C_XsomePairMicrosat;
+import thing.dna.C_XsomePairSexual;
+${definition}"
+      associated_elems
+	class_ref 157826 // C_GenomeMastoNatalensis
+      end
+      comment "This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt"
+    end
+
+    artifact 151170 "C_GenomeMicrotusArvalis"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import thing.dna.C_ChromosomePair;
+import thing.dna.C_GenomeAmniota;
+import thing.dna.C_GenomeEucaryote;
+import thing.dna.C_XsomePairMicrosat;
+import thing.dna.C_XsomePairSexual;
+${definition}"
+      associated_elems
+	class_ref 157954 // C_GenomeMicrotusArvalis
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 151298 "C_GenomeMusMusculus"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import thing.dna.C_ChromosomePair;
+import thing.dna.C_GenomeAmniota;
+import thing.dna.C_GenomeEucaryote;
+import thing.dna.C_XsomePairMicrosat;
+import thing.dna.C_XsomePairSexual;
+${definition}"
+      associated_elems
+	class_ref 158082 // C_GenomeMusMusculus
+      end
+      comment "This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt"
+    end
+
+    artifact 151426 "C_GenomeRattusRattus"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import thing.dna.C_ChromosomePair;
+import thing.dna.C_GenomeAmniota;
+import thing.dna.C_GenomeEucaryote;
+import thing.dna.C_XsomePairMicrosat;
+import thing.dna.C_XsomePairSexual;
+${definition}"
+      associated_elems
+	class_ref 158210 // C_GenomeRattusRattus
+      end
+      comment "This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt"
+    end
+  end
+end

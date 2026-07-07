@@ -1,0 +1,42 @@
+class C_ProtocolEnclosure
+!!!166658.java!!!	C_ProtocolEnclosure(inout ctxt : Context<Object>)
+		super(ctxt);// Init parameters and higher level inspectors & displays
+		burrowInspector = new C_InspectorFossorialRodents();
+		geneticInspector = new C_InspectorGenetic();
+		hybridInspector = new C_InspectorHybrid();
+		inspectorList.add(hybridInspector);
+		inspectorList.add(burrowInspector);
+		inspectorList.add(geneticInspector);
+		// declare the inspector that stores the lethal alleles causes JLF 02.2013
+		C_GenomeEucaryote.init(hybridInspector);
+		C_CustomPanelSet_Rodent.addHybridInspector(hybridInspector);
+		C_CustomPanelSet_Rodent.addGeneticInspector(geneticInspector);
+		C_UserPanelRodent.addBurrowInspector(burrowInspector);
+!!!166786.java!!!	initProtocol() : void
+ //TODO JLF 2012.02 use of Math.random() in protocole cage ~OK (robustless however)
+		for (int i = 0; i < 4; i++) {
+			C_Rodent female = new C_Rodent(new C_GenomeMastoNatalensis(SEX_GENE_X));
+			contextualizeNewThingInSpace(female,(Math.random() * 40) + 4, (Math.random() * 40) + 4);
+		}
+		for (int i = 0; i < 2; i++) {
+			C_Rodent male = new C_Rodent(new C_GenomeMastoNatalensis(SEX_GENE_Y));
+			contextualizeNewThingInSpace(male, (Math.random() * 40) + 4,  (Math.random() * 40) + 4);
+		}
+		for (int i = 0; i < 3; i++) {
+			C_Rodent female = new C_Rodent(new C_GenomeMastoErythroleucus(SEX_GENE_X));
+			contextualizeNewThingInSpace(female,(Math.random() * 40) + 48,  (Math.random() * 40) + 4);
+		}
+		for (int i = 0; i < 3; i++) {
+			C_Rodent male = new C_Rodent(new C_GenomeMastoErythroleucus(SEX_GENE_Y));
+			contextualizeNewThingInSpace(male, (Math.random() * 40) + 48,(Math.random() * 40) + 4);
+		}
+		super.initProtocol();
+!!!166914.java!!!	step_Utick() : void
+		super.step_Utick();// has to be after the other inspectors step since it records indicators in file
+!!!167042.java!!!	readUserParameters() : void
+		super.readUserParameters();
+		C_Parameters.INIT_BURROW_POP_SIZE = ((Integer) C_Parameters.parameters.getValue("NUMBER_OF_BURROW_SYSTEM")).intValue();
+		C_Parameters.REPRO_START_Umonth = ((Integer) C_Parameters.parameters.getValue("REPRO_START_Umonth")).intValue();
+		C_Parameters.REPRO_END_Umonth = ((Integer) C_Parameters.parameters.getValue("REPRO_END_Umonth")).intValue();
+!!!167170.java!!!	initCalendar() : void
+		protocolCalendar.set(2014, Calendar.JANUARY, 1);

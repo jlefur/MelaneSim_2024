@@ -23,4 +23,5 @@ public interface I_LivingThing {
 
 	/** Get energy (pseudo-energy) JLF 2025 */
 	public double getEnergy_Ukcal();
+	public void setEnergy_Ukcal(double d);
 }

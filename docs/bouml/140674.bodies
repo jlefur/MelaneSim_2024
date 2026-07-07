@@ -1,0 +1,245 @@
+class C_RodentDomestic2
+!!!353794.java!!!	C_RodentDomestic2(inout genome : I_DiploidGenome)
+		super(genome);
+!!!353922.java!!!	step_Utick() : void
+		if (A_Protocol.protocolCalendar.isDawn() || A_Protocol.protocolCalendar.isDayTime()) {
+			if (this.currentSoilCell instanceof C_BurrowSystem) this.setDesire(NONE);// keep quiet
+			else if (this.getCurrentSoilCell().getAffinity() == HOUSEDOOR_AFFINITY) this.setDesire("");
+			else this.setDesire(HIDE); // search shelter if (this.getCurrentSoilCell().getAffinity() <= CORRIDOR_AFFINITY)
+		}
+		else {// reset desires
+				// if (!this.isSucklingChild()) this.setDesire("");
+			if (this.desire == NONE || this.desire == REST || this.desire == HIDE || this.desire == FLEE) {
+				this.setDesire("");
+			}
+		}
+		super.step_Utick();
+!!!354050.java!!!	updatePhysiologicStatus() : void
+		if (hasToCreateHome) this.createNewHome();
+		String currentDesire = this.desire;
+		super.updatePhysiologicStatus();
+		if (currentDesire.equals(FLEE) || currentDesire.equals(HIDE)) this.setDesire(currentDesire);
+!!!354178.java!!!	perception() : I_SituatedThing
+		TreeSet<I_SituatedThing> reallyPerceivedThings = new TreeSet<I_SituatedThing>();
+		TreeSet<I_SituatedThing> perceivedThings = super.perception();
+		// TODO JLF&MS 2020.09 generalize obstacle perception ?
+		for (I_SituatedThing oneThing : perceivedThings) {
+			I_SituatedThing sightObstacle = C_VariousUtilities.checkObstacleBefore0(this, oneThing);
+			if (!(sightObstacle != null && sightObstacle != oneThing)) reallyPerceivedThings.add(oneThing);
+		}
+		reallyPerceivedThings.remove(this.currentSoilCell);
+		reallyPerceivedThings.remove(this);
+		return reallyPerceivedThings;
+!!!354306.java!!!	checkDanger() : void
+		TreeSet<I_SituatedThing> perceivedThings = this.perception();
+		for (I_SituatedThing oneThing : perceivedThings) {
+			if (oneThing instanceof A_HumanUrban) {
+				this.setDesire(HIDE);
+				break;
+			}
+		}
+		super.checkDanger();
+!!!354434.java!!!	deliberation(inout perceivedThings : TreeSet<I_SituatedThing>) : I_SituatedThing
+		TreeSet<I_SituatedThing> selectedThings = new TreeSet<I_SituatedThing>();
+		if ((this.getDesire().equals(REST) || this.getDesire().equals(HIDE))
+				&& !(this.currentSoilCell instanceof C_BurrowSystem)) {
+			if (perceivedThings.contains(this.myHome) && (this.myHome instanceof C_BurrowSystem)) {
+				selectedThings.add(this.myHome);
+				return selectedThings;
+			}
+			selectedThings = this.chooseShelter(perceivedThings);
+			if (!selectedThings.isEmpty()) return selectedThings;
+			if (this.getDesire().equals(HIDE)) {
+				selectedThings = this.chooseDoor(perceivedThings);
+				if (!selectedThings.isEmpty()) return selectedThings;
+			}
+			selectedThings = wallsPerceived(perceivedThings);
+			if (!selectedThings.isEmpty()) return selectedThings;
+			else this.setDesire(FLEE);
+		}
+		if (this.getDesire().equals(FLEE)) return selectedThings;// return wall or null
+		if (this.getDesire().equals(WANDER)) {
+			if (!this.inDangerousArea()) {
+				for (C_SoilCell onecell : this.getMyLandPlot().getCells()) selectedThings.add(onecell);
+			}
+			return selectedThings;
+		}
+		return super.deliberation(perceivedThings);
+!!!354562.java!!!	chooseFood(inout perceivedThings : TreeSet<I_SituatedThing>) : I_SituatedThing
+		TreeSet<I_SituatedThing> selectedFoodCells = new TreeSet<I_SituatedThing>();
+		for (I_SituatedThing oneThing : perceivedThings) if (oneThing instanceof C_Food)
+			selectedFoodCells.add(oneThing);
+		return selectedFoodCells;
+!!!354690.java!!!	chooseShelter(inout perceivedThings : TreeSet<I_SituatedThing>) : I_SituatedThing
+		TreeSet<I_SituatedThing> selectedShelters = new TreeSet<I_SituatedThing>();
+		for (I_SituatedThing oneThing : perceivedThings) if (oneThing instanceof C_BurrowSystem)
+			selectedShelters.add(oneThing);
+		if (selectedShelters.isEmpty() && this.inFavourableLand()) {
+			boolean interestLandPlot = false;
+			C_LandPlot oneLandPlot = ((C_SoilCell) this.getCurrentSoilCell()).getMyLandPlot();
+			TreeSet<I_SituatedThing> foundedThings = new TreeSet<I_SituatedThing>();
+			for (C_SoilCell oneCell : oneLandPlot.getCells()) {
+				foundedThings.addAll(oneCell.getOccupantList());
+			}
+			for (I_SituatedThing oneThing : foundedThings) {
+				if (oneThing instanceof C_BurrowSystem) selectedShelters.add(oneThing);
+				else if (!interestLandPlot && oneThing instanceof C_Food) interestLandPlot = true;
+			}
+			if (selectedShelters.isEmpty()) {
+				if (interestLandPlot) {
+					this
+							.getCurrentSoilCell().getCoordinate_Ucs();
+					this.getCurrentSoilCell()
+							.getCoordinate_Ucs();
+					C_BurrowSystem oneBurrow = new C_BurrowSystem(this.getCurrentSoilCell().getAffinity(), Coordinate.X, Coordinate.Y);
+					C_ContextCreator.protocol.contextualizeNewThingInContainer(oneBurrow, this.getCurrentSoilCell());
+					selectedShelters.add(oneBurrow);
+				}
+			}
+		}
+		return selectedShelters;
+!!!354818.java!!!	chooseDoor(inout perceivedThings : TreeSet<I_SituatedThing>) : I_SituatedThing
+		TreeSet<I_SituatedThing> selectedDoors = new TreeSet<I_SituatedThing>();
+		for (I_SituatedThing oneThing : perceivedThings) {
+			if (((A_Container) oneThing).getAffinity() == HOUSEDOOR_AFFINITY) selectedDoors.add(oneThing);
+		}
+		return selectedDoors;
+!!!354946.java!!!	manageArrival() : void
+		if ((((A_Container) this.target).getAffinity() == HOUSEDOOR_AFFINITY) && this.getDesire().equals(HIDE))
+			super.manageArrival();
+		else
+			if (this.isSightObstacle(this.target)) {// && (this.target != this.myHome)) {
+				// if no orientation or orientation outside grid orientate towards target
+				if (wallFollower.getOrientationPoint() == null || (!A_VisibleAgent.myLandscape.isPointInGrid(
+						wallFollower.getOrientationPoint())))
+					wallFollower.setOrientationPoint(this.target.getCoordinate_Umeter());
+				// if no wall found, search forward
+				if (wallFollower.getNearestWallPosition() == NO_WALL)
+					wallFollower.setNearestWallPosition(FORWARD_TO_AGENT);
+				// Position close to the sightObtacle, not within
+				double distanceToTarget_Umeter = C_VariousUtilities.distance_Umeter(this.target, this);
+				if (distanceToTarget_Umeter > (C_Landscape.halfCellDiagonal()
+						+ C_Landscape.halfCellDiagonal())) {
+					Coordinate newPosition_Umeter = wallFollower.computeNewPositionWithTarget_Umeter(this, this.target);
+					if (!this.getCoordinate_Umeter().equals(newPosition_Umeter))
+						C_ContextCreator.protocol.contextualizeOldThingInSpace(this, newPosition_Umeter.x,
+								newPosition_Umeter.y);
+				}
+			}
+			else super.manageArrival();
+!!!355074.java!!!	processTarget() : boolean
+		if (this.desire.equals(REST)) this.actionRest();
+		if (this.getDesire().equals(FLEE)) this.setDesire("");
+		if (this.getDesire().equals(HIDE)) {
+			if (((A_Container) this.target).getAffinity() == HOUSEDOOR_AFFINITY) {
+				C_ContextCreator.protocol.contextualizeOldThingInCell(this, (I_Container) this.target);
+				this.setDesire("");
+				return true;
+			}
+		}
+		if (this.isSightObstacle(this.target)) {
+			wallFollower.guiding(this);
+			return false;
+		}
+		if (this.target instanceof A_Animal) {
+			wallFollower.setOrientationPoint(null);
+			wallFollower.setNearestWallPosition(NO_WALL);
+		}
+		return super.processTarget();
+!!!355202.java!!!	giveBirth(inout genome : I_DiploidGenome) : A_Animal
+		return new C_RodentDomestic2(genome);
+!!!355330.java!!!	discardThis() : void
+		this.wallFollower.discardThis();
+		this.wallFollower = null;
+		if (!this.getOccupantList().isEmpty()) {
+			Object[] occupants = this.getOccupantList().toArray();
+			for (Object occupant : occupants) {
+				if (occupant instanceof C_OrnitodorosSonrai) {
+					C_ContextCreator.protocol.contextualizeOldThingInCell((I_SituatedThing) occupant,
+							this.currentSoilCell);
+					C_ContextCreator.protocol.landscape.moveToLocation((I_SituatedThing) occupant, this
+							.getCoordinate_Ucs());
+					((A_Animal) occupant).setTrappedOnBoard(false);
+					((C_OrnitodorosSonrai) occupant).resetCurMealDuration_Umn();
+				}
+			}
+		}
+		super.discardThis();
+!!!355458.java!!!	actionMoveToDestination() : void
+		super.actionMoveToDestination();
+		for (I_SituatedThing oneThing : this.getOccupantList()) myLandscape.moveToLocation(oneThing, myLandscape
+				.getThingCoord_Ucs(this));
+!!!355586.java!!!	actionNoChoice() : void
+		if (this.desire.equals(FLEE)) this.actionFlee();
+		else if (this.inDangerousArea() || this.getDesire().equals(HIDE)) this.actionDisperse();
+		else if (this.desire.equals(FEED)) this.actionForage();
+		else super.actionNoChoice();
+!!!355714.java!!!	actionFlee() : void
+		if (this.myHome != null && !((A_VisibleAgent) this.myHome).isDead()) {
+			this.setTarget(this.myHome);
+			this.actionMoveToDestination(this.speed_UmeterByTick * SLOW_FACTOR);
+			if (this.isArrived(this.speed_UmeterByTick * SLOW_FACTOR)) this.setDesire("");
+		}
+		else {
+			A_Protocol.event("C_RodentDomestic2.actionFlee()", "myHome of " + this + " is null or dead: " + this.myHome,
+					isError);
+			super.actionFlee();
+		}
+!!!355842.java!!!	actionRest() : void
+		this.energy_Ukcal++;
+!!!355970.java!!!	wallsPerceived(inout perceivedThings : TreeSet<I_SituatedThing>) : I_SituatedThing
+		TreeSet<I_SituatedThing> perceivedWalls = new TreeSet<I_SituatedThing>();
+		for (I_SituatedThing oneThing : perceivedThings) {
+			if (this.isSightObstacle(oneThing)) perceivedWalls.add(oneThing);
+		}
+		return perceivedWalls;
+!!!356098.java!!!	createNewHome() : void
+		if (!this.inDangerousArea()) {
+			this
+					.getCoordinate_Umeter();
+			this.getCoordinate_Umeter();
+			C_BurrowSystem oneBurrow = new C_BurrowSystem(this.getCurrentSoilCell().getAffinity(), Coordinate.X, Coordinate.Y);
+			C_ContextCreator.protocol.contextualizeNewThingInContainer(oneBurrow, this.getCurrentSoilCell());
+			this.setMyHome(oneBurrow);
+			this.setHasToCreateHome(false);
+		}
+!!!356226.java!!!	setNewRandomMove() : void
+		super.setNewRandomMove();
+		Coordinate nextPosition_Umeter = new Coordinate();
+		nextPosition_Umeter.x = this.getCoordinate_Umeter().x + this.nextMove_Umeter.x;
+		nextPosition_Umeter.y = this.getCoordinate_Umeter().y + this.nextMove_Umeter.y;
+		if (A_VisibleAgent.myLandscape.isPointInGrid(nextPosition_Umeter)) {
+			I_SituatedThing oneCell = A_VisibleAgent.myLandscape
+					.getGrid()[(int) nextPosition_Umeter.x][(int) nextPosition_Umeter.y];
+			I_SituatedThing seeingFence = C_VariousUtilities.checkObstacleBefore0(this, oneCell);
+			if (seeingFence != null) {
+				double distanceToFence = C_VariousUtilities.distance_Umeter(this, seeingFence);
+				if (distanceToFence > C_Parameters.CELL_WIDTH_Umeter) {
+					Coordinate nearestPosition_Umeter = wallFollower.computeNewPositionWithTarget_Umeter(this,
+							seeingFence);
+					this.nextMove_Umeter.x = nearestPosition_Umeter.x - this.getCoordinate_Umeter().x;
+					this.nextMove_Umeter.y = nearestPosition_Umeter.y - this.getCoordinate_Umeter().y;
+				}
+			}
+		}
+!!!356354.java!!!	isArrived(in speed : double) : boolean
+		if (this.isSightObstacle(this.target))
+			return super.isArrived(speed + C_Landscape.halfCellDiagonal()
+					+ MIN_VALUE_OF_REBOUNDZONE_Umeter);
+		else
+			return super.isArrived(speed);
+!!!356482.java!!!	isSightObstacle(inout thing : I_SituatedThing) : boolean
+		if (thing instanceof C_SoilCellUrban && ((C_SoilCellUrban) thing).isWall()) return true;
+		else return super.isSightObstacle(thing);
+!!!356610.java!!!	inFavourableLand() : boolean
+		int affinity = this.getCurrentSoilCell().getAffinity();
+		if (affinity == ROOM_AFFINITY || affinity == ROOMFOOD_AFFINITY || affinity == SHOPFOOD_AFFINITY
+				|| affinity == WORKSHOP_AFFINITY || affinity == CORRIDOR_AFFINITY || affinity == CONCESSION_AFFINITY)
+			return true;
+		return false;
+!!!356738.java!!!	inDangerousArea() : boolean
+		if (this.getCurrentSoilCell() instanceof C_SoilCellUrban)
+			return ((C_SoilCellUrban) this.getCurrentSoilCell()).isDangerousArea();
+		return false;
+!!!356866.java!!!	setHasToCreateHome(inout hasToCreateHome : boolean) : void
+		this.hasToCreateHome = hasToCreateHome;

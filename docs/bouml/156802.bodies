@@ -1,0 +1,5 @@
+class C_GenomeAcacia
+!!!297858.java!!!	C_GenomeAcacia()
+		super();
+		alleles.put(GROWTH_RATE_UkcalPerDay, 2.001); // TODO JLF&MS 04.2016 source: junk value, see T.Brevault for better values
+		makeSpermatophytaBivalent(this.alleles);

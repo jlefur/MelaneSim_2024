@@ -103,7 +103,7 @@ public class C_Rodent extends A_Amniote {
 	public A_Animal giveBirth(I_DiploidGenome genome) {
 		if (C_Parameters.VERBOSE)
 			A_Protocol.event("C_Rodent.giveBirth", "Birth at " + this.currentSoilCell + " (" + this.currentSoilCell
-					.getLoad_Urodent() + ")", false);
+					.retrieveLoad_Urodent() + ")", false);
 		return new C_Rodent(genome);
 	}
 	//

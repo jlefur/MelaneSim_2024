@@ -1,0 +1,29 @@
+class C_SoilCellUrban
+!!!317954.java!!!	C_SoilCellUrban(in aff : int, in lineNo : int, in colNo : int)
+		super(aff, lineNo, colNo);
+!!!318082.java!!!	isBlock() : boolean
+		// identify street here since several manipulation of affinity done by Moussa and not understood JLF 04.2022
+		if (this.street != null) return this.street.equals(0);
+		else {
+			if (affinity == ROAD_AFFINITY || affinity == STREET_AFFINITY || affinity == MARKET_AFFINITY)
+				this.street = 1;
+			else
+				this.street = 0;
+		}
+		return this.street.equals(0);
+!!!318210.java!!!	isStreet() : boolean
+		return !this.isBlock();
+!!!318338.java!!!	setAffinityLandPlot(inout plot : C_LandPlot) : void
+		this.affinityLandPlot = plot;
+		plot.addCell(this);
+		if (this.concession == null) this.setConcession(plot);
+!!!318466.java!!!	toString() : String
+		return this.affinityLandPlot.plotType + " Cell [row=" + this.lineNo + ", col=" + this.colNo + "]";
+!!!318594.java!!!	isDangerousArea() : boolean
+		return affinity == ROAD_AFFINITY || affinity == STREET_AFFINITY || affinity == TRACK_AFFINITY;
+!!!318722.java!!!	isWall() : boolean
+		return affinity == WALL_AFFINITY;
+!!!318850.java!!!	getConcession() : C_LandPlot
+		return concession;
+!!!318978.java!!!	setConcession(inout concession : C_LandPlot) : void
+		this.concession = concession;

@@ -1,0 +1,19 @@
+class C_Plankton
+!!!272130.java!!!	C_Plankton(inout genome : I_DiploidGenome)
+ super(genome); this.setMyName("phyto-plankton"+NAMES_SEPARATOR+myId);
+!!!272258.java!!!	step_Utick() : void
+ computeMaxDispersalDistance_Umeter(); super.step_Utick();
+!!!272386.java!!!	getTypeActeur() : I_MarineActor::DriverType
+ return DriverType.PLANKTON;
+!!!272514.java!!!	getSpeedEast() : double
+		if(this.isDead()) return 0.0;
+		else return ((C_SoilCellMarine)this.getCurrentSoilCell()).getSpeedEastward_UmeterPerSecond();
+!!!272642.java!!!	getSpeedNorth() : double
+		if(this.isDead()) return 0.0;
+		else return ((C_SoilCellMarine)this.getCurrentSoilCell()).getSpeedNorthward_UmeterPerSecond();
+!!!272770.java!!!	computeMaxDispersalDistance_Umeter() : void
+		double currentDispersalDistance_Umeter = this.getDistance_Umeter(this.bornCoord_Umeter);
+		if(currentDispersalDistance_Umeter>this.maxDispersalDistance_Umeter)
+			this.maxDispersalDistance_Umeter = currentDispersalDistance_Umeter;
+!!!272898.java!!!	getMaxDispersalDistance_Umeter() : double
+ return maxDispersalDistance_Umeter;

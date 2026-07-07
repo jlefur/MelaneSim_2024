@@ -4,8 +4,8 @@
   <sizeMax>1000.0</sizeMax>
   <sizeMin>5.0</sizeMin>
   <sizeScale>500.0</sizeScale>
-  <sizeMethodName>getFullLoad_Urodent</sizeMethodName>
-  <sizeMaxMethodName>getFullLoad_Urodent</sizeMaxMethodName>
+  <sizeMethodName>retrieveFullLoad_Urodent</sizeMethodName>
+  <sizeMaxMethodName>retrieveFullLoad_Urodent</sizeMaxMethodName>
   <label></label>
   <labelMethod>retrieveMyName</labelMethod>
   <labelPosition>bottom</labelPosition>

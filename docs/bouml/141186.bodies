@@ -1,0 +1,7 @@
+class C_Food
+!!!340354.java!!!	C_Food(in affinity : int, in lineNo : int, in colNo : int)
+        this.affinity = affinity;
+        this.lineNo = lineNo;
+        this.colNo = colNo;
+!!!340482.java!!!	getCarryingCapacity_Urodent() : int
+        return 0;

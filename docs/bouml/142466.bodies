@@ -1,0 +1,71 @@
+class C_ProtocolHybridUniform
+!!!169090.java!!!	C_ProtocolHybridUniform(inout ctxt : Context<Object>)
+		super(ctxt);
+		this.burrowInspector = new C_InspectorFossorialRodents();
+		this.geneticInspector = new C_InspectorGenetic();
+		this.hybridInspector = new C_InspectorHybrid();
+		this.inspectorList.add(hybridInspector);
+		this.inspectorList.add(burrowInspector);
+		this.inspectorList.add(geneticInspector);
+		// Declare the inspector that stores the lethal alleles causes JLF 02.2013
+		C_GenomeEucaryote.init(hybridInspector);
+		C_CustomPanelSet_Rodent.addHybridInspector(hybridInspector);
+		C_CustomPanelSet_Rodent.addGeneticInspector(geneticInspector);
+		C_UserPanelRodent.addGeneticInspector(geneticInspector);
+		C_CustomPanelSet_Rodent.addBurrowInspector(burrowInspector);
+		C_UserPanelRodent.addBurrowInspector(burrowInspector);
+		this.facilityMap = new C_Background(-.13, 25, 31);
+!!!169218.java!!!	initProtocol() : void
+		int nbAgent = C_Parameters.INIT_POP_SIZE;
+		// TODO JLF 2014.08 code below should replaced with an upper method
+		C_RodentFossorial agent;
+		Dimension dim = this.landscape.getDimension_Ucell();
+		int grid_width = (int) dim.getWidth();
+		int grid_height = (int) dim.getHeight();
+		for (int i = 0; i < nbAgent; i++) {
+			double randx = (C_ContextCreator.randomGeneratorForInitialisation.nextDouble() * grid_width);
+			double randy = (C_ContextCreator.randomGeneratorForInitialisation.nextDouble() * grid_height);
+			// Put all rodents at the middle at init:
+			// int randx = (int) (grid_width / 2);
+			// int randy = (int) (grid_height / 2);
+			// Create the agents
+			if (C_ContextCreator.randomGeneratorForInitialisation.nextDouble() >= .5) agent = new C_RodentFossorial(new C_GenomeMastoNatalensis());
+			else agent = new C_RodentFossorial(new C_GenomeMastoErythroleucus());
+			agent.setRandomAge();
+			contextualizeNewThingInSpace(agent, randx, randy);
+			agent.setNewRandomMove();
+		}
+		super.initProtocol();
+!!!169346.java!!!	readUserParameters() : void
+		super.readUserParameters();
+		// If switch to non-persistent burrows then tag empty burrows as dead
+		boolean oldValue = C_Parameters.PERSISTANCE_BURROW;
+		C_Parameters.PERSISTANCE_BURROW = ((Boolean) C_Parameters.parameters.getValue("PERSISTANCE_BURROW")).booleanValue();
+		if (oldValue != C_Parameters.PERSISTANCE_BURROW && this.burrowInspector != null) for (C_BurrowSystem burrow : this.burrowInspector
+				.getBurrowList())
+			if (burrow.getOccupantList().size() == 0 && burrow.getAnimalsTargetingMe().size() == 0) burrow.setDead(true);
+		C_Parameters.EXCLOS = ((Boolean) C_Parameters.parameters.getValue("EXCLOS")).booleanValue();
+		// blackmap
+		boolean oldValueBlackMap = C_Parameters.BLACK_MAP;
+		C_Parameters.BLACK_MAP = ((Boolean) C_Parameters.parameters.getValue("BLACK_MAP")).booleanValue();
+		if (oldValueBlackMap != C_Parameters.BLACK_MAP) {
+			if (C_Parameters.BLACK_MAP) this.blackMap();
+			else if (this.landscape != null) this.landscape.resetCellsColor();
+		}// Reproduction attributes common to both sexes //
+		C_Parameters.REPRO_START_Umonth = ((Integer) C_Parameters.parameters.getValue("REPRO_START_Umonth")).intValue(); // 91;
+		C_Parameters.REPRO_END_Umonth = ((Integer) C_Parameters.parameters.getValue("REPRO_END_Umonth")).intValue();
+!!!169474.java!!!	isSimulationEnd() : boolean
+		if (C_InspectorPopulationRodent.getNbFemales() == 0) {
+			if (C_Parameters.VERBOSE) java.awt.Toolkit.getDefaultToolkit().beep();
+			A_Protocol.event("C_ProtocolHybridUniform.isSimulationEnd", "Population is extinct (no female); halting simulation", isNotError);
+			return true;
+		}
+		return super.isSimulationEnd();
+!!!169602.java!!!	blackMap() : void
+		for (int i = 0; i < this.landscape.getDimension_Ucell().getWidth(); i++)
+			for (int j = 0; j < this.landscape.getDimension_Ucell().getHeight(); j++) {
+				if (this.landscape.getValueLayer().get(i, j) == 1) // houses
+				this.landscape.getValueLayer().set(2, i, j);
+				else if (this.landscape.getValueLayer().get(i, j) != 7) // hedges
+				this.landscape.getValueLayer().set(BLACK_MAP_COLOR, i, j);
+			}

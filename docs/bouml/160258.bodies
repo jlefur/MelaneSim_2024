@@ -1,0 +1,35 @@
+class C_SoilCellMarineEnergy
+!!!313090.java!!!	C_SoilCellMarineEnergy(in aff : int, in lineNo : int, in colNo : int)
+		super(aff,lineNo,colNo);
+		valeurs = new Valeurs[DriverType.values().length];
+		for(DriverType t:DriverType.values()){
+			valeurs[t.ordinal()] = new Valeurs();
+		}
+!!!313218.java!!!	toString() : String
+		StringBuilder sb = new StringBuilder("C_SoilCellMarineEnergy {\n");
+		for(DriverType type:DriverType.values()) sb.append("  ").append(type).append(" (").append(type.getUnit())
+				.append(")").append(" -> ").append(valeurs(type)).append("\n");
+		sb.append("}");
+		return sb.toString();
+!!!313346.java!!!	toString0() : String
+ DriverType type = DriverType.PLANKTON; return(type.toString()+": "+valeurs(type));
+!!!313474.java!!!	valeurs(inout type : I_MarineActor::DriverType) : C_SoilCellMarineEnergy::Valeurs
+ return valeurs[type.ordinal()];
+!!!313602.java!!!	add(inout type : I_MarineActor::DriverType, inout champ : C_SoilCellMarineEnergy::Champ, in delta : double) : void
+ valeurs(type).add(champ,delta);
+!!!313730.java!!!	set(inout type : I_MarineActor::DriverType, inout champ : C_SoilCellMarineEnergy::Champ, in value : double) : void
+ valeurs(type).set(champ,value);
+!!!313858.java!!!	get(inout type : I_MarineActor::DriverType, inout champ : C_SoilCellMarineEnergy::Champ) : double
+ return valeurs(type).get(champ);
+!!!313986.java!!!	getEnergy_Ukcal() : double
+ /** sum_NB_VAL_times_100_overAllTypes() */
+		double sum = 0.0;
+		for(DriverType type:DriverType.values()) sum += this.get(type,Champ.NB_VAL)*this.get(type,Champ._100);
+		return sum;
+!!!314114.java!!!	getIntegralEnergy_Ukcal() : double
+		double sum = 0.0;
+		for(DriverType type:DriverType.values()) sum += this.get(type,Champ.INTEGRAL_100);
+		return sum;
+!!!314242.java!!!	resetIntegralEnergy_Ukcal() : void
+		for(DriverType type:DriverType.values()) this.set(type,Champ.INTEGRAL_100,this.get(type,Champ.NB_VAL)*this.get(
+				type,Champ._100));

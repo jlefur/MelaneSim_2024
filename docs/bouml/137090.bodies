@@ -1,0 +1,64 @@
+class A_ProtocolRodent
+!!!150658.java!!!	A_ProtocolRodent(inout ctxt : Context<Object>)
+		super(ctxt);// Init parameters, raster ground and higher level inspectors & displays
+		A_Protocol.inspectorPopulation = new C_InspectorPopulationRodent();
+		A_Protocol.inspectorEnergy = new C_InspectorEnergy();
+		this.inspectorList.add(inspectorPopulation);
+		this.inspectorList.add(inspectorEnergy);
+!!!150786.java!!!	removeDeadThings() : int
+		Object[] things = this.context.toArray();// needed to avoid concurrent modification exception
+		int nbDeadRodents = 0;
+		for (Object oneThing : things) {
+			if ((oneThing instanceof C_Rodent) && ((C_Rodent) oneThing).isDead()) nbDeadRodents++;
+		}
+		updateInspectors(nbDeadRodents);
+		return super.removeDeadThings();
+!!!150914.java!!!	updateInspectors(inout thing : I_SituatedThing) : void
+		if (thing instanceof C_Rodent) C_InspectorPopulationRodent.addRodentToList((C_Rodent) thing);
+!!!151042.java!!!	updateInspectors(in nbDeadRodents : int) : void
+		((C_InspectorPopulationRodent) inspectorPopulation).setNbDeath_Urodent(nbDeadRodents);
+!!!151170.java!!!	checkRodentLists() : void
+		TreeSet<C_Rodent> rodentList = C_InspectorPopulationRodent.rodentList;
+		int withinContext_Urodent = 0, withinSoilMatrix_Urodent = 0, trapped_Urodent = 0;
+		Object[] contextContent = RunState.getInstance().getMasterContext().toArray();
+		int contextSize = contextContent.length;
+		for (int i = 0; i < contextSize; i++) {
+			if (contextContent[i] instanceof C_Rodent) {
+				withinContext_Urodent++;
+				if (((C_Rodent) contextContent[i]).isTrappedOnBoard()) trapped_Urodent++;
+			}
+		}
+		for (int i = 0; i < this.landscape.dimension_Ucell.getWidth(); i++) {
+			for (int j = 0; j < this.landscape.dimension_Ucell.getHeight(); j++) {
+				if (!this.landscape.getGrid()[i][j].getFullRodentList().isEmpty())
+					withinSoilMatrix_Urodent += this.landscape.getGrid()[i][j].getFullRodentList().size();
+			}
+		}
+		withinSoilMatrix_Urodent += trapped_Urodent;
+		if ((withinContext_Urodent != rodentList.size()) || (withinSoilMatrix_Urodent != rodentList.size())) {
+			A_Protocol.event("A_Protocol.checkRodentLists", "List sizes differ: rodentList/context/soilMatrix(trapped)"
+					+ rodentList.size() + "/" + withinContext_Urodent + "/" + withinSoilMatrix_Urodent + " ("
+					+ trapped_Urodent + ")", isError);
+		}
+!!!151298.java!!!	createRodent() : C_Rodent
+		return new C_Rodent(new C_GenomeAmniota());
+!!!151426.java!!!	randomlyAddRodents(in nbAgent : int) : void
+		Dimension dim = this.landscape.getDimension_Ucell();
+		int grid_width = (int) dim.getWidth();
+		int grid_height = (int) dim.getHeight();
+		for (int i = 0; i < nbAgent; i++) {
+			// BELOW, THREE POSSIBLE PATTERNS OF INITIAL DISTRIBUTION :
+			// 1) Random number to produce a sensitivity analysis
+			// int randx = (int)(Math.random()*grid_width);
+			// int randy = (int)(Math.random()*grid_height);
+			// 2) Reproducible random distribution
+			double randx = C_ContextCreator.randomGeneratorForInitialisation.nextDouble() * grid_width;
+			double randy = C_ContextCreator.randomGeneratorForInitialisation.nextDouble() * grid_height;
+			// 3) Put all rodents at the middle at init:
+			// int randx = (int) (grid_width / 2);
+			// int randy = (int) (grid_height / 2);
+			C_Rodent agent = createRodent();
+			agent.setRandomAge();
+			contextualizeNewThingInSpace(agent, randx, randy);
+			agent.setNewRandomMove();
+		}

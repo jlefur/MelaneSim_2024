@@ -1,0 +1,98 @@
+format 224
+
+classcanvas 128002 class_ref 140802 // C_HumanWalker
+  classdiagramsettings member_max_width 0 end
+  xyz 911.019 1139.95 2000
+end
+classcanvas 128130 class_ref 141442 // A_HumanUrban
+  classdiagramsettings member_max_width 0 end
+  xyz 879.019 590.71 2006
+end
+classcanvas 128514 class_ref 161666 // A_Human
+  classdiagramsettings member_max_width 0 end
+  xyz 952.495 405.388 2012
+end
+classcanvas 128770 class_ref 152578 // A_Amniote
+  classdiagramsettings member_max_width 0 end
+  xyz 585.165 108.516 2018
+end
+classcanvas 129026 class_ref 144770 // A_Animal
+  classdiagramsettings member_max_width 0 end
+  xyz 208.484 15.7316 2024
+end
+classcanvas 129282 class_ref 152706 // A_Organism
+  classdiagramsettings member_max_width 0 end
+  xyz 5.95608 700.865 2030
+end
+classcanvas 129538 class_ref 152834 // A_SupportedContainer
+  classdiagramsettings member_max_width 0 end
+  xyz -389.221 691.061 2036
+end
+classcanvas 129794 class_ref 138114 // C_SoilCell
+  classdiagramsettings member_max_width 0 end
+  xyz -706.029 651.099 2042
+end
+classcanvas 130050 class_ref 152962 // A_Container
+  classdiagramsettings member_max_width 0 end
+  xyz -977.443 503.507 2048
+end
+classcanvas 130306 class_ref 153090 // A_VisibleAgent
+  classdiagramsettings member_max_width 0 end
+  xyz -1284.19 164.172 2054
+end
+classcanvas 130946 class_ref 153218 // A_NDS
+  classdiagramsettings member_max_width 0 end
+  xyz -1629.02 55.2994 2060
+end
+relationcanvas 128258 relation_ref 191618 // <generalisation>
+  from ref 128002 z 2007 to ref 128130
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 128642 relation_ref 189058 // <generalisation>
+  from ref 128130 z 2013 to ref 128514
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 128898 relation_ref 188930 // <generalisation>
+  from ref 128514 z 2019 to ref 128770
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 129154 relation_ref 170114 // <generalisation>
+  from ref 128770 z 2025 to ref 129026
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 129410 relation_ref 169602 // <generalisation>
+  from ref 129026 z 2031 to ref 129282
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 129666 relation_ref 169218 // <generalisation>
+  from ref 129282 z 2037 to ref 129538
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 129922 relation_ref 169090 // <generalisation>
+  from ref 129538 z 2043 to ref 129794
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130178 relation_ref 168834 // <generalisation>
+  from ref 129794 z 2049 to ref 130050
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130562 relation_ref 168322 // <generalisation>
+  from ref 130050 z 2055 to ref 130306
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 131074 relation_ref 167682 // <generalisation>
+  from ref 130306 z 2061 to ref 130946
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+preferred_whz 0 0 0.99
+end

@@ -5,7 +5,6 @@ import java.util.TreeSet;
 
 import melanesim.C_ContextCreator;
 import melanesim.protocol.A_Protocol;
-import presentation.display.C_CustomPanelSet;
 import presentation.epiphyte.C_InspectorEnergy;
 import presentation.epiphyte.C_InspectorPopulationRodent;
 import repast.simphony.context.Context;
@@ -28,11 +27,10 @@ public abstract class A_ProtocolRodent extends A_Protocol {
 	 * J.Le Fur 02.2013 */
 	public A_ProtocolRodent(Context<Object> ctxt) {
 		super(ctxt);// Init parameters, raster ground and higher level inspectors & displays
-		A_Protocol.inspector = new C_InspectorPopulationRodent();
-		this.inspectorList.add(inspector);
+		A_Protocol.inspectorPopulation = new C_InspectorPopulationRodent();
 		A_Protocol.inspectorEnergy = new C_InspectorEnergy();
+		this.inspectorList.add(inspectorPopulation);
 		this.inspectorList.add(inspectorEnergy);
-		C_CustomPanelSet.addEnergyInspector(inspectorEnergy);
 	}
 	//
 	// OVERRIDEN METHODS
@@ -53,7 +51,7 @@ public abstract class A_ProtocolRodent extends A_Protocol {
 	}
 	@Override
 	protected void updateInspectors(int nbDeadRodents) {
-		((C_InspectorPopulationRodent) inspector).setNbDeath_Urodent(nbDeadRodents);
+		((C_InspectorPopulationRodent) inspectorPopulation).setNbDeath_Urodent(nbDeadRodents);
 	}
 	//
 	// METHODS

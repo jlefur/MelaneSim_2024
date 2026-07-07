@@ -1,0 +1,236 @@
+class C_ChromosomePair
+!!!280706.java!!!	C_ChromosomePair(in numGenes : int, inout recombinator : I_Recombinator)
+		this.mappedGeneMutator = DEFAULT_GENE_MUTATOR;
+		this.mappedGeneConstraint = DEFAULT_GENE_CONSTRAINT;
+		this.mapLength = C_Chromosome.MAP_LENGTH;
+		this.recombinator = recombinator;
+		xsomeStrands = new C_Chromosome[2];
+		xsomeStrands[PARENT_1] = new C_Chromosome(mapLength, numGenes, recombinator);
+		xsomeStrands[PARENT_2] = new C_Chromosome(mapLength, numGenes, recombinator);
+!!!280834.java!!!	C_ChromosomePair(in mapLength : double, in numGenes : int, inout recombinator : I_Recombinator)
+		this.mapLength = mapLength;
+		this.recombinator = recombinator;
+		xsomeStrands = new C_Chromosome[2];
+		xsomeStrands[PARENT_1] = new C_Chromosome(mapLength, numGenes, recombinator);
+		xsomeStrands[PARENT_2] = new C_Chromosome(mapLength, numGenes, recombinator);
+!!!280962.java!!!	C_ChromosomePair(inout leftXtid : C_Chromosome, inout rightXtid : C_Chromosome)
+		this.recombinator = leftXtid.getRecombinator();
+		this.mapLength = leftXtid.getMapLength();
+		xsomeStrands = new C_Chromosome[2];
+		xsomeStrands[PARENT_1] = leftXtid.replicate(DEFAULT_MUT_RATE);
+		xsomeStrands[PARENT_2] = rightXtid.replicate(DEFAULT_MUT_RATE);
+!!!281090.java!!!	numGenes() : int
+		if (xsomeStrands[PARENT_1].getNumGenes() != xsomeStrands[PARENT_2].getNumGenes()) System.err
+				.println("C_ChromosomePair.numGenes()" + "numGenes are different between the two strands: " + getXsomeStrand(0)
+						+ "/" + getXsomeStrand(1));
+		// Assume that size of LEFT and RIGHT are identical...
+		return xsomeStrands[PARENT_1].getNumGenes();
+!!!281218.java!!!	mutate(inout info : Object) : void
+		xsomeStrands[PARENT_1].mutate(info);
+		xsomeStrands[PARENT_2].mutate(info);
+!!!281346.java!!!	copySegment(in startLocus : int, in endLocus : int) : I_DnaThing
+		// Make a new genome that's big enough to hold the copied genes.
+		int numGenesToCopy = endLocus - startLocus;
+		C_ChromosomePair copyGenome = new C_ChromosomePair(numGenesToCopy, this.recombinator);
+		// Do the copy from my alleles in the specified range to copyGenome.
+		for (int locus = startLocus; locus < endLocus; locus++) {
+			C_GenePair genePair = this.getGenePair(locus);
+			copyGenome.setGenePairAtLocus(locus, genePair);
+		}
+
+		int lastSegLocus = endLocus - 1;
+		int finalLocus = (getNumLoci() - 1);
+
+		// Estimate the map length of this segment ... this isn't terribly accurate. Just finds out the map locations of the loci
+		// right around the segment and splits the difference when creating the new segment.
+		double copyMapBegin = this.getGenePair(startLocus).getMapLoc();
+		if (startLocus > 0) {
+			double copyMapBefore = this.getGenePair(startLocus - 1).getMapLoc();
+			double copyMapAfter = copyMapBegin;
+			copyMapBegin = (copyMapBefore + copyMapAfter) / 2;
+		}
+		else if (startLocus == 0) copyMapBegin = 0;
+
+		double copyMapEnd = this.getGenePair(lastSegLocus).getMapLoc();
+		if (lastSegLocus < finalLocus) {
+			double copyMapBefore = copyMapEnd;
+			double copyMapAfter = this.getGenePair(lastSegLocus + 1).getMapLoc();
+			copyMapEnd = (copyMapBefore + copyMapAfter) / 2;
+		}
+		else if (lastSegLocus == finalLocus) copyMapEnd = mapLength;
+		double copyMapLength = copyMapEnd - copyMapBegin;
+		copyGenome.mapLength = copyMapLength;
+		return copyGenome;
+!!!281474.java!!!	replicate(inout info : Object) : I_DnaThing
+		// Duplicate the two haploid strands, then make a new diploid with the duplicated strands and the source parent's
+		// recombinators.
+		C_Chromosome leftCopy = (C_Chromosome) xsomeStrands[PARENT_1].replicate(info);
+		C_Chromosome rightCopy = (C_Chromosome) xsomeStrands[PARENT_2].replicate(info);
+		return new C_ChromosomePair(leftCopy, rightCopy);
+!!!281602.java!!!	mate(inout info : Object, inout parent2 : I_DnaThing) : I_DnaThing
+		I_DnaThing offspring = this.crossover(parent2);
+		// offspring.mutate(info);
+		return offspring;
+!!!281730.java!!!	randomize() : void
+		xsomeStrands[PARENT_1].randomize();
+		xsomeStrands[PARENT_2].randomize();
+!!!281858.java!!!	crossover() : I_MappedDna
+		// Crossover both parents' original strands separately -> two haploid strands, or gametes.
+		C_ChromosomePair crossedPair = recombinator.crossover(xsomeStrands[PARENT_1], xsomeStrands[PARENT_2]);
+		return crossedPair;
+!!!281986.java!!!	crossover(inout parent2 : I_DnaThing) : I_DnaThing
+		return null;
+!!!282114.java!!!	toString() : String
+		// Show both strands in pairwise fashion ... get each GenePair and concat those into a String.
+		StringBuffer strBfr = new StringBuffer("{diploid ");
+		strBfr.append(mapLength + "mu ");
+		for (int i = 0; i < numGenes(); i++) {
+			// strBfr.append(getGenePair(i));
+			strBfr.append(getGenePair(i).toString2());
+			strBfr.append(" ");
+		}
+		strBfr.append("}");
+		return strBfr.toString();
+		// Would be better to show both strands pairwise ... get each GenePair // and concat those into a String. String str =
+		// "<diploid L: "; str+= xsomeStrands[LEFT].toString(); str += " R:"; str+= xsomeStrands[RIGHT].toString(); str +=
+		// ">";return str;
+!!!282242.java!!!	toString2() : String
+		// Show both strands in pairwise fashion ... get each GenePair and concat those into a String.
+		StringBuffer strBfr = new StringBuffer("");
+		for (int i = 0; i < numGenes(); i++) {
+			// strBfr.append(getGenePair(i));
+			strBfr.append(getGenePair(i).toString2());
+			strBfr.append(" ");
+		}
+		return strBfr.toString();
+!!!282370.java!!!	setGenePairAtLocus(in locus : int, inout leftGene : C_Gene, inout rightGene : C_Gene) : void
+		xsomeStrands[PARENT_1].setGeneAtLocus(locus, leftGene);
+		xsomeStrands[PARENT_2].setGeneAtLocus(locus, rightGene);
+!!!282498.java!!!	setGenePairAtLocus(in locus : int, inout genePair : C_GenePair) : void
+		xsomeStrands[PARENT_1].setGeneAtLocus(locus, genePair.getGene(PARENT_1));
+		xsomeStrands[PARENT_2].setGeneAtLocus(locus, genePair.getGene(PARENT_2));
+!!!282626.java!!!	getNumLoci() : int
+		// Assume that size of LEFT and RIGHT are same...
+		return xsomeStrands[PARENT_1].getNumGenes();
+!!!282754.java!!!	getGene(in locus : int, in strand : int) : C_Gene
+		return (C_Gene) xsomeStrands[strand].getGene(locus);
+!!!282882.java!!!	getGenePair(in locus : int) : C_GenePair
+		C_Gene gL = (C_Gene) xsomeStrands[PARENT_1].getGene(locus);
+		C_Gene gR = (C_Gene) xsomeStrands[PARENT_2].getGene(locus);
+		return new C_GenePair(gL, gR);
+!!!283010.java!!!	getXsomeStrand(in strand : int) : C_Chromosome
+		return xsomeStrands[strand];
+!!!283138.java!!!	getGeneIterator(in strand : int) : C_Gene
+		return xsomeStrands[strand].getGeneIterator();
+!!!283266.java!!!	getLocusAllele(in locus : int) : Object
+		C_Gene gL = (C_Gene) xsomeStrands[PARENT_1].getGene(locus);
+		C_Gene gR = (C_Gene) xsomeStrands[PARENT_2].getGene(locus);
+		// System.out.println("gene pair:" + gL + " " + gR);
+
+		// Evaluate alleles stored at gL and gR, return a value representing their collective value (avg, sum, whatever).
+		// return genePairEvaluator.express(gL, gR);
+		return new C_GenePair(gL, gR);// A KLUDGE...
+		// throw new RuntimeException("not implemented yet - use a GenePairEvaluator");
+!!!283394.java!!!	getLocusAllele(in mapLoc : double) : Object
+		for (int locus = 0; locus < getNumLoci(); locus++) {
+			double curMapLoc = getGeneMapLoc(locus);
+			if (mapLoc == curMapLoc) return getLocusAllele(locus);
+		}
+		return "empty";
+		// throw new RuntimeException("can't find any map location " + mapLoc);
+!!!283522.java!!!	getAlleles() : List<Object>
+		int numGenePairs = numGenes();
+		List<Object> alleles = new LinkedList<Object>();
+		for (int locus = 0; locus < numGenePairs; locus++) {
+			C_Gene gL = (C_Gene) xsomeStrands[PARENT_1].getGene(locus);
+			C_Gene gR = (C_Gene) xsomeStrands[PARENT_2].getGene(locus);
+			alleles.add(gL.getAllele());
+			alleles.add(gR.getAllele());
+			// System.out.println("test allele "+alleles.get(locus));
+		}
+		return alleles;
+!!!283650.java!!!	getMapLength() : double
+		return mapLength;
+!!!283778.java!!!	getGeneMapLoc(in locus : int) : double
+		C_GenePair genePair = getGenePair(locus);
+		return genePair.getMapLoc();
+!!!283906.java!!!	main(inout args : String [[]]) : void
+		System.out.println("Testing C_Chromosome");
+		int numGenes = 4;
+		double mapLength = 15.5;
+		I_Recombinator recombinator = new C_RecombinatorMapGenome();
+		C_ChromosomePair bivalent_1 = new C_ChromosomePair(mapLength, numGenes, recombinator);
+
+		I_GeneMutator gMut = new C_GeneMutatorDouble();
+		for (int i = 0; i < numGenes; i++) {
+			double mapLoc = i * 4.3;
+			// xsome1.setGenePairAtLocus(i, new C_Gene(new Random().nextDouble() * 2, mapLoc, gMut,
+			bivalent_1.setGenePairAtLocus(i, new C_Gene("stringAllele", mapLoc, gMut, bivalent_1.xsomeStrands[PARENT_1].myId),
+					new C_Gene(new Random().nextDouble() * 2, mapLoc, gMut, bivalent_1.xsomeStrands[PARENT_2].myId));
+		}
+		System.out.println("bivalent_1: " + bivalent_1);
+		testMapLocs(bivalent_1);
+		System.out.println("numGenes(): " + bivalent_1.numGenes());
+		for (int i = 0; i < bivalent_1.numGenes(); i++) {
+			System.out.println("getGenePair(" + i + "): " + bivalent_1.getGenePair(i));
+			System.out.println("  getGene(" + i + ", LEFT): " + bivalent_1.getGene(i, PARENT_1));
+			System.out.println("  getGene(" + i + ", RIGHT): " + bivalent_1.getGene(i, PARENT_2));
+		}
+		/*
+		 * // Add back in when getLocusAllele() and getAlleles() have been // fully implemented. for (int i = 0; i <
+		 * genome1.numGenes(); i++) { System.out.println("getGene(" + i + "): " + genome1.getGene(i));
+		 * System.out.println("getLocusAllele(" + i + "): " + genome1.getLocusAllele(i)); } System.out.println("getAlleles(): " +
+		 * genome1.getAlleles());
+		 */
+		System.out.println("\nmaking bivalent_2");
+		C_ChromosomePair bivalent_2 = new C_ChromosomePair(mapLength, numGenes, recombinator);
+		C_Gene g1, g2;
+		for (int i = 0; i < numGenes; i++) {
+			double mapLoc = i * 4.3;
+			g1 = new C_Gene(i*1., mapLoc, gMut, bivalent_2.xsomeStrands[PARENT_1].myId);
+			g2 = new C_Gene(i * 2. + 1., mapLoc, gMut, bivalent_2.xsomeStrands[PARENT_2].myId);
+			bivalent_2.setGenePairAtLocus(i, new C_GenePair(g1, g2));
+		}
+		System.out.println("bivalent_2 original: " + bivalent_2);
+		testMapLocs(bivalent_2);
+
+		C_ChromosomePair genome2Copy = (C_ChromosomePair) bivalent_2.replicate(0.);
+		System.out.println("xsome2's copy:   " + genome2Copy);
+		testMapLocs(genome2Copy);
+		System.out.println("2's numGenes(): " + bivalent_2.numGenes());
+		bivalent_2.mutate(0.75);
+		System.out.println("xsome2 mutated: " + bivalent_2);
+		testMapLocs(bivalent_2);
+		System.out.println("genome2's copy:  " + genome2Copy);
+		testMapLocs(genome2Copy);
+		System.out.println("xsome2 left strand: " + bivalent_2.getXsomeStrand(PARENT_1));
+		System.out.println("xsome2 right strand: " + bivalent_2.getXsomeStrand(PARENT_2));
+
+		System.out.println("\nCrossover and Mating");
+		System.out.println("parent1: " + bivalent_1);
+		System.out.println("parent2: " + bivalent_2);
+		System.out.println("crossover(): " + bivalent_1.crossover(bivalent_2));
+		System.out.println("mate(): " + bivalent_1.mate(0.75, bivalent_2));
+
+		// Test copySegment()
+		I_MappedDna copiedSegment1 = (I_MappedDna) bivalent_2.copySegment(0, 1);
+		I_MappedDna copiedSegment2 = (I_MappedDna) bivalent_2.copySegment(1, 3);
+		I_MappedDna copiedSegment3 = (I_MappedDna) bivalent_2.copySegment(3, 4);
+		System.out.println("\ncopySegment()");
+		System.out.println("xsome2: " + bivalent_2);
+		System.out.println("xsome2.copySegment(0,1):" + copiedSegment1);
+		testMapLocs(copiedSegment1);
+		System.out.println("xsome2.copySegment(1,3):" + copiedSegment2);
+		testMapLocs(copiedSegment2);
+		System.out.println("xsome2.copySegment(3,4):" + copiedSegment3);
+		testMapLocs(copiedSegment3);
+
+!!!284034.java!!!	testMapLocs(inout genome : I_MappedDna) : void
+		double mapLoc = 4.3;
+		System.out.println("xsome.getMapLength():         " + genome.getMapLength());
+		for (int i = 0; i < genome.getNumLoci(); i++) {
+			C_GenePair genePair = ((C_ChromosomePair) genome).getGenePair(i);
+			System.out.print("  getGenePair(" + i + "): " + genePair);
+			System.out.println("  mapLoc: " + genePair.getMapLoc());
+			System.out.println("  mapLoc(" + mapLoc + ") allele: " + genome.getLocusAllele(mapLoc));
+		}

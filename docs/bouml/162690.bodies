@@ -1,0 +1,9 @@
+class C_TaxiMan
+!!!360450.java!!!	C_TaxiMan(inout genome : I_DiploidGenome)
+		super(genome);
+!!!360578.java!!!	perception() : I_SituatedThing
+		TreeSet<I_SituatedThing> convertedList = new TreeSet<I_SituatedThing>();
+		for (C_City oneCity : this.cityList)
+			if (oneCity instanceof C_Market) 
+				if (((C_Market) oneCity).isMarketDay()) convertedList.add(oneCity);
+		return convertedList;

@@ -1,0 +1,57 @@
+class C_TraitExpressorAvgMapLoc
+!!!294530.java!!!	evalTrait(inout dna : I_MappedDna, inout traitMapLocs : ArrayList<Double>) : Object
+		int numAlleles = 0;
+		double sum = 0;
+		Iterator<Double> mapLocIter = traitMapLocs.iterator();
+		while (mapLocIter.hasNext()) {
+			Number mapLoc = (Number) mapLocIter.next();
+			Object allele = dna.getLocusAllele(mapLoc.doubleValue());
+			double alleleVal = 0;
+			if (allele instanceof Number) alleleVal = ((Number) allele).doubleValue();
+			else if (allele instanceof C_GenePair) {
+				C_GenePair gPair = (C_GenePair) allele;
+				C_Gene geneL = gPair.getGene(C_GenePair.LEFT);
+				C_Gene geneR = gPair.getGene(C_GenePair.RIGHT);
+				Number alleleL = (Number) geneL.getAllele();
+				Number alleleR = (Number) geneR.getAllele();
+				alleleVal = ((alleleL.doubleValue() + alleleR.doubleValue()) / 2);
+				// System.out.println("==>DIP:  " + alleleL + " " + alleleR);
+			}
+			else {
+				throw new RuntimeException("bad allele type: " + allele);
+			}
+			// System.out.println(mapLoc + " " + alleleVal);
+			sum += alleleVal;
+			numAlleles++;
+		}
+		return sum / numAlleles;
+!!!294658.java!!!	toString() : String
+		return "AvgMapLocTraitExpressor";
+!!!294786.java!!!	main(inout args : String [[]]) : void
+		I_MapLocTraitExpressor avgExpr = new C_TraitExpressorAvgMapLoc();
+
+		// Make a haploid and a diploid genome.
+		I_GeneMutator gMut = new C_GeneMutatorDouble();
+		C_GeneConstraint gConstr = new C_GeneConstraint(-10, 10);
+		int numLoci = 5;
+		C_Chromosome hapXsome = new C_Chromosome(numLoci, new C_RecombinatorOnePt());
+		C_ChromosomePair xsomePair = new C_ChromosomePair(numLoci, new C_RecombinatorOnePt());
+
+		ArrayList<Double> mapLocs = new ArrayList<Double>();
+		for (int i = 0; i < numLoci; i++)
+			mapLocs.add((C_ContextCreator.randomGeneratorForDNA.nextDouble() * 100));
+		for (int i = 0; i < numLoci; i++) {
+			Double mapLoc = mapLocs.get(i);
+			C_Gene dblGene = new C_Gene(C_ContextCreator.randomGeneratorForDNA.nextDouble(), mapLoc, gMut, 0, gConstr);
+
+			hapXsome.setGeneAtLocus(i, dblGene);
+			xsomePair.setGenePairAtLocus(i, new C_Gene(C_ContextCreator.randomGeneratorForDNA.nextDouble() * 2, mapLoc, gMut, 0),
+					new C_Gene(C_ContextCreator.randomGeneratorForDNA.nextDouble() * 2, mapLoc, gMut, 0));
+		}
+		Double value = (Double) avgExpr.evalTrait(hapXsome, mapLocs);
+		System.out.println("hapGenome: " + hapXsome);
+		System.out.println("value: " + value);
+
+		value = (Double) avgExpr.evalTrait(xsomePair, mapLocs);
+		System.out.println("dipGenome: " + xsomePair);
+		System.out.println("value: " + value);

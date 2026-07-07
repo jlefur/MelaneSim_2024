@@ -23,6 +23,7 @@ import presentation.display.C_Background;
 import presentation.display.C_StyleAgent;
 import presentation.epiphyte.A_Inspector;
 import presentation.epiphyte.C_InspectorEnergy;
+import presentation.epiphyte.C_InspectorPopulation;
 import presentation.epiphyte.I_Inspector;
 import repast.simphony.context.Context;
 import repast.simphony.engine.environment.RunState;
@@ -42,7 +43,7 @@ public abstract class A_Protocol implements I_Protocol, I_ConstantString, I_Cons
 	//
 	// FIELDS
 	//
-	public static A_Inspector inspector = null;
+	public static C_InspectorPopulation inspectorPopulation = null;
 	public static C_InspectorEnergy inspectorEnergy = null;
 	// TODO JLF 2014.08, 2015.03 Multiscale contexts: several protocols with their own calendar should run concurrently.
 	// The field should thus not be static
@@ -69,10 +70,10 @@ public abstract class A_Protocol implements I_Protocol, I_ConstantString, I_Cons
 		this.inspectorList = new TreeSet<A_Inspector>();
 		this.initFixedParameters();
 
-		this.readUserParameters();
 		A_Protocol.breedingSeason = false;// TODO JLF 2015.03 misplaced
 		this.indicatorsFile = new C_FileWriter("Indicateurs.csv", true);
 		// Initialization of the ground manager Author: LeFur 07.2012, rev Mboup 2013, Diakhate 2014
+		this.readUserParameters();
 		A_Protocol.event("A_Protocol()", " raster: " + C_Parameters.RASTER_URL, isNotError);
 		this.initLandscape(ctxt);
 		A_Protocol.event("A_Protocol()", " identifying land plots ...", isNotError);

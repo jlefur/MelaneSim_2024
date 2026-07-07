@@ -1,0 +1,14 @@
+window_sizes 3840 2036 706 3126 1772 184
+
+diagrams
+  active  classdiagram_ref 128002 // heritage
+    3126 1772 108 A3 0 0
+end
+show_stereotypes
+selected class_ref 153218 // A_NDS
+open
+  classview_ref 128002 // HumanWalker
+  classview_ref 128770 // thing
+  classview_ref 130050 // ground
+end
+end

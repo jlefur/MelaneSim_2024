@@ -1,0 +1,1071 @@
+format 224
+"converters" // src::data::converters
+  revision 1
+  modified_by 2 "lefur"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "C:\\Users\\lefur\\Documents\\GitHub\\MelaneSim_2024\\src/data/converters/"
+  java_package "data.converters"
+  classview 128898 "converters"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 132482 "C_ConvertBitmap"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Read the bitmap, rescale colors and save the grid in ASCII
+@author M.Sall 10.2015, rev. MS&JLF 04.2016, JLF 10.2023 "
+      classrelation 131458 // <realization>
+	relation 131458 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 131458 // <realization>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      classrelation 131586 // <realization>
+	relation 131586 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 131586 // <realization>
+	  b parent class_ref 129922 // I_ConstantGerbil
+      end
+
+      classrelation 131714 // <realization>
+	relation 131714 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 131714 // <realization>
+	  b parent class_ref 129026 // I_ConstantPNMC
+      end
+
+      operation 132866 "readRaster"
+	public explicit_return_type "int"
+	nparams 1
+	  param in name "fileName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type}[][] ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+ Read the rain raster bitmap file and build the corresponding matrix "
+      end
+
+      operation 132994 "saveRasterFile"
+	class_operation public explicit_return_type "void"
+	nparams 3
+	  param inout name "matriceLue" explicit_type "int"
+	multiplicity "[][]"
+	  param in name "fileName" explicit_type "String"
+	  param in name "path" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[][] ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Save the grid in the file following the name passed in args "
+      end
+
+      operation 133122 "replaceValueInMatrix"
+	public explicit_return_type "int"
+	nparams 3
+	  param in name "oldValue" explicit_type "int"
+	  param in name "newValue" explicit_type "int"
+	  param inout name "grid" explicit_type "int"
+	multiplicity "[][]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type}[][] ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2}[][] ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Replace all occurrences of old value with new value in the grid "
+      end
+
+      operation 133250 "checkOccurrenceInMatrix"
+	public explicit_return_type "boolean"
+	nparams 2
+	  param in name "value" explicit_type "int"
+	  param inout name "matrix" explicit_type "int"
+	multiplicity "[][]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1}[][] ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @return true if the requested value exist in matrix "
+      end
+
+      operation 133378 "rescaleColorValues"
+	public explicit_return_type "int"
+	nparams 1
+	  param inout name "matriceLue" explicit_type "int"
+	multiplicity "[][]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type}[][] ${name}${(}${t0}[][] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Rain bitmap values are arbitrary color values, order them to the corresponding levels of rain intensity "
+      end
+
+      operation 133506 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " MAIN
+"
+      end
+    end
+
+    class 132610 "C_ConvertGeographicCoordinates"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Utility to convert from geographic coordinates to meters and compute distances in meter from the raster origin? <br>
+Calculation depends on the raster used
+@author author Moussa Sall, oct.2015 <br>
+        source: http://geodesie.ign.fr/contenu/fichiers/documentation/pedagogiques/TransformationsCoordonneesGeodesiques.pdf "
+      classrelation 131842 // <realization>
+	relation 131842 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 131842 // <realization>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      attribute 196994 "earthRadiusAtEquator_Umeter"
+	class_attribute const_attribute private explicit_type "double"
+	init_value " 6378249.2"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " CONSTANTS
+
+ JLF 2016.08 used WGS84 system; see source p.4
+ 6378249.2 half of great diameter"
+      end
+
+      attribute 197122 "earthRadiusAtGreenwich_Umeter"
+	class_attribute const_attribute private explicit_type "double"
+	init_value " 6356515."
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " 6356515.; // half of little diameter"
+      end
+
+      attribute 197250 "rasterOrigin_Umeter"
+	public explicit_type "Coordinate"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " FIELDS
+
+"
+      end
+
+      attribute 197378 "rasterOrigin_Uradian"
+	public explicit_type "Coordinate"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 197506 "rasterOrigin_Udegree"
+	public explicit_type "Coordinate"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 197634 "rasterEnd_Udegree"
+	public explicit_type "Coordinate"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 197762 "ellipsoidEccentricitySquared_Umeter2"
+	private explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 133634 "C_ConvertGeographicCoordinates"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "rasterOrigin_Udegree" explicit_type "Coordinate"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " CONSTRUCTOR
+"
+      end
+
+      operation 133762 "C_ConvertGeographicCoordinates"
+	public explicit_return_type ""
+	nparams 2
+	  param inout name "rasterOrigin_Udegree" explicit_type "Coordinate"
+	  param inout name "endRaster_Udegree" explicit_type "Coordinate"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Initialize the constructor with origin Coordinate and end Coordinate in degree<br>
+author M.Sall "
+      end
+
+      operation 133890 "convertCoordinate_Umeter"
+	public explicit_return_type "Coordinate"
+	nparams 1
+	  param inout name "coordinate_Uradian" explicit_type "Coordinate"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+ computeRadiusOfNormalCurvature "
+      end
+
+      operation 134018 "distanceToRasterOrigin_Umeter"
+	public explicit_return_type "double"
+	nparams 2
+	  param in name "longitude_Udegree" explicit_type "double"
+	  param in name "latitude_Udegree" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Compute distance to origin of a geographic position in meters "
+      end
+
+      operation 134146 "convertDegree_Uradian"
+	public explicit_return_type "double"
+	nparams 1
+	  param in name "value_Udegree" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 134274 "convertRadian_Udegree"
+	public explicit_return_type "double"
+	nparams 1
+	  param in name "value_Uradian" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 134402 "convertCell_Udegree"
+	public explicit_return_type "Coordinate"
+	nparams 1
+	  param inout name "oneCell" explicit_type "Coordinate"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " \"return latitude and longitude geographic coordinates had with the cell conversion by the rule of three "
+      end
+
+      operation 134530 "convertCoordinate_Ucs"
+	public explicit_return_type "Coordinate"
+	nparams 2
+	  param in name "longitude_Udegree" explicit_type "double"
+	  param in name "latitude_Udegree" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Return the line and column of the corresponding cell "
+      end
+
+      operation 134658 "convertValueCoordinate_Umeter"
+	public explicit_return_type "Coordinate"
+	nparams 2
+	  param inout name "coordinate" explicit_type "Coordinate"
+	  param in name "UcsWidth" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 134786 "convertCellRuleOfThree_Udegree"
+	public explicit_return_type "Coordinate"
+	nparams 3
+	  param inout name "cell_Umeter" explicit_type "Coordinate"
+	  param inout name "rasterLongitudeWest_LatitudeSouth_Udegree" explicit_type "ArrayList<Double>"
+	  param inout name "width_HeightOrigin_Umeter" explicit_type "Coordinate"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 134914 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Main for Mus transportation"
+      end
+    end
+
+    class 132738 "C_ConvertRainFiles"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Read the rain bitmaps, rescale colors and save the grid in ASCII
+@author M.Sall 10.2015, rev. MS&JLF 04.2016 "
+      classrelation 131970 // <realization>
+	relation 131970 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 131970 // <realization>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      classrelation 132098 // <realization>
+	relation 132098 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 132098 // <realization>
+	  b parent class_ref 129922 // I_ConstantGerbil
+      end
+
+      operation 135042 "readRainRaster"
+	public explicit_return_type "int"
+	nparams 1
+	  param in name "fileNameInRain" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type}[][] ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+ Read the rain raster bitmap file and build the corresponding matrix "
+      end
+
+      operation 135170 "saveRainRasterFile"
+	class_operation public explicit_return_type "void"
+	nparams 3
+	  param inout name "matriceLue" explicit_type "int"
+	multiplicity "[][]"
+	  param in name "fileNameInRain" explicit_type "String"
+	  param in name "path" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[][] ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Save the grid in the file following the name passed in args "
+      end
+
+      operation 135298 "computeFileName"
+	public explicit_return_type "String"
+	nparams 1
+	  param in name "fileNameInRain" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Compute the name of the resulting file from the original name with date and suffix<br>
+run this one time for all "
+      end
+
+      operation 135426 "buildFileNameList"
+	class_operation public explicit_return_type "TreeSet<String>"
+	nparams 1
+	  param in name "directoryPath" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Elaborate a list with the whole series of file names (one for each month) contained in the rain folder "
+      end
+
+      operation 135554 "replaceValueInMatrix"
+	public explicit_return_type "int"
+	nparams 3
+	  param in name "oldValue" explicit_type "int"
+	  param in name "newValue" explicit_type "int"
+	  param inout name "grid" explicit_type "int"
+	multiplicity "[][]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type}[][] ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2}[][] ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Replace all occurrences of old value with new value in the grid "
+      end
+
+      operation 135682 "checkOccurrenceInMatrix"
+	public explicit_return_type "boolean"
+	nparams 2
+	  param in name "value" explicit_type "int"
+	  param inout name "matrix" explicit_type "int"
+	multiplicity "[][]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1}[][] ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " @return true if the requested value exist in matrix "
+      end
+
+      operation 135810 "rescaleColorValues"
+	public explicit_return_type "int"
+	nparams 1
+	  param inout name "matriceLue" explicit_type "int"
+	multiplicity "[][]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type}[][] ${name}${(}${t0}[][] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Rain bitmap values are arbitrary color values, order them to the corresponding levels of rain intensity "
+      end
+
+      operation 135938 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " MAIN
+"
+      end
+    end
+
+    class 132866 "C_ConvertRasterChrono"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Can read a raster and convert it to a chrono or vice versa
+@author Pape Mboup 2013, rev.JLF 08.2014 "
+      classrelation 132226 // <realization>
+	relation 132226 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 132226 // <realization>
+	  b parent class_ref 129666 // I_ConstantStringRodents
+      end
+
+      classrelation 132354 // <realization>
+	relation 132354 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 132354 // <realization>
+	  b parent class_ref 129794 // I_ConstantNumeric
+      end
+
+      operation 136066 "buildRasterFileFromChrono"
+	public explicit_return_type "void"
+	nparams 3
+	  param in name "csvRasterChronoName" explicit_type "String"
+	  param in name "rasterURL" explicit_type "String"
+	  param inout name "bioclimate_to_affinitiesMap" explicit_type "Map<Integer, Integer>..."
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " METHODS
+
+ Build the data raster from a chronogram file. <br>
+Chronogram format : DATE_COL, X_COL, Y_COL, VALUE1_COL ...<br>
+CSV semicolon separator (;) X_COL and Y_COL must be growing and DATE_COL may be void(\"\";) but not null!
+@param csvRasterChronoName
+@param rasterURL where put the raster built
+@param bioclimate_to_affinitiesMap used to convert bioclimate to affinities optional Author pamboup 21/06/2013 "
+      end
+
+      operation 136194 "buildChronoFromRasterFile"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param in name "rasterFileName" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Build a chronogram from a raster file. Ex : We can use excel to build a raster file and this method to transform it to a
+chronogram. The raster file must be in data_raster/, and the chronogram built will be in data_csv/ in
+chronogramFromRaster.csv name.
+@param rasterFileName (.txt) "
+      end
+
+      operation 136322 "main"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "args" explicit_type "String"
+	multiplicity "[]"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0}[] ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " MAIN
+
+ Make the raster file from the raster.csv "
+      end
+    end
+
+    class 132994 "C_ConvertTimeAndSpace"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment " Time manager / all methods are static
+@author PAMBOUP, rev. JLF 01.2014, 02.2015 "
+      attribute 197890 "tick_Ucalendar"
+	class_attribute public explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " 24"
+      end
+
+      attribute 198018 "tick_UcalendarUnit"
+	class_attribute public explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " H"
+      end
+
+      attribute 198146 "spaceUnit"
+	class_attribute public explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " M"
+      end
+
+      attribute 198274 "timeMatrixConverter"
+	class_attribute private explicit_type "double"
+	multiplicity "[][]"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}${multiplicity} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 198402 "spaceMatrixConverter"
+	class_attribute private explicit_type "double"
+	multiplicity "[][]"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}${multiplicity} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 198530 "oneDay_Utick"
+	class_attribute public explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 136450 "init"
+	class_operation public explicit_return_type "void"
+	nparams 3
+	  param in name "tickUcalendarNumber" explicit_type "int"
+	  param in name "tickUcalendarUnit" explicit_type "String"
+	  param in name "spaceUnit" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 136578 "convertTimeDurationToTick"
+	class_operation public explicit_return_type "double"
+	nparams 2
+	  param in name "duration_UCalendar" explicit_type "double"
+	  param in name "calendarUnit" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Convert duration with calendar unit TO duration in tick.<br>
+For example if the duration is 24H, we have : &nbsp;&nbsp;&nbsp;&nbsp; durationUCalendar : 24 <br>
+&nbsp;&nbsp;&nbsp;&nbsp; calendarFieldUnit : \"H\"
+@param duration_UCalendar int duration :
+@param calendarUnit : S, M, H, D, MON, Y (sec, min, hour, day, month or year)
+@return the number of tick corresponding to that duration "
+      end
+
+      operation 136706 "days_Utick"
+	class_operation public explicit_return_type "double"
+	nparams 1
+	  param in name "duration_Uday" explicit_type "long"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " This procedure is a temporary shortcut which aims is to be generalized with the longer (2nd) alternative:<br>
+C_timeAndSpaceConverter.days_Utick(age_Uday);<br>
+replaces : <br>
+double oneDay_Utick = C_ConvertTimeAndSpace.convertTimeDurationToTick(1, \"day\");<br>
+this.age_Utick = (long) Math.round(age_Uday * oneDay_Utick); <br>
+J.Le Fur, 08.2014, rev. 03.2015
+@see C_ConvertTimeAndSpace#getTickUnit_Ucalendar for abbreviations "
+      end
+
+      operation 136834 "convertSpeed_UspaceByTick"
+	class_operation public explicit_return_type "double"
+	nparams 3
+	  param in name "speedValue" explicit_type "double"
+	  param in name "spaceUnit" explicit_type "String"
+	  param in name "timeUnit" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Convert speed ex : 60km/h to X u_meter/tick "
+      end
+
+      operation 136962 "convertSpaceUnitToRasterUnit"
+	class_operation public explicit_return_type "double"
+	nparams 1
+	  param in name "spaceUnit" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Convert units ex : km to u_meter (useful to convert speed) "
+      end
+
+      operation 137090 "_UcalendarTo_Utick"
+	class_operation public explicit_return_type "double"
+	nparams 1
+	  param in name "timeUnit" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 137218 "getConverterTimeMatrixIndex"
+	class_operation public explicit_return_type "int"
+	nparams 1
+	  param in name "str" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Accepts full string name, 1st character name, except for month (mon) "
+      end
+
+      operation 137346 "getConverterSpaceMatrixIndex"
+	class_operation public explicit_return_type "int"
+	nparams 1
+	  param in name "str" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 137474 "getTickUnit_Ucalendar"
+	class_operation public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " Must be called just by C_Calendar or after C_Calendar instantiation
+@return the calendar field number (e.g., MILLISECOND -> 5)<br>
+        author mboup or realini, rev. JLF 08.2014, 03.2015 "
+      end
+
+      operation 137602 "getTimeBetweenDates_Ums"
+	class_operation public explicit_return_type "double"
+	nparams 3
+	  param in name "earlierDate" explicit_type "String"
+	  param in name "laterDate" explicit_type "String"
+	  param in name "returnDateType" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 137730 "getLength_Ums"
+	class_operation public explicit_return_type "long"
+	nparams 1
+	  param in name "dateType" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+  end
+
+  deploymentview 128514 "converters"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 131970 "C_ConvertBitmap"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.HashMap;
+import data.C_ReadRaster;
+import data.constants.I_ConstantPNMC;
+import data.constants.rodents.I_ConstantGerbil;
+import data.constants.rodents.I_ConstantStringRodents;
+import presentation.dataOutput.C_FileWriter;
+${definition}"
+      associated_elems
+	class_ref 132482 // C_ConvertBitmap
+      end
+      comment " JEAN LE FUR - ENTROPIE
+
+ This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 132098 "C_ConvertGeographicCoordinates"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import org.locationtech.jts.geom.Coordinate;
+import data.C_Parameters;
+import data.constants.rodents.I_ConstantMusTransport;
+import data.constants.rodents.I_ConstantStringRodents;
+import melanesim.protocol.A_Protocol;
+${definition}"
+      associated_elems
+	class_ref 132610 // C_ConvertGeographicCoordinates
+      end
+    end
+
+    artifact 132226 "C_ConvertRainFiles"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.io.File;
+import java.util.TreeSet;
+import presentation.dataOutput.C_FileWriter;
+import data.C_ReadRaster;
+import data.constants.rodents.I_ConstantGerbil;
+import data.constants.rodents.I_ConstantStringRodents;
+${definition}"
+      associated_elems
+	class_ref 132738 // C_ConvertRainFiles
+      end
+      comment " This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt "
+    end
+
+    artifact 132354 "C_ConvertRasterChrono"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.io.BufferedReader;
+import java.util.HashMap;
+import java.util.Map;
+import presentation.dataOutput.C_FileWriter;
+import data.C_ReadWriteFile;
+import data.constants.I_ConstantNumeric;
+import data.constants.rodents.I_ConstantStringRodents;
+${definition}"
+      associated_elems
+	class_ref 132866 // C_ConvertRasterChrono
+      end
+    end
+
+    artifact 132482 "C_ConvertTimeAndSpace"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.text.ParseException;
+import java.util.Calendar;
+import java.util.Date;
+import melanesim.C_Calendar;
+${definition}"
+      associated_elems
+	class_ref 132994 // C_ConvertTimeAndSpace
+      end
+    end
+  end
+end

@@ -1,0 +1,53 @@
+class C_LandPlot
+!!!306434.java!!!	C_LandPlot(inout groundManager : C_Landscape)
+		// TODO JLF 2022.01 not necessary ? since already within A_VisibleAgent.init() / see A_Protocol constructor
+		// C_LandPlot.myLandscape = groundManager;/ }
+!!!306562.java!!!	agentIncoming(inout a_thing : I_SituatedThing) : boolean
+		if (a_thing instanceof C_SoilCell) return occupantList.add(a_thing);
+		else {
+			A_Protocol.event("C_LandPlot.agentIncoming", a_thing + " is not a C_SoilCell", isError);
+			return false;
+		}
+!!!306690.java!!!	ploughing() : void
+		for (C_SoilCell oneSoilCell : this.cells) {
+			for (I_SituatedThing inhabitant : oneSoilCell.getFullRodentList()) {
+				if (inhabitant instanceof A_Animal) ((A_Animal) inhabitant).checkDeath(DANGEROUS_AREA_MORTALITY_RATE);
+			}
+		}
+!!!306818.java!!!	setThisName(in nullString : String) : void
+		String cellName = "";
+		if (cells.size() != 0) cellName = this.cells.first().retrieveMyName();
+		else A_Protocol.event("C_Region.setThisName", "No cells for " + this, isError);
+		if (cellName.indexOf(NAMES_SEPARATOR) == -1) {
+			System.err.println("C_LandPlot.setThisName, cannot find plot name in cell" + cellName);
+			this.setMyName(this.plotType + NAMES_SEPARATOR + this.myId);
+		}
+		else // unique landplots GNT weak. Replace cell id with landplot id
+			this.setMyName(cellName.substring(0, cellName.indexOf(NAMES_SEPARATOR)) + NAMES_SEPARATOR + this.myId);
+!!!306946.java!!!	addCell(inout cell : C_SoilCell) : void
+		this.cells.add(cell);
+		this.occupantList.add(cell);// used to benefit from the I_container heritage. jlf 03.2015
+!!!307074.java!!!	retrieveOneCell(in i : int) : C_SoilCell
+		C_SoilCell cell = this.cells.first();
+		Iterator<C_SoilCell> iterator = this.cells.iterator();
+		for (int j = 0; j <= i; j++) cell = iterator.next();
+		return cell;
+!!!307202.java!!!	setPlotType(in plotType : String) : void
+		this.plotType = plotType;
+		this.setMyName(plotType+NAMES_SEPARATOR+this.retrieveId());
+!!!307330.java!!!	getCells() : C_SoilCell
+		return this.cells;
+!!!307458.java!!!	getPlotType() : String
+		return this.plotType;
+!!!307586.java!!!	isFull() : boolean
+		int nrodents = 0;
+		for (C_SoilCell oneCell : this.cells) nrodents += oneCell.retrieveFullLoad_Urodent();
+		return nrodents > getCarryingCapacity_Urodent();
+!!!307714.java!!!	getCarryingCapacity_Urodent() : int
+		int k = 0;
+		for (C_SoilCell oneCell : this.cells) k += oneCell.getCarryingCapacity_Urodent();
+		return k;
+!!!307842.java!!!	getCoordinate_Ucs() : Coordinate
+		return this.cells.first().getCoordinate_Ucs();
+!!!307970.java!!!	getMyLandPlot() : C_LandPlot
+		return null;

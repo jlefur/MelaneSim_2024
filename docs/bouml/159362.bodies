@@ -1,0 +1,3 @@
+class C_Concession
+!!!309122.java!!!	C_Concession(inout groundManager : C_LandscapeUrban)
+		super(groundManager);

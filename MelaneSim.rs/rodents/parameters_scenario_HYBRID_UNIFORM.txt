@@ -74,8 +74,8 @@
 <!-- fileName : scenario.xml -->
 <!-- protocolName : HYBRID_UNIFORM -->
 <Scenario>
-	<repast.simphony.dataLoader.engine.ClassNameDataLoaderAction context="SIMmasto0" file="repast.simphony.dataLoader.engine.ClassNameDataLoaderAction_0.xml" />
-	<repast.simphony.action.display context="SIMmasto0" file="styles\rodents\repast.simphony.action.display_HybridUniform.xml" />
-	<repast.simphony.userpanel.ui.DefaultUserPanelDescriptorAction context="SIMmasto0" file="repast.simphony.userpanel.ui.DefaultUserPanelDescriptorAction_0.xml" />
+	<repast.simphony.dataLoader.engine.ClassNameDataLoaderAction context="Map2D" file="repast.simphony.dataLoader.engine.ClassNameDataLoaderAction_0.xml" />
+	<repast.simphony.action.display context="Map2D" file="styles\rodents\repast.simphony.action.display_HybridUniform.xml" />
+	<repast.simphony.userpanel.ui.DefaultUserPanelDescriptorAction context="Map2D" file="repast.simphony.userpanel.ui.DefaultUserPanelDescriptorAction_0.xml" />
 	<model.initializer class="presentation.display.C_CustomPanelSet_Rodent" />
 </Scenario>

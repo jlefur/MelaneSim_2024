@@ -1,0 +1,35 @@
+class C_GeneMutatorDouble
+!!!302466.java!!!	C_GeneMutatorDouble(in mutMin : double, in mutMax : double)
+		if (mutMin >= mutMax) throw new RuntimeException("Mutation min/max values overlap!");
+		this.mutMin = mutMin;
+		this.mutMax = mutMax;
+		this.mutRange = mutMax - mutMin;
+!!!302594.java!!!	C_GeneMutatorDouble()
+		this(DEFAULT_MUT_RATE * -1, DEFAULT_MUT_RATE);
+!!!302722.java!!!	mutate(inout info : Object, inout value : Object) : Object
+		Double mutRate = (Double) info;
+		// Double d = (Double)value;
+		Number d = (Number) value;
+		double random = C_ContextCreator.randomGeneratorForDNA.nextDouble();
+		// If randomly chosen number is below mutation rate, mutate the gene, otherwise leave it
+		// alone (return its original value).
+		if (random < mutRate.doubleValue()) {
+			// Get a number in the mutation range, then bump it up to the minimum amount. So its
+			// range is now [mutMin, mutMax].
+			double mutAmount = mutRange * (C_ContextCreator.randomGeneratorForDNA.nextDouble());
+			mutAmount = mutAmount + mutMin;
+			return mutAmount + d.doubleValue();
+		}
+		else return value;
+!!!302850.java!!!	toString() : String
+		return "<mutator range:" + Double.toString(mutRange) + " min:" + Double.toString(mutMin) + " max:"
+				+ Double.toString(mutMax) + ">";
+!!!302978.java!!!	main(inout args : String [[]]) : void
+		System.out.println("Testing DoubleGeneMutator");
+		C_GeneMutatorDouble dblMut = new C_GeneMutatorDouble(0.5, 0.9);
+		Double val = 1.5;
+		Double mutRate = 0.5;
+		System.out.println("Mutating at this rate: " + mutRate);
+		for (int i = 1; i <= 10; i++) {
+			System.out.println("mutated val = " + dblMut.mutate(mutRate, val));
+		}
