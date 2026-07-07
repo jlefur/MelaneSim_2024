@@ -23,6 +23,30 @@ b7ca253 2024-11-22 jlefur - Mise en place de Exclos (metapopulation)
 
 Branche: origin/main
 ----------------------------------------
+d2abd50 2025-07-07 jlefur - Protocole microNecton OK - énergie à faire
+7eaa0d6 2025-07-04 jlefur - protocole micronecton suite
+213a6b2 2025-07-01 jlefur - Mise en place du protocole PNMC_nekton
+6136447 2025-04-25 jlefur - Correction erreur algorithme cell spacing
+971df01 2025-04-18 jlefur - Affichage de cell energy au lieu de integral dans custom display energy
+9adae08 2025-04-16 Jean LE FUR - récupération de saveScreen depuis HP Probook
+df5b8aa 2025-04-16 jlefur - Ajustement de l'affichage de userpanel et affichage de maxEnergy plutôt que meanEnergy
+0e25214 2025-04-16 jlefur - temporaire changement de chronogramme dans drifter pour avoir la même vitesses que plankton
+88fdd90 2025-04-10 jlefur - Correction bug plankton :)
+b3872b7 2025-04-06 jlefur - icones display energie de la cellule au lieu de nombre d'occupants
+dce00ef 2025-04-04 jlefur - calcul de assertCellsEnergy déclenché dans le data.csv
+de0b94c 2025-04-03 jlefur - Mise au point de l'affichage de la chlorophylle dans C_Protocol_PNMC_plankton
+e44b896 2025-04-02 jlefur - Mise en place protocole plancton
+e42947b 2025-03-26 jlefur - Refactor PNMC_plankton en PNMC_drifters
+4b5d539 2025-03-21 jlefur - Echec du restart de la console du GUI, retour à la situation précédente
+dc98081 2025-03-20 jlefur - Mise en place de l'indicateur de conservation cellsEnergy (zones vertes, oranges, rouges)
+53c27ee 2025-03-19 Jean LE FUR - Correction sauvegarde Ecran depuis HP Probook
+f0e40cb 2025-03-18 jlefur - Raster Energie (ajout d'un display et calcul de integralEnergy_Ukcal)
+2d054e9 2025-03-14 jlefur - refactor C_MarineCell into C_SoilCellMarine
+b34df09 2025-03-14 jlefur - Change display stream current
+e872081 2024-12-17 jlefur - Correction bug nullPointer + nouvelle facilitationMap
+6dae0e2 2024-12-16 jlefur - test des particules washed on shore et couleur des ellipses dans facilityMap
+1a494cb 2024-12-11 jlefur - Correction de la taille des icones Tagged
+f6beefd 2024-12-11 jlefur - Correction du bug MyHome quand probe agent sur GUI
 17680c9 2024-12-10 jlefur - Check ok des protocoles après refactoring thing.rodents
 067ebd6 2024-12-10 jlefur - refactoring vers thing/rodents + clean inspectors
 5e28fed 2024-12-06 jlefur - mise à jour ok de userPanel et customPanelSet
