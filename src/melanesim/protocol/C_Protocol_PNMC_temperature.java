@@ -1,17 +1,21 @@
 package melanesim.protocol;
 
 import java.awt.Dimension;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.TimeZone;
 
 import org.locationtech.jts.geom.Coordinate;
 
+import data.C_Chronogram;
 import data.C_Event;
 import data.C_ReadRasterDouble;
+import data.constants.rodents.I_ConstantDodel2;
 import repast.simphony.context.Context;
 import repast.simphony.valueLayer.GridValueLayer;
 import thing.C_Megaptera;
 import thing.ground.C_SoilCellMarine;
+import thing.rodents.A_HumanUrban;
 
 /** Sea surface temperature displayed on top of nekton layers Account for whales (Megaptera) JLF 06.2026
  * @author Quoc-Kim BUI & Dan Moulinie 05.2026 */
@@ -20,6 +24,7 @@ public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_ships {
 	// FIELDS
 	//
 	protected GridValueLayer temperatureValueLayer;
+	private C_Chronogram whaleActivitiesChrono;
 	//
 	// CONSTRUCTOR
 	//
@@ -27,18 +32,36 @@ public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_ships {
 	 * Author Quoc-Kim BUI & Dan Moulinie 05.2026 */
 	public C_Protocol_PNMC_temperature(Context<Object> ctxt) {
 		super(ctxt);
+		this.chronogram = new C_Chronogram("/20260603_PNMC.megaptera.csv");
 		int gridWidth = this.landscape.dimension_Ucell.width, gridHeight = this.landscape.dimension_Ucell.height;
-		// Use NEKTON_GRID name so the existing scenario.xml nekton display finds this
+		// Use TEMPERATURE_GRID name so the existing scenario.xml nekton display finds this
 		// layer
 		this.temperatureValueLayer = new GridValueLayer(TEMPERATURE_GRID,true,
 		        new repast.simphony.space.grid.WrapAroundBorders(),gridWidth,gridHeight);
 		for(int i = gridWidth-1;i>=0;i--) for(int j = gridHeight-1;j>=0;j--) this.temperatureValueLayer.set((int)(Math
 		        .random()*13),i,j);
 		context.addValueLayer(this.temperatureValueLayer);
+		this.whaleActivitiesChrono = new C_Chronogram(WHALE_ACTIVITY_CHRONO);
 	}
 	//
 	// OVERRIDEN METHOD
 	//
+	@Override
+	public void initCalendar() { protocolCalendar.set(2021,Calendar.JUNE,20); }// for whale development
+	@Override
+	/** Color the map in black as an alternate view of particles<br>
+	 * Author J.Le Fur 10.2014 TODO JLF 2014.10 should be in presentation package ? */
+	protected void blackMap() {
+		super.blackMap();
+		if(this.landscape!=null){
+			for(int i = 0;i<this.landscape.getDimension_Ucell().getWidth();i++) for(int j = 0;j<this.landscape
+			        .getDimension_Ucell().getHeight();j++){
+				        C_SoilCellMarine cell = (C_SoilCellMarine)this.landscape.getGrid()[i][j];
+				        if(!cell.isTerrestrial()) // marine area
+				            this.temperatureValueLayer.set(BLACK_MAP_COLOR,i,j);
+			        }
+		}
+	}
 	@Override
 	/** Read monthly sea surface temperature raster, map values (19-30.5°C) to colormap indices 1-12, mask terrestrial
 	 * cells DATE EVENT X Y EVENT VALUES_1 VALUES_2 VALUES_3 17/07/2021 168.063 -23.406 Megaptera 2018-34350 F:J 00:13
@@ -64,6 +87,7 @@ public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_ships {
 					        .getGrid()[event.whereX_Ucell][event.whereY_Ucell];
 					oneWhale.setMyHome(homeCell);
 					contextualizeNewThingInContainer(oneWhale,homeCell);
+					// this.initWhaleActivity(oneWhale);
 					String groupCode = whaleData[1];
 					ManageWhaleGroup(oneWhale,groupCode);
 					break;
@@ -102,8 +126,27 @@ public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_ships {
 		super.manageOneEvent(event);
 	}
 	//
-	// METHOD
+	// METHODS
 	//
+	/** Use the activity list to initialize human activities
+	 * @author M.Sall 10.2020 */
+	public void initWhaleActivity(C_Megaptera oneWhale) {
+		ArrayList<String> activitiesList = this.whaleActivitiesChrono.getFullEvents_Ustring();
+		for(int i = 0;i<this.whaleActivitiesChrono.getChronoLength();i++){
+			String[] activities = activitiesList.get(i).split(CSV_FIELD_SEPARATOR);
+			String whaleID = oneWhale.retrieveMyName().split(NAMES_SEPARATOR)[DATE_COL];
+			if(whaleID.equals(activities[DATE_COL])){
+				if(activities[X_COL].contains(".")||activities[Y_COL].contains("."))// coordinate in decimal degrees
+				    oneWhale.addActivityList(activities[EVENT_COL],this.geographicCoordinateConverter
+				            .convertCoordinate_Ucs(Double.parseDouble(activities[X_COL]),Double.parseDouble(
+				                    activities[Y_COL])));
+				else
+				    oneWhale.addActivityList(activities[EVENT_COL],new Coordinate(Integer.parseInt(activities[X_COL]),
+				            Integer.parseInt(activities[Y_COL])));
+			}
+		}
+		// oneWhale.manageActivities();
+	}
 	protected void ManageWhaleGroup(C_Megaptera oneWhale, String groupCode) {
 		// G solitary -> 1
 		// K pair -> 1 male, 1 female
@@ -125,13 +168,13 @@ public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_ships {
 				otherWhale = new C_Megaptera(oneWhale.retrieveMyName()+"bis",alterSex);
 				homeCell = (C_SoilCellMarine)oneWhale.getCurrentSoilCell();
 				otherWhale.setMyHome(oneWhale.getCurrentSoilCell());
-				contextualizeNewThingInContainer(oneWhale,homeCell);
+				contextualizeNewThingInContainer(otherWhale,homeCell);
 				break;
 			case "D":// D group of 4 -> 1 female + 3 males
 				otherWhale = new C_Megaptera(oneWhale.retrieveMyName()+"bis",alterSex);
 				homeCell = (C_SoilCellMarine)oneWhale.getCurrentSoilCell();
 				otherWhale.setMyHome(oneWhale.getCurrentSoilCell());
-				contextualizeNewThingInContainer(oneWhale,homeCell);
+				contextualizeNewThingInContainer(otherWhale,homeCell);
 				break;
 		}
 	}

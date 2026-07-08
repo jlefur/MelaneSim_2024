@@ -1,9 +1,18 @@
 package thing;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.locationtech.jts.geom.Coordinate;
+
 import thing.dna.I_DiploidGenome;
 import thing.dna.species.C_GenomeMegaptera;
 /** @author JLF 06.2026 */
 public class C_Megaptera extends A_Amniote {
+	//
+	// FIELD
+	//
+	private Map<String,Coordinate> activityList = new HashMap<String,Coordinate>();
 	//
 	// CONSTRUCTOR
 	//
@@ -13,7 +22,7 @@ public class C_Megaptera extends A_Amniote {
 		this.setMyName(name);
 		if(sex.equals("M")) this.setMale(true);
 		else this.setMale(false);
-		this.setAge_Uday(4380.);// 12 years TODO jlf 06.2026number in source age at creation adult whales
+		this.setAge_Uday(4380.);// 12 years TODO jlf 06.2026 number in source age at creation adult whales
 	}
 	//
 	// OVERRIDEN METHOD
@@ -24,4 +33,10 @@ public class C_Megaptera extends A_Amniote {
 	protected void checkDanger() {}
 	@Override
 	public A_Animal giveBirth(I_DiploidGenome genome) { return new C_Megaptera(genome); }
+	@Override
+	public void discardThis() { this.activityList = null; super.discardThis(); }
+	//
+	// METHOD
+	//
+	public void addActivityList(String time, Coordinate location) { this.activityList.put(time,location); }
 }

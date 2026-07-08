@@ -15,6 +15,7 @@ import java.util.Locale;
 import org.locationtech.jts.geom.Coordinate;
 
 import data.C_Parameters;
+import data.C_WriteRaster;
 import data.constants.I_ConstantPNMC;
 import data.converters.C_ConvertGeographicCoordinates;
 import melanesim.util.CaptureEcranPeriodique;
@@ -36,12 +37,14 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 	//
 	protected C_ConvertGeographicCoordinates geographicCoordinateConverter = null;
 	public static boolean DISPLAY_FACILITY_MAP = false;// used to change plankton color if facility map is on
-	public record MinMax(double min,double max){};
+	protected record MinMax(double min,double max){};
+	protected final C_WriteRaster rasterWriter = new C_WriteRaster();
 	//
 	// CONSTRUCTOR
 	//
 	public A_Protocol_PNMC(Context<Object> ctxt) {
 		super(ctxt);
+		//this.rasterWriter.export(((C_LandscapeMarine)this.landscape).getValueLayer(),"bathymetry","OBJ");
 		// Position landplots at the barycentre of cells
 		for(C_LandPlot lp:this.landscape.getAffinityLandPlots()){
 			double xx = 0., yy = 0.;
@@ -55,6 +58,7 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 			lp.setCurrentSoilCell(this.landscape.getGrid()[(int)xx][(int)yy]);
 			lp.bornCoord_Umeter = this.landscape.getThingCoord_Umeter(lp.getCurrentSoilCell());
 		}
+		if(C_Parameters.DISPLAY_MAP && this.facilityMap!=null) DISPLAY_FACILITY_MAP = true;
 		// INSPECTORS
 		A_Protocol.inspectorPopulation = new C_InspectorPopulationMarine();
 		inspectorList.add(inspectorPopulation);
@@ -98,13 +102,37 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 				((C_LandscapeMarine)this.landscape).assertCellsEnergy2();
 			}
 			// saveScreen();
+			this.rasterWriter.export(((C_LandscapeMarine)this.landscape).getEnergyValueLayer(),"energy","CSV");
 		}
 	}
+	protected void saveEnergyMap() {
+		long tick = (long)RunEnvironment.getInstance().getCurrentSchedule().getTickCount();
+		Path csvPath = Path.of("data_output/energyGrid/grid_tick_"+tick+".csv");
+		DecimalFormat df = new DecimalFormat("0.00",DecimalFormatSymbols.getInstance(Locale.US));
+		try(BufferedWriter out1 = Files.newBufferedWriter(csvPath,StandardCharsets.UTF_8)){
+			StringBuilder sb = new StringBuilder(6400);
+			for(int i = 0; i<this.landscape.dimension_Ucell.width; i++){
+				for(int j = 0; j<this.landscape.dimension_Ucell.height; j++){
+					// C_SoilCellMarine cell = (C_SoilCellMarine)this.landscape.getGrid()[i][j];
+					// if(cell.isTerrestrial()) sb.append(df.format(0.0)).append(';');
+					// else
+					sb.append(df.format(((C_LandscapeMarine)this.landscape).getEnergyValueLayer().get(i,j))).append(
+					        ';');
+				}
+				out1.write(sb.toString());
+				out1.newLine();
+				sb.setLength(0);
+			}
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+	}
+
 	protected void initLandscape(Context<Object> context) {
 		this.setLandscape(new C_LandscapeMarine(context,C_Parameters.RASTER_URL,VALUE_LAYER_NAME,
 		        CONTINUOUS_SPACE_NAME));
-		for(int i = 0;i<this.landscape.dimension_Ucell.width;i++){
-			for(int j = 0;j<this.landscape.dimension_Ucell.height;j++){
+		for(int i = 0; i<this.landscape.dimension_Ucell.width; i++){
+			for(int j = 0; j<this.landscape.dimension_Ucell.height; j++){
 				C_SoilCellMarine cell = new C_SoilCellMarine(this.landscape.getGrid()[i][j].getAffinity(),i,j);
 				// Comment the following line to undisplay soil cells, JLF 10.2015, 11.2015
 				context.add(cell);
@@ -146,12 +174,12 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 		}
 	}
 	@Override
-	/** Color the map in black to see the overall distribution of burrows<br>
+	/** Color the map in black as an alternate view of particles<br>
 	 * Author J.Le Fur 10.2014 TODO JLF 2014.10 should be in presentation package ? */
 	protected void blackMap() {
 		if(this.landscape!=null){
-			for(int i = 0;i<this.landscape.getDimension_Ucell().getWidth();i++) for(int j = 0;j<this.landscape
-			        .getDimension_Ucell().getHeight();j++){
+			for(int i = 0; i<this.landscape.getDimension_Ucell().getWidth(); i++) for(int j = 0; j<this.landscape
+			        .getDimension_Ucell().getHeight(); j++){
 				        if(this.landscape.getValueLayer().get(i,j)<TERRESTRIAL_MIN_AFFINITY) // marine area
 				            this.landscape.getValueLayer().set(BLACK_MAP_COLOR,i,j);
 			        }
@@ -197,8 +225,8 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 			// convertit la grille de I_Container en grille de C_SoilCellMarine
 			I_Container[][] landscapeGrid = this.landscape.getGrid();
 			C_SoilCellMarine[][] grid = new C_SoilCellMarine[landscapeGrid.length][landscapeGrid[0].length];
-			for(int i = 0;i<landscapeGrid.length;i++){
-				for(int j = 0;j<landscapeGrid[i].length;j++){
+			for(int i = 0; i<landscapeGrid.length; i++){
+				for(int j = 0; j<landscapeGrid[i].length; j++){
 					grid[i][j] = (C_SoilCellMarine)landscapeGrid[i][j]; // cast élément par élément
 				}
 			}
@@ -221,18 +249,15 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 	 * 3] then weight value with the weight attributed to this factor<br>
 	 * @author JLF 2026 */
 	protected void computeMinMaxIntegrals() {
-		DecimalFormat df = new DecimalFormat("0.00",DecimalFormatSymbols.getInstance(Locale.US));
 		double value = 0.0;
-		long tick = (long)RunEnvironment.getInstance().getCurrentSchedule().getTickCount();
-		Path csvPath = Path.of("data_output/grid_tick_"+tick+".csv");
 		final EnumMap<DriverType,MinMax> minMaxDrivers = new EnumMap<>(DriverType.class);
 		// init
 		for(DriverType type:DriverType.values()){
 			minMaxDrivers.put(type,new MinMax(Double.POSITIVE_INFINITY,0.));
 		}
 		// 1) pass: compute global min/max
-		for(int i = 0;i<this.landscape.dimension_Ucell.width;i++){
-			for(int j = 0;j<this.landscape.dimension_Ucell.height;j++){
+		for(int i = 0; i<this.landscape.dimension_Ucell.width; i++){
+			for(int j = 0; j<this.landscape.dimension_Ucell.height; j++){
 				C_SoilCellMarine cell = (C_SoilCellMarine)this.landscape.getGrid()[i][j];
 				if(cell.isTerrestrial()) continue;
 				for(DriverType type:DriverType.values()){
@@ -248,37 +273,25 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 				}
 			}
 		}
-		
-		try(BufferedWriter out1 = Files.newBufferedWriter(csvPath,StandardCharsets.UTF_8)){
-			StringBuilder sb = new StringBuilder(6400);
-			// 2) pass: normalize each cell value to [1..100] using global min/max per type
-			for(int i = 0;i<this.landscape.dimension_Ucell.width;i++){
-				for(int j = 0;j<this.landscape.dimension_Ucell.height;j++){
-					C_SoilCellMarine cell = (C_SoilCellMarine)this.landscape.getGrid()[i][j];
-					if(!cell.isTerrestrial()){
-						for(DriverType type:DriverType.values()){
-							MinMax mm = minMaxDrivers.get(type);
-							double xMin = mm.min();
-							double xMax = mm.max();
-							double x = cell.get(type,Champ.INTEGRAL_100);
-							if(!Double.isFinite(x)) continue;
-							double normalized = convertTo100(x,xMin,xMax);
+		// 2) pass: normalize each cell value to [1..100] using global min/max per type
+		for(int i = 0; i<this.landscape.dimension_Ucell.width; i++){
+			for(int j = 0; j<this.landscape.dimension_Ucell.height; j++){
+				C_SoilCellMarine cell = (C_SoilCellMarine)this.landscape.getGrid()[i][j];
+				if(!cell.isTerrestrial()){
+					for(DriverType type:DriverType.values()){
+						MinMax mm = minMaxDrivers.get(type);
+						double xMin = mm.min();
+						double xMax = mm.max();
+						double x = cell.get(type,Champ.INTEGRAL_100);
+						if(!Double.isFinite(x)) continue;
+						double normalized = convertTo100(x,xMin,xMax);
 
-							// 3) pass: weight value with the weight attributed to this factor
-							double weighted = normalized*C_Parameters.getMultiplier(type);
-							cell.set(type,Champ.INTEGRAL_100,weighted);
-						}
+						// 3) pass: weight value with the weight attributed to this factor
+						double weighted = normalized*C_Parameters.getMultiplier(type);
+						cell.set(type,Champ.INTEGRAL_100,weighted);
 					}
-					sb.append(df.format(cell.getIntegralEnergy_Ukcal())).append(';');
 				}
-				out1.write(sb.toString());
-				out1.newLine();
-				sb.setLength(0);
 			}
-			// Optionnel: si tu veux conserver minMaxDrivers quelque part (champ de classe)
-			// this.minMaxDrivers = minMaxDrivers;
-		}catch(IOException e){
-			e.printStackTrace();
 		}
 	}
 
@@ -290,7 +303,7 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 	/** Convertit les valeurs d'entrée des paramètres en valeurs sur une échelle de 0 à 100 <br>
 	 * @author JLF + chatGPT 02.2026 */
 	public double convertTo100(double x, double xMin, double xMax) {
-		if(!Double.isFinite(x)||!Double.isFinite(xMin)||!Double.isFinite(xMax)) return Double.NaN;
+		if(!Double.isFinite(x) || !Double.isFinite(xMin) || !Double.isFinite(xMax)) return Double.NaN;
 		if(xMax==xMin){
 			// A_Protocol.event("A_Protocol_PNMC: ","xmin = xmax: "+xMin,isError);
 			return 0.0;// ou 50.0, ou 100.0 ?

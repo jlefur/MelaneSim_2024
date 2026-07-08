@@ -220,7 +220,7 @@ public abstract class A_Protocol implements I_Protocol, I_ConstantString, I_Cons
 			updateInspectors(thing);
 		}
 		else
-			A_Protocol.event("A_Protocol.contextualizeNewAgentInCell", ((A_NDS) thing).retrieveMyName() + "/"
+			A_Protocol.event("A_Protocol.contextualizeNewThingInContainer", ((A_NDS) thing).retrieveMyName() + "/"
 					+ ((A_NDS) thing).retrieveId() + " already exist in context", isError);
 	}
 	/** has to be overridden in daughter classes / JLF 2024 */

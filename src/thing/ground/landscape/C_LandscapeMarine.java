@@ -46,7 +46,7 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC {
 	//
 	public C_LandscapeMarine(Context<Object> context,String url,String gridValueName,String continuousSpaceName) {
 		super(context,url,gridValueName,continuousSpaceName);
-		context.addValueLayer(this.energyValueLayer);
+		context.addValueLayer(this.getEnergyValueLayer());
 	}
 
 	//
@@ -93,7 +93,7 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC {
 				if(matriceLue[i][j]>=8) matriceLue[i][j] = TERRESTRIAL_MIN_AFFINITY;
 				this.getValueLayer().set(matriceLue[i][j],i,j);
 				// energy values are 0-green, 1-orange, 2-red or 3-black forN/A ( viz. land)
-				this.energyValueLayer.set((int)(Math.random()*3),i,j);
+				this.getEnergyValueLayer().set((int)(Math.random()*3),i,j);
 				this.grid[i][j] = new C_SoilCellMarine(matriceLue[i][j],i,j);
 			}
 		}
@@ -134,18 +134,18 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC {
 		double cellIntegralEnergy_Ukcal;
 		for(int i = 0;i<this.dimension_Ucell.getWidth();i++){
 			for(int j = 0;j<this.dimension_Ucell.getHeight();j++){
-				if(((C_SoilCellMarine)grid[i][j]).isTerrestrial()) this.energyValueLayer.set(ENERGY_LAND,i,j);
+				if(((C_SoilCellMarine)grid[i][j]).isTerrestrial()) this.getEnergyValueLayer().set(ENERGY_LAND,i,j);
 				else{
-					this.energyValueLayer.set(ENERGY_RESET,i,j);// reset cell color
+					this.getEnergyValueLayer().set(ENERGY_RESET,i,j);// reset cell color
 					cellIntegralEnergy_Ukcal = ((C_SoilCellMarine)grid[i][j]).getIntegralEnergy_Ukcal();
 					if(cellIntegralEnergy_Ukcal>=this.energyRanks[ENERGY_GREEN])
-					    this.energyValueLayer.set(ENERGY_GREEN,i,j);
+					    this.getEnergyValueLayer().set(ENERGY_GREEN,i,j);
 					else
 					    if(cellIntegralEnergy_Ukcal>=this.energyRanks[ENERGY_ORANGE])
-					        this.energyValueLayer.set(ENERGY_ORANGE,i,j);
+					        this.getEnergyValueLayer().set(ENERGY_ORANGE,i,j);
 						else
 					        if(cellIntegralEnergy_Ukcal>=this.energyRanks[ENERGY_RED])
-					            this.energyValueLayer.set(ENERGY_RED,i,j);
+					            this.getEnergyValueLayer().set(ENERGY_RED,i,j);
 					((C_SoilCellMarine)grid[i][j]).resetIntegralEnergy_Ukcal();
 				}
 			}
@@ -159,17 +159,17 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC {
 		double cellIntegralEnergy_Ukcal;
 		for(int i = 0;i<this.dimension_Ucell.getWidth();i++){
 			for(int j = 0;j<this.dimension_Ucell.getHeight();j++){
-				if(((C_SoilCellMarine)grid[i][j]).isTerrestrial()) this.energyValueLayer.set(ENERGY_LAND,i,j);
+				if(((C_SoilCellMarine)grid[i][j]).isTerrestrial()) this.getEnergyValueLayer().set(ENERGY_LAND,i,j);
 				else{
-					this.energyValueLayer.set(ENERGY_RESET,i,j);// reset cell color
+					this.getEnergyValueLayer().set(ENERGY_RESET,i,j);// reset cell color
 					cellIntegralEnergy_Ukcal = ((C_SoilCellMarine)grid[i][j]).getIntegralEnergy_Ukcal();
 					long energy_key = Math.round(cellIntegralEnergy_Ukcal*keys_precision);
-					if(energy_key>=this.energyRanks_long[ENERGY_GREEN]) this.energyValueLayer.set(ENERGY_GREEN,i,j);
+					if(energy_key>=this.energyRanks_long[ENERGY_GREEN]) this.getEnergyValueLayer().set(ENERGY_GREEN,i,j);
 					else
 					    if(energy_key>=this.energyRanks_long[ENERGY_ORANGE])
-					        this.energyValueLayer.set(ENERGY_ORANGE,i,j);
+					        this.getEnergyValueLayer().set(ENERGY_ORANGE,i,j);
 						else
-					        if(energy_key>=this.energyRanks_long[ENERGY_RED]) this.energyValueLayer.set(ENERGY_RED,i,j);
+					        if(energy_key>=this.energyRanks_long[ENERGY_RED]) this.getEnergyValueLayer().set(ENERGY_RED,i,j);
 					((C_SoilCellMarine)grid[i][j]).resetIntegralEnergy_Ukcal();
 				}
 			}
@@ -270,6 +270,8 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC {
 		this.overallEnergyMean_Ukcal = this.overallEnergy_Ukcal/(this.dimension_Ucell
 		        .getWidth()*this.dimension_Ucell.getHeight());
 	}
+
+	public GridValueLayer getEnergyValueLayer() { return energyValueLayer; }
 
 	/*
 	 * protected void rankEnergy0() { // Put each energy rank in keys of a sorted map and fill values with the

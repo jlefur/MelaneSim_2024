@@ -34,7 +34,7 @@ public class C_Protocol_PNMC_drifters extends A_Protocol_PNMC {
 		// TODO number in source 2025.04 JLF CHRONOGRAM FILE NAME
 		// if (this.chronogram == null) chronogram = new
 		// C_Chronogram("/20240314_PNMC.drifters.csv");
-		this.chronogram = new C_Chronogram("/20260603_PNMC.megaptera.csv");
+		this.chronogram = new C_Chronogram("/20260423_PNMC.temperature.csv");
 		facilityMap = new C_Background(-2.35, 206., 134.);
 	}
 	//
@@ -93,7 +93,7 @@ public class C_Protocol_PNMC_drifters extends A_Protocol_PNMC {
 				I_ConstantPNMC.rasterLongitudeWest_LatitudeSouth_Udegree.get(1)));
 		this.initPopulations();
 		super.initProtocol();
-		if(C_Parameters.DISPLAY_MAP&&this.facilityMap!=null) DISPLAY_FACILITY_MAP = true;
+
 	}
 
 	@Override

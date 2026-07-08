@@ -47,7 +47,7 @@ public interface I_ConstantNumeric {
 	// DISPLAY & PRESENTATION
 	public final int CIRCLE_ACCURACY_Upx = 32; // number of points used to draw circles
 	public final int GUI_SPRITE_SIZE_Upx = 32;
-	public final int BLACK_MAP_COLOR = 10;
+	public final int BLACK_MAP_COLOR = 88;
 	public float IMAGE_SCALE = .2f;// Taille d'une image initiale .15
 	public float ELLIPSE_SCALE = 1.5f;// (NB: 50x50-> .3)
 

@@ -32,7 +32,7 @@ public interface I_ConstantImagesNames {
 	public static final String NEKTON_ICON = "../sliders/necton";
 	public static final String SHIP_ICON = "../sliders/ship";
 	public static final String FISHER_ICON = "../sliders/fisher";
-	public static final String WHALE_ICON = "../sliders/whaleMale";
+	public static final String WHALE_ICON = "../sliders/whale";
 	public static final String TUNA_ICON = "../sliders/tuna";
 	public static final String SMALL_PELAGIC_ICON = "../sliders/small_pelagic";
 	public static final String POLLUTION_ICON = "../sliders/sewage";

@@ -26,14 +26,30 @@ public class C_Protocol_PNMC_nekton extends C_Protocol_PNMC_plankton {
 	 * Author J.Le Fur 02.2013 */
 	public C_Protocol_PNMC_nekton(Context<Object> ctxt) {
 		super(ctxt);
-		int gridWidth = this.landscape.dimension_Ucell.width,gridHeight = this.landscape.dimension_Ucell.height;
+		int gridWidth = this.landscape.dimension_Ucell.width, gridHeight = this.landscape.dimension_Ucell.height;
 		this.nektonValueLayer = new GridValueLayer(NEKTON_GRID,true,new repast.simphony.space.grid.WrapAroundBorders(),
-				gridWidth,gridHeight);
+		        gridWidth,gridHeight);
 		for(int i = gridWidth-1;i>=0;i--) for(int j = gridHeight-1;j>=0;j--) this.nektonValueLayer.set((int)(Math
-				.random()*7),i,j);// TODO JLF 06.2026 GRAVE random generator not managed
+		        .random()*7),i,j);// TODO JLF 06.2026 GRAVE random generator not managed
 		context.addValueLayer(this.nektonValueLayer);
 	}
-
+	//
+	// OVERRIDEN METHODS
+	//
+	@Override
+	/** Color the map in black as an alternate view of particles<br>
+	 * Author J.Le Fur 10.2014 TODO JLF 2014.10 should be in presentation package ? */
+	protected void blackMap() {
+		super.blackMap();
+		if(this.landscape!=null){
+			for(int i = 0;i<this.landscape.getDimension_Ucell().getWidth();i++) for(int j = 0;j<this.landscape
+			        .getDimension_Ucell().getHeight();j++){
+				        C_SoilCellMarine cell = (C_SoilCellMarine)this.landscape.getGrid()[i][j];
+				        if(!cell.isTerrestrial()) // marine area
+				            this.nektonValueLayer.set(BLACK_MAP_COLOR,i,j);
+			        }
+		}
+	}
 	@Override
 	/** Read microNekton values */
 	public void manageOneEvent(C_Event event) {
@@ -53,7 +69,7 @@ public class C_Protocol_PNMC_nekton extends C_Protocol_PNMC_plankton {
 				for(int i = 0;i<imax;i++){
 					for(int j = 0;j<jmax;j++){
 						double rawValue = matriceLue[i][j];
-						double value_100 = convertTo100(rawValue, NEKTON_MIN, NEKTON_MAX);
+						double value_100 = convertTo100(rawValue,NEKTON_MIN,NEKTON_MAX);
 						// Intégration de la valeur dans marine cells
 						marineCell = ((C_SoilCellMarine)this.landscape.getGrid()[i][j]);
 						marineCell.set(DriverType.NEKTON,Champ.RAW_VAL,rawValue);
