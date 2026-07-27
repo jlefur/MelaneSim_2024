@@ -1,0 +1,119 @@
+package presentation.display;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.*;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.nio.file.StandardOpenOption;
+
+public class C_EnergyScaleDialog extends JDialog {
+
+	private static final long serialVersionUID = 1L; // <-- ajoute cette ligne
+	private final JSlider plankton;
+	private final JSlider micronekton;
+	private final JSlider whale;
+	public static final Path CSV_PATH=Paths.get("energy_scales.csv");
+
+	// valInit en unités "pourcent" pour un slider 0..200, par ex 100 = 1.0x
+	public C_EnergyScaleDialog(Frame owner, double initPlankton, double initMicronekton, double initWhale,
+			Path csvPath) {
+		super(owner, "Energy scale editor", true); // modal
+
+
+		plankton = mkSlider(initPlankton);
+		micronekton = mkSlider(initMicronekton);
+		whale = mkSlider(initWhale);
+
+		JPanel content = new JPanel(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+		c.insets = new Insets(8, 12, 8, 12);
+		c.gridx = 0;
+		c.gridy = 0;
+		c.anchor = GridBagConstraints.WEST;
+		content.add(new JLabel("plankton"), c);
+		c.gridx = 1;
+		content.add(plankton, c);
+		c.gridx = 0;
+		c.gridy = 1;
+		content.add(new JLabel("micronekton"), c);
+		c.gridx = 1;
+		content.add(micronekton, c);
+		c.gridx = 0;
+		c.gridy = 2;
+		content.add(new JLabel("whale"), c);
+		c.gridx = 1;
+		content.add(whale, c);
+
+		JButton done = new JButton(new AbstractAction("Done") {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					saveToCsv();
+					dispose();
+				} catch (IOException ex) {
+					JOptionPane.showMessageDialog(C_EnergyScaleDialog.this,
+							"Erreur d'écriture du fichier CSV:\n" + ex.getMessage(), "I/O error",
+							JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
+
+		JButton cancel = new JButton(new AbstractAction("Cancel") {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+
+		JPanel buttons = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		buttons.add(cancel);
+		buttons.add(done);
+
+		getContentPane().setLayout(new BorderLayout());
+		getContentPane().add(content, BorderLayout.CENTER);
+		getContentPane().add(buttons, BorderLayout.SOUTH);
+		pack();
+		setLocationRelativeTo(owner);
+	}
+
+	private static JSlider mkSlider(double initFactor) {
+		int init = (int) Math.round(initFactor * 100.0); // 1.0 => 100
+		JSlider s = new JSlider(0, 200, Math.max(0, Math.min(200, init)));
+		s.setPaintTicks(true);
+		s.setMajorTickSpacing(50);
+		s.setMinorTickSpacing(10);
+		s.setPaintLabels(true);
+		return s;
+	}
+
+	private Map<String, Double> collectValues() {
+		Map<String, Double> m = new LinkedHashMap<>();
+		m.put("plankton", plankton.getValue() / 100.0);
+		m.put("micronekton", micronekton.getValue() / 100.0);
+		m.put("whale", whale.getValue() / 100.0);
+		return m;
+	}
+
+	private void saveToCsv() throws IOException {
+		Map<String, Double> m = collectValues();
+
+		// 2) Créer le dossier SEULEMENT si parent non-null
+		Path abs = CSVPATH.toAbsolutePath();
+		Path parent = abs.getParent();
+		if (parent != null) {
+			Files.createDirectories(parent);
+		}
+
+		try (BufferedWriter w = Files.newBufferedWriter(abs, StandardOpenOption.CREATE,
+				StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.WRITE)) {
+			w.write("class,energyScale\n");
+			w.write("plankton," + m.get("plankton") + "\n");
+			w.write("micronekton," + m.get("micronekton") + "\n");
+			w.write("whale," + m.get("whale") + "\n");
+		}
+	}
+}

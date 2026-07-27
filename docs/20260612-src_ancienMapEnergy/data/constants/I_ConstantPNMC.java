@@ -1,0 +1,73 @@
+package data.constants;
+
+import java.util.ArrayList;
+
+/** Gathers all variables since software specifications requires no numbers in the java sources <br>
+ * @author Le Fur & Sall 2015, rev. 2024 */
+public interface I_ConstantPNMC extends I_ConstantString {
+
+	// FILES & URLs //
+	public final String CSV_PATH = "data_csv/melanesia/";
+	public final String RASTER_PATH_MELANESIA = "data_raster/melanesia/";
+	public static final String PNMC_DRIFTERS = "ocean.PNMC_drifters"; // MELANESIM PROTOCOL NAMES - used in context creator
+	public static final String PNMC_PLANKTON = "ocean.PNMC_plankton"; // MELANESIM PROTOCOL NAMES - used in context creator
+	public static final String PNMC_NEKTON = "ocean.PNMC_nekton"; // MELANESIM PROTOCOL NAMES - used in context creator
+	public static final String PNMC_SHIPS = "ocean.PNMC_ships"; // MELANESIM PROTOCOL NAMES - used in context creator
+	public final String energyGridvalues = "valueEnergyGrid";// used to display energy
+	public final String NEKTON_GRID = "nektonGrid";// used to display nekton abundance
+
+	public static int CELL_SIZE = 245; // DEFAULT : 15 //Junk Value
+	public static final ArrayList<Double> rasterLongitudeWest_LatitudeSouth_Udegree = new ArrayList<Double>() {
+		{
+			add(156.);
+			add(-26.5);
+		}
+		private static final long serialVersionUID = 1L;
+	};
+	public static final ArrayList<String> currentSpeed_URL_suffix = new ArrayList<String>() {
+		{
+			add("");
+			add("");
+		}
+		private static final long serialVersionUID = 1L;
+	};
+
+	// EVENT TYPES CONSTANTS - used in chrono events
+	public static final String CURRENT_EVENT = "current";
+	public static final String CHLOROPHYLL_EVENT = "chlorophyll";
+	public static final String NEKTON_EVENT = "microNekton";
+	public static final String COMPUTE_ENERGY = "compute_energy";
+	//
+	// OTHERS
+	//
+	public static int TERRESTRIAL_MIN_AFFINITY = 99;
+	/** Used to lighten the GUI calculations: interval where to post current and plankton particles<br>
+	 * @see C_Protocol_PNMC_drifters#initPopulations() */
+	public static final int PARTICLE_CELLS_SPACING = 3; // 3 //
+	public static final int BACKWARD_NB_CELLS = 1;// if particle reach bordure move back nb cells
+	public static final int STREAM_DISPLAY_SIZE = 300;// taille des vecteurs courants affichés
+	public static final double PARTICLE_RESISTANCE_FACTOR = 1.;// freinage des particules vis à vis de la vitesse du courant)
+	public static final double NEKTON_RESISTANCE_FACTOR = 5.;// freinage des particules de micronecton vis à vis de la vitesse du courant)
+	public static final int BACKGROUND_COLOR = 38;
+	//
+	// ENERGY RANKING
+	//
+	public static final int ENERGY_GREEN = 0;//
+	public static final int ENERGY_ORANGE = 1;//
+	public static final int ENERGY_RED = 2;//
+	public static final int ENERGY_RESET = 3;//
+	public static final int ENERGY_LAND = 4;//
+
+	public static final double GREEN_AREA_Upercent = .25;// green lower limit
+	public static final double ORANGE_AREA_Upercent = .40;// orange lower limit
+	public static final double RED_AREA_Upercent = .60;// red lower limit
+	//
+	// DRIVERS NORMALIZATION
+	//
+	public static final double CHLORO_MIN = 0.047118366;// for year 2021
+	public static final double CHLORO_MAX = 0.40059945;
+	public static final double NEKTON_MIN = 0.000196165;// for year 2021
+	public static final double NEKTON_MAX = 4.904100;
+	public static final double CARGO_POPULATION = 50;
+
+}

@@ -17,7 +17,7 @@ import data.converters.C_ConvertTimeAndSpace;
  * @author A Realini, rev. Mboup 2013, JLF 01.2014, 07.2014, 08.2014 */
 public class C_Calendar extends GregorianCalendar {
 	private static final long serialVersionUID = 1L;
-	public static DateFormat shortDatePattern, longDatePattern, hourPattern, fullPattern;
+	public static DateFormat shortDatePattern, longDatePattern, hourPattern, fullPattern, dateHourPattern;
 	public int tick_Ucalendar; // the time unit (day, month...) within which a simulation tick is expressed
 	public int tickAmount_Ucalendar; // the amount of this time unit within one tick
 	public int TICK_MAX = 0;// TODO PAM de JLF 2018.06 Redundant with C_Parameters, used only in protocolTransportation
@@ -31,6 +31,7 @@ public class C_Calendar extends GregorianCalendar {
 		longDatePattern = new SimpleDateFormat("dd MMMM yyyy");
 		shortDatePattern = new SimpleDateFormat("dd/MM/yyyy");
 		hourPattern = new SimpleDateFormat("dd MMM yyyy - HH:mm:ss");
+		dateHourPattern = new SimpleDateFormat("dd/MM/yyyy-HH:mm");
 //		fullPattern = new SimpleDateFormat("HH:mm:ss", Locale.ENGLISH);
 		fullPattern = new SimpleDateFormat("dd MMM yyyy (EE) - HH:mm:ss", Locale.ENGLISH);
 	}
@@ -44,15 +45,15 @@ public class C_Calendar extends GregorianCalendar {
 	public String stringShortDate() {
 		return C_Calendar.shortDatePattern.format(getTime());
 	}
-	/** @return string such as 22 août 2014 */
+	/** @return string such as 22 aoï¿½t 2014 */
 	public String stringLongDate() {
 		return C_Calendar.longDatePattern.format(getTime());
 	}
-	/** @return string such as 22 août 2014 00:00:00 */
+	/** @return string such as 22 aoï¿½t 2014 00:00:00 */
 	public String stringHourDate() {
 		return C_Calendar.hourPattern.format(getTime());
 	}
-	/** @return string such as tuesday 22 août 2014 00:00:00 */
+	/** @return string such as tuesday 22 aoï¿½t 2014 00:00:00 */
 	public String stringFullDate() {
 		return C_Calendar.fullPattern.format(getTime());
 	}

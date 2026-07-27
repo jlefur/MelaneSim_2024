@@ -79,5 +79,5 @@ public interface I_ConstantPNMC extends I_ConstantString {
 	//
 	// WHALES
 	//
-	public static final String WHALE_ACTIVITY_CHRONO = "whale_Mno_ARGOS_Tracks.csv";
+	public static final String WHALE_ACTIVITY_CHRONO = "/whale_Mno_ARGOS_Tracks.csv";
 }

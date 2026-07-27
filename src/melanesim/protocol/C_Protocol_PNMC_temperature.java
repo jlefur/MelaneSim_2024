@@ -10,12 +10,10 @@ import org.locationtech.jts.geom.Coordinate;
 import data.C_Chronogram;
 import data.C_Event;
 import data.C_ReadRasterDouble;
-import data.constants.rodents.I_ConstantDodel2;
 import repast.simphony.context.Context;
 import repast.simphony.valueLayer.GridValueLayer;
 import thing.C_Megaptera;
 import thing.ground.C_SoilCellMarine;
-import thing.rodents.A_HumanUrban;
 
 /** Sea surface temperature displayed on top of nekton layers Account for whales (Megaptera) JLF 06.2026
  * @author Quoc-Kim BUI & Dan Moulinie 05.2026 */
@@ -24,7 +22,8 @@ public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_ships {
 	// FIELDS
 	//
 	protected GridValueLayer temperatureValueLayer;
-	private C_Chronogram whaleActivitiesChrono;
+	protected C_Chronogram whaleActivitiesChrono;
+	protected ArrayList<String> whaleActivitiesList;
 	//
 	// CONSTRUCTOR
 	//
@@ -33,15 +32,17 @@ public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_ships {
 	public C_Protocol_PNMC_temperature(Context<Object> ctxt) {
 		super(ctxt);
 		this.chronogram = new C_Chronogram("/20260603_PNMC.megaptera.csv");
+		this.whaleActivitiesChrono = new C_Chronogram(WHALE_ACTIVITY_CHRONO);
+		this.whaleActivitiesList = this.whaleActivitiesChrono.getFullEvents_Ustring();
 		int gridWidth = this.landscape.dimension_Ucell.width, gridHeight = this.landscape.dimension_Ucell.height;
 		// Use TEMPERATURE_GRID name so the existing scenario.xml nekton display finds this
 		// layer
 		this.temperatureValueLayer = new GridValueLayer(TEMPERATURE_GRID,true,
 		        new repast.simphony.space.grid.WrapAroundBorders(),gridWidth,gridHeight);
-		for(int i = gridWidth-1;i>=0;i--) for(int j = gridHeight-1;j>=0;j--) this.temperatureValueLayer.set((int)(Math
-		        .random()*13),i,j);
+		for(int i = gridWidth-1; i>=0; i--) for(int j = gridHeight-1; j>=0; j--) this.temperatureValueLayer.set(
+		        (int)(Math.random()*13),i,j);
 		context.addValueLayer(this.temperatureValueLayer);
-		this.whaleActivitiesChrono = new C_Chronogram(WHALE_ACTIVITY_CHRONO);
+		C_Megaptera.init(temperatureValueLayer);
 	}
 	//
 	// OVERRIDEN METHOD
@@ -54,8 +55,8 @@ public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_ships {
 	protected void blackMap() {
 		super.blackMap();
 		if(this.landscape!=null){
-			for(int i = 0;i<this.landscape.getDimension_Ucell().getWidth();i++) for(int j = 0;j<this.landscape
-			        .getDimension_Ucell().getHeight();j++){
+			for(int i = 0; i<this.landscape.getDimension_Ucell().getWidth(); i++) for(int j = 0; j<this.landscape
+			        .getDimension_Ucell().getHeight(); j++){
 				        C_SoilCellMarine cell = (C_SoilCellMarine)this.landscape.getGrid()[i][j];
 				        if(!cell.isTerrestrial()) // marine area
 				            this.temperatureValueLayer.set(BLACK_MAP_COLOR,i,j);
@@ -78,7 +79,7 @@ public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_ships {
 		// Check if event within the domain
 		if(coordinateCell_Ucs==null) coordinateCell_Ucs = new Coordinate(event.whereX_Ucell,event.whereY_Ucell);
 		Dimension dim = this.landscape.getDimension_Ucell();
-		if((coordinateCell_Ucs.x<dim.getWidth())&&(coordinateCell_Ucs.y<dim.getHeight())){
+		if((coordinateCell_Ucs.x<dim.getWidth()) && (coordinateCell_Ucs.y<dim.getHeight())){
 			switch(event.type){
 				case WHALE_EVENT:
 					String[] whaleData = event.value2.split(EVENT_VALUE2_FIELD_SEPARATOR);
@@ -87,7 +88,7 @@ public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_ships {
 					        .getGrid()[event.whereX_Ucell][event.whereY_Ucell];
 					oneWhale.setMyHome(homeCell);
 					contextualizeNewThingInContainer(oneWhale,homeCell);
-					// this.initWhaleActivity(oneWhale);
+					this.initWhaleActivity(oneWhale);
 					String groupCode = whaleData[1];
 					ManageWhaleGroup(oneWhale,groupCode);
 					break;
@@ -104,8 +105,8 @@ public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_ships {
 					if(calendar.get(Calendar.MONTH)<9) url = url+"0"+(calendar.get(Calendar.MONTH)+1);
 					else url = url+(calendar.get(Calendar.MONTH)+1);
 					double[][] matriceLue = C_ReadRasterDouble.doubleRasterLoader(url+".grd");
-					for(int i = 0;i<imax;i++){
-						for(int j = 0;j<jmax;j++){
+					for(int i = 0; i<imax; i++){
+						for(int j = 0; j<jmax; j++){
 							double value = matriceLue[i][j];
 							marineCell = ((C_SoilCellMarine)this.landscape.getGrid()[i][j]);
 							// classement des valeurs pour colorMap
@@ -128,22 +129,19 @@ public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_ships {
 	//
 	// METHODS
 	//
-	/** Use the activity list to initialize human activities
-	 * @author M.Sall 10.2020 */
+	/** Use the activity list to initialize human activities columns of the file are : ID X Y date time
+	 * @author Sall 2020, Le Fur 2026 */
 	public void initWhaleActivity(C_Megaptera oneWhale) {
-		ArrayList<String> activitiesList = this.whaleActivitiesChrono.getFullEvents_Ustring();
-		for(int i = 0;i<this.whaleActivitiesChrono.getChronoLength();i++){
-			String[] activities = activitiesList.get(i).split(CSV_FIELD_SEPARATOR);
-			String whaleID = oneWhale.retrieveMyName().split(NAMES_SEPARATOR)[DATE_COL];
-			if(whaleID.equals(activities[DATE_COL])){
-				if(activities[X_COL].contains(".")||activities[Y_COL].contains("."))// coordinate in decimal degrees
-				    oneWhale.addActivityList(activities[EVENT_COL],this.geographicCoordinateConverter
-				            .convertCoordinate_Ucs(Double.parseDouble(activities[X_COL]),Double.parseDouble(
-				                    activities[Y_COL])));
-				else
-				    oneWhale.addActivityList(activities[EVENT_COL],new Coordinate(Integer.parseInt(activities[X_COL]),
-				            Integer.parseInt(activities[Y_COL])));
-			}
+		String[] activities;
+		for(int i = 0; i<this.whaleActivitiesChrono.getChronoLength(); i++){
+			activities = this.whaleActivitiesList.get(i).split(CSV_FIELD_SEPARATOR);
+			String whaleID = oneWhale.retrieveMyName();
+			if(whaleID.equals(activities[2]))
+			    oneWhale.addActivityList(//
+			            this.geographicCoordinateConverter.convertCoordinate_Ucs(//
+			                    Double.parseDouble(activities[3]),//
+			                    Double.parseDouble(activities[4]))//
+			            ,activities[0],activities[1]);
 		}
 		// oneWhale.manageActivities();
 	}

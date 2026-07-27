@@ -26,7 +26,7 @@
 		type="boolean" defaultValue="false" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$BooleanConverter" />
 	<parameter name="IMAGE" displayName="0g/ ICONS (display objects using icons)"
-		type="boolean" defaultValue="false" isReadOnly="false"
+		type="boolean" defaultValue="true" isReadOnly="false"
 		converter="repast.simphony.parameter.StringConverterFactory$BooleanConverter" />
 		
 	<!-- PROTOCOL DEPENDENT -->
@@ -56,11 +56,10 @@
 </parameters>
 <?xml version="1.0" encoding="UTF-8" ?>
 <!-- fileName : scenario.xml -->
-<!-- protocolName : PNMC_nekton -->
+<!-- protocolName : PNMC_temperature -->
 <Scenario>
 	<repast.simphony.dataLoader.engine.ClassNameDataLoaderAction context="Map2D" file="repast.simphony.dataLoader.engine.ClassNameDataLoaderAction_0.xml" />
 	<repast.simphony.action.display context="Map2D" file="styles\repast.simphony.action.display_PNMC_ships.xml" />
-		<repast.simphony.action.display context="Map2D" file="styles\repast.simphony.action.display_PNMC_plankton.xml" />
 	<repast.simphony.action.display context="Map2D" file="styles\repast.simphony.action.display_PNMC_nekton.xml" />
 	<repast.simphony.action.display context="Map2D" file="styles\repast.simphony.action.display_PNMC_energy.xml" />
 	<repast.simphony.action.display context="Map2D" file="styles\repast.simphony.action.display_PNMC_temperature.xml" />
