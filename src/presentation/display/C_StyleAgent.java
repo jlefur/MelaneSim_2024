@@ -357,6 +357,7 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 			}
 			else if (object instanceof C_Megaptera) {
 				if (((A_SupportedContainer) object).isa_Tag()) sscale = sscale * 17;
+				if (((C_Megaptera)object).hasLeftDomain) sscale =(float)(sscale * .001);
 				else sscale = sscale * 6;
 			}
 			else if (object instanceof A_HumanUrban) {

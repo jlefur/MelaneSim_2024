@@ -43,15 +43,14 @@ public class C_SoilCellMarineEnergy extends C_SoilCell {
 	//
 	// OVERRIDEN METHOD
 	//
-	@Override
-	public String toString() {
+	//@Override
+	public String toString0() {
 		StringBuilder sb = new StringBuilder("C_SoilCellMarineEnergy {\n");
 		for(DriverType type:DriverType.values()) sb.append("  ").append(type).append(" (").append(type.getUnit())
 		        .append(")").append(" -> ").append(valeurs(type)).append("\n");
 		sb.append("}");
 		return sb.toString();
 	}
-	public String toString0() { DriverType type = DriverType.PLANKTON; return(type.toString()+": "+valeurs(type)); }
 	//
 	// METHODS
 	//

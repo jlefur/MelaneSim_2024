@@ -48,7 +48,7 @@ public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_ships {
 	// OVERRIDEN METHOD
 	//
 	@Override
-	public void initCalendar() { protocolCalendar.set(2021,Calendar.JUNE,20); }// for whale development
+	public void initCalendar() { protocolCalendar.set(2021,Calendar.JULY,15); }// for whale development
 	@Override
 	/** Color the map in black as an alternate view of particles<br>
 	 * Author J.Le Fur 10.2014 TODO JLF 2014.10 should be in presentation package ? */
@@ -143,7 +143,7 @@ public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_ships {
 			                    Double.parseDouble(activities[4]))//
 			            ,activities[0],activities[1]);
 		}
-		// oneWhale.manageActivities();
+		oneWhale.manageActivities();
 	}
 	protected void ManageWhaleGroup(C_Megaptera oneWhale, String groupCode) {
 		// G solitary -> 1
