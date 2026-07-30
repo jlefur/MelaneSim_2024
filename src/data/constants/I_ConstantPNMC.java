@@ -16,6 +16,7 @@ public interface I_ConstantPNMC extends I_ConstantString {
 	public static final String PNMC_SHIPS = "ocean.PNMC_ships"; // MELANESIM PROTOCOL NAMES - used in context creator
 	public final String energyGridvalues = "valueEnergyGrid";// used to display energy
 	public final String NEKTON_GRID = "nektonGrid";// used to display nekton abundance
+	public final String PLANKTON_GRID = "planktonGrid";// used to display plankton abundance
 	public final String TEMPERATURE_GRID = "temperatureGrid";// used to display temperature
 
 	public static int CELL_SIZE = 245; // DEFAULT : 15 //Junk Value

@@ -1,5 +1,5 @@
 <repast.simphony.visualization.engine.DefaultDisplayDescriptor>
-	<name>Agents</name>
+	<name>General-ships</name>
 	<type>TWO_D</type>
 	<styles>
 		<entry>

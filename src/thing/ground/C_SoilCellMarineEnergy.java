@@ -34,7 +34,7 @@ public class C_SoilCellMarineEnergy extends C_SoilCell {
 	// CONSTRUCTOR
 	//
 	public C_SoilCellMarineEnergy(int aff,int lineNo,int colNo) {
-		super(aff,lineNo,colNo);
+		super(aff, lineNo, colNo);
 		valeurs = new Valeurs[DriverType.values().length];
 		for(DriverType t:DriverType.values()){
 			valeurs[t.ordinal()] = new Valeurs();
@@ -43,7 +43,9 @@ public class C_SoilCellMarineEnergy extends C_SoilCell {
 	//
 	// OVERRIDEN METHOD
 	//
-	//@Override
+	/** Combined with toString of Valeurs class, provides a full description of temporary arrays used to compute
+	 * energy */
+	// @Override
 	public String toString0() {
 		StringBuilder sb = new StringBuilder("C_SoilCellMarineEnergy {\n");
 		for(DriverType type:DriverType.values()) sb.append("  ").append(type).append(" (").append(type.getUnit())

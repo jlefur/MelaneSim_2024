@@ -1,5 +1,5 @@
 <repast.simphony.visualization.engine.DefaultDisplayDescriptor>
-	<name>PNMC</name>
+	<name>Plankton</name>
 	<type>TWO_D</type>
 	<styles>
 		<entry>
@@ -9,38 +9,22 @@
 		</entry>
 		<entry>
 			<string>thing.C_Plankton</string>
-			<string>presentation.display.C_StyleAgent</string>
-		</entry>
-		<entry>
-			<string>thing.C_Nekton</string>
-			<string>presentation.display.C_StyleAgent</string>
+			<string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
 		</entry>
 		<entry>
 			<string>thing.C_StreamCurrent</string>
 			<string>presentation.display.C_StyleAgent</string>
 		</entry>
-		<entry>
-			<string>thing.ground.C_LandPlot</string>
-			<string>repast.simphony.visualization.editedStyle.EditedStyle2D
-			</string>
-		</entry>
 	</styles>
 	<editedStyles>
 		<entry>
 			<string>presentation.display.C_Background</string>
-			<string>presentation.display.C_Background.style_PNMC.01.xml</string>
-		</entry>
-		<entry>
-			<string>thing.ground.C_LandPlot</string>
-			<string>thing.ground.C_LandPlot.style_PNMC.01.xml</string>
+			<string>presentation.display.C_Background.style_PNMC.plankton.xml
+			</string>
 		</entry>
 		<entry>
 			<string>thing.C_Plankton</string>
-			<null />
-		</entry>
-		<entry>
-			<string>thing.C_Nekton</string>
-			<null />
+			<string>thing.C_Plankton.style.xml</string>
 		</entry>
 		<entry>
 			<string>thing.C_StreamCurrent</string>
@@ -57,32 +41,25 @@
 		<pType>LAST</pType>
 		<duration>-1.0</duration>
 		<frequency>REPEAT</frequency>
-		<hashCode>1781672460</hashCode>
+		<hashCode>1781672461</hashCode>
 	</schedParams>
 	<layoutClassName>foo.bar.baz</layoutClassName>
-	<valueLayerStyleName>presentation.display.C_Style2dAffinityType</valueLayerStyleName>
+	<valueLayerStyleName>presentation.display.C_Style2dPlankton</valueLayerStyleName>
 	<layoutProjection>space</layoutProjection>
 	<layoutInterval>0</layoutInterval>
 	<layerOrder>
 		<entry>
-			<string>thing.C_StreamCurrent</string>
+			<string>presentation.display.C_Background</string>
 			<int>0</int>
 		</entry>
 		<entry>
-			<string>thing.ground.C_LandPlot</string>
+			<string>thing.C_StreamCurrent</string>
 			<int>1</int>
 		</entry>
-		<entry>
-			<string>presentation.display.C_Background</string>
-			<int>2</int>
-		</entry>
+
 		<entry>
 			<string>thing.C_Plankton</string>
-			<int>3</int>
-		</entry>
-		<entry>
-			<string>thing.C_Nekton</string>
-			<int>4</int>
+			<int>2</int>
 		</entry>
 	</layerOrder>
 	<projections>
@@ -93,7 +70,7 @@
 		</repast.simphony.scenario.data.ProjectionData>
 	</projections>
 	<valueLayers>
-		<string>valuegrid</string>
+		<string>planktonGrid</string>
 	</valueLayers>
 	<visualizationProperties
 		class="repast.simphony.visualization.UnitSizeLayoutProperties">

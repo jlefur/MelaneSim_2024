@@ -29,7 +29,7 @@ public class C_Protocol_PNMC_nekton extends C_Protocol_PNMC_plankton {
 		int gridWidth = this.landscape.dimension_Ucell.width, gridHeight = this.landscape.dimension_Ucell.height;
 		this.nektonValueLayer = new GridValueLayer(NEKTON_GRID,true,new repast.simphony.space.grid.WrapAroundBorders(),
 		        gridWidth,gridHeight);
-		for(int i = gridWidth-1;i>=0;i--) for(int j = gridHeight-1;j>=0;j--) this.nektonValueLayer.set((int)(Math
+		for(int i = gridWidth-1; i>=0; i--) for(int j = gridHeight-1; j>=0; j--) this.nektonValueLayer.set((int)(Math
 		        .random()*7),i,j);// TODO JLF 06.2026 GRAVE random generator not managed
 		context.addValueLayer(this.nektonValueLayer);
 	}
@@ -42,8 +42,8 @@ public class C_Protocol_PNMC_nekton extends C_Protocol_PNMC_plankton {
 	protected void blackMap() {
 		super.blackMap();
 		if(this.landscape!=null){
-			for(int i = 0;i<this.landscape.getDimension_Ucell().getWidth();i++) for(int j = 0;j<this.landscape
-			        .getDimension_Ucell().getHeight();j++){
+			for(int i = 0; i<this.landscape.getDimension_Ucell().getWidth(); i++) for(int j = 0; j<this.landscape
+			        .getDimension_Ucell().getHeight(); j++){
 				        C_SoilCellMarine cell = (C_SoilCellMarine)this.landscape.getGrid()[i][j];
 				        if(!cell.isTerrestrial()) // marine area
 				            this.nektonValueLayer.set(BLACK_MAP_COLOR,i,j);
@@ -66,8 +66,8 @@ public class C_Protocol_PNMC_nekton extends C_Protocol_PNMC_plankton {
 				if(calendar.get(Calendar.MONTH)<9) url = url+"0"+(calendar.get(Calendar.MONTH)+1);
 				else url = url+(calendar.get(Calendar.MONTH)+1);
 				double[][] matriceLue = C_ReadRasterDouble.doubleRasterLoader(url+".grd");
-				for(int i = 0;i<imax;i++){
-					for(int j = 0;j<jmax;j++){
+				for(int i = 0; i<imax; i++){
+					for(int j = 0; j<jmax; j++){
 						double rawValue = matriceLue[i][j];
 						double value_100 = convertTo100(rawValue,NEKTON_MIN,NEKTON_MAX);
 						// Intégration de la valeur dans marine cells
@@ -77,12 +77,12 @@ public class C_Protocol_PNMC_nekton extends C_Protocol_PNMC_plankton {
 						// marineCell.setTotalNektonDensity(value_100 * marineCell.getNektonPopulation());
 						// classement des valeurs pour colorMap
 						if(rawValue==0.) rawValue = 0;
-						else if(rawValue>0&&rawValue<=0.2) rawValue = 1;
-						else if(rawValue>0.2&&rawValue<=0.5) rawValue = 2;
-						else if(rawValue>0.5&&rawValue<=1) rawValue = 3;
-						else if(rawValue>1&&rawValue<=1.5) rawValue = 4;
-						else if(rawValue>1.5&&rawValue<=2) rawValue = 5;
-						else if(rawValue>2&&rawValue<=3) rawValue = 6;
+						else if(rawValue>0 && rawValue<=0.2) rawValue = 1;
+						else if(rawValue>0.2 && rawValue<=0.5) rawValue = 2;
+						else if(rawValue>0.5 && rawValue<=1) rawValue = 3;
+						else if(rawValue>1 && rawValue<=1.5) rawValue = 4;
+						else if(rawValue>1.5 && rawValue<=2) rawValue = 5;
+						else if(rawValue>2 && rawValue<=3) rawValue = 6;
 						else rawValue = 7; // value > 3
 						this.nektonValueLayer.set(rawValue,i,j);
 					}

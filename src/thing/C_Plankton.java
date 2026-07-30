@@ -19,7 +19,14 @@ public class C_Plankton extends A_Organism implements I_ConstantPNMC,I_MarineAct
 	// OVERRIDEN METHOD
 	//
 	public void step_Utick() { computeMaxDispersalDistance_Umeter(); super.step_Utick(); }
+//
+	// SPECIFIC METHOD
 	//
+	/** to display on GUI @see thing.C_Nekton.style.xml */
+	public double getSize() {
+		C_SoilCellMarine mycell = (C_SoilCellMarine)this.currentSoilCell;
+		return mycell.getTotalChlorophyll_U100();
+	}	//
 	// GETTERS
 	//
 	@Override

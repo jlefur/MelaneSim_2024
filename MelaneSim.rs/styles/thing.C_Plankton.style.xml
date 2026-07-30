@@ -4,6 +4,9 @@
   <sizeMax>1.0</sizeMax>
   <sizeMin>1.0</sizeMin>
   <sizeScale>1.0</sizeScale>
+  <sizeMethodName>getSize</sizeMethodName>
+  <sizeMaxMethodName>getSize</sizeMaxMethodName>
+  <sizeMinMethodName>getSize</sizeMinMethodName>
   <label></label>
   <labelPosition>bottom</labelPosition>
   <labelPrecision>3</labelPrecision>
@@ -18,8 +21,8 @@
   </labelColor>
   <color>
     <float>0.0</float>
+    <float>0.6</float>
     <float>0.0</float>
-    <float>1.0</float>
   </color>
   <colorMax>
     <float>10.0</float>

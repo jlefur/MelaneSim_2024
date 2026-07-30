@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!-- fileName : parameters.xml -->
-<!-- protocolName : PNMC-plancton -->
+<!-- protocolName : PNMC-drifters -->
 <parameters>
 
 	<!-- COMMON INTER-PROTOCOLS -->
@@ -56,7 +56,7 @@
 </parameters>
 <?xml version="1.0" encoding="UTF-8" ?>
 <!-- fileName : scenario.xml -->
-<!-- protocolName : PNMC_plancton -->
+<!-- protocolName : PNMC_drifters -->
 <Scenario>
 	<repast.simphony.dataLoader.engine.ClassNameDataLoaderAction context="Map2D" file="repast.simphony.dataLoader.engine.ClassNameDataLoaderAction_0.xml" />
 	<repast.simphony.action.display context="Map2D" file="styles\repast.simphony.action.display_PNMC_drifters.xml" />

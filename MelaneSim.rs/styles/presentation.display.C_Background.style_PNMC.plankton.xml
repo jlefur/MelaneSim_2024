@@ -1,17 +1,15 @@
 <repast.simphony.visualization.editedStyle.DefaultEditedStyleData2D>
   <shapeWkt>circle</shapeWkt>
-  <size>19.0</size>
-  <sizeMax>200.0</sizeMax>
+  <size>-1.0</size>
+  <sizeMax>2.0</sizeMax>
   <sizeMin>1.0</sizeMin>
-  <sizeScale>1000.0</sizeScale>
-  <sizeMethodName>getSize</sizeMethodName>
-  <sizeMaxMethodName>getSize</sizeMaxMethodName>
-  <sizeMinMethodName>getSize</sizeMinMethodName>
+  <sizeScale>2.37</sizeScale>
+  <sizeMethodName>getScale</sizeMethodName>
   <label></label>
   <labelPosition>bottom</labelPosition>
   <labelPrecision>3</labelPrecision>
   <labelOffset>5.0</labelOffset>
-  <labelFontSize>6</labelFontSize>
+  <labelFontSize>14</labelFontSize>
   <labelFontType>0</labelFontType>
   <labelFontFamily>Arial</labelFontFamily>
   <labelColor>
@@ -20,9 +18,9 @@
     <float>0.0</float>
   </labelColor>
   <color>
-    <float>0.5</float>
     <float>0.0</float>
-    <float>0.8</float>
+    <float>0.0</float>
+    <float>1.0</float>
   </color>
   <colorMax>
     <float>10.0</float>
@@ -39,4 +37,5 @@
     <float>1.0</float>
     <float>1.0</float>
   </colorScale>
+  <iconFile2D>icons/PNMC.plankton.gif</iconFile2D>
 </repast.simphony.visualization.editedStyle.DefaultEditedStyleData2D>
