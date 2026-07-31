@@ -120,8 +120,8 @@ public class C_Landscape implements I_ConstantString {
 	 * @param matriceLue the values read in the raster, bitmap<br>
 	 *            rev. JLF 11.2015 */
 	public void createGround(int[][] matriceLue) {
-		for(int i = this.dimension_Ucell.width-1;i>=0;i--){
-			for(int j = this.dimension_Ucell.height-1;j>=0;j--){
+		for(int i = this.dimension_Ucell.width-1; i>=0; i--){
+			for(int j = this.dimension_Ucell.height-1; j>=0; j--){
 				this.gridValueLayer.set(matriceLue[i][j],i,j);
 				this.grid[i][j] = new C_SoilCell(matriceLue[i][j],i,j);
 			}
@@ -164,9 +164,10 @@ public class C_Landscape implements I_ConstantString {
 		int minY_Ucell = gridPoint_Ucell.getY()-vision_Ucell;
 		// Agent restricts cellsContent to acquaintances strictly within their sensing radius - LeFur 2011, Mboup 2014
 		// JLF 2020 */
-		for(int i = minX_Ucell;i<=maxX_Ucell;i++){
-			for(int j = minY_Ucell;j<=maxY_Ucell;j++){
-				if(i>=0&&j>=0&&i<gridWidth_Ucell&&j<gridHeight_Ucell&&((A_Animal)thing).canPerceiveThing(grid[i][j])){
+		for(int i = minX_Ucell; i<=maxX_Ucell; i++){
+			for(int j = minY_Ucell; j<=maxY_Ucell; j++){
+				if(i>=0 && j>=0 && i<gridWidth_Ucell && j<gridHeight_Ucell && ((A_Animal)thing).canPerceiveThing(
+				        grid[i][j])){
 					surroundingObjects.add((I_SituatedThing)grid[i][j]);// TODO JLF 2020.01 should use also
 					                                                    // radius_Umeter ?
 					// TODO JLF 2017.08 should work also with getOccupants only - should speed up simulations
@@ -197,7 +198,7 @@ public class C_Landscape implements I_ConstantString {
 	/** @param thing the thing to move
 	 * @param destination the destination container Version Author P.A. MBOUP 22/06/2015, rev. JLF 12.2015 */
 	public boolean moveToContainer(I_SituatedThing thing, I_Container destination) {
-		if(thing.getCurrentSoilCell().agentLeaving(thing)&&destination.agentIncoming(thing)) return true;
+		if(thing.getCurrentSoilCell().agentLeaving(thing) && destination.agentIncoming(thing)) return true;
 		else A_Protocol.event("C_Landscape.moveToContainer","Could not move"+thing+" to "+destination,isError);
 		return false;
 	}
@@ -215,13 +216,13 @@ public class C_Landscape implements I_ConstantString {
 		        moveDistance_Umeter.y/C_Parameters.UCS_WIDTH_Umeter); // m/m.cs^-1=cs
 		// Check the validity of the displacement, if necessary, this function will modify the given value
 		Coordinate distanceDeplacement_Ucs = this.checkGoalPosition(thingLocation_Ucs,moveDistance_Ucs,thing);
-		if(C_Parameters.EXCLOS&&thing.hasLeftDomain&&thing instanceof A_Organism) this.bordure((A_Organism)thing);
+		if(C_Parameters.EXCLOS && thing.hasLeftDomain && thing instanceof A_Organism) this.bordure((A_Organism)thing);
 		else{
 			moveDistance_Umeter.x = moveDistance_Ucs.x*C_Parameters.UCS_WIDTH_Umeter;
 			moveDistance_Umeter.y = moveDistance_Ucs.y*C_Parameters.UCS_WIDTH_Umeter; // cs*m.cs^-1 = m
 			// Move the agent by mean of the projection's methods
 			this.continuousSpace.moveByDisplacement(thing,distanceDeplacement_Ucs.x,distanceDeplacement_Ucs.y);
-			if(thing instanceof A_Animal&&!((A_Animal)thing).isTrappedOnBoard()) this.checkAndMoveToNewCell(thing);
+			if(thing instanceof A_Animal && !((A_Animal)thing).isTrappedOnBoard()) this.checkAndMoveToNewCell(thing);
 			else if(thing instanceof A_Organism) this.checkAndMoveToNewCell(thing);
 			thing.hasLeftDomain = false;
 		}
@@ -242,7 +243,7 @@ public class C_Landscape implements I_ConstantString {
 		Coordinate distanceDeplacement_Ucs = this.checkGoalPosition(thingLocation_Ucs,moveDistance_Ucs,thing);
 
 		// Handle boundary conditions
-		if(C_Parameters.EXCLOS&&thing.hasLeftDomain&&thing instanceof A_Organism){
+		if(C_Parameters.EXCLOS && thing.hasLeftDomain && thing instanceof A_Organism){
 			this.bordure((A_Organism)thing);
 			return;
 		}
@@ -377,7 +378,8 @@ public class C_Landscape implements I_ConstantString {
 				Object genomeInstance = genomeClass.getDeclaredConstructor().newInstance();
 				// Create an instance of the class represented by the constructor
 				incomer = (A_Organism)constructor.newInstance(genomeInstance);
-			}catch(InstantiationException|IllegalAccessException|InvocationTargetException|NoSuchMethodException e){
+			}catch(InstantiationException | IllegalAccessException | InvocationTargetException
+			        | NoSuchMethodException e){
 				e.printStackTrace();
 			}
 		}
@@ -431,13 +433,13 @@ public class C_Landscape implements I_ConstantString {
 		Set<C_SoilCell> fileDattente2 = new HashSet<C_SoilCell>();
 		C_SoilCell oneSoilCell = null;
 		// Scan all the soilCellMatrix
-		for(i = 0;i<this.dimension_Ucell.getWidth();i++){
-			for(j = 0;j<this.dimension_Ucell.getHeight();j++){
+		for(i = 0; i<this.dimension_Ucell.getWidth(); i++){
+			for(j = 0; j<this.dimension_Ucell.getHeight(); j++){
 				oneSoilCell = (C_SoilCell)grid[i][j];
 				// if soil cell has no affinity landplot or affinity landplot init list does not contain soil cell then
 				// make a new
 				// land plot for the soil cell.
-				if(oneSoilCell.getMyLandPlot()==null||!landPlots.contains(oneSoilCell.getMyLandPlot())){
+				if(oneSoilCell.getMyLandPlot()==null || !landPlots.contains(oneSoilCell.getMyLandPlot())){
 					// Alors je lui fabrique un nouveau landPlot
 					newPlot = new C_LandPlot(this);
 					context.add(newPlot);
@@ -464,12 +466,12 @@ public class C_Landscape implements I_ConstantString {
 						sc0 = fileDattente.get(k);
 						x0 = sc0.retrieveLineNo();
 						y0 = sc0.retrieveColNo();
-						for(x = x0-1;x<=x0+1;x++){
-							for(y = y0-1;y<=y0+1;y++){ // avec ces 2 boucles j'accede � tous les 8 voisins de sc0
-								if(!(x==x0&&y==y0)&&(0<=x&&x<dimension_Ucell.getWidth()&&0<=y&&y<dimension_Ucell
-								        .getHeight())){
+						for(x = x0-1; x<=x0+1; x++){
+							for(y = y0-1; y<=y0+1; y++){ // avec ces 2 boucles j'accede � tous les 8 voisins de sc0
+								if(!(x==x0 && y==y0) && (0<=x && x<dimension_Ucell.getWidth() && 0<=y
+								        && y<dimension_Ucell.getHeight())){
 									scI = (C_SoilCell)grid[x][y]; // Pour chaque voisin scI de sc0, on teste :
-									if(scI.getAffinity()==affinity0&& // si c'est de la m�me affinit� que sc0 et
+									if(scI.getAffinity()==affinity0 && // si c'est de la m�me affinit� que sc0 et
 									        !fileDattente2.contains(scI)){ // s'il n'est pas encore dans la file
 									                                       // d'attente
 										scI.setAffinityLandPlot(newPlot); // pour le traiter
@@ -493,9 +495,10 @@ public class C_Landscape implements I_ConstantString {
 		return landPlots;
 	}
 	/** TODO JLF 2014.12 should be moved to hasToChange for a C_SoilCell ? */
+	public void resetCellsColor0() {}
 	public void resetCellsColor() {
-		for(int i = 0;i<this.dimension_Ucell.getWidth();i++){
-			for(int j = 0;j<this.dimension_Ucell.getHeight();j++){
+		for(int i = 0; i<this.dimension_Ucell.getWidth(); i++){
+			for(int j = 0; j<this.dimension_Ucell.getHeight(); j++){
 				this.gridValueLayer.set(grid[i][j].getAffinity(),i,j);
 			}
 		}
@@ -511,9 +514,10 @@ public class C_Landscape implements I_ConstantString {
 		TreeSet<I_Container> neighbours = new TreeSet<I_Container>();
 		int x0 = cell.retrieveLineNo();
 		int y0 = cell.retrieveColNo();
-		for(int x = x0-1;x<=x0+1;x++){
-			for(int y = y0-1;y<=y0+1;y++){
-				if(!(x==x0&&y==y0)&&(0<=x&&x<dimension_Ucell.getWidth()&&0<=y&&y<dimension_Ucell.getHeight())){
+		for(int x = x0-1; x<=x0+1; x++){
+			for(int y = y0-1; y<=y0+1; y++){
+				if(!(x==x0 && y==y0) && (0<=x && x<dimension_Ucell.getWidth() && 0<=y && y<dimension_Ucell
+				        .getHeight())){
 					neighbours.add(grid[x][y]);
 				}
 			}
@@ -528,8 +532,8 @@ public class C_Landscape implements I_ConstantString {
 	 * TODO JLF&MS 2019.08 verify redundancy with @see checkGoalPosition */
 	public boolean isPointInGrid(Coordinate onePoint) {
 		if(onePoint==null) return false;
-		return (onePoint.x>=0.)&&(this.getDimension_Ucell().width>onePoint.x)&&(this
-		        .getDimension_Ucell().height>onePoint.y)&&(onePoint.y>=0.);
+		return (onePoint.x>=0.) && (this.getDimension_Ucell().width>onePoint.x) && (this
+		        .getDimension_Ucell().height>onePoint.y) && (onePoint.y>=0.);
 	}
 	/** Getter of the color colorMap.
 	 * @return map */

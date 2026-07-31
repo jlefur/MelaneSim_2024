@@ -93,6 +93,7 @@ public class C_Style2dAffinityType implements ValueLayerStyleOGL, I_ConstantNume
 		colorMap.put(7,new Color(241,229,213));// lagon
 		colorMap.put(TERRESTRIAL_MIN_AFFINITY,new Color(58,124,76));// terre
 		colorMap.put(BLACK_MAP_COLOR,new Color(0,0,0));
+		colorMap.put(10,new Color(0,0,0));
 		colorMap.put(11,Color.red);// spot most occupied cells, @see A_Protocol_PNMC#haltSimulation()
 		return colorMap;
 	}
@@ -228,7 +229,20 @@ public class C_Style2dAffinityType implements ValueLayerStyleOGL, I_ConstantNume
 		return colorMap;
 	}
 	@Override
-	public Color getColor(double...coordinates) { return this.colorMap.get((int)this.layer.get(coordinates)); }
+	public Color getColor(double...coordinates) {
+	    Color color = this.colorMap.get((int)this.layer.get(coordinates));//colorMap.get((int) value);
+
+	    if (color == null) {
+	        System.err.println(
+	            "Couleur absente pour la valeur : " + coordinates.toString()
+	        );
+	        return Color.CYAN;
+	    }
+
+	    return color;
+	}
+	//@Override
+	public Color getColor0(double...coordinates) { return this.colorMap.get((int)this.layer.get(coordinates)); }
 	@Override
 	public void init(ValueLayer layer) { this.layer = layer; }
 }

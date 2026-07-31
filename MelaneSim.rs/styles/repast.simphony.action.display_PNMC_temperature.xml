@@ -40,7 +40,7 @@
 	<layoutInterval>0</layoutInterval>
 	<layerOrder>
 		<entry>
-			<string>presentation.display.C_Background</string>
+			<string>presentation.display.C_Megaptera</string>
 			<int>1</int>
 		</entry>
 		<entry>

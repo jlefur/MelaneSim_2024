@@ -785,3 +785,60 @@ java.lang.NullPointerException: Cannot invoke "java.awt.Color.getRed()" because 
 	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
 	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
 	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+FATAL [Thread-4] 2026-07-31T16:30:44,918 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (3.0)
+java.lang.NullPointerException: Cannot invoke "java.awt.Color.getRed()" because "color" is null
+	at saf.v3d.util.Utils3D.updateColor(Utils3D.java:97) ~[?:?]
+	at repast.simphony.visualizationOGL2D.ColorMapStyleAdapter.getColor(ColorMapStyleAdapter.java:41) ~[?:?]
+	at saf.v3d.grid.GridMesh.updateColors(GridMesh.java:160) ~[?:?]
+	at saf.v3d.grid.GridMesh.update(GridMesh.java:116) ~[?:?]
+	at saf.v3d.grid.VGridShape.update(VGridShape.java:25) ~[?:?]
+	at repast.simphony.visualizationOGL2D.ValueLayerDisplayLayer.update(ValueLayerDisplayLayer.java:67) ~[?:?]
+	at repast.simphony.visualizationOGL2D.DisplayOGL2D.update(DisplayOGL2D.java:399) ~[?:?]
+	at repast.simphony.visualization.engine.DisplayComponentControllerAction$DisplayUpdater.execute(DisplayComponentControllerAction.java:48) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:238) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+FATAL [Thread-4] 2026-07-31T16:32:35,668 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (3.0)
+java.lang.NullPointerException: Cannot invoke "java.awt.Color.getRed()" because "color" is null
+	at saf.v3d.util.Utils3D.updateColor(Utils3D.java:97) ~[?:?]
+	at repast.simphony.visualizationOGL2D.ColorMapStyleAdapter.getColor(ColorMapStyleAdapter.java:41) ~[?:?]
+	at saf.v3d.grid.GridMesh.updateColors(GridMesh.java:160) ~[?:?]
+	at saf.v3d.grid.GridMesh.update(GridMesh.java:116) ~[?:?]
+	at saf.v3d.grid.VGridShape.update(VGridShape.java:25) ~[?:?]
+	at repast.simphony.visualizationOGL2D.ValueLayerDisplayLayer.update(ValueLayerDisplayLayer.java:67) ~[?:?]
+	at repast.simphony.visualizationOGL2D.DisplayOGL2D.update(DisplayOGL2D.java:399) ~[?:?]
+	at repast.simphony.visualization.engine.DisplayComponentControllerAction$DisplayUpdater.execute(DisplayComponentControllerAction.java:48) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:238) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+FATAL [Thread-7] 2026-07-31T16:33:32,408 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (3.0)
+java.lang.NullPointerException: null
+FATAL [Thread-10] 2026-07-31T16:33:52,238 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (3.0)
+java.lang.NullPointerException: null
+FATAL [Thread-4] 2026-07-31T17:23:22,857 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (88.0)
+java.lang.NullPointerException: Cannot invoke "saf.v3d.scene.VSpatial.getParent()" because "child" is null
+	at saf.v3d.scene.VComposite.addChild(VComposite.java:46) ~[?:?]
+	at repast.simphony.visualizationOGL2D.SpatialWrapper.setChild(SpatialWrapper.java:80) ~[?:?]
+	at repast.simphony.visualizationOGL2D.SpatialWrapper.<init>(SpatialWrapper.java:34) ~[?:?]
+	at repast.simphony.visualizationOGL2D.StyledDisplayLayerOGL2D.createSpatial(StyledDisplayLayerOGL2D.java:146) ~[?:?]
+	at repast.simphony.visualizationOGL2D.StyledDisplayLayerOGL2D.processAdded(StyledDisplayLayerOGL2D.java:228) ~[?:?]
+	at repast.simphony.visualizationOGL2D.StyledDisplayLayerOGL2D.update(StyledDisplayLayerOGL2D.java:250) ~[?:?]
+	at repast.simphony.visualizationOGL2D.DisplayOGL2D.update(DisplayOGL2D.java:403) ~[?:?]
+	at repast.simphony.visualization.engine.DisplayComponentControllerAction$DisplayUpdater.execute(DisplayComponentControllerAction.java:48) ~[?:?]
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:238) ~[?:?]
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
