@@ -58,7 +58,20 @@ public class C_Style2dTemperature implements ValueLayerStyleOGL, I_ConstantNumer
 	// GETTERS
 	//
 	@Override
-	public Color getColor(double...coordinates) { return this.colorMap.get((int)this.layer.get(coordinates)); }
+	public Color getColor(double...coordinates) {
+	    Color color = this.colorMap.get((int)this.layer.get(coordinates));//colorMap.get((int) value);
+
+	    if (color == null) {
+	        System.err.println(
+	            "Couleur absente pour la valeur : " + coordinates
+	        );
+	        return Color.MAGENTA;
+	    }
+
+	    return color;
+	}
+	//@Override
+	public Color getColor0(double...coordinates) { return this.colorMap.get((int)this.layer.get(coordinates)); }
 
 	@Override
 	public float getCellSize() { return cellSize.get(0); }

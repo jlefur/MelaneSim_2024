@@ -19,8 +19,7 @@
 	<editedStyles>
 		<entry>
 			<string>presentation.display.C_Background</string>
-			<string>presentation.display.C_Background.style_PNMC.plankton.xml
-			</string>
+			<string>presentation.display.C_Background.style_PNMC.plankton.xml</string>
 		</entry>
 		<entry>
 			<string>thing.C_Plankton</string>

@@ -328,7 +328,7 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 		if (C_Parameters.IMAGE) {
 			if (object instanceof C_StreamCurrent) {
 				sscale = (float) (((C_StreamCurrent) object).getSpeedEast() * ((C_StreamCurrent) object).getSpeedEast()
-						* sscale * STREAM_DISPLAY_SIZE * 1.5);
+						* sscale * STREAM_DISPLAY_SIZE * .8);
 			}
 			// nekton image reflects the number of nekton agent within their cell
 			else if (object instanceof C_Nekton) {

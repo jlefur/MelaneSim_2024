@@ -43,6 +43,23 @@ public class C_Style2dPlankton implements ValueLayerStyleOGL, I_ConstantNumeric,
 		colorMap.put(1,new Color(168,255,2));
 		colorMap.put(2,new Color(127,247,0));
 		colorMap.put(3,new Color(87,238,2));
+		colorMap.put(4,new Color(190,218,49));
+		colorMap.put(5,new Color(234,243,16));
+		colorMap.put(6,new Color(255,235,0));
+		colorMap.put(7,new Color(255,191,0));
+		colorMap.put(8,new Color(255,150,0));
+		colorMap.put(9,new Color(255,103,0));
+		colorMap.put(10,new Color(255,66,0));// red - hot
+		colorMap.put(TERRESTRIAL_MIN_AFFINITY,Color.WHITE);// terre
+		colorMap.put(BLACK_MAP_COLOR,new Color(0,0,0));
+		return colorMap;
+	}
+	public Map<Integer,Color> colorMapPlankton0(Map<Integer,Color> colorMap) {
+		colorMap = new HashMap<Integer,Color>();
+		colorMap.put(0,new Color(193,254,0));
+		colorMap.put(1,new Color(168,255,2));
+		colorMap.put(2,new Color(127,247,0));
+		colorMap.put(3,new Color(87,238,2));
 		colorMap.put(4,new Color(52,227,2));
 		colorMap.put(5,new Color(3,217,11));
 		colorMap.put(6,new Color(0,204,31));
@@ -50,7 +67,7 @@ public class C_Style2dPlankton implements ValueLayerStyleOGL, I_ConstantNumeric,
 		colorMap.put(8,new Color(6,168,59));
 		colorMap.put(9,new Color(1,160,60));
 		colorMap.put(10,new Color(1,87,34));
-		colorMap.put(TERRESTRIAL_MIN_AFFINITY,new Color(58,124,76));// terre
+		colorMap.put(TERRESTRIAL_MIN_AFFINITY,Color.WHITE);// terre
 		colorMap.put(BLACK_MAP_COLOR,new Color(0,0,0));
 		colorMap.put(11,Color.red);// spot most occupied cells, @see A_Protocol_PNMC#haltSimulation()
 		return colorMap;
