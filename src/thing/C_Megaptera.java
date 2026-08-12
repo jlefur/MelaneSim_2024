@@ -12,7 +12,7 @@ import thing.dna.I_DiploidGenome;
 import thing.dna.species.C_GenomeMegaptera;
 import thing.ground.C_SoilCellMarine;
 /** @author JLF 06.2026 */
-public class C_Megaptera extends A_Amniote {
+public class C_Megaptera extends A_Amniote implements I_MarineActor {
 	//
 	// FIELD
 	//
@@ -24,7 +24,7 @@ public class C_Megaptera extends A_Amniote {
 	public C_Megaptera(I_DiploidGenome genome) { super(new C_GenomeMegaptera()); this.setAge_Uday(1.); }
 	public C_Megaptera(String name,String sex) {
 		this(new C_GenomeMegaptera());
-		this.setMyName(name);
+		this.setMyName("whale"+NAMES_SEPARATOR+name);
 		if(sex.equals("M")) this.setMale(true);
 		else this.setMale(false);
 		this.setAge_Uday(4380.);// 12 years TODO jlf 06.2026 number in source age at creation adult whales
@@ -40,6 +40,14 @@ public class C_Megaptera extends A_Amniote {
 	public A_Animal giveBirth(I_DiploidGenome genome) { return new C_Megaptera(genome); }
 	@Override
 	public void discardThis() { this.activityList = null; super.discardThis(); }
+	/** Compute next move to target, move on the GUI */
+	@Override
+	protected void actionMoveToDestination() {
+		super.actionMoveToDestination();
+		// if (C_Parameters.VERBOSE)
+		A_VisibleAgent.myLandscape.getValueLayer().set(10,this.currentSoilCell.retrieveLineNo(),this.currentSoilCell
+		        .retrieveColNo());// @@vert bouteille
+	}
 	//
 	// METHODS
 	//
@@ -52,15 +60,6 @@ public class C_Megaptera extends A_Amniote {
 		String dateKey = iMonth+iDay+"-"+time;
 		this.activityList.put(dateKey,location);
 	}
-
-	/** Compute next move to target, move on the GUI */
-	@Override
-	protected void actionMoveToDestination() {
-		super.actionMoveToDestination();
-		// if (C_Parameters.VERBOSE)
-		A_VisibleAgent.myLandscape.getValueLayer().set(10,this.currentSoilCell.retrieveLineNo(),this.currentSoilCell
-		        .retrieveColNo());// @@vert bouteille
-	}
 	/** Move the tracked whale<br>
 	 * @author MS 08.2021, JLF 07.2026 */
 	public void manageActivities() {
@@ -71,18 +70,33 @@ public class C_Megaptera extends A_Amniote {
 				Coordinate target = this.activityList.get(keys[i]);
 				targetX = (int)target.getX();
 				targetY = (int)target.getY();
-				if(targetX>0 && targetX<A_VisibleAgent.myLandscape.getDimension_Ucell().getWidth()//
+				if(targetX>=0 && targetX<A_VisibleAgent.myLandscape.getDimension_Ucell().getWidth()// If within domain
 				        && targetY>=0 && targetY<A_VisibleAgent.myLandscape.getDimension_Ucell().getHeight()){
-					A_VisibleAgent.myLandscape.moveToLocation(this,target);
-					A_VisibleAgent.myLandscape.translate(this,new Coordinate(.01,.01));// Position whale in its cell
-					this.target = (C_SoilCellMarine)A_VisibleAgent.myLandscape.getGrid()[targetX][targetY];
-					C_Megaptera.MyvalueLayer.set(BLACK_MAP_COLOR,this.currentSoilCell.retrieveLineNo(),
-					        this.currentSoilCell.retrieveColNo());
+					if(this.hasLeftDomain){ // reentering the domain (only switch tags in/out then return to protocol)
+						this.hasEnteredDomain = true;
+						this.hasLeftDomain = false;
+						return;
+					}
+					else{ // if within domain
+						A_VisibleAgent.myLandscape.moveToLocation(this,target);
+						A_VisibleAgent.myLandscape.translate(this,new Coordinate(.01,.01));// Position whale in its cell
+						this.setTarget((C_SoilCellMarine)A_VisibleAgent.myLandscape.getGrid()[targetX][targetY]);
+						C_Megaptera.MyvalueLayer.set(BLACK_MAP_COLOR,this.currentSoilCell.retrieveLineNo(),
+						        this.currentSoilCell.retrieveColNo());
+					}
 				}
-				else this.hasLeftDomain = true;// whale is out of domain
+				else{ // is out of domain; switch tags in/out
+					this.hasLeftDomain = true;
+					this.hasEnteredDomain = false;
+				}
 			}
 		}
 	}
+	//
+	// GETTERS
+	//
+	public String retrieveMyId() { return this.myName.split(NAMES_SEPARATOR,2)[1]; }
+
 	/** key is in the form "MMDD-HH:MM" @author JLF 07.2026 */
 	public boolean isIncludedInTimeStepInterval(String key) {
 		Boolean flag = false;
@@ -137,4 +151,6 @@ public class C_Megaptera extends A_Amniote {
 		}
 		return simulationTime;
 	}
+	@Override
+	public DriverType getTypeActeur() { return DriverType.WHALE; }
 }

@@ -67,7 +67,7 @@ public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC, 
 
 	/** Renvoie le nom de l'image à utiliser pour l'agent en paramètre */
 	public String getNameOfImage(I_SituatedThing agent) {
-		if(agent instanceof A_SupportedContainer&&((A_SupportedContainer)agent).isa_Tag()){
+		if(agent instanceof A_SupportedContainer && ((A_SupportedContainer)agent).isa_Tag()){
 			((A_SupportedContainer)agent).setHasToSwitchFace(true);
 			return TAGGED;
 		}
@@ -102,7 +102,7 @@ public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC, 
 			// speedNorth == 0.
 			else if(speedEast>0.1) return EAST_ICON;
 			else if(speedEast<-0.1) return WEST_ICON;
-			else return null;// vitesse = nulle
+			else return NULL_CURRENT_ICON;// speed close to 0.
 		}
 		else if(agent instanceof C_Nekton){
 			return MICRONEKTON_ICON;
@@ -199,9 +199,9 @@ public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC, 
 		String imageName = this.getNameOfImageDodel(agent);
 		if(imageName!=null){
 			if(agent.getCurrentSoilCell() instanceof C_BurrowSystem) return BURROW;
-			if((agent instanceof C_Rodent)&&((C_Rodent)agent).getDesire().equals(HIDE)) return MOUSE_HIDE;
+			if((agent instanceof C_Rodent) && ((C_Rodent)agent).getDesire().equals(HIDE)) return MOUSE_HIDE;
 
-			if(agent instanceof C_Rodent&&agent.isInfected()){
+			if(agent instanceof C_Rodent && agent.isInfected()){
 				C_Rodent rodent = (C_Rodent)agent;
 				if(rodent.isSexualMature()) if(rodent.testMale()) return INFECTED_MOUSE_MALE_ADULT;
 				else return INFECTED_MOUSE_FEMALE_ADULT;
@@ -274,7 +274,7 @@ public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC, 
 			else if(rodent.getGenome().getClass()==C_GenomeMastoErythroleucus.class) return MASTO_ERYTHROLEUCUS;
 			else if(rodent.getGenome().getClass()==C_GenomeMastoNatalensis.class) return MASTO_NATALENSIS;
 			else
-			    if((!rodent.getGenome().isHybrid())&&(rodent.getGenome().getClass()==C_GenomeMastomys.class))
+			    if((!rodent.getGenome().isHybrid()) && (rodent.getGenome().getClass()==C_GenomeMastomys.class))
 			        return MASTO_LAZARUS;
 				else
 			        if(rodent.getGenome().isHybrid()) return MASTO_HYBRID;
@@ -442,7 +442,7 @@ public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC, 
 		if(agent instanceof C_Rodent){
 			C_Rodent rodent = (C_Rodent)agent;
 			if(rodent.hasEnteredDomain) return Color.green;
-			if(!rodent.preMature&&!rodent.isSexualMature()) return Color.gray;
+			if(!rodent.preMature && !rodent.isSexualMature()) return Color.gray;
 			if(rodent.isPregnant()) return Color.yellow;
 			if(rodent.isSexualMature()) if(rodent.testMale()) couleur = Color.blue;
 			else couleur = Color.red;

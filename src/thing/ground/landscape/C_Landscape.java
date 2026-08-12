@@ -289,9 +289,8 @@ public class C_Landscape implements I_ConstantString {
 		Coordinate dep_Ucs = new Coordinate();
 		dep_Ucs.x = moveDistance_Ucs.x;
 		dep_Ucs.y = moveDistance_Ucs.y;
-		// we test the four cases where the agent is going out and if needed, we put them at one unit of Continuous
-		// space of the
-		// boundaries and we reverse their displacements
+		// we test the four cases where the agent is going out and if needed, we put it at one unit of Continuous
+		// space of the boundaries and we reverse its displacement
 		if(goalPoint_Ucs.getX()<0){
 			moveDistance_Ucs.x = -moveDistance_Ucs.x;
 			dep_Ucs.x = -currentPosition_Ucs.getX()+1;
@@ -495,7 +494,6 @@ public class C_Landscape implements I_ConstantString {
 		return landPlots;
 	}
 	/** TODO JLF 2014.12 should be moved to hasToChange for a C_SoilCell ? */
-	public void resetCellsColor0() {}
 	public void resetCellsColor() {
 		for(int i = 0; i<this.dimension_Ucell.getWidth(); i++){
 			for(int j = 0; j<this.dimension_Ucell.getHeight(); j++){

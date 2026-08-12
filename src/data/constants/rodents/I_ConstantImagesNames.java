@@ -24,6 +24,7 @@ public interface I_ConstantImagesNames {
 	public static final String SOUTH_WEST_ICON = "../arrows/SOUTH_WEST";
 	public static final String WEST_ICON = "../arrows/WEST";
 	public static final String NORTH_WEST_ICON = "../arrows/NORTH_WEST";
+	public static final String NULL_CURRENT_ICON = "../arrows/NULL_CURRENT";
 	// PNMC - conservation weight icons
 	public static final String PARTICLE_ICON = "../sliders/particle";
 	public static final String CHLOROPHYLL_ICON = "../sliders/chlorophyll";

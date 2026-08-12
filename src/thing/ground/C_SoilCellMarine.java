@@ -23,7 +23,6 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 	private double speedEastward_UmeterPerSec, speedNorthward_UmeterPerSec;
 	private C_StreamCurrent myCurrent;
 	private double myTemperature;
-	public int totalOccupants = 0;
 	//
 	// CONSTRUCTOR
 	//
