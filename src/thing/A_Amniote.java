@@ -52,6 +52,17 @@ public abstract class A_Amniote extends A_Animal implements I_ReproducingThing {
 	//
 	// METHODS
 	//
+	/** Interact with another rodent. systematically mates if both partner reproductive status are ok. <br>
+	 * it is always the male which interact (mateWithMale) with the female
+	 * @see A_Amniote#mateWithMale COMMENT THE recognized(rodent) CONDITION TO STOP THE PRE-ZYGOTIC AND SCARCITY BARRIERS */
+	protected boolean actionInteract(A_Amniote partner) {
+		if (this.isReadyToMate() && partner.isReadyToMate() && A_Protocol.isBreedingSeason() && recognized(partner)) {
+			if (this.testMale() && partner.testFemale()) return partner.actionMateWithMale(this);
+			else if (partner.testMale() && this.testFemale()) return this.actionMateWithMale(partner);
+			else return false;
+		}
+		else return false;
+	}
 	/** Remove references to last container left, targeted container children and eggs */
 	@Override
 	public void discardThis() {

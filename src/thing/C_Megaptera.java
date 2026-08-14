@@ -5,6 +5,7 @@ import java.util.TreeMap;
 
 import org.locationtech.jts.geom.Coordinate;
 
+import data.C_Parameters;
 import data.constants.I_ConstantPNMC;
 import data.converters.C_ConvertTimeAndSpace;
 import melanesim.protocol.A_Protocol;
@@ -32,7 +33,7 @@ public class C_Megaptera extends A_Amniote implements I_MarineActor, I_ConstantP
 		this.sexualMature = true;
 		this.setDesire(WANDER);
 		this.energy_Ukcal = 300.;// TODO number in source NOT OK JLF 08.2026 energy whales
-		A_Protocol.event("C_Megaptera.C_Megaptera(): ",this.toString()+" CREATED",isNotError);
+		if(C_Parameters.VERBOSE) A_Protocol.event("C_Megaptera.C_Megaptera(): ",this.toString()+" CREATED",isNotError);
 	}
 	//
 	// OVERRIDEN METHOD

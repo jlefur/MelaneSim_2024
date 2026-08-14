@@ -4,6 +4,7 @@ import data.constants.rodents.I_ConstantTransportation;
 import melanesim.C_ContextCreator;
 import thing.A_Amniote;
 import thing.A_Animal;
+import thing.I_ReproducingThing;
 import thing.dna.I_DiploidGenome;
 import thing.ground.C_Vehicle;
 
@@ -38,14 +39,14 @@ public class C_RodentCommensal extends C_RodentFossorial implements I_ConstantTr
 	 * @see C_Rodent#mateWithMale <br>
 	 *      Here, no breeding season test: commensal rodent do not have a reproduction season, they mate all year long */
 	@Override
-	protected boolean actionInteract(C_Rodent rodent) {
-		if (this.genome.getClass().equals(rodent.getGenome().getClass()) && (this.isReadyToMate() && rodent.isReadyToMate() && recognized(rodent))) {
+	protected boolean actionInteract(A_Animal rodent) {
+		if (this.genome.getClass().equals(rodent.getGenome().getClass()) && (this.isReadyToMate() && ((A_Amniote)rodent).isReadyToMate() && recognized(rodent))) {
 			if (this.testFemale() && rodent.testMale()) {
-				this.actionMateWithMale(rodent);
+				this.actionMateWithMale((I_ReproducingThing)rodent);
 				return true;
 			}
 			else if (this.testMale() && rodent.testFemale()) {
-				rodent.actionMateWithMale(this);
+				((A_Amniote)rodent).actionMateWithMale(this);
 				return true;
 			}
 		}

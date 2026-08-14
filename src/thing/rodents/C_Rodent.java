@@ -1,17 +1,12 @@
 /* This source code is licensed under a BSD licence as detailed in file SIMmasto_0.license.txt */
 package thing.rodents;
 
-import java.util.TreeSet;
-
+import data.C_Parameters;
+import melanesim.protocol.A_Protocol;
 import thing.A_Amniote;
 import thing.A_Animal;
-import thing.I_SituatedThing;
 import thing.dna.C_GenomeAnimalia;
-import thing.dna.C_GenomeEucaryote;
 import thing.dna.I_DiploidGenome;
-import data.C_Parameters;
-import melanesim.C_ContextCreator;
-import melanesim.protocol.A_Protocol;
 
 /** @author JEL & AR, rev. J.Le Fur 2012-2013-2014 */
 public class C_Rodent extends A_Amniote {
@@ -24,80 +19,6 @@ public class C_Rodent extends A_Amniote {
 	//
 	// METHODS
 	//
-	/** select the kind of animal to interact to, then triggers the corresponding interact procedure
-	 * @return true if interaction occurred
-	 * @see interact#C_Rodent
-	 * @see interact#C_HumanCarrier author JLF, rev. 02.2014 */
-	@Override
-	protected boolean actionInteract(A_Animal animal) {
-		if (animal instanceof C_Rodent) return actionInteract((C_Rodent) animal);
-		else if (animal instanceof C_HumanCarrier) return actionInteract((C_HumanCarrier) animal);
-		else {
-			A_Protocol.event("C_Rodent.actionInteract", animal + ": not a rodent nor a Hcarrier", isError);
-			return false;
-		}
-	}
-	/** Interact with another rodent. systematically mates if both partner reproductive status are ok. <br>
-	 * it is always the male which interact (mateWithMale) with the female
-	 * @see A_Amniote#mateWithMale COMMENT THE recognized(rodent) CONDITION TO STOP THE PRE-ZYGOTIC AND SCARCITY BARRIERS */
-	protected boolean actionInteract(C_Rodent rodent) {
-		if (this.isReadyToMate() && rodent.isReadyToMate() && A_Protocol.isBreedingSeason() && recognized(rodent)) {
-			if (this.testMale() && rodent.testFemale()) return rodent.actionMateWithMale(this);
-			else if (rodent.testMale() && this.testFemale()) return this.actionMateWithMale(rodent);
-			else return false;
-		}
-		else return false;
-	}
-
-	/** simple interaction with a human carrier (no survival chance for any rodent)- extended in RodentCommensal JLF feb.2014 */
-	protected boolean actionInteract(C_HumanCarrier carrier) {
-		this.checkDeath(1.);// number in source OK iff =1. JLF 02.2014
-		return true;
-	}
-
-	/** Specific procedure for hybrids olfaction recognition<br>
-	 * Author J.LeFur and A. Comte, 05.2012, rev.JLF 07.2014 <br>
-	 * TODO JLF 2014.07 should be more general: Animal.recognized on any genetic signature
-	 * @return true if the two rodents olfaction signature are sufficiently close to mate
-	 * @see C_GenomeEucaryote#hybridRatio() */
-	protected boolean recognized(C_Rodent rodentPartner) {// TODO JLF 2014.07 clean up for normal function
-		double thisSignature = ((C_GenomeEucaryote) this.genome).hybridRatio();
-		double partnerSignature = ((C_GenomeEucaryote) rodentPartner.genome).hybridRatio();
-		// probaMate = genetic similarity of the two "hybrids" if 0 they are far, if 1 they are similar
-		double geneticDistance = java.lang.Math.abs(thisSignature - partnerSignature);
-		// an alert in case... :-)
-		/*
-		 * if (geneticSimilarity > 0.0) { System.err.println(":-) C_Rodent.recognized(), genetic similarity > 0.0: " +
-		 * geneticSimilarity + "/ tick: " + RepastEssentials.GetTickCount()); C_sound.sound("tip.wav"); }
-		 */
-		double probaMate = ((geneticDistance * 1) + evalScarcity()) / 2;// TODO number in source 2018.07 reduces mating
-																		// probability
-		// returns true (ok for mate) if probaMate is low !
-		return C_ContextCreator.randomGeneratorForOlfactionRecognition.nextDouble() >= probaMate;
-	}
-
-	/** Scarcity is evaluated from within the perception sphere of the rodent. <br>
-	 * @return A value between ~0 (scarcity: no conspecific rodents) and 1 (no scarcity: this species only)<br>
-	 * @version J.LeFur and A. Comte, 05.2012, rev. jlf 04.2015 */
-	protected double evalScarcity() {
-		int nbRodent = 0, nbPartners = 0;
-		TreeSet<I_SituatedThing> accointanceList = this.perception();
-		for (I_SituatedThing accointance : accointanceList) {
-			if (accointance instanceof C_Rodent) {
-				nbRodent++;
-				if (((C_Rodent) accointance).getGenome().getClass() == this.genome.getClass()) nbPartners++;
-			}
-		}
-		return (double) nbPartners / (double) nbRodent;
-		/*
-		 * // Procedure for hybridation enclosure: return a value between 0 and 1 where 0 means equal number of both species and 1
-		 * // scarcity f any of the species. double rateConspecific = (double) nbPartners / (double) nbRodent; double scarcity =
-		 * java.lang.Math.abs((rateConspecific - .5) * 2); //
-		 * System.out.println("C_Rodent.evalScarcity(): nat/total: "+nbNatalensis+"/"+nbRodent+"="+percentNat+"%, -> "+scarcity);
-		 * return scarcity;
-		 */
-	}
-
 	/** generate a new animal : compulsory for every A_Mammal daughter class */
 	@Override
 	public A_Animal giveBirth(I_DiploidGenome genome) {

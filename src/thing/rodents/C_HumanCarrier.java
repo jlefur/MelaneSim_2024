@@ -42,6 +42,11 @@ public class C_HumanCarrier extends A_Human implements I_ConstantStringRodents, 
 	//
 	// METHODS
 	//
+	/** simple interaction with a human carrier (no survival chance for any rodent)- extended in RodentCommensal JLF feb.2014 */
+	protected boolean actionInteract(C_HumanCarrier carrier) {
+		this.checkDeath(1.);// number in source OK iff =1. JLF 02.2014
+		return true;
+	}
 	/** Used to toggle death on the GUI, JLF 09.2012 */
 	@Override
 	public void setDead(boolean dead) {
