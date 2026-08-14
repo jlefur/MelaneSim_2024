@@ -4,14 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
 
+import org.locationtech.jts.geom.Coordinate;
+
 import repast.simphony.context.Context;
-import repast.simphony.util.collections.IndexedIterable;
+import thing.A_Animal;
 import thing.A_NDS;
 import thing.A_VisibleAgent;
 import thing.C_Megaptera;
 import thing.C_Ship_cargo;
 import thing.dna.C_GenomeAnimalia;
-import thing.ground.C_LandPlot;
 import thing.ground.C_SoilCellMarine;
 import thing.ground.I_Container;
 
@@ -40,10 +41,23 @@ public class C_Protocol_PNMC_ships extends C_Protocol_PNMC_nekton {
 		for(C_Megaptera oneWhale:tmp){
 			oneWhale.manageActivities();
 			if(oneWhale.hasEnteredDomain){
-				this.context.add(oneWhale);
+				//this.context.add(oneWhale);
 				this.whalesOutOfDomain.remove(oneWhale);
-				A_Protocol.event("C_Protocol_PNMC_ships.step_Utick()","whale "+oneWhale.toString()
-				        +" has entered domain",isNotError);
+				this.contextualizeNewThingInContainer(oneWhale, oneWhale.getCurrentSoilCell());
+				A_VisibleAgent.myLandscape.translate(oneWhale,new Coordinate(.01,.01));// Position whale in its cell
+				A_Protocol.event("C_Protocol_PNMC_ships.step_Utick()",oneWhale.toString()+" has ENTERED domain",
+				        isNotError);
+				for(A_Animal follower:oneWhale.getAnimalsTargetingMe()) if(follower instanceof C_Megaptera){
+				//	this.context.add(follower);
+					this.whalesOutOfDomain.remove(follower);
+					follower.hasEnteredDomain = true;
+					follower.hasLeftDomain = false;
+					this.whalesOutOfDomain.remove(follower);
+					this.contextualizeNewThingInContainer(follower, follower.getCurrentSoilCell());
+					A_VisibleAgent.myLandscape.translate(follower,new Coordinate(.01,.01));// Position whale in its cell
+					A_Protocol.event("C_Protocol_PNMC_ships.step_Utick()",follower.toString()+" has ENTERED domain",
+					        isNotError);
+				}
 				oneWhale.manageActivities();
 			}
 		}
@@ -62,10 +76,18 @@ public class C_Protocol_PNMC_ships extends C_Protocol_PNMC_nekton {
 			}
 			else if(oneAgent instanceof C_Megaptera){
 				if(((C_Megaptera)oneAgent).hasLeftDomain){
-					A_Protocol.event("C_Protocol_PNMC_ships.step_Utick()","whale "+oneAgent.toString()
-					        +" has left domain",isNotError);
+					A_Protocol.event("C_Protocol_PNMC_ships.step_Utick()",oneAgent.toString()+" has left domain",
+					        isNotError);
+					// ((A_VisibleAgent)oneAgent).getAnimalsTargetingMe().clear();
 					this.context.remove(oneAgent);
 					this.whalesOutOfDomain.add((C_Megaptera)oneAgent);
+					for(A_Animal follower:((C_Megaptera)oneAgent).getAnimalsTargetingMe())
+					    if(follower instanceof C_Megaptera){
+						    this.context.remove(follower);
+						    follower.hasEnteredDomain = false;
+						    follower.hasLeftDomain = true;
+						    this.whalesOutOfDomain.add((C_Megaptera)follower);
+					    }
 				}
 			}
 		}

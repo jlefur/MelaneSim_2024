@@ -5,6 +5,7 @@ import java.util.TreeMap;
 
 import org.locationtech.jts.geom.Coordinate;
 
+import data.constants.I_ConstantPNMC;
 import data.converters.C_ConvertTimeAndSpace;
 import melanesim.protocol.A_Protocol;
 import repast.simphony.valueLayer.GridValueLayer;
@@ -12,7 +13,7 @@ import thing.dna.I_DiploidGenome;
 import thing.dna.species.C_GenomeMegaptera;
 import thing.ground.C_SoilCellMarine;
 /** @author JLF 06.2026 */
-public class C_Megaptera extends A_Amniote implements I_MarineActor {
+public class C_Megaptera extends A_Amniote implements I_MarineActor, I_ConstantPNMC {
 	//
 	// FIELD
 	//
@@ -22,12 +23,16 @@ public class C_Megaptera extends A_Amniote implements I_MarineActor {
 	// CONSTRUCTOR
 	//
 	public C_Megaptera(I_DiploidGenome genome) { super(new C_GenomeMegaptera()); this.setAge_Uday(1.); }
-	public C_Megaptera(String name,String sex) {
+	public C_Megaptera(String myID,String sex,String tagged) {
 		this(new C_GenomeMegaptera());
-		this.setMyName("whale"+NAMES_SEPARATOR+name);
+		this.setMyName("whale."+sex+"-"+tagged+NAMES_SEPARATOR+myID);
 		if(sex.equals("M")) this.setMale(true);
 		else this.setMale(false);
 		this.setAge_Uday(4380.);// 12 years TODO jlf 06.2026 number in source age at creation adult whales
+		this.sexualMature = true;
+		this.setDesire(WANDER);
+		this.energy_Ukcal = 300.;// TODO number in source NOT OK JLF 08.2026 energy whales
+		A_Protocol.event("C_Megaptera.C_Megaptera(): ",this.toString()+" CREATED",isNotError);
 	}
 	//
 	// OVERRIDEN METHOD
@@ -47,6 +52,12 @@ public class C_Megaptera extends A_Amniote implements I_MarineActor {
 		// if (C_Parameters.VERBOSE)
 		A_VisibleAgent.myLandscape.getValueLayer().set(10,this.currentSoilCell.retrieveLineNo(),this.currentSoilCell
 		        .retrieveColNo());// @@vert bouteille
+	}
+	/** Get a random one; then actionMove, then reset nextMove <br>
+	 * JLF 02.2018 */
+	public void actionWander() {
+		this.setNewRandomMove(this.speed_UmeterByTick/SLOW_FACTOR);
+		this.actionMove();
 	}
 	//
 	// METHODS
@@ -74,6 +85,10 @@ public class C_Megaptera extends A_Amniote implements I_MarineActor {
 				        && targetY>=0 && targetY<A_VisibleAgent.myLandscape.getDimension_Ucell().getHeight()){
 					if(this.hasLeftDomain){ // reentering the domain (only switch tags in/out then return to protocol)
 						this.hasEnteredDomain = true;
+						for(A_Animal follower:this.animalsTargetingMe){
+							follower.hasLeftDomain = false;
+							follower.hasEnteredDomain = true;
+						}
 						this.hasLeftDomain = false;
 						return;
 					}
@@ -87,6 +102,10 @@ public class C_Megaptera extends A_Amniote implements I_MarineActor {
 				}
 				else{ // is out of domain; switch tags in/out
 					this.hasLeftDomain = true;
+					for(A_Animal follower:this.animalsTargetingMe){
+						follower.hasLeftDomain = true;
+						follower.hasEnteredDomain = false;
+					}
 					this.hasEnteredDomain = false;
 				}
 			}

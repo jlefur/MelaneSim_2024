@@ -14,6 +14,8 @@ public interface I_ConstantImagesNames {
 	public static final String SHIP_CARGO_SOUTHWARD_ICON = "../SHIP_CARGO_SOUTHWARD";
 	public static final String WHALE_MALE_ICON = "../whaleMale";
 	public static final String WHALE_FEMALE_ICON = "../whaleFemale";
+	public static final String WHALE_MALE_TAGGED_ICON = "../whaleMaleTagged";
+	public static final String WHALE_FEMALE_TAGGED_ICON = "../whaleFemaleTagged";
 	public static final String WHALE_CALF_ICON = "../whaleCalf";
 	// PNMC - surface current direction	
 	public static final String NORTH_ICON = "../arrows/NORTH";

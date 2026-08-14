@@ -113,8 +113,11 @@ public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC, 
 			else return SHIP_CARGO_SOUTHWARD_ICON;
 		}
 		else if(agent instanceof C_Megaptera){
-			if(!((A_Amniote)agent).isSexualMature()) return WHALE_CALF_ICON;
-			else if(((C_Megaptera)agent).testMale()) return WHALE_MALE_ICON;
+			C_Megaptera whale = (C_Megaptera)agent;
+			if(!whale.isSexualMature()) return WHALE_CALF_ICON;
+			else if(whale.retrieveMyName().contains("tagged")) if(whale.testMale()) return WHALE_MALE_TAGGED_ICON;
+			else return WHALE_FEMALE_TAGGED_ICON;
+			else if(whale.testMale()) return WHALE_MALE_ICON;
 			else return WHALE_FEMALE_ICON;
 		}
 		else return TAGGED;// problem

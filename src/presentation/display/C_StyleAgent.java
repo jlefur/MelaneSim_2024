@@ -71,6 +71,8 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 		factory.registerImage(SHIP_CARGO_SOUTHWARD_ICON,selectImg.loadImage(SHIP_CARGO_SOUTHWARD_ICON));
 		factory.registerImage(WHALE_MALE_ICON,selectImg.loadImage(WHALE_MALE_ICON));
 		factory.registerImage(WHALE_FEMALE_ICON,selectImg.loadImage(WHALE_FEMALE_ICON));
+		factory.registerImage(WHALE_MALE_TAGGED_ICON,selectImg.loadImage(WHALE_MALE_TAGGED_ICON));
+		factory.registerImage(WHALE_FEMALE_TAGGED_ICON,selectImg.loadImage(WHALE_FEMALE_TAGGED_ICON));
 		factory.registerImage(WHALE_CALF_ICON,selectImg.loadImage(WHALE_CALF_ICON));
 		factory.registerImage(NORTH_ICON,selectImg.loadImage(NORTH_ICON));
 		factory.registerImage(NORTH_EAST_ICON,selectImg.loadImage(NORTH_EAST_ICON));
@@ -359,14 +361,10 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 			}
 			// plankton image reflects the number of plankton agent within their cell
 			else if(object instanceof C_Ship_cargo){
-				if(((A_SupportedContainer)object).isa_Tag()) sscale = sscale*17;
+				if(((A_SupportedContainer)object).isa_Tag()) sscale = sscale*5;
 				else sscale = sscale*7;
 			}
-			else if(object instanceof C_Megaptera){
-				if(((A_SupportedContainer)object).isa_Tag()) sscale = sscale*17;
-				if(((C_Megaptera)object).hasLeftDomain) sscale = (float)(sscale*.001);
-				else sscale = sscale*6;
-			}
+			else if(object instanceof C_Megaptera)sscale = sscale*4;
 			else if(object instanceof A_HumanUrban){
 				if(((A_HumanUrban)object).isa_Tag()) sscale = sscale*5;
 				if(!((A_Animal)object).getDesire().equals(REST)) sscale = sscale*2;

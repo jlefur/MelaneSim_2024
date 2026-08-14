@@ -25,6 +25,11 @@ public class C_GenomeMegaptera extends C_GenomeAmniota {
 		alleles.put(MATING_LATENCY_Uday,912.5); // 2 à 3 ans
 		alleles.put(GESTATION_LENGTH_Uday,334.8); // 10 à 12 mois
 		this.alleles.put(WEANING_AGE_Uday,365.);// environ un an
+		this.alleles.put(SPEED_UmeterByDay,120000.);// 5km/h (La baleine à bosse (Megaptera novaeangliae) nage à une
+		                                            // vitesse moyenne de croisière comprise entre 5 et 10 km/h (environ
+		                                            // 4 nœuds) lors de ses déplacements et de ses migrations. Sa
+		                                            // vitesse varie nettement selon son comportement du moment.
+		                                            // https://www.lecerclepolaire.com/baleine-a-bosse/
 		makeAmniotaBivalent(this.alleles);
 	}
 	/** Returns a new GenomeMNalatensis. This method is used for genome mate.
@@ -34,7 +39,7 @@ public class C_GenomeMegaptera extends C_GenomeAmniota {
 	 * @see C_GenomeEucaryote#mate */
 	public C_GenomeMegaptera(C_XsomePairMicrosat microsatXsome,C_XsomePairSexual gonosome,
 	        ArrayList<C_ChromosomePair> autosomes) {
-		super(microsatXsome,gonosome,autosomes);
+		super(microsatXsome, gonosome, autosomes);
 	}
 	//
 	// GETTER

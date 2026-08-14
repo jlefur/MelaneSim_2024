@@ -207,7 +207,9 @@ public class C_LandscapeMarine extends C_Landscape implements I_ConstantPNMC {
 				// (k, v) -> (v == null) ? cellEnergy_Ukcal : v + cellEnergy_Ukcal);
 			}
 		}
-		System.out.println("C_LandscapeMarine.rankEnergy1 "+overallEnergy_Ukcal+", "+energyByRank.size()+" clés");
+		if(C_Parameters.VERBOSE)
+		    A_Protocol.event("C_LandscapeMarine.rankEnergy_1 : ",overallEnergy_Ukcal+", "+energyByRank.size()+" clés",
+		            isNotError);
 		// 2.- Définition des seuils d'énergie (Temporary stores the threshold to proceed to the coming loop)
 		energyRanks[ENERGY_GREEN] = (int)(overallEnergy_Ukcal*GREEN_AREA_Upercent);
 		energyRanks[ENERGY_ORANGE] = (int)(overallEnergy_Ukcal*ORANGE_AREA_Upercent);

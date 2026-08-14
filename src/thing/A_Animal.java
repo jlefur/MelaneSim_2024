@@ -46,7 +46,7 @@ public abstract class A_Animal extends A_Organism implements I_ConstantNumeric {
 		initParameters();
 		this.male = ((C_GenomeEucaryote) genome).getGonosome().isMale();
 		String sex = "+F:";
-		if (testMale()) sex = "-M:";
+		if (this.testMale()) sex = "-M:";
 		this.setMyName(sex + this.retrieveMyName());
 		this.myHome = this.currentSoilCell;
 	}
@@ -245,7 +245,7 @@ public abstract class A_Animal extends A_Organism implements I_ConstantNumeric {
 	 * @param animal any daughter class of A_Animal / JLF 02.2014
 	 * @return true if success */
 	protected boolean actionInteract(A_Animal animal) {
-		A_Protocol.event("A_VisibleAgent.actionInteract", animal + " do nothing", isError);
+		//A_Protocol.event("A_VisibleAgent.actionInteract", animal + " do nothing", isError);
 		return false;
 	}
 	/** Method refined in daughters classes. Consume the cell and gain the affinity amount of energy.
@@ -376,6 +376,13 @@ public abstract class A_Animal extends A_Organism implements I_ConstantNumeric {
 				- (C_ContextCreator.randomGeneratorForMovement.nextDouble() * speed_UmeterByTick);
 		this.nextMove_Umeter.y = (C_ContextCreator.randomGeneratorForMovement.nextDouble() * speed_UmeterByTick)
 				- (C_ContextCreator.randomGeneratorForMovement.nextDouble() * speed_UmeterByTick);
+	}
+	/** Dismiss targetPoint and provide two random coordinates in meters. This redefines the nextMove_Umeter field. */
+	public void setNewRandomMove(double speed_UmeterPerTick) {
+		this.nextMove_Umeter.x = (C_ContextCreator.randomGeneratorForMovement.nextDouble() * speed_UmeterPerTick)
+				- (C_ContextCreator.randomGeneratorForMovement.nextDouble() * speed_UmeterPerTick);
+		this.nextMove_Umeter.y = (C_ContextCreator.randomGeneratorForMovement.nextDouble() * speed_UmeterPerTick)
+				- (C_ContextCreator.randomGeneratorForMovement.nextDouble() * speed_UmeterPerTick);
 	}
 	/** Provide an aim to move toward specific coordinates. We watch if the agent is (or isn't) close to its goal, we have to do
 	 * several tests because if the agent is near in the x variable but not in the y, the next step it may be too far on the x

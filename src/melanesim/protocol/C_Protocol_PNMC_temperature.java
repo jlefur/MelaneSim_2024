@@ -49,7 +49,7 @@ public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_ships {
 	//
 	@Override
 	public void initCalendar() { protocolCalendar.set(2021,Calendar.AUGUST,18); }// for whale development
-//	public void initCalendar() { protocolCalendar.set(2021,Calendar.JULY,15); }// for whale development
+	// public void initCalendar() { protocolCalendar.set(2021,Calendar.JULY,15); }// for whale development
 	@Override
 	/** Color the map in black as an alternate view of particles<br>
 	 * Author J.Le Fur 10.2014 TODO JLF 2014.10 should be in presentation package ? */
@@ -84,7 +84,7 @@ public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_ships {
 			switch(event.type){
 				case WHALE_EVENT:
 					String[] whaleData = event.value2.split(EVENT_VALUE2_FIELD_SEPARATOR);
-					C_Megaptera oneWhale = new C_Megaptera(event.value1,whaleData[0]);
+					C_Megaptera oneWhale = new C_Megaptera(event.value1,whaleData[0],"tagged");
 					C_SoilCellMarine homeCell = (C_SoilCellMarine)this.landscape
 					        .getGrid()[event.whereX_Ucell][event.whereY_Ucell];
 					oneWhale.setMyHome(homeCell);
@@ -146,8 +146,8 @@ public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_ships {
 		}
 		oneWhale.manageActivities();
 	}
-	protected void ManageWhaleGroup(C_Megaptera oneWhale, String groupCode) {}
-	protected void ManageWhaleGroup0(C_Megaptera oneWhale, String groupCode) {
+	protected void ManageWhaleGroup0(C_Megaptera oneWhale, String groupCode) {}
+	protected void ManageWhaleGroup(C_Megaptera oneWhale, String groupCode) {
 		// G solitary -> 1
 		// K pair -> 1 male, 1 female
 		// D group of 4 -> 1 female + 3 males
@@ -162,20 +162,27 @@ public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_ships {
 		String sex = oneWhale.testMale()?"M":"F";
 		String alterSex = sex.equals("M")?"F":"M";
 		C_Megaptera otherWhale;
-		C_SoilCellMarine homeCell;
 		switch(groupCode){
 			case "K":// K pair -> 1 male, 1 female
-				otherWhale = new C_Megaptera(oneWhale.retrieveMyName()+"bis",alterSex);
-				homeCell = (C_SoilCellMarine)oneWhale.getCurrentSoilCell();
-				otherWhale.setMyHome(oneWhale.getCurrentSoilCell());
-				contextualizeNewThingInContainer(otherWhale,homeCell);
+				otherWhale = createFollower(oneWhale,alterSex,1);
+				if(oneWhale.testMale()) oneWhale.setTarget(otherWhale);
+				else otherWhale.setTarget(oneWhale);
 				break;
 			case "D":// D group of 4 -> 1 female + 3 males
-				otherWhale = new C_Megaptera(oneWhale.retrieveMyName()+"bis",alterSex);
-				homeCell = (C_SoilCellMarine)oneWhale.getCurrentSoilCell();
-				otherWhale.setMyHome(oneWhale.getCurrentSoilCell());
-				contextualizeNewThingInContainer(otherWhale,homeCell);
+				if(oneWhale.testMale()){
+					otherWhale = createFollower(oneWhale,alterSex,0);// female
+					oneWhale.setTarget(otherWhale);
+					for(int i = 1; i<3; i++) createFollower(oneWhale,sex, i).setTarget(otherWhale);
+				}
+				else for(int i = 1; i<4; i++) createFollower(oneWhale,sex,i).setTarget(oneWhale);// female
 				break;
 		}
+	}
+	protected C_Megaptera createFollower(C_Megaptera oneWhale, String sex, int index) {
+		C_Megaptera otherWhale;
+		otherWhale = new C_Megaptera(oneWhale.retrieveMyId()+"."+index,sex, "follower");
+		otherWhale.setMyHome(oneWhale.getCurrentSoilCell());
+		contextualizeNewThingInContainer(otherWhale,(C_SoilCellMarine)oneWhale.getCurrentSoilCell());
+		return otherWhale;
 	}
 }

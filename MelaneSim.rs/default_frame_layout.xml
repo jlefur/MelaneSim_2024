@@ -51,9 +51,9 @@
 								<layout factory="predefined">
 									<replacement id="rootccontrol center"/>
 									<delegate id="delegate_SplitDockStationFactory">
-										<node nodeId="1409581936107" orientation="HORIZONTAL" divider="0.2533783783783784">
+										<node nodeId="1409581936107" orientation="HORIZONTAL" divider="0.13983440662373506">
 											<leaf id="0" nodeId="1485937834825"/>
-											<node nodeId="1526637876769" orientation="HORIZONTAL" divider="0.677797833935018">
+											<node nodeId="1526637876769" orientation="HORIZONTAL" divider="0.7473233404710922">
 												<leaf id="1" nodeId="1409581936076"/>
 												<leaf id="2" nodeId="1526638560195"/>
 											</node>
@@ -291,9 +291,9 @@
 							<layout factory="predefined">
 								<replacement id="rootccontrol center"/>
 								<delegate id="delegate_SplitDockStationFactory">
-									<node nodeId="1409581936107" orientation="HORIZONTAL" divider="0.2533783783783784">
+									<node nodeId="1409581936107" orientation="HORIZONTAL" divider="0.13983440662373506">
 										<leaf id="0" nodeId="1485937834825"/>
-										<node nodeId="1526637876769" orientation="HORIZONTAL" divider="0.677797833935018">
+										<node nodeId="1526637876769" orientation="HORIZONTAL" divider="0.7473233404710922">
 											<leaf id="1" nodeId="1409581936076"/>
 											<leaf id="2" nodeId="1526638560195"/>
 										</node>

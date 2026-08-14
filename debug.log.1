@@ -1,74 +1,5 @@
-FATAL [Thread-7] 2026-08-11T17:48:55,555 GUIScheduleRunner - RunTimeException when running the schedule
-Current tick (380.0)
-java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
-	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
-	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
-	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
-	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
-	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231) ~[?:?]
-	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
-	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
-	at java.lang.Thread.run(Thread.java:840) ~[?:?]
-Caused by: java.lang.reflect.InvocationTargetException
-	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
-	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
-	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
-	... 7 more
-Caused by: java.lang.IllegalArgumentException: Object '2007-24639' must be added to the space's context before it can be moved
-	at repast.simphony.space.continuous.AbstractContinuousSpace.doMove(AbstractContinuousSpace.java:129) ~[?:?]
-	at repast.simphony.space.continuous.AbstractContinuousSpace.moveTo(AbstractContinuousSpace.java:121) ~[?:?]
-	at thing.ground.landscape.C_Landscape.moveToLocation(C_Landscape.java:195) ~[?:?]
-	at thing.C_Megaptera.manageActivities(C_Megaptera.java:81) ~[?:?]
-	at melanesim.protocol.C_Protocol_PNMC_ships.step_Utick(C_Protocol_PNMC_ships.java:39) ~[?:?]
-	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
-	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
-	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
-	... 7 more
-FATAL [Thread-4] 2026-08-11T17:59:44,051 GUIScheduleRunner - RunTimeException when running the schedule
-Current tick (228.0)
-java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
-	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
-	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
-	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
-	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
-	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231) ~[?:?]
-	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
-	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
-	at java.lang.Thread.run(Thread.java:840) ~[?:?]
-Caused by: java.lang.reflect.InvocationTargetException
-	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
-	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
-	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
-	... 7 more
-Caused by: java.lang.IllegalArgumentException: Object '2007-24639' must be added to the space's context before it can be moved
-	at repast.simphony.space.continuous.AbstractContinuousSpace.doMove(AbstractContinuousSpace.java:129) ~[?:?]
-	at repast.simphony.space.continuous.AbstractContinuousSpace.moveTo(AbstractContinuousSpace.java:121) ~[?:?]
-	at thing.ground.landscape.C_Landscape.moveToLocation(C_Landscape.java:195) ~[?:?]
-	at thing.C_Megaptera.manageActivities(C_Megaptera.java:81) ~[?:?]
-	at melanesim.protocol.C_Protocol_PNMC_ships.step_Utick(C_Protocol_PNMC_ships.java:39) ~[?:?]
-	at melanesim.protocol.A_Protocol$$FastClassByCGLIB$$73af8671.invoke(<generated>) ~[?:?]
-	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53) ~[?:?]
-	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
-	... 7 more
-FATAL [Thread-7] 2026-08-12T12:03:22,532 GUIScheduleRunner - RunTimeException when running the schedule
-Current tick (1300.0)
-java.lang.NullPointerException: Cannot invoke "saf.v3d.scene.VSpatial.getParent()" because "child" is null
-	at saf.v3d.scene.VComposite.addChild(VComposite.java:46) ~[?:?]
-	at repast.simphony.visualizationOGL2D.SpatialWrapper.setChild(SpatialWrapper.java:80) ~[?:?]
-	at repast.simphony.visualizationOGL2D.SpatialWrapper.<init>(SpatialWrapper.java:34) ~[?:?]
-	at repast.simphony.visualizationOGL2D.StyledDisplayLayerOGL2D.createSpatial(StyledDisplayLayerOGL2D.java:146) ~[?:?]
-	at repast.simphony.visualizationOGL2D.StyledDisplayLayerOGL2D.processAdded(StyledDisplayLayerOGL2D.java:228) ~[?:?]
-	at repast.simphony.visualizationOGL2D.StyledDisplayLayerOGL2D.update(StyledDisplayLayerOGL2D.java:250) ~[?:?]
-	at repast.simphony.visualizationOGL2D.DisplayOGL2D.update(DisplayOGL2D.java:403) ~[?:?]
-	at repast.simphony.visualization.engine.DisplayComponentControllerAction$DisplayUpdater.execute(DisplayComponentControllerAction.java:48) ~[?:?]
-	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38) ~[?:?]
-	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205) ~[?:?]
-	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:238) ~[?:?]
-	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:375) ~[?:?]
-	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52) ~[?:?]
-	at java.lang.Thread.run(Thread.java:840) ~[?:?]
-FATAL [Thread-4] 2026-08-12T16:04:16,361 GUIScheduleRunner - RunTimeException when running the schedule
-Current tick (58.0)
+FATAL [Thread-4] 2026-08-13T18:13:21,564 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (32.0)
 java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
 	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
 	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
@@ -1108,8 +1039,8 @@ Caused by: java.lang.StackOverflowError
 	at thing.ground.landscape.C_Landscape.getThingCoord_Ucs(C_Landscape.java:571) ~[?:?]
 	at thing.ground.A_SupportedContainer.getCoordinate_Ucs(A_SupportedContainer.java:46) ~[?:?]
 	at thing.ground.landscape.C_Landscape.getThingCoord_Ucs(C_Landscape.java:571) ~[?:?]
-FATAL [Thread-4] 2026-08-12T16:05:14,966 GUIScheduleRunner - RunTimeException when running the schedule
-Current tick (58.0)
+FATAL [Thread-4] 2026-08-13T18:26:54,798 GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (32.0)
 java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
 	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72) ~[?:?]
 	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:336) ~[?:?]
@@ -1125,8 +1056,8 @@ Caused by: java.lang.reflect.InvocationTargetException
 	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69) ~[?:?]
 	... 7 more
 Caused by: java.lang.StackOverflowError
-	at repast.simphony.space.continuous.AbstractContinuousSpace.getLocation(AbstractContinuousSpace.java:175) ~[?:?]
-	at thing.ground.landscape.C_Landscape.getThingCoord_Ucs(C_Landscape.java:566) ~[?:?]
+	at thing.ground.A_SupportedContainer.getCoordinate_Ucs(A_SupportedContainer.java:46) ~[?:?]
+	at thing.ground.landscape.C_Landscape.getThingCoord_Ucs(C_Landscape.java:571) ~[?:?]
 	at thing.ground.A_SupportedContainer.getCoordinate_Ucs(A_SupportedContainer.java:46) ~[?:?]
 	at thing.ground.landscape.C_Landscape.getThingCoord_Ucs(C_Landscape.java:571) ~[?:?]
 	at thing.ground.A_SupportedContainer.getCoordinate_Ucs(A_SupportedContainer.java:46) ~[?:?]
