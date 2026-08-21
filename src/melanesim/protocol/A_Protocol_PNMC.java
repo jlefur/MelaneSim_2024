@@ -17,7 +17,6 @@ import org.locationtech.jts.geom.Coordinate;
 import data.C_Parameters;
 import data.C_WriteRaster;
 import data.constants.I_ConstantPNMC;
-import data.converters.C_ConvertGeographicCoordinates;
 import melanesim.util.CaptureEcranPeriodique;
 import presentation.epiphyte.C_InspectorEnergy;
 import presentation.epiphyte.C_InspectorPopulationMarine;
@@ -35,16 +34,24 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 	//
 	// FIELDS
 	//
-	protected C_ConvertGeographicCoordinates geographicCoordinateConverter = null;
 	public static boolean DISPLAY_FACILITY_MAP = false;// used to change plankton color if facility map is on
 	protected record MinMax(double min,double max){};
 	protected final C_WriteRaster rasterWriter = new C_WriteRaster();
+
+	public final Coordinate originSouthWest_Udegree = new Coordinate(156.,-26.5);
+	public final Coordinate originNorthEast_Udegree = new Coordinate(174.5,-14.5);
+	public final double RASTER_CELL_WIDTH_Udegree;
+	public final double RASTER_CELL_HEIGHT_Udegree;
 	//
 	// CONSTRUCTOR
 	//
 	public A_Protocol_PNMC(Context<Object> ctxt) {
 		super(ctxt);
-		//this.rasterWriter.export(((C_LandscapeMarine)this.landscape).getValueLayer(),"bathymetry","OBJ");
+		this.RASTER_CELL_WIDTH_Udegree = (originNorthEast_Udegree.x-originSouthWest_Udegree.x)
+		        /(this.landscape.dimension_Ucell.width-1);
+		this.RASTER_CELL_HEIGHT_Udegree = (originNorthEast_Udegree.y-originSouthWest_Udegree.y)
+		        /(this.landscape.dimension_Ucell.height-1);
+		// this.rasterWriter.export(((C_LandscapeMarine)this.landscape).getValueLayer(),"bathymetry","OBJ");
 		// Position landplots at the barycentre of cells
 		for(C_LandPlot lp:this.landscape.getAffinityLandPlots()){
 			double xx = 0., yy = 0.;
@@ -317,5 +324,15 @@ public abstract class A_Protocol_PNMC extends A_Protocol implements I_ConstantPN
 	public double convertFrom100(double y, double xMin, double xMax) {
 		return ((y-1)*(xMax-xMin))/99+xMin;
 	}
-
+	/** Converts geographic coordinates into continuous raster coordinates.<br>
+	 * Longitude corresponds to x and latitude to y. Returned coordinates may contain decimal values, allowing an object
+	 * to be positioned precisely within the continuous raster space.
+	 * @param longitude_Udegree longitude in decimal degrees
+	 * @param latitude_Udegree latitude in decimal degrees
+	 * @return position in raster cell units */
+	public Coordinate convertCoordinate_Ucs(double longitude_Udegree, double latitude_Udegree) {
+		double x_Ucell = (longitude_Udegree-this.originSouthWest_Udegree.x)/RASTER_CELL_WIDTH_Udegree;
+		double y_Ucell = (latitude_Udegree-this.originSouthWest_Udegree.y)/RASTER_CELL_HEIGHT_Udegree;
+		return new Coordinate(x_Ucell,y_Ucell);
+	}
 }

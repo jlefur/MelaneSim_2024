@@ -3,14 +3,10 @@ package melanesim.protocol;
 import java.util.Calendar;
 import java.util.TimeZone;
 
-import org.locationtech.jts.geom.Coordinate;
-
 import data.C_Chronogram;
 import data.C_Event;
 import data.C_Parameters;
 import data.C_ReadRasterDouble;
-import data.constants.I_ConstantPNMC;
-import data.converters.C_ConvertGeographicCoordinates;
 import presentation.display.C_Background;
 import repast.simphony.context.Context;
 import thing.C_Nekton;
@@ -88,12 +84,8 @@ public class C_Protocol_PNMC_drifters extends A_Protocol_PNMC {
 	@Override
 	/** Initialize the protocol with the raster origin */
 	public void initProtocol() {
-		this.geographicCoordinateConverter = new C_ConvertGeographicCoordinates(new Coordinate(
-				I_ConstantPNMC.rasterLongitudeWest_LatitudeSouth_Udegree.get(0),
-				I_ConstantPNMC.rasterLongitudeWest_LatitudeSouth_Udegree.get(1)));
 		this.initPopulations();
 		super.initProtocol();
-
 	}
 
 	@Override

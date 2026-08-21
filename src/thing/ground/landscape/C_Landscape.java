@@ -567,7 +567,9 @@ public class C_Landscape implements I_ConstantString {
 		else// return null;
 		{
 			// Soil cells normally return null (not contextualized in space)
-			if(thing instanceof C_SoilCell) return thing.getCoordinate_Ucs();
+			if(thing instanceof C_SoilCell) {
+				return thing.getCoordinate_Ucs();
+			}
 			// else problem
 			else{
 				A_Protocol.event("C_Landscape.getThingCoord_Ucs","PB "+thing,isError);

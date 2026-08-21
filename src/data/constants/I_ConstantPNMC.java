@@ -1,6 +1,7 @@
 package data.constants;
 
 import java.util.ArrayList;
+import org.locationtech.jts.geom.Coordinate;
 
 /** Gathers all variables since software specifications requires no numbers in the java sources <br>
  * @author Le Fur & Sall 2015, rev. 2024 */
@@ -9,10 +10,13 @@ public interface I_ConstantPNMC extends I_ConstantString {
 	// FILES & URLs //
 	public final String CSV_PATH = "data_csv/melanesia/";
 	public final String RASTER_PATH_MELANESIA = "data_raster/melanesia/";
-	public static final String PNMC_DRIFTERS = "ocean.PNMC_drifters"; // MELANESIM PROTOCOL NAMES - used in context creator
-	public static final String PNMC_PLANKTON = "ocean.PNMC_plankton"; // MELANESIM PROTOCOL NAMES - used in context creator
+	public static final String PNMC_DRIFTERS = "ocean.PNMC_drifters"; // MELANESIM PROTOCOL NAMES - used in context
+	                                                                  // creator
+	public static final String PNMC_PLANKTON = "ocean.PNMC_plankton"; // MELANESIM PROTOCOL NAMES - used in context
+	                                                                  // creator
 	public static final String PNMC_NEKTON = "ocean.PNMC_nekton"; // MELANESIM PROTOCOL NAMES - used in context creator
-	public static final String PNMC_TEMPERATURE = "ocean.PNMC_temperature"; // MELANESIM PROTOCOL NAMES - used in context creator
+	public static final String PNMC_TEMPERATURE = "ocean.PNMC_temperature"; // MELANESIM PROTOCOL NAMES - used in
+	                                                                        // context creator
 	public static final String PNMC_SHIPS = "ocean.PNMC_ships"; // MELANESIM PROTOCOL NAMES - used in context creator
 	public final String energyGridvalues = "valueEnergyGrid";// used to display energy
 	public final String NEKTON_GRID = "nektonGrid";// used to display nekton abundance
@@ -20,13 +24,7 @@ public interface I_ConstantPNMC extends I_ConstantString {
 	public final String TEMPERATURE_GRID = "temperatureGrid";// used to display temperature
 
 	public static int CELL_SIZE = 245; // DEFAULT : 15 //Junk Value
-	public static final ArrayList<Double> rasterLongitudeWest_LatitudeSouth_Udegree = new ArrayList<Double>() {
-		{
-			add(156.);
-			add(-26.5);
-		}
-		private static final long serialVersionUID = 1L;
-	};
+
 	public static final ArrayList<String> currentSpeed_URL_suffix = new ArrayList<String>() {
 		{
 			add("");
@@ -51,8 +49,10 @@ public interface I_ConstantPNMC extends I_ConstantString {
 	public static final int PARTICLE_CELLS_SPACING = 5; // 3 //
 	public static final int BACKWARD_NB_CELLS = 1;// if particle reach bordure move back nb cells
 	public static final int STREAM_DISPLAY_SIZE = 300;// taille des vecteurs courants affichés
-	public static final double PARTICLE_RESISTANCE_FACTOR = 1.;// freinage des particules vis à vis de la vitesse du courant)
-	public static final double NEKTON_RESISTANCE_FACTOR = 5.;// freinage des particules de micronecton vis à vis de la vitesse du courant)
+	public static final double PARTICLE_RESISTANCE_FACTOR = 1.;// freinage des particules vis à vis de la vitesse du
+	                                                           // courant)
+	public static final double NEKTON_RESISTANCE_FACTOR = 5.;// freinage des particules de micronecton vis à vis de la
+	                                                         // vitesse du courant)
 	public static final int BACKGROUND_COLOR = 38;
 	//
 	// ENERGY RANKING
@@ -81,5 +81,5 @@ public interface I_ConstantPNMC extends I_ConstantString {
 	// WHALES
 	//
 	public static final String WHALE_ACTIVITY_CHRONO = "/whale_Mno_ARGOS_Tracks.csv";
-	public static final double SLOW_FACTOR = 6.;	// Slow motion when wandering, JLF 08.2026
+	public static final double SLOW_FACTOR = 6.; // Slow motion when wandering, JLF 08.2026
 }

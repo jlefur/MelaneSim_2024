@@ -72,8 +72,7 @@ public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_ships {
 		// Convert coordinates from degree to cell if any
 		Coordinate coordinateCell_Ucs = null;
 		if(event.whereX_Ucell==null){// then: 1) suppose that y is also null, 2) double are values in decimal degrees
-			coordinateCell_Ucs = this.geographicCoordinateConverter.convertCoordinate_Ucs(event.whereX_Udouble,
-			        event.whereY_Udouble);
+			coordinateCell_Ucs = this.convertCoordinate_Ucs(event.whereX_Udouble,event.whereY_Udouble);
 			event.whereX_Ucell = (int)coordinateCell_Ucs.x;
 			event.whereY_Ucell = (int)coordinateCell_Ucs.y;
 		}
@@ -139,7 +138,7 @@ public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_ships {
 			String whaleID = oneWhale.retrieveMyId();
 			if(whaleID.equals(activities[2]))
 			    oneWhale.addActivityList(//
-			            this.geographicCoordinateConverter.convertCoordinate_Ucs(//
+			            this.convertCoordinate_Ucs(//
 			                    Double.parseDouble(activities[3]),//
 			                    Double.parseDouble(activities[4]))//
 			            ,activities[0],activities[1]);
@@ -172,7 +171,7 @@ public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_ships {
 				if(oneWhale.testMale()){
 					otherWhale = createFollower(oneWhale,alterSex,0);// female
 					oneWhale.setTarget(otherWhale);
-					for(int i = 1; i<3; i++) createFollower(oneWhale,sex, i).setTarget(otherWhale);
+					for(int i = 1; i<3; i++) createFollower(oneWhale,sex,i).setTarget(otherWhale);
 				}
 				else for(int i = 1; i<4; i++) createFollower(oneWhale,sex,i).setTarget(oneWhale);// female
 				break;
@@ -180,7 +179,7 @@ public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_ships {
 	}
 	protected C_Megaptera createFollower(C_Megaptera oneWhale, String sex, int index) {
 		C_Megaptera otherWhale;
-		otherWhale = new C_Megaptera(oneWhale.retrieveMyId()+"."+index,sex, "follower");
+		otherWhale = new C_Megaptera(oneWhale.retrieveMyId()+"."+index,sex,"follower");
 		otherWhale.setMyHome(oneWhale.getCurrentSoilCell());
 		contextualizeNewThingInContainer(otherWhale,(C_SoilCellMarine)oneWhale.getCurrentSoilCell());
 		return otherWhale;
