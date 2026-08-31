@@ -59,7 +59,7 @@
 <!-- protocolName : PNMC_temperature -->
 <Scenario>
 	<repast.simphony.dataLoader.engine.ClassNameDataLoaderAction context="Map2D" file="repast.simphony.dataLoader.engine.ClassNameDataLoaderAction_0.xml" />
-	<repast.simphony.action.display context="Map2D" file="styles\repast.simphony.action.display_PNMC_ships.xml" />
+	<repast.simphony.action.display context="Map2D" file="styles\repast.simphony.action.display_PNMC_whales.xml" />
 	<repast.simphony.action.display context="Map2D" file="styles\repast.simphony.action.display_PNMC_nekton.xml" />
 	<repast.simphony.action.display context="Map2D" file="styles\repast.simphony.action.display_PNMC_energy.xml" />
 	<repast.simphony.action.display context="Map2D" file="styles\repast.simphony.action.display_PNMC_temperature.xml" />

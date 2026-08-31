@@ -23,7 +23,10 @@ public class C_Megaptera extends A_Amniote implements I_MarineActor, I_ConstantP
 	//
 	// CONSTRUCTOR
 	//
-	public C_Megaptera(I_DiploidGenome genome) { super(new C_GenomeMegaptera()); this.setAge_Uday(1.); }
+	public C_Megaptera(I_DiploidGenome genome) {
+		super(new C_GenomeMegaptera());
+		this.setAge_Uday(1.);
+	}
 	public C_Megaptera(String myID,String sex,String tagged) {
 		this(new C_GenomeMegaptera());
 		this.setMyName("whale."+sex+"-"+tagged+NAMES_SEPARATOR+myID);
@@ -31,28 +34,38 @@ public class C_Megaptera extends A_Amniote implements I_MarineActor, I_ConstantP
 		else this.setMale(false);
 		this.setAge_Uday(4380.);// 12 years TODO jlf 06.2026 number in source age at creation adult whales
 		this.sexualMature = true;
-		this.setDesire(WANDER);
-		this.energy_Ukcal = 300.;// TODO number in source NOT OK JLF 08.2026 energy whales
+		if(this.testFemale()) this.setDesire(WANDER);
+		this.energy_Ukcal = WHALE_ENERGY_Ukcal;// TODO number in source NOT OK JLF 08.2026 energy whales
 		if(C_Parameters.VERBOSE) A_Protocol.event("C_Megaptera.C_Megaptera(): ",this.toString()+" CREATED",isNotError);
 	}
 	//
 	// OVERRIDEN METHOD
 	//
 	@Override
-	public void step_Utick() { super.step_Utick(); this.manageActivities(); }
+	public boolean actionMateWithMale(I_ReproducingThing male) { return false; }
+	@Override
+	public void step_Utick() {
+		super.step_Utick();
+		this.manageActivities();
+	}
 	@Override
 	protected void checkDanger() {}
 	@Override
 	public A_Animal giveBirth(I_DiploidGenome genome) { return new C_Megaptera(genome); }
 	@Override
-	public void discardThis() { this.activityList = null; super.discardThis(); }
+	public void discardThis() {
+		this.activityList = null;
+		super.discardThis();
+	}
 	/** Compute next move to target, move on the GUI */
 	@Override
 	protected void actionMoveToDestination() {
 		super.actionMoveToDestination();
 		// if (C_Parameters.VERBOSE)
-		A_VisibleAgent.myLandscape.getValueLayer().set(10,this.currentSoilCell.retrieveLineNo(),this.currentSoilCell
-		        .retrieveColNo());// @@vert bouteille
+		// A_VisibleAgent.myLandscape.getValueLayer().set(10,this.currentSoilCell.retrieveLineNo(),this.currentSoilCell.retrieveColNo());//
+		// @@vert bouteille
+		// MyvalueLayer.set(10,this.currentSoilCell.retrieveLineNo(),this.currentSoilCell.retrieveColNo());// @@vert
+		// bouteille
 	}
 	/** Get a random one; then actionMove, then reset nextMove <br>
 	 * JLF 02.2018 */
@@ -63,6 +76,15 @@ public class C_Megaptera extends A_Amniote implements I_MarineActor, I_ConstantP
 	//
 	// METHODS
 	//
+	/** Whales leaving domain have to remove their cell target but not the whale they target if any */
+	public void discardCellTarget() {
+		if((this.target!=null) && (this.target instanceof C_SoilCellMarine)){
+			if(!((A_VisibleAgent)this.target).animalsTargetingMe.remove(this))
+			    A_Protocol.event("C_Megaptera.discardCellTarget()","could not remove ref. to "+this+" in "+this.target,
+			            isError);
+			this.target = null;// continue anyway
+		} // else target is already null
+	}
 	/** Declare the temperature valueLayer
 	 * @author JLF 07.2026 */
 	public static void init(GridValueLayer valueLayer) { MyvalueLayer = valueLayer; }
@@ -99,6 +121,9 @@ public class C_Megaptera extends A_Amniote implements I_MarineActor, I_ConstantP
 						this.setTarget((C_SoilCellMarine)A_VisibleAgent.myLandscape.getGrid()[targetX][targetY]);
 						C_Megaptera.MyvalueLayer.set(BLACK_MAP_COLOR,this.currentSoilCell.retrieveLineNo(),
 						        this.currentSoilCell.retrieveColNo());
+						A_VisibleAgent.myLandscape.getValueLayer().set(BLACK_MAP_COLOR,this.currentSoilCell
+						        .retrieveLineNo(),this.currentSoilCell.retrieveColNo());
+						this.computeMaxDispersalDistance_Umeter();
 					}
 				}
 				else{ // is out of domain; switch tags in/out
@@ -121,7 +146,7 @@ public class C_Megaptera extends A_Amniote implements I_MarineActor, I_ConstantP
 	public boolean isIncludedInTimeStepInterval(String key) {
 		Boolean flag = false;
 		int iMonth = Integer.parseInt(key.substring(0,2))-1;
-		int iDay = Integer.parseInt(key.substring(2,4))+1;
+		int iDay = Integer.parseInt(key.substring(2,4));
 		if((A_Protocol.protocolCalendar.get(Calendar.MONTH)==iMonth) && (A_Protocol.protocolCalendar.get(
 		        Calendar.DAY_OF_MONTH)==iDay)){
 			key = key.substring(5);

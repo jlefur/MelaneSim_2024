@@ -53,8 +53,6 @@ public abstract class A_Protocol implements I_Protocol, I_ConstantString, I_Cons
 	protected TreeSet<A_Inspector> inspectorList = null;
 	protected C_FileWriter indicatorsFile = null; // TODO JLF 2014.10 output file must be managed by inspectors
 	                                              // (epiphyte system)
-	protected static Boolean breedingSeason = null;// TODO JLF 2014.10 put in other place ? (specific to
-	                                               // species/environment)
 	protected C_Chronogram chronogram = null;// Contains the whole chrono from the csv file
 	protected C_Background facilityMap = null;// used for displaying a bitmap over the grid
 	protected C_StyleAgent styleAgent;
@@ -72,7 +70,6 @@ public abstract class A_Protocol implements I_Protocol, I_ConstantString, I_Cons
 		this.inspectorList = new TreeSet<A_Inspector>();
 		this.initFixedParameters();
 
-		A_Protocol.breedingSeason = false;// TODO JLF 2015.03 misplaced
 		this.indicatorsFile = new C_FileWriter("Indicateurs.csv",true);
 		// Initialization of the ground manager Author: LeFur 07.2012, rev Mboup 2013, Diakhate 2014
 		this.readUserParameters();
@@ -142,9 +139,6 @@ public abstract class A_Protocol implements I_Protocol, I_ConstantString, I_Cons
 	public void manageTimeLandmarks() {
 		// int currentYear = A_Protocol.protocolCalendar.get(Calendar.YEAR);
 		A_Protocol.protocolCalendar.incrementDate();
-		// Beep if start or end of reproduction season
-		if(A_Protocol.breedingSeason!=this.checkBreedingSeason())
-		    A_Protocol.event("A_Protocol.manageTimeLandmarks","Start/end of breeding season",isNotError);
 		// Check if map has to be switched Version JLF 08.2014, rev.10.2015, 05.2017
 		boolean displayMapBefore = C_Parameters.DISPLAY_MAP;
 		this.readUserParameters();
@@ -190,12 +184,12 @@ public abstract class A_Protocol implements I_Protocol, I_ConstantString, I_Cons
 	/** This method must be redefined in daughter protocols */
 	protected void manageReadEventTypes(TreeSet<String> eventTypes) {}
 	/** Breeding season declaration : also manages situation where REPRO_START_Umonth > REPRO_END_Umonth */
-	protected boolean checkBreedingSeason() {
+	public static boolean checkBreedingSeason() {
 		if(C_Parameters.REPRO_START_Umonth<C_Parameters.REPRO_END_Umonth){
 			if(protocolCalendar.get(Calendar.MONTH)>=C_Parameters.REPRO_START_Umonth && protocolCalendar.get(
-			        Calendar.MONTH)<=C_Parameters.REPRO_END_Umonth) return(A_Protocol.breedingSeason = true);
+			        Calendar.MONTH)<=C_Parameters.REPRO_END_Umonth) return true;
 		}
-		return(A_Protocol.breedingSeason = false);
+		return false;
 	}
 	/** Declare a new object in the context and positions it within the raster ground
 	 * @see #contextualizeNewThingInContainer */
@@ -423,10 +417,7 @@ public abstract class A_Protocol implements I_Protocol, I_ConstantString, I_Cons
 	public String getStringFullDate() {
 		return protocolCalendar.stringFullDate();
 	}
-	/** @return the value of seasonToMate (Boolean) */
-	public static Boolean isBreedingSeason() {
-		return breedingSeason;
-	}
+
 	/** Check if chronogram is exhausted or if a precondition is verified (e.g., population is < 2). <br>
 	 * This method may be redefined by daughter protocols */
 	public boolean isSimulationEnd() {

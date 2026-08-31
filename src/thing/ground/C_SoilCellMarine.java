@@ -31,8 +31,8 @@ public class C_SoilCellMarine extends C_SoilCellMarineEnergy implements I_Consta
 		// TODO number in source OK 2024 JLF speed has to be != from 0 before read from file in order to avoid bordure
 		this.speedEastward_UmeterPerSec = 1e-10;
 		this.speedNorthward_UmeterPerSec = 1e-10;
-		this.set(DriverType.WHALE,Champ.RAW_VAL,CARGO_ENERGY_Ukcal);// default value for ships TODO 2026 junk
-		this.set(DriverType.WHALE,Champ._100,100./CARGO_POPULATION);// TODO 2026 junk
+		this.set(DriverType.WHALE,Champ.RAW_VAL,WHALE_ENERGY_Ukcal);// default value for whales TODO 2026 junk
+		this.set(DriverType.WHALE,Champ._100,100.);// TODO 2026 junk
 		this.set(DriverType.SHIP,Champ.RAW_VAL,CARGO_ENERGY_Ukcal);// default value for ships
 		this.set(DriverType.SHIP,Champ._100,100./CARGO_POPULATION);
 		this.set(DriverType.PARTICLES,Champ.RAW_VAL,1.0);// default value for particles

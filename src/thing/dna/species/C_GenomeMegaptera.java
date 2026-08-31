@@ -30,6 +30,7 @@ public class C_GenomeMegaptera extends C_GenomeAmniota {
 		                                            // 4 nœuds) lors de ses déplacements et de ses migrations. Sa
 		                                            // vitesse varie nettement selon son comportement du moment.
 		                                            // https://www.lecerclepolaire.com/baleine-a-bosse/
+		makeAnimaliaBivalent(this.alleles);
 		makeAmniotaBivalent(this.alleles);
 	}
 	/** Returns a new GenomeMNalatensis. This method is used for genome mate.

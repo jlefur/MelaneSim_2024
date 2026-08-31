@@ -78,8 +78,7 @@ public abstract class A_Animal extends A_Organism implements I_ConstantNumeric {
 							this.actionNoChoice();// unsatisfied desire
 						}
 					}
-					if(this.target!=null){ // NB JLF: not "else if" since situation may have changed in the preceding
-					                       // step
+					if(this.target!=null){ // NB: no "else if" since situation may have changed in the preceding step
 						// If travel is achieved, process target, reset moves and goals
 						if(this.isArrived(this.speed_UmeterByTick)){
 							this.setHasToSwitchFace(true);
@@ -213,10 +212,14 @@ public abstract class A_Animal extends A_Organism implements I_ConstantNumeric {
 	 * J.Le Fur, 07.2018 */
 	protected void actionNoChoice() {
 		if(this.getDesire().equals(FEED)) this.actionEat();
-		this.actionForage();
+		else if(this.getDesire().equals(WANDER)) this.actionWander();
+		else this.actionForage();
 	}
 	/** set new random move then move */
-	protected void actionForage() { this.setNewRandomMove(); this.actionMove(); }
+	protected void actionForage() {
+		this.setNewRandomMove();
+		this.actionMove();
+	}
 	/** Sucked up by the container */
 	protected boolean processTarget() {
 		// Sucked up by the container target, when arrived at proximity. Does not work for animal targets
@@ -305,7 +308,10 @@ public abstract class A_Animal extends A_Organism implements I_ConstantNumeric {
 	}
 	/** Get a random one; then actionMove, then reset nextMove <br>
 	 * JLF 02.2018 */
-	public void actionWander() { this.setNewRandomMove(); this.actionMove(); }
+	public void actionWander() {
+		this.setNewRandomMove();
+		this.actionMove();
+	}
 	/***/
 	public boolean actionHide() { return false; }
 	/** If desire=FORAGE select the cell set with the best affinity<br>
@@ -315,6 +321,10 @@ public abstract class A_Animal extends A_Organism implements I_ConstantNumeric {
 	 * @version J.E.Longueville & J.Le Fur 2011 / jlefur 03.2012 / Complete rev. JLF 08,10.2017 */
 	protected TreeSet<I_SituatedThing> deliberation(TreeSet<I_SituatedThing> perceivedThings) {
 		if(this.getDesire().equals(FEED)) return this.chooseFood(perceivedThings);
+		else if(this.getDesire().equals(WANDER)){
+			perceivedThings.clear();
+			return perceivedThings;
+		}
 		else{
 			// A_Protocol.event("A_Animal.deliberation", this + " does not desire to FEED (" + this.getDesire() + ")",
 			// isError);
@@ -589,5 +599,8 @@ public abstract class A_Animal extends A_Organism implements I_ConstantNumeric {
 	public boolean testFemale() {
 		return !this.male;
 	}
-	public void setDesire(String desire) { this.setHasToSwitchFace(true); this.desire = desire; }
+	public void setDesire(String desire) {
+		this.setHasToSwitchFace(true);
+		this.desire = desire;
+	}
 }

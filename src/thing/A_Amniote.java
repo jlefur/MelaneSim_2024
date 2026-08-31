@@ -56,7 +56,7 @@ public abstract class A_Amniote extends A_Animal implements I_ReproducingThing {
 	 * it is always the male which interact (mateWithMale) with the female
 	 * @see A_Amniote#mateWithMale COMMENT THE recognized(rodent) CONDITION TO STOP THE PRE-ZYGOTIC AND SCARCITY BARRIERS */
 	protected boolean actionInteract(A_Amniote partner) {
-		if (this.isReadyToMate() && partner.isReadyToMate() && A_Protocol.isBreedingSeason() && recognized(partner)) {
+		if (this.isReadyToMate() && partner.isReadyToMate() && A_Protocol.checkBreedingSeason() && recognized(partner)) {
 			if (this.testMale() && partner.testFemale()) return partner.actionMateWithMale(this);
 			else if (partner.testMale() && this.testFemale()) return this.actionMateWithMale(partner);
 			else return false;
@@ -95,10 +95,10 @@ public abstract class A_Amniote extends A_Animal implements I_ReproducingThing {
 				}
 				// else check REPRODUCTION desire
 				else if (this.getDesire().equals(FEED) || this.getDesire() == "") {
-					if (this.isReadyToMate() && A_Protocol.isBreedingSeason()) this.setDesire(REPRODUCE);
+					if (this.isReadyToMate() && A_Protocol.checkBreedingSeason()) this.setDesire(REPRODUCE);
 					// End of reproduction season
 				}
-				if (!A_Protocol.isBreedingSeason() && this.getDesire().equals(REPRODUCE)) this.setDesire("");
+				if (!A_Protocol.checkBreedingSeason() && this.getDesire().equals(REPRODUCE)) this.setDesire("");
 			}
 			super.step_Utick();
 		}

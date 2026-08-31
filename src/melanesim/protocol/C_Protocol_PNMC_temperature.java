@@ -9,6 +9,7 @@ import org.locationtech.jts.geom.Coordinate;
 
 import data.C_Chronogram;
 import data.C_Event;
+import data.C_Parameters;
 import data.C_ReadRasterDouble;
 import repast.simphony.context.Context;
 import repast.simphony.valueLayer.GridValueLayer;
@@ -48,8 +49,15 @@ public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_ships {
 	// OVERRIDEN METHOD
 	//
 	@Override
-	public void initCalendar() { protocolCalendar.set(2021,Calendar.AUGUST,18); }// for whale development
-	// public void initCalendar() { protocolCalendar.set(2021,Calendar.JULY,15); }// for whale development
+	/** Breeding season for whales JLF 08.206*/
+	protected void initFixedParameters() {
+		C_Parameters.REPRO_START_Umonth = 7;
+		C_Parameters.REPRO_END_Umonth = 10;
+		super.initFixedParameters();
+	}
+	@Override
+//	public void initCalendar() { protocolCalendar.set(2021,Calendar.AUGUST,18); }// for whale development
+	 public void initCalendar() { protocolCalendar.set(2021,Calendar.JULY,15); }// for whale development
 	@Override
 	/** Color the map in black as an alternate view of particles<br>
 	 * Author J.Le Fur 10.2014 TODO JLF 2014.10 should be in presentation package ? */
@@ -84,6 +92,7 @@ public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_ships {
 				case WHALE_EVENT:
 					String[] whaleData = event.value2.split(EVENT_VALUE2_FIELD_SEPARATOR);
 					C_Megaptera oneWhale = new C_Megaptera(event.value1,whaleData[0],"tagged");
+					oneWhale.seta_Tag(true);
 					C_SoilCellMarine homeCell = (C_SoilCellMarine)this.landscape
 					        .getGrid()[event.whereX_Ucell][event.whereY_Ucell];
 					oneWhale.setMyHome(homeCell);
@@ -173,13 +182,13 @@ public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_ships {
 					oneWhale.setTarget(otherWhale);
 					for(int i = 1; i<3; i++) createFollower(oneWhale,sex,i).setTarget(otherWhale);
 				}
-				else for(int i = 1; i<4; i++) createFollower(oneWhale,sex,i).setTarget(oneWhale);// female
+				else for(int i = 1; i<4; i++) createFollower(oneWhale,alterSex,i).setTarget(oneWhale);// three males
 				break;
 		}
 	}
 	protected C_Megaptera createFollower(C_Megaptera oneWhale, String sex, int index) {
 		C_Megaptera otherWhale;
-		otherWhale = new C_Megaptera(oneWhale.retrieveMyId()+"."+index,sex,"follower");
+		otherWhale = new C_Megaptera(oneWhale.retrieveMyId()+"_"+index,sex,"follower");
 		otherWhale.setMyHome(oneWhale.getCurrentSoilCell());
 		contextualizeNewThingInContainer(otherWhale,(C_SoilCellMarine)oneWhale.getCurrentSoilCell());
 		return otherWhale;

@@ -336,7 +336,7 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 		if(C_Parameters.IMAGE){
 			if(object instanceof C_StreamCurrent){
 				sscale = (float)(((C_StreamCurrent)object).getSpeedEast()*((C_StreamCurrent)object).getSpeedEast()
-				        *sscale*STREAM_DISPLAY_SIZE*.8);
+				        *sscale*STREAM_DISPLAY_SIZE);
 			}
 			// nekton image reflects the number of nekton agent within their cell
 			else if(object instanceof C_Nekton){
@@ -356,7 +356,8 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 					sscale = (float)(cell.getTotalChlorophyll_U100()/200.);
 					// sscale = (float) Math.max(Math.pow(cell.getPlanktonTotalChlorophyll(), 2.5) / 450000, .1);
 					// float size = (float) (this.imageScale * 10.);
-					if(C_Parameters.PROTOCOL.equals(PNMC_DRIFTERS)) sscale = this.imageScale;
+					if(C_Parameters.PROTOCOL.equals(PNMC_DRIFTERS)) sscale = this.imageScale;// no chlorophyll in this
+					                                                                         // protocol
 				}
 			}
 			// plankton image reflects the number of plankton agent within their cell
@@ -364,9 +365,12 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 				if(((A_SupportedContainer)object).isa_Tag()) sscale = sscale*5;
 				else sscale = sscale*7;
 			}
-			else if(object instanceof C_Megaptera)sscale = sscale*4;
+			else if(object instanceof C_Megaptera){
+				if(((A_SupportedContainer)object).isa_Tag()) sscale = sscale*9;
+				else sscale = sscale*4;
+			}
 			else if(object instanceof A_HumanUrban){
-				if(((A_HumanUrban)object).isa_Tag()) sscale = sscale*5;
+				if(((A_HumanUrban)object).isa_Tag()) sscale = sscale*3;
 				if(!((A_Animal)object).getDesire().equals(REST)) sscale = sscale*2;
 				else sscale = sscale/2;// taille humains
 			}
@@ -374,14 +378,15 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 
 		// 3.- ELLIPSES are Displayed
 		else if(object instanceof C_StreamCurrent) sscale = (float)0.;// do not show current if no icons selected
+		// 4.- double scale if agent is TAGGED
+		else if(object instanceof A_SupportedContainer && ((A_SupportedContainer)object).isa_Tag()) sscale = sscale*2;
 		// // Show (badly) the relative importance of agents sensing
 		// else if (object instanceof A_Animal) return (float) (this.ELLIPSE_SCALE *
 		// ((A_Animal) object).getSensing_UmeterByTick()
 		// / 10.);
-		else sscale = this.ellipseScale;
-
-		// 4.- double scale if agent is TAGGED
-		// if (object instanceof A_SupportedContainer && ((A_SupportedContainer) object).isa_Tag()) sscale = sscale * 2;
+		else{
+			sscale = this.ellipseScale;
+		}
 		return sscale;
 	}
 
