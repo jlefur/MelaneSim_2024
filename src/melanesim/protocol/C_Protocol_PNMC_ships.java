@@ -3,9 +3,7 @@ package melanesim.protocol;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
-
-import org.locationtech.jts.geom.Coordinate;
-
+//import org.locationtech.jts.geom.Coordinate;
 import data.C_Parameters;
 import repast.simphony.context.Context;
 import thing.A_Animal;

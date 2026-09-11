@@ -3,7 +3,9 @@ package melanesim.protocol;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.TimeZone;
+import java.util.TreeSet;
 
 import org.locationtech.jts.geom.Coordinate;
 
@@ -13,8 +15,14 @@ import data.C_Parameters;
 import data.C_ReadRasterDouble;
 import repast.simphony.context.Context;
 import repast.simphony.valueLayer.GridValueLayer;
+import thing.A_Animal;
+import thing.A_NDS;
+import thing.A_VisibleAgent;
 import thing.C_Megaptera;
+import thing.C_Ship_cargo;
+import thing.I_SituatedThing;
 import thing.ground.C_SoilCellMarine;
+import thing.ground.I_Container;
 
 /** Sea surface temperature displayed on top of nekton layers Account for whales (Megaptera) JLF 06.2026
  * @author Quoc-Kim BUI & Dan Moulinie 05.2026 */
@@ -25,6 +33,7 @@ public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_ships {
 	protected GridValueLayer temperatureValueLayer;
 	protected C_Chronogram whaleActivitiesChrono;
 	protected ArrayList<String> whaleActivitiesList;
+	protected TreeSet<C_Megaptera> whalesOutOfDomain = new TreeSet<C_Megaptera>();
 	//
 	// CONSTRUCTOR
 	//
@@ -49,15 +58,73 @@ public class C_Protocol_PNMC_temperature extends C_Protocol_PNMC_ships {
 	// OVERRIDEN METHOD
 	//
 	@Override
-	/** Breeding season for whales JLF 08.206*/
+	/** Breeding season for whales JLF 08.206 */
 	protected void initFixedParameters() {
 		C_Parameters.REPRO_START_Umonth = 7;
 		C_Parameters.REPRO_END_Umonth = 10;
 		super.initFixedParameters();
 	}
 	@Override
-//	public void initCalendar() { protocolCalendar.set(2021,Calendar.AUGUST,18); }// for whale development
-	 public void initCalendar() { protocolCalendar.set(2021,Calendar.JULY,15); }// for whale development
+	// public void initCalendar() { protocolCalendar.set(2021,Calendar.AUGUST,18); }// for whale development
+	public void initCalendar() { protocolCalendar.set(2021,Calendar.JULY,15); }// for whale development
+	@Override
+	/** Specifically manage ships bouncing at the limits and whales entering or leaving domain */
+	public void step_Utick() {
+		List<A_NDS> agents = new ArrayList<>();
+		for(Object obj:context.getObjects(A_NDS.class)) agents.add((A_NDS)obj);
+		for(A_NDS oneAgent:agents){
+			// Manage whales leaving World
+			if(oneAgent instanceof C_Megaptera) checkWhaleLeavingWorld((C_Megaptera)oneAgent);
+		}
+		// Manage whales reentering World
+		List<C_Megaptera> tmp = new ArrayList<C_Megaptera>();
+		for(C_Megaptera obj:this.whalesOutOfDomain) tmp.add(obj);
+		for(C_Megaptera oneWhale:tmp){
+			oneWhale.manageActivities();// check if whale has reentered or left domain
+			if(oneWhale.hasEnteredDomain){
+				this.whalesOutOfDomain.remove(oneWhale);
+				this.contextualizeNewThingInContainer(oneWhale,oneWhale.retrieveMyHome());
+				if(C_Parameters.VERBOSE)
+				    A_Protocol.event("C_Protocol_PNMC_ships.step_Utick()",oneWhale.toString()+" has ENTERED domain",
+				            isNotError);
+				for(A_Animal follower:oneWhale.getAnimalsTargetingMe()) //
+				    if((follower instanceof C_Megaptera) && this.whalesOutOfDomain.remove(follower)){
+					    // this.context.add(follower);
+					    follower.hasEnteredDomain = true;
+					    follower.hasLeftDomain = false;
+					    this.contextualizeNewThingInContainer(follower,follower.retrieveMyHome());
+					    if(C_Parameters.VERBOSE)
+					        A_Protocol.event("C_Protocol_PNMC_ships.step_Utick()",follower.toString()
+					                +" has ENTERED domain",isNotError);
+				    }
+				oneWhale.hasEnteredDomain = false;
+				oneWhale.setEnergy_Ukcal(WHALE_ENERGY_Ukcal);
+				oneWhale.manageActivities();
+			}
+		}
+		super.step_Utick();
+	}
+	protected void checkWhaleLeavingWorld(C_Megaptera oneWhale) {
+		if(oneWhale.hasLeftDomain && !this.whalesOutOfDomain.contains(oneWhale)){
+			A_Protocol.event("C_Protocol_PNMC_ships.step_Utick()",oneWhale.toString()+" has left domain",isNotError);
+			I_Container currentCell;// temp variable
+			currentCell = oneWhale.getCurrentSoilCell();
+			currentCell.agentLeaving((I_SituatedThing)oneWhale);
+			if(oneWhale.getTarget() instanceof C_Megaptera) checkWhaleLeavingWorld((C_Megaptera)oneWhale.getTarget());
+			oneWhale.discardCellTarget();
+			oneWhale.setMyHome(currentCell);
+			this.context.remove(oneWhale);
+			this.whalesOutOfDomain.add((C_Megaptera)oneWhale);
+			for(A_Animal follower:oneWhale.getAnimalsTargetingMe()) if(follower instanceof C_Megaptera && !follower
+			        .isa_Tag())
+			// && ((C_Megaptera)follower).getActivityList().isEmpty()){
+			{
+				follower.hasEnteredDomain = false;
+				follower.hasLeftDomain = true;
+				checkWhaleLeavingWorld((C_Megaptera)follower);
+			}
+		}
+	}
 	@Override
 	/** Color the map in black as an alternate view of particles<br>
 	 * Author J.Le Fur 10.2014 TODO JLF 2014.10 should be in presentation package ? */

@@ -8,14 +8,6 @@
 			</string>
 		</entry>
 		<entry>
-			<string>thing.C_Megaptera</string>
-			<string>presentation.display.C_StyleAgent</string>
-		</entry>
-				<entry>
-			<string>thing.C_Plankton</string>
-			<string>presentation.display.C_StyleAgent</string>
-		</entry>
-		<entry>
 			<string>thing.C_Ship_cargo</string>
 			<string>presentation.display.C_StyleAgent</string>
 		</entry>
@@ -33,14 +25,6 @@
 		<entry>
 			<string>thing.ground.C_LandPlot</string>
 			<string>thing.ground.C_LandPlot.style_PNMC.01.xml</string>
-		</entry>
-		<entry>
-			<string>thing.C_Megaptera</string>
-			<null />
-		</entry>
-		<entry>
-			<string>thing.C_Plankton</string>
-			<null />
 		</entry>
 		<entry>
 			<string>thing.C_Ship_cargo</string>
@@ -70,19 +54,11 @@
 		</entry>
 		<entry>
 			<string>presentation.display.C_Background</string>
-			<int>2</int>
-		</entry>
-		<entry>
-			<string>thing.C_Megaptera</string>
-			<int>4</int>
-		</entry>
-		<entry>
-			<string>thing.C_Plankton</string>
 			<int>1</int>
 		</entry>
 		<entry>
 			<string>thing.C_Ship_cargo</string>
-			<int>3</int>
+			<int>2</int>
 		</entry>
 	</layerOrder>
 	<projections>
