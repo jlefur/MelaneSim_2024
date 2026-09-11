@@ -35,7 +35,7 @@ public class C_Megaptera extends A_Amniote implements I_MarineActor, I_ConstantP
 		this.setAge_Uday(4380.);// 12 years TODO jlf 06.2026 number in source age at creation adult whales
 		this.sexualMature = true;
 		if(this.testFemale()) this.setDesire(WANDER);
-		this.energy_Ukcal = WHALE_ENERGY_Ukcal;// TODO number in source NOT OK JLF 08.2026 energy whales
+		this.energy_Ukcal = WHALE_ENERGY_Ukcal;
 		if(C_Parameters.VERBOSE) A_Protocol.event("C_Megaptera.C_Megaptera(): ",this.toString()+" CREATED",isNotError);
 	}
 	//
@@ -45,8 +45,21 @@ public class C_Megaptera extends A_Amniote implements I_MarineActor, I_ConstantP
 	public boolean actionMateWithMale(I_ReproducingThing male) { return false; }
 	@Override
 	public void step_Utick() {
+		if(this.activityList.isEmpty() && this.target==null){
+			// TODO number in source JLF 09.2026 in nov. all whales are back to antartica
+			if(A_Protocol.protocolCalendar.get(Calendar.MONTH)==10) this.MarkAsLeftDomain();
+			// TODO number in source JLF 09.2026 prematurely leaves the domain
+			else if(Math.random()>.9) this.MarkAsLeftDomain();
+		}
 		super.step_Utick();
 		this.manageActivities();
+		this.actionWander();
+	}
+	/** Wander with slow factor JLF 02.2018 */
+	@Override
+	public void actionWander() {
+		this.setNewRandomMove(this.speed_UmeterByTick/SLOW_FACTOR);
+		this.actionMove();
 	}
 	@Override
 	protected void checkDanger() {}
@@ -57,25 +70,18 @@ public class C_Megaptera extends A_Amniote implements I_MarineActor, I_ConstantP
 		this.activityList = null;
 		super.discardThis();
 	}
-	/** Compute next move to target, move on the GUI */
-	@Override
-	protected void actionMoveToDestination() {
-		super.actionMoveToDestination();
-		// if (C_Parameters.VERBOSE)
-		// A_VisibleAgent.myLandscape.getValueLayer().set(10,this.currentSoilCell.retrieveLineNo(),this.currentSoilCell.retrieveColNo());//
-		// @@vert bouteille
-		// MyvalueLayer.set(10,this.currentSoilCell.retrieveLineNo(),this.currentSoilCell.retrieveColNo());// @@vert
-		// bouteille
-	}
-	/** Get a random one; then actionMove, then reset nextMove <br>
-	 * JLF 02.2018 */
-	public void actionWander() {
-		this.setNewRandomMove(this.speed_UmeterByTick/SLOW_FACTOR);
-		this.actionMove();
-	}
 	//
 	// METHODS
 	//
+	public void MarkAsLeftDomain() {
+		// is out of domain; switch tags in/out
+		this.hasLeftDomain = true;
+		for(A_Animal follower:this.animalsTargetingMe){
+			follower.hasLeftDomain = true;
+			follower.hasEnteredDomain = false;
+		}
+		this.hasEnteredDomain = false;
+	}
 	/** Whales leaving domain have to remove their cell target but not the whale they target if any */
 	public void discardCellTarget() {
 		if((this.target!=null) && (this.target instanceof C_SoilCellMarine)){
@@ -126,14 +132,7 @@ public class C_Megaptera extends A_Amniote implements I_MarineActor, I_ConstantP
 						this.computeMaxDispersalDistance_Umeter();
 					}
 				}
-				else{ // is out of domain; switch tags in/out
-					this.hasLeftDomain = true;
-					for(A_Animal follower:this.animalsTargetingMe){
-						follower.hasLeftDomain = true;
-						follower.hasEnteredDomain = false;
-					}
-					this.hasEnteredDomain = false;
-				}
+				else MarkAsLeftDomain(); // is out of domain; switch tags in/out
 			}
 		}
 	}
@@ -157,7 +156,9 @@ public class C_Megaptera extends A_Amniote implements I_MarineActor, I_ConstantP
 				case "H":{
 					double activityTime = Double.parseDouble(keyTime[0])+Double.parseDouble(keyTime[1])/60;
 					if(((simulationTime_Utick-activityTime)>=0) && ((simulationTime_Utick
-					        -activityTime)<=C_ConvertTimeAndSpace.tick_Ucalendar)) flag = true;
+					        -activityTime)<=C_ConvertTimeAndSpace.tick_Ucalendar)){
+						flag = true;
+					}
 				}
 					break;
 				case "M":{
@@ -198,4 +199,5 @@ public class C_Megaptera extends A_Amniote implements I_MarineActor, I_ConstantP
 	}
 	@Override
 	public DriverType getTypeActeur() { return DriverType.WHALE; }
+	public TreeMap<String,Coordinate> getActivityList() { return activityList; }
 }

@@ -551,6 +551,10 @@ public abstract class A_Animal extends A_Organism implements I_ConstantNumeric {
 	 * @param speed agent or agent's vehicle speed
 	 * @author LeFur 08.2012, 08.2017 */
 	protected boolean isArrived(double speed) {
+		if(this.isDead()){
+			A_Protocol.event("A_Animal.isArrived",this+" is dead, returning false",isError);
+			return false;
+		}
 		Coordinate currentCoord_Umeter = this.getCoordinate_Umeter();
 		if(this.target==null){
 			A_Protocol.event("A_Animal.isArrived",this+" owns no target, returning false",isError);

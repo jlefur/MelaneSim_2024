@@ -30,6 +30,7 @@ import repast.simphony.engine.environment.RunState;
 import repast.simphony.engine.schedule.ScheduledMethod;
 import repast.simphony.essentials.RepastEssentials;
 import repast.simphony.util.collections.IndexedIterable;
+import thing.C_Plankton;
 import thing.A_Animal;
 import thing.A_NDS;
 import thing.A_Organism;

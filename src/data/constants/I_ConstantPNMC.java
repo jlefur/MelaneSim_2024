@@ -84,4 +84,7 @@ public interface I_ConstantPNMC extends I_ConstantString {
 	//
 	public static final String WHALE_ACTIVITY_CHRONO = "/whale_Mno_ARGOS_Tracks.csv";
 	public static final double SLOW_FACTOR = 6.; // Slow motion when wandering, JLF 08.2026
+	// 158.785994, -46.366811 out of domain
+	public static final Coordinate backToAntartica = new Coordinate(61.89424508108082,-442.03654474999996);
+
 }

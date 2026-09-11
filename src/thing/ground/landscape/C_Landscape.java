@@ -541,6 +541,10 @@ public class C_Landscape implements I_ConstantString {
 	 * @return Coordinate of location in Ucell */
 	protected Coordinate getThingCoord_Ucell(I_SituatedThing thing) {
 		NdPoint location_Ucs = continuousSpace.getLocation(thing);
+		if(location_Ucs==null){
+			A_Protocol.event("C_Landscape.getThingCoord_Ucell: ","Location of "+thing+" is null",isError);
+			return null;
+		}
 		Coordinate location_Ucell = new Coordinate(location_Ucs.getX()/C_Parameters.CELL_SIZE_UcontinuousSpace,
 		        location_Ucs.getY()/C_Parameters.CELL_SIZE_UcontinuousSpace); // cs / cs.cell^-1= cell
 		// MS & PAM 2016.10 get if position not exist
@@ -564,17 +568,9 @@ public class C_Landscape implements I_ConstantString {
 	public Coordinate getThingCoord_Ucs(I_SituatedThing thing) {
 		NdPoint location = continuousSpace.getLocation(thing);
 		if(location!=null) return new Coordinate(location.getX(),location.getY());
-		else// return null;
-		{
-			// Soil cells normally return null (not contextualized in space)
-			if(thing instanceof C_SoilCell) {
-				return thing.getCoordinate_Ucs();
-			}
-			// else problem
-			else{
-				A_Protocol.event("C_Landscape.getThingCoord_Ucs","PB "+thing,isError);
-				return null;
-			}
+		else{
+			A_Protocol.event("C_Landscape.getThingCoord_Ucs: ","Location of "+thing+" is null",isError);
+			return null;
 		}
 	}
 	public I_Container[][] getGrid() { return grid; }
