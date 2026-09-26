@@ -105,12 +105,15 @@ public class C_Protocol_PNMC_ships extends C_Protocol_PNMC_nekton {
 	/** Add cargo ship at any end of the main corridor - JLF 10.2025 */
 	protected void initPopulations() {
 		super.initPopulations();
-		for(int i = 1; i<=CARGO_POPULATION; i++){
+		double cargoPopulation = getCargoPopulation();
+		for(int i = 1; i<=cargoPopulation; i++){
 			C_Ship_cargo cargo = createCargoShip();
 			this.contextualizeNewThingInContainer(cargo,(I_Container)cargo.getTarget());
 			cargo.setNewTarget();
 		}
-		System.out.println("C_Protocol_PNMC_ships.init: Population of "+CARGO_POPULATION
+		System.out.println("C_Protocol_PNMC_ships.init: Population of "+cargoPopulation
 		        +" cargo ship(s) created and positioned");
 	}
+	/** Number of cargo ships to create - overridable by daughter protocols - MIAGE 2026 */
+	protected double getCargoPopulation() { return CARGO_POPULATION; }
 }

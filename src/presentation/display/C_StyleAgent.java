@@ -22,6 +22,7 @@ import thing.A_VisibleAgent;
 import thing.C_Megaptera;
 import thing.C_Nekton;
 import thing.C_Plankton;
+import thing.C_Ship_astar;
 import thing.C_Ship_cargo;
 import thing.C_StreamCurrent;
 import thing.I_SituatedThing;
@@ -290,7 +291,8 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 				if(agent instanceof C_Vegetation){
 					spatial = factory.createCircle(CIRCLE_RADIUS*0.5f,3);// triangle shape
 				} // mature=circle, immature=square
-				else if(agent instanceof C_Ship_cargo) return factory.createCircle(CIRCLE_RADIUS*2.5f,3);
+				else if(agent instanceof C_Ship_cargo || agent instanceof C_Ship_astar) return factory.createCircle(
+				        CIRCLE_RADIUS*2.5f,3);
 				else
 				    if(agent instanceof A_Amniote && !((A_Amniote)agent).isSexualMature())
 				        spatial = factory.createRectangle((int)CIRCLE_RADIUS,(int)CIRCLE_RADIUS);
@@ -365,6 +367,7 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 				if(((A_SupportedContainer)object).isa_Tag()) sscale = sscale*5;
 				else sscale = sscale*7;
 			}
+			else if(object instanceof C_Ship_astar) sscale = sscale*7;
 			else if(object instanceof C_Megaptera){
 				if(((A_SupportedContainer)object).isa_Tag()) sscale = sscale*9;
 				else sscale = sscale*4;

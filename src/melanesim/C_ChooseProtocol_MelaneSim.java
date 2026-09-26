@@ -28,6 +28,7 @@ public class C_ChooseProtocol_MelaneSim extends C_ChooseProtocol_Rodents impleme
 	private JPanel pnmc_nektonBox = new JPanel();
 	private JPanel pnmc_temperatureBox = new JPanel();
 	private JPanel pnmc_shipBox = new JPanel();
+	private JPanel pnmc_shipAstarBox = new JPanel();
 
 	public static void main(String[] args) { new C_ChooseProtocol_MelaneSim(); }
 	public C_ChooseProtocol_MelaneSim() {
@@ -63,6 +64,12 @@ public class C_ChooseProtocol_MelaneSim extends C_ChooseProtocol_Rodents impleme
 		pnmc_temperatureBox.setBorder(BorderFactory.createTitledBorder("+Sea surface temperature"));
 		this.pnmc_temperatureBox.add(addImageButton("icons/titleTemperature.gif","PNMC5-temperature"));
 		this.panel.add(pnmc_temperatureBox);
+
+		pnmc_shipAstarBox.setLayout(new BoxLayout(pnmc_shipAstarBox,BoxLayout.X_AXIS));
+		pnmc_shipAstarBox.setBorder(BorderFactory.createTitledBorder(
+		        "+A-to-B ship (direct move, A* not implemented yet)"));
+		this.pnmc_shipAstarBox.add(addImageButton("icons/titleShips.gif","PNMC6-ships_astar"));
+		this.panel.add(pnmc_shipAstarBox);
 
 		this.pack();
 		this.setVisible(true);

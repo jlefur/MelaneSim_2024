@@ -18,6 +18,7 @@ import thing.A_NDS;
 import thing.C_Megaptera;
 import thing.C_Nekton;
 import thing.C_Plankton;
+import thing.C_Ship_astar;
 import thing.C_Ship_cargo;
 import thing.C_StreamCurrent;
 import thing.I_SituatedThing;
@@ -112,6 +113,7 @@ public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC, 
 			if(((C_Ship_cargo)agent).getDestination().equals("NORTH")) return SHIP_CARGO_NORTHWARD_ICON;
 			else return SHIP_CARGO_SOUTHWARD_ICON;
 		}
+		else if(agent instanceof C_Ship_astar) return SHIP_CARGO_NORTHWARD_ICON;
 		else if(agent instanceof C_Megaptera){
 			C_Megaptera whale = (C_Megaptera)agent;
 			if(!whale.isSexualMature()) return WHALE_CALF_ICON;
