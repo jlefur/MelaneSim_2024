@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import org.locationtech.jts.geom.Coordinate;
 
 import data.C_Parameters;
-import data.constants.rodents.I_ConstantStringRodents;
 import melanesim.protocol.rodents.C_ProtocolDodel2;
 import melanesim.util.astar.AStar;
 import thing.A_VisibleAgent;
@@ -14,7 +13,7 @@ import thing.ground.C_SoilCellUrban;
 import thing.ground.I_Container;
 
 /** @author P.A. Mboup & J. Le Fur 2014, rev. Mboup 04.2016, added Astar, Le Fur 04.2022 */
-public class C_PathWandererAstar implements I_ConstantStringRodents {
+public class C_PathWandererAstar {
 	//
 	// FIELDS
 	//
