@@ -12,6 +12,7 @@ public interface I_ConstantImagesNames {
 	public static final String MICRONEKTON_ICON = "../NEKTON";
 	public static final String SHIP_CARGO_NORTHWARD_ICON = "../SHIP_CARGO_NORTHWARD";
 	public static final String SHIP_CARGO_SOUTHWARD_ICON = "../SHIP_CARGO_SOUTHWARD";
+	public static final String HARBOUR_ICON = "../HARBOUR";
 	public static final String WHALE_MALE_ICON = "../whaleMale";
 	public static final String WHALE_FEMALE_ICON = "../whaleFemale";
 	public static final String WHALE_MALE_TAGGED_ICON = "../whaleMaleTagged";

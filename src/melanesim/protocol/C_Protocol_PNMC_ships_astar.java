@@ -1,17 +1,24 @@
 package melanesim.protocol;
 
+import java.util.ArrayList;
+import java.util.Map.Entry;
 import java.util.TreeMap;
 
 import data.C_Parameters;
+import melanesim.C_ContextCreator;
+import melanesim.util.C_PathWandererAstar_Marine;
 import repast.simphony.context.Context;
 import thing.C_Ship_astar;
 import thing.dna.C_GenomeAnimalia;
+import thing.ground.C_Harbour;
 import thing.ground.C_SoilCellMarineNode;
 import thing.ground.landscape.C_LandscapeMarineGraphed;
 
-/** First step toward A* powered ship navigation: on top of the regular ships activities (with the cargo
- * population trimmed down to keep the scene readable), adds one boat that travels directly (straight line)
- * from a fixed point A to a fixed point B. The A* pathfinding engine will later replace this direct move.
+/**
+ * Déplacement des bateaux entre les ports avec A*.
+ * Les bateaux évitent la terre et suivent les chemins calculés.
+ * Les chemins sont gardés dans {@link #paths}.
+ * @see I_ConstantPNMC#HARBOURS
  * @author MIAGE 2026 */
 public class C_Protocol_PNMC_ships_astar extends C_Protocol_PNMC_ships {
 	//
@@ -20,14 +27,34 @@ public class C_Protocol_PNMC_ships_astar extends C_Protocol_PNMC_ships {
 	/** Stored list of paths already computed */
 	public static TreeMap<String, C_SoilCellMarineNode[]> paths;
 	public static int nbPaths = 0;
+	protected ArrayList<C_Harbour> harbours = new ArrayList<C_Harbour>();
 	//
 	// CONSTRUCTOR
 	//
-	public C_Protocol_PNMC_ships_astar(Context<Object> ctxt) { super(ctxt); }
+	public C_Protocol_PNMC_ships_astar(Context<Object> ctxt) {
+		super(ctxt);
+		C_Protocol_PNMC_ships_astar.paths = new TreeMap<String, C_SoilCellMarineNode[]>();
+		C_Protocol_PNMC_ships_astar.nbPaths = 0;
+	}
 	//
 	// SPECIFIC METHOD
 	//
-	public C_Ship_astar createAstarShip() { return new C_Ship_astar(new C_GenomeAnimalia()); }
+	public C_Ship_astar createAstarShip(C_Harbour homeHarbour) {
+		return new C_Ship_astar(new C_GenomeAnimalia(),homeHarbour,this.harbours);
+	}
+	/** Récupère la cellule marine la plus proche de chaque port - MIAGE 2026 */
+	protected void initHarbours() {
+		this.harbours.clear();
+		for(Entry<String,double[]> entry:HARBOURS.entrySet()){
+			C_SoilCellMarineNode berth = C_PathWandererAstar_Marine.closestSea(C_Harbour.getCell(entry.getValue()[0],
+			        entry.getValue()[1]));
+			if(berth==null) continue;
+			C_Harbour harbour = new C_Harbour(entry.getKey(),berth);
+			this.contextualizeNewThingInContainer(harbour,berth);
+			this.harbours.add(harbour);
+		}
+		System.out.println("C_Protocol_PNMC_ships_astar.init: "+this.harbours.size()+" harbour(s) created");
+	}
 	//
 	// OVERRIDEN METHODS
 	//
@@ -46,14 +73,18 @@ public class C_Protocol_PNMC_ships_astar extends C_Protocol_PNMC_ships {
 		}
 	}
 	@Override
-	/** TEMP 0 to isolate the Astar ship for visual testing (Noumea->Lifou) - set back to 1 once confirmed - MIAGE 2026 */
 	protected double getCargoPopulation() { return 0.; }
 	@Override
-	/** Add the single A-to-B ship at Noumea - MIAGE 2026 */
 	protected void initPopulations() {
 		super.initPopulations();
-		C_Ship_astar boat = createAstarShip();
-		this.contextualizeNewThingInContainer(boat,C_Ship_astar.getPointA());
-		System.out.println("C_Protocol_PNMC_ships_astar.init: 1 Astar-ready ship created and positioned");
+		this.initHarbours();
+		if(this.harbours.isEmpty()) return;
+		for(int i = 0; i<SHIPS_ASTAR_POPULATION; i++){
+			int index = (int)(C_ContextCreator.randomGeneratorForInitialisation.nextDouble()*this.harbours.size());
+			C_Harbour home = this.harbours.get(Math.min(index,this.harbours.size()-1));
+			this.contextualizeNewThingInContainer(createAstarShip(home),home.getBerthCell());
+		}
+		System.out.println("C_Protocol_PNMC_ships_astar.init: "+SHIPS_ASTAR_POPULATION
+		        +" A* ship(s) created and berthed in harbours");
 	}
 }

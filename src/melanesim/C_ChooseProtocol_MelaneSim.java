@@ -67,7 +67,7 @@ public class C_ChooseProtocol_MelaneSim extends C_ChooseProtocol_Rodents impleme
 
 		pnmc_shipAstarBox.setLayout(new BoxLayout(pnmc_shipAstarBox,BoxLayout.X_AXIS));
 		pnmc_shipAstarBox.setBorder(BorderFactory.createTitledBorder(
-		        "+A-to-B ship (direct move, A* not implemented yet)"));
+		        "+A* ships sailing between harbours"));
 		this.pnmc_shipAstarBox.add(addImageButton("icons/titleShips.gif","PNMC6-ships_astar"));
 		this.panel.add(pnmc_shipAstarBox);
 

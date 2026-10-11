@@ -46,6 +46,32 @@ public interface I_ConstantPNMC extends I_ConstantString {
 	// OTHERS
 	//
 	public static int TERRESTRIAL_MIN_AFFINITY = 99;
+	//
+	// Bateaux A* et ports (protocole PNMC_SHIPS_ASTAR) - MIAGE 2026
+	//
+	public static final double RASTER_LONGITUDE_WEST_Udegree = 156.;
+	public static final double RASTER_LATITUDE_SOUTH_Udegree = -26.5;
+	public static final double RASTER_CELL_LONGITUDE_Udegree = 18.5/412.;
+	public static final double RASTER_CELL_LATITUDE_Udegree = 12./268.;
+
+	public static final java.util.LinkedHashMap<String,double[]> HARBOURS = new java.util.LinkedHashMap<String,double[]>() {
+		{
+			put("Noumea",new double[] {166.44,-22.27});
+			put("Thio",new double[] {166.22,-21.61});
+			put("Ile des Pins",new double[] {167.44,-22.66});
+			put("Mare",new double[] {167.88,-21.55});
+			put("Lifou",new double[] {167.27,-20.92});
+			put("Ouvea",new double[] {166.57,-20.64});
+			put("Poindimie",new double[] {165.33,-20.93});
+			put("Nepoui",new double[] {164.97,-21.33});
+			put("Koumac",new double[] {164.27,-20.57});
+			put("Belep",new double[] {163.66,-19.72});
+		}
+	};
+	/** Nombre de bateaux */
+	public static final int SHIPS_ASTAR_POPULATION = 8;
+	/** Temps d'attente avant que le bateau reparte pour le prochain port */
+	public static final double SHIP_ASTAR_STOPOVER_Uday = 1.;
 	/** Used to lighten the GUI calculations: interval where to post current and plankton particles<br>
 	 * @see C_Protocol_PNMC_drifters#initPopulations() */
 	public static final int PARTICLE_CELLS_SPACING = 5; // 3 //

@@ -11,32 +11,45 @@ package thing.ground;
  * Euclidean distance or Manhattan distance.<br>
  * • F Cost: The total combined cost. The algorithm always prioritizes expanding
  * nodes with the absolute lowest F cost.<br>
- * 
- * @author Marcelo Surriabre 2018, adapted J. Le Fur, 2022, oct.2026
+ * La terre est un obstacle.
+ *
+ * @author Marcelo Surriabre 2018, adapted J. Le Fur, 2022, oct.2026, rev. MIAGE 2026
  */
 public class C_SoilCellMarineNode extends C_SoilCellMarine {
 
 	private int g;
 	private int f;
 	private int h;
-	private boolean isBlock;
 	private C_SoilCellMarineNode parent;
 
 	public C_SoilCellMarineNode(int aff, int lineNo, int colNo) {
 		super(aff, lineNo, colNo);
 	}
 
-	public void calculateHeuristic(C_SoilCellMarineNode finalNode) {
-		this.h = Math.abs(finalNode.retrieveLineNo() - this.lineNo) + Math.abs(finalNode.retrieveColNo() - this.colNo);
+	/** Efface la recherche d'avant et calcule la distance jusqu'à finalNode */
+	public void resetNodeData(C_SoilCellMarineNode finalNode, int hvCost, int diagonalCost) {
+		this.parent = null;
+		this.g = Integer.MAX_VALUE;
+		int dx = Math.abs(finalNode.retrieveLineNo() - this.lineNo);
+		int dy = Math.abs(finalNode.retrieveColNo() - this.colNo);
+		this.h = hvCost * Math.max(dx, dy) + (diagonalCost - hvCost) * Math.min(dx, dy);
+		this.f = Integer.MAX_VALUE;
 	}
 
-	public void setNodeData(C_SoilCellMarineNode currentNode, int cost) {
-		int gCost = currentNode.g + cost;
-		this.parent = currentNode;
-		this.g = gCost;
+	/** Case de départ : pas de parent, coût zéro */
+	public void initAsStart() {
+		this.parent = null;
+		this.g = 0;
 		calculateFinalCost();
 	}
 
+	public void setNodeData(C_SoilCellMarineNode currentNode, int cost) {
+		this.parent = currentNode;
+		this.g = currentNode.g + cost;
+		calculateFinalCost();
+	}
+
+	/** @return true si passer par currentNode est plus court (toujours vrai à la première visite) */
 	public boolean checkBetterPath(C_SoilCellMarineNode currentNode, int cost) {
 		int gCost = currentNode.g + cost;
 		if (gCost < this.g) {
@@ -47,14 +60,20 @@ public class C_SoilCellMarineNode extends C_SoilCellMarine {
 	}
 
 	private void calculateFinalCost() {
-		int finalCost = this.g + this.h;
-		this.f = finalCost;
+		this.f = this.g + this.h;
 	}
 
 	@Override
 	public boolean equals(Object arg0) {
+		if (this == arg0) return true;
+		if (!(arg0 instanceof C_SoilCellMarineNode)) return false;
 		C_SoilCellMarineNode other = (C_SoilCellMarineNode) arg0;
 		return this.retrieveLineNo() == other.retrieveLineNo() && this.retrieveColNo() == other.retrieveColNo();
+	}
+
+	@Override
+	public int hashCode() {
+		return 31 * this.lineNo + this.colNo;
 	}
 
 	@Override
@@ -70,7 +89,8 @@ public class C_SoilCellMarineNode extends C_SoilCellMarine {
 		return parent;
 	}
 
+	/** La terre bloque les bateaux */
 	public boolean isBlock() {
-		return this.isBlock;
+		return this.isTerrestrial();
 	}
 }

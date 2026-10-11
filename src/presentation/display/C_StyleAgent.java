@@ -27,6 +27,7 @@ import thing.C_Ship_cargo;
 import thing.C_StreamCurrent;
 import thing.I_SituatedThing;
 import thing.ground.A_SupportedContainer;
+import thing.ground.C_Harbour;
 import thing.ground.C_SoilCellMarine;
 import thing.rodents.A_HumanUrban;
 import thing.rodents.C_Vegetation;
@@ -70,6 +71,7 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 		factory.registerImage(MICRONEKTON_ICON,selectImg.loadImage(MICRONEKTON_ICON));
 		factory.registerImage(SHIP_CARGO_NORTHWARD_ICON,selectImg.loadImage(SHIP_CARGO_NORTHWARD_ICON));
 		factory.registerImage(SHIP_CARGO_SOUTHWARD_ICON,selectImg.loadImage(SHIP_CARGO_SOUTHWARD_ICON));
+		factory.registerImage(HARBOUR_ICON,selectImg.loadImage(HARBOUR_ICON));
 		factory.registerImage(WHALE_MALE_ICON,selectImg.loadImage(WHALE_MALE_ICON));
 		factory.registerImage(WHALE_FEMALE_ICON,selectImg.loadImage(WHALE_FEMALE_ICON));
 		factory.registerImage(WHALE_MALE_TAGGED_ICON,selectImg.loadImage(WHALE_MALE_TAGGED_ICON));
@@ -293,6 +295,8 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 				} // mature=circle, immature=square
 				else if(agent instanceof C_Ship_cargo || agent instanceof C_Ship_astar) return factory.createCircle(
 				        CIRCLE_RADIUS*2.5f,3);
+				else if(agent instanceof C_Harbour) return factory.createRectangle((int)(CIRCLE_RADIUS*3),
+				        (int)(CIRCLE_RADIUS*3));
 				else
 				    if(agent instanceof A_Amniote && !((A_Amniote)agent).isSexualMature())
 				        spatial = factory.createRectangle((int)CIRCLE_RADIUS,(int)CIRCLE_RADIUS);
@@ -368,6 +372,7 @@ public class C_StyleAgent implements StyleOGL2D<I_SituatedThing>, I_ConstantStri
 				else sscale = sscale*7;
 			}
 			else if(object instanceof C_Ship_astar) sscale = sscale*7;
+			else if(object instanceof C_Harbour) sscale = sscale*5;
 			else if(object instanceof C_Megaptera){
 				if(((A_SupportedContainer)object).isa_Tag()) sscale = sscale*9;
 				else sscale = sscale*4;

@@ -16,6 +16,10 @@
 			<string>presentation.display.C_StyleAgent</string>
 		</entry>
 		<entry>
+			<string>thing.ground.C_Harbour</string>
+			<string>presentation.display.C_StyleAgent</string>
+		</entry>
+		<entry>
 			<string>thing.ground.C_LandPlot</string>
 			<string>repast.simphony.visualization.editedStyle.EditedStyle2D
 			</string>
@@ -36,6 +40,10 @@
 		</entry>
 		<entry>
 			<string>thing.C_Ship_astar</string>
+			<null />
+		</entry>
+		<entry>
+			<string>thing.ground.C_Harbour</string>
 			<null />
 		</entry>
 	</editedStyles>
@@ -69,8 +77,12 @@
 			<int>2</int>
 		</entry>
 		<entry>
-			<string>thing.C_Ship_astar</string>
+			<string>thing.ground.C_Harbour</string>
 			<int>3</int>
+		</entry>
+		<entry>
+			<string>thing.C_Ship_astar</string>
+			<int>4</int>
 		</entry>
 	</layerOrder>
 	<projections>

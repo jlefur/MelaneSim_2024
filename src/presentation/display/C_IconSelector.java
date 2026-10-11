@@ -31,6 +31,7 @@ import thing.dna.species.rodents.C_GenomeMastoNatalensis;
 import thing.dna.species.rodents.C_GenomeMastomys;
 import thing.ground.A_SupportedContainer;
 import thing.ground.C_BurrowSystem;
+import thing.ground.C_Harbour;
 import thing.ground.C_Market;
 import thing.ground.C_Nest;
 import thing.ground.C_SoilCellMarine;
@@ -114,6 +115,7 @@ public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC, 
 			else return SHIP_CARGO_SOUTHWARD_ICON;
 		}
 		else if(agent instanceof C_Ship_astar) return SHIP_CARGO_NORTHWARD_ICON;
+		else if(agent instanceof C_Harbour) return HARBOUR_ICON;
 		else if(agent instanceof C_Megaptera){
 			C_Megaptera whale = (C_Megaptera)agent;
 			if(!whale.isSexualMature()) return WHALE_CALF_ICON;
@@ -316,6 +318,8 @@ public class C_IconSelector implements I_ConstantStringRodents, I_ConstantPNMC, 
 		if(agent instanceof C_Nekton) return Color.cyan;
 		else if(agent instanceof C_Plankton) return new Color(172,117,213);// violet
 		else if(agent instanceof C_Ship_cargo) return Color.red;
+		else if(agent instanceof C_Ship_astar) return Color.orange;
+		else if(agent instanceof C_Harbour) return Color.yellow;
 		return Color.green;
 	}
 

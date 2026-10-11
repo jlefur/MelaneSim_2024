@@ -6,8 +6,10 @@ import thing.A_VisibleAgent;
 import thing.ground.C_SoilCellMarineNode;
 import thing.ground.I_Container;
 
-/** A Star Algorithm
- * @author Marcelo Surriabre 2017, adapted J. Le Fur, april 2022 */
+/** Algorithme A* sur la mer : la terre est un obstacle (@see C_SoilCellMarineNode#isBlock()).<br>
+ * Les cases sont remises à zéro à chaque recherche. Une case peut être plusieurs fois dans la liste, on ignore les
+ * doublons.
+ * @author Marcelo Surriabre 2017, adapted J. Le Fur, april 2022, rev. MIAGE 2026 */
 public class AStarMarine {
 	private static int DEFAULT_HV_COST = 10; // Horizontal - Vertical Cost
 	private static int DEFAULT_DIAGONAL_COST = 14;
@@ -16,7 +18,6 @@ public class AStarMarine {
 	private I_Container[][] searchArea;
 	private PriorityQueue<C_SoilCellMarineNode> openList;
 	private Set<C_SoilCellMarineNode> closedSet;
-//	private C_SoilCellMarineNode initialCellNode;
 	private C_SoilCellMarineNode finalCellNode;
 
 	public AStarMarine() {
@@ -25,8 +26,9 @@ public class AStarMarine {
 		this.searchArea = A_VisibleAgent.myLandscape.getGrid();
 	}
 
-	public ArrayList<C_SoilCellMarineNode> findPath(C_SoilCellMarineNode initialCellNode, C_SoilCellMarineNode finalCellNode) {
-//		this.initialCellNode = initialCellNode;
+	/** @return les cases du départ à l'arrivée (incluses), liste vide si pas de chemin */
+	public ArrayList<C_SoilCellMarineNode> findPath(C_SoilCellMarineNode initialCellNode,
+			C_SoilCellMarineNode finalCellNode) {
 		this.finalCellNode = finalCellNode;
 		this.openList = new PriorityQueue<C_SoilCellMarineNode>(new Comparator<C_SoilCellMarineNode>() {
 			@Override
@@ -36,9 +38,11 @@ public class AStarMarine {
 		});
 		this.setCellNodes();
 		this.closedSet = new HashSet<>();
+		initialCellNode.initAsStart();
 		this.openList.add(initialCellNode);
-		while (!isEmpty(this.openList)) {
+		while (!this.openList.isEmpty()) {
 			C_SoilCellMarineNode currentCellNode = this.openList.poll();
+			if (this.closedSet.contains(currentCellNode)) continue; // doublon déjà traité
 			this.closedSet.add(currentCellNode);
 			if (isFinalCellNode(currentCellNode)) return getPath(currentCellNode);
 			else addAdjacentCellNodes(currentCellNode);
@@ -46,10 +50,12 @@ public class AStarMarine {
 		return new ArrayList<C_SoilCellMarineNode>();
 	}
 
+	/** Remet les cases à zéro et calcule leur distance à l'arrivée */
 	private void setCellNodes() {
 		for (int i = 0; i < searchArea.length; i++) {
 			for (int j = 0; j < searchArea[0].length; j++) {
-				((C_SoilCellMarineNode) this.searchArea[i][j]).calculateHeuristic(this.finalCellNode);
+				((C_SoilCellMarineNode) this.searchArea[i][j]).resetNodeData(this.finalCellNode, this.hvCost,
+						this.diagonalCost);
 			}
 		}
 	}
@@ -58,8 +64,7 @@ public class AStarMarine {
 		ArrayList<C_SoilCellMarineNode> path = new ArrayList<C_SoilCellMarineNode>();
 		path.add(currentCellNode);
 		C_SoilCellMarineNode parent;
-		while ((parent = currentCellNode.getParent()) != null //
-				&& parent.getParent() != currentCellNode) {// added to avoid loops JLF 05.2022
+		while ((parent = currentCellNode.getParent()) != null) {
 			path.add(0, parent);
 			currentCellNode = parent;
 		}
@@ -67,93 +72,35 @@ public class AStarMarine {
 	}
 
 	private void addAdjacentCellNodes(C_SoilCellMarineNode currentCellNode) {
-		addAdjacentUpperRow(currentCellNode);
-		addAdjacentMiddleRow(currentCellNode);
-		addAdjacentLowerRow(currentCellNode);
-	}
-
-	private void addAdjacentLowerRow(C_SoilCellMarineNode currentCellNode) {
 		int row = currentCellNode.retrieveLineNo();
 		int col = currentCellNode.retrieveColNo();
-		int lowerRow = row + 1;
-		if (lowerRow < this.searchArea.length) {
-			if (col - 1 >= 0) {
-				// Comment this line if diagonal movements are not allowed
-				checkCellNode(currentCellNode, col - 1, lowerRow, this.diagonalCost);
+		for (int dRow = -1; dRow <= 1; dRow++) {
+			for (int dCol = -1; dCol <= 1; dCol++) {
+				if (dRow == 0 && dCol == 0) continue;
+				int newRow = row + dRow, newCol = col + dCol;
+				if (newRow < 0 || newRow >= this.searchArea.length || newCol < 0 || newCol >= this.searchArea[0].length)
+					continue;
+				if (dRow != 0 && dCol != 0) {
+					// en diagonale : ne pas couper un coin de terre
+					if (((C_SoilCellMarineNode) this.searchArea[row][newCol]).isBlock()
+							|| ((C_SoilCellMarineNode) this.searchArea[newRow][col]).isBlock())
+						continue;
+					checkCellNode(currentCellNode, newCol, newRow, this.diagonalCost);
+				}
+				else checkCellNode(currentCellNode, newCol, newRow, this.hvCost);
 			}
-			if (col + 1 < this.searchArea[0].length) {
-				// Comment this line if diagonal movements are not allowed
-				checkCellNode(currentCellNode, col + 1, lowerRow, this.diagonalCost);
-			}
-			checkCellNode(currentCellNode, col, lowerRow, this.hvCost);
-		}
-	}
-
-	private void addAdjacentMiddleRow(C_SoilCellMarineNode currentCellNode) {
-		int row = currentCellNode.retrieveLineNo();
-		int col = currentCellNode.retrieveColNo();
-		int middleRow = row;
-		if (col - 1 >= 0) {
-			checkCellNode(currentCellNode, col - 1, middleRow, this.hvCost);
-		}
-		if (col + 1 < this.searchArea[0].length) {
-			checkCellNode(currentCellNode, col + 1, middleRow, this.hvCost);
-		}
-	}
-
-	private void addAdjacentUpperRow(C_SoilCellMarineNode currentCellNode) {
-		int row = currentCellNode.retrieveLineNo();
-		int col = currentCellNode.retrieveColNo();
-		int upperRow = row - 1;
-		if (upperRow >= 0) {
-			if (col - 1 >= 0) {
-				// Comment this if diagonal movements are not allowed
-				checkCellNode(currentCellNode, col - 1, upperRow, this.diagonalCost);
-			}
-			if (col + 1 < this.searchArea[0].length) {
-				// Comment this if diagonal movements are not allowed
-				checkCellNode(currentCellNode, col + 1, upperRow, this.diagonalCost);
-			}
-			checkCellNode(currentCellNode, col, upperRow, this.hvCost);
 		}
 	}
 
 	private void checkCellNode(C_SoilCellMarineNode currentCellNode, int col, int row, int cost) {
 		C_SoilCellMarineNode adjacentCellNode = (C_SoilCellMarineNode) this.searchArea[row][col];
 		if (!adjacentCellNode.isBlock() && !closedSet.contains(adjacentCellNode)) {
-			if (!getOpenList().contains(adjacentCellNode)) {
-				adjacentCellNode.setNodeData(currentCellNode, cost);
-				getOpenList().add(adjacentCellNode);
-			}
-			else {
-				boolean changed = adjacentCellNode.checkBetterPath(currentCellNode, cost);
-				if (changed) {
-					// Remove and Add the changed node, so that the PriorityQueue can sort again its
-					// contents with the modified "finalCost" value of the modified node
-					getOpenList().remove(adjacentCellNode);
-					getOpenList().add(adjacentCellNode);
-				}
-			}
+			// première visite ou chemin plus court : on ajoute la case
+			if (adjacentCellNode.checkBetterPath(currentCellNode, cost)) this.openList.add(adjacentCellNode);
 		}
 	}
 
 	private boolean isFinalCellNode(C_SoilCellMarineNode currentCellNode) {
 		return currentCellNode.equals(finalCellNode);
 	}
-
-	private boolean isEmpty(PriorityQueue<C_SoilCellMarineNode> openList) {
-		return openList.size() == 0;
-	}
-
-	public PriorityQueue<C_SoilCellMarineNode> getOpenList() {
-		return openList;
-	}
-
-	public void setOpenList(PriorityQueue<C_SoilCellMarineNode> openList) {
-		this.openList = openList;
-	}
-
-//	private void setDiagonalCost(int diagonalCost) {
-//		this.diagonalCost = diagonalCost;
-//	}
 }

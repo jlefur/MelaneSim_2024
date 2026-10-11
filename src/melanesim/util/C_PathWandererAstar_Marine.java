@@ -6,11 +6,9 @@ import org.locationtech.jts.geom.Coordinate;
 
 import data.C_Parameters;
 import melanesim.protocol.C_Protocol_PNMC_ships_astar;
-import melanesim.protocol.rodents.C_ProtocolDodel2;
 import melanesim.util.astar.AStarMarine;
 import thing.A_VisibleAgent;
 import thing.ground.C_SoilCellMarineNode;
-import thing.ground.I_Container;
 
 /** @author P.A. Mboup & J. Le Fur 2014, rev. Mboup 04.2016, added Astar, Le Fur 04.2022 */
 public class C_PathWandererAstar_Marine {
@@ -19,154 +17,82 @@ public class C_PathWandererAstar_Marine {
 	//
 	/** The Astar algorithm */
 	private AStarMarine astar = new AStarMarine();
-	/** Tableau stockant l'ensemble des sommets du graphe (must be initially null) */
+	/** Cases du chemin, du départ à l'arrivée (null si pas de chemin) */
 	public C_SoilCellMarineNode[] nodesList;
-	/** Nombre de sommets du graphe */
-	protected int nodesNumber = 0;
-	/** After building the path, targetSoilCell is successively the next node of the path. <br />
-	 * Agent is arrived at the next node if currentSoilCell == targetSoilCell. <br />
-	 * Agent is arrived at it's final destination when index Of path == length of path <br />
-	 * targetSoilCell is initialize by agent currentSoilCell */
-	public C_SoilCellMarineNode targetCell;
-	/** index to go through the path and get the following node */
+	/** numéro de la case visée dans nodesList */
 	public int indexPath = 0;
-	/** number of nodes of each path */
-	public int lengthOfPath = 0;
-	/** Counter of speed_UcellByTick */
-	public double intermediateDistanceTravelled;
-	public boolean isPathEnd;
-	/** key (start-end cells coordinates) used in the C_ProtocolDodel2.paths treemap */
-	private String pathKey;
+	public boolean isPathEnd = false;
 
-	//
-	// CONSTRUCTOR
-	//
-	public C_PathWandererAstar_Marine() {
-		this.indexPath = 0;
-		this.lengthOfPath = 0;
-		this.isPathEnd = false;
-
-	}
 	//
 	// METHODS
 	//
-	/** Search the correct path within the paths already computed and stored, else build new path - Le Fur 05.2022 */
-	public void getPath(C_SoilCellMarineNode currentCell, C_SoilCellMarineNode targetCell) {
-		C_SoilCellMarineNode streetTarget = this.closestStreet(targetCell);
-		C_SoilCellMarineNode streetStart = this.closestStreet(currentCell);
-		this.pathKey = String.format("%03d", streetStart.retrieveLineNo()) + String.format("%03d", streetStart
-				.retrieveColNo()) + String.format("%03d", streetTarget.retrieveLineNo()) + String.format("%03d",
-						streetTarget.retrieveColNo());
-		this.nodesList = C_Protocol_PNMC_ships_astar.paths.get(this.pathKey);
-		if (this.nodesList == null) buildBestPath(currentCell, targetCell);
-		else this.initPath();
-	}
-	/** Build the best path between two cells */
-	public void buildBestPath(C_SoilCellMarineNode currentCell, C_SoilCellMarineNode targetCell) {
-		// first get into street
-		C_SoilCellMarineNode streetTarget = this.closestStreet(targetCell);
-		C_SoilCellMarineNode streetStart = this.closestStreet(currentCell);
-		// Build the graph
-		ArrayList<C_SoilCellMarineNode> nodes = astar.findPath(streetStart, streetTarget);
-		// add target concession cell in case path ends to closest street
-		int numberNodes = nodes.size();
-		if (currentCell != streetStart) numberNodes++;
-		if (targetCell != streetTarget) numberNodes++;
-		this.nodesList = new C_SoilCellMarineNode[numberNodes];
-		int istart = 0;
-		if (currentCell != streetStart) {
-			this.nodesList[0] = currentCell;
-			istart = 1;
+	/** Reprend le chemin s'il est déjà connu, sinon le calcule
+	 * @return true si un chemin existe */
+	public boolean getPath(C_SoilCellMarineNode currentCell, C_SoilCellMarineNode targetCell) {
+		C_SoilCellMarineNode seaStart = closestSea(currentCell);
+		C_SoilCellMarineNode seaTarget = closestSea(targetCell);
+		if (seaStart == null || seaTarget == null) return false;
+		String pathKey = String.format("%03d%03d%03d%03d", seaStart.retrieveLineNo(), seaStart.retrieveColNo(),
+				seaTarget.retrieveLineNo(), seaTarget.retrieveColNo());
+		this.nodesList = C_Protocol_PNMC_ships_astar.paths.get(pathKey);
+		if (this.nodesList == null) {
+			ArrayList<C_SoilCellMarineNode> nodes = this.astar.findPath(seaStart, seaTarget);
+			if (nodes.isEmpty()) return false;
+			this.nodesList = nodes.toArray(new C_SoilCellMarineNode[nodes.size()]);
+			C_Protocol_PNMC_ships_astar.paths.put(pathKey, this.nodesList);
+			C_Protocol_PNMC_ships_astar.nbPaths++;
 		}
-		for (int i = 0; i < nodes.size(); i++) {
-			this.nodesList[i + istart] = nodes.get(i);
-			// Trace the new paths generated in green
-			if (C_Parameters.VERBOSE)
-				A_VisibleAgent.myLandscape.getValueLayer().set(10, ((C_SoilCellMarineNode) nodes.get(i)).retrieveLineNo(),
-						nodes.get(i).retrieveColNo());// @@vert boutique
-		}
-		if (targetCell != streetTarget) {
-			this.nodesList[numberNodes - 1] = targetCell;
-		}
-		this.initPath();
-		// store the new path
-		this.pathKey = String.format("%03d", streetStart.retrieveLineNo()) + String.format("%03d", streetStart
-				.retrieveColNo()) + String.format("%03d", streetTarget.retrieveLineNo()) + String.format("%03d",
-						streetTarget.retrieveColNo());
-		C_Protocol_PNMC_ships_astar.paths.put(this.pathKey, this.nodesList);
-		/*
-		 * // use the following lines to generate the paths files @see C_ProtocolDodel2.initPaths System.out.print(this.pathKey +
-		 * CSV_FIELD_SEPARATOR); for (int i = 0; i < this.nodesList.length; i++) { this.pathKey = String.format("%03d",
-		 * this.nodesList[i].retrieveLineNo()) + String.format("%03d", this.nodesList[i].retrieveColNo());
-		 * System.out.print(this.pathKey + CSV_FIELD_SEPARATOR); } System.out.println();
-		 */
-	}
-	/** Use either in collecting stored path or when building a new one */
-	private void initPath() {
-		this.lengthOfPath = this.nodesList.length - 1;
+		// Dessine le chemin sur la carte
+		if (C_Parameters.VERBOSE) for (C_SoilCellMarineNode node : this.nodesList)
+			A_VisibleAgent.myLandscape.getValueLayer().set(10, node.retrieveLineNo(), node.retrieveColNo());
 		this.indexPath = 0;
 		this.isPathEnd = false;
-		if (this.lengthOfPath == 0) {
-			this.indexPath--;// In case a graph has got only one city
+		return true;
+	}
+	/** Donne la case de mer la plus proche (la case elle-même si c'est de la mer)
+	 * @return null si toute la grille est de la terre */
+	public static C_SoilCellMarineNode closestSea(C_SoilCellMarineNode cell) {
+		if (!cell.isBlock()) return cell;
+		int gridLength_x = A_VisibleAgent.myLandscape.getGrid().length;
+		int gridLength_y = A_VisibleAgent.myLandscape.getGrid()[0].length;
+		int x0 = cell.retrieveLineNo(), y0 = cell.retrieveColNo();
+		int maxRadius = Math.max(gridLength_x, gridLength_y);
+		for (int radius = 1; radius < maxRadius; radius++) {
+			C_SoilCellMarineNode closest = null;
+			double closestDistance = Double.MAX_VALUE;
+			for (int x = x0 - radius; x <= x0 + radius; x++) {
+				for (int y = y0 - radius; y <= y0 + radius; y++) {
+					// seulement le bord du carré
+					if (Math.abs(x - x0) != radius && Math.abs(y - y0) != radius) continue;
+					if (x < 0 || x >= gridLength_x || y < 0 || y >= gridLength_y) continue;
+					C_SoilCellMarineNode testCell = (C_SoilCellMarineNode) A_VisibleAgent.myLandscape.getGridCell(x, y);
+					if (testCell.isBlock()) continue;
+					double distance = Math.hypot(x - x0, y - y0);
+					if (distance < closestDistance) {
+						closest = testCell;
+						closestDistance = distance;
+					}
+				}
+			}
+			if (closest != null) return closest;
 		}
-		else this.targetCell = this.nodesList[this.lengthOfPath - 1]; // select a cell within a destination city
+		return null;
 	}
-	/** Determine the closest street from the current position: used to get out of concession since Astar algorithm is only
-	 * computed with street cells / Le Fur 05.2022
-	 * @see C_SoilCellMarineNode#isBlock() */
-	public C_SoilCellMarineNode closestStreet(C_SoilCellMarineNode currentCell) {
-		C_SoilCellMarineNode streetCell = null;
-		if (currentCell.isTerrestrial()) return currentCell;
-		else {
-			int gridLength_y = A_VisibleAgent.myLandscape.getGrid()[0].length;
-			int gridLength_x = A_VisibleAgent.myLandscape.getGrid().length;
-			C_SoilCellMarineNode testCell = null;
-			int y = currentCell.retrieveColNo(), x = currentCell.retrieveLineNo(), i = 1;
-			do {
-				if (y + i < gridLength_y) {
-					testCell = (C_SoilCellMarineNode) A_VisibleAgent.myLandscape.getGridCell(x, y + i);
-					if (testCell.isTerrestrial()) streetCell = testCell;
-				}
-				else if (y - i >= 0) {
-					testCell = (C_SoilCellMarineNode) A_VisibleAgent.myLandscape.getGridCell(x, y - i);
-					if (testCell.isTerrestrial()) streetCell = testCell;
-				}
-				else if (x + i < gridLength_x) {
-					testCell = (C_SoilCellMarineNode) A_VisibleAgent.myLandscape.getGridCell(x + i, y);
-					if (testCell.isTerrestrial()) streetCell = testCell;
-				}
-				else if (x - i >= 0) {
-					testCell = (C_SoilCellMarineNode) A_VisibleAgent.myLandscape.getGridCell(x - i, y);
-					if (testCell.isTerrestrial()) streetCell = testCell;
-				}
-				i++;
-			} while (streetCell == null);
-		}
-		return streetCell;
+	/** @return la position de la case visée */
+	public Coordinate getCurrentNodePoint_Umeter() {
+		return this.nodesList[this.indexPath].getCoordinate_Umeter();
 	}
-	/** Plus juste pour les calculs et permet aussi au HC de rester sur les routes m�me si leur vitesse est tr�s grande */
-	public boolean crossingIntermediateDistance(double distanceTravelled, double speed_UmeterByTick) {
-		this.intermediateDistanceTravelled += distanceTravelled;
-		return this.intermediateDistanceTravelled < speed_UmeterByTick;
+	/** Passe à la case suivante, ou note la fin du chemin */
+	public void setNextNode() {
+		if (this.indexPath >= this.nodesList.length - 1) this.isPathEnd = true;
+		else this.indexPath++;
 	}
-	/** When arrived in any path cell towards the targetCell */
-	public Coordinate computeNextNodeAndGetTargetPoint_Umeter(Coordinate targetPoint_Umeter) {
-		if (this.indexPath >= this.lengthOfPath) this.isPathEnd = true;
-		else this.targetCell = this.nodesList[++this.indexPath];
-		return this.targetCell.getCoordinate_Umeter();
+	public boolean hasPath() {
+		return this.nodesList != null;
 	}
-	/** Remove references to object fields, discards the associated graph */
+	/** Vide les champs de l'objet */
 	public void discardThis() {
 		this.astar = null;
-		this.targetCell = null;
 		this.nodesList = null;
-	}
-	//
-	// GETTERS
-	//
-	public boolean hasToSetNextNode(I_Container currentSC) { // arrived in any path cell towards the targetCell
-		if (this.isPathEnd) return false;
-		else if (this.indexPath == 0) return true;
-		return (this.targetCell == null || this.targetCell == currentSC);
 	}
 }
