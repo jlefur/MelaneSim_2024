@@ -1,6 +1,7 @@
 package presentation.display;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -9,6 +10,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -25,6 +28,8 @@ import java.util.Map;
 import java.util.function.DoubleConsumer;
 import java.util.function.DoubleSupplier;
 
+import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -35,6 +40,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.JSpinner;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.Scrollable;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
@@ -57,6 +63,11 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 	private final Timer debounce = new Timer(200,e->applyToParametersAndSave());
 	private boolean live = true;
 	private boolean syncing = false;
+	/** Couleurs des curseurs de la version horizontale (une par canal) */
+	private static final Color[] SLIDER_COLORS = {new Color(61,175,85),new Color(59,142,206),new Color(103,88,230),
+	        new Color(241,79,107),new Color(240,150,40)};
+	/** Largeur (px) des sliders horizontaux : préférée / minimale */
+	private static final int SLIDER_WIDTH = 220, SLIDER_MIN_WIDTH = 120;
 	// Pour imprimer le changement de valeur
 	private final java.util.Map<String,Double> lastApplied = new java.util.HashMap<>();
 	private static final double EPS = 1e-6;
@@ -79,6 +90,30 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	/** Panneau qui prend la largeur du JScrollPane au lieu de sa largeur préférée : rien n'est coupé à droite */
+	private static class WidthTrackingPanel extends JPanel implements Scrollable {
+		private static final long serialVersionUID = 1L;
+
+		WidthTrackingPanel(java.awt.LayoutManager layout) { super(layout); }
+
+		@Override
+		public Dimension getPreferredScrollableViewportSize() { return getPreferredSize(); }
+
+		@Override
+		public int getScrollableUnitIncrement(java.awt.Rectangle r, int orientation, int direction) { return 16; }
+
+		@Override
+		public int getScrollableBlockIncrement(java.awt.Rectangle r, int orientation, int direction) {
+			return orientation==SwingConstants.VERTICAL?r.height:r.width;
+		}
+
+		@Override
+		public boolean getScrollableTracksViewportWidth() { return true; }
+
+		@Override
+		public boolean getScrollableTracksViewportHeight() { return false; }
 	}
 
 	// Un "canal" = 1 slider + 1 spinner + liaison getter/setter vers C_Parameters
@@ -112,7 +147,7 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 	        new Channel("shi","ship",SHIP_ICON,()->C_Parameters.getMultiplier(DriverType.SHIP),v->C_Parameters
 	                .setMultiplier(DriverType.SHIP,v)),//
 	        new Channel("wha","whale",WHALE_ICON,()->C_Parameters.getMultiplier(DriverType.WHALE),v->C_Parameters
-	                .setMultiplier(DriverType.SHIP,v)));//
+	                .setMultiplier(DriverType.WHALE,v)));//
 	// new Channel("mou", "mount", MOUNT_ICON, () -> C_Parameters.MOUNT_MULTIPLIER,
 	// v -> C_Parameters.MOUNT_MULTIPLIER = v), //
 	// new Channel("tem", "temperature", TEMPERATURE_ICON, () -> C_Parameters.TEMPERATURE_MULTIPLIER,
@@ -138,18 +173,40 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 	//
 	// CONSTRUCTOR
 	//
-	public C_UserPanelEnergyLinearGrid() {
+	public C_UserPanelEnergyLinearGrid() { this(false); }
+
+	/** @param horizontal true pour la version MIAGE - TEST (sliders horizontaux, un canal par ligne) */
+	public C_UserPanelEnergyLinearGrid(boolean horizontal) {
 		super(new BorderLayout(8,8));
 
 		JLabel title = new JLabel("Marine Energy Control ("+MIN+"× → "+MAX+"×)",SwingConstants.CENTER);
 		title.setFont(title.getFont().deriveFont(Font.BOLD,16f));
 		add(title,BorderLayout.NORTH);
 
-		// --- Grille ROWS x COLS ---
-		JPanel grid = new JPanel(new GridLayout(ROWS,COLS,12,12));
-		for(Channel ch:channels) grid.add(buildColumn(ch));
-		add(new JScrollPane(grid,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
-		        ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER),BorderLayout.CENTER);
+		if(horizontal){
+			// --- Une ligne par canal, empilées en haut (maquette 20261019-MIAGE2_UserPanel, phase 1) ---
+			JPanel rows = new WidthTrackingPanel(new GridBagLayout());
+			GridBagConstraints c = new GridBagConstraints();
+			c.gridx = 0;
+			c.weightx = 1;
+			c.fill = GridBagConstraints.HORIZONTAL;
+			c.insets = new Insets(6,10,6,10);
+			for(int i = 0;i<channels.size();i++)
+				rows.add(buildRow(channels.get(i),SLIDER_COLORS[i%SLIDER_COLORS.length]),c);
+			c.weighty = 1; // pousse les lignes vers le haut
+			rows.add(new JPanel(),c);
+			JScrollPane scroll = new JScrollPane(rows,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+			        ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+			scroll.getVerticalScrollBar().setUnitIncrement(16);
+			add(scroll,BorderLayout.CENTER);
+		}
+		else{
+			// --- Grille ROWS x COLS ---
+			JPanel grid = new JPanel(new GridLayout(ROWS,COLS,12,12));
+			for(Channel ch:channels) grid.add(buildColumn(ch));
+			add(new JScrollPane(grid,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+			        ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER),BorderLayout.CENTER);
+		}
 
 		// --- Barre d'actions ---
 		JPanel actions = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -189,25 +246,128 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 		for(Channel ch:channels){
 			lastApplied.put(ch.id,((Number)ch.spinner.getValue()).doubleValue());
 		}
+
+		// Plusieurs onglets éditent les mêmes paramètres : à l'affichage, on relit le CSV (sauvegardé à chaque
+		// application) pour refléter les réglages faits dans l'autre onglet.
+		addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentShown(ComponentEvent e) { resyncFromCSV(); }
+		});
+	}
+
+	private void resyncFromCSV() {
+		if(debounce.isRunning()) return; // modification locale en attente : ne pas l'écraser
+		if(loadCSV()) for(Channel ch:channels)
+			lastApplied.put(ch.id,((Number)ch.spinner.getValue()).doubleValue());
+	}
+
+	// ---------- Construction d'une "ligne" (slider horizontal) ----------
+	// Disposition (maquette phase 1) :
+	// [icône] Nom
+	//         ----------●-------------------
+	//         [0.25×][1.00×][10.00×]   [spinner]
+	private JPanel buildRow(Channel ch, Color color) {
+		JPanel presets = createControls(ch,JSlider.HORIZONTAL);
+		ch.slider.setPaintTicks(false);
+		ch.slider.setPaintLabels(false);
+		ch.slider.setUI(new C_FlatSliderUI(ch.slider,color));
+		ch.slider.setToolTipText(ch.label);
+		for(java.awt.Component b:presets.getComponents())
+			b.setFont(b.getFont().deriveFont(10f));
+
+		JLabel icon = new JLabel(loadIconFromFile(ch.icon,64));
+		icon.setBorder(BorderFactory.createLineBorder(new Color(190,190,190)));
+		String name = ch.label.substring(0,1).toUpperCase(Locale.ROOT)+ch.label.substring(1);
+		JLabel lbl = new JLabel(name);
+		lbl.setFont(lbl.getFont().deriveFont(Font.PLAIN,18f));
+
+		JPanel row = new JPanel(new GridBagLayout());
+		row.setBorder(BorderFactory.createEmptyBorder(4,4,4,4));
+		GridBagConstraints c = new GridBagConstraints();
+		// icône sur les 3 lignes
+		c.gridx = 0;
+		c.gridy = 0;
+		c.gridheight = 3;
+		c.insets = new Insets(0,0,0,12);
+		c.anchor = GridBagConstraints.CENTER;
+		row.add(icon,c);
+		c.gridheight = 1;
+		c.insets = new Insets(0,0,0,0);
+		// nom
+		c.gridx = 1;
+		c.gridwidth = 2;
+		c.anchor = GridBagConstraints.WEST;
+		row.add(lbl,c);
+		// slider : largeur fixe (rétrécit jusqu'à SLIDER_MIN_WIDTH si la fenêtre est étroite)
+		ch.slider.setPreferredSize(new Dimension(SLIDER_WIDTH,24));
+		ch.slider.setMinimumSize(new Dimension(SLIDER_MIN_WIDTH,24));
+		c.gridy = 1;
+		c.fill = GridBagConstraints.HORIZONTAL;
+		row.add(ch.slider,c);
+		// presets + spinner
+		c.gridy = 2;
+		c.gridwidth = 1;
+		c.fill = GridBagConstraints.NONE;
+		c.anchor = GridBagConstraints.WEST;
+		row.add(presets,c);
+		c.gridx = 2;
+		c.anchor = GridBagConstraints.EAST;
+		row.add(ch.spinner,c);
+		// colonne vide qui absorbe la largeur restante : la ligne reste compacte, calée à gauche
+		c.gridx = 3;
+		c.gridy = 0;
+		c.weightx = 1;
+		row.add(Box.createHorizontalGlue(),c);
+
+		setUI(ch,safe(ch.get.getAsDouble()));
+		return row;
 	}
 
 	// ---------- Construction d'une "colonne" (vertical) ----------
 	private JPanel buildColumn(Channel ch) {
-		ch.slider = vSlider((int)Math.round(MIN*100),(int)Math.round(MAX*100),100);
+		// label avec icône, texte à droite de l'icône
+		ImageIcon imageIcon = loadIconFromFile(ch.icon,92);
+		JLabel lbl = new JLabel(ch.label,imageIcon,SwingConstants.CENTER);
+		lbl.setFont(lbl.getFont().deriveFont(Font.BOLD,12f));
+		lbl.setVerticalTextPosition(SwingConstants.CENTER);
+		lbl.setHorizontalTextPosition(SwingConstants.RIGHT);
+		JPanel presets = createControls(ch,JSlider.VERTICAL);
+
+		JPanel col = new JPanel(new GridBagLayout());
+		GridBagConstraints c = new GridBagConstraints();
+		c.gridx = 0;
+		c.weightx = 1;
+		c.insets = new Insets(4,6,4,6);
+		c.fill = GridBagConstraints.HORIZONTAL;
+
+		c.gridy = 0;
+		c.weighty = 0;
+		col.add(lbl,c);
+		c.gridy = 1;
+		c.weighty = 0;
+		col.add(ch.valLabel,c);
+		c.gridy = 2;
+		c.weighty = 1;
+		c.fill = GridBagConstraints.BOTH;
+		col.add(ch.slider,c);
+		c.gridy = 3;
+		c.weighty = 0;
+		c.fill = GridBagConstraints.HORIZONTAL;
+		col.add(ch.spinner,c);
+		c.gridy = 4;
+		col.add(presets,c);
+
+		// valeur initiale depuis getter
+		setUI(ch,safe(ch.get.getAsDouble()));
+		return col;
+	}
+
+	/** Crée slider + spinner + label de valeur du canal, les synchronise et retourne le panneau de presets */
+	private JPanel createControls(Channel ch, int orientation) {
+		ch.slider = slider(orientation,(int)Math.round(MIN*100),(int)Math.round(MAX*100),100);
 		ch.spinner = spinner(1.00);
 		ch.valLabel = new JLabel("1.00×",SwingConstants.CENTER);
 		ch.valLabel.setFont(ch.valLabel.getFont().deriveFont(Font.BOLD,12f));
-
-		// label avec icône + texte centré
-		ImageIcon imageIcon = loadIconFromFile(ch.icon,92); // si ton nom d’image correspond à ch.id (ex. "wh", "mic",
-		                                                    // etc.)
-		JLabel lbl = new JLabel(ch.label,imageIcon,SwingConstants.CENTER);
-		lbl.setVerticalTextPosition(SwingConstants.BOTTOM); // texte sous l’image
-		lbl.setHorizontalTextPosition(SwingConstants.CENTER);
-		lbl.setFont(lbl.getFont().deriveFont(Font.BOLD,12f));
-		// Si tu veux le texte à droite de l’icône
-		lbl.setVerticalTextPosition(SwingConstants.CENTER);
-		lbl.setHorizontalTextPosition(SwingConstants.RIGHT);
 
 		// presets
 		JPanel presets = new JPanel(new FlowLayout(FlowLayout.CENTER,4,0));
@@ -247,38 +407,11 @@ public class C_UserPanelEnergyLinearGrid extends JPanel implements I_ConstantIma
 			if(live) debounce.restart();
 			syncing = false;
 		});
-
-		JPanel col = new JPanel(new GridBagLayout());
-		GridBagConstraints c = new GridBagConstraints();
-		c.gridx = 0;
-		c.weightx = 1;
-		c.insets = new Insets(4,6,4,6);
-		c.fill = GridBagConstraints.HORIZONTAL;
-
-		c.gridy = 0;
-		c.weighty = 0;
-		col.add(lbl,c);
-		c.gridy = 1;
-		c.weighty = 0;
-		col.add(ch.valLabel,c);
-		c.gridy = 2;
-		c.weighty = 1;
-		c.fill = GridBagConstraints.BOTH;
-		col.add(ch.slider,c);
-		c.gridy = 3;
-		c.weighty = 0;
-		c.fill = GridBagConstraints.HORIZONTAL;
-		col.add(ch.spinner,c);
-		c.gridy = 4;
-		col.add(presets,c);
-
-		// valeur initiale depuis getter
-		setUI(ch,safe(ch.get.getAsDouble()));
-		return col;
+		return presets;
 	}
 
-	private static JSlider vSlider(int min, int max, int val) {
-		JSlider s = new JSlider(JSlider.VERTICAL,min,max,val);
+	private static JSlider slider(int orientation, int min, int max, int val) {
+		JSlider s = new JSlider(orientation,min,max,val);
 		s.setPaintTicks(true);
 		s.setPaintLabels(true);
 		s.setMajorTickSpacing(25);
